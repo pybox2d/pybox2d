@@ -11,7 +11,6 @@ If that worked, then:
  setup.py install
 """
 
-from __future__ import print_function
 import os
 import sys
 from glob import glob
@@ -26,17 +25,17 @@ try:
     import setuptools
     from setuptools import (setup, Extension)
     setuptools_version=setuptools.__version__
-    print('Using setuptools (version %s).' % setuptools_version)
+    print 'Using setuptools (version %s).' % setuptools_version
 except:
     from distutils.core import (setup, Extension)
-    print("""Setuptools not found; falling back on distutils. 
+    print """Setuptools not found; falling back on distutils. 
             !!! This might fail. Please install setuptools by running ez_setup.py for Python
-            2.x or ez_setup3.0.py for Python 3.x""")
+            2.x or ez_setup3.0.py for Python 3.x"""
 
 if setuptools_version:
     if (setuptools_version in ["0.6c%d"%i for i in range(1,9)] # old versions
         or setuptools_version=="0.7a1"): # 0.7a1 py 3k alpha version based on old version
-            print('Patching setuptools.build_ext.get_ext_filename')
+            print 'Patching setuptools.build_ext.get_ext_filename'
             from setuptools.command import build_ext
             def get_ext_filename(self, fullname):
                 from setuptools.command.build_ext import (_build_ext, Library, use_stubs)
