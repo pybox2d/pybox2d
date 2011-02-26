@@ -28,10 +28,10 @@ public:
             ['drawPairs', e_pairBit ],
             ['drawCOMs', e_centerOfMassBit ],
         ]
-        def _SetFlags(self, **kwargs):
+        def _SetFlags(self, value):
             flags = 0
             for name_, mask in self._flag_entries:
-                if name_ in kwargs and kwargs[name_]:
+                if name_ in value and value[name_]:
                     flags |= mask
             self.__SetFlags(flags)
         def _GetFlags(self):

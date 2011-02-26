@@ -2200,7 +2200,7 @@ class b2DebugDraw(object):
         ['drawPairs', e_pairBit ],
         ['drawCOMs', e_centerOfMassBit ],
     ]
-    def _SetFlags(self, **kwargs):
+    def _SetFlags(self, kwargs):
         flags = 0
         for name_, mask in self._flag_entries:
             if name_ in kwargs and kwargs[name_]:

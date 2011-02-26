@@ -146,7 +146,7 @@ class FrameworkBase(b2ContactListener):
             self.DrawStringCR("****PAUSED****", (200,0,0))
 
         # Set the flags based on what the settings show
-        self.debugDraw.SetFlags(
+        self.debugDraw.flags=dict(
                 drawShapes=settings.drawShapes,
                 drawJoints=settings.drawJoints,
                 drawAABBs =settings.drawAABBs,
