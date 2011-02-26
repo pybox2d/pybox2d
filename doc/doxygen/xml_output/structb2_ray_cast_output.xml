@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.7.2">
+  <compounddef id="structb2_ray_cast_output" kind="struct" prot="public">
+    <compoundname>b2RayCastOutput</compoundname>
+    <includes local="no">b2Collision.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structb2_ray_cast_output_1aa9bbfe75afa23c21e85cb1bd3736529b" prot="public" static="no" mutable="no">
+        <type><ref refid="structb2_vec2" kindref="compound">b2Vec2</ref></type>
+        <definition>b2Vec2 b2RayCastOutput::normal</definition>
+        <argsstring></argsstring>
+        <name>normal</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Collision/b2Collision.h" line="157" bodyfile="D:/pybox2d/Box2D/Collision/b2Collision.h" bodystart="157" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structb2_ray_cast_output_1a191c69bb399304bfe30c69e2158b3f29" prot="public" static="no" mutable="no">
+        <type>float32</type>
+        <definition>float32 b2RayCastOutput::fraction</definition>
+        <argsstring></argsstring>
+        <name>fraction</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Collision/b2Collision.h" line="158" bodyfile="D:/pybox2d/Box2D/Collision/b2Collision.h" bodystart="158" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>Ray-cast output data. The ray hits at p1 + fraction * (p2 - p1), where p1 and p2 come from <ref refid="structb2_ray_cast_input" kindref="compound">b2RayCastInput</ref>. </para>    </detaileddescription>
+    <collaborationgraph>
+      <node id="1949">
+        <label>b2RayCastOutput</label>
+        <link refid="structb2_ray_cast_output"/>
+        <childnode refid="1950" relation="usage">
+          <edgelabel>normal</edgelabel>
+        </childnode>
+      </node>
+      <node id="1950">
+        <label>b2Vec2</label>
+        <link refid="structb2_vec2"/>
+      </node>
+    </collaborationgraph>
+    <location file="D:/pybox2d/Box2D/Collision/b2Collision.h" line="156" bodyfile="D:/pybox2d/Box2D/Collision/b2Collision.h" bodystart="155" bodyend="159"/>
+    <listofallmembers>
+      <member refid="structb2_ray_cast_output_1a191c69bb399304bfe30c69e2158b3f29" prot="public" virt="non-virtual"><scope>b2RayCastOutput</scope><name>fraction</name></member>
+      <member refid="structb2_ray_cast_output_1aa9bbfe75afa23c21e85cb1bd3736529b" prot="public" virt="non-virtual"><scope>b2RayCastOutput</scope><name>normal</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

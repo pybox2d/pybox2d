@@ -1,0 +1,814 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.7.2">
+  <compounddef id="classb2_pulley_joint" kind="class" prot="public">
+    <compoundname>b2PulleyJoint</compoundname>
+    <basecompoundref refid="classb2_joint" prot="public" virt="non-virtual">b2Joint</basecompoundref>
+    <includes local="no">b2PulleyJoint.h</includes>
+      <sectiondef kind="friend">
+      <memberdef kind="friend" id="classb2_pulley_joint_1a54ade8ed3d794298108d7f4c4e4793fa" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>friend class</type>
+        <definition>friend class b2Joint</definition>
+        <argsstring></argsstring>
+        <name>b2Joint</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2PulleyJoint.h" line="112" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2PulleyJoint.h" bodystart="112" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classb2_pulley_joint_1a59eb73668df3c413ade93e45ab6c2cf1" prot="protected" static="no" mutable="no">
+        <type><ref refid="structb2_vec2" kindref="compound">b2Vec2</ref></type>
+        <definition>b2Vec2 b2PulleyJoint::m_groundAnchor1</definition>
+        <argsstring></argsstring>
+        <name>m_groundAnchor1</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2PulleyJoint.h" line="119" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2PulleyJoint.h" bodystart="119" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_pulley_joint_1a0e96ac1bcdb375dabe170239b7fb2448" prot="protected" static="no" mutable="no">
+        <type><ref refid="structb2_vec2" kindref="compound">b2Vec2</ref></type>
+        <definition>b2Vec2 b2PulleyJoint::m_groundAnchor2</definition>
+        <argsstring></argsstring>
+        <name>m_groundAnchor2</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2PulleyJoint.h" line="120" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2PulleyJoint.h" bodystart="120" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_pulley_joint_1abb9ecd4f1631c581f09e48a9863a4a5d" prot="protected" static="no" mutable="no">
+        <type><ref refid="structb2_vec2" kindref="compound">b2Vec2</ref></type>
+        <definition>b2Vec2 b2PulleyJoint::m_localAnchor1</definition>
+        <argsstring></argsstring>
+        <name>m_localAnchor1</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2PulleyJoint.h" line="121" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2PulleyJoint.h" bodystart="121" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_pulley_joint_1a68e4ca5024c179a627040cdddb30748c" prot="protected" static="no" mutable="no">
+        <type><ref refid="structb2_vec2" kindref="compound">b2Vec2</ref></type>
+        <definition>b2Vec2 b2PulleyJoint::m_localAnchor2</definition>
+        <argsstring></argsstring>
+        <name>m_localAnchor2</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2PulleyJoint.h" line="122" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2PulleyJoint.h" bodystart="122" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_pulley_joint_1a10280a05474821a93e3dd98fcc9729c8" prot="protected" static="no" mutable="no">
+        <type><ref refid="structb2_vec2" kindref="compound">b2Vec2</ref></type>
+        <definition>b2Vec2 b2PulleyJoint::m_u1</definition>
+        <argsstring></argsstring>
+        <name>m_u1</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2PulleyJoint.h" line="124" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2PulleyJoint.h" bodystart="124" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_pulley_joint_1a4e3232603c903d9144f3685c99e221da" prot="protected" static="no" mutable="no">
+        <type><ref refid="structb2_vec2" kindref="compound">b2Vec2</ref></type>
+        <definition>b2Vec2 b2PulleyJoint::m_u2</definition>
+        <argsstring></argsstring>
+        <name>m_u2</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2PulleyJoint.h" line="125" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2PulleyJoint.h" bodystart="125" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_pulley_joint_1a0e73d1d31126331267a1661beb146bc7" prot="protected" static="no" mutable="no">
+        <type>float32</type>
+        <definition>float32 b2PulleyJoint::m_constant</definition>
+        <argsstring></argsstring>
+        <name>m_constant</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2PulleyJoint.h" line="127" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2PulleyJoint.h" bodystart="127" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_pulley_joint_1aa44594b9b4826c565da387bed5f02470" prot="protected" static="no" mutable="no">
+        <type>float32</type>
+        <definition>float32 b2PulleyJoint::m_ratio</definition>
+        <argsstring></argsstring>
+        <name>m_ratio</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2PulleyJoint.h" line="128" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2PulleyJoint.h" bodystart="128" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_pulley_joint_1af23d8e67bbf52f90665954844c9514cb" prot="protected" static="no" mutable="no">
+        <type>float32</type>
+        <definition>float32 b2PulleyJoint::m_maxLength1</definition>
+        <argsstring></argsstring>
+        <name>m_maxLength1</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2PulleyJoint.h" line="130" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2PulleyJoint.h" bodystart="130" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_pulley_joint_1af551c8af72595d5129542b9cdffebc7e" prot="protected" static="no" mutable="no">
+        <type>float32</type>
+        <definition>float32 b2PulleyJoint::m_maxLength2</definition>
+        <argsstring></argsstring>
+        <name>m_maxLength2</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2PulleyJoint.h" line="131" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2PulleyJoint.h" bodystart="131" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_pulley_joint_1a680dd241301a9af63620d12da3ba9e0e" prot="protected" static="no" mutable="no">
+        <type>float32</type>
+        <definition>float32 b2PulleyJoint::m_pulleyMass</definition>
+        <argsstring></argsstring>
+        <name>m_pulleyMass</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2PulleyJoint.h" line="134" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2PulleyJoint.h" bodystart="134" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_pulley_joint_1ae87373a82bd131759cf98c7956bf46ab" prot="protected" static="no" mutable="no">
+        <type>float32</type>
+        <definition>float32 b2PulleyJoint::m_limitMass1</definition>
+        <argsstring></argsstring>
+        <name>m_limitMass1</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2PulleyJoint.h" line="135" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2PulleyJoint.h" bodystart="135" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_pulley_joint_1a25cc49815d05e870e29bbcd9f610f8e6" prot="protected" static="no" mutable="no">
+        <type>float32</type>
+        <definition>float32 b2PulleyJoint::m_limitMass2</definition>
+        <argsstring></argsstring>
+        <name>m_limitMass2</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2PulleyJoint.h" line="136" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2PulleyJoint.h" bodystart="136" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_pulley_joint_1a1e5b5fff8b1564688b38d139c5f7c65a" prot="protected" static="no" mutable="no">
+        <type>float32</type>
+        <definition>float32 b2PulleyJoint::m_impulse</definition>
+        <argsstring></argsstring>
+        <name>m_impulse</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2PulleyJoint.h" line="139" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2PulleyJoint.h" bodystart="139" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_pulley_joint_1a489241135bb8ae20328c5e232f8301a8" prot="protected" static="no" mutable="no">
+        <type>float32</type>
+        <definition>float32 b2PulleyJoint::m_limitImpulse1</definition>
+        <argsstring></argsstring>
+        <name>m_limitImpulse1</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2PulleyJoint.h" line="140" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2PulleyJoint.h" bodystart="140" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_pulley_joint_1a7c1b64bb9417d40ea14f666dda900dca" prot="protected" static="no" mutable="no">
+        <type>float32</type>
+        <definition>float32 b2PulleyJoint::m_limitImpulse2</definition>
+        <argsstring></argsstring>
+        <name>m_limitImpulse2</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2PulleyJoint.h" line="141" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2PulleyJoint.h" bodystart="141" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_pulley_joint_1a10e3588362c8c0eec3ca9cd14d652644" prot="protected" static="no" mutable="no">
+        <type>b2LimitState</type>
+        <definition>b2LimitState b2PulleyJoint::m_state</definition>
+        <argsstring></argsstring>
+        <name>m_state</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2PulleyJoint.h" line="143" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2PulleyJoint.h" bodystart="143" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_pulley_joint_1ab49d3dc7ed191389704bb9491ed724e8" prot="protected" static="no" mutable="no">
+        <type>b2LimitState</type>
+        <definition>b2LimitState b2PulleyJoint::m_limitState1</definition>
+        <argsstring></argsstring>
+        <name>m_limitState1</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2PulleyJoint.h" line="144" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2PulleyJoint.h" bodystart="144" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_pulley_joint_1a766741f440c95a70f2e5d3c3da5b727f" prot="protected" static="no" mutable="no">
+        <type>b2LimitState</type>
+        <definition>b2LimitState b2PulleyJoint::m_limitState2</definition>
+        <argsstring></argsstring>
+        <name>m_limitState2</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2PulleyJoint.h" line="145" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2PulleyJoint.h" bodystart="145" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classb2_pulley_joint_1a05ac0d0d927e9541f08b07cb1bf9ec56" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type><ref refid="structb2_vec2" kindref="compound">b2Vec2</ref></type>
+        <definition>b2Vec2 b2PulleyJoint::GetAnchorA</definition>
+        <argsstring>() const </argsstring>
+        <name>GetAnchorA</name>
+        <reimplements refid="classb2_joint_1abe46ca3aad5db73909a9b5a7b2117447">GetAnchorA</reimplements>
+        <briefdescription>
+<para>Get the anchor point on bodyA in world coordinates. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2PulleyJoint.h" line="89" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2PulleyJoint.cpp" bodystart="376" bodyend="379"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_pulley_joint_1a5cc3596f683d621b9a885c2569ecd452" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type><ref refid="structb2_vec2" kindref="compound">b2Vec2</ref></type>
+        <definition>b2Vec2 b2PulleyJoint::GetAnchorB</definition>
+        <argsstring>() const </argsstring>
+        <name>GetAnchorB</name>
+        <reimplements refid="classb2_joint_1a88e947c65d4ea26fe539f02a8cb7f7a9">GetAnchorB</reimplements>
+        <briefdescription>
+<para>Get the anchor point on bodyB in world coordinates. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2PulleyJoint.h" line="90" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2PulleyJoint.cpp" bodystart="381" bodyend="384"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_pulley_joint_1a38c174bf1cf1011063ff4c16556b331e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type><ref refid="structb2_vec2" kindref="compound">b2Vec2</ref></type>
+        <definition>b2Vec2 b2PulleyJoint::GetReactionForce</definition>
+        <argsstring>(float32 inv_dt) const </argsstring>
+        <name>GetReactionForce</name>
+        <reimplements refid="classb2_joint_1a7e0eddefb9b69ad050b8ef6425838a74">GetReactionForce</reimplements>
+        <param>
+          <type>float32</type>
+          <declname>inv_dt</declname>
+        </param>
+        <briefdescription>
+<para>Get the reaction force on body2 at the joint anchor in Newtons. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2PulleyJoint.h" line="92" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2PulleyJoint.cpp" bodystart="386" bodyend="390"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_pulley_joint_1a418b200055623474c44742b1342dd278" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>float32</type>
+        <definition>float32 b2PulleyJoint::GetReactionTorque</definition>
+        <argsstring>(float32 inv_dt) const </argsstring>
+        <name>GetReactionTorque</name>
+        <reimplements refid="classb2_joint_1ae355e441c2aa842777dc04e24f15ced0">GetReactionTorque</reimplements>
+        <param>
+          <type>float32</type>
+          <declname>inv_dt</declname>
+        </param>
+        <briefdescription>
+<para>Get the reaction torque on body2 in N*m. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2PulleyJoint.h" line="93" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2PulleyJoint.cpp" bodystart="392" bodyend="396"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_pulley_joint_1a19eefa28d2647882406ea9bfe2850a9e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structb2_vec2" kindref="compound">b2Vec2</ref></type>
+        <definition>b2Vec2 b2PulleyJoint::GetGroundAnchorA</definition>
+        <argsstring>() const </argsstring>
+        <name>GetGroundAnchorA</name>
+        <briefdescription>
+<para>Get the first ground anchor. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2PulleyJoint.h" line="96" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2PulleyJoint.cpp" bodystart="398" bodyend="401"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_pulley_joint_1a1b49d0dbce802f19711a9ab6d7dadfee" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structb2_vec2" kindref="compound">b2Vec2</ref></type>
+        <definition>b2Vec2 b2PulleyJoint::GetGroundAnchorB</definition>
+        <argsstring>() const </argsstring>
+        <name>GetGroundAnchorB</name>
+        <briefdescription>
+<para>Get the second ground anchor. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2PulleyJoint.h" line="99" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2PulleyJoint.cpp" bodystart="403" bodyend="406"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_pulley_joint_1ad86007aa86e33083dfc5300263086116" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>float32</type>
+        <definition>float32 b2PulleyJoint::GetLength1</definition>
+        <argsstring>() const </argsstring>
+        <name>GetLength1</name>
+        <briefdescription>
+<para>Get the current length of the segment attached to body1. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2PulleyJoint.h" line="102" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2PulleyJoint.cpp" bodystart="408" bodyend="414"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_pulley_joint_1a71619df4bf772363fde4b5841215bdb0" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>float32</type>
+        <definition>float32 b2PulleyJoint::GetLength2</definition>
+        <argsstring>() const </argsstring>
+        <name>GetLength2</name>
+        <briefdescription>
+<para>Get the current length of the segment attached to body2. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2PulleyJoint.h" line="105" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2PulleyJoint.cpp" bodystart="416" bodyend="422"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_pulley_joint_1a625685e60d95b7c5a725e8586d146752" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>float32</type>
+        <definition>float32 b2PulleyJoint::GetRatio</definition>
+        <argsstring>() const </argsstring>
+        <name>GetRatio</name>
+        <briefdescription>
+<para>Get the pulley ratio. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2PulleyJoint.h" line="108" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2PulleyJoint.cpp" bodystart="424" bodyend="427"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classb2_pulley_joint_1aca1b8dc6fb05c134ccbc0423674c1867" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>b2PulleyJoint::b2PulleyJoint</definition>
+        <argsstring>(const b2PulleyJointDef *data)</argsstring>
+        <name>b2PulleyJoint</name>
+        <param>
+          <type>const <ref refid="structb2_pulley_joint_def" kindref="compound">b2PulleyJointDef</ref> *</type>
+          <declname>data</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2PulleyJoint.h" line="113" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2PulleyJoint.cpp" bodystart="64" bodyend="83"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_pulley_joint_1a44f6e3fcb75e3a1fb21ea126fa360b64" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void b2PulleyJoint::InitVelocityConstraints</definition>
+        <argsstring>(const b2TimeStep &amp;step)</argsstring>
+        <name>InitVelocityConstraints</name>
+        <reimplements refid="classb2_joint_1aa28338c9b814ac08dac1cd3464f95c8e">InitVelocityConstraints</reimplements>
+        <param>
+          <type>const <ref refid="structb2_time_step" kindref="compound">b2TimeStep</ref> &amp;</type>
+          <declname>step</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2PulleyJoint.h" line="115" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2PulleyJoint.cpp" bodystart="85" bodyend="190"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_pulley_joint_1ae8f5abf650d68425aa811ba7014b8d06" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void b2PulleyJoint::SolveVelocityConstraints</definition>
+        <argsstring>(const b2TimeStep &amp;step)</argsstring>
+        <name>SolveVelocityConstraints</name>
+        <reimplements refid="classb2_joint_1a34c667efb15706f9d3413336d8af93cb">SolveVelocityConstraints</reimplements>
+        <param>
+          <type>const <ref refid="structb2_time_step" kindref="compound">b2TimeStep</ref> &amp;</type>
+          <declname>step</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2PulleyJoint.h" line="116" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2PulleyJoint.cpp" bodystart="192" bodyend="250"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_pulley_joint_1a04ebaf2af0c9f16d5678c59516a049e9" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>bool</type>
+        <definition>bool b2PulleyJoint::SolvePositionConstraints</definition>
+        <argsstring>(float32 baumgarte)</argsstring>
+        <name>SolvePositionConstraints</name>
+        <reimplements refid="classb2_joint_1aab43f57e4a2d352c93cc1f4bd0639f90">SolvePositionConstraints</reimplements>
+        <param>
+          <type>float32</type>
+          <declname>baumgarte</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2PulleyJoint.h" line="117" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2PulleyJoint.cpp" bodystart="252" bodyend="374"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>The pulley joint is connected to two bodies and two fixed ground points. The pulley supports a ratio such that: length1 + ratio * length2 &lt;= constant Yes, the force transmitted is scaled by the ratio. The pulley also enforces a maximum length limit on both sides. This is useful to prevent one side of the pulley hitting the top. </para>    </detaileddescription>
+    <inheritancegraph>
+      <node id="1890">
+        <label>b2PulleyJoint</label>
+        <link refid="classb2_pulley_joint"/>
+        <childnode refid="1891" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1891">
+        <label>b2Joint</label>
+        <link refid="classb2_joint"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1892">
+        <label>b2PulleyJoint</label>
+        <link refid="classb2_pulley_joint"/>
+        <childnode refid="1893" relation="public-inheritance">
+        </childnode>
+        <childnode refid="1896" relation="usage">
+          <edgelabel>m_localAnchor1</edgelabel>
+          <edgelabel>m_localAnchor2</edgelabel>
+          <edgelabel>m_groundAnchor1</edgelabel>
+          <edgelabel>m_u1</edgelabel>
+          <edgelabel>m_groundAnchor2</edgelabel>
+          <edgelabel>m_u2</edgelabel>
+        </childnode>
+      </node>
+      <node id="1901">
+        <label>b2Contact</label>
+        <link refid="classb2_contact"/>
+        <childnode refid="1901" relation="usage">
+          <edgelabel>m_prev</edgelabel>
+          <edgelabel>m_next</edgelabel>
+        </childnode>
+        <childnode refid="1902" relation="usage">
+          <edgelabel>m_manifold</edgelabel>
+        </childnode>
+        <childnode refid="1906" relation="usage">
+          <edgelabel>m_fixtureA</edgelabel>
+          <edgelabel>m_fixtureB</edgelabel>
+        </childnode>
+        <childnode refid="1900" relation="usage">
+          <edgelabel>m_nodeA</edgelabel>
+          <edgelabel>m_nodeB</edgelabel>
+        </childnode>
+      </node>
+      <node id="1894">
+        <label>b2Body</label>
+        <link refid="classb2_body"/>
+        <childnode refid="1894" relation="usage">
+          <edgelabel>m_prev</edgelabel>
+          <edgelabel>m_next</edgelabel>
+        </childnode>
+        <childnode refid="1895" relation="usage">
+          <edgelabel>m_jointList</edgelabel>
+        </childnode>
+        <childnode refid="1896" relation="usage">
+          <edgelabel>m_linearVelocity</edgelabel>
+          <edgelabel>m_force</edgelabel>
+        </childnode>
+        <childnode refid="1897" relation="usage">
+          <edgelabel>m_sweep</edgelabel>
+        </childnode>
+        <childnode refid="1898" relation="usage">
+          <edgelabel>m_xf</edgelabel>
+        </childnode>
+        <childnode refid="1900" relation="usage">
+          <edgelabel>m_contactList</edgelabel>
+        </childnode>
+        <childnode refid="1906" relation="usage">
+          <edgelabel>m_fixtureList</edgelabel>
+        </childnode>
+        <childnode refid="1911" relation="usage">
+          <edgelabel>m_world</edgelabel>
+        </childnode>
+      </node>
+      <node id="1905">
+        <label>b2ContactFeature</label>
+        <link refid="structb2_contact_feature"/>
+      </node>
+      <node id="1900">
+        <label>b2ContactEdge</label>
+        <link refid="structb2_contact_edge"/>
+        <childnode refid="1894" relation="usage">
+          <edgelabel>other</edgelabel>
+        </childnode>
+        <childnode refid="1901" relation="usage">
+          <edgelabel>contact</edgelabel>
+        </childnode>
+        <childnode refid="1900" relation="usage">
+          <edgelabel>prev</edgelabel>
+          <edgelabel>next</edgelabel>
+        </childnode>
+      </node>
+      <node id="1902">
+        <label>b2Manifold</label>
+        <link refid="structb2_manifold"/>
+        <childnode refid="1896" relation="usage">
+          <edgelabel>localPoint</edgelabel>
+          <edgelabel>localNormal</edgelabel>
+        </childnode>
+        <childnode refid="1903" relation="usage">
+          <edgelabel>points</edgelabel>
+        </childnode>
+      </node>
+      <node id="1913">
+        <label>b2BlockAllocator</label>
+        <link refid="classb2_block_allocator"/>
+      </node>
+      <node id="1914">
+        <label>b2DestructionListener</label>
+        <link refid="classb2_destruction_listener"/>
+      </node>
+      <node id="1911">
+        <label>b2World</label>
+        <link refid="classb2_world"/>
+        <childnode refid="1894" relation="usage">
+          <edgelabel>m_bodyList</edgelabel>
+        </childnode>
+        <childnode refid="1912" relation="usage">
+          <edgelabel>m_debugDraw</edgelabel>
+        </childnode>
+        <childnode refid="1896" relation="usage">
+          <edgelabel>m_gravity</edgelabel>
+        </childnode>
+        <childnode refid="1913" relation="usage">
+          <edgelabel>m_blockAllocator</edgelabel>
+        </childnode>
+        <childnode refid="1914" relation="usage">
+          <edgelabel>m_destructionListener</edgelabel>
+        </childnode>
+        <childnode refid="1893" relation="usage">
+          <edgelabel>m_jointList</edgelabel>
+        </childnode>
+      </node>
+      <node id="1907">
+        <label>b2FixtureProxy</label>
+        <link refid="structb2_fixture_proxy"/>
+        <childnode refid="1908" relation="usage">
+          <edgelabel>aabb</edgelabel>
+        </childnode>
+        <childnode refid="1906" relation="usage">
+          <edgelabel>fixture</edgelabel>
+        </childnode>
+      </node>
+      <node id="1899">
+        <label>b2Mat22</label>
+        <link refid="structb2_mat22"/>
+        <childnode refid="1896" relation="usage">
+          <edgelabel>col1</edgelabel>
+          <edgelabel>col2</edgelabel>
+        </childnode>
+      </node>
+      <node id="1897">
+        <label>b2Sweep</label>
+        <link refid="structb2_sweep"/>
+        <childnode refid="1896" relation="usage">
+          <edgelabel>c0</edgelabel>
+          <edgelabel>localCenter</edgelabel>
+          <edgelabel>c</edgelabel>
+        </childnode>
+      </node>
+      <node id="1898">
+        <label>b2Transform</label>
+        <link refid="structb2_transform"/>
+        <childnode refid="1896" relation="usage">
+          <edgelabel>position</edgelabel>
+        </childnode>
+        <childnode refid="1899" relation="usage">
+          <edgelabel>R</edgelabel>
+        </childnode>
+      </node>
+      <node id="1912">
+        <label>b2DebugDraw</label>
+        <link refid="classb2_debug_draw"/>
+      </node>
+      <node id="1910">
+        <label>b2Filter</label>
+        <link refid="structb2_filter"/>
+      </node>
+      <node id="1895">
+        <label>b2JointEdge</label>
+        <link refid="structb2_joint_edge"/>
+        <childnode refid="1894" relation="usage">
+          <edgelabel>other</edgelabel>
+        </childnode>
+        <childnode refid="1895" relation="usage">
+          <edgelabel>prev</edgelabel>
+          <edgelabel>next</edgelabel>
+        </childnode>
+        <childnode refid="1893" relation="usage">
+          <edgelabel>joint</edgelabel>
+        </childnode>
+      </node>
+      <node id="1893">
+        <label>b2Joint</label>
+        <link refid="classb2_joint"/>
+        <childnode refid="1894" relation="usage">
+          <edgelabel>m_bodyA</edgelabel>
+          <edgelabel>m_bodyB</edgelabel>
+        </childnode>
+        <childnode refid="1896" relation="usage">
+          <edgelabel>m_localCenterA</edgelabel>
+          <edgelabel>m_localCenterB</edgelabel>
+        </childnode>
+        <childnode refid="1895" relation="usage">
+          <edgelabel>m_edgeB</edgelabel>
+          <edgelabel>m_edgeA</edgelabel>
+        </childnode>
+        <childnode refid="1893" relation="usage">
+          <edgelabel>m_prev</edgelabel>
+          <edgelabel>m_next</edgelabel>
+        </childnode>
+      </node>
+      <node id="1896">
+        <label>b2Vec2</label>
+        <link refid="structb2_vec2"/>
+      </node>
+      <node id="1904">
+        <label>b2ContactID</label>
+        <link refid="unionb2_contact_i_d"/>
+        <childnode refid="1905" relation="usage">
+          <edgelabel>cf</edgelabel>
+        </childnode>
+      </node>
+      <node id="1909">
+        <label>b2Shape</label>
+        <link refid="classb2_shape"/>
+      </node>
+      <node id="1908">
+        <label>b2AABB</label>
+        <link refid="structb2_a_a_b_b"/>
+        <childnode refid="1896" relation="usage">
+          <edgelabel>lowerBound</edgelabel>
+          <edgelabel>upperBound</edgelabel>
+        </childnode>
+      </node>
+      <node id="1906">
+        <label>b2Fixture</label>
+        <link refid="classb2_fixture"/>
+        <childnode refid="1894" relation="usage">
+          <edgelabel>m_body</edgelabel>
+        </childnode>
+        <childnode refid="1907" relation="usage">
+          <edgelabel>m_proxies</edgelabel>
+        </childnode>
+        <childnode refid="1909" relation="usage">
+          <edgelabel>m_shape</edgelabel>
+        </childnode>
+        <childnode refid="1910" relation="usage">
+          <edgelabel>m_filter</edgelabel>
+        </childnode>
+        <childnode refid="1906" relation="usage">
+          <edgelabel>m_next</edgelabel>
+        </childnode>
+      </node>
+      <node id="1903">
+        <label>b2ManifoldPoint</label>
+        <link refid="structb2_manifold_point"/>
+        <childnode refid="1896" relation="usage">
+          <edgelabel>localPoint</edgelabel>
+        </childnode>
+        <childnode refid="1904" relation="usage">
+          <edgelabel>id</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2PulleyJoint.h" line="87" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2PulleyJoint.h" bodystart="86" bodyend="146"/>
+    <listofallmembers>
+      <member refid="classb2_joint_1a010ab52de250e5fe30a45d642f46405b" prot="protected" virt="non-virtual"><scope>b2PulleyJoint</scope><name>b2Body</name></member>
+      <member refid="classb2_joint_1afc682950b8c4f251804fc1938663098b" prot="protected" virt="non-virtual"><scope>b2PulleyJoint</scope><name>b2Island</name></member>
+      <member refid="classb2_pulley_joint_1a54ade8ed3d794298108d7f4c4e4793fa" prot="protected" virt="non-virtual"><scope>b2PulleyJoint</scope><name>b2Joint</name></member>
+      <member refid="classb2_joint_1a8d6cce91546335fe95325d5e29c06a19" prot="protected" virt="non-virtual" ambiguityscope="b2Joint::"><scope>b2PulleyJoint</scope><name>b2Joint</name></member>
+      <member refid="classb2_pulley_joint_1aca1b8dc6fb05c134ccbc0423674c1867" prot="protected" virt="non-virtual"><scope>b2PulleyJoint</scope><name>b2PulleyJoint</name></member>
+      <member refid="classb2_joint_1a4bd536c5a7c0587913765bbc2693ceea" prot="protected" virt="non-virtual"><scope>b2PulleyJoint</scope><name>b2World</name></member>
+      <member refid="classb2_joint_1a2e500c93107d0bf6b0a21654528faeab" prot="protected" virt="non-virtual"><scope>b2PulleyJoint</scope><name>Create</name></member>
+      <member refid="classb2_joint_1acf52946b6672d77f268b849ccb09e003" prot="protected" virt="non-virtual"><scope>b2PulleyJoint</scope><name>Destroy</name></member>
+      <member refid="classb2_pulley_joint_1a05ac0d0d927e9541f08b07cb1bf9ec56" prot="public" virt="virtual"><scope>b2PulleyJoint</scope><name>GetAnchorA</name></member>
+      <member refid="classb2_pulley_joint_1a5cc3596f683d621b9a885c2569ecd452" prot="public" virt="virtual"><scope>b2PulleyJoint</scope><name>GetAnchorB</name></member>
+      <member refid="classb2_joint_1a2ed5eca3dbdce48665c14452b280613f" prot="public" virt="non-virtual"><scope>b2PulleyJoint</scope><name>GetBodyA</name></member>
+      <member refid="classb2_joint_1a700b3d4c87f34f456151b9598e4641a0" prot="public" virt="non-virtual"><scope>b2PulleyJoint</scope><name>GetBodyB</name></member>
+      <member refid="classb2_pulley_joint_1a19eefa28d2647882406ea9bfe2850a9e" prot="public" virt="non-virtual"><scope>b2PulleyJoint</scope><name>GetGroundAnchorA</name></member>
+      <member refid="classb2_pulley_joint_1a1b49d0dbce802f19711a9ab6d7dadfee" prot="public" virt="non-virtual"><scope>b2PulleyJoint</scope><name>GetGroundAnchorB</name></member>
+      <member refid="classb2_pulley_joint_1ad86007aa86e33083dfc5300263086116" prot="public" virt="non-virtual"><scope>b2PulleyJoint</scope><name>GetLength1</name></member>
+      <member refid="classb2_pulley_joint_1a71619df4bf772363fde4b5841215bdb0" prot="public" virt="non-virtual"><scope>b2PulleyJoint</scope><name>GetLength2</name></member>
+      <member refid="classb2_joint_1a1a0e2137b631010750c728cb4e276e5d" prot="public" virt="non-virtual"><scope>b2PulleyJoint</scope><name>GetNext</name></member>
+      <member refid="classb2_joint_1a1ac83edb39806085608c9d549dd98550" prot="public" virt="non-virtual"><scope>b2PulleyJoint</scope><name>GetNext</name></member>
+      <member refid="classb2_pulley_joint_1a625685e60d95b7c5a725e8586d146752" prot="public" virt="non-virtual"><scope>b2PulleyJoint</scope><name>GetRatio</name></member>
+      <member refid="classb2_pulley_joint_1a38c174bf1cf1011063ff4c16556b331e" prot="public" virt="virtual"><scope>b2PulleyJoint</scope><name>GetReactionForce</name></member>
+      <member refid="classb2_pulley_joint_1a418b200055623474c44742b1342dd278" prot="public" virt="virtual"><scope>b2PulleyJoint</scope><name>GetReactionTorque</name></member>
+      <member refid="classb2_joint_1a37a2ca3f0d41c6903d2cc73757f02be2" prot="public" virt="non-virtual"><scope>b2PulleyJoint</scope><name>GetType</name></member>
+      <member refid="classb2_joint_1a505ab02c234f1cc20aa3375f3ab7b587" prot="public" virt="non-virtual"><scope>b2PulleyJoint</scope><name>GetUserData</name></member>
+      <member refid="classb2_pulley_joint_1a44f6e3fcb75e3a1fb21ea126fa360b64" prot="protected" virt="virtual"><scope>b2PulleyJoint</scope><name>InitVelocityConstraints</name></member>
+      <member refid="classb2_joint_1a825d3a6abb32014f31fd622f2bfc0363" prot="public" virt="non-virtual"><scope>b2PulleyJoint</scope><name>IsActive</name></member>
+      <member refid="classb2_joint_1abaebb784a51abb7d66de302ba07a4467" prot="protected" virt="non-virtual"><scope>b2PulleyJoint</scope><name>m_bodyA</name></member>
+      <member refid="classb2_joint_1a1fd77fcbcb8a8a3729c7dc5b790d7200" prot="protected" virt="non-virtual"><scope>b2PulleyJoint</scope><name>m_bodyB</name></member>
+      <member refid="classb2_joint_1ac1a93c14c8dd666bb487db6c98daad33" prot="protected" virt="non-virtual"><scope>b2PulleyJoint</scope><name>m_collideConnected</name></member>
+      <member refid="classb2_pulley_joint_1a0e73d1d31126331267a1661beb146bc7" prot="protected" virt="non-virtual"><scope>b2PulleyJoint</scope><name>m_constant</name></member>
+      <member refid="classb2_joint_1a406ea423db1fe6484408d73df647f7b2" prot="protected" virt="non-virtual"><scope>b2PulleyJoint</scope><name>m_edgeA</name></member>
+      <member refid="classb2_joint_1a1041219dcd353ea815ebd78f904af547" prot="protected" virt="non-virtual"><scope>b2PulleyJoint</scope><name>m_edgeB</name></member>
+      <member refid="classb2_pulley_joint_1a59eb73668df3c413ade93e45ab6c2cf1" prot="protected" virt="non-virtual"><scope>b2PulleyJoint</scope><name>m_groundAnchor1</name></member>
+      <member refid="classb2_pulley_joint_1a0e96ac1bcdb375dabe170239b7fb2448" prot="protected" virt="non-virtual"><scope>b2PulleyJoint</scope><name>m_groundAnchor2</name></member>
+      <member refid="classb2_pulley_joint_1a1e5b5fff8b1564688b38d139c5f7c65a" prot="protected" virt="non-virtual"><scope>b2PulleyJoint</scope><name>m_impulse</name></member>
+      <member refid="classb2_joint_1a346a821b249dc84799f450cf936f7c3c" prot="protected" virt="non-virtual"><scope>b2PulleyJoint</scope><name>m_invIA</name></member>
+      <member refid="classb2_joint_1a8f40b92ac3e39a96c717595dbb44d15b" prot="protected" virt="non-virtual"><scope>b2PulleyJoint</scope><name>m_invIB</name></member>
+      <member refid="classb2_joint_1ad7c87d31bd96e0c783105bfed10dc8a2" prot="protected" virt="non-virtual"><scope>b2PulleyJoint</scope><name>m_invMassA</name></member>
+      <member refid="classb2_joint_1a6cb90224d27cff346fba95794cd140c5" prot="protected" virt="non-virtual"><scope>b2PulleyJoint</scope><name>m_invMassB</name></member>
+      <member refid="classb2_joint_1a777e45428d9a74d626f4afa1b45e1975" prot="protected" virt="non-virtual"><scope>b2PulleyJoint</scope><name>m_islandFlag</name></member>
+      <member refid="classb2_pulley_joint_1a489241135bb8ae20328c5e232f8301a8" prot="protected" virt="non-virtual"><scope>b2PulleyJoint</scope><name>m_limitImpulse1</name></member>
+      <member refid="classb2_pulley_joint_1a7c1b64bb9417d40ea14f666dda900dca" prot="protected" virt="non-virtual"><scope>b2PulleyJoint</scope><name>m_limitImpulse2</name></member>
+      <member refid="classb2_pulley_joint_1ae87373a82bd131759cf98c7956bf46ab" prot="protected" virt="non-virtual"><scope>b2PulleyJoint</scope><name>m_limitMass1</name></member>
+      <member refid="classb2_pulley_joint_1a25cc49815d05e870e29bbcd9f610f8e6" prot="protected" virt="non-virtual"><scope>b2PulleyJoint</scope><name>m_limitMass2</name></member>
+      <member refid="classb2_pulley_joint_1ab49d3dc7ed191389704bb9491ed724e8" prot="protected" virt="non-virtual"><scope>b2PulleyJoint</scope><name>m_limitState1</name></member>
+      <member refid="classb2_pulley_joint_1a766741f440c95a70f2e5d3c3da5b727f" prot="protected" virt="non-virtual"><scope>b2PulleyJoint</scope><name>m_limitState2</name></member>
+      <member refid="classb2_pulley_joint_1abb9ecd4f1631c581f09e48a9863a4a5d" prot="protected" virt="non-virtual"><scope>b2PulleyJoint</scope><name>m_localAnchor1</name></member>
+      <member refid="classb2_pulley_joint_1a68e4ca5024c179a627040cdddb30748c" prot="protected" virt="non-virtual"><scope>b2PulleyJoint</scope><name>m_localAnchor2</name></member>
+      <member refid="classb2_joint_1ae3fc5cef379493406f69a198062d79cf" prot="protected" virt="non-virtual"><scope>b2PulleyJoint</scope><name>m_localCenterA</name></member>
+      <member refid="classb2_joint_1afe3a98a639dc6ac686a74701f7a34c5c" prot="protected" virt="non-virtual"><scope>b2PulleyJoint</scope><name>m_localCenterB</name></member>
+      <member refid="classb2_pulley_joint_1af23d8e67bbf52f90665954844c9514cb" prot="protected" virt="non-virtual"><scope>b2PulleyJoint</scope><name>m_maxLength1</name></member>
+      <member refid="classb2_pulley_joint_1af551c8af72595d5129542b9cdffebc7e" prot="protected" virt="non-virtual"><scope>b2PulleyJoint</scope><name>m_maxLength2</name></member>
+      <member refid="classb2_joint_1aad16778ba9c51cebb767ff7df6ed80b5" prot="protected" virt="non-virtual"><scope>b2PulleyJoint</scope><name>m_next</name></member>
+      <member refid="classb2_joint_1a940166e7b5d87cec1ad0603e0388854a" prot="protected" virt="non-virtual"><scope>b2PulleyJoint</scope><name>m_prev</name></member>
+      <member refid="classb2_pulley_joint_1a680dd241301a9af63620d12da3ba9e0e" prot="protected" virt="non-virtual"><scope>b2PulleyJoint</scope><name>m_pulleyMass</name></member>
+      <member refid="classb2_pulley_joint_1aa44594b9b4826c565da387bed5f02470" prot="protected" virt="non-virtual"><scope>b2PulleyJoint</scope><name>m_ratio</name></member>
+      <member refid="classb2_pulley_joint_1a10e3588362c8c0eec3ca9cd14d652644" prot="protected" virt="non-virtual"><scope>b2PulleyJoint</scope><name>m_state</name></member>
+      <member refid="classb2_joint_1a3fd3f2532d108d81df81427815210a59" prot="protected" virt="non-virtual"><scope>b2PulleyJoint</scope><name>m_type</name></member>
+      <member refid="classb2_pulley_joint_1a10280a05474821a93e3dd98fcc9729c8" prot="protected" virt="non-virtual"><scope>b2PulleyJoint</scope><name>m_u1</name></member>
+      <member refid="classb2_pulley_joint_1a4e3232603c903d9144f3685c99e221da" prot="protected" virt="non-virtual"><scope>b2PulleyJoint</scope><name>m_u2</name></member>
+      <member refid="classb2_joint_1ae8a31b6d5d6e76ccf7c975b2b3ae7366" prot="protected" virt="non-virtual"><scope>b2PulleyJoint</scope><name>m_userData</name></member>
+      <member refid="classb2_joint_1a492f2d02496437572aaec6013ebdc1c8" prot="public" virt="non-virtual"><scope>b2PulleyJoint</scope><name>SetUserData</name></member>
+      <member refid="classb2_pulley_joint_1a04ebaf2af0c9f16d5678c59516a049e9" prot="protected" virt="virtual"><scope>b2PulleyJoint</scope><name>SolvePositionConstraints</name></member>
+      <member refid="classb2_pulley_joint_1ae8f5abf650d68425aa811ba7014b8d06" prot="protected" virt="virtual"><scope>b2PulleyJoint</scope><name>SolveVelocityConstraints</name></member>
+      <member refid="classb2_joint_1ab44cde7b81c3e77540400e0da90d6ceb" prot="protected" virt="virtual"><scope>b2PulleyJoint</scope><name>~b2Joint</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

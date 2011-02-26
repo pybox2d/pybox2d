@@ -1,0 +1,280 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.7.2">
+  <compounddef id="structb2_separation_function" kind="struct" prot="public">
+    <compoundname>b2SeparationFunction</compoundname>
+      <sectiondef kind="public-type">
+      <memberdef kind="enum" id="structb2_separation_function_1a8c1446894223e9b6c80dc4d7230141a4" prot="public" static="no">
+        <name>Type</name>
+        <enumvalue id="structb2_separation_function_1a8c1446894223e9b6c80dc4d7230141a4af830d0c5486d2bc9f184845d749c6881" prot="public">
+          <name>e_points</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="structb2_separation_function_1a8c1446894223e9b6c80dc4d7230141a4a2b20fea3586ba7dceadfcd76a4257a22" prot="public">
+          <name>e_faceA</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="structb2_separation_function_1a8c1446894223e9b6c80dc4d7230141a4a3d70e056a292a2aaf38e8b56c276a713" prot="public">
+          <name>e_faceB</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Collision/b2TimeOfImpact.cpp" line="34" bodyfile="D:/pybox2d/Box2D/Collision/b2TimeOfImpact.cpp" bodystart="33" bodyend="38"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structb2_separation_function_1a5c03d798e97cd653aa7db390275bf9a7" prot="public" static="no" mutable="no">
+        <type>const <ref refid="structb2_distance_proxy" kindref="compound">b2DistanceProxy</ref> *</type>
+        <definition>const b2DistanceProxy* b2SeparationFunction::m_proxyA</definition>
+        <argsstring></argsstring>
+        <name>m_proxyA</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Collision/b2TimeOfImpact.cpp" line="247" bodyfile="D:/pybox2d/Box2D/Collision/b2TimeOfImpact.cpp" bodystart="247" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structb2_separation_function_1a25fc938e03bf77ac276b17b24e52958f" prot="public" static="no" mutable="no">
+        <type>const <ref refid="structb2_distance_proxy" kindref="compound">b2DistanceProxy</ref> *</type>
+        <definition>const b2DistanceProxy* b2SeparationFunction::m_proxyB</definition>
+        <argsstring></argsstring>
+        <name>m_proxyB</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Collision/b2TimeOfImpact.cpp" line="248" bodyfile="D:/pybox2d/Box2D/Collision/b2TimeOfImpact.cpp" bodystart="248" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structb2_separation_function_1a46b838a661baa40cde771b779c2ff341" prot="public" static="no" mutable="no">
+        <type><ref refid="structb2_sweep" kindref="compound">b2Sweep</ref></type>
+        <definition>b2Sweep b2SeparationFunction::m_sweepA</definition>
+        <argsstring></argsstring>
+        <name>m_sweepA</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Collision/b2TimeOfImpact.cpp" line="249" bodyfile="D:/pybox2d/Box2D/Collision/b2TimeOfImpact.cpp" bodystart="249" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structb2_separation_function_1a11ba433f6e524fb92390bd8b4dd376b6" prot="public" static="no" mutable="no">
+        <type><ref refid="structb2_sweep" kindref="compound">b2Sweep</ref></type>
+        <definition>b2Sweep b2SeparationFunction::m_sweepB</definition>
+        <argsstring></argsstring>
+        <name>m_sweepB</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Collision/b2TimeOfImpact.cpp" line="249" bodyfile="D:/pybox2d/Box2D/Collision/b2TimeOfImpact.cpp" bodystart="249" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structb2_separation_function_1a51075eff2de404a1d82eee831fdfd4af" prot="public" static="no" mutable="no">
+        <type>Type</type>
+        <definition>Type b2SeparationFunction::m_type</definition>
+        <argsstring></argsstring>
+        <name>m_type</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Collision/b2TimeOfImpact.cpp" line="250" bodyfile="D:/pybox2d/Box2D/Collision/b2TimeOfImpact.cpp" bodystart="250" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structb2_separation_function_1ab77a17de0f5c708212090f599ec1795e" prot="public" static="no" mutable="no">
+        <type><ref refid="structb2_vec2" kindref="compound">b2Vec2</ref></type>
+        <definition>b2Vec2 b2SeparationFunction::m_localPoint</definition>
+        <argsstring></argsstring>
+        <name>m_localPoint</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Collision/b2TimeOfImpact.cpp" line="251" bodyfile="D:/pybox2d/Box2D/Collision/b2TimeOfImpact.cpp" bodystart="251" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structb2_separation_function_1a767b8fc4174d200ae8fb1d2bfba3407b" prot="public" static="no" mutable="no">
+        <type><ref refid="structb2_vec2" kindref="compound">b2Vec2</ref></type>
+        <definition>b2Vec2 b2SeparationFunction::m_axis</definition>
+        <argsstring></argsstring>
+        <name>m_axis</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Collision/b2TimeOfImpact.cpp" line="252" bodyfile="D:/pybox2d/Box2D/Collision/b2TimeOfImpact.cpp" bodystart="252" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structb2_separation_function_1acfe0bb0d85a5001f1e957eea2137e039" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>float32</type>
+        <definition>float32 b2SeparationFunction::Initialize</definition>
+        <argsstring>(const b2SimplexCache *cache, const b2DistanceProxy *proxyA, const b2Sweep &amp;sweepA, const b2DistanceProxy *proxyB, const b2Sweep &amp;sweepB, float32 t1)</argsstring>
+        <name>Initialize</name>
+        <param>
+          <type>const <ref refid="structb2_simplex_cache" kindref="compound">b2SimplexCache</ref> *</type>
+          <declname>cache</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structb2_distance_proxy" kindref="compound">b2DistanceProxy</ref> *</type>
+          <declname>proxyA</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structb2_sweep" kindref="compound">b2Sweep</ref> &amp;</type>
+          <declname>sweepA</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structb2_distance_proxy" kindref="compound">b2DistanceProxy</ref> *</type>
+          <declname>proxyB</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structb2_sweep" kindref="compound">b2Sweep</ref> &amp;</type>
+          <declname>sweepB</declname>
+        </param>
+        <param>
+          <type>float32</type>
+          <declname>t1</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Collision/b2TimeOfImpact.cpp" line="46" bodyfile="D:/pybox2d/Box2D/Collision/b2TimeOfImpact.cpp" bodystart="42" bodyend="120"/>
+      </memberdef>
+      <memberdef kind="function" id="structb2_separation_function_1a33a79217db8089b8927a4dfe47088f43" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>float32</type>
+        <definition>float32 b2SeparationFunction::FindMinSeparation</definition>
+        <argsstring>(int32 *indexA, int32 *indexB, float32 t) const </argsstring>
+        <name>FindMinSeparation</name>
+        <param>
+          <type>int32 *</type>
+          <declname>indexA</declname>
+        </param>
+        <param>
+          <type>int32 *</type>
+          <declname>indexB</declname>
+        </param>
+        <param>
+          <type>float32</type>
+          <declname>t</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Collision/b2TimeOfImpact.cpp" line="123" bodyfile="D:/pybox2d/Box2D/Collision/b2TimeOfImpact.cpp" bodystart="122" bodyend="188"/>
+      </memberdef>
+      <memberdef kind="function" id="structb2_separation_function_1a4464af744155a59217e3dafc83c2e7f3" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>float32</type>
+        <definition>float32 b2SeparationFunction::Evaluate</definition>
+        <argsstring>(int32 indexA, int32 indexB, float32 t) const </argsstring>
+        <name>Evaluate</name>
+        <param>
+          <type>int32</type>
+          <declname>indexA</declname>
+        </param>
+        <param>
+          <type>int32</type>
+          <declname>indexB</declname>
+        </param>
+        <param>
+          <type>float32</type>
+          <declname>t</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Collision/b2TimeOfImpact.cpp" line="191" bodyfile="D:/pybox2d/Box2D/Collision/b2TimeOfImpact.cpp" bodystart="190" bodyend="245"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="2057">
+        <label>b2DistanceProxy</label>
+        <link refid="structb2_distance_proxy"/>
+        <childnode refid="2058" relation="usage">
+          <edgelabel>m_vertices</edgelabel>
+          <edgelabel>m_buffer</edgelabel>
+        </childnode>
+      </node>
+      <node id="2059">
+        <label>b2Sweep</label>
+        <link refid="structb2_sweep"/>
+        <childnode refid="2058" relation="usage">
+          <edgelabel>c0</edgelabel>
+          <edgelabel>localCenter</edgelabel>
+          <edgelabel>c</edgelabel>
+        </childnode>
+      </node>
+      <node id="2056">
+        <label>b2SeparationFunction</label>
+        <childnode refid="2057" relation="usage">
+          <edgelabel>m_proxyA</edgelabel>
+          <edgelabel>m_proxyB</edgelabel>
+        </childnode>
+        <childnode refid="2058" relation="usage">
+          <edgelabel>m_axis</edgelabel>
+          <edgelabel>m_localPoint</edgelabel>
+        </childnode>
+        <childnode refid="2059" relation="usage">
+          <edgelabel>m_sweepA</edgelabel>
+          <edgelabel>m_sweepB</edgelabel>
+        </childnode>
+      </node>
+      <node id="2058">
+        <label>b2Vec2</label>
+        <link refid="structb2_vec2"/>
+      </node>
+    </collaborationgraph>
+    <location file="D:/pybox2d/Box2D/Collision/b2TimeOfImpact.cpp" line="32" bodyfile="D:/pybox2d/Box2D/Collision/b2TimeOfImpact.cpp" bodystart="31" bodyend="253"/>
+    <listofallmembers>
+      <member refid="structb2_separation_function_1a8c1446894223e9b6c80dc4d7230141a4a2b20fea3586ba7dceadfcd76a4257a22" prot="public" virt="non-virtual"><scope>b2SeparationFunction</scope><name>e_faceA</name></member>
+      <member refid="structb2_separation_function_1a8c1446894223e9b6c80dc4d7230141a4a3d70e056a292a2aaf38e8b56c276a713" prot="public" virt="non-virtual"><scope>b2SeparationFunction</scope><name>e_faceB</name></member>
+      <member refid="structb2_separation_function_1a8c1446894223e9b6c80dc4d7230141a4af830d0c5486d2bc9f184845d749c6881" prot="public" virt="non-virtual"><scope>b2SeparationFunction</scope><name>e_points</name></member>
+      <member refid="structb2_separation_function_1a4464af744155a59217e3dafc83c2e7f3" prot="public" virt="non-virtual"><scope>b2SeparationFunction</scope><name>Evaluate</name></member>
+      <member refid="structb2_separation_function_1a33a79217db8089b8927a4dfe47088f43" prot="public" virt="non-virtual"><scope>b2SeparationFunction</scope><name>FindMinSeparation</name></member>
+      <member refid="structb2_separation_function_1acfe0bb0d85a5001f1e957eea2137e039" prot="public" virt="non-virtual"><scope>b2SeparationFunction</scope><name>Initialize</name></member>
+      <member refid="structb2_separation_function_1a767b8fc4174d200ae8fb1d2bfba3407b" prot="public" virt="non-virtual"><scope>b2SeparationFunction</scope><name>m_axis</name></member>
+      <member refid="structb2_separation_function_1ab77a17de0f5c708212090f599ec1795e" prot="public" virt="non-virtual"><scope>b2SeparationFunction</scope><name>m_localPoint</name></member>
+      <member refid="structb2_separation_function_1a5c03d798e97cd653aa7db390275bf9a7" prot="public" virt="non-virtual"><scope>b2SeparationFunction</scope><name>m_proxyA</name></member>
+      <member refid="structb2_separation_function_1a25fc938e03bf77ac276b17b24e52958f" prot="public" virt="non-virtual"><scope>b2SeparationFunction</scope><name>m_proxyB</name></member>
+      <member refid="structb2_separation_function_1a46b838a661baa40cde771b779c2ff341" prot="public" virt="non-virtual"><scope>b2SeparationFunction</scope><name>m_sweepA</name></member>
+      <member refid="structb2_separation_function_1a11ba433f6e524fb92390bd8b4dd376b6" prot="public" virt="non-virtual"><scope>b2SeparationFunction</scope><name>m_sweepB</name></member>
+      <member refid="structb2_separation_function_1a51075eff2de404a1d82eee831fdfd4af" prot="public" virt="non-virtual"><scope>b2SeparationFunction</scope><name>m_type</name></member>
+      <member refid="structb2_separation_function_1a8c1446894223e9b6c80dc4d7230141a4" prot="public" virt="non-virtual"><scope>b2SeparationFunction</scope><name>Type</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

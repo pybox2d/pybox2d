@@ -1,0 +1,462 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.7.2">
+  <compounddef id="structb2_revolute_joint_def" kind="struct" prot="public">
+    <compoundname>b2RevoluteJointDef</compoundname>
+    <basecompoundref refid="structb2_joint_def" prot="public" virt="non-virtual">b2JointDef</basecompoundref>
+    <includes local="no">b2RevoluteJoint.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structb2_revolute_joint_def_1a76337d07aa63232a7b20d50decc862ae" prot="public" static="no" mutable="no">
+        <type><ref refid="structb2_vec2" kindref="compound">b2Vec2</ref></type>
+        <definition>b2Vec2 b2RevoluteJointDef::localAnchorA</definition>
+        <argsstring></argsstring>
+        <name>localAnchorA</name>
+        <briefdescription>
+<para>The local anchor point relative to body1&apos;s origin. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2RevoluteJoint.h" line="56" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2RevoluteJoint.h" bodystart="56" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structb2_revolute_joint_def_1a3f33bc1d9f6c22043a5ff2f1d89f04e0" prot="public" static="no" mutable="no">
+        <type><ref refid="structb2_vec2" kindref="compound">b2Vec2</ref></type>
+        <definition>b2Vec2 b2RevoluteJointDef::localAnchorB</definition>
+        <argsstring></argsstring>
+        <name>localAnchorB</name>
+        <briefdescription>
+<para>The local anchor point relative to body2&apos;s origin. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2RevoluteJoint.h" line="59" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2RevoluteJoint.h" bodystart="59" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structb2_revolute_joint_def_1a1858d897d5fea04c5e606a1ff73f64f8" prot="public" static="no" mutable="no">
+        <type>float32</type>
+        <definition>float32 b2RevoluteJointDef::referenceAngle</definition>
+        <argsstring></argsstring>
+        <name>referenceAngle</name>
+        <briefdescription>
+<para>The body2 angle minus body1 angle in the reference state (radians). </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2RevoluteJoint.h" line="62" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2RevoluteJoint.h" bodystart="62" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structb2_revolute_joint_def_1a2eaefc5fc5caf879cfd59ebcd852b756" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool b2RevoluteJointDef::enableLimit</definition>
+        <argsstring></argsstring>
+        <name>enableLimit</name>
+        <briefdescription>
+<para>A flag to enable joint limits. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2RevoluteJoint.h" line="65" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2RevoluteJoint.h" bodystart="65" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structb2_revolute_joint_def_1a24d0b2638a01405c77bd1c0de3e53de8" prot="public" static="no" mutable="no">
+        <type>float32</type>
+        <definition>float32 b2RevoluteJointDef::lowerAngle</definition>
+        <argsstring></argsstring>
+        <name>lowerAngle</name>
+        <briefdescription>
+<para>The lower angle for the joint limit (radians). </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2RevoluteJoint.h" line="68" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2RevoluteJoint.h" bodystart="68" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structb2_revolute_joint_def_1a692cfe333ad12afd5753a6ec54e39a66" prot="public" static="no" mutable="no">
+        <type>float32</type>
+        <definition>float32 b2RevoluteJointDef::upperAngle</definition>
+        <argsstring></argsstring>
+        <name>upperAngle</name>
+        <briefdescription>
+<para>The upper angle for the joint limit (radians). </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2RevoluteJoint.h" line="71" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2RevoluteJoint.h" bodystart="71" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structb2_revolute_joint_def_1aa94d9e66be9f03818d0cfbd9c70b2996" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool b2RevoluteJointDef::enableMotor</definition>
+        <argsstring></argsstring>
+        <name>enableMotor</name>
+        <briefdescription>
+<para>A flag to enable the joint motor. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2RevoluteJoint.h" line="74" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2RevoluteJoint.h" bodystart="74" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structb2_revolute_joint_def_1aced7cf768f4dcc3561576a39c7b92ec4" prot="public" static="no" mutable="no">
+        <type>float32</type>
+        <definition>float32 b2RevoluteJointDef::motorSpeed</definition>
+        <argsstring></argsstring>
+        <name>motorSpeed</name>
+        <briefdescription>
+<para>The desired motor speed. Usually in radians per second. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2RevoluteJoint.h" line="77" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2RevoluteJoint.h" bodystart="77" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structb2_revolute_joint_def_1a9fc1b67fe6d1bc31f88cc2cfd681fe30" prot="public" static="no" mutable="no">
+        <type>float32</type>
+        <definition>float32 b2RevoluteJointDef::maxMotorTorque</definition>
+        <argsstring></argsstring>
+        <name>maxMotorTorque</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>The maximum motor torque used to achieve the desired motor speed. Usually in N-m. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2RevoluteJoint.h" line="81" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2RevoluteJoint.h" bodystart="81" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structb2_revolute_joint_def_1a20296c13c3102d03eb8787e463ff63d1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>b2RevoluteJointDef::b2RevoluteJointDef</definition>
+        <argsstring>()</argsstring>
+        <name>b2RevoluteJointDef</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2RevoluteJoint.h" line="38" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2RevoluteJoint.h" bodystart="37" bodyend="49"/>
+      </memberdef>
+      <memberdef kind="function" id="structb2_revolute_joint_def_1a6401b2a663533415d032a525e4fa2806" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void b2RevoluteJointDef::Initialize</definition>
+        <argsstring>(b2Body *bodyA, b2Body *bodyB, const b2Vec2 &amp;anchor)</argsstring>
+        <name>Initialize</name>
+        <param>
+          <type><ref refid="classb2_body" kindref="compound">b2Body</ref> *</type>
+          <declname>bodyA</declname>
+        </param>
+        <param>
+          <type><ref refid="classb2_body" kindref="compound">b2Body</ref> *</type>
+          <declname>bodyB</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structb2_vec2" kindref="compound">b2Vec2</ref> &amp;</type>
+          <declname>anchor</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Initialize the bodies, anchors, and reference angle using a world anchor point. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2RevoluteJoint.h" line="53" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2RevoluteJoint.cpp" bodystart="36" bodyend="43"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>Revolute joint definition. This requires defining an anchor point where the bodies are joined. The definition uses local anchor points so that the initial configuration can violate the constraint slightly. You also need to specify the initial relative angle for joint limits. This helps when saving and loading a game. The local anchor points are measured from the body&apos;s origin rather than the center of mass because: 1. you might not know where the center of mass will be. 2. if you add/remove shapes from a body and recompute the mass, the joints will be broken. </para>    </detaileddescription>
+    <inheritancegraph>
+      <node id="1979">
+        <label>b2JointDef</label>
+        <link refid="structb2_joint_def"/>
+      </node>
+      <node id="1978">
+        <label>b2RevoluteJointDef</label>
+        <link refid="structb2_revolute_joint_def"/>
+        <childnode refid="1979" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1990">
+        <label>b2Contact</label>
+        <link refid="classb2_contact"/>
+        <childnode refid="1990" relation="usage">
+          <edgelabel>m_prev</edgelabel>
+          <edgelabel>m_next</edgelabel>
+        </childnode>
+        <childnode refid="1991" relation="usage">
+          <edgelabel>m_manifold</edgelabel>
+        </childnode>
+        <childnode refid="1995" relation="usage">
+          <edgelabel>m_fixtureA</edgelabel>
+          <edgelabel>m_fixtureB</edgelabel>
+        </childnode>
+        <childnode refid="1989" relation="usage">
+          <edgelabel>m_nodeA</edgelabel>
+          <edgelabel>m_nodeB</edgelabel>
+        </childnode>
+      </node>
+      <node id="1982">
+        <label>b2Body</label>
+        <link refid="classb2_body"/>
+        <childnode refid="1982" relation="usage">
+          <edgelabel>m_prev</edgelabel>
+          <edgelabel>m_next</edgelabel>
+        </childnode>
+        <childnode refid="1983" relation="usage">
+          <edgelabel>m_jointList</edgelabel>
+        </childnode>
+        <childnode refid="1985" relation="usage">
+          <edgelabel>m_linearVelocity</edgelabel>
+          <edgelabel>m_force</edgelabel>
+        </childnode>
+        <childnode refid="1986" relation="usage">
+          <edgelabel>m_sweep</edgelabel>
+        </childnode>
+        <childnode refid="1987" relation="usage">
+          <edgelabel>m_xf</edgelabel>
+        </childnode>
+        <childnode refid="1989" relation="usage">
+          <edgelabel>m_contactList</edgelabel>
+        </childnode>
+        <childnode refid="1995" relation="usage">
+          <edgelabel>m_fixtureList</edgelabel>
+        </childnode>
+        <childnode refid="2000" relation="usage">
+          <edgelabel>m_world</edgelabel>
+        </childnode>
+      </node>
+      <node id="1994">
+        <label>b2ContactFeature</label>
+        <link refid="structb2_contact_feature"/>
+      </node>
+      <node id="1989">
+        <label>b2ContactEdge</label>
+        <link refid="structb2_contact_edge"/>
+        <childnode refid="1982" relation="usage">
+          <edgelabel>other</edgelabel>
+        </childnode>
+        <childnode refid="1990" relation="usage">
+          <edgelabel>contact</edgelabel>
+        </childnode>
+        <childnode refid="1989" relation="usage">
+          <edgelabel>prev</edgelabel>
+          <edgelabel>next</edgelabel>
+        </childnode>
+      </node>
+      <node id="1991">
+        <label>b2Manifold</label>
+        <link refid="structb2_manifold"/>
+        <childnode refid="1985" relation="usage">
+          <edgelabel>localPoint</edgelabel>
+          <edgelabel>localNormal</edgelabel>
+        </childnode>
+        <childnode refid="1992" relation="usage">
+          <edgelabel>points</edgelabel>
+        </childnode>
+      </node>
+      <node id="2002">
+        <label>b2BlockAllocator</label>
+        <link refid="classb2_block_allocator"/>
+      </node>
+      <node id="2003">
+        <label>b2DestructionListener</label>
+        <link refid="classb2_destruction_listener"/>
+      </node>
+      <node id="2000">
+        <label>b2World</label>
+        <link refid="classb2_world"/>
+        <childnode refid="1982" relation="usage">
+          <edgelabel>m_bodyList</edgelabel>
+        </childnode>
+        <childnode refid="2001" relation="usage">
+          <edgelabel>m_debugDraw</edgelabel>
+        </childnode>
+        <childnode refid="1985" relation="usage">
+          <edgelabel>m_gravity</edgelabel>
+        </childnode>
+        <childnode refid="2002" relation="usage">
+          <edgelabel>m_blockAllocator</edgelabel>
+        </childnode>
+        <childnode refid="2003" relation="usage">
+          <edgelabel>m_destructionListener</edgelabel>
+        </childnode>
+        <childnode refid="1984" relation="usage">
+          <edgelabel>m_jointList</edgelabel>
+        </childnode>
+      </node>
+      <node id="1981">
+        <label>b2JointDef</label>
+        <link refid="structb2_joint_def"/>
+        <childnode refid="1982" relation="usage">
+          <edgelabel>bodyA</edgelabel>
+          <edgelabel>bodyB</edgelabel>
+        </childnode>
+      </node>
+      <node id="1996">
+        <label>b2FixtureProxy</label>
+        <link refid="structb2_fixture_proxy"/>
+        <childnode refid="1997" relation="usage">
+          <edgelabel>aabb</edgelabel>
+        </childnode>
+        <childnode refid="1995" relation="usage">
+          <edgelabel>fixture</edgelabel>
+        </childnode>
+      </node>
+      <node id="1988">
+        <label>b2Mat22</label>
+        <link refid="structb2_mat22"/>
+        <childnode refid="1985" relation="usage">
+          <edgelabel>col1</edgelabel>
+          <edgelabel>col2</edgelabel>
+        </childnode>
+      </node>
+      <node id="1986">
+        <label>b2Sweep</label>
+        <link refid="structb2_sweep"/>
+        <childnode refid="1985" relation="usage">
+          <edgelabel>c0</edgelabel>
+          <edgelabel>localCenter</edgelabel>
+          <edgelabel>c</edgelabel>
+        </childnode>
+      </node>
+      <node id="1987">
+        <label>b2Transform</label>
+        <link refid="structb2_transform"/>
+        <childnode refid="1985" relation="usage">
+          <edgelabel>position</edgelabel>
+        </childnode>
+        <childnode refid="1988" relation="usage">
+          <edgelabel>R</edgelabel>
+        </childnode>
+      </node>
+      <node id="2001">
+        <label>b2DebugDraw</label>
+        <link refid="classb2_debug_draw"/>
+      </node>
+      <node id="1999">
+        <label>b2Filter</label>
+        <link refid="structb2_filter"/>
+      </node>
+      <node id="1983">
+        <label>b2JointEdge</label>
+        <link refid="structb2_joint_edge"/>
+        <childnode refid="1982" relation="usage">
+          <edgelabel>other</edgelabel>
+        </childnode>
+        <childnode refid="1983" relation="usage">
+          <edgelabel>prev</edgelabel>
+          <edgelabel>next</edgelabel>
+        </childnode>
+        <childnode refid="1984" relation="usage">
+          <edgelabel>joint</edgelabel>
+        </childnode>
+      </node>
+      <node id="1984">
+        <label>b2Joint</label>
+        <link refid="classb2_joint"/>
+        <childnode refid="1982" relation="usage">
+          <edgelabel>m_bodyA</edgelabel>
+          <edgelabel>m_bodyB</edgelabel>
+        </childnode>
+        <childnode refid="1985" relation="usage">
+          <edgelabel>m_localCenterA</edgelabel>
+          <edgelabel>m_localCenterB</edgelabel>
+        </childnode>
+        <childnode refid="1983" relation="usage">
+          <edgelabel>m_edgeB</edgelabel>
+          <edgelabel>m_edgeA</edgelabel>
+        </childnode>
+        <childnode refid="1984" relation="usage">
+          <edgelabel>m_prev</edgelabel>
+          <edgelabel>m_next</edgelabel>
+        </childnode>
+      </node>
+      <node id="1985">
+        <label>b2Vec2</label>
+        <link refid="structb2_vec2"/>
+      </node>
+      <node id="1993">
+        <label>b2ContactID</label>
+        <link refid="unionb2_contact_i_d"/>
+        <childnode refid="1994" relation="usage">
+          <edgelabel>cf</edgelabel>
+        </childnode>
+      </node>
+      <node id="1998">
+        <label>b2Shape</label>
+        <link refid="classb2_shape"/>
+      </node>
+      <node id="1980">
+        <label>b2RevoluteJointDef</label>
+        <link refid="structb2_revolute_joint_def"/>
+        <childnode refid="1981" relation="public-inheritance">
+        </childnode>
+        <childnode refid="1985" relation="usage">
+          <edgelabel>localAnchorA</edgelabel>
+          <edgelabel>localAnchorB</edgelabel>
+        </childnode>
+      </node>
+      <node id="1997">
+        <label>b2AABB</label>
+        <link refid="structb2_a_a_b_b"/>
+        <childnode refid="1985" relation="usage">
+          <edgelabel>lowerBound</edgelabel>
+          <edgelabel>upperBound</edgelabel>
+        </childnode>
+      </node>
+      <node id="1995">
+        <label>b2Fixture</label>
+        <link refid="classb2_fixture"/>
+        <childnode refid="1982" relation="usage">
+          <edgelabel>m_body</edgelabel>
+        </childnode>
+        <childnode refid="1996" relation="usage">
+          <edgelabel>m_proxies</edgelabel>
+        </childnode>
+        <childnode refid="1998" relation="usage">
+          <edgelabel>m_shape</edgelabel>
+        </childnode>
+        <childnode refid="1999" relation="usage">
+          <edgelabel>m_filter</edgelabel>
+        </childnode>
+        <childnode refid="1995" relation="usage">
+          <edgelabel>m_next</edgelabel>
+        </childnode>
+      </node>
+      <node id="1992">
+        <label>b2ManifoldPoint</label>
+        <link refid="structb2_manifold_point"/>
+        <childnode refid="1985" relation="usage">
+          <edgelabel>localPoint</edgelabel>
+        </childnode>
+        <childnode refid="1993" relation="usage">
+          <edgelabel>id</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2RevoluteJoint.h" line="36" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2RevoluteJoint.h" bodystart="35" bodyend="82"/>
+    <listofallmembers>
+      <member refid="structb2_joint_def_1a1fdb44829d4fd13c72edb1daacb72f89" prot="public" virt="non-virtual"><scope>b2RevoluteJointDef</scope><name>b2JointDef</name></member>
+      <member refid="structb2_revolute_joint_def_1a20296c13c3102d03eb8787e463ff63d1" prot="public" virt="non-virtual"><scope>b2RevoluteJointDef</scope><name>b2RevoluteJointDef</name></member>
+      <member refid="structb2_joint_def_1a8cd54c93da396be75a9788f2c6897f05" prot="public" virt="non-virtual"><scope>b2RevoluteJointDef</scope><name>bodyA</name></member>
+      <member refid="structb2_joint_def_1aa4f4dee2fbcd12187b19506b60e68e3d" prot="public" virt="non-virtual"><scope>b2RevoluteJointDef</scope><name>bodyB</name></member>
+      <member refid="structb2_joint_def_1aef099a1f89b64e230173b6016848ea9b" prot="public" virt="non-virtual"><scope>b2RevoluteJointDef</scope><name>collideConnected</name></member>
+      <member refid="structb2_revolute_joint_def_1a2eaefc5fc5caf879cfd59ebcd852b756" prot="public" virt="non-virtual"><scope>b2RevoluteJointDef</scope><name>enableLimit</name></member>
+      <member refid="structb2_revolute_joint_def_1aa94d9e66be9f03818d0cfbd9c70b2996" prot="public" virt="non-virtual"><scope>b2RevoluteJointDef</scope><name>enableMotor</name></member>
+      <member refid="structb2_revolute_joint_def_1a6401b2a663533415d032a525e4fa2806" prot="public" virt="non-virtual"><scope>b2RevoluteJointDef</scope><name>Initialize</name></member>
+      <member refid="structb2_revolute_joint_def_1a76337d07aa63232a7b20d50decc862ae" prot="public" virt="non-virtual"><scope>b2RevoluteJointDef</scope><name>localAnchorA</name></member>
+      <member refid="structb2_revolute_joint_def_1a3f33bc1d9f6c22043a5ff2f1d89f04e0" prot="public" virt="non-virtual"><scope>b2RevoluteJointDef</scope><name>localAnchorB</name></member>
+      <member refid="structb2_revolute_joint_def_1a24d0b2638a01405c77bd1c0de3e53de8" prot="public" virt="non-virtual"><scope>b2RevoluteJointDef</scope><name>lowerAngle</name></member>
+      <member refid="structb2_revolute_joint_def_1a9fc1b67fe6d1bc31f88cc2cfd681fe30" prot="public" virt="non-virtual"><scope>b2RevoluteJointDef</scope><name>maxMotorTorque</name></member>
+      <member refid="structb2_revolute_joint_def_1aced7cf768f4dcc3561576a39c7b92ec4" prot="public" virt="non-virtual"><scope>b2RevoluteJointDef</scope><name>motorSpeed</name></member>
+      <member refid="structb2_revolute_joint_def_1a1858d897d5fea04c5e606a1ff73f64f8" prot="public" virt="non-virtual"><scope>b2RevoluteJointDef</scope><name>referenceAngle</name></member>
+      <member refid="structb2_joint_def_1a470f2879b24adb05facbd49f338856fb" prot="public" virt="non-virtual"><scope>b2RevoluteJointDef</scope><name>type</name></member>
+      <member refid="structb2_revolute_joint_def_1a692cfe333ad12afd5753a6ec54e39a66" prot="public" virt="non-virtual"><scope>b2RevoluteJointDef</scope><name>upperAngle</name></member>
+      <member refid="structb2_joint_def_1a07eb150daaaa52fc09c3bcf402b295fe" prot="public" virt="non-virtual"><scope>b2RevoluteJointDef</scope><name>userData</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

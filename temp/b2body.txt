@@ -1,0 +1,59 @@
+# Read-write properties
+sleepingAllowed = property(__IsSleepingAllowed, __SetSleepingAllowed)
+angularVelocity = property(__GetAngularVelocity, __SetAngularVelocity)
+linearVelocity = property(__GetLinearVelocity, __SetLinearVelocity)
+awake = property(__IsAwake, __SetAwake)
+angularDamping = property(__GetAngularDamping, __SetAngularDamping)
+fixedRotation = property(__IsFixedRotation, __SetFixedRotation)
+linearDamping = property(__GetLinearDamping, __SetLinearDamping)
+bullet = property(__IsBullet, __SetBullet)
+type = property(__GetType, __SetType)
+active = property(__IsActive, __SetActive)
+# Read only
+angle = property(__GetAngle, None)
+jointList = property(__GetJointList, None)
+next = property(__GetNext, None)
+position = property(__GetPosition, None)
+mass = property(__GetMass, None)
+transform = property(__GetTransform, None)
+worldCenter = property(__GetWorldCenter, None)
+world = property(__GetWorld, None)
+contactList = property(__GetContactList, None)
+localCenter = property(__GetLocalCenter, None)
+inertia = property(__GetInertia, None)
+fixtureList = property(__GetFixtureList, None)
+# Write only
+massData = property(None, __SetMassData)
+%rename(__GetAngle) b2Body::GetAngle;
+%rename(__IsSleepingAllowed) b2Body::IsSleepingAllowed;
+%rename(__GetAngularVelocity) b2Body::GetAngularVelocity;
+%rename(__GetJointList) b2Body::GetJointList;
+%rename(__GetLinearVelocity) b2Body::GetLinearVelocity;
+%rename(__GetNext) b2Body::GetNext;
+%rename(__GetPosition) b2Body::GetPosition;
+%rename(__GetMass) b2Body::GetMass;
+%rename(__IsAwake) b2Body::IsAwake;
+%rename(__GetTransform) b2Body::GetTransform;
+%rename(__GetWorldCenter) b2Body::GetWorldCenter;
+%rename(__GetAngularDamping) b2Body::GetAngularDamping;
+%rename(__IsFixedRotation) b2Body::IsFixedRotation;
+%rename(__GetWorld) b2Body::GetWorld;
+%rename(__GetContactList) b2Body::GetContactList;
+%rename(__GetLinearDamping) b2Body::GetLinearDamping;
+%rename(__IsBullet) b2Body::IsBullet;
+%rename(__GetLocalCenter) b2Body::GetLocalCenter;
+%rename(__GetType) b2Body::GetType;
+%rename(__GetInertia) b2Body::GetInertia;
+%rename(__GetFixtureList) b2Body::GetFixtureList;
+%rename(__IsActive) b2Body::IsActive;
+%rename(__SetLinearVelocity) b2Body::SetLinearVelocity;
+%rename(__SetSleepingAllowed) b2Body::SetSleepingAllowed;
+%rename(__SetAngularDamping) b2Body::SetAngularDamping;
+%rename(__SetActive) b2Body::SetActive;
+%rename(__SetAngularVelocity) b2Body::SetAngularVelocity;
+%rename(__SetMassData) b2Body::SetMassData;
+%rename(__SetBullet) b2Body::SetBullet;
+%rename(__SetFixedRotation) b2Body::SetFixedRotation;
+%rename(__SetAwake) b2Body::SetAwake;
+%rename(__SetLinearDamping) b2Body::SetLinearDamping;
+%rename(__SetType) b2Body::SetType;

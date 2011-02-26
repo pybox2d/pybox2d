@@ -1,0 +1,165 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.7.2">
+  <compounddef id="b2_edge_shape_8cpp" kind="file">
+    <compoundname>b2EdgeShape.cpp</compoundname>
+    <includes refid="b2_edge_shape_8h" local="no">Box2D/Collision/Shapes/b2EdgeShape.h</includes>
+    <includes local="no">new</includes>
+    <incdepgraph>
+      <node id="70">
+        <label>new</label>
+      </node>
+      <node id="69">
+        <label>Box2D/Collision/Shapes/b2EdgeShape.cpp</label>
+        <link refid="b2EdgeShape.cpp"/>
+        <childnode refid="70" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment">*<sp/>Copyright<sp/>(c)<sp/>2006-2010<sp/>Erin<sp/>Catto<sp/>http://www.gphysics.com</highlight></codeline>
+<codeline lineno="3"><highlight class="comment">*</highlight></codeline>
+<codeline lineno="4"><highlight class="comment">*<sp/>This<sp/>software<sp/>is<sp/>provided<sp/>&apos;as-is&apos;,<sp/>without<sp/>any<sp/>express<sp/>or<sp/>implied</highlight></codeline>
+<codeline lineno="5"><highlight class="comment">*<sp/>warranty.<sp/><sp/>In<sp/>no<sp/>event<sp/>will<sp/>the<sp/>authors<sp/>be<sp/>held<sp/>liable<sp/>for<sp/>any<sp/>damages</highlight></codeline>
+<codeline lineno="6"><highlight class="comment">*<sp/>arising<sp/>from<sp/>the<sp/>use<sp/>of<sp/>this<sp/>software.</highlight></codeline>
+<codeline lineno="7"><highlight class="comment">*<sp/>Permission<sp/>is<sp/>granted<sp/>to<sp/>anyone<sp/>to<sp/>use<sp/>this<sp/>software<sp/>for<sp/>any<sp/>purpose,</highlight></codeline>
+<codeline lineno="8"><highlight class="comment">*<sp/>including<sp/>commercial<sp/>applications,<sp/>and<sp/>to<sp/>alter<sp/>it<sp/>and<sp/>redistribute<sp/>it</highlight></codeline>
+<codeline lineno="9"><highlight class="comment">*<sp/>freely,<sp/>subject<sp/>to<sp/>the<sp/>following<sp/>restrictions:</highlight></codeline>
+<codeline lineno="10"><highlight class="comment">*<sp/>1.<sp/>The<sp/>origin<sp/>of<sp/>this<sp/>software<sp/>must<sp/>not<sp/>be<sp/>misrepresented;<sp/>you<sp/>must<sp/>not</highlight></codeline>
+<codeline lineno="11"><highlight class="comment">*<sp/>claim<sp/>that<sp/>you<sp/>wrote<sp/>the<sp/>original<sp/>software.<sp/>If<sp/>you<sp/>use<sp/>this<sp/>software</highlight></codeline>
+<codeline lineno="12"><highlight class="comment">*<sp/>in<sp/>a<sp/>product,<sp/>an<sp/>acknowledgment<sp/>in<sp/>the<sp/>product<sp/>documentation<sp/>would<sp/>be</highlight></codeline>
+<codeline lineno="13"><highlight class="comment">*<sp/>appreciated<sp/>but<sp/>is<sp/>not<sp/>required.</highlight></codeline>
+<codeline lineno="14"><highlight class="comment">*<sp/>2.<sp/>Altered<sp/>source<sp/>versions<sp/>must<sp/>be<sp/>plainly<sp/>marked<sp/>as<sp/>such,<sp/>and<sp/>must<sp/>not<sp/>be</highlight></codeline>
+<codeline lineno="15"><highlight class="comment">*<sp/>misrepresented<sp/>as<sp/>being<sp/>the<sp/>original<sp/>software.</highlight></codeline>
+<codeline lineno="16"><highlight class="comment">*<sp/>3.<sp/>This<sp/>notice<sp/>may<sp/>not<sp/>be<sp/>removed<sp/>or<sp/>altered<sp/>from<sp/>any<sp/>source<sp/>distribution.</highlight></codeline>
+<codeline lineno="17"><highlight class="comment">*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;Box2D/Collision/Shapes/b2EdgeShape.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;new&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal">std;</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classb2_edge_shape_1a67dd3b17630a600033cb4380697a4e9d" kindref="member" tooltip="Set this as an isolated edge.">b2EdgeShape::Set</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structb2_vec2" kindref="compound" tooltip="A 2D column vector.">b2Vec2</ref>&amp;<sp/>v1,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structb2_vec2" kindref="compound" tooltip="A 2D column vector.">b2Vec2</ref>&amp;<sp/>v2)</highlight></codeline>
+<codeline lineno="24"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>m_vertex1<sp/>=<sp/>v1;</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>m_vertex2<sp/>=<sp/>v2;</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>m_hasVertex0<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>m_hasVertex3<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="29"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><ref refid="classb2_shape" kindref="compound">b2Shape</ref>*<sp/><ref refid="classb2_edge_shape_1a70ce8532bab35dce4367d3717ae024b3" kindref="member" tooltip="Implement b2Shape.">b2EdgeShape::Clone</ref>(<ref refid="classb2_block_allocator" kindref="compound">b2BlockAllocator</ref>*<sp/>allocator)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="32"><highlight class="keyword"></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>mem<sp/>=<sp/>allocator-&gt;<ref refid="classb2_block_allocator_1a437bf775c23f6e36af11a6d1653d7040" kindref="member" tooltip="Allocate memory. This will use b2Alloc if the size is larger than b2_maxBlockSize.">Allocate</ref>(</highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(<ref refid="classb2_edge_shape" kindref="compound">b2EdgeShape</ref>));</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classb2_edge_shape" kindref="compound">b2EdgeShape</ref>*<sp/>clone<sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>(mem)<sp/><ref refid="classb2_edge_shape" kindref="compound">b2EdgeShape</ref>;</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*clone<sp/>=<sp/>*</highlight><highlight class="keyword">this</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>clone;</highlight></codeline>
+<codeline lineno="37"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal">int32<sp/><ref refid="classb2_edge_shape_1a8c15a5a5aa8e7dc69826be17aaa82293" kindref="member">b2EdgeShape::GetChildCount</ref>()</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="40"><highlight class="keyword"></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="42"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classb2_edge_shape_1a28a977f82e4bc1cf60a3143ba5636c22" kindref="member">b2EdgeShape::TestPoint</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structb2_transform" kindref="compound">b2Transform</ref>&amp;<sp/>xf,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structb2_vec2" kindref="compound" tooltip="A 2D column vector.">b2Vec2</ref>&amp;<sp/>p)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="45"><highlight class="keyword"></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>B2_NOT_USED(xf);</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>B2_NOT_USED(p);</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="49"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight><highlight class="comment">//<sp/>p<sp/>=<sp/>p1<sp/>+<sp/>t<sp/>*<sp/>d</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight><highlight class="comment">//<sp/>v<sp/>=<sp/>v1<sp/>+<sp/>s<sp/>*<sp/>e</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight><highlight class="comment">//<sp/>p1<sp/>+<sp/>t<sp/>*<sp/>d<sp/>=<sp/>v1<sp/>+<sp/>s<sp/>*<sp/>e</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight><highlight class="comment">//<sp/>s<sp/>*<sp/>e<sp/>-<sp/>t<sp/>*<sp/>d<sp/>=<sp/>p1<sp/>-<sp/>v1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classb2_edge_shape_1aefbae6b3840f486b22ffecee7d0d15fd" kindref="member" tooltip="Implement b2Shape.">b2EdgeShape::RayCast</ref>(<ref refid="structb2_ray_cast_output" kindref="compound">b2RayCastOutput</ref>*<sp/>output,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structb2_ray_cast_input" kindref="compound" tooltip="Ray-cast input data. The ray extends from p1 to p1 + maxFraction * (p2 - p1).">b2RayCastInput</ref>&amp;<sp/>input,</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structb2_transform" kindref="compound">b2Transform</ref>&amp;<sp/>xf,<sp/>int32<sp/>childIndex)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="57"><highlight class="keyword"></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>B2_NOT_USED(childIndex);</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Put<sp/>the<sp/>ray<sp/>into<sp/>the<sp/>edge&apos;s<sp/>frame<sp/>of<sp/>reference.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structb2_vec2" kindref="compound" tooltip="A 2D column vector.">b2Vec2</ref><sp/>p1<sp/>=<sp/>b2MulT(xf.R,<sp/>input.p1<sp/>-<sp/>xf.position);</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structb2_vec2" kindref="compound" tooltip="A 2D column vector.">b2Vec2</ref><sp/>p2<sp/>=<sp/>b2MulT(xf.R,<sp/>input.p2<sp/>-<sp/>xf.position);</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structb2_vec2" kindref="compound" tooltip="A 2D column vector.">b2Vec2</ref><sp/>d<sp/>=<sp/>p2<sp/>-<sp/>p1;</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structb2_vec2" kindref="compound" tooltip="A 2D column vector.">b2Vec2</ref><sp/>v1<sp/>=<sp/>m_vertex1;</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structb2_vec2" kindref="compound" tooltip="A 2D column vector.">b2Vec2</ref><sp/>v2<sp/>=<sp/>m_vertex2;</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structb2_vec2" kindref="compound" tooltip="A 2D column vector.">b2Vec2</ref><sp/>e<sp/>=<sp/>v2<sp/>-<sp/>v1;</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structb2_vec2" kindref="compound" tooltip="A 2D column vector.">b2Vec2</ref><sp/>normal(e.y,<sp/>-e.x);</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>normal.Normalize();</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>q<sp/>=<sp/>p1<sp/>+<sp/>t<sp/>*<sp/>d</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>dot(normal,<sp/>q<sp/>-<sp/>v1)<sp/>=<sp/>0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>dot(normal,<sp/>p1<sp/>-<sp/>v1)<sp/>+<sp/>t<sp/>*<sp/>dot(normal,<sp/>d)<sp/>=<sp/>0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>float32<sp/>numerator<sp/>=<sp/>b2Dot(normal,<sp/>v1<sp/>-<sp/>p1);</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>float32<sp/>denominator<sp/>=<sp/>b2Dot(normal,<sp/>d);</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(denominator<sp/>==<sp/>0.0f)</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"></highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>float32<sp/>t<sp/>=<sp/>numerator<sp/>/<sp/>denominator;</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(t<sp/>&lt;<sp/>0.0f<sp/>||<sp/>1.0f<sp/>&lt;<sp/>t)</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structb2_vec2" kindref="compound" tooltip="A 2D column vector.">b2Vec2</ref><sp/>q<sp/>=<sp/>p1<sp/>+<sp/>t<sp/>*<sp/>d;</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>q<sp/>=<sp/>v1<sp/>+<sp/>s<sp/>*<sp/>r</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>s<sp/>=<sp/>dot(q<sp/>-<sp/>v1,<sp/>r)<sp/>/<sp/>dot(r,<sp/>r)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structb2_vec2" kindref="compound" tooltip="A 2D column vector.">b2Vec2</ref><sp/>r<sp/>=<sp/>v2<sp/>-<sp/>v1;</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>float32<sp/>rr<sp/>=<sp/>b2Dot(r,<sp/>r);</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(rr<sp/>==<sp/>0.0f)</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"></highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>float32<sp/>s<sp/>=<sp/>b2Dot(q<sp/>-<sp/>v1,<sp/>r)<sp/>/<sp/>rr;</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(s<sp/>&lt;<sp/>0.0f<sp/>||<sp/>1.0f<sp/>&lt;<sp/>s)</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"></highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>output-&gt;fraction<sp/>=<sp/>t;</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(numerator<sp/>&gt;<sp/>0.0f)</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>output-&gt;normal<sp/>=<sp/>-normal;</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>output-&gt;normal<sp/>=<sp/>normal;</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="115"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"></highlight></codeline>
+<codeline lineno="117"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classb2_edge_shape_1a30f601c611eb549f9f657eee89d82f9f" kindref="member">b2EdgeShape::ComputeAABB</ref>(<ref refid="structb2_a_a_b_b" kindref="compound" tooltip="An axis aligned bounding box.">b2AABB</ref>*<sp/>aabb,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structb2_transform" kindref="compound">b2Transform</ref>&amp;<sp/>xf,<sp/>int32<sp/>childIndex)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="118"><highlight class="keyword"></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>B2_NOT_USED(childIndex);</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"></highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structb2_vec2" kindref="compound" tooltip="A 2D column vector.">b2Vec2</ref><sp/>v1<sp/>=<sp/>b2Mul(xf,<sp/>m_vertex1);</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structb2_vec2" kindref="compound" tooltip="A 2D column vector.">b2Vec2</ref><sp/>v2<sp/>=<sp/>b2Mul(xf,<sp/>m_vertex2);</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"></highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structb2_vec2" kindref="compound" tooltip="A 2D column vector.">b2Vec2</ref><sp/>lower<sp/>=<sp/>b2Min(v1,<sp/>v2);</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structb2_vec2" kindref="compound" tooltip="A 2D column vector.">b2Vec2</ref><sp/>upper<sp/>=<sp/>b2Max(v1,<sp/>v2);</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"></highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structb2_vec2" kindref="compound" tooltip="A 2D column vector.">b2Vec2</ref><sp/>r(m_radius,<sp/>m_radius);</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>aabb-&gt;<ref refid="structb2_a_a_b_b_1ab94b68fbad8348b22b0522469b11bdb5" kindref="member" tooltip="the lower vertex">lowerBound</ref><sp/>=<sp/>lower<sp/>-<sp/>r;</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>aabb-&gt;<ref refid="structb2_a_a_b_b_1ad4a8ec483ba13a2c02918b01d058a18f" kindref="member" tooltip="the upper vertex">upperBound</ref><sp/>=<sp/>upper<sp/>+<sp/>r;</highlight></codeline>
+<codeline lineno="130"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"></highlight></codeline>
+<codeline lineno="132"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classb2_edge_shape_1a3a305707a07ca3dffa6f2eaff3735dff" kindref="member">b2EdgeShape::ComputeMass</ref>(<ref refid="structb2_mass_data" kindref="compound" tooltip="This holds the mass data computed for a shape.">b2MassData</ref>*<sp/>massData,<sp/>float32<sp/>density)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="133"><highlight class="keyword"></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>B2_NOT_USED(density);</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"></highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>massData-&gt;<ref refid="structb2_mass_data_1aea85d9595a38d2eed05b8d2ea80d97b1" kindref="member" tooltip="The mass of the shape, usually in kilograms.">mass</ref><sp/>=<sp/>0.0f;</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>massData-&gt;<ref refid="structb2_mass_data_1a1d59bebc7030c4dded0c2febc57ebdd7" kindref="member" tooltip="The position of the shape&amp;#39;s centroid relative to the shape&amp;#39;s origin.">center</ref><sp/>=<sp/>0.5f<sp/>*<sp/>(m_vertex1<sp/>+<sp/>m_vertex2);</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>massData-&gt;<ref refid="structb2_mass_data_1ad2d06e96e2d79d895df16ae0e5fe0376" kindref="member" tooltip="The rotational inertia of the shape about the local origin.">I</ref><sp/>=<sp/>0.0f;</highlight></codeline>
+<codeline lineno="139"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="D:/pybox2d/Box2D/Collision/Shapes/b2EdgeShape.cpp"/>
+  </compounddef>
+</doxygen>

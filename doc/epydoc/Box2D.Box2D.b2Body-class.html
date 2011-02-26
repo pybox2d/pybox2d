@@ -1,0 +1,2010 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Box2D.Box2D.b2Body</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="Box2D.Box2D-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="http://code.google.com/p/pybox2d">pybox2d</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        Package&nbsp;Box2D ::
+        <a href="Box2D.Box2D-module.html">Module&nbsp;Box2D</a> ::
+        Class&nbsp;b2Body
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- ==================== CLASS DESCRIPTION ==================== -->
+<h1 class="epydoc">Class b2Body</h1><p class="nomargin-top"><span class="codelink"><a href="Box2D.Box2D-pysrc.html#b2Body">source&nbsp;code</a></span></p>
+<center>
+<center>  <map id="uml_class_diagram_for_box2d_bo_3" name="uml_class_diagram_for_box2d_bo_3">
+<area shape="rect" id="node2" href="Box2D.Box2D.b2Body-class.html#active" title="__IsActive(self) &#45;&gt; bool" alt="" coords="17,31,389,49"/>
+<area shape="rect" id="node2" href="Box2D.Box2D.b2Body-class.html#angle" title="__GetAngle(self) &#45;&gt; float32" alt="" coords="17,49,389,68"/>
+<area shape="rect" id="node2" href="Box2D.Box2D.b2Body-class.html#angularDamping" title="__GetAngularDamping(self) &#45;&gt; float32" alt="" coords="17,68,389,87"/>
+<area shape="rect" id="node2" href="Box2D.Box2D.b2Body-class.html#angularVelocity" title="__GetAngularVelocity(self) &#45;&gt; float32" alt="" coords="17,87,389,105"/>
+<area shape="rect" id="node2" href="Box2D.Box2D.b2Body-class.html#awake" title="__IsAwake(self) &#45;&gt; bool" alt="" coords="17,105,389,124"/>
+<area shape="rect" id="node2" href="Box2D.Box2D.b2Body-class.html#bullet" title="__IsBullet(self) &#45;&gt; bool" alt="" coords="17,124,389,143"/>
+<area shape="rect" id="node2" href="Box2D.Box2D.b2Body-class.html#contacts" title="Box2D.Box2D.b2Body.contacts" alt="" coords="17,143,389,161"/>
+<area shape="rect" id="node2" href="Box2D.Box2D.b2Body-class.html#fixedRotation" title="__IsFixedRotation(self) &#45;&gt; bool" alt="" coords="17,161,389,180"/>
+<area shape="rect" id="node2" href="Box2D.Box2D.b2Body-class.html#fixtures" title="Box2D.Box2D.b2Body.fixtures" alt="" coords="17,180,389,199"/>
+<area shape="rect" id="node2" href="Box2D.Box2D.b2Body-class.html#inertia" title="__GetInertia(self) &#45;&gt; float32" alt="" coords="17,199,389,217"/>
+<area shape="rect" id="node2" href="Box2D.Box2D.b2Body-class.html#joints" title="Box2D.Box2D.b2Body.joints" alt="" coords="17,217,389,236"/>
+<area shape="rect" id="node2" href="Box2D.Box2D.b2Body-class.html#linearDamping" title="__GetLinearDamping(self) &#45;&gt; float32" alt="" coords="17,236,389,255"/>
+<area shape="rect" id="node2" href="Box2D.Box2D.b2Body-class.html#linearVelocity" title="__GetLinearVelocity(self) &#45;&gt; b2Vec2" alt="" coords="17,255,389,273"/>
+<area shape="rect" id="node2" href="Box2D.Box2D.b2Body-class.html#worldCenter" title="__GetWorldCenter(self) &#45;&gt; b2Vec2" alt="" coords="17,292,389,311"/>
+<area shape="rect" id="node2" href="Box2D.Box2D.b2Body-class.html#ApplyAngularImpulse" title="b2Body_ApplyAngularImpulse(b2Body self, float32 impulse)" alt="" coords="17,313,389,332"/>
+<area shape="rect" id="node2" href="Box2D.Box2D.b2Body-class.html#ApplyForce" title="b2Body_ApplyForce(b2Body self, b2Vec2 force, b2Vec2 point)" alt="" coords="17,332,389,351"/>
+<area shape="rect" id="node2" href="Box2D.Box2D.b2Body-class.html#ApplyLinearImpulse" title="b2Body_ApplyLinearImpulse(b2Body self, b2Vec2 impulse, b2Vec2 point)" alt="" coords="17,351,389,369"/>
+<area shape="rect" id="node2" href="Box2D.Box2D.b2Body-class.html#ApplyTorque" title="b2Body_ApplyTorque(b2Body self, float32 torque)" alt="" coords="17,369,389,388"/>
+<area shape="rect" id="node2" href="Box2D.Box2D.b2Body-class.html#ClearUserData" title="b2Body_ClearUserData(b2Body self)" alt="" coords="17,388,389,407"/>
+<area shape="rect" id="node2" href="Box2D.Box2D.b2Body-class.html#CreateCircleFixture" title="Create a circle shape without an explicit fixture definition." alt="" coords="17,407,389,425"/>
+<area shape="rect" id="node2" href="Box2D.Box2D.b2Body-class.html#CreateEdgeChain" title="Creates a body a set of connected edge chains." alt="" coords="17,425,389,444"/>
+<area shape="rect" id="node2" href="Box2D.Box2D.b2Body-class.html#CreateEdgeFixture" title="Create a edge shape without an explicit fixture definition." alt="" coords="17,444,389,463"/>
+<area shape="rect" id="node2" href="Box2D.Box2D.b2Body-class.html#CreateFixture" title="Create a fixtures on the body." alt="" coords="17,463,389,481"/>
+<area shape="rect" id="node2" href="Box2D.Box2D.b2Body-class.html#CreateFixturesFromShapes" title="Create fixture(s) on the body from one or more shapes, and optionally a &#160;single fixture definition." alt="" coords="17,481,389,500"/>
+<area shape="rect" id="node2" href="Box2D.Box2D.b2Body-class.html#CreateLoopFixture" title="Create a loop shape without an explicit fixture definition." alt="" coords="17,500,389,519"/>
+<area shape="rect" id="node2" href="Box2D.Box2D.b2Body-class.html#CreatePolygonFixture" title="Create a polygon shape without an explicit fixture definition." alt="" coords="17,519,389,537"/>
+<area shape="rect" id="node2" href="Box2D.Box2D.b2Body-class.html#DestroyFixture" title="b2Body_DestroyFixture(b2Body self, b2Fixture fixture)" alt="" coords="17,537,389,556"/>
+<area shape="rect" id="node2" href="Box2D.Box2D.b2Body-class.html#__repr__" title="repr(x)" alt="" coords="17,575,389,593"/>
+<area shape="rect" id="node1" href="Box2D.Box2D.b2Body-class.html" title="A rigid body." alt="" coords="5,6,400,599"/>
+</map>
+  <img src="uml_class_diagram_for_box2d_bo_3.gif" alt='' usemap="#uml_class_diagram_for_box2d_bo_3" ismap="ismap" class="graph-without-title" />
+</center>
+</center>
+<hr />
+<p>A rigid body. These are created via  b2World::CreateBody.</p>
+
+<!-- ==================== INSTANCE METHODS ==================== -->
+<a name="section-InstanceMethods"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td align="left" colspan="2" class="table-header">
+    <span class="table-header">Instance Methods</span></td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="Box2D.Box2D.b2Body-class.html#ApplyAngularImpulse" class="summary-sig-name">ApplyAngularImpulse</a>(<span class="summary-sig-arg">...</span>)</span><br />
+      b2Body_ApplyAngularImpulse(b2Body self, float32 impulse)</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="Box2D.Box2D-pysrc.html#b2Body.ApplyAngularImpulse">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="Box2D.Box2D.b2Body-class.html#ApplyForce" class="summary-sig-name">ApplyForce</a>(<span class="summary-sig-arg">...</span>)</span><br />
+      b2Body_ApplyForce(b2Body self, b2Vec2 force, b2Vec2 point)</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="Box2D.Box2D-pysrc.html#b2Body.ApplyForce">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="Box2D.Box2D.b2Body-class.html#ApplyLinearImpulse" class="summary-sig-name">ApplyLinearImpulse</a>(<span class="summary-sig-arg">...</span>)</span><br />
+      b2Body_ApplyLinearImpulse(b2Body self, b2Vec2 impulse, b2Vec2 point)</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="Box2D.Box2D-pysrc.html#b2Body.ApplyLinearImpulse">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="Box2D.Box2D.b2Body-class.html#ApplyTorque" class="summary-sig-name">ApplyTorque</a>(<span class="summary-sig-arg">...</span>)</span><br />
+      b2Body_ApplyTorque(b2Body self, float32 torque)</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="Box2D.Box2D-pysrc.html#b2Body.ApplyTorque">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="ClearUserData"></a><span class="summary-sig-name">ClearUserData</span>(<span class="summary-sig-arg">...</span>)</span><br />
+      b2Body_ClearUserData(b2Body self)</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="Box2D.Box2D-pysrc.html#b2Body.ClearUserData">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="Box2D.Box2D.b2Body-class.html#CreateCircleFixture" class="summary-sig-name">CreateCircleFixture</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">**kwargs</span>)</span><br />
+      Create a circle shape without an explicit fixture definition.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="Box2D.Box2D-pysrc.html#b2Body.CreateCircleFixture">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="Box2D.Box2D.b2Body-class.html#CreateEdgeChain" class="summary-sig-name">CreateEdgeChain</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">edge_list</span>)</span><br />
+      Creates a body a set of connected edge chains.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="Box2D.Box2D-pysrc.html#b2Body.CreateEdgeChain">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="Box2D.Box2D.b2Body-class.html#CreateEdgeFixture" class="summary-sig-name">CreateEdgeFixture</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">**kwargs</span>)</span><br />
+      Create a edge shape without an explicit fixture definition.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="Box2D.Box2D-pysrc.html#b2Body.CreateEdgeFixture">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="Box2D.Box2D.b2Body-class.html#CreateFixture" class="summary-sig-name">CreateFixture</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">*args</span>,
+        <span class="summary-sig-arg">**kwargs</span>)</span><br />
+      Create a fixtures on the body.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="Box2D.Box2D-pysrc.html#b2Body.CreateFixture">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="Box2D.Box2D.b2Body-class.html#CreateFixturesFromShapes" class="summary-sig-name">CreateFixturesFromShapes</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">shapes</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">shapeFixture</span>=<span class="summary-sig-default">None</span>)</span><br />
+      Create fixture(s) on the body from one or more shapes, and optionally
+      a single fixture definition.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="Box2D.Box2D-pysrc.html#b2Body.CreateFixturesFromShapes">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="Box2D.Box2D.b2Body-class.html#CreateLoopFixture" class="summary-sig-name">CreateLoopFixture</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">**kwargs</span>)</span><br />
+      Create a loop shape without an explicit fixture definition.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="Box2D.Box2D-pysrc.html#b2Body.CreateLoopFixture">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="Box2D.Box2D.b2Body-class.html#CreatePolygonFixture" class="summary-sig-name">CreatePolygonFixture</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">**kwargs</span>)</span><br />
+      Create a polygon shape without an explicit fixture definition.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="Box2D.Box2D-pysrc.html#b2Body.CreatePolygonFixture">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="Box2D.Box2D.b2Body-class.html#DestroyFixture" class="summary-sig-name">DestroyFixture</a>(<span class="summary-sig-arg">...</span>)</span><br />
+      b2Body_DestroyFixture(b2Body self, b2Fixture fixture)</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="Box2D.Box2D-pysrc.html#b2Body.DestroyFixture">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="Box2D.Box2D.b2Body-class.html#GetLinearVelocityFromLocalPoint" class="summary-sig-name">GetLinearVelocityFromLocalPoint</a>(<span class="summary-sig-arg">...</span>)</span><br />
+      b2Body_GetLinearVelocityFromLocalPoint(b2Body self, b2Vec2 localPoint) -&gt; b2Vec2</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="Box2D.Box2D-pysrc.html#b2Body.GetLinearVelocityFromLocalPoint">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="Box2D.Box2D.b2Body-class.html#GetLinearVelocityFromWorldPoint" class="summary-sig-name">GetLinearVelocityFromWorldPoint</a>(<span class="summary-sig-arg">...</span>)</span><br />
+      b2Body_GetLinearVelocityFromWorldPoint(b2Body self, b2Vec2 worldPoint) -&gt; b2Vec2</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="Box2D.Box2D-pysrc.html#b2Body.GetLinearVelocityFromWorldPoint">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="Box2D.Box2D.b2Body-class.html#GetLocalPoint" class="summary-sig-name">GetLocalPoint</a>(<span class="summary-sig-arg">...</span>)</span><br />
+      b2Body_GetLocalPoint(b2Body self, b2Vec2 worldPoint) -&gt; b2Vec2</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="Box2D.Box2D-pysrc.html#b2Body.GetLocalPoint">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="Box2D.Box2D.b2Body-class.html#GetLocalVector" class="summary-sig-name">GetLocalVector</a>(<span class="summary-sig-arg">...</span>)</span><br />
+      b2Body_GetLocalVector(b2Body self, b2Vec2 worldVector) -&gt; b2Vec2</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="Box2D.Box2D-pysrc.html#b2Body.GetLocalVector">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="Box2D.Box2D.b2Body-class.html#GetMassData" class="summary-sig-name">GetMassData</a>(<span class="summary-sig-arg">...</span>)</span><br />
+      b2Body_GetMassData(b2Body self, b2MassData data)</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="Box2D.Box2D-pysrc.html#b2Body.GetMassData">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="Box2D.Box2D.b2Body-class.html#GetWorldPoint" class="summary-sig-name">GetWorldPoint</a>(<span class="summary-sig-arg">...</span>)</span><br />
+      b2Body_GetWorldPoint(b2Body self, b2Vec2 localPoint) -&gt; b2Vec2</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="Box2D.Box2D-pysrc.html#b2Body.GetWorldPoint">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="Box2D.Box2D.b2Body-class.html#GetWorldVector" class="summary-sig-name">GetWorldVector</a>(<span class="summary-sig-arg">...</span>)</span><br />
+      b2Body_GetWorldVector(b2Body self, b2Vec2 localVector) -&gt; b2Vec2</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="Box2D.Box2D-pysrc.html#b2Body.GetWorldVector">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="Box2D.Box2D.b2Body-class.html#ResetMassData" class="summary-sig-name">ResetMassData</a>(<span class="summary-sig-arg">...</span>)</span><br />
+      b2Body_ResetMassData(b2Body self)</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="Box2D.Box2D-pysrc.html#b2Body.ResetMassData">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="__dir__"></a><span class="summary-sig-name">__dir__</span>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="Box2D.Box2D-pysrc.html#_dir_filter">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="__eq__"></a><span class="summary-sig-name">__eq__</span>(<span class="summary-sig-arg">a</span>,
+        <span class="summary-sig-arg">b</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="Box2D.Box2D-pysrc.html#b2BodyCompare">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="Box2D.Box2D.b2Body-class.html#__hash__" class="summary-sig-name">__hash__</a>(<span class="summary-sig-arg">...</span>)</span><br />
+      b2Body___hash__(b2Body self) -&gt; long</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="Box2D.Box2D-pysrc.html#b2Body.__hash__">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="Box2D.Box2D.b2Body-class.html#__init__" class="summary-sig-name">__init__</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">*args</span>,
+        <span class="summary-sig-arg">**kwargs</span>)</span><br />
+      x.__init__(...) initializes x; see x.__class__.__doc__ for signature</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="Box2D.Box2D-pysrc.html#b2Body.__init__">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="__iter__"></a><span class="summary-sig-name">__iter__</span>(<span class="summary-sig-arg">self</span>)</span><br />
+      Iterates over the fixtures in the body</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="Box2D.Box2D-pysrc.html#b2Body.__iter__">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="__ne__"></a><span class="summary-sig-name">__ne__</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">other</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="Box2D.Box2D-pysrc.html#b2Body.__ne__">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="Box2D.Box2D.b2Body-class.html#__repr__" class="summary-sig-name">__repr__</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      repr(x)</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="Box2D.Box2D-pysrc.html#b2Body.__repr__">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code>object</code></b>:
+      <code>__delattr__</code>,
+      <code>__format__</code>,
+      <code>__getattribute__</code>,
+      <code>__new__</code>,
+      <code>__reduce__</code>,
+      <code>__reduce_ex__</code>,
+      <code>__setattr__</code>,
+      <code>__sizeof__</code>,
+      <code>__str__</code>,
+      <code>__subclasshook__</code>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== PROPERTIES ==================== -->
+<a name="section-Properties"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td align="left" colspan="2" class="table-header">
+    <span class="table-header">Properties</span></td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="Box2D.Box2D.b2Body-class.html#active" class="summary-name">active</a><br />
+      __IsActive(self) -&gt; bool
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="Box2D.Box2D.b2Body-class.html#angle" class="summary-name">angle</a><br />
+      __GetAngle(self) -&gt; float32
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="Box2D.Box2D.b2Body-class.html#angularDamping" class="summary-name">angularDamping</a><br />
+      __GetAngularDamping(self) -&gt; float32
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="Box2D.Box2D.b2Body-class.html#angularVelocity" class="summary-name">angularVelocity</a><br />
+      __GetAngularVelocity(self) -&gt; float32
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="Box2D.Box2D.b2Body-class.html#awake" class="summary-name">awake</a><br />
+      __IsAwake(self) -&gt; bool
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="Box2D.Box2D.b2Body-class.html#bullet" class="summary-name">bullet</a><br />
+      __IsBullet(self) -&gt; bool
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="Box2D.Box2D.b2Body-class.html#contacts" class="summary-name">contacts</a>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="Box2D.Box2D.b2Body-class.html#fixedRotation" class="summary-name">fixedRotation</a><br />
+      __IsFixedRotation(self) -&gt; bool
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="Box2D.Box2D.b2Body-class.html#fixtures" class="summary-name">fixtures</a>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="Box2D.Box2D.b2Body-class.html#inertia" class="summary-name">inertia</a><br />
+      __GetInertia(self) -&gt; float32
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="Box2D.Box2D.b2Body-class.html#joints" class="summary-name">joints</a>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="Box2D.Box2D.b2Body-class.html#linearDamping" class="summary-name">linearDamping</a><br />
+      __GetLinearDamping(self) -&gt; float32
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="Box2D.Box2D.b2Body-class.html#linearVelocity" class="summary-name">linearVelocity</a><br />
+      __GetLinearVelocity(self) -&gt; b2Vec2
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="Box2D.Box2D.b2Body-class.html#localCenter" class="summary-name">localCenter</a><br />
+      __GetLocalCenter(self) -&gt; b2Vec2
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="Box2D.Box2D.b2Body-class.html#mass" class="summary-name">mass</a><br />
+      __GetMass(self) -&gt; float32
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="Box2D.Box2D.b2Body-class.html#massData" class="summary-name">massData</a><br />
+      Get a b2MassData object that represents this b2Body
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="Box2D.Box2D.b2Body-class.html#next" class="summary-name">next</a><br />
+      __GetNext(self) -&gt; b2Body __GetNext(self) -&gt; b2Body
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="Box2D.Box2D.b2Body-class.html#position" class="summary-name">position</a><br />
+      __GetPosition(self) -&gt; b2Vec2
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="Box2D.Box2D.b2Body-class.html#sleepingAllowed" class="summary-name">sleepingAllowed</a><br />
+      __IsSleepingAllowed(self) -&gt; bool
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="Box2D.Box2D.b2Body-class.html#transform" class="summary-name">transform</a><br />
+      __GetTransform(self) -&gt; b2Transform
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="Box2D.Box2D.b2Body-class.html#type" class="summary-name">type</a><br />
+      __GetType(self) -&gt; b2BodyType
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="Box2D.Box2D.b2Body-class.html#userData" class="summary-name">userData</a><br />
+      __GetUserData(self) -&gt; PyObject
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="Box2D.Box2D.b2Body-class.html#world" class="summary-name">world</a><br />
+      __GetWorld(self) -&gt; b2World __GetWorld(self) -&gt; b2World
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="Box2D.Box2D.b2Body-class.html#worldCenter" class="summary-name">worldCenter</a><br />
+      __GetWorldCenter(self) -&gt; b2Vec2
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code>object</code></b>:
+      <code>__class__</code>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== METHOD DETAILS ==================== -->
+<a name="section-MethodDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td align="left" colspan="2" class="table-header">
+    <span class="table-header">Method Details</span></td>
+</tr>
+</table>
+<a name="ApplyAngularImpulse"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">ApplyAngularImpulse</span>(<span class="sig-arg">...</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="Box2D.Box2D-pysrc.html#b2Body.ApplyAngularImpulse">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+
+b2Body_ApplyAngularImpulse(b2Body self, float32 impulse)
+
+Apply an angular impulse.
+
+Parameters:
+-----------
+
+impulse: 
+the angular impulse in units of kg*m*m/s
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="ApplyForce"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">ApplyForce</span>(<span class="sig-arg">...</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="Box2D.Box2D-pysrc.html#b2Body.ApplyForce">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+
+b2Body_ApplyForce(b2Body self, b2Vec2 force, b2Vec2 point)
+
+Apply a force at a world point. If the force is not applied at the center of mass, it will generate a torque and affect the angular velocity. This wakes up the body.
+
+Parameters:
+-----------
+
+force: 
+the world force vector, usually in Newtons (N).
+
+point: 
+the world position of the point of application.
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="ApplyLinearImpulse"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">ApplyLinearImpulse</span>(<span class="sig-arg">...</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="Box2D.Box2D-pysrc.html#b2Body.ApplyLinearImpulse">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+
+b2Body_ApplyLinearImpulse(b2Body self, b2Vec2 impulse, b2Vec2 point)
+
+Apply an impulse at a point. This immediately modifies the velocity. It also modifies the angular velocity if the point of application is not at the center of mass. This wakes up the body.
+
+Parameters:
+-----------
+
+impulse: 
+the world impulse vector, usually in N-seconds or kg-m/s.
+
+point: 
+the world position of the point of application.
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="ApplyTorque"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">ApplyTorque</span>(<span class="sig-arg">...</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="Box2D.Box2D-pysrc.html#b2Body.ApplyTorque">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+
+b2Body_ApplyTorque(b2Body self, float32 torque)
+
+Apply a torque. This affects the angular velocity without affecting the linear velocity of the center of mass. This wakes up the body.
+
+Parameters:
+-----------
+
+torque: 
+about the z-axis (out of the screen), usually in N-m.
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="CreateCircleFixture"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">CreateCircleFixture</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">**kwargs</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="Box2D.Box2D-pysrc.html#b2Body.CreateCircleFixture">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Create a circle shape without an explicit fixture definition.</p>
+  <p>Takes kwargs; you can pass in properties for either the circle or the 
+  fixture to this function. For example: CreateCircleFixture(radius=0.2, 
+  friction=0.2, density=1.0) where 'radius' is a property from the circle 
+  shape, and 'friction' and 'density' are from the fixture definition.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="CreateEdgeChain"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">CreateEdgeChain</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">edge_list</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="Box2D.Box2D-pysrc.html#b2Body.CreateEdgeChain">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Creates a body a set of connected edge chains. Expects edge_list to be
+  a list of vertices, length &gt;= 2.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="CreateEdgeFixture"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">CreateEdgeFixture</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">**kwargs</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="Box2D.Box2D-pysrc.html#b2Body.CreateEdgeFixture">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Create a edge shape without an explicit fixture definition.</p>
+  <p>Takes kwargs; you can pass in properties for either the edge or the 
+  fixture to this function. For example: 
+  CreateEdgeFixture(vertices=[(0,0),(1,0)], friction=0.2, density=1.0) 
+  where 'vertices' is a property from the edge shape, and 'friction' and 
+  'density' are from the fixture definition.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="CreateFixture"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">CreateFixture</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">*args</span>,
+        <span class="sig-arg">**kwargs</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="Box2D.Box2D-pysrc.html#b2Body.CreateFixture">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Create a fixtures on the body.</p>
+  <p>Takes kwargs; examples of valid combinations are as follows: 
+  CreateFixture(b2FixtureDef(shape=s, restitution=0.2, ...)) 
+  CreateFixture(shape=s, restitution=0.2, ...)</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="CreateFixturesFromShapes"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">CreateFixturesFromShapes</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">shapes</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">shapeFixture</span>=<span class="sig-default">None</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="Box2D.Box2D-pysrc.html#b2Body.CreateFixturesFromShapes">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Create fixture(s) on the body from one or more shapes, and optionally 
+  a single fixture definition.</p>
+  <p>Takes kwargs; examples of valid combinations are as follows: 
+  CreateFixturesFromShapes(shapes=b2CircleShape(radius=0.2)) 
+  CreateFixturesFromShapes(shapes=b2CircleShape(radius=0.2), 
+  shapeFixture=b2FixtureDef(friction=0.2)) 
+  CreateFixturesFromShapes(shapes=[b2CircleShape(radius=0.2), 
+  b2PolygonShape(box=[1,2])])</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="CreateLoopFixture"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">CreateLoopFixture</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">**kwargs</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="Box2D.Box2D-pysrc.html#b2Body.CreateLoopFixture">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Create a loop shape without an explicit fixture definition.</p>
+  <p>Takes kwargs; you can pass in properties for either the loop or the 
+  fixture to this function. For example: CreateLoopFixture(vertices=[...], 
+  friction=0.2, density=1.0) where 'vertices' is a property from the loop 
+  shape, and 'friction' and 'density' are from the fixture definition.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="CreatePolygonFixture"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">CreatePolygonFixture</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">**kwargs</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="Box2D.Box2D-pysrc.html#b2Body.CreatePolygonFixture">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Create a polygon shape without an explicit fixture definition.</p>
+  <p>Takes kwargs; you can pass in properties for either the polygon or the
+  fixture to this function. For example: CreatePolygonFixture(box=(1, 1), 
+  friction=0.2, density=1.0) where 'box' is a property from the polygon 
+  shape, and 'friction' and 'density' are from the fixture definition.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="DestroyFixture"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">DestroyFixture</span>(<span class="sig-arg">...</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="Box2D.Box2D-pysrc.html#b2Body.DestroyFixture">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+
+b2Body_DestroyFixture(b2Body self, b2Fixture fixture)
+
+Destroy a fixture. This removes the fixture from the broad-phase and destroys all contacts associated with this fixture. This will automatically adjust the mass of the body if the body is dynamic and the fixture has positive density. All fixtures attached to a body are implicitly destroyed when the body is destroyed.
+
+Parameters:
+-----------
+
+fixture: 
+the fixture to be removed.
+
+WARNING: 
+This function is locked during callbacks.
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="GetLinearVelocityFromLocalPoint"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">GetLinearVelocityFromLocalPoint</span>(<span class="sig-arg">...</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="Box2D.Box2D-pysrc.html#b2Body.GetLinearVelocityFromLocalPoint">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+
+b2Body_GetLinearVelocityFromLocalPoint(b2Body self, b2Vec2 localPoint) -&gt; b2Vec2
+
+Get the world velocity of a local point.
+
+Parameters:
+-----------
+
+a: 
+point in local coordinates. 
+the world velocity of a point.
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="GetLinearVelocityFromWorldPoint"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">GetLinearVelocityFromWorldPoint</span>(<span class="sig-arg">...</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="Box2D.Box2D-pysrc.html#b2Body.GetLinearVelocityFromWorldPoint">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+
+b2Body_GetLinearVelocityFromWorldPoint(b2Body self, b2Vec2 worldPoint) -&gt; b2Vec2
+
+Get the world linear velocity of a world point attached to this body.
+
+Parameters:
+-----------
+
+a: 
+point in world coordinates. 
+the world velocity of a point.
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="GetLocalPoint"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">GetLocalPoint</span>(<span class="sig-arg">...</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="Box2D.Box2D-pysrc.html#b2Body.GetLocalPoint">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+
+b2Body_GetLocalPoint(b2Body self, b2Vec2 worldPoint) -&gt; b2Vec2
+
+Gets a local point relative to the body's origin given a world point.
+
+Parameters:
+-----------
+
+a: 
+point in world coordinates. 
+the corresponding local point relative to the body's origin.
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="GetLocalVector"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">GetLocalVector</span>(<span class="sig-arg">...</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="Box2D.Box2D-pysrc.html#b2Body.GetLocalVector">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+
+b2Body_GetLocalVector(b2Body self, b2Vec2 worldVector) -&gt; b2Vec2
+
+Gets a local vector given a world vector.
+
+Parameters:
+-----------
+
+a: 
+vector in world coordinates. 
+the corresponding local vector.
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="GetMassData"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">GetMassData</span>(<span class="sig-arg">...</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="Box2D.Box2D-pysrc.html#b2Body.GetMassData">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>b2Body_GetMassData(b2Body self, b2MassData data)</p>
+  <p>Get the mass data of the body. a struct containing the mass, inertia 
+  and center of the body.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="GetWorldPoint"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">GetWorldPoint</span>(<span class="sig-arg">...</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="Box2D.Box2D-pysrc.html#b2Body.GetWorldPoint">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+
+b2Body_GetWorldPoint(b2Body self, b2Vec2 localPoint) -&gt; b2Vec2
+
+Get the world coordinates of a point given the local coordinates.
+
+Parameters:
+-----------
+
+localPoint: 
+a point on the body measured relative the the body's origin. 
+the same point expressed in world coordinates.
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="GetWorldVector"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">GetWorldVector</span>(<span class="sig-arg">...</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="Box2D.Box2D-pysrc.html#b2Body.GetWorldVector">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+
+b2Body_GetWorldVector(b2Body self, b2Vec2 localVector) -&gt; b2Vec2
+
+Get the world coordinates of a vector given the local coordinates.
+
+Parameters:
+-----------
+
+localVector: 
+a vector fixed in the body. 
+the same vector expressed in world coordinates.
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="ResetMassData"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">ResetMassData</span>(<span class="sig-arg">...</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="Box2D.Box2D-pysrc.html#b2Body.ResetMassData">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>b2Body_ResetMassData(b2Body self)</p>
+  <p>This resets the mass properties to the sum of the mass properties of 
+  the fixtures. This normally does not need to be called unless you called 
+  SetMassData to override the mass and you later want to reset the 
+  mass.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="__hash__"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">__hash__</span>(<span class="sig-arg">...</span>)</span>
+    <br /><em class="fname">(Hashing function)</em>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="Box2D.Box2D-pysrc.html#b2Body.__hash__">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>b2Body___hash__(b2Body self) -&gt; long</p>
+  <dl class="fields">
+    <dt>Overrides:
+        object.__hash__
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="__init__"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">__init__</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">*args</span>,
+        <span class="sig-arg">**kwargs</span>)</span>
+    <br /><em class="fname">(Constructor)</em>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="Box2D.Box2D-pysrc.html#b2Body.__init__">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>x.__init__(...) initializes x; see x.__class__.__doc__ for 
+  signature</p>
+  <dl class="fields">
+    <dt>Overrides:
+        object.__init__
+        <dd><em class="note">(inherited documentation)</em></dd>
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="__repr__"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">__repr__</span>(<span class="sig-arg">self</span>)</span>
+    <br /><em class="fname">(Representation operator)</em>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="Box2D.Box2D-pysrc.html#b2Body.__repr__">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>repr(x)</p>
+  <dl class="fields">
+    <dt>Overrides:
+        object.__repr__
+        <dd><em class="note">(inherited documentation)</em></dd>
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== PROPERTY DETAILS ==================== -->
+<a name="section-PropertyDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td align="left" colspan="2" class="table-header">
+    <span class="table-header">Property Details</span></td>
+</tr>
+</table>
+<a name="active"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">active</h3>
+  <p>__IsActive(self) -&gt; bool</p>
+  <p>Get the active state of the body.</p>
+  <dl class="fields">
+    <dt>Get Method:</dt>
+    <dd class="value"><span class="summary-sig"><i>unreachable</i>.__IsActive(<span class="summary-sig-arg">self</span>)</span>
+        - Get the active state of the body.
+    </dd>
+    <dt>Set Method:</dt>
+    <dd class="value"><span class="summary-sig"><a href="Box2D.Box2D.b2Body-class.html#__SetActive" class="summary-sig-name" onclick="show_private();">__SetActive</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">*args</span>,
+        <span class="summary-sig-arg">**kwargs</span>)</span>
+        - __SetActive(self, bool flag)
+    </dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="angle"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">angle</h3>
+  <p>__GetAngle(self) -&gt; float32</p>
+  <p>Get the angle in radians. the current world rotation angle in 
+  radians.</p>
+  <dl class="fields">
+    <dt>Get Method:</dt>
+    <dd class="value"><span class="summary-sig"><a href="Box2D.Box2D.b2Body-class.html#__GetAngle" class="summary-sig-name" onclick="show_private();">__GetAngle</a>(<span class="summary-sig-arg">self</span>)</span>
+        - Get the angle in radians.
+    </dd>
+    <dt>Set Method:</dt>
+    <dd class="value"><span class="summary-sig"><i>unreachable</i>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">angle</span>)</span>
+    </dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="angularDamping"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">angularDamping</h3>
+  <p>__GetAngularDamping(self) -&gt; float32</p>
+  <p>Get the angular damping of the body.</p>
+  <dl class="fields">
+    <dt>Get Method:</dt>
+    <dd class="value"><span class="summary-sig"><i>unreachable</i>.__GetAngularDamping(<span class="summary-sig-arg">self</span>)</span>
+        - Get the angular damping of the body.
+    </dd>
+    <dt>Set Method:</dt>
+    <dd class="value"><span class="summary-sig"><i>unreachable</i>.__SetAngularDamping(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">*args</span>,
+        <span class="summary-sig-arg">**kwargs</span>)</span>
+        - __SetAngularDamping(self, float32 angularDamping)
+    </dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="angularVelocity"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">angularVelocity</h3>
+  <p>__GetAngularVelocity(self) -&gt; float32</p>
+  <p>Get the angular velocity. the angular velocity in radians/second.</p>
+  <dl class="fields">
+    <dt>Get Method:</dt>
+    <dd class="value"><span class="summary-sig"><a href="Box2D.Box2D.b2Body-class.html#__GetAngularVelocity" class="summary-sig-name" onclick="show_private();">__GetAngularVelocity</a>(<span class="summary-sig-arg">self</span>)</span>
+        - Get the angular velocity.
+    </dd>
+    <dt>Set Method:</dt>
+    <dd class="value"><span class="summary-sig"><a href="Box2D.Box2D.b2Body-class.html#__SetAngularVelocity" class="summary-sig-name" onclick="show_private();">__SetAngularVelocity</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">*args</span>,
+        <span class="summary-sig-arg">**kwargs</span>)</span>
+        - __SetAngularVelocity(self, float32 omega)
+    </dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="awake"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">awake</h3>
+  <p>__IsAwake(self) -&gt; bool</p>
+  <p>Get the sleeping state of this body. true if the body is sleeping.</p>
+  <dl class="fields">
+    <dt>Get Method:</dt>
+    <dd class="value"><span class="summary-sig"><i>unreachable</i>.__IsAwake(<span class="summary-sig-arg">self</span>)</span>
+        - Get the sleeping state of this body.
+    </dd>
+    <dt>Set Method:</dt>
+    <dd class="value"><span class="summary-sig"><i>unreachable</i>.__SetAwake(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">*args</span>,
+        <span class="summary-sig-arg">**kwargs</span>)</span>
+        - __SetAwake(self, bool flag)
+    </dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="bullet"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">bullet</h3>
+  <p>__IsBullet(self) -&gt; bool</p>
+  <p>Is this body treated like a bullet for continuous collision 
+  detection?</p>
+  <dl class="fields">
+    <dt>Get Method:</dt>
+    <dd class="value"><span class="summary-sig"><i>unreachable</i>.__IsBullet(<span class="summary-sig-arg">self</span>)</span>
+        - Is this body treated like a bullet for continuous collision detection?
+    </dd>
+    <dt>Set Method:</dt>
+    <dd class="value"><span class="summary-sig"><a href="Box2D.Box2D.b2Body-class.html#__SetBullet" class="summary-sig-name" onclick="show_private();">__SetBullet</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">*args</span>,
+        <span class="summary-sig-arg">**kwargs</span>)</span>
+        - __SetBullet(self, bool flag)
+    </dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="contacts"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">contacts</h3>
+  
+  <dl class="fields">
+    <dt>Get Method:</dt>
+    <dd class="value"><span class="summary-sig"><i>unreachable</i>(<span class="summary-sig-arg">self</span>)</span>
+    </dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="fixedRotation"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">fixedRotation</h3>
+  <p>__IsFixedRotation(self) -&gt; bool</p>
+  <p>Does this body have fixed rotation?</p>
+  <dl class="fields">
+    <dt>Get Method:</dt>
+    <dd class="value"><span class="summary-sig"><a href="Box2D.Box2D.b2Body-class.html#__IsFixedRotation" class="summary-sig-name" onclick="show_private();">__IsFixedRotation</a>(<span class="summary-sig-arg">self</span>)</span>
+        - Does this body have fixed rotation?
+    </dd>
+    <dt>Set Method:</dt>
+    <dd class="value"><span class="summary-sig"><a href="Box2D.Box2D.b2Body-class.html#__SetFixedRotation" class="summary-sig-name" onclick="show_private();">__SetFixedRotation</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">*args</span>,
+        <span class="summary-sig-arg">**kwargs</span>)</span>
+        - __SetFixedRotation(self, bool flag)
+    </dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="fixtures"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">fixtures</h3>
+  
+  <dl class="fields">
+    <dt>Get Method:</dt>
+    <dd class="value"><span class="summary-sig"><i>unreachable</i>(<span class="summary-sig-arg">self</span>)</span>
+    </dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="inertia"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">inertia</h3>
+  <p>__GetInertia(self) -&gt; float32</p>
+  <p>Get the rotational inertia of the body about the local origin. the 
+  rotational inertia, usually in kg-m^2.</p>
+  <dl class="fields">
+    <dt>Get Method:</dt>
+    <dd class="value"><span class="summary-sig"><a href="Box2D.Box2D.b2Body-class.html#__GetInertia" class="summary-sig-name" onclick="show_private();">__GetInertia</a>(<span class="summary-sig-arg">self</span>)</span>
+        - Get the rotational inertia of the body about the local origin.
+    </dd>
+    <dt>Set Method:</dt>
+    <dd class="value"><span class="summary-sig"><a href="Box2D.Box2D.b2Body-class.html#__SetInertia" class="summary-sig-name" onclick="show_private();">__SetInertia</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">inertia</span>)</span>
+        - Set the body's inertia
+    </dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="joints"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">joints</h3>
+  
+  <dl class="fields">
+    <dt>Get Method:</dt>
+    <dd class="value"><span class="summary-sig"><i>unreachable</i>(<span class="summary-sig-arg">self</span>)</span>
+    </dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="linearDamping"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">linearDamping</h3>
+  <p>__GetLinearDamping(self) -&gt; float32</p>
+  <p>Get the linear damping of the body.</p>
+  <dl class="fields">
+    <dt>Get Method:</dt>
+    <dd class="value"><span class="summary-sig"><i>unreachable</i>.__GetLinearDamping(<span class="summary-sig-arg">self</span>)</span>
+        - Get the linear damping of the body.
+    </dd>
+    <dt>Set Method:</dt>
+    <dd class="value"><span class="summary-sig"><i>unreachable</i>.__SetLinearDamping(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">*args</span>,
+        <span class="summary-sig-arg">**kwargs</span>)</span>
+        - __SetLinearDamping(self, float32 linearDamping)
+    </dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="linearVelocity"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">linearVelocity</h3>
+  <p>__GetLinearVelocity(self) -&gt; b2Vec2</p>
+  <p>Get the linear velocity of the center of mass. the linear velocity of 
+  the center of mass.</p>
+  <dl class="fields">
+    <dt>Get Method:</dt>
+    <dd class="value"><span class="summary-sig"><i>unreachable</i>.__GetLinearVelocity(<span class="summary-sig-arg">self</span>)</span>
+        - Get the linear velocity of the center of mass.
+    </dd>
+    <dt>Set Method:</dt>
+    <dd class="value"><span class="summary-sig"><i>unreachable</i>.__SetLinearVelocity(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">*args</span>,
+        <span class="summary-sig-arg">**kwargs</span>)</span>
+        - __SetLinearVelocity(self, b2Vec2 v)
+    </dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="localCenter"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">localCenter</h3>
+  <p>__GetLocalCenter(self) -&gt; b2Vec2</p>
+  <p>Get the local position of the center of mass.</p>
+  <dl class="fields">
+    <dt>Get Method:</dt>
+    <dd class="value"><span class="summary-sig"><i>unreachable</i>.__GetLocalCenter(<span class="summary-sig-arg">self</span>)</span>
+        - Get the local position of the center of mass.
+    </dd>
+    <dt>Set Method:</dt>
+    <dd class="value"><span class="summary-sig"><a href="Box2D.Box2D.b2Body-class.html#__SetLocalCenter" class="summary-sig-name" onclick="show_private();">__SetLocalCenter</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">lcenter</span>)</span>
+        - Set the body's local center
+    </dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="mass"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">mass</h3>
+  <p>__GetMass(self) -&gt; float32</p>
+  <p>Get the total mass of the body. the mass, usually in kilograms 
+  (kg).</p>
+  <dl class="fields">
+    <dt>Get Method:</dt>
+    <dd class="value"><span class="summary-sig"><i>unreachable</i>.__GetMass(<span class="summary-sig-arg">self</span>)</span>
+        - Get the total mass of the body.
+    </dd>
+    <dt>Set Method:</dt>
+    <dd class="value"><span class="summary-sig"><a href="Box2D.Box2D.b2Body-class.html#__SetMass" class="summary-sig-name" onclick="show_private();">__SetMass</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">mass</span>)</span>
+        - Set the body's mass
+    </dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="massData"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">massData</h3>
+  <p>Get a b2MassData object that represents this b2Body</p>
+  <p>NOTE: To just get the mass, use body.mass</p>
+  <dl class="fields">
+    <dt>Get Method:</dt>
+    <dd class="value"><span class="summary-sig"><a href="Box2D.Box2D.b2Body-class.html#__GetMassData" class="summary-sig-name" onclick="show_private();">__GetMassData</a>(<span class="summary-sig-arg">self</span>)</span>
+        - Get a b2MassData object that represents this b2Body
+    </dd>
+    <dt>Set Method:</dt>
+    <dd class="value"><span class="summary-sig"><a href="Box2D.Box2D.b2Body-class.html#__SetMassData" class="summary-sig-name" onclick="show_private();">__SetMassData</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">*args</span>,
+        <span class="summary-sig-arg">**kwargs</span>)</span>
+        - __SetMassData(self, b2MassData data)
+    </dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="next"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">next</h3>
+  <p>__GetNext(self) -&gt; b2Body __GetNext(self) -&gt; b2Body</p>
+  <p>Get the next body in the world's body list.</p>
+  <dl class="fields">
+    <dt>Get Method:</dt>
+    <dd class="value"><span class="summary-sig"><i>unreachable</i>.__GetNext(<span class="summary-sig-arg">self</span>)</span>
+        - __GetNext(self) -&gt; b2Body
+    </dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="position"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">position</h3>
+  <p>__GetPosition(self) -&gt; b2Vec2</p>
+  <p>Get the world body origin position. the world position of the body's 
+  origin.</p>
+  <dl class="fields">
+    <dt>Get Method:</dt>
+    <dd class="value"><span class="summary-sig"><i>unreachable</i>.__GetPosition(<span class="summary-sig-arg">self</span>)</span>
+        - Get the world body origin position.
+    </dd>
+    <dt>Set Method:</dt>
+    <dd class="value"><span class="summary-sig"><i>unreachable</i>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">pos</span>)</span>
+    </dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="sleepingAllowed"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">sleepingAllowed</h3>
+  <p>__IsSleepingAllowed(self) -&gt; bool</p>
+  <p>Is this body allowed to sleep.</p>
+  <dl class="fields">
+    <dt>Get Method:</dt>
+    <dd class="value"><span class="summary-sig"><i>unreachable</i>.__IsSleepingAllowed(<span class="summary-sig-arg">self</span>)</span>
+        - Is this body allowed to sleep.
+    </dd>
+    <dt>Set Method:</dt>
+    <dd class="value"><span class="summary-sig"><a href="Box2D.Box2D.b2Body-class.html#__SetSleepingAllowed" class="summary-sig-name" onclick="show_private();">__SetSleepingAllowed</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">*args</span>,
+        <span class="summary-sig-arg">**kwargs</span>)</span>
+        - __SetSleepingAllowed(self, bool flag)
+    </dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="transform"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">transform</h3>
+  <p>__GetTransform(self) -&gt; b2Transform</p>
+  <p>Get the body transform for the body's origin. the world transform of 
+  the body's origin.</p>
+  <dl class="fields">
+    <dt>Get Method:</dt>
+    <dd class="value"><span class="summary-sig"><i>unreachable</i>.__GetTransform(<span class="summary-sig-arg">self</span>)</span>
+        - Get the body transform for the body's origin.
+    </dd>
+    <dt>Set Method:</dt>
+    <dd class="value"><span class="summary-sig"><i>unreachable</i>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">value</span>)</span>
+    </dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="type"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">type</h3>
+  <p>__GetType(self) -&gt; b2BodyType</p>
+  <p>Get the type of this body.</p>
+  <dl class="fields">
+    <dt>Get Method:</dt>
+    <dd class="value"><span class="summary-sig"><i>unreachable</i>.__GetType(<span class="summary-sig-arg">self</span>)</span>
+        - Get the type of this body.
+    </dd>
+    <dt>Set Method:</dt>
+    <dd class="value"><span class="summary-sig"><a href="Box2D.Box2D.b2Body-class.html#__SetType" class="summary-sig-name" onclick="show_private();">__SetType</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">*args</span>,
+        <span class="summary-sig-arg">**kwargs</span>)</span>
+        - __SetType(self, b2BodyType type)
+    </dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="userData"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">userData</h3>
+  <p>__GetUserData(self) -&gt; PyObject</p>
+  <dl class="fields">
+    <dt>Get Method:</dt>
+    <dd class="value"><span class="summary-sig"><a href="Box2D.Box2D.b2Body-class.html#__GetUserData" class="summary-sig-name" onclick="show_private();">__GetUserData</a>(<span class="summary-sig-arg">self</span>)</span>
+    </dd>
+    <dt>Set Method:</dt>
+    <dd class="value"><span class="summary-sig"><a href="Box2D.Box2D.b2Body-class.html#__SetUserData" class="summary-sig-name" onclick="show_private();">__SetUserData</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">*args</span>,
+        <span class="summary-sig-arg">**kwargs</span>)</span>
+        - __SetUserData(self, PyObject data)
+    </dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="world"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">world</h3>
+  <p>__GetWorld(self) -&gt; b2World __GetWorld(self) -&gt; b2World</p>
+  <p>Get the parent world of this body.</p>
+  <dl class="fields">
+    <dt>Get Method:</dt>
+    <dd class="value"><span class="summary-sig"><a href="Box2D.Box2D.b2Body-class.html#__GetWorld" class="summary-sig-name" onclick="show_private();">__GetWorld</a>(<span class="summary-sig-arg">self</span>)</span>
+        - __GetWorld(self) -&gt; b2World
+    </dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="worldCenter"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">worldCenter</h3>
+  <p>__GetWorldCenter(self) -&gt; b2Vec2</p>
+  <p>Get the world position of the center of mass.</p>
+  <dl class="fields">
+    <dt>Get Method:</dt>
+    <dd class="value"><span class="summary-sig"><i>unreachable</i>.__GetWorldCenter(<span class="summary-sig-arg">self</span>)</span>
+        - Get the world position of the center of mass.
+    </dd>
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="Box2D.Box2D-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="http://code.google.com/p/pybox2d">pybox2d</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Thu Nov 18 22:51:43 2010
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

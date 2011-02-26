@@ -1,0 +1,411 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.7.2">
+  <compounddef id="structb2_distance_joint_def" kind="struct" prot="public">
+    <compoundname>b2DistanceJointDef</compoundname>
+    <basecompoundref refid="structb2_joint_def" prot="public" virt="non-virtual">b2JointDef</basecompoundref>
+    <includes local="no">b2DistanceJoint.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structb2_distance_joint_def_1a15c7a75fa277e2056bf1b44198658518" prot="public" static="no" mutable="no">
+        <type><ref refid="structb2_vec2" kindref="compound">b2Vec2</ref></type>
+        <definition>b2Vec2 b2DistanceJointDef::localAnchorA</definition>
+        <argsstring></argsstring>
+        <name>localAnchorA</name>
+        <briefdescription>
+<para>The local anchor point relative to body1&apos;s origin. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2DistanceJoint.h" line="48" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2DistanceJoint.h" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structb2_distance_joint_def_1a3c8995be726238eee084af750442255c" prot="public" static="no" mutable="no">
+        <type><ref refid="structb2_vec2" kindref="compound">b2Vec2</ref></type>
+        <definition>b2Vec2 b2DistanceJointDef::localAnchorB</definition>
+        <argsstring></argsstring>
+        <name>localAnchorB</name>
+        <briefdescription>
+<para>The local anchor point relative to body2&apos;s origin. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2DistanceJoint.h" line="51" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2DistanceJoint.h" bodystart="51" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structb2_distance_joint_def_1ac2c48ad52de91c804c386c12c5bf3714" prot="public" static="no" mutable="no">
+        <type>float32</type>
+        <definition>float32 b2DistanceJointDef::length</definition>
+        <argsstring></argsstring>
+        <name>length</name>
+        <briefdescription>
+<para>The natural length between the anchor points. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2DistanceJoint.h" line="54" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2DistanceJoint.h" bodystart="54" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structb2_distance_joint_def_1a35e2362bcb6c58734f95d0ac045863ea" prot="public" static="no" mutable="no">
+        <type>float32</type>
+        <definition>float32 b2DistanceJointDef::frequencyHz</definition>
+        <argsstring></argsstring>
+        <name>frequencyHz</name>
+        <briefdescription>
+<para>The mass-spring-damper frequency in Hertz. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2DistanceJoint.h" line="57" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2DistanceJoint.h" bodystart="57" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structb2_distance_joint_def_1ad009b24ff211158eb4e1db4815a63b94" prot="public" static="no" mutable="no">
+        <type>float32</type>
+        <definition>float32 b2DistanceJointDef::dampingRatio</definition>
+        <argsstring></argsstring>
+        <name>dampingRatio</name>
+        <briefdescription>
+<para>The damping ratio. 0 = no damping, 1 = critical damping. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2DistanceJoint.h" line="60" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2DistanceJoint.h" bodystart="60" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structb2_distance_joint_def_1a91925a15ed268144ddc9df04f935801c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>b2DistanceJointDef::b2DistanceJointDef</definition>
+        <argsstring>()</argsstring>
+        <name>b2DistanceJointDef</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2DistanceJoint.h" line="33" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2DistanceJoint.h" bodystart="32" bodyend="40"/>
+      </memberdef>
+      <memberdef kind="function" id="structb2_distance_joint_def_1a99788a534638cc28cd1e44e0036503f0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void b2DistanceJointDef::Initialize</definition>
+        <argsstring>(b2Body *bodyA, b2Body *bodyB, const b2Vec2 &amp;anchorA, const b2Vec2 &amp;anchorB)</argsstring>
+        <name>Initialize</name>
+        <param>
+          <type><ref refid="classb2_body" kindref="compound">b2Body</ref> *</type>
+          <declname>bodyA</declname>
+        </param>
+        <param>
+          <type><ref refid="classb2_body" kindref="compound">b2Body</ref> *</type>
+          <declname>bodyB</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structb2_vec2" kindref="compound">b2Vec2</ref> &amp;</type>
+          <declname>anchorA</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structb2_vec2" kindref="compound">b2Vec2</ref> &amp;</type>
+          <declname>anchorB</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Initialize the bodies, anchors, and length using the world anchors. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2DistanceJoint.h" line="45" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2DistanceJoint.cpp" bodystart="38" bodyend="47"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>Distance joint definition. This requires defining an anchor point on both bodies and the non-zero length of the distance joint. The definition uses local anchor points so that the initial configuration can violate the constraint slightly. This helps when saving and loading a game. <simplesect kind="warning"><para>Do not use a zero or short length. </para></simplesect>
+</para>    </detaileddescription>
+    <inheritancegraph>
+      <node id="1183">
+        <label>b2DistanceJointDef</label>
+        <link refid="structb2_distance_joint_def"/>
+        <childnode refid="1184" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1184">
+        <label>b2JointDef</label>
+        <link refid="structb2_joint_def"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1195">
+        <label>b2Contact</label>
+        <link refid="classb2_contact"/>
+        <childnode refid="1195" relation="usage">
+          <edgelabel>m_prev</edgelabel>
+          <edgelabel>m_next</edgelabel>
+        </childnode>
+        <childnode refid="1196" relation="usage">
+          <edgelabel>m_manifold</edgelabel>
+        </childnode>
+        <childnode refid="1200" relation="usage">
+          <edgelabel>m_fixtureA</edgelabel>
+          <edgelabel>m_fixtureB</edgelabel>
+        </childnode>
+        <childnode refid="1194" relation="usage">
+          <edgelabel>m_nodeA</edgelabel>
+          <edgelabel>m_nodeB</edgelabel>
+        </childnode>
+      </node>
+      <node id="1187">
+        <label>b2Body</label>
+        <link refid="classb2_body"/>
+        <childnode refid="1187" relation="usage">
+          <edgelabel>m_prev</edgelabel>
+          <edgelabel>m_next</edgelabel>
+        </childnode>
+        <childnode refid="1188" relation="usage">
+          <edgelabel>m_jointList</edgelabel>
+        </childnode>
+        <childnode refid="1190" relation="usage">
+          <edgelabel>m_linearVelocity</edgelabel>
+          <edgelabel>m_force</edgelabel>
+        </childnode>
+        <childnode refid="1191" relation="usage">
+          <edgelabel>m_sweep</edgelabel>
+        </childnode>
+        <childnode refid="1192" relation="usage">
+          <edgelabel>m_xf</edgelabel>
+        </childnode>
+        <childnode refid="1194" relation="usage">
+          <edgelabel>m_contactList</edgelabel>
+        </childnode>
+        <childnode refid="1200" relation="usage">
+          <edgelabel>m_fixtureList</edgelabel>
+        </childnode>
+        <childnode refid="1205" relation="usage">
+          <edgelabel>m_world</edgelabel>
+        </childnode>
+      </node>
+      <node id="1185">
+        <label>b2DistanceJointDef</label>
+        <link refid="structb2_distance_joint_def"/>
+        <childnode refid="1186" relation="public-inheritance">
+        </childnode>
+        <childnode refid="1190" relation="usage">
+          <edgelabel>localAnchorA</edgelabel>
+          <edgelabel>localAnchorB</edgelabel>
+        </childnode>
+      </node>
+      <node id="1199">
+        <label>b2ContactFeature</label>
+        <link refid="structb2_contact_feature"/>
+      </node>
+      <node id="1194">
+        <label>b2ContactEdge</label>
+        <link refid="structb2_contact_edge"/>
+        <childnode refid="1187" relation="usage">
+          <edgelabel>other</edgelabel>
+        </childnode>
+        <childnode refid="1195" relation="usage">
+          <edgelabel>contact</edgelabel>
+        </childnode>
+        <childnode refid="1194" relation="usage">
+          <edgelabel>prev</edgelabel>
+          <edgelabel>next</edgelabel>
+        </childnode>
+      </node>
+      <node id="1196">
+        <label>b2Manifold</label>
+        <link refid="structb2_manifold"/>
+        <childnode refid="1190" relation="usage">
+          <edgelabel>localPoint</edgelabel>
+          <edgelabel>localNormal</edgelabel>
+        </childnode>
+        <childnode refid="1197" relation="usage">
+          <edgelabel>points</edgelabel>
+        </childnode>
+      </node>
+      <node id="1207">
+        <label>b2BlockAllocator</label>
+        <link refid="classb2_block_allocator"/>
+      </node>
+      <node id="1208">
+        <label>b2DestructionListener</label>
+        <link refid="classb2_destruction_listener"/>
+      </node>
+      <node id="1205">
+        <label>b2World</label>
+        <link refid="classb2_world"/>
+        <childnode refid="1187" relation="usage">
+          <edgelabel>m_bodyList</edgelabel>
+        </childnode>
+        <childnode refid="1206" relation="usage">
+          <edgelabel>m_debugDraw</edgelabel>
+        </childnode>
+        <childnode refid="1190" relation="usage">
+          <edgelabel>m_gravity</edgelabel>
+        </childnode>
+        <childnode refid="1207" relation="usage">
+          <edgelabel>m_blockAllocator</edgelabel>
+        </childnode>
+        <childnode refid="1208" relation="usage">
+          <edgelabel>m_destructionListener</edgelabel>
+        </childnode>
+        <childnode refid="1189" relation="usage">
+          <edgelabel>m_jointList</edgelabel>
+        </childnode>
+      </node>
+      <node id="1186">
+        <label>b2JointDef</label>
+        <link refid="structb2_joint_def"/>
+        <childnode refid="1187" relation="usage">
+          <edgelabel>bodyA</edgelabel>
+          <edgelabel>bodyB</edgelabel>
+        </childnode>
+      </node>
+      <node id="1201">
+        <label>b2FixtureProxy</label>
+        <link refid="structb2_fixture_proxy"/>
+        <childnode refid="1202" relation="usage">
+          <edgelabel>aabb</edgelabel>
+        </childnode>
+        <childnode refid="1200" relation="usage">
+          <edgelabel>fixture</edgelabel>
+        </childnode>
+      </node>
+      <node id="1193">
+        <label>b2Mat22</label>
+        <link refid="structb2_mat22"/>
+        <childnode refid="1190" relation="usage">
+          <edgelabel>col1</edgelabel>
+          <edgelabel>col2</edgelabel>
+        </childnode>
+      </node>
+      <node id="1191">
+        <label>b2Sweep</label>
+        <link refid="structb2_sweep"/>
+        <childnode refid="1190" relation="usage">
+          <edgelabel>c0</edgelabel>
+          <edgelabel>localCenter</edgelabel>
+          <edgelabel>c</edgelabel>
+        </childnode>
+      </node>
+      <node id="1192">
+        <label>b2Transform</label>
+        <link refid="structb2_transform"/>
+        <childnode refid="1190" relation="usage">
+          <edgelabel>position</edgelabel>
+        </childnode>
+        <childnode refid="1193" relation="usage">
+          <edgelabel>R</edgelabel>
+        </childnode>
+      </node>
+      <node id="1206">
+        <label>b2DebugDraw</label>
+        <link refid="classb2_debug_draw"/>
+      </node>
+      <node id="1204">
+        <label>b2Filter</label>
+        <link refid="structb2_filter"/>
+      </node>
+      <node id="1188">
+        <label>b2JointEdge</label>
+        <link refid="structb2_joint_edge"/>
+        <childnode refid="1187" relation="usage">
+          <edgelabel>other</edgelabel>
+        </childnode>
+        <childnode refid="1188" relation="usage">
+          <edgelabel>prev</edgelabel>
+          <edgelabel>next</edgelabel>
+        </childnode>
+        <childnode refid="1189" relation="usage">
+          <edgelabel>joint</edgelabel>
+        </childnode>
+      </node>
+      <node id="1189">
+        <label>b2Joint</label>
+        <link refid="classb2_joint"/>
+        <childnode refid="1187" relation="usage">
+          <edgelabel>m_bodyA</edgelabel>
+          <edgelabel>m_bodyB</edgelabel>
+        </childnode>
+        <childnode refid="1190" relation="usage">
+          <edgelabel>m_localCenterA</edgelabel>
+          <edgelabel>m_localCenterB</edgelabel>
+        </childnode>
+        <childnode refid="1188" relation="usage">
+          <edgelabel>m_edgeB</edgelabel>
+          <edgelabel>m_edgeA</edgelabel>
+        </childnode>
+        <childnode refid="1189" relation="usage">
+          <edgelabel>m_prev</edgelabel>
+          <edgelabel>m_next</edgelabel>
+        </childnode>
+      </node>
+      <node id="1190">
+        <label>b2Vec2</label>
+        <link refid="structb2_vec2"/>
+      </node>
+      <node id="1198">
+        <label>b2ContactID</label>
+        <link refid="unionb2_contact_i_d"/>
+        <childnode refid="1199" relation="usage">
+          <edgelabel>cf</edgelabel>
+        </childnode>
+      </node>
+      <node id="1203">
+        <label>b2Shape</label>
+        <link refid="classb2_shape"/>
+      </node>
+      <node id="1202">
+        <label>b2AABB</label>
+        <link refid="structb2_a_a_b_b"/>
+        <childnode refid="1190" relation="usage">
+          <edgelabel>lowerBound</edgelabel>
+          <edgelabel>upperBound</edgelabel>
+        </childnode>
+      </node>
+      <node id="1200">
+        <label>b2Fixture</label>
+        <link refid="classb2_fixture"/>
+        <childnode refid="1187" relation="usage">
+          <edgelabel>m_body</edgelabel>
+        </childnode>
+        <childnode refid="1201" relation="usage">
+          <edgelabel>m_proxies</edgelabel>
+        </childnode>
+        <childnode refid="1203" relation="usage">
+          <edgelabel>m_shape</edgelabel>
+        </childnode>
+        <childnode refid="1204" relation="usage">
+          <edgelabel>m_filter</edgelabel>
+        </childnode>
+        <childnode refid="1200" relation="usage">
+          <edgelabel>m_next</edgelabel>
+        </childnode>
+      </node>
+      <node id="1197">
+        <label>b2ManifoldPoint</label>
+        <link refid="structb2_manifold_point"/>
+        <childnode refid="1190" relation="usage">
+          <edgelabel>localPoint</edgelabel>
+        </childnode>
+        <childnode refid="1198" relation="usage">
+          <edgelabel>id</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2DistanceJoint.h" line="31" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2DistanceJoint.h" bodystart="30" bodyend="61"/>
+    <listofallmembers>
+      <member refid="structb2_distance_joint_def_1a91925a15ed268144ddc9df04f935801c" prot="public" virt="non-virtual"><scope>b2DistanceJointDef</scope><name>b2DistanceJointDef</name></member>
+      <member refid="structb2_joint_def_1a1fdb44829d4fd13c72edb1daacb72f89" prot="public" virt="non-virtual"><scope>b2DistanceJointDef</scope><name>b2JointDef</name></member>
+      <member refid="structb2_joint_def_1a8cd54c93da396be75a9788f2c6897f05" prot="public" virt="non-virtual"><scope>b2DistanceJointDef</scope><name>bodyA</name></member>
+      <member refid="structb2_joint_def_1aa4f4dee2fbcd12187b19506b60e68e3d" prot="public" virt="non-virtual"><scope>b2DistanceJointDef</scope><name>bodyB</name></member>
+      <member refid="structb2_joint_def_1aef099a1f89b64e230173b6016848ea9b" prot="public" virt="non-virtual"><scope>b2DistanceJointDef</scope><name>collideConnected</name></member>
+      <member refid="structb2_distance_joint_def_1ad009b24ff211158eb4e1db4815a63b94" prot="public" virt="non-virtual"><scope>b2DistanceJointDef</scope><name>dampingRatio</name></member>
+      <member refid="structb2_distance_joint_def_1a35e2362bcb6c58734f95d0ac045863ea" prot="public" virt="non-virtual"><scope>b2DistanceJointDef</scope><name>frequencyHz</name></member>
+      <member refid="structb2_distance_joint_def_1a99788a534638cc28cd1e44e0036503f0" prot="public" virt="non-virtual"><scope>b2DistanceJointDef</scope><name>Initialize</name></member>
+      <member refid="structb2_distance_joint_def_1ac2c48ad52de91c804c386c12c5bf3714" prot="public" virt="non-virtual"><scope>b2DistanceJointDef</scope><name>length</name></member>
+      <member refid="structb2_distance_joint_def_1a15c7a75fa277e2056bf1b44198658518" prot="public" virt="non-virtual"><scope>b2DistanceJointDef</scope><name>localAnchorA</name></member>
+      <member refid="structb2_distance_joint_def_1a3c8995be726238eee084af750442255c" prot="public" virt="non-virtual"><scope>b2DistanceJointDef</scope><name>localAnchorB</name></member>
+      <member refid="structb2_joint_def_1a470f2879b24adb05facbd49f338856fb" prot="public" virt="non-virtual"><scope>b2DistanceJointDef</scope><name>type</name></member>
+      <member refid="structb2_joint_def_1a07eb150daaaa52fc09c3bcf402b295fe" prot="public" virt="non-virtual"><scope>b2DistanceJointDef</scope><name>userData</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

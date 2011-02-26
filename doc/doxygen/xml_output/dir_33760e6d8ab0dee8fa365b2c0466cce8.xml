@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.7.2">
+  <compounddef id="dir_33760e6d8ab0dee8fa365b2c0466cce8" kind="dir">
+    <compoundname>Box2D/Collision/Shapes/</compoundname>
+    <innerfile refid="b2_circle_shape_8cpp">b2CircleShape.cpp</innerfile>
+    <innerfile refid="b2_circle_shape_8h">b2CircleShape.h</innerfile>
+    <innerfile refid="b2_edge_shape_8cpp">b2EdgeShape.cpp</innerfile>
+    <innerfile refid="b2_edge_shape_8h">b2EdgeShape.h</innerfile>
+    <innerfile refid="b2_loop_shape_8cpp">b2LoopShape.cpp</innerfile>
+    <innerfile refid="b2_loop_shape_8h">b2LoopShape.h</innerfile>
+    <innerfile refid="b2_polygon_shape_8cpp">b2PolygonShape.cpp</innerfile>
+    <innerfile refid="b2_polygon_shape_8h">b2PolygonShape.h</innerfile>
+    <innerfile refid="b2_shape_8h">b2Shape.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="D:/pybox2d/Box2D/Collision/Shapes/"/>
+  </compounddef>
+</doxygen>

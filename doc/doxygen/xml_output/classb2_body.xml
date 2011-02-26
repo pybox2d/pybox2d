@@ -1,0 +1,2069 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.7.2">
+  <compounddef id="classb2_body" kind="class" prot="public">
+    <compoundname>b2Body</compoundname>
+    <includes local="no">b2Body.h</includes>
+      <sectiondef kind="private-type">
+      <memberdef kind="enum" id="classb2_body_1a0cbec3ac93fa77d7867e9999e97c637e" prot="private" static="no">
+        <name>@3</name>
+        <enumvalue id="classb2_body_1a0cbec3ac93fa77d7867e9999e97c637ea39f34a6536e80cbf121dd4676ddc9eb4" prot="private">
+          <name>e_islandFlag</name>
+          <initializer> 0x0001</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classb2_body_1a0cbec3ac93fa77d7867e9999e97c637ea0caf57fb317a7b424a0781e50644a320" prot="private">
+          <name>e_awakeFlag</name>
+          <initializer> 0x0002</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classb2_body_1a0cbec3ac93fa77d7867e9999e97c637ead9f1c6bfd797bcff8f48c80c739f7d25" prot="private">
+          <name>e_autoSleepFlag</name>
+          <initializer> 0x0004</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classb2_body_1a0cbec3ac93fa77d7867e9999e97c637ea08cf9cb5c68104a8e3dbd8c3fda3c910" prot="private">
+          <name>e_bulletFlag</name>
+          <initializer> 0x0008</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classb2_body_1a0cbec3ac93fa77d7867e9999e97c637ea8bd30c64397598451c6d69085d35a4cf" prot="private">
+          <name>e_fixedRotationFlag</name>
+          <initializer> 0x0010</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classb2_body_1a0cbec3ac93fa77d7867e9999e97c637eace89b262f3ff7a5092e78679cdefe1b1" prot="private">
+          <name>e_activeFlag</name>
+          <initializer> 0x0020</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classb2_body_1a0cbec3ac93fa77d7867e9999e97c637eac7e151c315d09cbd08a041f4d02a55b7" prot="private">
+          <name>e_toiFlag</name>
+          <initializer> 0x0040</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2Body.h" line="388" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Body.h" bodystart="387" bodyend="396"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="friend">
+      <memberdef kind="friend" id="classb2_body_1a4bd536c5a7c0587913765bbc2693ceea" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>friend class</type>
+        <definition>friend class b2World</definition>
+        <argsstring></argsstring>
+        <name>b2World</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2Body.h" line="370" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Body.h" bodystart="370" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="friend" id="classb2_body_1afc682950b8c4f251804fc1938663098b" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>friend class</type>
+        <definition>friend class b2Island</definition>
+        <argsstring></argsstring>
+        <name>b2Island</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2Body.h" line="371" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Body.h" bodystart="371" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="friend" id="classb2_body_1aece264d42f69aed410f5eb3beba6ddf2" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>friend class</type>
+        <definition>friend class b2ContactManager</definition>
+        <argsstring></argsstring>
+        <name>b2ContactManager</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2Body.h" line="372" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Body.h" bodystart="372" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="friend" id="classb2_body_1afb788a7ba90344f3ddbafff3de0465c4" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>friend class</type>
+        <definition>friend class b2ContactSolver</definition>
+        <argsstring></argsstring>
+        <name>b2ContactSolver</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2Body.h" line="373" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Body.h" bodystart="373" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="friend" id="classb2_body_1ab574994230041b2ee9717de78866b74f" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>friend class</type>
+        <definition>friend class b2DistanceJoint</definition>
+        <argsstring></argsstring>
+        <name>b2DistanceJoint</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2Body.h" line="375" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Body.h" bodystart="375" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="friend" id="classb2_body_1a13c275221e30bb485e17e4e04553cb71" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>friend class</type>
+        <definition>friend class b2GearJoint</definition>
+        <argsstring></argsstring>
+        <name>b2GearJoint</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2Body.h" line="376" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Body.h" bodystart="376" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="friend" id="classb2_body_1a800d83994f18b635310d380c1c21d5fa" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>friend class</type>
+        <definition>friend class b2LineJoint</definition>
+        <argsstring></argsstring>
+        <name>b2LineJoint</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2Body.h" line="377" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Body.h" bodystart="377" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="friend" id="classb2_body_1af778d9e4de5da0fbcfada1615344cf86" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>friend class</type>
+        <definition>friend class b2MouseJoint</definition>
+        <argsstring></argsstring>
+        <name>b2MouseJoint</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2Body.h" line="378" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Body.h" bodystart="378" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="friend" id="classb2_body_1a78ff31fe08bbb0c83ad03ba6dfb9d78c" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>friend class</type>
+        <definition>friend class b2PrismaticJoint</definition>
+        <argsstring></argsstring>
+        <name>b2PrismaticJoint</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2Body.h" line="379" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Body.h" bodystart="379" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="friend" id="classb2_body_1af7861e214216f26a70b7596130e0326f" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>friend class</type>
+        <definition>friend class b2PulleyJoint</definition>
+        <argsstring></argsstring>
+        <name>b2PulleyJoint</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2Body.h" line="380" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Body.h" bodystart="380" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="friend" id="classb2_body_1aa6afb0f5dc73f101a6fc3a3c63abedf8" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>friend class</type>
+        <definition>friend class b2RevoluteJoint</definition>
+        <argsstring></argsstring>
+        <name>b2RevoluteJoint</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2Body.h" line="381" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Body.h" bodystart="381" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="friend" id="classb2_body_1a9fafe51e7203fdb53358c75e1c41142b" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>friend class</type>
+        <definition>friend class b2WeldJoint</definition>
+        <argsstring></argsstring>
+        <name>b2WeldJoint</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2Body.h" line="382" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Body.h" bodystart="382" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="friend" id="classb2_body_1a00cce0630ae86cbf33214a6a7716b684" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>friend class</type>
+        <definition>friend class b2FrictionJoint</definition>
+        <argsstring></argsstring>
+        <name>b2FrictionJoint</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2Body.h" line="383" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Body.h" bodystart="383" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="friend" id="classb2_body_1ab24edbcb929fa9bd24b92d6006c00ab2" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>friend class</type>
+        <definition>friend class b2RopeJoint</definition>
+        <argsstring></argsstring>
+        <name>b2RopeJoint</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2Body.h" line="384" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Body.h" bodystart="384" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classb2_body_1a4ff6a76b8c3b85a9e9143e28900d24da" prot="private" static="no" mutable="no">
+        <type>b2BodyType</type>
+        <definition>b2BodyType b2Body::m_type</definition>
+        <argsstring></argsstring>
+        <name>m_type</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2Body.h" line="410" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Body.h" bodystart="410" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_body_1a9eaa71e3a87e05b37d36dcb173b85a73" prot="private" static="no" mutable="no">
+        <type>uint16</type>
+        <definition>uint16 b2Body::m_flags</definition>
+        <argsstring></argsstring>
+        <name>m_flags</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2Body.h" line="412" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Body.h" bodystart="412" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_body_1a3536cbe2d878d2861f29496380a43abd" prot="private" static="no" mutable="no">
+        <type>int32</type>
+        <definition>int32 b2Body::m_islandIndex</definition>
+        <argsstring></argsstring>
+        <name>m_islandIndex</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2Body.h" line="414" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Body.h" bodystart="414" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_body_1a88a3d75efd80a6849ff0645e8047e6ae" prot="private" static="no" mutable="no">
+        <type><ref refid="structb2_transform" kindref="compound">b2Transform</ref></type>
+        <definition>b2Transform b2Body::m_xf</definition>
+        <argsstring></argsstring>
+        <name>m_xf</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2Body.h" line="416" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Body.h" bodystart="416" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_body_1a35f5ff3a06dc1f703885c6124811c994" prot="private" static="no" mutable="no">
+        <type><ref refid="structb2_sweep" kindref="compound">b2Sweep</ref></type>
+        <definition>b2Sweep b2Body::m_sweep</definition>
+        <argsstring></argsstring>
+        <name>m_sweep</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2Body.h" line="417" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Body.h" bodystart="417" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_body_1a24951dd2e0a4e2032140eb871c7de146" prot="private" static="no" mutable="no">
+        <type><ref refid="structb2_vec2" kindref="compound">b2Vec2</ref></type>
+        <definition>b2Vec2 b2Body::m_linearVelocity</definition>
+        <argsstring></argsstring>
+        <name>m_linearVelocity</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2Body.h" line="419" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Body.h" bodystart="419" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_body_1acef5819bc7dca7032ee35221abcd9419" prot="private" static="no" mutable="no">
+        <type>float32</type>
+        <definition>float32 b2Body::m_angularVelocity</definition>
+        <argsstring></argsstring>
+        <name>m_angularVelocity</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2Body.h" line="420" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Body.h" bodystart="420" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_body_1ad5ca71bb4d0746247678196ff50040fd" prot="private" static="no" mutable="no">
+        <type><ref refid="structb2_vec2" kindref="compound">b2Vec2</ref></type>
+        <definition>b2Vec2 b2Body::m_force</definition>
+        <argsstring></argsstring>
+        <name>m_force</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2Body.h" line="422" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Body.h" bodystart="422" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_body_1a41bc89346a7fb30031c3a436f665816d" prot="private" static="no" mutable="no">
+        <type>float32</type>
+        <definition>float32 b2Body::m_torque</definition>
+        <argsstring></argsstring>
+        <name>m_torque</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2Body.h" line="423" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Body.h" bodystart="423" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_body_1af4695eb78dd83b935c5176dd8ef7b54b" prot="private" static="no" mutable="no">
+        <type><ref refid="classb2_world" kindref="compound">b2World</ref> *</type>
+        <definition>b2World* b2Body::m_world</definition>
+        <argsstring></argsstring>
+        <name>m_world</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2Body.h" line="425" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Body.h" bodystart="425" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_body_1a9bcdb136678139d0489e26d855c92083" prot="private" static="no" mutable="no">
+        <type><ref refid="classb2_body" kindref="compound">b2Body</ref> *</type>
+        <definition>b2Body* b2Body::m_prev</definition>
+        <argsstring></argsstring>
+        <name>m_prev</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2Body.h" line="426" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Body.h" bodystart="426" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_body_1adffc3d0896df33db6e1382d7bd1f3458" prot="private" static="no" mutable="no">
+        <type><ref refid="classb2_body" kindref="compound">b2Body</ref> *</type>
+        <definition>b2Body* b2Body::m_next</definition>
+        <argsstring></argsstring>
+        <name>m_next</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2Body.h" line="427" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Body.h" bodystart="427" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_body_1af3e0c860ed84bf366fa85bbc27efbddc" prot="private" static="no" mutable="no">
+        <type><ref refid="classb2_fixture" kindref="compound">b2Fixture</ref> *</type>
+        <definition>b2Fixture* b2Body::m_fixtureList</definition>
+        <argsstring></argsstring>
+        <name>m_fixtureList</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2Body.h" line="429" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Body.h" bodystart="429" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_body_1a128a76b5c66b5a6e82c5e6198c8e7cb6" prot="private" static="no" mutable="no">
+        <type>int32</type>
+        <definition>int32 b2Body::m_fixtureCount</definition>
+        <argsstring></argsstring>
+        <name>m_fixtureCount</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2Body.h" line="430" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Body.h" bodystart="430" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_body_1a3456959bea73dc88e8d355b635c9bb18" prot="private" static="no" mutable="no">
+        <type><ref refid="structb2_joint_edge" kindref="compound">b2JointEdge</ref> *</type>
+        <definition>b2JointEdge* b2Body::m_jointList</definition>
+        <argsstring></argsstring>
+        <name>m_jointList</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2Body.h" line="432" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Body.h" bodystart="432" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_body_1ad56492f2e73ccb0e06127422266e5cd5" prot="private" static="no" mutable="no">
+        <type><ref refid="structb2_contact_edge" kindref="compound">b2ContactEdge</ref> *</type>
+        <definition>b2ContactEdge* b2Body::m_contactList</definition>
+        <argsstring></argsstring>
+        <name>m_contactList</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2Body.h" line="433" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Body.h" bodystart="433" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_body_1a4ce3bd9fa3939c5ca5bbaa0563eed829" prot="private" static="no" mutable="no">
+        <type>float32</type>
+        <definition>float32 b2Body::m_mass</definition>
+        <argsstring></argsstring>
+        <name>m_mass</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2Body.h" line="435" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Body.h" bodystart="435" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_body_1a095bb2434f63ed8a8ea9112f35e90954" prot="private" static="no" mutable="no">
+        <type>float32</type>
+        <definition>float32 b2Body::m_invMass</definition>
+        <argsstring></argsstring>
+        <name>m_invMass</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2Body.h" line="435" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Body.h" bodystart="435" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_body_1a288efb55b506ffd7253c19a9546f9be8" prot="private" static="no" mutable="no">
+        <type>float32</type>
+        <definition>float32 b2Body::m_I</definition>
+        <argsstring></argsstring>
+        <name>m_I</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2Body.h" line="438" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Body.h" bodystart="438" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_body_1a4e0078a441cc4c29fa18fe358eb59bf7" prot="private" static="no" mutable="no">
+        <type>float32</type>
+        <definition>float32 b2Body::m_invI</definition>
+        <argsstring></argsstring>
+        <name>m_invI</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2Body.h" line="438" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Body.h" bodystart="438" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_body_1a6194747e6070f17fcae2fc4a8259076b" prot="private" static="no" mutable="no">
+        <type>float32</type>
+        <definition>float32 b2Body::m_linearDamping</definition>
+        <argsstring></argsstring>
+        <name>m_linearDamping</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2Body.h" line="440" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Body.h" bodystart="440" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_body_1a7b56f4897aca6243b2705d5ea6d3de8c" prot="private" static="no" mutable="no">
+        <type>float32</type>
+        <definition>float32 b2Body::m_angularDamping</definition>
+        <argsstring></argsstring>
+        <name>m_angularDamping</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2Body.h" line="441" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Body.h" bodystart="441" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_body_1ad17c53f3de07a9a94635ff9d628fbb44" prot="private" static="no" mutable="no">
+        <type>float32</type>
+        <definition>float32 b2Body::m_sleepTime</definition>
+        <argsstring></argsstring>
+        <name>m_sleepTime</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2Body.h" line="443" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Body.h" bodystart="443" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_body_1aaf642f5b1f472511c4d1cd15d80c09ac" prot="private" static="no" mutable="no">
+        <type>void *</type>
+        <definition>void* b2Body::m_userData</definition>
+        <argsstring></argsstring>
+        <name>m_userData</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2Body.h" line="445" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Body.h" bodystart="445" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classb2_body_1aa4892301e9b9d62ede5e93dad1743894" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classb2_fixture" kindref="compound">b2Fixture</ref> *</type>
+        <definition>b2Fixture * b2Body::CreateFixture</definition>
+        <argsstring>(const b2FixtureDef *def)</argsstring>
+        <name>CreateFixture</name>
+        <param>
+          <type>const <ref refid="structb2_fixture_def" kindref="compound">b2FixtureDef</ref> *</type>
+          <declname>def</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Creates a fixture and attach it to this body. Use this function if you need to set some fixture parameters, like friction. Otherwise you can create the fixture directly from a shape. If the density is non-zero, this function automatically updates the mass of the body. Contacts are not created until the next time step. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>def</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the fixture definition. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="warning"><para>This function is locked during callbacks. </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2Body.h" line="136" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Body.cpp" bodystart="139" bodyend="176"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_body_1a52d971867086d5db79769a62bbb70a60" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classb2_fixture" kindref="compound">b2Fixture</ref> *</type>
+        <definition>b2Fixture * b2Body::CreateFixture</definition>
+        <argsstring>(const b2Shape *shape, float32 density)</argsstring>
+        <name>CreateFixture</name>
+        <param>
+          <type>const <ref refid="classb2_shape" kindref="compound">b2Shape</ref> *</type>
+          <declname>shape</declname>
+        </param>
+        <param>
+          <type>float32</type>
+          <declname>density</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Creates a fixture from a shape and attach it to this body. This is a convenience function. Use <ref refid="structb2_fixture_def" kindref="compound">b2FixtureDef</ref> if you need to set parameters like friction, restitution, user data, or filtering. If the density is non-zero, this function automatically updates the mass of the body. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>shape</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the shape to be cloned. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>density</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the shape density (set to zero for static bodies). </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="warning"><para>This function is locked during callbacks. </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2Body.h" line="145" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Body.cpp" bodystart="178" bodyend="185"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_body_1a856d1df86b7bded91f02d8cfcaea1c2f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void b2Body::DestroyFixture</definition>
+        <argsstring>(b2Fixture *fixture)</argsstring>
+        <name>DestroyFixture</name>
+        <param>
+          <type><ref refid="classb2_fixture" kindref="compound">b2Fixture</ref> *</type>
+          <declname>fixture</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Destroy a fixture. This removes the fixture from the broad-phase and destroys all contacts associated with this fixture. This will automatically adjust the mass of the body if the body is dynamic and the fixture has positive density. All fixtures attached to a body are implicitly destroyed when the body is destroyed. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>fixture</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the fixture to be removed. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="warning"><para>This function is locked during callbacks. </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2Body.h" line="154" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Body.cpp" bodystart="187" bodyend="252"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_body_1a4686f32bbce5723761e9719c706eca11" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void b2Body::SetTransform</definition>
+        <argsstring>(const b2Vec2 &amp;position, float32 angle)</argsstring>
+        <name>SetTransform</name>
+        <param>
+          <type>const <ref refid="structb2_vec2" kindref="compound">b2Vec2</ref> &amp;</type>
+          <declname>position</declname>
+        </param>
+        <param>
+          <type>float32</type>
+          <declname>angle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Set the position of the body&apos;s origin and rotation. This breaks any contacts and wakes the other bodies. Manipulating a body&apos;s transform may cause non-physical behavior. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>position</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the world position of the body&apos;s local origin. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>angle</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the world rotation in radians. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2Body.h" line="161" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Body.cpp" bodystart="388" bodyend="409"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_body_1adaaebca750d0bda56a543884adc5f519" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="structb2_transform" kindref="compound">b2Transform</ref> &amp;</type>
+        <definition>const b2Transform &amp; b2Body::GetTransform</definition>
+        <argsstring>() const </argsstring>
+        <name>GetTransform</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Get the body transform for the body&apos;s origin. <simplesect kind="return"><para>the world transform of the body&apos;s origin. </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2Body.h" line="165" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Body.h" bodystart="453" bodyend="456"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_body_1a798da9dc2d47431912d991d152b13711" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="structb2_vec2" kindref="compound">b2Vec2</ref> &amp;</type>
+        <definition>const b2Vec2 &amp; b2Body::GetPosition</definition>
+        <argsstring>() const </argsstring>
+        <name>GetPosition</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Get the world body origin position. <simplesect kind="return"><para>the world position of the body&apos;s origin. </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2Body.h" line="169" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Body.h" bodystart="458" bodyend="461"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_body_1a57c4a1946a6dd5a00e28691bc419fdcd" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>float32</type>
+        <definition>float32 b2Body::GetAngle</definition>
+        <argsstring>() const </argsstring>
+        <name>GetAngle</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Get the angle in radians. <simplesect kind="return"><para>the current world rotation angle in radians. </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2Body.h" line="173" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Body.h" bodystart="463" bodyend="466"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_body_1a04db0c7b12b315802e58b33884f4f63c" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="structb2_vec2" kindref="compound">b2Vec2</ref> &amp;</type>
+        <definition>const b2Vec2 &amp; b2Body::GetWorldCenter</definition>
+        <argsstring>() const </argsstring>
+        <name>GetWorldCenter</name>
+        <briefdescription>
+<para>Get the world position of the center of mass. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2Body.h" line="176" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Body.h" bodystart="468" bodyend="471"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_body_1a27ed7f8a3b36ddfb01069ee8f7106033" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="structb2_vec2" kindref="compound">b2Vec2</ref> &amp;</type>
+        <definition>const b2Vec2 &amp; b2Body::GetLocalCenter</definition>
+        <argsstring>() const </argsstring>
+        <name>GetLocalCenter</name>
+        <briefdescription>
+<para>Get the local position of the center of mass. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2Body.h" line="179" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Body.h" bodystart="473" bodyend="476"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_body_1a832f3989a44f0d4782c80456832197ad" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void b2Body::SetLinearVelocity</definition>
+        <argsstring>(const b2Vec2 &amp;v)</argsstring>
+        <name>SetLinearVelocity</name>
+        <param>
+          <type>const <ref refid="structb2_vec2" kindref="compound">b2Vec2</ref> &amp;</type>
+          <declname>v</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Set the linear velocity of the center of mass. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>v</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the new linear velocity of the center of mass. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2Body.h" line="183" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Body.h" bodystart="478" bodyend="491"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_body_1ac7f1adfdef7c5c3d89fa44276fae0a5a" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="structb2_vec2" kindref="compound">b2Vec2</ref></type>
+        <definition>b2Vec2 b2Body::GetLinearVelocity</definition>
+        <argsstring>() const </argsstring>
+        <name>GetLinearVelocity</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Get the linear velocity of the center of mass. <simplesect kind="return"><para>the linear velocity of the center of mass. </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2Body.h" line="187" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Body.h" bodystart="493" bodyend="496"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_body_1a37adc4160b84f73e8552a91cbde3f578" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void b2Body::SetAngularVelocity</definition>
+        <argsstring>(float32 omega)</argsstring>
+        <name>SetAngularVelocity</name>
+        <param>
+          <type>float32</type>
+          <declname>omega</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Set the angular velocity. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>omega</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the new angular velocity in radians/second. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2Body.h" line="191" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Body.h" bodystart="498" bodyend="511"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_body_1a158fe4c141168d2c3e65096b209f548c" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>float32</type>
+        <definition>float32 b2Body::GetAngularVelocity</definition>
+        <argsstring>() const </argsstring>
+        <name>GetAngularVelocity</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Get the angular velocity. <simplesect kind="return"><para>the angular velocity in radians/second. </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2Body.h" line="195" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Body.h" bodystart="513" bodyend="516"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_body_1aa1a2ebd027635ea5a81749f267a19261" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void b2Body::ApplyForce</definition>
+        <argsstring>(const b2Vec2 &amp;force, const b2Vec2 &amp;point)</argsstring>
+        <name>ApplyForce</name>
+        <param>
+          <type>const <ref refid="structb2_vec2" kindref="compound">b2Vec2</ref> &amp;</type>
+          <declname>force</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structb2_vec2" kindref="compound">b2Vec2</ref> &amp;</type>
+          <declname>point</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Apply a force at a world point. If the force is not applied at the center of mass, it will generate a torque and affect the angular velocity. This wakes up the body. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>force</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the world force vector, usually in Newtons (N). </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>point</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the world position of the point of application. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2Body.h" line="202" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Body.h" bodystart="720" bodyend="734"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_body_1a2a383c0af1f91f449e74cfcec8fe2604" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void b2Body::ApplyTorque</definition>
+        <argsstring>(float32 torque)</argsstring>
+        <name>ApplyTorque</name>
+        <param>
+          <type>float32</type>
+          <declname>torque</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Apply a torque. This affects the angular velocity without affecting the linear velocity of the center of mass. This wakes up the body. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>torque</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>about the z-axis (out of the screen), usually in N-m. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2Body.h" line="208" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Body.h" bodystart="736" bodyend="749"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_body_1ada3c2a70cbb53c4fcee5a4febbbefc15" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void b2Body::ApplyLinearImpulse</definition>
+        <argsstring>(const b2Vec2 &amp;impulse, const b2Vec2 &amp;point)</argsstring>
+        <name>ApplyLinearImpulse</name>
+        <param>
+          <type>const <ref refid="structb2_vec2" kindref="compound">b2Vec2</ref> &amp;</type>
+          <declname>impulse</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structb2_vec2" kindref="compound">b2Vec2</ref> &amp;</type>
+          <declname>point</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Apply an impulse at a point. This immediately modifies the velocity. It also modifies the angular velocity if the point of application is not at the center of mass. This wakes up the body. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>impulse</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the world impulse vector, usually in N-seconds or kg-m/s. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>point</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the world position of the point of application. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2Body.h" line="215" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Body.h" bodystart="751" bodyend="764"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_body_1a2274ca61d7f63babf8fd30348e339083" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void b2Body::ApplyAngularImpulse</definition>
+        <argsstring>(float32 impulse)</argsstring>
+        <name>ApplyAngularImpulse</name>
+        <param>
+          <type>float32</type>
+          <declname>impulse</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Apply an angular impulse. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>impulse</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the angular impulse in units of kg*m*m/s </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2Body.h" line="219" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Body.h" bodystart="766" bodyend="778"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_body_1a4f62fea4546d2b9ca64a5f6723bbc71c" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>float32</type>
+        <definition>float32 b2Body::GetMass</definition>
+        <argsstring>() const </argsstring>
+        <name>GetMass</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Get the total mass of the body. <simplesect kind="return"><para>the mass, usually in kilograms (kg). </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2Body.h" line="223" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Body.h" bodystart="518" bodyend="521"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_body_1a8c8916caf67c1e618a07d8b6b9253fa8" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>float32</type>
+        <definition>float32 b2Body::GetInertia</definition>
+        <argsstring>() const </argsstring>
+        <name>GetInertia</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Get the rotational inertia of the body about the local origin. <simplesect kind="return"><para>the rotational inertia, usually in kg-m^2. </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2Body.h" line="227" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Body.h" bodystart="523" bodyend="526"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_body_1ad0a90df7e2617a8572cd476267f95417" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void b2Body::GetMassData</definition>
+        <argsstring>(b2MassData *data) const </argsstring>
+        <name>GetMassData</name>
+        <param>
+          <type><ref refid="structb2_mass_data" kindref="compound">b2MassData</ref> *</type>
+          <declname>data</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Get the mass data of the body. <simplesect kind="return"><para>a struct containing the mass, inertia and center of the body. </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2Body.h" line="231" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Body.h" bodystart="528" bodyend="533"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_body_1a58a641fedf8a81e1e26d09ec00a22fe2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void b2Body::SetMassData</definition>
+        <argsstring>(const b2MassData *data)</argsstring>
+        <name>SetMassData</name>
+        <param>
+          <type>const <ref refid="structb2_mass_data" kindref="compound">b2MassData</ref> *</type>
+          <declname>data</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Set the mass properties to override the mass properties of the fixtures. Note that this changes the center of mass position. Note that creating or destroying fixtures can also alter the mass. This function has no effect if the body isn&apos;t dynamic. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>massData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the mass properties. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2Body.h" line="238" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Body.cpp" bodystart="324" bodyend="363"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_body_1a109d8567c6ae84c61fce2919fb209c63" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void b2Body::ResetMassData</definition>
+        <argsstring>()</argsstring>
+        <name>ResetMassData</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This resets the mass properties to the sum of the mass properties of the fixtures. This normally does not need to be called unless you called SetMassData to override the mass and you later want to reset the mass. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2Body.h" line="243" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Body.cpp" bodystart="254" bodyend="322"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_body_1a8055b90bccb51383caa8c42fbc96c9c3" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="structb2_vec2" kindref="compound">b2Vec2</ref></type>
+        <definition>b2Vec2 b2Body::GetWorldPoint</definition>
+        <argsstring>(const b2Vec2 &amp;localPoint) const </argsstring>
+        <name>GetWorldPoint</name>
+        <param>
+          <type>const <ref refid="structb2_vec2" kindref="compound">b2Vec2</ref> &amp;</type>
+          <declname>localPoint</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Get the world coordinates of a point given the local coordinates. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>localPoint</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>a point on the body measured relative the the body&apos;s origin. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the same point expressed in world coordinates. </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2Body.h" line="248" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Body.h" bodystart="535" bodyend="538"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_body_1afd44622669b5e45202c23e4a212895fc" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="structb2_vec2" kindref="compound">b2Vec2</ref></type>
+        <definition>b2Vec2 b2Body::GetWorldVector</definition>
+        <argsstring>(const b2Vec2 &amp;localVector) const </argsstring>
+        <name>GetWorldVector</name>
+        <param>
+          <type>const <ref refid="structb2_vec2" kindref="compound">b2Vec2</ref> &amp;</type>
+          <declname>localVector</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Get the world coordinates of a vector given the local coordinates. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>localVector</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>a vector fixed in the body. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the same vector expressed in world coordinates. </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2Body.h" line="253" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Body.h" bodystart="540" bodyend="543"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_body_1a8f9ef0226b7eb989e700fa8898d29fc0" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="structb2_vec2" kindref="compound">b2Vec2</ref></type>
+        <definition>b2Vec2 b2Body::GetLocalPoint</definition>
+        <argsstring>(const b2Vec2 &amp;worldPoint) const </argsstring>
+        <name>GetLocalPoint</name>
+        <param>
+          <type>const <ref refid="structb2_vec2" kindref="compound">b2Vec2</ref> &amp;</type>
+          <declname>worldPoint</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Gets a local point relative to the body&apos;s origin given a world point. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>a</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>point in world coordinates. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the corresponding local point relative to the body&apos;s origin. </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2Body.h" line="258" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Body.h" bodystart="545" bodyend="548"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_body_1a93de09565c0c1a9da2601c1847aa22df" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="structb2_vec2" kindref="compound">b2Vec2</ref></type>
+        <definition>b2Vec2 b2Body::GetLocalVector</definition>
+        <argsstring>(const b2Vec2 &amp;worldVector) const </argsstring>
+        <name>GetLocalVector</name>
+        <param>
+          <type>const <ref refid="structb2_vec2" kindref="compound">b2Vec2</ref> &amp;</type>
+          <declname>worldVector</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Gets a local vector given a world vector. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>a</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>vector in world coordinates. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the corresponding local vector. </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2Body.h" line="263" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Body.h" bodystart="550" bodyend="553"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_body_1a4238ae43f5afeb2126b8e8bf765334b5" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="structb2_vec2" kindref="compound">b2Vec2</ref></type>
+        <definition>b2Vec2 b2Body::GetLinearVelocityFromWorldPoint</definition>
+        <argsstring>(const b2Vec2 &amp;worldPoint) const </argsstring>
+        <name>GetLinearVelocityFromWorldPoint</name>
+        <param>
+          <type>const <ref refid="structb2_vec2" kindref="compound">b2Vec2</ref> &amp;</type>
+          <declname>worldPoint</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Get the world linear velocity of a world point attached to this body. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>a</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>point in world coordinates. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the world velocity of a point. </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2Body.h" line="268" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Body.h" bodystart="555" bodyend="558"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_body_1a4429e3f380e882def11c52ac893b8e2e" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="structb2_vec2" kindref="compound">b2Vec2</ref></type>
+        <definition>b2Vec2 b2Body::GetLinearVelocityFromLocalPoint</definition>
+        <argsstring>(const b2Vec2 &amp;localPoint) const </argsstring>
+        <name>GetLinearVelocityFromLocalPoint</name>
+        <param>
+          <type>const <ref refid="structb2_vec2" kindref="compound">b2Vec2</ref> &amp;</type>
+          <declname>localPoint</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Get the world velocity of a local point. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>a</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>point in local coordinates. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the world velocity of a point. </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2Body.h" line="273" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Body.h" bodystart="560" bodyend="563"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_body_1a7283e4821d24aed0fa5b0f7891175183" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>float32</type>
+        <definition>float32 b2Body::GetLinearDamping</definition>
+        <argsstring>() const </argsstring>
+        <name>GetLinearDamping</name>
+        <briefdescription>
+<para>Get the linear damping of the body. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2Body.h" line="276" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Body.h" bodystart="565" bodyend="568"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_body_1a909f9753ad700f70282a56e00bc182a5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void b2Body::SetLinearDamping</definition>
+        <argsstring>(float32 linearDamping)</argsstring>
+        <name>SetLinearDamping</name>
+        <param>
+          <type>float32</type>
+          <declname>linearDamping</declname>
+        </param>
+        <briefdescription>
+<para>Set the linear damping of the body. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2Body.h" line="279" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Body.h" bodystart="570" bodyend="573"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_body_1a5153143f2593802c85e54a21de5464ce" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>float32</type>
+        <definition>float32 b2Body::GetAngularDamping</definition>
+        <argsstring>() const </argsstring>
+        <name>GetAngularDamping</name>
+        <briefdescription>
+<para>Get the angular damping of the body. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2Body.h" line="282" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Body.h" bodystart="575" bodyend="578"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_body_1a73a79541b18394fa224d2eae8ad493e8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void b2Body::SetAngularDamping</definition>
+        <argsstring>(float32 angularDamping)</argsstring>
+        <name>SetAngularDamping</name>
+        <param>
+          <type>float32</type>
+          <declname>angularDamping</declname>
+        </param>
+        <briefdescription>
+<para>Set the angular damping of the body. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2Body.h" line="285" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Body.h" bodystart="580" bodyend="583"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_body_1a34ff1c84b10b74eb990749a025a1b1ad" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void b2Body::SetType</definition>
+        <argsstring>(b2BodyType type)</argsstring>
+        <name>SetType</name>
+        <param>
+          <type>b2BodyType</type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+<para>Set the type of this body. This may alter the mass and velocity. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2Body.h" line="288" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Body.cpp" bodystart="110" bodyend="137"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_body_1aa0d5acad4f0104e709e34e29a4a0c1a4" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>b2BodyType</type>
+        <definition>b2BodyType b2Body::GetType</definition>
+        <argsstring>() const </argsstring>
+        <name>GetType</name>
+        <briefdescription>
+<para>Get the type of this body. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2Body.h" line="291" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Body.h" bodystart="448" bodyend="451"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_body_1a3253af3725b8d6d63d8223bcd2ddab5c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void b2Body::SetBullet</definition>
+        <argsstring>(bool flag)</argsstring>
+        <name>SetBullet</name>
+        <param>
+          <type>bool</type>
+          <declname>flag</declname>
+        </param>
+        <briefdescription>
+<para>Should this body be treated like a bullet for continuous collision detection? </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2Body.h" line="294" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Body.h" bodystart="585" bodyend="595"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_body_1af48509b43c9474b394cf76d733b56882" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool b2Body::IsBullet</definition>
+        <argsstring>() const </argsstring>
+        <name>IsBullet</name>
+        <briefdescription>
+<para>Is this body treated like a bullet for continuous collision detection? </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2Body.h" line="297" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Body.h" bodystart="597" bodyend="600"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_body_1a229a6de228416203fecbf7a7544c33bb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void b2Body::SetSleepingAllowed</definition>
+        <argsstring>(bool flag)</argsstring>
+        <name>SetSleepingAllowed</name>
+        <param>
+          <type>bool</type>
+          <declname>flag</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>You can disable sleeping on this body. If you disable sleeping, the body will be woken. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2Body.h" line="301" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Body.h" bodystart="652" bodyend="663"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_body_1ac0b0c558008bda8cf7984dbaf2ee3aea" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool b2Body::IsSleepingAllowed</definition>
+        <argsstring>() const </argsstring>
+        <name>IsSleepingAllowed</name>
+        <briefdescription>
+<para>Is this body allowed to sleep. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2Body.h" line="304" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Body.h" bodystart="665" bodyend="668"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_body_1ac72ed3df52a26c33db82252ab57399af" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void b2Body::SetAwake</definition>
+        <argsstring>(bool flag)</argsstring>
+        <name>SetAwake</name>
+        <param>
+          <type>bool</type>
+          <declname>flag</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Set the sleep state of the body. A sleeping body has very low CPU cost. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>flag</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>set to true to put body to sleep, false to wake it. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2Body.h" line="309" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Body.h" bodystart="602" bodyend="621"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_body_1aa28fdb95dffac89d20b04bd1a038b4ea" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool b2Body::IsAwake</definition>
+        <argsstring>() const </argsstring>
+        <name>IsAwake</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Get the sleeping state of this body. <simplesect kind="return"><para>true if the body is sleeping. </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2Body.h" line="313" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Body.h" bodystart="623" bodyend="626"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_body_1ab8059b7b3e3b64aee17b54f68f7dde80" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void b2Body::SetActive</definition>
+        <argsstring>(bool flag)</argsstring>
+        <name>SetActive</name>
+        <param>
+          <type>bool</type>
+          <declname>flag</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Set the active state of the body. An inactive body is not simulated and cannot be collided with or woken up. If you pass a flag of true, all fixtures will be added to the broad-phase. If you pass a flag of false, all fixtures will be removed from the broad-phase and all contacts will be destroyed. Fixtures and joints are otherwise unaffected. You may continue to create/destroy fixtures and joints on inactive bodies. Fixtures on an inactive body are implicitly inactive and will not participate in collisions, ray-casts, or queries. Joints connected to an inactive body are implicitly inactive. An inactive body is still owned by a <ref refid="classb2_world" kindref="compound">b2World</ref> object and remains in the body list. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2Body.h" line="328" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Body.cpp" bodystart="424" bodyend="467"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_body_1ae69b9cb7461ee165b6459ce43d648479" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool b2Body::IsActive</definition>
+        <argsstring>() const </argsstring>
+        <name>IsActive</name>
+        <briefdescription>
+<para>Get the active state of the body. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2Body.h" line="331" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Body.h" bodystart="628" bodyend="631"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_body_1aff35078e2a221d2d05409674936cb8d2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void b2Body::SetFixedRotation</definition>
+        <argsstring>(bool flag)</argsstring>
+        <name>SetFixedRotation</name>
+        <param>
+          <type>bool</type>
+          <declname>flag</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Set this body to have fixed rotation. This causes the mass to be reset. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2Body.h" line="335" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Body.h" bodystart="633" bodyend="645"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_body_1a6bef51a11a1fec3fddad273b11c14214" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool b2Body::IsFixedRotation</definition>
+        <argsstring>() const </argsstring>
+        <name>IsFixedRotation</name>
+        <briefdescription>
+<para>Does this body have fixed rotation? </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2Body.h" line="338" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Body.h" bodystart="647" bodyend="650"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_body_1a64634da20c6e0ab2d68a3cc9ea15efc3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classb2_fixture" kindref="compound">b2Fixture</ref> *</type>
+        <definition>b2Fixture * b2Body::GetFixtureList</definition>
+        <argsstring>()</argsstring>
+        <name>GetFixtureList</name>
+        <briefdescription>
+<para>Get the list of all fixtures attached to this body. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2Body.h" line="341" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Body.h" bodystart="670" bodyend="673"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_body_1aa4c739bb2be1d255606e199c1554e2ca" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="classb2_fixture" kindref="compound">b2Fixture</ref> *</type>
+        <definition>const b2Fixture * b2Body::GetFixtureList</definition>
+        <argsstring>() const </argsstring>
+        <name>GetFixtureList</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2Body.h" line="342" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Body.h" bodystart="675" bodyend="678"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_body_1a55cf2eb851780599ca5c1f6f25a17e41" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="structb2_joint_edge" kindref="compound">b2JointEdge</ref> *</type>
+        <definition>b2JointEdge * b2Body::GetJointList</definition>
+        <argsstring>()</argsstring>
+        <name>GetJointList</name>
+        <briefdescription>
+<para>Get the list of all joints attached to this body. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2Body.h" line="345" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Body.h" bodystart="680" bodyend="683"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_body_1afd11fde6189a374716b9d581476d38af" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="structb2_joint_edge" kindref="compound">b2JointEdge</ref> *</type>
+        <definition>const b2JointEdge * b2Body::GetJointList</definition>
+        <argsstring>() const </argsstring>
+        <name>GetJointList</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2Body.h" line="346" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Body.h" bodystart="685" bodyend="688"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_body_1a16bdbfb266c82a0ef51be351a8928bc5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="structb2_contact_edge" kindref="compound">b2ContactEdge</ref> *</type>
+        <definition>b2ContactEdge * b2Body::GetContactList</definition>
+        <argsstring>()</argsstring>
+        <name>GetContactList</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Get the list of all contacts attached to this body. <simplesect kind="warning"><para>this list changes during the time step and you may miss some collisions if you don&apos;t use <ref refid="classb2_contact_listener" kindref="compound">b2ContactListener</ref>. </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2Body.h" line="351" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Body.h" bodystart="690" bodyend="693"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_body_1aee5445ae5b170ad14c7d326040b6703e" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="structb2_contact_edge" kindref="compound">b2ContactEdge</ref> *</type>
+        <definition>const b2ContactEdge * b2Body::GetContactList</definition>
+        <argsstring>() const </argsstring>
+        <name>GetContactList</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2Body.h" line="352" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Body.h" bodystart="695" bodyend="698"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_body_1ad54182a11d02362b027a0eb072775bdc" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classb2_body" kindref="compound">b2Body</ref> *</type>
+        <definition>b2Body * b2Body::GetNext</definition>
+        <argsstring>()</argsstring>
+        <name>GetNext</name>
+        <briefdescription>
+<para>Get the next body in the world&apos;s body list. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2Body.h" line="355" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Body.h" bodystart="700" bodyend="703"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_body_1a2c7dc95d66e41c9150e98ea4ff401ad9" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="classb2_body" kindref="compound">b2Body</ref> *</type>
+        <definition>const b2Body * b2Body::GetNext</definition>
+        <argsstring>() const </argsstring>
+        <name>GetNext</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2Body.h" line="356" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Body.h" bodystart="705" bodyend="708"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_body_1a6833f7e2ef1b6ac82641bb6b07ec50d1" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>void *</type>
+        <definition>void * b2Body::GetUserData</definition>
+        <argsstring>() const </argsstring>
+        <name>GetUserData</name>
+        <briefdescription>
+<para>Get the user data pointer that was provided in the body definition. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2Body.h" line="359" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Body.h" bodystart="715" bodyend="718"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_body_1a5553a5ecdfd2d7200ba2405ce6043f52" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void b2Body::SetUserData</definition>
+        <argsstring>(void *data)</argsstring>
+        <name>SetUserData</name>
+        <param>
+          <type>void *</type>
+          <declname>data</declname>
+        </param>
+        <briefdescription>
+<para>Set the user data. Use this to store your application specific data. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2Body.h" line="362" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Body.h" bodystart="710" bodyend="713"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_body_1abfd9466763b20977f9122d0e162dfeb9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classb2_world" kindref="compound">b2World</ref> *</type>
+        <definition>b2World * b2Body::GetWorld</definition>
+        <argsstring>()</argsstring>
+        <name>GetWorld</name>
+        <briefdescription>
+<para>Get the parent world of this body. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2Body.h" line="365" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Body.h" bodystart="795" bodyend="798"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_body_1aee495ab2131b3123e0cfc5ed106b2fda" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="classb2_world" kindref="compound">b2World</ref> *</type>
+        <definition>const b2World * b2Body::GetWorld</definition>
+        <argsstring>() const </argsstring>
+        <name>GetWorld</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2Body.h" line="366" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Body.h" bodystart="800" bodyend="803"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classb2_body_1a3d2589a2eb6a76898660b41092141d13" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>b2Body::b2Body</definition>
+        <argsstring>(const b2BodyDef *bd, b2World *world)</argsstring>
+        <name>b2Body</name>
+        <param>
+          <type>const <ref refid="structb2_body_def" kindref="compound">b2BodyDef</ref> *</type>
+          <declname>bd</declname>
+        </param>
+        <param>
+          <type><ref refid="classb2_world" kindref="compound">b2World</ref> *</type>
+          <declname>world</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2Body.h" line="398" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Body.cpp" bodystart="25" bodyend="103"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_body_1a0f9007ba0e837db5a4c85a3228c63563" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>b2Body::~b2Body</definition>
+        <argsstring>()</argsstring>
+        <name>~b2Body</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2Body.h" line="399" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Body.cpp" bodystart="105" bodyend="108"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_body_1af8a192d14f97e7a356f6b9cc69fafa10" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void b2Body::SynchronizeFixtures</definition>
+        <argsstring>()</argsstring>
+        <name>SynchronizeFixtures</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2Body.h" line="401" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Body.cpp" bodystart="411" bodyend="422"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_body_1a4ce4a12de31c4e877ac5075331cb3a47" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void b2Body::SynchronizeTransform</definition>
+        <argsstring>()</argsstring>
+        <name>SynchronizeTransform</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2Body.h" line="402" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Body.h" bodystart="780" bodyend="784"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_body_1ab124b836dc1f304aa415bfbaa71eff45" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool b2Body::ShouldCollide</definition>
+        <argsstring>(const b2Body *other) const </argsstring>
+        <name>ShouldCollide</name>
+        <param>
+          <type>const <ref refid="classb2_body" kindref="compound">b2Body</ref> *</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2Body.h" line="406" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Body.cpp" bodystart="365" bodyend="386"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_body_1a018ca81f6c1bef31942931dfa9459f4f" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void b2Body::Advance</definition>
+        <argsstring>(float32 t)</argsstring>
+        <name>Advance</name>
+        <param>
+          <type>float32</type>
+          <declname>t</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2Body.h" line="408" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Body.h" bodystart="786" bodyend="793"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>A rigid body. These are created via <ref refid="classb2_world_1a2eb36e967e43294bfa03ec3d177c2dae" kindref="member">b2World::CreateBody</ref>. </para>    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="945">
+        <label>b2Contact</label>
+        <link refid="classb2_contact"/>
+        <childnode refid="945" relation="usage">
+          <edgelabel>m_prev</edgelabel>
+          <edgelabel>m_next</edgelabel>
+        </childnode>
+        <childnode refid="946" relation="usage">
+          <edgelabel>m_manifold</edgelabel>
+        </childnode>
+        <childnode refid="950" relation="usage">
+          <edgelabel>m_fixtureA</edgelabel>
+          <edgelabel>m_fixtureB</edgelabel>
+        </childnode>
+        <childnode refid="944" relation="usage">
+          <edgelabel>m_nodeA</edgelabel>
+          <edgelabel>m_nodeB</edgelabel>
+        </childnode>
+      </node>
+      <node id="937">
+        <label>b2Body</label>
+        <link refid="classb2_body"/>
+        <childnode refid="937" relation="usage">
+          <edgelabel>m_prev</edgelabel>
+          <edgelabel>m_next</edgelabel>
+        </childnode>
+        <childnode refid="938" relation="usage">
+          <edgelabel>m_jointList</edgelabel>
+        </childnode>
+        <childnode refid="940" relation="usage">
+          <edgelabel>m_linearVelocity</edgelabel>
+          <edgelabel>m_force</edgelabel>
+        </childnode>
+        <childnode refid="941" relation="usage">
+          <edgelabel>m_sweep</edgelabel>
+        </childnode>
+        <childnode refid="942" relation="usage">
+          <edgelabel>m_xf</edgelabel>
+        </childnode>
+        <childnode refid="944" relation="usage">
+          <edgelabel>m_contactList</edgelabel>
+        </childnode>
+        <childnode refid="950" relation="usage">
+          <edgelabel>m_fixtureList</edgelabel>
+        </childnode>
+        <childnode refid="955" relation="usage">
+          <edgelabel>m_world</edgelabel>
+        </childnode>
+      </node>
+      <node id="949">
+        <label>b2ContactFeature</label>
+        <link refid="structb2_contact_feature"/>
+      </node>
+      <node id="944">
+        <label>b2ContactEdge</label>
+        <link refid="structb2_contact_edge"/>
+        <childnode refid="937" relation="usage">
+          <edgelabel>other</edgelabel>
+        </childnode>
+        <childnode refid="945" relation="usage">
+          <edgelabel>contact</edgelabel>
+        </childnode>
+        <childnode refid="944" relation="usage">
+          <edgelabel>prev</edgelabel>
+          <edgelabel>next</edgelabel>
+        </childnode>
+      </node>
+      <node id="946">
+        <label>b2Manifold</label>
+        <link refid="structb2_manifold"/>
+        <childnode refid="940" relation="usage">
+          <edgelabel>localPoint</edgelabel>
+          <edgelabel>localNormal</edgelabel>
+        </childnode>
+        <childnode refid="947" relation="usage">
+          <edgelabel>points</edgelabel>
+        </childnode>
+      </node>
+      <node id="957">
+        <label>b2BlockAllocator</label>
+        <link refid="classb2_block_allocator"/>
+      </node>
+      <node id="958">
+        <label>b2DestructionListener</label>
+        <link refid="classb2_destruction_listener"/>
+      </node>
+      <node id="955">
+        <label>b2World</label>
+        <link refid="classb2_world"/>
+        <childnode refid="937" relation="usage">
+          <edgelabel>m_bodyList</edgelabel>
+        </childnode>
+        <childnode refid="956" relation="usage">
+          <edgelabel>m_debugDraw</edgelabel>
+        </childnode>
+        <childnode refid="940" relation="usage">
+          <edgelabel>m_gravity</edgelabel>
+        </childnode>
+        <childnode refid="957" relation="usage">
+          <edgelabel>m_blockAllocator</edgelabel>
+        </childnode>
+        <childnode refid="958" relation="usage">
+          <edgelabel>m_destructionListener</edgelabel>
+        </childnode>
+        <childnode refid="939" relation="usage">
+          <edgelabel>m_jointList</edgelabel>
+        </childnode>
+      </node>
+      <node id="951">
+        <label>b2FixtureProxy</label>
+        <link refid="structb2_fixture_proxy"/>
+        <childnode refid="952" relation="usage">
+          <edgelabel>aabb</edgelabel>
+        </childnode>
+        <childnode refid="950" relation="usage">
+          <edgelabel>fixture</edgelabel>
+        </childnode>
+      </node>
+      <node id="943">
+        <label>b2Mat22</label>
+        <link refid="structb2_mat22"/>
+        <childnode refid="940" relation="usage">
+          <edgelabel>col1</edgelabel>
+          <edgelabel>col2</edgelabel>
+        </childnode>
+      </node>
+      <node id="941">
+        <label>b2Sweep</label>
+        <link refid="structb2_sweep"/>
+        <childnode refid="940" relation="usage">
+          <edgelabel>c0</edgelabel>
+          <edgelabel>localCenter</edgelabel>
+          <edgelabel>c</edgelabel>
+        </childnode>
+      </node>
+      <node id="942">
+        <label>b2Transform</label>
+        <link refid="structb2_transform"/>
+        <childnode refid="940" relation="usage">
+          <edgelabel>position</edgelabel>
+        </childnode>
+        <childnode refid="943" relation="usage">
+          <edgelabel>R</edgelabel>
+        </childnode>
+      </node>
+      <node id="956">
+        <label>b2DebugDraw</label>
+        <link refid="classb2_debug_draw"/>
+      </node>
+      <node id="954">
+        <label>b2Filter</label>
+        <link refid="structb2_filter"/>
+      </node>
+      <node id="938">
+        <label>b2JointEdge</label>
+        <link refid="structb2_joint_edge"/>
+        <childnode refid="937" relation="usage">
+          <edgelabel>other</edgelabel>
+        </childnode>
+        <childnode refid="938" relation="usage">
+          <edgelabel>prev</edgelabel>
+          <edgelabel>next</edgelabel>
+        </childnode>
+        <childnode refid="939" relation="usage">
+          <edgelabel>joint</edgelabel>
+        </childnode>
+      </node>
+      <node id="939">
+        <label>b2Joint</label>
+        <link refid="classb2_joint"/>
+        <childnode refid="937" relation="usage">
+          <edgelabel>m_bodyA</edgelabel>
+          <edgelabel>m_bodyB</edgelabel>
+        </childnode>
+        <childnode refid="940" relation="usage">
+          <edgelabel>m_localCenterA</edgelabel>
+          <edgelabel>m_localCenterB</edgelabel>
+        </childnode>
+        <childnode refid="938" relation="usage">
+          <edgelabel>m_edgeB</edgelabel>
+          <edgelabel>m_edgeA</edgelabel>
+        </childnode>
+        <childnode refid="939" relation="usage">
+          <edgelabel>m_prev</edgelabel>
+          <edgelabel>m_next</edgelabel>
+        </childnode>
+      </node>
+      <node id="940">
+        <label>b2Vec2</label>
+        <link refid="structb2_vec2"/>
+      </node>
+      <node id="948">
+        <label>b2ContactID</label>
+        <link refid="unionb2_contact_i_d"/>
+        <childnode refid="949" relation="usage">
+          <edgelabel>cf</edgelabel>
+        </childnode>
+      </node>
+      <node id="953">
+        <label>b2Shape</label>
+        <link refid="classb2_shape"/>
+      </node>
+      <node id="952">
+        <label>b2AABB</label>
+        <link refid="structb2_a_a_b_b"/>
+        <childnode refid="940" relation="usage">
+          <edgelabel>lowerBound</edgelabel>
+          <edgelabel>upperBound</edgelabel>
+        </childnode>
+      </node>
+      <node id="950">
+        <label>b2Fixture</label>
+        <link refid="classb2_fixture"/>
+        <childnode refid="937" relation="usage">
+          <edgelabel>m_body</edgelabel>
+        </childnode>
+        <childnode refid="951" relation="usage">
+          <edgelabel>m_proxies</edgelabel>
+        </childnode>
+        <childnode refid="953" relation="usage">
+          <edgelabel>m_shape</edgelabel>
+        </childnode>
+        <childnode refid="954" relation="usage">
+          <edgelabel>m_filter</edgelabel>
+        </childnode>
+        <childnode refid="950" relation="usage">
+          <edgelabel>m_next</edgelabel>
+        </childnode>
+      </node>
+      <node id="947">
+        <label>b2ManifoldPoint</label>
+        <link refid="structb2_manifold_point"/>
+        <childnode refid="940" relation="usage">
+          <edgelabel>localPoint</edgelabel>
+        </childnode>
+        <childnode refid="948" relation="usage">
+          <edgelabel>id</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="D:/pybox2d/Box2D/Dynamics/b2Body.h" line="127" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Body.h" bodystart="126" bodyend="446"/>
+    <listofallmembers>
+      <member refid="classb2_body_1a018ca81f6c1bef31942931dfa9459f4f" prot="private" virt="non-virtual"><scope>b2Body</scope><name>Advance</name></member>
+      <member refid="classb2_body_1a2274ca61d7f63babf8fd30348e339083" prot="public" virt="non-virtual"><scope>b2Body</scope><name>ApplyAngularImpulse</name></member>
+      <member refid="classb2_body_1aa1a2ebd027635ea5a81749f267a19261" prot="public" virt="non-virtual"><scope>b2Body</scope><name>ApplyForce</name></member>
+      <member refid="classb2_body_1ada3c2a70cbb53c4fcee5a4febbbefc15" prot="public" virt="non-virtual"><scope>b2Body</scope><name>ApplyLinearImpulse</name></member>
+      <member refid="classb2_body_1a2a383c0af1f91f449e74cfcec8fe2604" prot="public" virt="non-virtual"><scope>b2Body</scope><name>ApplyTorque</name></member>
+      <member refid="classb2_body_1a3d2589a2eb6a76898660b41092141d13" prot="private" virt="non-virtual"><scope>b2Body</scope><name>b2Body</name></member>
+      <member refid="classb2_body_1aece264d42f69aed410f5eb3beba6ddf2" prot="private" virt="non-virtual"><scope>b2Body</scope><name>b2ContactManager</name></member>
+      <member refid="classb2_body_1afb788a7ba90344f3ddbafff3de0465c4" prot="private" virt="non-virtual"><scope>b2Body</scope><name>b2ContactSolver</name></member>
+      <member refid="classb2_body_1ab574994230041b2ee9717de78866b74f" prot="private" virt="non-virtual"><scope>b2Body</scope><name>b2DistanceJoint</name></member>
+      <member refid="classb2_body_1a00cce0630ae86cbf33214a6a7716b684" prot="private" virt="non-virtual"><scope>b2Body</scope><name>b2FrictionJoint</name></member>
+      <member refid="classb2_body_1a13c275221e30bb485e17e4e04553cb71" prot="private" virt="non-virtual"><scope>b2Body</scope><name>b2GearJoint</name></member>
+      <member refid="classb2_body_1afc682950b8c4f251804fc1938663098b" prot="private" virt="non-virtual"><scope>b2Body</scope><name>b2Island</name></member>
+      <member refid="classb2_body_1a800d83994f18b635310d380c1c21d5fa" prot="private" virt="non-virtual"><scope>b2Body</scope><name>b2LineJoint</name></member>
+      <member refid="classb2_body_1af778d9e4de5da0fbcfada1615344cf86" prot="private" virt="non-virtual"><scope>b2Body</scope><name>b2MouseJoint</name></member>
+      <member refid="classb2_body_1a78ff31fe08bbb0c83ad03ba6dfb9d78c" prot="private" virt="non-virtual"><scope>b2Body</scope><name>b2PrismaticJoint</name></member>
+      <member refid="classb2_body_1af7861e214216f26a70b7596130e0326f" prot="private" virt="non-virtual"><scope>b2Body</scope><name>b2PulleyJoint</name></member>
+      <member refid="classb2_body_1aa6afb0f5dc73f101a6fc3a3c63abedf8" prot="private" virt="non-virtual"><scope>b2Body</scope><name>b2RevoluteJoint</name></member>
+      <member refid="classb2_body_1ab24edbcb929fa9bd24b92d6006c00ab2" prot="private" virt="non-virtual"><scope>b2Body</scope><name>b2RopeJoint</name></member>
+      <member refid="classb2_body_1a9fafe51e7203fdb53358c75e1c41142b" prot="private" virt="non-virtual"><scope>b2Body</scope><name>b2WeldJoint</name></member>
+      <member refid="classb2_body_1a4bd536c5a7c0587913765bbc2693ceea" prot="private" virt="non-virtual"><scope>b2Body</scope><name>b2World</name></member>
+      <member refid="classb2_body_1aa4892301e9b9d62ede5e93dad1743894" prot="public" virt="non-virtual"><scope>b2Body</scope><name>CreateFixture</name></member>
+      <member refid="classb2_body_1a52d971867086d5db79769a62bbb70a60" prot="public" virt="non-virtual"><scope>b2Body</scope><name>CreateFixture</name></member>
+      <member refid="classb2_body_1a856d1df86b7bded91f02d8cfcaea1c2f" prot="public" virt="non-virtual"><scope>b2Body</scope><name>DestroyFixture</name></member>
+      <member refid="classb2_body_1a0cbec3ac93fa77d7867e9999e97c637eace89b262f3ff7a5092e78679cdefe1b1" prot="private" virt="non-virtual"><scope>b2Body</scope><name>e_activeFlag</name></member>
+      <member refid="classb2_body_1a0cbec3ac93fa77d7867e9999e97c637ead9f1c6bfd797bcff8f48c80c739f7d25" prot="private" virt="non-virtual"><scope>b2Body</scope><name>e_autoSleepFlag</name></member>
+      <member refid="classb2_body_1a0cbec3ac93fa77d7867e9999e97c637ea0caf57fb317a7b424a0781e50644a320" prot="private" virt="non-virtual"><scope>b2Body</scope><name>e_awakeFlag</name></member>
+      <member refid="classb2_body_1a0cbec3ac93fa77d7867e9999e97c637ea08cf9cb5c68104a8e3dbd8c3fda3c910" prot="private" virt="non-virtual"><scope>b2Body</scope><name>e_bulletFlag</name></member>
+      <member refid="classb2_body_1a0cbec3ac93fa77d7867e9999e97c637ea8bd30c64397598451c6d69085d35a4cf" prot="private" virt="non-virtual"><scope>b2Body</scope><name>e_fixedRotationFlag</name></member>
+      <member refid="classb2_body_1a0cbec3ac93fa77d7867e9999e97c637ea39f34a6536e80cbf121dd4676ddc9eb4" prot="private" virt="non-virtual"><scope>b2Body</scope><name>e_islandFlag</name></member>
+      <member refid="classb2_body_1a0cbec3ac93fa77d7867e9999e97c637eac7e151c315d09cbd08a041f4d02a55b7" prot="private" virt="non-virtual"><scope>b2Body</scope><name>e_toiFlag</name></member>
+      <member refid="classb2_body_1a57c4a1946a6dd5a00e28691bc419fdcd" prot="public" virt="non-virtual"><scope>b2Body</scope><name>GetAngle</name></member>
+      <member refid="classb2_body_1a5153143f2593802c85e54a21de5464ce" prot="public" virt="non-virtual"><scope>b2Body</scope><name>GetAngularDamping</name></member>
+      <member refid="classb2_body_1a158fe4c141168d2c3e65096b209f548c" prot="public" virt="non-virtual"><scope>b2Body</scope><name>GetAngularVelocity</name></member>
+      <member refid="classb2_body_1a16bdbfb266c82a0ef51be351a8928bc5" prot="public" virt="non-virtual"><scope>b2Body</scope><name>GetContactList</name></member>
+      <member refid="classb2_body_1aee5445ae5b170ad14c7d326040b6703e" prot="public" virt="non-virtual"><scope>b2Body</scope><name>GetContactList</name></member>
+      <member refid="classb2_body_1a64634da20c6e0ab2d68a3cc9ea15efc3" prot="public" virt="non-virtual"><scope>b2Body</scope><name>GetFixtureList</name></member>
+      <member refid="classb2_body_1aa4c739bb2be1d255606e199c1554e2ca" prot="public" virt="non-virtual"><scope>b2Body</scope><name>GetFixtureList</name></member>
+      <member refid="classb2_body_1a8c8916caf67c1e618a07d8b6b9253fa8" prot="public" virt="non-virtual"><scope>b2Body</scope><name>GetInertia</name></member>
+      <member refid="classb2_body_1a55cf2eb851780599ca5c1f6f25a17e41" prot="public" virt="non-virtual"><scope>b2Body</scope><name>GetJointList</name></member>
+      <member refid="classb2_body_1afd11fde6189a374716b9d581476d38af" prot="public" virt="non-virtual"><scope>b2Body</scope><name>GetJointList</name></member>
+      <member refid="classb2_body_1a7283e4821d24aed0fa5b0f7891175183" prot="public" virt="non-virtual"><scope>b2Body</scope><name>GetLinearDamping</name></member>
+      <member refid="classb2_body_1ac7f1adfdef7c5c3d89fa44276fae0a5a" prot="public" virt="non-virtual"><scope>b2Body</scope><name>GetLinearVelocity</name></member>
+      <member refid="classb2_body_1a4429e3f380e882def11c52ac893b8e2e" prot="public" virt="non-virtual"><scope>b2Body</scope><name>GetLinearVelocityFromLocalPoint</name></member>
+      <member refid="classb2_body_1a4238ae43f5afeb2126b8e8bf765334b5" prot="public" virt="non-virtual"><scope>b2Body</scope><name>GetLinearVelocityFromWorldPoint</name></member>
+      <member refid="classb2_body_1a27ed7f8a3b36ddfb01069ee8f7106033" prot="public" virt="non-virtual"><scope>b2Body</scope><name>GetLocalCenter</name></member>
+      <member refid="classb2_body_1a8f9ef0226b7eb989e700fa8898d29fc0" prot="public" virt="non-virtual"><scope>b2Body</scope><name>GetLocalPoint</name></member>
+      <member refid="classb2_body_1a93de09565c0c1a9da2601c1847aa22df" prot="public" virt="non-virtual"><scope>b2Body</scope><name>GetLocalVector</name></member>
+      <member refid="classb2_body_1a4f62fea4546d2b9ca64a5f6723bbc71c" prot="public" virt="non-virtual"><scope>b2Body</scope><name>GetMass</name></member>
+      <member refid="classb2_body_1ad0a90df7e2617a8572cd476267f95417" prot="public" virt="non-virtual"><scope>b2Body</scope><name>GetMassData</name></member>
+      <member refid="classb2_body_1ad54182a11d02362b027a0eb072775bdc" prot="public" virt="non-virtual"><scope>b2Body</scope><name>GetNext</name></member>
+      <member refid="classb2_body_1a2c7dc95d66e41c9150e98ea4ff401ad9" prot="public" virt="non-virtual"><scope>b2Body</scope><name>GetNext</name></member>
+      <member refid="classb2_body_1a798da9dc2d47431912d991d152b13711" prot="public" virt="non-virtual"><scope>b2Body</scope><name>GetPosition</name></member>
+      <member refid="classb2_body_1adaaebca750d0bda56a543884adc5f519" prot="public" virt="non-virtual"><scope>b2Body</scope><name>GetTransform</name></member>
+      <member refid="classb2_body_1aa0d5acad4f0104e709e34e29a4a0c1a4" prot="public" virt="non-virtual"><scope>b2Body</scope><name>GetType</name></member>
+      <member refid="classb2_body_1a6833f7e2ef1b6ac82641bb6b07ec50d1" prot="public" virt="non-virtual"><scope>b2Body</scope><name>GetUserData</name></member>
+      <member refid="classb2_body_1abfd9466763b20977f9122d0e162dfeb9" prot="public" virt="non-virtual"><scope>b2Body</scope><name>GetWorld</name></member>
+      <member refid="classb2_body_1aee495ab2131b3123e0cfc5ed106b2fda" prot="public" virt="non-virtual"><scope>b2Body</scope><name>GetWorld</name></member>
+      <member refid="classb2_body_1a04db0c7b12b315802e58b33884f4f63c" prot="public" virt="non-virtual"><scope>b2Body</scope><name>GetWorldCenter</name></member>
+      <member refid="classb2_body_1a8055b90bccb51383caa8c42fbc96c9c3" prot="public" virt="non-virtual"><scope>b2Body</scope><name>GetWorldPoint</name></member>
+      <member refid="classb2_body_1afd44622669b5e45202c23e4a212895fc" prot="public" virt="non-virtual"><scope>b2Body</scope><name>GetWorldVector</name></member>
+      <member refid="classb2_body_1ae69b9cb7461ee165b6459ce43d648479" prot="public" virt="non-virtual"><scope>b2Body</scope><name>IsActive</name></member>
+      <member refid="classb2_body_1aa28fdb95dffac89d20b04bd1a038b4ea" prot="public" virt="non-virtual"><scope>b2Body</scope><name>IsAwake</name></member>
+      <member refid="classb2_body_1af48509b43c9474b394cf76d733b56882" prot="public" virt="non-virtual"><scope>b2Body</scope><name>IsBullet</name></member>
+      <member refid="classb2_body_1a6bef51a11a1fec3fddad273b11c14214" prot="public" virt="non-virtual"><scope>b2Body</scope><name>IsFixedRotation</name></member>
+      <member refid="classb2_body_1ac0b0c558008bda8cf7984dbaf2ee3aea" prot="public" virt="non-virtual"><scope>b2Body</scope><name>IsSleepingAllowed</name></member>
+      <member refid="classb2_body_1a7b56f4897aca6243b2705d5ea6d3de8c" prot="private" virt="non-virtual"><scope>b2Body</scope><name>m_angularDamping</name></member>
+      <member refid="classb2_body_1acef5819bc7dca7032ee35221abcd9419" prot="private" virt="non-virtual"><scope>b2Body</scope><name>m_angularVelocity</name></member>
+      <member refid="classb2_body_1ad56492f2e73ccb0e06127422266e5cd5" prot="private" virt="non-virtual"><scope>b2Body</scope><name>m_contactList</name></member>
+      <member refid="classb2_body_1a128a76b5c66b5a6e82c5e6198c8e7cb6" prot="private" virt="non-virtual"><scope>b2Body</scope><name>m_fixtureCount</name></member>
+      <member refid="classb2_body_1af3e0c860ed84bf366fa85bbc27efbddc" prot="private" virt="non-virtual"><scope>b2Body</scope><name>m_fixtureList</name></member>
+      <member refid="classb2_body_1a9eaa71e3a87e05b37d36dcb173b85a73" prot="private" virt="non-virtual"><scope>b2Body</scope><name>m_flags</name></member>
+      <member refid="classb2_body_1ad5ca71bb4d0746247678196ff50040fd" prot="private" virt="non-virtual"><scope>b2Body</scope><name>m_force</name></member>
+      <member refid="classb2_body_1a288efb55b506ffd7253c19a9546f9be8" prot="private" virt="non-virtual"><scope>b2Body</scope><name>m_I</name></member>
+      <member refid="classb2_body_1a4e0078a441cc4c29fa18fe358eb59bf7" prot="private" virt="non-virtual"><scope>b2Body</scope><name>m_invI</name></member>
+      <member refid="classb2_body_1a095bb2434f63ed8a8ea9112f35e90954" prot="private" virt="non-virtual"><scope>b2Body</scope><name>m_invMass</name></member>
+      <member refid="classb2_body_1a3536cbe2d878d2861f29496380a43abd" prot="private" virt="non-virtual"><scope>b2Body</scope><name>m_islandIndex</name></member>
+      <member refid="classb2_body_1a3456959bea73dc88e8d355b635c9bb18" prot="private" virt="non-virtual"><scope>b2Body</scope><name>m_jointList</name></member>
+      <member refid="classb2_body_1a6194747e6070f17fcae2fc4a8259076b" prot="private" virt="non-virtual"><scope>b2Body</scope><name>m_linearDamping</name></member>
+      <member refid="classb2_body_1a24951dd2e0a4e2032140eb871c7de146" prot="private" virt="non-virtual"><scope>b2Body</scope><name>m_linearVelocity</name></member>
+      <member refid="classb2_body_1a4ce3bd9fa3939c5ca5bbaa0563eed829" prot="private" virt="non-virtual"><scope>b2Body</scope><name>m_mass</name></member>
+      <member refid="classb2_body_1adffc3d0896df33db6e1382d7bd1f3458" prot="private" virt="non-virtual"><scope>b2Body</scope><name>m_next</name></member>
+      <member refid="classb2_body_1a9bcdb136678139d0489e26d855c92083" prot="private" virt="non-virtual"><scope>b2Body</scope><name>m_prev</name></member>
+      <member refid="classb2_body_1ad17c53f3de07a9a94635ff9d628fbb44" prot="private" virt="non-virtual"><scope>b2Body</scope><name>m_sleepTime</name></member>
+      <member refid="classb2_body_1a35f5ff3a06dc1f703885c6124811c994" prot="private" virt="non-virtual"><scope>b2Body</scope><name>m_sweep</name></member>
+      <member refid="classb2_body_1a41bc89346a7fb30031c3a436f665816d" prot="private" virt="non-virtual"><scope>b2Body</scope><name>m_torque</name></member>
+      <member refid="classb2_body_1a4ff6a76b8c3b85a9e9143e28900d24da" prot="private" virt="non-virtual"><scope>b2Body</scope><name>m_type</name></member>
+      <member refid="classb2_body_1aaf642f5b1f472511c4d1cd15d80c09ac" prot="private" virt="non-virtual"><scope>b2Body</scope><name>m_userData</name></member>
+      <member refid="classb2_body_1af4695eb78dd83b935c5176dd8ef7b54b" prot="private" virt="non-virtual"><scope>b2Body</scope><name>m_world</name></member>
+      <member refid="classb2_body_1a88a3d75efd80a6849ff0645e8047e6ae" prot="private" virt="non-virtual"><scope>b2Body</scope><name>m_xf</name></member>
+      <member refid="classb2_body_1a109d8567c6ae84c61fce2919fb209c63" prot="public" virt="non-virtual"><scope>b2Body</scope><name>ResetMassData</name></member>
+      <member refid="classb2_body_1ab8059b7b3e3b64aee17b54f68f7dde80" prot="public" virt="non-virtual"><scope>b2Body</scope><name>SetActive</name></member>
+      <member refid="classb2_body_1a73a79541b18394fa224d2eae8ad493e8" prot="public" virt="non-virtual"><scope>b2Body</scope><name>SetAngularDamping</name></member>
+      <member refid="classb2_body_1a37adc4160b84f73e8552a91cbde3f578" prot="public" virt="non-virtual"><scope>b2Body</scope><name>SetAngularVelocity</name></member>
+      <member refid="classb2_body_1ac72ed3df52a26c33db82252ab57399af" prot="public" virt="non-virtual"><scope>b2Body</scope><name>SetAwake</name></member>
+      <member refid="classb2_body_1a3253af3725b8d6d63d8223bcd2ddab5c" prot="public" virt="non-virtual"><scope>b2Body</scope><name>SetBullet</name></member>
+      <member refid="classb2_body_1aff35078e2a221d2d05409674936cb8d2" prot="public" virt="non-virtual"><scope>b2Body</scope><name>SetFixedRotation</name></member>
+      <member refid="classb2_body_1a909f9753ad700f70282a56e00bc182a5" prot="public" virt="non-virtual"><scope>b2Body</scope><name>SetLinearDamping</name></member>
+      <member refid="classb2_body_1a832f3989a44f0d4782c80456832197ad" prot="public" virt="non-virtual"><scope>b2Body</scope><name>SetLinearVelocity</name></member>
+      <member refid="classb2_body_1a58a641fedf8a81e1e26d09ec00a22fe2" prot="public" virt="non-virtual"><scope>b2Body</scope><name>SetMassData</name></member>
+      <member refid="classb2_body_1a229a6de228416203fecbf7a7544c33bb" prot="public" virt="non-virtual"><scope>b2Body</scope><name>SetSleepingAllowed</name></member>
+      <member refid="classb2_body_1a4686f32bbce5723761e9719c706eca11" prot="public" virt="non-virtual"><scope>b2Body</scope><name>SetTransform</name></member>
+      <member refid="classb2_body_1a34ff1c84b10b74eb990749a025a1b1ad" prot="public" virt="non-virtual"><scope>b2Body</scope><name>SetType</name></member>
+      <member refid="classb2_body_1a5553a5ecdfd2d7200ba2405ce6043f52" prot="public" virt="non-virtual"><scope>b2Body</scope><name>SetUserData</name></member>
+      <member refid="classb2_body_1ab124b836dc1f304aa415bfbaa71eff45" prot="private" virt="non-virtual"><scope>b2Body</scope><name>ShouldCollide</name></member>
+      <member refid="classb2_body_1af8a192d14f97e7a356f6b9cc69fafa10" prot="private" virt="non-virtual"><scope>b2Body</scope><name>SynchronizeFixtures</name></member>
+      <member refid="classb2_body_1a4ce4a12de31c4e877ac5075331cb3a47" prot="private" virt="non-virtual"><scope>b2Body</scope><name>SynchronizeTransform</name></member>
+      <member refid="classb2_body_1a0f9007ba0e837db5a4c85a3228c63563" prot="private" virt="non-virtual"><scope>b2Body</scope><name>~b2Body</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

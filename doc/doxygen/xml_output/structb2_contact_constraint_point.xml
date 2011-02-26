@@ -1,0 +1,141 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.7.2">
+  <compounddef id="structb2_contact_constraint_point" kind="struct" prot="public">
+    <compoundname>b2ContactConstraintPoint</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structb2_contact_constraint_point_1a8460bc724d57891c846b58578b784f55" prot="public" static="no" mutable="no">
+        <type><ref refid="structb2_vec2" kindref="compound">b2Vec2</ref></type>
+        <definition>b2Vec2 b2ContactConstraintPoint::localPoint</definition>
+        <argsstring></argsstring>
+        <name>localPoint</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Contacts/b2ContactSolver.h" line="32" bodyfile="D:/pybox2d/Box2D/Dynamics/Contacts/b2ContactSolver.h" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structb2_contact_constraint_point_1a2a722b40ccd529e6192d34a70a92a2b1" prot="public" static="no" mutable="no">
+        <type><ref refid="structb2_vec2" kindref="compound">b2Vec2</ref></type>
+        <definition>b2Vec2 b2ContactConstraintPoint::rA</definition>
+        <argsstring></argsstring>
+        <name>rA</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Contacts/b2ContactSolver.h" line="33" bodyfile="D:/pybox2d/Box2D/Dynamics/Contacts/b2ContactSolver.h" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structb2_contact_constraint_point_1aa8345844512f381d93c51368b63773fc" prot="public" static="no" mutable="no">
+        <type><ref refid="structb2_vec2" kindref="compound">b2Vec2</ref></type>
+        <definition>b2Vec2 b2ContactConstraintPoint::rB</definition>
+        <argsstring></argsstring>
+        <name>rB</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Contacts/b2ContactSolver.h" line="34" bodyfile="D:/pybox2d/Box2D/Dynamics/Contacts/b2ContactSolver.h" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structb2_contact_constraint_point_1a1eb892b6763e40b3de9a0875a97f7c33" prot="public" static="no" mutable="no">
+        <type>float32</type>
+        <definition>float32 b2ContactConstraintPoint::normalImpulse</definition>
+        <argsstring></argsstring>
+        <name>normalImpulse</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Contacts/b2ContactSolver.h" line="35" bodyfile="D:/pybox2d/Box2D/Dynamics/Contacts/b2ContactSolver.h" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structb2_contact_constraint_point_1a112db0e9338337eb0711b6f7b0e07a5c" prot="public" static="no" mutable="no">
+        <type>float32</type>
+        <definition>float32 b2ContactConstraintPoint::tangentImpulse</definition>
+        <argsstring></argsstring>
+        <name>tangentImpulse</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Contacts/b2ContactSolver.h" line="36" bodyfile="D:/pybox2d/Box2D/Dynamics/Contacts/b2ContactSolver.h" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structb2_contact_constraint_point_1a88d9e5fb6aa15b2ad818df8ce325a250" prot="public" static="no" mutable="no">
+        <type>float32</type>
+        <definition>float32 b2ContactConstraintPoint::normalMass</definition>
+        <argsstring></argsstring>
+        <name>normalMass</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Contacts/b2ContactSolver.h" line="37" bodyfile="D:/pybox2d/Box2D/Dynamics/Contacts/b2ContactSolver.h" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structb2_contact_constraint_point_1abe10a9321f72eb2c9622f20d8f2e0ed8" prot="public" static="no" mutable="no">
+        <type>float32</type>
+        <definition>float32 b2ContactConstraintPoint::tangentMass</definition>
+        <argsstring></argsstring>
+        <name>tangentMass</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Contacts/b2ContactSolver.h" line="38" bodyfile="D:/pybox2d/Box2D/Dynamics/Contacts/b2ContactSolver.h" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structb2_contact_constraint_point_1aa8c001fe44487ef6dee309d23f850fd0" prot="public" static="no" mutable="no">
+        <type>float32</type>
+        <definition>float32 b2ContactConstraintPoint::velocityBias</definition>
+        <argsstring></argsstring>
+        <name>velocityBias</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Contacts/b2ContactSolver.h" line="39" bodyfile="D:/pybox2d/Box2D/Dynamics/Contacts/b2ContactSolver.h" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1055">
+        <label>b2ContactConstraintPoint</label>
+        <childnode refid="1056" relation="usage">
+          <edgelabel>rA</edgelabel>
+          <edgelabel>rB</edgelabel>
+          <edgelabel>localPoint</edgelabel>
+        </childnode>
+      </node>
+      <node id="1056">
+        <label>b2Vec2</label>
+        <link refid="structb2_vec2"/>
+      </node>
+    </collaborationgraph>
+    <location file="D:/pybox2d/Box2D/Dynamics/Contacts/b2ContactSolver.h" line="31" bodyfile="D:/pybox2d/Box2D/Dynamics/Contacts/b2ContactSolver.h" bodystart="30" bodyend="40"/>
+    <listofallmembers>
+      <member refid="structb2_contact_constraint_point_1a8460bc724d57891c846b58578b784f55" prot="public" virt="non-virtual"><scope>b2ContactConstraintPoint</scope><name>localPoint</name></member>
+      <member refid="structb2_contact_constraint_point_1a1eb892b6763e40b3de9a0875a97f7c33" prot="public" virt="non-virtual"><scope>b2ContactConstraintPoint</scope><name>normalImpulse</name></member>
+      <member refid="structb2_contact_constraint_point_1a88d9e5fb6aa15b2ad818df8ce325a250" prot="public" virt="non-virtual"><scope>b2ContactConstraintPoint</scope><name>normalMass</name></member>
+      <member refid="structb2_contact_constraint_point_1a2a722b40ccd529e6192d34a70a92a2b1" prot="public" virt="non-virtual"><scope>b2ContactConstraintPoint</scope><name>rA</name></member>
+      <member refid="structb2_contact_constraint_point_1aa8345844512f381d93c51368b63773fc" prot="public" virt="non-virtual"><scope>b2ContactConstraintPoint</scope><name>rB</name></member>
+      <member refid="structb2_contact_constraint_point_1a112db0e9338337eb0711b6f7b0e07a5c" prot="public" virt="non-virtual"><scope>b2ContactConstraintPoint</scope><name>tangentImpulse</name></member>
+      <member refid="structb2_contact_constraint_point_1abe10a9321f72eb2c9622f20d8f2e0ed8" prot="public" virt="non-virtual"><scope>b2ContactConstraintPoint</scope><name>tangentMass</name></member>
+      <member refid="structb2_contact_constraint_point_1aa8c001fe44487ef6dee309d23f850fd0" prot="public" virt="non-virtual"><scope>b2ContactConstraintPoint</scope><name>velocityBias</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.7.2">
+  <compounddef id="structb2_clip_vertex" kind="struct" prot="public">
+    <compoundname>b2ClipVertex</compoundname>
+    <includes local="no">b2Collision.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structb2_clip_vertex_1a6c8d8e4c0667755d5295a9c0d91d5b87" prot="public" static="no" mutable="no">
+        <type><ref refid="structb2_vec2" kindref="compound">b2Vec2</ref></type>
+        <definition>b2Vec2 b2ClipVertex::v</definition>
+        <argsstring></argsstring>
+        <name>v</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Collision/b2Collision.h" line="142" bodyfile="D:/pybox2d/Box2D/Collision/b2Collision.h" bodystart="142" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structb2_clip_vertex_1ac0f6d48eafc40a665bc18d4aa821689d" prot="public" static="no" mutable="no">
+        <type><ref refid="unionb2_contact_i_d" kindref="compound">b2ContactID</ref></type>
+        <definition>b2ContactID b2ClipVertex::id</definition>
+        <argsstring></argsstring>
+        <name>id</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Collision/b2Collision.h" line="143" bodyfile="D:/pybox2d/Box2D/Collision/b2Collision.h" bodystart="143" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Used for computing contact manifolds. </para>    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1004">
+        <label>b2ContactFeature</label>
+        <link refid="structb2_contact_feature"/>
+      </node>
+      <node id="1002">
+        <label>b2Vec2</label>
+        <link refid="structb2_vec2"/>
+      </node>
+      <node id="1003">
+        <label>b2ContactID</label>
+        <link refid="unionb2_contact_i_d"/>
+        <childnode refid="1004" relation="usage">
+          <edgelabel>cf</edgelabel>
+        </childnode>
+      </node>
+      <node id="1001">
+        <label>b2ClipVertex</label>
+        <link refid="structb2_clip_vertex"/>
+        <childnode refid="1002" relation="usage">
+          <edgelabel>v</edgelabel>
+        </childnode>
+        <childnode refid="1003" relation="usage">
+          <edgelabel>id</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="D:/pybox2d/Box2D/Collision/b2Collision.h" line="141" bodyfile="D:/pybox2d/Box2D/Collision/b2Collision.h" bodystart="140" bodyend="144"/>
+    <listofallmembers>
+      <member refid="structb2_clip_vertex_1ac0f6d48eafc40a665bc18d4aa821689d" prot="public" virt="non-virtual"><scope>b2ClipVertex</scope><name>id</name></member>
+      <member refid="structb2_clip_vertex_1a6c8d8e4c0667755d5295a9c0d91d5b87" prot="public" virt="non-virtual"><scope>b2ClipVertex</scope><name>v</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

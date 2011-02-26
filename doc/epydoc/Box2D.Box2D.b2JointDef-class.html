@@ -1,0 +1,507 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Box2D.Box2D.b2JointDef</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="Box2D.Box2D-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="http://code.google.com/p/pybox2d">pybox2d</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        Package&nbsp;Box2D ::
+        <a href="Box2D.Box2D-module.html">Module&nbsp;Box2D</a> ::
+        Class&nbsp;b2JointDef
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- ==================== CLASS DESCRIPTION ==================== -->
+<h1 class="epydoc">Class b2JointDef</h1><p class="nomargin-top"><span class="codelink"><a href="Box2D.Box2D-pysrc.html#b2JointDef">source&nbsp;code</a></span></p>
+<center>
+<center>  <map id="uml_class_diagram_for_box2d_bo_37" name="uml_class_diagram_for_box2d_bo_37">
+<area shape="rect" id="node56" href="Box2D.Box2D.b2JointDef-class.html#bodyA" title="b2JointDef_bodyA_get(b2JointDef self) &#45;&gt; b2Body" alt="" coords="691,31,827,49"/>
+<area shape="rect" id="node56" href="Box2D.Box2D.b2JointDef-class.html#bodyB" title="b2JointDef_bodyB_get(b2JointDef self) &#45;&gt; b2Body" alt="" coords="691,49,827,68"/>
+<area shape="rect" id="node56" href="Box2D.Box2D.b2JointDef-class.html#collideConnected" title="b2JointDef_collideConnected_get(b2JointDef self) &#45;&gt; bool" alt="" coords="691,68,827,87"/>
+<area shape="rect" id="node56" href="Box2D.Box2D.b2JointDef-class.html#type" title="b2JointDef_type_get(b2JointDef self) &#45;&gt; b2JointType" alt="" coords="691,87,827,105"/>
+<area shape="rect" id="node56" href="Box2D.Box2D.b2JointDef-class.html#userData" title="__GetUserData(self) &#45;&gt; PyObject" alt="" coords="691,105,827,124"/>
+<area shape="rect" id="node56" href="Box2D.Box2D.b2JointDef-class.html#ClearUserData" title="b2JointDef_ClearUserData(b2JointDef self)" alt="" coords="691,127,827,145"/>
+<area shape="rect" id="node56" href="Box2D.Box2D.b2JointDef-class.html#__del__" title="Box2D.Box2D.b2JointDef.__del__" alt="" coords="691,145,827,164"/>
+<area shape="rect" id="node56" href="Box2D.Box2D.b2JointDef-class.html#__dir__" title="Box2D.Box2D.b2JointDef.__dir__" alt="" coords="691,164,827,183"/>
+<area shape="rect" id="node56" href="Box2D.Box2D.b2JointDef-class.html#__init__" title="x.__init__(...) initializes x; see x.__class__.__doc__ for signature" alt="" coords="691,183,827,201"/>
+<area shape="rect" id="node56" href="Box2D.Box2D.b2JointDef-class.html#__repr__" title="repr(x)" alt="" coords="691,201,827,220"/>
+<area shape="rect" id="node56" href="Box2D.Box2D.b2JointDef-class.html#__swig_destroy__" title="delete_b2JointDef(b2JointDef self)" alt="" coords="691,220,827,239"/>
+<area shape="rect" id="node56" href="Box2D.Box2D.b2JointDef-class.html#to_kwargs" title="Returns a dictionary representing this joint definition" alt="" coords="691,239,827,257"/>
+<area shape="rect" id="node1" href="Box2D.Box2D.b2JointDef-class.html" title="Joint definitions are used to construct joints." alt="" coords="679,6,839,263"/>
+<area shape="rect" id="node2" href="Box2D.Box2D.b2GearJointDef-class.html" title="Gear joint definition." alt="" coords="5,283,125,322"/>
+<area shape="rect" id="node3" href="Box2D.Box2D.b2LineJointDef-class.html" title="Line joint definition." alt="" coords="155,283,272,322"/>
+<area shape="rect" id="node4" href="Box2D.Box2D.b2WeldJointDef-class.html" title="Weld joint definition." alt="" coords="301,283,424,322"/>
+<area shape="rect" id="node5" href="Box2D.Box2D.b2RopeJointDef-class.html" title="Rope joint definition." alt="" coords="453,283,573,322"/>
+<area shape="rect" id="node6" href="Box2D.Box2D.b2DistanceJointDef-class.html" title="Distance joint definition." alt="" coords="603,283,744,322"/>
+<area shape="rect" id="node7" href="Box2D.Box2D.b2RevoluteJointDef-class.html" title="Revolute joint definition." alt="" coords="773,283,915,322"/>
+<area shape="rect" id="node8" href="Box2D.Box2D.b2MouseJointDef-class.html" title="Mouse joint definition." alt="" coords="944,283,1075,322"/>
+<area shape="rect" id="node9" href="Box2D.Box2D.b2PulleyJointDef-class.html" title="Pulley joint definition." alt="" coords="1104,283,1232,322"/>
+<area shape="rect" id="node10" href="Box2D.Box2D.b2PrismaticJointDef-class.html" title="Prismatic joint definition." alt="" coords="1261,283,1408,322"/>
+<area shape="rect" id="node11" href="Box2D.Box2D.b2FrictionJointDef-class.html" title="Friction joint definition." alt="" coords="1437,283,1573,322"/>
+</map>
+  <img src="uml_class_diagram_for_box2d_bo_37.gif" alt='' usemap="#uml_class_diagram_for_box2d_bo_37" ismap="ismap" class="graph-without-title" />
+</center>
+</center>
+<hr />
+<p>Joint definitions are used to construct joints.</p>
+
+<!-- ==================== INSTANCE METHODS ==================== -->
+<a name="section-InstanceMethods"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td align="left" colspan="2" class="table-header">
+    <span class="table-header">Instance Methods</span></td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="ClearUserData"></a><span class="summary-sig-name">ClearUserData</span>(<span class="summary-sig-arg">...</span>)</span><br />
+      b2JointDef_ClearUserData(b2JointDef self)</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="Box2D.Box2D-pysrc.html#b2JointDef.ClearUserData">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="__del__"></a><span class="summary-sig-name">__del__</span>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="Box2D.Box2D-pysrc.html#b2JointDef.__del__">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="__dir__"></a><span class="summary-sig-name">__dir__</span>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="Box2D.Box2D-pysrc.html#_dir_filter">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="Box2D.Box2D.b2JointDef-class.html#__init__" class="summary-sig-name">__init__</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">**kwargs</span>)</span><br />
+      x.__init__(...) initializes x; see x.__class__.__doc__ for signature</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="Box2D.Box2D-pysrc.html#b2JointDef.__init__">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="Box2D.Box2D.b2JointDef-class.html#__repr__" class="summary-sig-name">__repr__</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      repr(x)</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="Box2D.Box2D-pysrc.html#b2JointDef.__repr__">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="__swig_destroy__"></a><span class="summary-sig-name">__swig_destroy__</span>(<span class="summary-sig-arg">...</span>)</span><br />
+      delete_b2JointDef(b2JointDef self)</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="to_kwargs"></a><span class="summary-sig-name">to_kwargs</span>(<span class="summary-sig-arg">self</span>)</span><br />
+      Returns a dictionary representing this joint definition</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="Box2D.Box2D-pysrc.html#b2JointDef.to_kwargs">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code>object</code></b>:
+      <code>__delattr__</code>,
+      <code>__format__</code>,
+      <code>__getattribute__</code>,
+      <code>__hash__</code>,
+      <code>__new__</code>,
+      <code>__reduce__</code>,
+      <code>__reduce_ex__</code>,
+      <code>__setattr__</code>,
+      <code>__sizeof__</code>,
+      <code>__str__</code>,
+      <code>__subclasshook__</code>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== PROPERTIES ==================== -->
+<a name="section-Properties"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td align="left" colspan="2" class="table-header">
+    <span class="table-header">Properties</span></td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="Box2D.Box2D.b2JointDef-class.html#bodyA" class="summary-name">bodyA</a><br />
+      b2JointDef_bodyA_get(b2JointDef self) -&gt; b2Body
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="Box2D.Box2D.b2JointDef-class.html#bodyB" class="summary-name">bodyB</a><br />
+      b2JointDef_bodyB_get(b2JointDef self) -&gt; b2Body
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="Box2D.Box2D.b2JointDef-class.html#collideConnected" class="summary-name">collideConnected</a><br />
+      b2JointDef_collideConnected_get(b2JointDef self) -&gt; bool
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="Box2D.Box2D.b2JointDef-class.html#type" class="summary-name">type</a><br />
+      b2JointDef_type_get(b2JointDef self) -&gt; b2JointType
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="Box2D.Box2D.b2JointDef-class.html#userData" class="summary-name">userData</a><br />
+      __GetUserData(self) -&gt; PyObject
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code>object</code></b>:
+      <code>__class__</code>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== METHOD DETAILS ==================== -->
+<a name="section-MethodDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td align="left" colspan="2" class="table-header">
+    <span class="table-header">Method Details</span></td>
+</tr>
+</table>
+<a name="__init__"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">__init__</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">**kwargs</span>)</span>
+    <br /><em class="fname">(Constructor)</em>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="Box2D.Box2D-pysrc.html#b2JointDef.__init__">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>x.__init__(...) initializes x; see x.__class__.__doc__ for 
+  signature</p>
+  <dl class="fields">
+    <dt>Overrides:
+        object.__init__
+        <dd><em class="note">(inherited documentation)</em></dd>
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="__repr__"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">__repr__</span>(<span class="sig-arg">self</span>)</span>
+    <br /><em class="fname">(Representation operator)</em>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="Box2D.Box2D-pysrc.html#b2JointDef.__repr__">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>repr(x)</p>
+  <dl class="fields">
+    <dt>Overrides:
+        object.__repr__
+        <dd><em class="note">(inherited documentation)</em></dd>
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== PROPERTY DETAILS ==================== -->
+<a name="section-PropertyDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td align="left" colspan="2" class="table-header">
+    <span class="table-header">Property Details</span></td>
+</tr>
+</table>
+<a name="bodyA"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">bodyA</h3>
+  <p>b2JointDef_bodyA_get(b2JointDef self) -&gt; b2Body</p>
+  <dl class="fields">
+    <dt>Get Method:</dt>
+    <dd class="value"><span class="summary-sig"><i>unreachable</i>.b2JointDef_bodyA_get(<span class="summary-sig-arg">...</span>)</span>
+        - b2JointDef_bodyA_get(b2JointDef self) -&gt; b2Body
+    </dd>
+    <dt>Set Method:</dt>
+    <dd class="value"><span class="summary-sig"><i>unreachable</i>.b2JointDef_bodyA_set(<span class="summary-sig-arg">...</span>)</span>
+        - b2JointDef_bodyA_set(b2JointDef self, b2Body bodyA)
+    </dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="bodyB"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">bodyB</h3>
+  <p>b2JointDef_bodyB_get(b2JointDef self) -&gt; b2Body</p>
+  <dl class="fields">
+    <dt>Get Method:</dt>
+    <dd class="value"><span class="summary-sig"><i>unreachable</i>.b2JointDef_bodyB_get(<span class="summary-sig-arg">...</span>)</span>
+        - b2JointDef_bodyB_get(b2JointDef self) -&gt; b2Body
+    </dd>
+    <dt>Set Method:</dt>
+    <dd class="value"><span class="summary-sig"><i>unreachable</i>.b2JointDef_bodyB_set(<span class="summary-sig-arg">...</span>)</span>
+        - b2JointDef_bodyB_set(b2JointDef self, b2Body bodyB)
+    </dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="collideConnected"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">collideConnected</h3>
+  <p>b2JointDef_collideConnected_get(b2JointDef self) -&gt; bool</p>
+  <dl class="fields">
+    <dt>Get Method:</dt>
+    <dd class="value"><span class="summary-sig"><i>unreachable</i>.b2JointDef_collideConnected_get(<span class="summary-sig-arg">...</span>)</span>
+        - b2JointDef_collideConnected_get(b2JointDef self) -&gt; bool
+    </dd>
+    <dt>Set Method:</dt>
+    <dd class="value"><span class="summary-sig"><i>unreachable</i>.b2JointDef_collideConnected_set(<span class="summary-sig-arg">...</span>)</span>
+        - b2JointDef_collideConnected_set(b2JointDef self, bool collideConnected)
+    </dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="type"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">type</h3>
+  <p>b2JointDef_type_get(b2JointDef self) -&gt; b2JointType</p>
+  <dl class="fields">
+    <dt>Get Method:</dt>
+    <dd class="value"><span class="summary-sig"><i>unreachable</i>.b2JointDef_type_get(<span class="summary-sig-arg">...</span>)</span>
+        - b2JointDef_type_get(b2JointDef self) -&gt; b2JointType
+    </dd>
+    <dt>Set Method:</dt>
+    <dd class="value"><span class="summary-sig"><i>unreachable</i>.b2JointDef_type_set(<span class="summary-sig-arg">...</span>)</span>
+        - b2JointDef_type_set(b2JointDef self, b2JointType type)
+    </dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="userData"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">userData</h3>
+  <p>__GetUserData(self) -&gt; PyObject</p>
+  <dl class="fields">
+    <dt>Get Method:</dt>
+    <dd class="value"><span class="summary-sig"><i>unreachable</i>.__GetUserData(<span class="summary-sig-arg">self</span>)</span>
+    </dd>
+    <dt>Set Method:</dt>
+    <dd class="value"><span class="summary-sig"><i>unreachable</i>.__SetUserData(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">*args</span>,
+        <span class="summary-sig-arg">**kwargs</span>)</span>
+        - __SetUserData(self, PyObject data)
+    </dd>
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="Box2D.Box2D-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="http://code.google.com/p/pybox2d">pybox2d</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Thu Nov 18 22:51:45 2010
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

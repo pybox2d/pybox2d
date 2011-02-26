@@ -1,0 +1,8 @@
+dot and box.xcf:
+
+color -170
+
+.down
+.hover +64 brightness
+.normal, grayscale +127 brightness, +48 contrast
+

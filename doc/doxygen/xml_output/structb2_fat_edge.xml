@@ -1,0 +1,129 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.7.2">
+  <compounddef id="structb2_fat_edge" kind="struct" prot="public">
+    <compoundname>b2FatEdge</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structb2_fat_edge_1a19fe7cb2f9ba10b457c848987722d261" prot="public" static="no" mutable="no">
+        <type><ref refid="structb2_vec2" kindref="compound">b2Vec2</ref></type>
+        <definition>b2Vec2 b2FatEdge::v0</definition>
+        <argsstring></argsstring>
+        <name>v0</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Collision/b2CollideEdge.cpp" line="178" bodyfile="D:/pybox2d/Box2D/Collision/b2CollideEdge.cpp" bodystart="178" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structb2_fat_edge_1acb116ab6a79e4896ced92422725a8ec8" prot="public" static="no" mutable="no">
+        <type><ref refid="structb2_vec2" kindref="compound">b2Vec2</ref></type>
+        <definition>b2Vec2 b2FatEdge::v1</definition>
+        <argsstring></argsstring>
+        <name>v1</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Collision/b2CollideEdge.cpp" line="178" bodyfile="D:/pybox2d/Box2D/Collision/b2CollideEdge.cpp" bodystart="178" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structb2_fat_edge_1a040f75089574022221bc7dad399649bd" prot="public" static="no" mutable="no">
+        <type><ref refid="structb2_vec2" kindref="compound">b2Vec2</ref></type>
+        <definition>b2Vec2 b2FatEdge::v2</definition>
+        <argsstring></argsstring>
+        <name>v2</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Collision/b2CollideEdge.cpp" line="178" bodyfile="D:/pybox2d/Box2D/Collision/b2CollideEdge.cpp" bodystart="178" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structb2_fat_edge_1a3b173b34b0157cd4a29797b878fbbf0e" prot="public" static="no" mutable="no">
+        <type><ref refid="structb2_vec2" kindref="compound">b2Vec2</ref></type>
+        <definition>b2Vec2 b2FatEdge::v3</definition>
+        <argsstring></argsstring>
+        <name>v3</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Collision/b2CollideEdge.cpp" line="178" bodyfile="D:/pybox2d/Box2D/Collision/b2CollideEdge.cpp" bodystart="178" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structb2_fat_edge_1aaf230f5c7944b650df75eb1bb3e21508" prot="public" static="no" mutable="no">
+        <type><ref refid="structb2_vec2" kindref="compound">b2Vec2</ref></type>
+        <definition>b2Vec2 b2FatEdge::normal</definition>
+        <argsstring></argsstring>
+        <name>normal</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Collision/b2CollideEdge.cpp" line="179" bodyfile="D:/pybox2d/Box2D/Collision/b2CollideEdge.cpp" bodystart="179" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structb2_fat_edge_1aba62b582ad1434f6311a922749d83823" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool b2FatEdge::hasVertex0</definition>
+        <argsstring></argsstring>
+        <name>hasVertex0</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Collision/b2CollideEdge.cpp" line="180" bodyfile="D:/pybox2d/Box2D/Collision/b2CollideEdge.cpp" bodystart="180" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structb2_fat_edge_1ad15b69e1587048c0ac4a7452b00481d1" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool b2FatEdge::hasVertex3</definition>
+        <argsstring></argsstring>
+        <name>hasVertex3</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Collision/b2CollideEdge.cpp" line="180" bodyfile="D:/pybox2d/Box2D/Collision/b2CollideEdge.cpp" bodystart="180" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1291">
+        <label>b2Vec2</label>
+        <link refid="structb2_vec2"/>
+      </node>
+      <node id="1290">
+        <label>b2FatEdge</label>
+        <childnode refid="1291" relation="usage">
+          <edgelabel>v2</edgelabel>
+          <edgelabel>v3</edgelabel>
+          <edgelabel>normal</edgelabel>
+          <edgelabel>v0</edgelabel>
+          <edgelabel>v1</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="D:/pybox2d/Box2D/Collision/b2CollideEdge.cpp" line="177" bodyfile="D:/pybox2d/Box2D/Collision/b2CollideEdge.cpp" bodystart="176" bodyend="181"/>
+    <listofallmembers>
+      <member refid="structb2_fat_edge_1aba62b582ad1434f6311a922749d83823" prot="public" virt="non-virtual"><scope>b2FatEdge</scope><name>hasVertex0</name></member>
+      <member refid="structb2_fat_edge_1ad15b69e1587048c0ac4a7452b00481d1" prot="public" virt="non-virtual"><scope>b2FatEdge</scope><name>hasVertex3</name></member>
+      <member refid="structb2_fat_edge_1aaf230f5c7944b650df75eb1bb3e21508" prot="public" virt="non-virtual"><scope>b2FatEdge</scope><name>normal</name></member>
+      <member refid="structb2_fat_edge_1a19fe7cb2f9ba10b457c848987722d261" prot="public" virt="non-virtual"><scope>b2FatEdge</scope><name>v0</name></member>
+      <member refid="structb2_fat_edge_1acb116ab6a79e4896ced92422725a8ec8" prot="public" virt="non-virtual"><scope>b2FatEdge</scope><name>v1</name></member>
+      <member refid="structb2_fat_edge_1a040f75089574022221bc7dad399649bd" prot="public" virt="non-virtual"><scope>b2FatEdge</scope><name>v2</name></member>
+      <member refid="structb2_fat_edge_1a3b173b34b0157cd4a29797b878fbbf0e" prot="public" virt="non-virtual"><scope>b2FatEdge</scope><name>v3</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

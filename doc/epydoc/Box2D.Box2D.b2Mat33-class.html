@@ -1,0 +1,557 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Box2D.Box2D.b2Mat33</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="Box2D.Box2D-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="http://code.google.com/p/pybox2d">pybox2d</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        Package&nbsp;Box2D ::
+        <a href="Box2D.Box2D-module.html">Module&nbsp;Box2D</a> ::
+        Class&nbsp;b2Mat33
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- ==================== CLASS DESCRIPTION ==================== -->
+<h1 class="epydoc">Class b2Mat33</h1><p class="nomargin-top"><span class="codelink"><a href="Box2D.Box2D-pysrc.html#b2Mat33">source&nbsp;code</a></span></p>
+<center>
+<center>  <map id="uml_class_diagram_for_box2d_bo_46" name="uml_class_diagram_for_box2d_bo_46">
+<area shape="rect" id="node78" href="Box2D.Box2D.b2Mat33-class.html#col1" title="b2Mat33_col1_get(b2Mat33 self) &#45;&gt; b2Vec3" alt="" coords="17,31,137,49"/>
+<area shape="rect" id="node78" href="Box2D.Box2D.b2Mat33-class.html#col2" title="b2Mat33_col2_get(b2Mat33 self) &#45;&gt; b2Vec3" alt="" coords="17,49,137,68"/>
+<area shape="rect" id="node78" href="Box2D.Box2D.b2Mat33-class.html#col3" title="b2Mat33_col3_get(b2Mat33 self) &#45;&gt; b2Vec3" alt="" coords="17,68,137,87"/>
+<area shape="rect" id="node78" href="Box2D.Box2D.b2Mat33-class.html#SetZero" title="b2Mat33_SetZero(b2Mat33 self)" alt="" coords="17,89,137,108"/>
+<area shape="rect" id="node78" href="Box2D.Box2D.b2Mat33-class.html#Solve22" title="b2Mat33_Solve22(b2Mat33 self, b2Vec2 b) &#45;&gt; b2Vec2" alt="" coords="17,108,137,127"/>
+<area shape="rect" id="node78" href="Box2D.Box2D.b2Mat33-class.html#Solve33" title="b2Mat33_Solve33(b2Mat33 self, b2Vec3 b) &#45;&gt; b2Vec3" alt="" coords="17,127,137,145"/>
+<area shape="rect" id="node78" href="Box2D.Box2D.b2Mat33-class.html#__add__" title="b2Mat33___add__(b2Mat33 self, b2Mat33 other) &#45;&gt; b2Mat33" alt="" coords="17,145,137,164"/>
+<area shape="rect" id="node78" href="Box2D.Box2D.b2Mat33-class.html#__dir__" title="Box2D.Box2D.b2Mat33.__dir__" alt="" coords="17,164,137,183"/>
+<area shape="rect" id="node78" href="Box2D.Box2D.b2Mat33-class.html#__init__" title="__init__(self, b2Vec3 c1, b2Vec3 c2, b2Vec3 c3) &#45;&gt; b2Mat33" alt="" coords="17,183,137,201"/>
+<area shape="rect" id="node78" href="Box2D.Box2D.b2Mat33-class.html#__mul__" title="b2Mat33___mul__(b2Mat33 self, b2Vec3 v) &#45;&gt; b2Vec3" alt="" coords="17,201,137,220"/>
+<area shape="rect" id="node78" href="Box2D.Box2D.b2Mat33-class.html#__repr__" title="repr(x)" alt="" coords="17,220,137,239"/>
+<area shape="rect" id="node78" href="Box2D.Box2D.b2Mat33-class.html#__sub__" title="b2Mat33___sub__(b2Mat33 self, b2Mat33 other) &#45;&gt; b2Mat33" alt="" coords="17,239,137,257"/>
+<area shape="rect" id="node78" href="Box2D.Box2D.b2Mat33-class.html#__swig_destroy__" title="delete_b2Mat33(b2Mat33 self)" alt="" coords="17,257,137,276"/>
+<area shape="rect" id="node1" href="Box2D.Box2D.b2Mat33-class.html" title="A 3&#45;by&#45;3 matrix." alt="" coords="5,6,149,282"/>
+</map>
+  <img src="uml_class_diagram_for_box2d_bo_46.gif" alt='' usemap="#uml_class_diagram_for_box2d_bo_46" ismap="ismap" class="graph-without-title" />
+</center>
+</center>
+<hr />
+<p>A 3-by-3 matrix. Stored in column-major order.</p>
+
+<!-- ==================== INSTANCE METHODS ==================== -->
+<a name="section-InstanceMethods"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td align="left" colspan="2" class="table-header">
+    <span class="table-header">Instance Methods</span></td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="Box2D.Box2D.b2Mat33-class.html#SetZero" class="summary-sig-name">SetZero</a>(<span class="summary-sig-arg">...</span>)</span><br />
+      b2Mat33_SetZero(b2Mat33 self)</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="Box2D.Box2D-pysrc.html#b2Mat33.SetZero">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="Box2D.Box2D.b2Mat33-class.html#Solve22" class="summary-sig-name">Solve22</a>(<span class="summary-sig-arg">...</span>)</span><br />
+      b2Mat33_Solve22(b2Mat33 self, b2Vec2 b) -&gt; b2Vec2</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="Box2D.Box2D-pysrc.html#b2Mat33.Solve22">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="Box2D.Box2D.b2Mat33-class.html#Solve33" class="summary-sig-name">Solve33</a>(<span class="summary-sig-arg">...</span>)</span><br />
+      b2Mat33_Solve33(b2Mat33 self, b2Vec3 b) -&gt; b2Vec3</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="Box2D.Box2D-pysrc.html#b2Mat33.Solve33">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="__add__"></a><span class="summary-sig-name">__add__</span>(<span class="summary-sig-arg">...</span>)</span><br />
+      b2Mat33___add__(b2Mat33 self, b2Mat33 other) -&gt; b2Mat33</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="Box2D.Box2D-pysrc.html#b2Mat33.__add__">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="__dir__"></a><span class="summary-sig-name">__dir__</span>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="Box2D.Box2D-pysrc.html#_dir_filter">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">b2Mat33</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="Box2D.Box2D.b2Mat33-class.html#__init__" class="summary-sig-name">__init__</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      __init__(self, b2Vec3 c1, b2Vec3 c2, b2Vec3 c3) -&gt; b2Mat33</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="Box2D.Box2D-pysrc.html#b2Mat33.__init__">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="__mul__"></a><span class="summary-sig-name">__mul__</span>(<span class="summary-sig-arg">...</span>)</span><br />
+      b2Mat33___mul__(b2Mat33 self, b2Vec3 v) -&gt; b2Vec3</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="Box2D.Box2D-pysrc.html#b2Mat33.__mul__">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="Box2D.Box2D.b2Mat33-class.html#__repr__" class="summary-sig-name">__repr__</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      repr(x)</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="Box2D.Box2D-pysrc.html#b2Mat33.__repr__">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="__sub__"></a><span class="summary-sig-name">__sub__</span>(<span class="summary-sig-arg">...</span>)</span><br />
+      b2Mat33___sub__(b2Mat33 self, b2Mat33 other) -&gt; b2Mat33</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="Box2D.Box2D-pysrc.html#b2Mat33.__sub__">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="__swig_destroy__"></a><span class="summary-sig-name">__swig_destroy__</span>(<span class="summary-sig-arg">...</span>)</span><br />
+      delete_b2Mat33(b2Mat33 self)</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code>object</code></b>:
+      <code>__delattr__</code>,
+      <code>__format__</code>,
+      <code>__getattribute__</code>,
+      <code>__hash__</code>,
+      <code>__new__</code>,
+      <code>__reduce__</code>,
+      <code>__reduce_ex__</code>,
+      <code>__setattr__</code>,
+      <code>__sizeof__</code>,
+      <code>__str__</code>,
+      <code>__subclasshook__</code>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== PROPERTIES ==================== -->
+<a name="section-Properties"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td align="left" colspan="2" class="table-header">
+    <span class="table-header">Properties</span></td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="Box2D.Box2D.b2Mat33-class.html#col1" class="summary-name">col1</a><br />
+      b2Mat33_col1_get(b2Mat33 self) -&gt; b2Vec3
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="Box2D.Box2D.b2Mat33-class.html#col2" class="summary-name">col2</a><br />
+      b2Mat33_col2_get(b2Mat33 self) -&gt; b2Vec3
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="Box2D.Box2D.b2Mat33-class.html#col3" class="summary-name">col3</a><br />
+      b2Mat33_col3_get(b2Mat33 self) -&gt; b2Vec3
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code>object</code></b>:
+      <code>__class__</code>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== METHOD DETAILS ==================== -->
+<a name="section-MethodDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td align="left" colspan="2" class="table-header">
+    <span class="table-header">Method Details</span></td>
+</tr>
+</table>
+<a name="SetZero"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">SetZero</span>(<span class="sig-arg">...</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="Box2D.Box2D-pysrc.html#b2Mat33.SetZero">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>b2Mat33_SetZero(b2Mat33 self)</p>
+  <p>Set this matrix to all zeros.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="Solve22"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">Solve22</span>(<span class="sig-arg">...</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="Box2D.Box2D-pysrc.html#b2Mat33.Solve22">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>b2Mat33_Solve22(b2Mat33 self, b2Vec2 b) -&gt; b2Vec2</p>
+  <p>Solve A * x = b, where b is a column vector. This is more efficient 
+  than computing the inverse in one-shot cases. Solve only the upper 2-by-2
+  matrix equation. Solve A * x = b, where b is a column vector. This is 
+  more efficient than computing the inverse in one-shot cases.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="Solve33"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">Solve33</span>(<span class="sig-arg">...</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="Box2D.Box2D-pysrc.html#b2Mat33.Solve33">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>b2Mat33_Solve33(b2Mat33 self, b2Vec3 b) -&gt; b2Vec3</p>
+  <p>Solve A * x = b, where b is a column vector. This is more efficient 
+  than computing the inverse in one-shot cases.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="__init__"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">__init__</span>(<span class="sig-arg">self</span>)</span>
+    <br /><em class="fname">(Constructor)</em>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="Box2D.Box2D-pysrc.html#b2Mat33.__init__">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>__init__(self, b2Vec3 c1, b2Vec3 c2, b2Vec3 c3) -&gt; b2Mat33</p>
+  <p>Construct this matrix using columns.</p>
+  <dl class="fields">
+    <dt>Returns: b2Mat33</dt>
+    <dt>Overrides:
+        object.__init__
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="__repr__"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">__repr__</span>(<span class="sig-arg">self</span>)</span>
+    <br /><em class="fname">(Representation operator)</em>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="Box2D.Box2D-pysrc.html#b2Mat33.__repr__">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>repr(x)</p>
+  <dl class="fields">
+    <dt>Overrides:
+        object.__repr__
+        <dd><em class="note">(inherited documentation)</em></dd>
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== PROPERTY DETAILS ==================== -->
+<a name="section-PropertyDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td align="left" colspan="2" class="table-header">
+    <span class="table-header">Property Details</span></td>
+</tr>
+</table>
+<a name="col1"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">col1</h3>
+  <p>b2Mat33_col1_get(b2Mat33 self) -&gt; b2Vec3</p>
+  <dl class="fields">
+    <dt>Get Method:</dt>
+    <dd class="value"><span class="summary-sig"><i>unreachable</i>.b2Mat33_col1_get(<span class="summary-sig-arg">...</span>)</span>
+        - b2Mat33_col1_get(b2Mat33 self) -&gt; b2Vec3
+    </dd>
+    <dt>Set Method:</dt>
+    <dd class="value"><span class="summary-sig"><i>unreachable</i>.b2Mat33_col1_set(<span class="summary-sig-arg">...</span>)</span>
+        - b2Mat33_col1_set(b2Mat33 self, b2Vec3 col1)
+    </dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="col2"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">col2</h3>
+  <p>b2Mat33_col2_get(b2Mat33 self) -&gt; b2Vec3</p>
+  <dl class="fields">
+    <dt>Get Method:</dt>
+    <dd class="value"><span class="summary-sig"><i>unreachable</i>.b2Mat33_col2_get(<span class="summary-sig-arg">...</span>)</span>
+        - b2Mat33_col2_get(b2Mat33 self) -&gt; b2Vec3
+    </dd>
+    <dt>Set Method:</dt>
+    <dd class="value"><span class="summary-sig"><i>unreachable</i>.b2Mat33_col2_set(<span class="summary-sig-arg">...</span>)</span>
+        - b2Mat33_col2_set(b2Mat33 self, b2Vec3 col2)
+    </dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="col3"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">col3</h3>
+  <p>b2Mat33_col3_get(b2Mat33 self) -&gt; b2Vec3</p>
+  <dl class="fields">
+    <dt>Get Method:</dt>
+    <dd class="value"><span class="summary-sig"><i>unreachable</i>.b2Mat33_col3_get(<span class="summary-sig-arg">...</span>)</span>
+        - b2Mat33_col3_get(b2Mat33 self) -&gt; b2Vec3
+    </dd>
+    <dt>Set Method:</dt>
+    <dd class="value"><span class="summary-sig"><i>unreachable</i>.b2Mat33_col3_set(<span class="summary-sig-arg">...</span>)</span>
+        - b2Mat33_col3_set(b2Mat33 self, b2Vec3 col3)
+    </dd>
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="Box2D.Box2D-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="http://code.google.com/p/pybox2d">pybox2d</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Thu Nov 18 22:51:45 2010
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

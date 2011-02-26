@@ -1,0 +1,94 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.7.2">
+  <compounddef id="structb2_world_manifold" kind="struct" prot="public">
+    <compoundname>b2WorldManifold</compoundname>
+    <includes local="no">b2Collision.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structb2_world_manifold_1acf8de61b73d9784d16f7d0e824ce44bf" prot="public" static="no" mutable="no">
+        <type><ref refid="structb2_vec2" kindref="compound">b2Vec2</ref></type>
+        <definition>b2Vec2 b2WorldManifold::normal</definition>
+        <argsstring></argsstring>
+        <name>normal</name>
+        <briefdescription>
+<para>world vector pointing from A to B </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Collision/b2Collision.h" line="121" bodyfile="D:/pybox2d/Box2D/Collision/b2Collision.h" bodystart="121" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structb2_world_manifold_1af15e84b90f102c0ac433be2d63604021" prot="public" static="no" mutable="no">
+        <type><ref refid="structb2_vec2" kindref="compound">b2Vec2</ref></type>
+        <definition>b2Vec2 b2WorldManifold::points[b2_maxManifoldPoints]</definition>
+        <argsstring>[b2_maxManifoldPoints]</argsstring>
+        <name>points</name>
+        <briefdescription>
+<para>world contact point (point of intersection) </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Collision/b2Collision.h" line="122" bodyfile="D:/pybox2d/Box2D/Collision/b2Collision.h" bodystart="122" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structb2_world_manifold_1a896dd7e7d4d6f6a5bc69e19fbd6871bd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void b2WorldManifold::Initialize</definition>
+        <argsstring>(const b2Manifold *manifold, const b2Transform &amp;xfA, float32 radiusA, const b2Transform &amp;xfB, float32 radiusB)</argsstring>
+        <name>Initialize</name>
+        <param>
+          <type>const <ref refid="structb2_manifold" kindref="compound">b2Manifold</ref> *</type>
+          <declname>manifold</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structb2_transform" kindref="compound">b2Transform</ref> &amp;</type>
+          <declname>xfA</declname>
+        </param>
+        <param>
+          <type>float32</type>
+          <declname>radiusA</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structb2_transform" kindref="compound">b2Transform</ref> &amp;</type>
+          <declname>xfB</declname>
+        </param>
+        <param>
+          <type>float32</type>
+          <declname>radiusB</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Evaluate the manifold with supplied transforms. This assumes modest motion from the original state. This does not change the point count, impulses, etc. The radii must come from the shapes that generated the manifold. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Collision/b2Collision.h" line="119" bodyfile="D:/pybox2d/Box2D/Collision/b2Collision.cpp" bodystart="22" bodyend="83"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>This is used to compute the current state of a contact manifold. </para>    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="2179">
+        <label>b2WorldManifold</label>
+        <link refid="structb2_world_manifold"/>
+        <childnode refid="2180" relation="usage">
+          <edgelabel>points</edgelabel>
+          <edgelabel>normal</edgelabel>
+        </childnode>
+      </node>
+      <node id="2180">
+        <label>b2Vec2</label>
+        <link refid="structb2_vec2"/>
+      </node>
+    </collaborationgraph>
+    <location file="D:/pybox2d/Box2D/Collision/b2Collision.h" line="112" bodyfile="D:/pybox2d/Box2D/Collision/b2Collision.h" bodystart="111" bodyend="123"/>
+    <listofallmembers>
+      <member refid="structb2_world_manifold_1a896dd7e7d4d6f6a5bc69e19fbd6871bd" prot="public" virt="non-virtual"><scope>b2WorldManifold</scope><name>Initialize</name></member>
+      <member refid="structb2_world_manifold_1acf8de61b73d9784d16f7d0e824ce44bf" prot="public" virt="non-virtual"><scope>b2WorldManifold</scope><name>normal</name></member>
+      <member refid="structb2_world_manifold_1af15e84b90f102c0ac433be2d63604021" prot="public" virt="non-virtual"><scope>b2WorldManifold</scope><name>points</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

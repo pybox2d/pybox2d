@@ -1,0 +1,747 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.7.2">
+  <compounddef id="classb2_mouse_joint" kind="class" prot="public">
+    <compoundname>b2MouseJoint</compoundname>
+    <basecompoundref refid="classb2_joint" prot="public" virt="non-virtual">b2Joint</basecompoundref>
+    <includes local="no">b2MouseJoint.h</includes>
+      <sectiondef kind="friend">
+      <memberdef kind="friend" id="classb2_mouse_joint_1a54ade8ed3d794298108d7f4c4e4793fa" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>friend class</type>
+        <definition>friend class b2Joint</definition>
+        <argsstring></argsstring>
+        <name>b2Joint</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2MouseJoint.h" line="93" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2MouseJoint.h" bodystart="93" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classb2_mouse_joint_1aadc4cdef698369038496d9a8825df8c6" prot="protected" static="no" mutable="no">
+        <type><ref refid="structb2_vec2" kindref="compound">b2Vec2</ref></type>
+        <definition>b2Vec2 b2MouseJoint::m_localAnchor</definition>
+        <argsstring></argsstring>
+        <name>m_localAnchor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2MouseJoint.h" line="101" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2MouseJoint.h" bodystart="101" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_mouse_joint_1a0d7eeb4142be491a815cac6f07e2cfe7" prot="protected" static="no" mutable="no">
+        <type><ref refid="structb2_vec2" kindref="compound">b2Vec2</ref></type>
+        <definition>b2Vec2 b2MouseJoint::m_target</definition>
+        <argsstring></argsstring>
+        <name>m_target</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2MouseJoint.h" line="102" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2MouseJoint.h" bodystart="102" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_mouse_joint_1ae35319e2e64dbf3c48dd20fe8c031ebd" prot="protected" static="no" mutable="no">
+        <type><ref refid="structb2_vec2" kindref="compound">b2Vec2</ref></type>
+        <definition>b2Vec2 b2MouseJoint::m_impulse</definition>
+        <argsstring></argsstring>
+        <name>m_impulse</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2MouseJoint.h" line="103" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2MouseJoint.h" bodystart="103" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_mouse_joint_1a628b7a7a2cd2b50313daea30baf47c4e" prot="protected" static="no" mutable="no">
+        <type><ref refid="structb2_mat22" kindref="compound">b2Mat22</ref></type>
+        <definition>b2Mat22 b2MouseJoint::m_mass</definition>
+        <argsstring></argsstring>
+        <name>m_mass</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2MouseJoint.h" line="105" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2MouseJoint.h" bodystart="105" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_mouse_joint_1a7ea02e17cdde70717e84bf44614275fb" prot="protected" static="no" mutable="no">
+        <type><ref refid="structb2_vec2" kindref="compound">b2Vec2</ref></type>
+        <definition>b2Vec2 b2MouseJoint::m_C</definition>
+        <argsstring></argsstring>
+        <name>m_C</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2MouseJoint.h" line="106" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2MouseJoint.h" bodystart="106" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_mouse_joint_1a4659e3fee0beaeac207a013095748bc1" prot="protected" static="no" mutable="no">
+        <type>float32</type>
+        <definition>float32 b2MouseJoint::m_maxForce</definition>
+        <argsstring></argsstring>
+        <name>m_maxForce</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2MouseJoint.h" line="107" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2MouseJoint.h" bodystart="107" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_mouse_joint_1a17a95ce26e366e288ca19e65abf6fd6b" prot="protected" static="no" mutable="no">
+        <type>float32</type>
+        <definition>float32 b2MouseJoint::m_frequencyHz</definition>
+        <argsstring></argsstring>
+        <name>m_frequencyHz</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2MouseJoint.h" line="108" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2MouseJoint.h" bodystart="108" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_mouse_joint_1afdd1fd651a936ce0afc85decd67b7e1c" prot="protected" static="no" mutable="no">
+        <type>float32</type>
+        <definition>float32 b2MouseJoint::m_dampingRatio</definition>
+        <argsstring></argsstring>
+        <name>m_dampingRatio</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2MouseJoint.h" line="109" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2MouseJoint.h" bodystart="109" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_mouse_joint_1afb358e67d625526316bc2f53a1e3cae0" prot="protected" static="no" mutable="no">
+        <type>float32</type>
+        <definition>float32 b2MouseJoint::m_beta</definition>
+        <argsstring></argsstring>
+        <name>m_beta</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2MouseJoint.h" line="110" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2MouseJoint.h" bodystart="110" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_mouse_joint_1a63257ae0faad5c8ff00c92a4eaac50e0" prot="protected" static="no" mutable="no">
+        <type>float32</type>
+        <definition>float32 b2MouseJoint::m_gamma</definition>
+        <argsstring></argsstring>
+        <name>m_gamma</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2MouseJoint.h" line="111" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2MouseJoint.h" bodystart="111" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classb2_mouse_joint_1a9db1c131fde2d11e61c6ccee9c28219b" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type><ref refid="structb2_vec2" kindref="compound">b2Vec2</ref></type>
+        <definition>b2Vec2 b2MouseJoint::GetAnchorA</definition>
+        <argsstring>() const </argsstring>
+        <name>GetAnchorA</name>
+        <reimplements refid="classb2_joint_1abe46ca3aad5db73909a9b5a7b2117447">GetAnchorA</reimplements>
+        <briefdescription>
+<para>Implements <ref refid="classb2_joint" kindref="compound">b2Joint</ref>. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2MouseJoint.h" line="65" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2MouseJoint.cpp" bodystart="179" bodyend="182"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_mouse_joint_1a0db991ec36238105eb481f75e9b6161a" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type><ref refid="structb2_vec2" kindref="compound">b2Vec2</ref></type>
+        <definition>b2Vec2 b2MouseJoint::GetAnchorB</definition>
+        <argsstring>() const </argsstring>
+        <name>GetAnchorB</name>
+        <reimplements refid="classb2_joint_1a88e947c65d4ea26fe539f02a8cb7f7a9">GetAnchorB</reimplements>
+        <briefdescription>
+<para>Implements <ref refid="classb2_joint" kindref="compound">b2Joint</ref>. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2MouseJoint.h" line="68" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2MouseJoint.cpp" bodystart="184" bodyend="187"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_mouse_joint_1ab8e07dbed9d24c1c046d1ede60930c52" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type><ref refid="structb2_vec2" kindref="compound">b2Vec2</ref></type>
+        <definition>b2Vec2 b2MouseJoint::GetReactionForce</definition>
+        <argsstring>(float32 inv_dt) const </argsstring>
+        <name>GetReactionForce</name>
+        <reimplements refid="classb2_joint_1a7e0eddefb9b69ad050b8ef6425838a74">GetReactionForce</reimplements>
+        <param>
+          <type>float32</type>
+          <declname>inv_dt</declname>
+        </param>
+        <briefdescription>
+<para>Implements <ref refid="classb2_joint" kindref="compound">b2Joint</ref>. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2MouseJoint.h" line="71" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2MouseJoint.cpp" bodystart="189" bodyend="192"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_mouse_joint_1a68efbc617aa7f0a41578e0aea988d662" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>float32</type>
+        <definition>float32 b2MouseJoint::GetReactionTorque</definition>
+        <argsstring>(float32 inv_dt) const </argsstring>
+        <name>GetReactionTorque</name>
+        <reimplements refid="classb2_joint_1ae355e441c2aa842777dc04e24f15ced0">GetReactionTorque</reimplements>
+        <param>
+          <type>float32</type>
+          <declname>inv_dt</declname>
+        </param>
+        <briefdescription>
+<para>Implements <ref refid="classb2_joint" kindref="compound">b2Joint</ref>. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2MouseJoint.h" line="74" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2MouseJoint.cpp" bodystart="194" bodyend="197"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_mouse_joint_1a96f34c1c990407eddbadf07ae359b1f3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void b2MouseJoint::SetTarget</definition>
+        <argsstring>(const b2Vec2 &amp;target)</argsstring>
+        <name>SetTarget</name>
+        <param>
+          <type>const <ref refid="structb2_vec2" kindref="compound">b2Vec2</ref> &amp;</type>
+          <declname>target</declname>
+        </param>
+        <briefdescription>
+<para>Use this to update the target point. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2MouseJoint.h" line="77" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2MouseJoint.cpp" bodystart="52" bodyend="59"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_mouse_joint_1a27e4d3c28920660ef974c7df6c6e53c0" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const <ref refid="structb2_vec2" kindref="compound">b2Vec2</ref> &amp;</type>
+        <definition>const b2Vec2 &amp; b2MouseJoint::GetTarget</definition>
+        <argsstring>() const </argsstring>
+        <name>GetTarget</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2MouseJoint.h" line="78" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2MouseJoint.cpp" bodystart="61" bodyend="64"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_mouse_joint_1a4beba6ea0827960fac2474563591c03a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void b2MouseJoint::SetMaxForce</definition>
+        <argsstring>(float32 force)</argsstring>
+        <name>SetMaxForce</name>
+        <param>
+          <type>float32</type>
+          <declname>force</declname>
+        </param>
+        <briefdescription>
+<para>Set/get the maximum force in Newtons. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2MouseJoint.h" line="81" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2MouseJoint.cpp" bodystart="66" bodyend="69"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_mouse_joint_1a30bf839765e997a424dd273f3f2d2027" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>float32</type>
+        <definition>float32 b2MouseJoint::GetMaxForce</definition>
+        <argsstring>() const </argsstring>
+        <name>GetMaxForce</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2MouseJoint.h" line="82" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2MouseJoint.cpp" bodystart="71" bodyend="74"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_mouse_joint_1a8b37706535923637ca280c5a0467b14d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void b2MouseJoint::SetFrequency</definition>
+        <argsstring>(float32 hz)</argsstring>
+        <name>SetFrequency</name>
+        <param>
+          <type>float32</type>
+          <declname>hz</declname>
+        </param>
+        <briefdescription>
+<para>Set/get the frequency in Hertz. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2MouseJoint.h" line="85" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2MouseJoint.cpp" bodystart="76" bodyend="79"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_mouse_joint_1abd5a3eb593de976cd0cbf6c122bf50b2" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>float32</type>
+        <definition>float32 b2MouseJoint::GetFrequency</definition>
+        <argsstring>() const </argsstring>
+        <name>GetFrequency</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2MouseJoint.h" line="86" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2MouseJoint.cpp" bodystart="81" bodyend="84"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_mouse_joint_1a648c8f3ecb82f4887c0eefcfe48cbd37" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void b2MouseJoint::SetDampingRatio</definition>
+        <argsstring>(float32 ratio)</argsstring>
+        <name>SetDampingRatio</name>
+        <param>
+          <type>float32</type>
+          <declname>ratio</declname>
+        </param>
+        <briefdescription>
+<para>Set/get the damping ratio (dimensionless). </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2MouseJoint.h" line="89" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2MouseJoint.cpp" bodystart="86" bodyend="89"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_mouse_joint_1a1eca2ecc7a362abe48237440d4854b55" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>float32</type>
+        <definition>float32 b2MouseJoint::GetDampingRatio</definition>
+        <argsstring>() const </argsstring>
+        <name>GetDampingRatio</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2MouseJoint.h" line="90" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2MouseJoint.cpp" bodystart="91" bodyend="94"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classb2_mouse_joint_1ad147d7989d884952c3389f7e5e3acf68" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>b2MouseJoint::b2MouseJoint</definition>
+        <argsstring>(const b2MouseJointDef *def)</argsstring>
+        <name>b2MouseJoint</name>
+        <param>
+          <type>const <ref refid="structb2_mouse_joint_def" kindref="compound">b2MouseJointDef</ref> *</type>
+          <declname>def</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2MouseJoint.h" line="95" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2MouseJoint.cpp" bodystart="31" bodyend="50"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_mouse_joint_1aa4d8f881395010c5d7c8f0e3fe3e44d0" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void b2MouseJoint::InitVelocityConstraints</definition>
+        <argsstring>(const b2TimeStep &amp;step)</argsstring>
+        <name>InitVelocityConstraints</name>
+        <reimplements refid="classb2_joint_1aa28338c9b814ac08dac1cd3464f95c8e">InitVelocityConstraints</reimplements>
+        <param>
+          <type>const <ref refid="structb2_time_step" kindref="compound">b2TimeStep</ref> &amp;</type>
+          <declname>step</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2MouseJoint.h" line="97" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2MouseJoint.cpp" bodystart="96" bodyend="154"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_mouse_joint_1a58f28ae031a4075f4a61fd86dbea46ac" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void b2MouseJoint::SolveVelocityConstraints</definition>
+        <argsstring>(const b2TimeStep &amp;step)</argsstring>
+        <name>SolveVelocityConstraints</name>
+        <reimplements refid="classb2_joint_1a34c667efb15706f9d3413336d8af93cb">SolveVelocityConstraints</reimplements>
+        <param>
+          <type>const <ref refid="structb2_time_step" kindref="compound">b2TimeStep</ref> &amp;</type>
+          <declname>step</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2MouseJoint.h" line="98" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2MouseJoint.cpp" bodystart="156" bodyend="177"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_mouse_joint_1a2e14534a2cc58b4652ef95ccaff28332" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>bool b2MouseJoint::SolvePositionConstraints</definition>
+        <argsstring>(float32 baumgarte)</argsstring>
+        <name>SolvePositionConstraints</name>
+        <reimplements refid="classb2_joint_1aab43f57e4a2d352c93cc1f4bd0639f90">SolvePositionConstraints</reimplements>
+        <param>
+          <type>float32</type>
+          <declname>baumgarte</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2MouseJoint.h" line="99" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2MouseJoint.h" bodystart="99" bodyend="99"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>A mouse joint is used to make a point on a body track a specified world point. This a soft constraint with a maximum force. This allows the constraint to stretch and without applying huge forces. NOTE: this joint is not documented in the manual because it was developed to be used in the testbed. If you want to learn how to use the mouse joint, look at the testbed. </para>    </detaileddescription>
+    <inheritancegraph>
+      <node id="1699">
+        <label>b2Joint</label>
+        <link refid="classb2_joint"/>
+      </node>
+      <node id="1698">
+        <label>b2MouseJoint</label>
+        <link refid="classb2_mouse_joint"/>
+        <childnode refid="1699" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1709">
+        <label>b2Contact</label>
+        <link refid="classb2_contact"/>
+        <childnode refid="1709" relation="usage">
+          <edgelabel>m_prev</edgelabel>
+          <edgelabel>m_next</edgelabel>
+        </childnode>
+        <childnode refid="1710" relation="usage">
+          <edgelabel>m_manifold</edgelabel>
+        </childnode>
+        <childnode refid="1714" relation="usage">
+          <edgelabel>m_fixtureA</edgelabel>
+          <edgelabel>m_fixtureB</edgelabel>
+        </childnode>
+        <childnode refid="1708" relation="usage">
+          <edgelabel>m_nodeA</edgelabel>
+          <edgelabel>m_nodeB</edgelabel>
+        </childnode>
+      </node>
+      <node id="1702">
+        <label>b2Body</label>
+        <link refid="classb2_body"/>
+        <childnode refid="1702" relation="usage">
+          <edgelabel>m_prev</edgelabel>
+          <edgelabel>m_next</edgelabel>
+        </childnode>
+        <childnode refid="1703" relation="usage">
+          <edgelabel>m_jointList</edgelabel>
+        </childnode>
+        <childnode refid="1704" relation="usage">
+          <edgelabel>m_linearVelocity</edgelabel>
+          <edgelabel>m_force</edgelabel>
+        </childnode>
+        <childnode refid="1705" relation="usage">
+          <edgelabel>m_sweep</edgelabel>
+        </childnode>
+        <childnode refid="1706" relation="usage">
+          <edgelabel>m_xf</edgelabel>
+        </childnode>
+        <childnode refid="1708" relation="usage">
+          <edgelabel>m_contactList</edgelabel>
+        </childnode>
+        <childnode refid="1714" relation="usage">
+          <edgelabel>m_fixtureList</edgelabel>
+        </childnode>
+        <childnode refid="1719" relation="usage">
+          <edgelabel>m_world</edgelabel>
+        </childnode>
+      </node>
+      <node id="1713">
+        <label>b2ContactFeature</label>
+        <link refid="structb2_contact_feature"/>
+      </node>
+      <node id="1708">
+        <label>b2ContactEdge</label>
+        <link refid="structb2_contact_edge"/>
+        <childnode refid="1702" relation="usage">
+          <edgelabel>other</edgelabel>
+        </childnode>
+        <childnode refid="1709" relation="usage">
+          <edgelabel>contact</edgelabel>
+        </childnode>
+        <childnode refid="1708" relation="usage">
+          <edgelabel>prev</edgelabel>
+          <edgelabel>next</edgelabel>
+        </childnode>
+      </node>
+      <node id="1710">
+        <label>b2Manifold</label>
+        <link refid="structb2_manifold"/>
+        <childnode refid="1704" relation="usage">
+          <edgelabel>localPoint</edgelabel>
+          <edgelabel>localNormal</edgelabel>
+        </childnode>
+        <childnode refid="1711" relation="usage">
+          <edgelabel>points</edgelabel>
+        </childnode>
+      </node>
+      <node id="1721">
+        <label>b2BlockAllocator</label>
+        <link refid="classb2_block_allocator"/>
+      </node>
+      <node id="1722">
+        <label>b2DestructionListener</label>
+        <link refid="classb2_destruction_listener"/>
+      </node>
+      <node id="1719">
+        <label>b2World</label>
+        <link refid="classb2_world"/>
+        <childnode refid="1702" relation="usage">
+          <edgelabel>m_bodyList</edgelabel>
+        </childnode>
+        <childnode refid="1720" relation="usage">
+          <edgelabel>m_debugDraw</edgelabel>
+        </childnode>
+        <childnode refid="1704" relation="usage">
+          <edgelabel>m_gravity</edgelabel>
+        </childnode>
+        <childnode refid="1721" relation="usage">
+          <edgelabel>m_blockAllocator</edgelabel>
+        </childnode>
+        <childnode refid="1722" relation="usage">
+          <edgelabel>m_destructionListener</edgelabel>
+        </childnode>
+        <childnode refid="1701" relation="usage">
+          <edgelabel>m_jointList</edgelabel>
+        </childnode>
+      </node>
+      <node id="1715">
+        <label>b2FixtureProxy</label>
+        <link refid="structb2_fixture_proxy"/>
+        <childnode refid="1716" relation="usage">
+          <edgelabel>aabb</edgelabel>
+        </childnode>
+        <childnode refid="1714" relation="usage">
+          <edgelabel>fixture</edgelabel>
+        </childnode>
+      </node>
+      <node id="1707">
+        <label>b2Mat22</label>
+        <link refid="structb2_mat22"/>
+        <childnode refid="1704" relation="usage">
+          <edgelabel>col1</edgelabel>
+          <edgelabel>col2</edgelabel>
+        </childnode>
+      </node>
+      <node id="1705">
+        <label>b2Sweep</label>
+        <link refid="structb2_sweep"/>
+        <childnode refid="1704" relation="usage">
+          <edgelabel>c0</edgelabel>
+          <edgelabel>localCenter</edgelabel>
+          <edgelabel>c</edgelabel>
+        </childnode>
+      </node>
+      <node id="1706">
+        <label>b2Transform</label>
+        <link refid="structb2_transform"/>
+        <childnode refid="1704" relation="usage">
+          <edgelabel>position</edgelabel>
+        </childnode>
+        <childnode refid="1707" relation="usage">
+          <edgelabel>R</edgelabel>
+        </childnode>
+      </node>
+      <node id="1720">
+        <label>b2DebugDraw</label>
+        <link refid="classb2_debug_draw"/>
+      </node>
+      <node id="1718">
+        <label>b2Filter</label>
+        <link refid="structb2_filter"/>
+      </node>
+      <node id="1703">
+        <label>b2JointEdge</label>
+        <link refid="structb2_joint_edge"/>
+        <childnode refid="1702" relation="usage">
+          <edgelabel>other</edgelabel>
+        </childnode>
+        <childnode refid="1703" relation="usage">
+          <edgelabel>prev</edgelabel>
+          <edgelabel>next</edgelabel>
+        </childnode>
+        <childnode refid="1701" relation="usage">
+          <edgelabel>joint</edgelabel>
+        </childnode>
+      </node>
+      <node id="1701">
+        <label>b2Joint</label>
+        <link refid="classb2_joint"/>
+        <childnode refid="1702" relation="usage">
+          <edgelabel>m_bodyA</edgelabel>
+          <edgelabel>m_bodyB</edgelabel>
+        </childnode>
+        <childnode refid="1704" relation="usage">
+          <edgelabel>m_localCenterA</edgelabel>
+          <edgelabel>m_localCenterB</edgelabel>
+        </childnode>
+        <childnode refid="1703" relation="usage">
+          <edgelabel>m_edgeB</edgelabel>
+          <edgelabel>m_edgeA</edgelabel>
+        </childnode>
+        <childnode refid="1701" relation="usage">
+          <edgelabel>m_prev</edgelabel>
+          <edgelabel>m_next</edgelabel>
+        </childnode>
+      </node>
+      <node id="1700">
+        <label>b2MouseJoint</label>
+        <link refid="classb2_mouse_joint"/>
+        <childnode refid="1701" relation="public-inheritance">
+        </childnode>
+        <childnode refid="1704" relation="usage">
+          <edgelabel>m_target</edgelabel>
+          <edgelabel>m_C</edgelabel>
+          <edgelabel>m_impulse</edgelabel>
+          <edgelabel>m_localAnchor</edgelabel>
+        </childnode>
+        <childnode refid="1707" relation="usage">
+          <edgelabel>m_mass</edgelabel>
+        </childnode>
+      </node>
+      <node id="1704">
+        <label>b2Vec2</label>
+        <link refid="structb2_vec2"/>
+      </node>
+      <node id="1712">
+        <label>b2ContactID</label>
+        <link refid="unionb2_contact_i_d"/>
+        <childnode refid="1713" relation="usage">
+          <edgelabel>cf</edgelabel>
+        </childnode>
+      </node>
+      <node id="1717">
+        <label>b2Shape</label>
+        <link refid="classb2_shape"/>
+      </node>
+      <node id="1716">
+        <label>b2AABB</label>
+        <link refid="structb2_a_a_b_b"/>
+        <childnode refid="1704" relation="usage">
+          <edgelabel>lowerBound</edgelabel>
+          <edgelabel>upperBound</edgelabel>
+        </childnode>
+      </node>
+      <node id="1714">
+        <label>b2Fixture</label>
+        <link refid="classb2_fixture"/>
+        <childnode refid="1702" relation="usage">
+          <edgelabel>m_body</edgelabel>
+        </childnode>
+        <childnode refid="1715" relation="usage">
+          <edgelabel>m_proxies</edgelabel>
+        </childnode>
+        <childnode refid="1717" relation="usage">
+          <edgelabel>m_shape</edgelabel>
+        </childnode>
+        <childnode refid="1718" relation="usage">
+          <edgelabel>m_filter</edgelabel>
+        </childnode>
+        <childnode refid="1714" relation="usage">
+          <edgelabel>m_next</edgelabel>
+        </childnode>
+      </node>
+      <node id="1711">
+        <label>b2ManifoldPoint</label>
+        <link refid="structb2_manifold_point"/>
+        <childnode refid="1704" relation="usage">
+          <edgelabel>localPoint</edgelabel>
+        </childnode>
+        <childnode refid="1712" relation="usage">
+          <edgelabel>id</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2MouseJoint.h" line="61" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2MouseJoint.h" bodystart="60" bodyend="112"/>
+    <listofallmembers>
+      <member refid="classb2_joint_1a010ab52de250e5fe30a45d642f46405b" prot="protected" virt="non-virtual"><scope>b2MouseJoint</scope><name>b2Body</name></member>
+      <member refid="classb2_joint_1afc682950b8c4f251804fc1938663098b" prot="protected" virt="non-virtual"><scope>b2MouseJoint</scope><name>b2Island</name></member>
+      <member refid="classb2_mouse_joint_1a54ade8ed3d794298108d7f4c4e4793fa" prot="protected" virt="non-virtual"><scope>b2MouseJoint</scope><name>b2Joint</name></member>
+      <member refid="classb2_joint_1a8d6cce91546335fe95325d5e29c06a19" prot="protected" virt="non-virtual" ambiguityscope="b2Joint::"><scope>b2MouseJoint</scope><name>b2Joint</name></member>
+      <member refid="classb2_mouse_joint_1ad147d7989d884952c3389f7e5e3acf68" prot="protected" virt="non-virtual"><scope>b2MouseJoint</scope><name>b2MouseJoint</name></member>
+      <member refid="classb2_joint_1a4bd536c5a7c0587913765bbc2693ceea" prot="protected" virt="non-virtual"><scope>b2MouseJoint</scope><name>b2World</name></member>
+      <member refid="classb2_joint_1a2e500c93107d0bf6b0a21654528faeab" prot="protected" virt="non-virtual"><scope>b2MouseJoint</scope><name>Create</name></member>
+      <member refid="classb2_joint_1acf52946b6672d77f268b849ccb09e003" prot="protected" virt="non-virtual"><scope>b2MouseJoint</scope><name>Destroy</name></member>
+      <member refid="classb2_mouse_joint_1a9db1c131fde2d11e61c6ccee9c28219b" prot="public" virt="virtual"><scope>b2MouseJoint</scope><name>GetAnchorA</name></member>
+      <member refid="classb2_mouse_joint_1a0db991ec36238105eb481f75e9b6161a" prot="public" virt="virtual"><scope>b2MouseJoint</scope><name>GetAnchorB</name></member>
+      <member refid="classb2_joint_1a2ed5eca3dbdce48665c14452b280613f" prot="public" virt="non-virtual"><scope>b2MouseJoint</scope><name>GetBodyA</name></member>
+      <member refid="classb2_joint_1a700b3d4c87f34f456151b9598e4641a0" prot="public" virt="non-virtual"><scope>b2MouseJoint</scope><name>GetBodyB</name></member>
+      <member refid="classb2_mouse_joint_1a1eca2ecc7a362abe48237440d4854b55" prot="public" virt="non-virtual"><scope>b2MouseJoint</scope><name>GetDampingRatio</name></member>
+      <member refid="classb2_mouse_joint_1abd5a3eb593de976cd0cbf6c122bf50b2" prot="public" virt="non-virtual"><scope>b2MouseJoint</scope><name>GetFrequency</name></member>
+      <member refid="classb2_mouse_joint_1a30bf839765e997a424dd273f3f2d2027" prot="public" virt="non-virtual"><scope>b2MouseJoint</scope><name>GetMaxForce</name></member>
+      <member refid="classb2_joint_1a1a0e2137b631010750c728cb4e276e5d" prot="public" virt="non-virtual"><scope>b2MouseJoint</scope><name>GetNext</name></member>
+      <member refid="classb2_joint_1a1ac83edb39806085608c9d549dd98550" prot="public" virt="non-virtual"><scope>b2MouseJoint</scope><name>GetNext</name></member>
+      <member refid="classb2_mouse_joint_1ab8e07dbed9d24c1c046d1ede60930c52" prot="public" virt="virtual"><scope>b2MouseJoint</scope><name>GetReactionForce</name></member>
+      <member refid="classb2_mouse_joint_1a68efbc617aa7f0a41578e0aea988d662" prot="public" virt="virtual"><scope>b2MouseJoint</scope><name>GetReactionTorque</name></member>
+      <member refid="classb2_mouse_joint_1a27e4d3c28920660ef974c7df6c6e53c0" prot="public" virt="non-virtual"><scope>b2MouseJoint</scope><name>GetTarget</name></member>
+      <member refid="classb2_joint_1a37a2ca3f0d41c6903d2cc73757f02be2" prot="public" virt="non-virtual"><scope>b2MouseJoint</scope><name>GetType</name></member>
+      <member refid="classb2_joint_1a505ab02c234f1cc20aa3375f3ab7b587" prot="public" virt="non-virtual"><scope>b2MouseJoint</scope><name>GetUserData</name></member>
+      <member refid="classb2_mouse_joint_1aa4d8f881395010c5d7c8f0e3fe3e44d0" prot="protected" virt="virtual"><scope>b2MouseJoint</scope><name>InitVelocityConstraints</name></member>
+      <member refid="classb2_joint_1a825d3a6abb32014f31fd622f2bfc0363" prot="public" virt="non-virtual"><scope>b2MouseJoint</scope><name>IsActive</name></member>
+      <member refid="classb2_mouse_joint_1afb358e67d625526316bc2f53a1e3cae0" prot="protected" virt="non-virtual"><scope>b2MouseJoint</scope><name>m_beta</name></member>
+      <member refid="classb2_joint_1abaebb784a51abb7d66de302ba07a4467" prot="protected" virt="non-virtual"><scope>b2MouseJoint</scope><name>m_bodyA</name></member>
+      <member refid="classb2_joint_1a1fd77fcbcb8a8a3729c7dc5b790d7200" prot="protected" virt="non-virtual"><scope>b2MouseJoint</scope><name>m_bodyB</name></member>
+      <member refid="classb2_mouse_joint_1a7ea02e17cdde70717e84bf44614275fb" prot="protected" virt="non-virtual"><scope>b2MouseJoint</scope><name>m_C</name></member>
+      <member refid="classb2_joint_1ac1a93c14c8dd666bb487db6c98daad33" prot="protected" virt="non-virtual"><scope>b2MouseJoint</scope><name>m_collideConnected</name></member>
+      <member refid="classb2_mouse_joint_1afdd1fd651a936ce0afc85decd67b7e1c" prot="protected" virt="non-virtual"><scope>b2MouseJoint</scope><name>m_dampingRatio</name></member>
+      <member refid="classb2_joint_1a406ea423db1fe6484408d73df647f7b2" prot="protected" virt="non-virtual"><scope>b2MouseJoint</scope><name>m_edgeA</name></member>
+      <member refid="classb2_joint_1a1041219dcd353ea815ebd78f904af547" prot="protected" virt="non-virtual"><scope>b2MouseJoint</scope><name>m_edgeB</name></member>
+      <member refid="classb2_mouse_joint_1a17a95ce26e366e288ca19e65abf6fd6b" prot="protected" virt="non-virtual"><scope>b2MouseJoint</scope><name>m_frequencyHz</name></member>
+      <member refid="classb2_mouse_joint_1a63257ae0faad5c8ff00c92a4eaac50e0" prot="protected" virt="non-virtual"><scope>b2MouseJoint</scope><name>m_gamma</name></member>
+      <member refid="classb2_mouse_joint_1ae35319e2e64dbf3c48dd20fe8c031ebd" prot="protected" virt="non-virtual"><scope>b2MouseJoint</scope><name>m_impulse</name></member>
+      <member refid="classb2_joint_1a346a821b249dc84799f450cf936f7c3c" prot="protected" virt="non-virtual"><scope>b2MouseJoint</scope><name>m_invIA</name></member>
+      <member refid="classb2_joint_1a8f40b92ac3e39a96c717595dbb44d15b" prot="protected" virt="non-virtual"><scope>b2MouseJoint</scope><name>m_invIB</name></member>
+      <member refid="classb2_joint_1ad7c87d31bd96e0c783105bfed10dc8a2" prot="protected" virt="non-virtual"><scope>b2MouseJoint</scope><name>m_invMassA</name></member>
+      <member refid="classb2_joint_1a6cb90224d27cff346fba95794cd140c5" prot="protected" virt="non-virtual"><scope>b2MouseJoint</scope><name>m_invMassB</name></member>
+      <member refid="classb2_joint_1a777e45428d9a74d626f4afa1b45e1975" prot="protected" virt="non-virtual"><scope>b2MouseJoint</scope><name>m_islandFlag</name></member>
+      <member refid="classb2_mouse_joint_1aadc4cdef698369038496d9a8825df8c6" prot="protected" virt="non-virtual"><scope>b2MouseJoint</scope><name>m_localAnchor</name></member>
+      <member refid="classb2_joint_1ae3fc5cef379493406f69a198062d79cf" prot="protected" virt="non-virtual"><scope>b2MouseJoint</scope><name>m_localCenterA</name></member>
+      <member refid="classb2_joint_1afe3a98a639dc6ac686a74701f7a34c5c" prot="protected" virt="non-virtual"><scope>b2MouseJoint</scope><name>m_localCenterB</name></member>
+      <member refid="classb2_mouse_joint_1a628b7a7a2cd2b50313daea30baf47c4e" prot="protected" virt="non-virtual"><scope>b2MouseJoint</scope><name>m_mass</name></member>
+      <member refid="classb2_mouse_joint_1a4659e3fee0beaeac207a013095748bc1" prot="protected" virt="non-virtual"><scope>b2MouseJoint</scope><name>m_maxForce</name></member>
+      <member refid="classb2_joint_1aad16778ba9c51cebb767ff7df6ed80b5" prot="protected" virt="non-virtual"><scope>b2MouseJoint</scope><name>m_next</name></member>
+      <member refid="classb2_joint_1a940166e7b5d87cec1ad0603e0388854a" prot="protected" virt="non-virtual"><scope>b2MouseJoint</scope><name>m_prev</name></member>
+      <member refid="classb2_mouse_joint_1a0d7eeb4142be491a815cac6f07e2cfe7" prot="protected" virt="non-virtual"><scope>b2MouseJoint</scope><name>m_target</name></member>
+      <member refid="classb2_joint_1a3fd3f2532d108d81df81427815210a59" prot="protected" virt="non-virtual"><scope>b2MouseJoint</scope><name>m_type</name></member>
+      <member refid="classb2_joint_1ae8a31b6d5d6e76ccf7c975b2b3ae7366" prot="protected" virt="non-virtual"><scope>b2MouseJoint</scope><name>m_userData</name></member>
+      <member refid="classb2_mouse_joint_1a648c8f3ecb82f4887c0eefcfe48cbd37" prot="public" virt="non-virtual"><scope>b2MouseJoint</scope><name>SetDampingRatio</name></member>
+      <member refid="classb2_mouse_joint_1a8b37706535923637ca280c5a0467b14d" prot="public" virt="non-virtual"><scope>b2MouseJoint</scope><name>SetFrequency</name></member>
+      <member refid="classb2_mouse_joint_1a4beba6ea0827960fac2474563591c03a" prot="public" virt="non-virtual"><scope>b2MouseJoint</scope><name>SetMaxForce</name></member>
+      <member refid="classb2_mouse_joint_1a96f34c1c990407eddbadf07ae359b1f3" prot="public" virt="non-virtual"><scope>b2MouseJoint</scope><name>SetTarget</name></member>
+      <member refid="classb2_joint_1a492f2d02496437572aaec6013ebdc1c8" prot="public" virt="non-virtual"><scope>b2MouseJoint</scope><name>SetUserData</name></member>
+      <member refid="classb2_mouse_joint_1a2e14534a2cc58b4652ef95ccaff28332" prot="protected" virt="virtual"><scope>b2MouseJoint</scope><name>SolvePositionConstraints</name></member>
+      <member refid="classb2_mouse_joint_1a58f28ae031a4075f4a61fd86dbea46ac" prot="protected" virt="virtual"><scope>b2MouseJoint</scope><name>SolveVelocityConstraints</name></member>
+      <member refid="classb2_joint_1ab44cde7b81c3e77540400e0da90d6ceb" prot="protected" virt="virtual"><scope>b2MouseJoint</scope><name>~b2Joint</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

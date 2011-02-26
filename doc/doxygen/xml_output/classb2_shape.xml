@@ -1,0 +1,427 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.7.2">
+  <compounddef id="classb2_shape" kind="class" prot="public">
+    <compoundname>b2Shape</compoundname>
+    <derivedcompoundref refid="classb2_circle_shape" prot="public" virt="non-virtual">b2CircleShape</derivedcompoundref>
+    <derivedcompoundref refid="classb2_edge_shape" prot="public" virt="non-virtual">b2EdgeShape</derivedcompoundref>
+    <derivedcompoundref refid="classb2_loop_shape" prot="public" virt="non-virtual">b2LoopShape</derivedcompoundref>
+    <derivedcompoundref refid="classb2_polygon_shape" prot="public" virt="non-virtual">b2PolygonShape</derivedcompoundref>
+    <includes local="no">b2Shape.h</includes>
+      <sectiondef kind="public-type">
+      <memberdef kind="enum" id="classb2_shape_1a4c1f3a9ad6b3150bb90ad9018ca4b1e0" prot="public" static="no">
+        <name>Type</name>
+        <enumvalue id="classb2_shape_1a4c1f3a9ad6b3150bb90ad9018ca4b1e0a03349b9398be41a31b0c35834d61090d" prot="public">
+          <name>e_unknown</name>
+          <initializer> -1</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classb2_shape_1a4c1f3a9ad6b3150bb90ad9018ca4b1e0a09ab906cedd1b94ebb6fedb29dace063" prot="public">
+          <name>e_circle</name>
+          <initializer> 0</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classb2_shape_1a4c1f3a9ad6b3150bb90ad9018ca4b1e0a707a159824d438c541a452382c0daced" prot="public">
+          <name>e_edge</name>
+          <initializer> 1</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classb2_shape_1a4c1f3a9ad6b3150bb90ad9018ca4b1e0a08afe1f3d5964062239783063a3a671f" prot="public">
+          <name>e_polygon</name>
+          <initializer> 2</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classb2_shape_1a4c1f3a9ad6b3150bb90ad9018ca4b1e0a7a0ad86926552dd390934a9685477f05" prot="public">
+          <name>e_loop</name>
+          <initializer> 3</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classb2_shape_1a4c1f3a9ad6b3150bb90ad9018ca4b1e0aad7c674a33e8ca4ee9b717f226553596" prot="public">
+          <name>e_typeCount</name>
+          <initializer> 4</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Collision/Shapes/b2Shape.h" line="47" bodyfile="D:/pybox2d/Box2D/Collision/Shapes/b2Shape.h" bodystart="46" bodyend="54"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classb2_shape_1adb051791133b24f53c6e9a565a7b7bbb" prot="public" static="no" mutable="no">
+        <type>Type</type>
+        <definition>Type b2Shape::m_type</definition>
+        <argsstring></argsstring>
+        <name>m_type</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Collision/Shapes/b2Shape.h" line="94" bodyfile="D:/pybox2d/Box2D/Collision/Shapes/b2Shape.h" bodystart="94" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_shape_1a5de7a9bd3f9e72ef7025a65c304aaf1a" prot="public" static="no" mutable="no">
+        <type>float32</type>
+        <definition>float32 b2Shape::m_radius</definition>
+        <argsstring></argsstring>
+        <name>m_radius</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Collision/Shapes/b2Shape.h" line="95" bodyfile="D:/pybox2d/Box2D/Collision/Shapes/b2Shape.h" bodystart="95" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classb2_shape_1aa13d55c6c5cf0e11e0a1061cb43611c5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>b2Shape::b2Shape</definition>
+        <argsstring>()</argsstring>
+        <name>b2Shape</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Collision/Shapes/b2Shape.h" line="56" bodyfile="D:/pybox2d/Box2D/Collision/Shapes/b2Shape.h" bodystart="56" bodyend="56"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_shape_1a7c14c5dcf134d22e0b5790518632d05a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual b2Shape::~b2Shape</definition>
+        <argsstring>()</argsstring>
+        <name>~b2Shape</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Collision/Shapes/b2Shape.h" line="57" bodyfile="D:/pybox2d/Box2D/Collision/Shapes/b2Shape.h" bodystart="57" bodyend="57"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_shape_1a4716243454bb9cf7c7ee1d9cb23ae634" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type><ref refid="classb2_shape" kindref="compound">b2Shape</ref> *</type>
+        <definition>virtual b2Shape* b2Shape::Clone</definition>
+        <argsstring>(b2BlockAllocator *allocator) const =0</argsstring>
+        <name>Clone</name>
+        <reimplementedby refid="classb2_polygon_shape_1a38cf6a915a85691746465c9dbfc5aeb6">Clone</reimplementedby>
+        <reimplementedby refid="classb2_loop_shape_1ab9a2476a92138a3b5af8c9fd59fa80f7">Clone</reimplementedby>
+        <reimplementedby refid="classb2_edge_shape_1a70ce8532bab35dce4367d3717ae024b3">Clone</reimplementedby>
+        <reimplementedby refid="classb2_circle_shape_1a895ba8656a146d26a0c531e9dbea2e14">Clone</reimplementedby>
+        <param>
+          <type><ref refid="classb2_block_allocator" kindref="compound">b2BlockAllocator</ref> *</type>
+          <declname>allocator</declname>
+        </param>
+        <briefdescription>
+<para>Clone the concrete shape using the provided allocator. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Collision/Shapes/b2Shape.h" line="60"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_shape_1a3b6093f16c18f8a877519a29674abca0" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>Type</type>
+        <definition>b2Shape::Type b2Shape::GetType</definition>
+        <argsstring>() const </argsstring>
+        <name>GetType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Get the type of this shape. You can use this to down cast to the concrete shape. <simplesect kind="return"><para>the shape type. </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Collision/Shapes/b2Shape.h" line="64" bodyfile="D:/pybox2d/Box2D/Collision/Shapes/b2Shape.h" bodystart="98" bodyend="101"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_shape_1a05a3c445017d96df9238ceefe6ce37ab" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>int32</type>
+        <definition>virtual int32 b2Shape::GetChildCount</definition>
+        <argsstring>() const =0</argsstring>
+        <name>GetChildCount</name>
+        <reimplementedby refid="classb2_polygon_shape_1ae844375297d19744e01a37b397a5baba">GetChildCount</reimplementedby>
+        <reimplementedby refid="classb2_loop_shape_1a0f4cc5a2d60b9fbf34828d7d278a2b82">GetChildCount</reimplementedby>
+        <reimplementedby refid="classb2_edge_shape_1a8c15a5a5aa8e7dc69826be17aaa82293">GetChildCount</reimplementedby>
+        <reimplementedby refid="classb2_circle_shape_1a64b58799675edc9a6debc09c0d6ddce4">GetChildCount</reimplementedby>
+        <briefdescription>
+<para>Get the number of child primitives. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Collision/Shapes/b2Shape.h" line="67"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_shape_1a6ac968e403e2d93e8ae46d728a2e50fa" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>bool</type>
+        <definition>virtual bool b2Shape::TestPoint</definition>
+        <argsstring>(const b2Transform &amp;xf, const b2Vec2 &amp;p) const =0</argsstring>
+        <name>TestPoint</name>
+        <reimplementedby refid="classb2_polygon_shape_1a69ccc2f671394b3cc1a00a16ef36b12b">TestPoint</reimplementedby>
+        <reimplementedby refid="classb2_loop_shape_1a59aa72ec73022f4343284af459df7947">TestPoint</reimplementedby>
+        <reimplementedby refid="classb2_edge_shape_1a28a977f82e4bc1cf60a3143ba5636c22">TestPoint</reimplementedby>
+        <reimplementedby refid="classb2_circle_shape_1a77171941cd1633c337fed1efb366bebb">TestPoint</reimplementedby>
+        <param>
+          <type>const <ref refid="structb2_transform" kindref="compound">b2Transform</ref> &amp;</type>
+          <declname>xf</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structb2_vec2" kindref="compound">b2Vec2</ref> &amp;</type>
+          <declname>p</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Test a point for containment in this shape. This only works for convex shapes. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>xf</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the shape world transform. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>p</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>a point in world coordinates. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Collision/Shapes/b2Shape.h" line="72"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_shape_1aee53a926f4fe64cd03693f6211ef6335" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>bool</type>
+        <definition>virtual bool b2Shape::RayCast</definition>
+        <argsstring>(b2RayCastOutput *output, const b2RayCastInput &amp;input, const b2Transform &amp;transform, int32 childIndex) const =0</argsstring>
+        <name>RayCast</name>
+        <reimplementedby refid="classb2_polygon_shape_1ac13bded10d09c341f64aaa2750dda6b5">RayCast</reimplementedby>
+        <reimplementedby refid="classb2_loop_shape_1a0060e62049e0700f04317f63f36aaed9">RayCast</reimplementedby>
+        <reimplementedby refid="classb2_edge_shape_1aefbae6b3840f486b22ffecee7d0d15fd">RayCast</reimplementedby>
+        <reimplementedby refid="classb2_circle_shape_1a76175079381193917026fdf3702190fa">RayCast</reimplementedby>
+        <param>
+          <type><ref refid="structb2_ray_cast_output" kindref="compound">b2RayCastOutput</ref> *</type>
+          <declname>output</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structb2_ray_cast_input" kindref="compound">b2RayCastInput</ref> &amp;</type>
+          <declname>input</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structb2_transform" kindref="compound">b2Transform</ref> &amp;</type>
+          <declname>transform</declname>
+        </param>
+        <param>
+          <type>int32</type>
+          <declname>childIndex</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Cast a ray against a child shape. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>output</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the ray-cast results. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>input</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the ray-cast input parameters. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>transform</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the transform to be applied to the shape. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>childIndex</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the child shape index </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Collision/Shapes/b2Shape.h" line="80"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_shape_1a88e9807fab0c8ca9a98d8926e50a1411" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void b2Shape::ComputeAABB</definition>
+        <argsstring>(b2AABB *aabb, const b2Transform &amp;xf, int32 childIndex) const =0</argsstring>
+        <name>ComputeAABB</name>
+        <reimplementedby refid="classb2_polygon_shape_1a00e225b0321bf6bb231a554036ffdf23">ComputeAABB</reimplementedby>
+        <reimplementedby refid="classb2_loop_shape_1a159a4cbb26619fc69b84a759a5cedd27">ComputeAABB</reimplementedby>
+        <reimplementedby refid="classb2_edge_shape_1a30f601c611eb549f9f657eee89d82f9f">ComputeAABB</reimplementedby>
+        <reimplementedby refid="classb2_circle_shape_1aa6889a5af85aa1e272547fd0008eb64a">ComputeAABB</reimplementedby>
+        <param>
+          <type><ref refid="structb2_a_a_b_b" kindref="compound">b2AABB</ref> *</type>
+          <declname>aabb</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structb2_transform" kindref="compound">b2Transform</ref> &amp;</type>
+          <declname>xf</declname>
+        </param>
+        <param>
+          <type>int32</type>
+          <declname>childIndex</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Given a transform, compute the associated axis aligned bounding box for a child shape. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>aabb</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>returns the axis aligned box. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>xf</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the world transform of the shape. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>childIndex</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the child shape </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Collision/Shapes/b2Shape.h" line="86"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_shape_1a61b365526241b47f124789b0309cac69" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void b2Shape::ComputeMass</definition>
+        <argsstring>(b2MassData *massData, float32 density) const =0</argsstring>
+        <name>ComputeMass</name>
+        <reimplementedby refid="classb2_polygon_shape_1ad86c4c2a83a7122599462da83bf35389">ComputeMass</reimplementedby>
+        <reimplementedby refid="classb2_loop_shape_1a594eeb6cf245f75d82d200f7c260a809">ComputeMass</reimplementedby>
+        <reimplementedby refid="classb2_edge_shape_1a3a305707a07ca3dffa6f2eaff3735dff">ComputeMass</reimplementedby>
+        <reimplementedby refid="classb2_circle_shape_1a335edea2ef84789e102dde41ca889828">ComputeMass</reimplementedby>
+        <param>
+          <type><ref refid="structb2_mass_data" kindref="compound">b2MassData</ref> *</type>
+          <declname>massData</declname>
+        </param>
+        <param>
+          <type>float32</type>
+          <declname>density</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Compute the mass properties of this shape using its dimensions and density. The inertia tensor is computed about the local origin. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>massData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>returns the mass data for this shape. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>density</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the density in kilograms per meter squared. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Collision/Shapes/b2Shape.h" line="92"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>A shape is used for collision detection. You can create a shape however you like. Shapes used for simulation in <ref refid="classb2_world" kindref="compound">b2World</ref> are created automatically when a <ref refid="classb2_fixture" kindref="compound">b2Fixture</ref> is created. Shapes may encapsulate a one or more child shapes. </para>    </detaileddescription>
+    <inheritancegraph>
+      <node id="2064">
+        <label>b2PolygonShape</label>
+        <link refid="classb2_polygon_shape"/>
+        <childnode refid="2060" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2061">
+        <label>b2CircleShape</label>
+        <link refid="classb2_circle_shape"/>
+        <childnode refid="2060" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2063">
+        <label>b2LoopShape</label>
+        <link refid="classb2_loop_shape"/>
+        <childnode refid="2060" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2060">
+        <label>b2Shape</label>
+        <link refid="classb2_shape"/>
+      </node>
+      <node id="2062">
+        <label>b2EdgeShape</label>
+        <link refid="classb2_edge_shape"/>
+        <childnode refid="2060" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <location file="D:/pybox2d/Box2D/Collision/Shapes/b2Shape.h" line="43" bodyfile="D:/pybox2d/Box2D/Collision/Shapes/b2Shape.h" bodystart="42" bodyend="96"/>
+    <listofallmembers>
+      <member refid="classb2_shape_1aa13d55c6c5cf0e11e0a1061cb43611c5" prot="public" virt="non-virtual"><scope>b2Shape</scope><name>b2Shape</name></member>
+      <member refid="classb2_shape_1a4716243454bb9cf7c7ee1d9cb23ae634" prot="public" virt="pure-virtual"><scope>b2Shape</scope><name>Clone</name></member>
+      <member refid="classb2_shape_1a88e9807fab0c8ca9a98d8926e50a1411" prot="public" virt="pure-virtual"><scope>b2Shape</scope><name>ComputeAABB</name></member>
+      <member refid="classb2_shape_1a61b365526241b47f124789b0309cac69" prot="public" virt="pure-virtual"><scope>b2Shape</scope><name>ComputeMass</name></member>
+      <member refid="classb2_shape_1a4c1f3a9ad6b3150bb90ad9018ca4b1e0a09ab906cedd1b94ebb6fedb29dace063" prot="public" virt="non-virtual"><scope>b2Shape</scope><name>e_circle</name></member>
+      <member refid="classb2_shape_1a4c1f3a9ad6b3150bb90ad9018ca4b1e0a707a159824d438c541a452382c0daced" prot="public" virt="non-virtual"><scope>b2Shape</scope><name>e_edge</name></member>
+      <member refid="classb2_shape_1a4c1f3a9ad6b3150bb90ad9018ca4b1e0a7a0ad86926552dd390934a9685477f05" prot="public" virt="non-virtual"><scope>b2Shape</scope><name>e_loop</name></member>
+      <member refid="classb2_shape_1a4c1f3a9ad6b3150bb90ad9018ca4b1e0a08afe1f3d5964062239783063a3a671f" prot="public" virt="non-virtual"><scope>b2Shape</scope><name>e_polygon</name></member>
+      <member refid="classb2_shape_1a4c1f3a9ad6b3150bb90ad9018ca4b1e0aad7c674a33e8ca4ee9b717f226553596" prot="public" virt="non-virtual"><scope>b2Shape</scope><name>e_typeCount</name></member>
+      <member refid="classb2_shape_1a4c1f3a9ad6b3150bb90ad9018ca4b1e0a03349b9398be41a31b0c35834d61090d" prot="public" virt="non-virtual"><scope>b2Shape</scope><name>e_unknown</name></member>
+      <member refid="classb2_shape_1a05a3c445017d96df9238ceefe6ce37ab" prot="public" virt="pure-virtual"><scope>b2Shape</scope><name>GetChildCount</name></member>
+      <member refid="classb2_shape_1a3b6093f16c18f8a877519a29674abca0" prot="public" virt="non-virtual"><scope>b2Shape</scope><name>GetType</name></member>
+      <member refid="classb2_shape_1a5de7a9bd3f9e72ef7025a65c304aaf1a" prot="public" virt="non-virtual"><scope>b2Shape</scope><name>m_radius</name></member>
+      <member refid="classb2_shape_1adb051791133b24f53c6e9a565a7b7bbb" prot="public" virt="non-virtual"><scope>b2Shape</scope><name>m_type</name></member>
+      <member refid="classb2_shape_1aee53a926f4fe64cd03693f6211ef6335" prot="public" virt="pure-virtual"><scope>b2Shape</scope><name>RayCast</name></member>
+      <member refid="classb2_shape_1a6ac968e403e2d93e8ae46d728a2e50fa" prot="public" virt="pure-virtual"><scope>b2Shape</scope><name>TestPoint</name></member>
+      <member refid="classb2_shape_1a4c1f3a9ad6b3150bb90ad9018ca4b1e0" prot="public" virt="non-virtual"><scope>b2Shape</scope><name>Type</name></member>
+      <member refid="classb2_shape_1a7c14c5dcf134d22e0b5790518632d05a" prot="public" virt="virtual"><scope>b2Shape</scope><name>~b2Shape</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

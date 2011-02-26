@@ -1,0 +1,299 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.7.2">
+  <compounddef id="classb2_circle_shape" kind="class" prot="public">
+    <compoundname>b2CircleShape</compoundname>
+    <basecompoundref refid="classb2_shape" prot="public" virt="non-virtual">b2Shape</basecompoundref>
+    <includes local="no">b2CircleShape.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classb2_circle_shape_1a190705618b2e65f636f1dc03c63640ff" prot="public" static="no" mutable="no">
+        <type><ref refid="structb2_vec2" kindref="compound">b2Vec2</ref></type>
+        <definition>b2Vec2 b2CircleShape::m_p</definition>
+        <argsstring></argsstring>
+        <name>m_p</name>
+        <briefdescription>
+<para>Position. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Collision/Shapes/b2CircleShape.h" line="62" bodyfile="D:/pybox2d/Box2D/Collision/Shapes/b2CircleShape.h" bodystart="62" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classb2_circle_shape_1a73bb9f0ea1c28d772db1192c52572018" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>b2CircleShape::b2CircleShape</definition>
+        <argsstring>()</argsstring>
+        <name>b2CircleShape</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Collision/Shapes/b2CircleShape.h" line="28" bodyfile="D:/pybox2d/Box2D/Collision/Shapes/b2CircleShape.h" bodystart="65" bodyend="70"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_circle_shape_1a895ba8656a146d26a0c531e9dbea2e14" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type><ref refid="classb2_shape" kindref="compound">b2Shape</ref> *</type>
+        <definition>b2Shape * b2CircleShape::Clone</definition>
+        <argsstring>(b2BlockAllocator *allocator) const </argsstring>
+        <name>Clone</name>
+        <reimplements refid="classb2_shape_1a4716243454bb9cf7c7ee1d9cb23ae634">Clone</reimplements>
+        <param>
+          <type><ref refid="classb2_block_allocator" kindref="compound">b2BlockAllocator</ref> *</type>
+          <declname>allocator</declname>
+        </param>
+        <briefdescription>
+<para>Implement <ref refid="classb2_shape" kindref="compound">b2Shape</ref>. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Collision/Shapes/b2CircleShape.h" line="31" bodyfile="D:/pybox2d/Box2D/Collision/Shapes/b2CircleShape.cpp" bodystart="23" bodyend="29"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_circle_shape_1a64b58799675edc9a6debc09c0d6ddce4" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>int32</type>
+        <definition>int32 b2CircleShape::GetChildCount</definition>
+        <argsstring>() const </argsstring>
+        <name>GetChildCount</name>
+        <reimplements refid="classb2_shape_1a05a3c445017d96df9238ceefe6ce37ab">GetChildCount</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="see"><para><ref refid="classb2_shape_1a05a3c445017d96df9238ceefe6ce37ab" kindref="member">b2Shape::GetChildCount</ref> </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Collision/Shapes/b2CircleShape.h" line="34" bodyfile="D:/pybox2d/Box2D/Collision/Shapes/b2CircleShape.cpp" bodystart="31" bodyend="34"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_circle_shape_1a77171941cd1633c337fed1efb366bebb" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>bool</type>
+        <definition>bool b2CircleShape::TestPoint</definition>
+        <argsstring>(const b2Transform &amp;transform, const b2Vec2 &amp;p) const </argsstring>
+        <name>TestPoint</name>
+        <reimplements refid="classb2_shape_1a6ac968e403e2d93e8ae46d728a2e50fa">TestPoint</reimplements>
+        <param>
+          <type>const <ref refid="structb2_transform" kindref="compound">b2Transform</ref> &amp;</type>
+          <declname>transform</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structb2_vec2" kindref="compound">b2Vec2</ref> &amp;</type>
+          <declname>p</declname>
+        </param>
+        <briefdescription>
+<para>Implement <ref refid="classb2_shape" kindref="compound">b2Shape</ref>. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Collision/Shapes/b2CircleShape.h" line="37" bodyfile="D:/pybox2d/Box2D/Collision/Shapes/b2CircleShape.cpp" bodystart="36" bodyend="41"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_circle_shape_1a76175079381193917026fdf3702190fa" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>bool</type>
+        <definition>bool b2CircleShape::RayCast</definition>
+        <argsstring>(b2RayCastOutput *output, const b2RayCastInput &amp;input, const b2Transform &amp;transform, int32 childIndex) const </argsstring>
+        <name>RayCast</name>
+        <reimplements refid="classb2_shape_1aee53a926f4fe64cd03693f6211ef6335">RayCast</reimplements>
+        <param>
+          <type><ref refid="structb2_ray_cast_output" kindref="compound">b2RayCastOutput</ref> *</type>
+          <declname>output</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structb2_ray_cast_input" kindref="compound">b2RayCastInput</ref> &amp;</type>
+          <declname>input</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structb2_transform" kindref="compound">b2Transform</ref> &amp;</type>
+          <declname>transform</declname>
+        </param>
+        <param>
+          <type>int32</type>
+          <declname>childIndex</declname>
+        </param>
+        <briefdescription>
+<para>Implement <ref refid="classb2_shape" kindref="compound">b2Shape</ref>. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Collision/Shapes/b2CircleShape.h" line="41" bodyfile="D:/pybox2d/Box2D/Collision/Shapes/b2CircleShape.cpp" bodystart="47" bodyend="82"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_circle_shape_1aa6889a5af85aa1e272547fd0008eb64a" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void b2CircleShape::ComputeAABB</definition>
+        <argsstring>(b2AABB *aabb, const b2Transform &amp;transform, int32 childIndex) const </argsstring>
+        <name>ComputeAABB</name>
+        <reimplements refid="classb2_shape_1a88e9807fab0c8ca9a98d8926e50a1411">ComputeAABB</reimplements>
+        <param>
+          <type><ref refid="structb2_a_a_b_b" kindref="compound">b2AABB</ref> *</type>
+          <declname>aabb</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structb2_transform" kindref="compound">b2Transform</ref> &amp;</type>
+          <declname>transform</declname>
+        </param>
+        <param>
+          <type>int32</type>
+          <declname>childIndex</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="see"><para><ref refid="classb2_shape_1a88e9807fab0c8ca9a98d8926e50a1411" kindref="member">b2Shape::ComputeAABB</ref> </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Collision/Shapes/b2CircleShape.h" line="44" bodyfile="D:/pybox2d/Box2D/Collision/Shapes/b2CircleShape.cpp" bodystart="84" bodyend="91"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_circle_shape_1a335edea2ef84789e102dde41ca889828" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void b2CircleShape::ComputeMass</definition>
+        <argsstring>(b2MassData *massData, float32 density) const </argsstring>
+        <name>ComputeMass</name>
+        <reimplements refid="classb2_shape_1a61b365526241b47f124789b0309cac69">ComputeMass</reimplements>
+        <param>
+          <type><ref refid="structb2_mass_data" kindref="compound">b2MassData</ref> *</type>
+          <declname>massData</declname>
+        </param>
+        <param>
+          <type>float32</type>
+          <declname>density</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="see"><para><ref refid="classb2_shape_1a61b365526241b47f124789b0309cac69" kindref="member">b2Shape::ComputeMass</ref> </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Collision/Shapes/b2CircleShape.h" line="47" bodyfile="D:/pybox2d/Box2D/Collision/Shapes/b2CircleShape.cpp" bodystart="93" bodyend="100"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_circle_shape_1a8644ce19547e5efaf43bd8ec543e284e" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>int32</type>
+        <definition>int32 b2CircleShape::GetSupport</definition>
+        <argsstring>(const b2Vec2 &amp;d) const </argsstring>
+        <name>GetSupport</name>
+        <param>
+          <type>const <ref refid="structb2_vec2" kindref="compound">b2Vec2</ref> &amp;</type>
+          <declname>d</declname>
+        </param>
+        <briefdescription>
+<para>Get the supporting vertex index in the given direction. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Collision/Shapes/b2CircleShape.h" line="50" bodyfile="D:/pybox2d/Box2D/Collision/Shapes/b2CircleShape.h" bodystart="72" bodyend="76"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_circle_shape_1aa23975b480495bf8bc70073d4f135fd2" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="structb2_vec2" kindref="compound">b2Vec2</ref> &amp;</type>
+        <definition>const b2Vec2 &amp; b2CircleShape::GetSupportVertex</definition>
+        <argsstring>(const b2Vec2 &amp;d) const </argsstring>
+        <name>GetSupportVertex</name>
+        <param>
+          <type>const <ref refid="structb2_vec2" kindref="compound">b2Vec2</ref> &amp;</type>
+          <declname>d</declname>
+        </param>
+        <briefdescription>
+<para>Get the supporting vertex in the given direction. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Collision/Shapes/b2CircleShape.h" line="53" bodyfile="D:/pybox2d/Box2D/Collision/Shapes/b2CircleShape.h" bodystart="78" bodyend="82"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_circle_shape_1a477a087b143147223e4b9fbb6581acf1" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>int32</type>
+        <definition>int32 b2CircleShape::GetVertexCount</definition>
+        <argsstring>() const </argsstring>
+        <name>GetVertexCount</name>
+        <briefdescription>
+<para>Get the vertex count. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Collision/Shapes/b2CircleShape.h" line="56" bodyfile="D:/pybox2d/Box2D/Collision/Shapes/b2CircleShape.h" bodystart="56" bodyend="56"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_circle_shape_1a029e555a3ea76b00479b051f1b813c3a" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="structb2_vec2" kindref="compound">b2Vec2</ref> &amp;</type>
+        <definition>const b2Vec2 &amp; b2CircleShape::GetVertex</definition>
+        <argsstring>(int32 index) const </argsstring>
+        <name>GetVertex</name>
+        <param>
+          <type>int32</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+<para>Get a vertex by index. Used by b2Distance. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Collision/Shapes/b2CircleShape.h" line="59" bodyfile="D:/pybox2d/Box2D/Collision/Shapes/b2CircleShape.h" bodystart="84" bodyend="89"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>A circle shape. </para>    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="995">
+        <label>b2CircleShape</label>
+        <link refid="classb2_circle_shape"/>
+        <childnode refid="996" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="996">
+        <label>b2Shape</label>
+        <link refid="classb2_shape"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="997">
+        <label>b2CircleShape</label>
+        <link refid="classb2_circle_shape"/>
+        <childnode refid="998" relation="public-inheritance">
+        </childnode>
+        <childnode refid="999" relation="usage">
+          <edgelabel>m_p</edgelabel>
+        </childnode>
+      </node>
+      <node id="999">
+        <label>b2Vec2</label>
+        <link refid="structb2_vec2"/>
+      </node>
+      <node id="998">
+        <label>b2Shape</label>
+        <link refid="classb2_shape"/>
+      </node>
+    </collaborationgraph>
+    <location file="D:/pybox2d/Box2D/Collision/Shapes/b2CircleShape.h" line="26" bodyfile="D:/pybox2d/Box2D/Collision/Shapes/b2CircleShape.h" bodystart="25" bodyend="63"/>
+    <listofallmembers>
+      <member refid="classb2_circle_shape_1a73bb9f0ea1c28d772db1192c52572018" prot="public" virt="non-virtual"><scope>b2CircleShape</scope><name>b2CircleShape</name></member>
+      <member refid="classb2_shape_1aa13d55c6c5cf0e11e0a1061cb43611c5" prot="public" virt="non-virtual"><scope>b2CircleShape</scope><name>b2Shape</name></member>
+      <member refid="classb2_circle_shape_1a895ba8656a146d26a0c531e9dbea2e14" prot="public" virt="virtual"><scope>b2CircleShape</scope><name>Clone</name></member>
+      <member refid="classb2_circle_shape_1aa6889a5af85aa1e272547fd0008eb64a" prot="public" virt="virtual"><scope>b2CircleShape</scope><name>ComputeAABB</name></member>
+      <member refid="classb2_circle_shape_1a335edea2ef84789e102dde41ca889828" prot="public" virt="virtual"><scope>b2CircleShape</scope><name>ComputeMass</name></member>
+      <member refid="classb2_shape_1a4c1f3a9ad6b3150bb90ad9018ca4b1e0a09ab906cedd1b94ebb6fedb29dace063" prot="public" virt="non-virtual"><scope>b2CircleShape</scope><name>e_circle</name></member>
+      <member refid="classb2_shape_1a4c1f3a9ad6b3150bb90ad9018ca4b1e0a707a159824d438c541a452382c0daced" prot="public" virt="non-virtual"><scope>b2CircleShape</scope><name>e_edge</name></member>
+      <member refid="classb2_shape_1a4c1f3a9ad6b3150bb90ad9018ca4b1e0a7a0ad86926552dd390934a9685477f05" prot="public" virt="non-virtual"><scope>b2CircleShape</scope><name>e_loop</name></member>
+      <member refid="classb2_shape_1a4c1f3a9ad6b3150bb90ad9018ca4b1e0a08afe1f3d5964062239783063a3a671f" prot="public" virt="non-virtual"><scope>b2CircleShape</scope><name>e_polygon</name></member>
+      <member refid="classb2_shape_1a4c1f3a9ad6b3150bb90ad9018ca4b1e0aad7c674a33e8ca4ee9b717f226553596" prot="public" virt="non-virtual"><scope>b2CircleShape</scope><name>e_typeCount</name></member>
+      <member refid="classb2_shape_1a4c1f3a9ad6b3150bb90ad9018ca4b1e0a03349b9398be41a31b0c35834d61090d" prot="public" virt="non-virtual"><scope>b2CircleShape</scope><name>e_unknown</name></member>
+      <member refid="classb2_circle_shape_1a64b58799675edc9a6debc09c0d6ddce4" prot="public" virt="virtual"><scope>b2CircleShape</scope><name>GetChildCount</name></member>
+      <member refid="classb2_circle_shape_1a8644ce19547e5efaf43bd8ec543e284e" prot="public" virt="non-virtual"><scope>b2CircleShape</scope><name>GetSupport</name></member>
+      <member refid="classb2_circle_shape_1aa23975b480495bf8bc70073d4f135fd2" prot="public" virt="non-virtual"><scope>b2CircleShape</scope><name>GetSupportVertex</name></member>
+      <member refid="classb2_shape_1a3b6093f16c18f8a877519a29674abca0" prot="public" virt="non-virtual"><scope>b2CircleShape</scope><name>GetType</name></member>
+      <member refid="classb2_circle_shape_1a029e555a3ea76b00479b051f1b813c3a" prot="public" virt="non-virtual"><scope>b2CircleShape</scope><name>GetVertex</name></member>
+      <member refid="classb2_circle_shape_1a477a087b143147223e4b9fbb6581acf1" prot="public" virt="non-virtual"><scope>b2CircleShape</scope><name>GetVertexCount</name></member>
+      <member refid="classb2_circle_shape_1a190705618b2e65f636f1dc03c63640ff" prot="public" virt="non-virtual"><scope>b2CircleShape</scope><name>m_p</name></member>
+      <member refid="classb2_shape_1a5de7a9bd3f9e72ef7025a65c304aaf1a" prot="public" virt="non-virtual"><scope>b2CircleShape</scope><name>m_radius</name></member>
+      <member refid="classb2_shape_1adb051791133b24f53c6e9a565a7b7bbb" prot="public" virt="non-virtual"><scope>b2CircleShape</scope><name>m_type</name></member>
+      <member refid="classb2_circle_shape_1a76175079381193917026fdf3702190fa" prot="public" virt="virtual"><scope>b2CircleShape</scope><name>RayCast</name></member>
+      <member refid="classb2_circle_shape_1a77171941cd1633c337fed1efb366bebb" prot="public" virt="virtual"><scope>b2CircleShape</scope><name>TestPoint</name></member>
+      <member refid="classb2_shape_1a4c1f3a9ad6b3150bb90ad9018ca4b1e0" prot="public" virt="non-virtual"><scope>b2CircleShape</scope><name>Type</name></member>
+      <member refid="classb2_shape_1a7c14c5dcf134d22e0b5790518632d05a" prot="public" virt="virtual"><scope>b2CircleShape</scope><name>~b2Shape</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

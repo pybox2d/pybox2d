@@ -1,0 +1,111 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.7.2">
+  <compounddef id="structb2_world_query_wrapper" kind="struct" prot="public">
+    <compoundname>b2WorldQueryWrapper</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structb2_world_query_wrapper_1ab85c542cfaf43d2ecf31fcbfd8c0c792" prot="public" static="no" mutable="no">
+        <type>const <ref refid="classb2_broad_phase" kindref="compound">b2BroadPhase</ref> *</type>
+        <definition>const b2BroadPhase* b2WorldQueryWrapper::broadPhase</definition>
+        <argsstring></argsstring>
+        <name>broadPhase</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2World.cpp" line="926" bodyfile="D:/pybox2d/Box2D/Dynamics/b2World.cpp" bodystart="926" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structb2_world_query_wrapper_1a3af9f06dfa228974fecabd2bb2b07d2e" prot="public" static="no" mutable="no">
+        <type><ref refid="classb2_query_callback" kindref="compound">b2QueryCallback</ref> *</type>
+        <definition>b2QueryCallback* b2WorldQueryWrapper::callback</definition>
+        <argsstring></argsstring>
+        <name>callback</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2World.cpp" line="927" bodyfile="D:/pybox2d/Box2D/Dynamics/b2World.cpp" bodystart="927" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structb2_world_query_wrapper_1a660a482e5a15b7f40a103b2dfb1711c1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool b2WorldQueryWrapper::QueryCallback</definition>
+        <argsstring>(int32 proxyId)</argsstring>
+        <name>QueryCallback</name>
+        <param>
+          <type>int32</type>
+          <declname>proxyId</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2World.cpp" line="921" bodyfile="D:/pybox2d/Box2D/Dynamics/b2World.cpp" bodystart="920" bodyend="924"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="2185">
+        <label>b2DynamicTree</label>
+        <link refid="classb2_dynamic_tree"/>
+        <childnode refid="2186" relation="usage">
+          <edgelabel>m_nodes</edgelabel>
+        </childnode>
+      </node>
+      <node id="2184">
+        <label>b2BroadPhase</label>
+        <link refid="classb2_broad_phase"/>
+        <childnode refid="2185" relation="usage">
+          <edgelabel>m_tree</edgelabel>
+        </childnode>
+      </node>
+      <node id="2186">
+        <label>b2DynamicTreeNode</label>
+        <link refid="structb2_dynamic_tree_node"/>
+        <childnode refid="2187" relation="usage">
+          <edgelabel>aabb</edgelabel>
+        </childnode>
+      </node>
+      <node id="2182">
+        <label>b2WorldQueryWrapper</label>
+        <childnode refid="2183" relation="usage">
+          <edgelabel>callback</edgelabel>
+        </childnode>
+        <childnode refid="2184" relation="usage">
+          <edgelabel>broadPhase</edgelabel>
+        </childnode>
+      </node>
+      <node id="2188">
+        <label>b2Vec2</label>
+        <link refid="structb2_vec2"/>
+      </node>
+      <node id="2183">
+        <label>b2QueryCallback</label>
+        <link refid="classb2_query_callback"/>
+      </node>
+      <node id="2187">
+        <label>b2AABB</label>
+        <link refid="structb2_a_a_b_b"/>
+        <childnode refid="2188" relation="usage">
+          <edgelabel>lowerBound</edgelabel>
+          <edgelabel>upperBound</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="D:/pybox2d/Box2D/Dynamics/b2World.cpp" line="919" bodyfile="D:/pybox2d/Box2D/Dynamics/b2World.cpp" bodystart="918" bodyend="928"/>
+    <listofallmembers>
+      <member refid="structb2_world_query_wrapper_1ab85c542cfaf43d2ecf31fcbfd8c0c792" prot="public" virt="non-virtual"><scope>b2WorldQueryWrapper</scope><name>broadPhase</name></member>
+      <member refid="structb2_world_query_wrapper_1a3af9f06dfa228974fecabd2bb2b07d2e" prot="public" virt="non-virtual"><scope>b2WorldQueryWrapper</scope><name>callback</name></member>
+      <member refid="structb2_world_query_wrapper_1a660a482e5a15b7f40a103b2dfb1711c1" prot="public" virt="non-virtual"><scope>b2WorldQueryWrapper</scope><name>QueryCallback</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

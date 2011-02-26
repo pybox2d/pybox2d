@@ -1,0 +1,68 @@
+Total classes: 95
+Ignored classes: 29
+Remaining classes: 66
+              Class  Extended in
+             b2Shape Box2D_shapes.i
+           b2Fixture Box2D_bodyfixture.i, Box2D_userdata.i
+        b2MouseJoint Box2D_joints.i
+       b2PulleyJoint Box2D_joints.i
+         b2LineJoint Box2D_joints.i
+              b2Vec2 Box2D_vectors.i
+              b2Vec3 Box2D_vectors.i
+              b2AABB Box2D_vectors.i
+        b2FixtureDef Box2D_bodyfixture.i, Box2D_userdata.i
+           b2BodyDef Box2D_bodyfixture.i, Box2D_userdata.i
+          b2Manifold Box2D_contact.i
+     b2WorldManifold Box2D_contact.i
+             b2World Box2D_userdata.i, Box2D_world.i
+    b2PrismaticJoint Box2D_joints.i
+       b2CircleShape Box2D_shapes.i
+             b2Joint Box2D_joints.i, Box2D_userdata.i
+         b2GearJoint Box2D_joints.i
+         b2WeldJoint Box2D_joints.i
+     b2RevoluteJoint Box2D_joints.i
+             b2Mat22 Box2D_vectors.i
+          b2JointDef Box2D_userdata.i
+         b2Transform Box2D_vectors.i
+             b2Color Box2D_misc.i
+      b2PolygonShape Box2D_shapes.i
+           b2Contact Box2D_contact.i
+     b2DistanceJoint Box2D_joints.i
+              b2Body Box2D_bodyfixture.i, Box2D_userdata.i
+     b2FrictionJoint Box2D_joints.i
+
+Newly modified, to check/test
+-----------------------------
+b2DistanceProxy    # Needed for b2DistanceInput
+b2Mat33            # Add support for b2Mat33 * b2Vec3 / TODO: test all matrix math, and add a test
+b2Segment          # TestSegment with output
+b2Version          # TODO: __repr__ modification
+
+Unmodified classes
+------------------
+b2ContactImpulse   # TODO: check this (PostSolve)
+b2RayCastCallback  # Director added, should be ok (TODO: check raycasts)
+b2DebugDraw        # Director added, should be ok
+b2DestructionList. # Director added, should be ok
+b2QueryCallback    # Director added, should be ok
+b2BlockAllocator   # Could possibly be used with b2Shape.Clone(), 
+                   # but not without access to the block allocator. Ignoring this and the clone function.
+b2Sweep            # Actually should be ok
+b2ClipVertex       # Basic struct
+b2ContactPoint     # Created in Box2D_contact.i
+b2ContactEdge      # Basic struct
+b2ContactFilter    # Director added, should be ok
+b2ContactID        # Basic union
+b2ContactListener  # Director added, should be ok
+b2ContactRegister  # Added to ignore list, shouldn't be used
+b2DistanceInput    # Should be ok unmodified. Basic struct
+b2DistanceOutput   # Basic struct
+b2Filter           # Basic struct
+b2Jacobian         # Basic struct with a couple functions.
+b2JointEdge        # Basic struct
+b2ManifoldPoint    # Basic struct
+b2MassData         # Basic struct
+b2Pair             # Basic struct
+b2RayCastInput     # Basic struct
+b2RayCastOutput    # Basic struct
+b2TOIInput         # Basic struct

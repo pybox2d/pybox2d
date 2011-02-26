@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.7.2">
+  <compounddef id="structb2_block" kind="struct" prot="public">
+    <compoundname>b2Block</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structb2_block_1a4b410d4fd7ad2a117c70776f60cb2738" prot="public" static="no" mutable="no">
+        <type>b2Block *</type>
+        <definition>b2Block* b2Block::next</definition>
+        <argsstring></argsstring>
+        <name>next</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Common/b2BlockAllocator.cpp" line="54" bodyfile="D:/pybox2d/Box2D/Common/b2BlockAllocator.cpp" bodystart="54" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="D:/pybox2d/Box2D/Common/b2BlockAllocator.cpp" line="53" bodyfile="D:/pybox2d/Box2D/Common/b2BlockAllocator.cpp" bodystart="52" bodyend="55"/>
+    <listofallmembers>
+      <member refid="structb2_block_1a4b410d4fd7ad2a117c70776f60cb2738" prot="public" virt="non-virtual"><scope>b2Block</scope><name>next</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

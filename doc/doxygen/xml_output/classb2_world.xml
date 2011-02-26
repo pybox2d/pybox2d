@@ -1,0 +1,1313 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.7.2">
+  <compounddef id="classb2_world" kind="class" prot="public">
+    <compoundname>b2World</compoundname>
+    <includes local="no">b2World.h</includes>
+      <sectiondef kind="private-type">
+      <memberdef kind="enum" id="classb2_world_1a490b01df195e9d6f25a8202114f52bc1" prot="private" static="no">
+        <name>@4</name>
+        <enumvalue id="classb2_world_1a490b01df195e9d6f25a8202114f52bc1a9f229bfcdaf77858393ac67ad5ac07fc" prot="private">
+          <name>e_newFixture</name>
+          <initializer> 0x0001</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classb2_world_1a490b01df195e9d6f25a8202114f52bc1afd554e5ec320a10a80cbe627fa45b011" prot="private">
+          <name>e_locked</name>
+          <initializer> 0x0002</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classb2_world_1a490b01df195e9d6f25a8202114f52bc1a21fc7672aa132ee5dcd63b5c3378f312" prot="private">
+          <name>e_clearForces</name>
+          <initializer> 0x0004</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2World.h" line="185" bodyfile="D:/pybox2d/Box2D/Dynamics/b2World.h" bodystart="184" bodyend="189"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="friend">
+      <memberdef kind="friend" id="classb2_world_1a010ab52de250e5fe30a45d642f46405b" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>friend class</type>
+        <definition>friend class b2Body</definition>
+        <argsstring></argsstring>
+        <name>b2Body</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2World.h" line="191" bodyfile="D:/pybox2d/Box2D/Dynamics/b2World.h" bodystart="191" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="friend" id="classb2_world_1aece264d42f69aed410f5eb3beba6ddf2" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>friend class</type>
+        <definition>friend class b2ContactManager</definition>
+        <argsstring></argsstring>
+        <name>b2ContactManager</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2World.h" line="192" bodyfile="D:/pybox2d/Box2D/Dynamics/b2World.h" bodystart="192" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="friend" id="classb2_world_1ad0171f9dac44cc7aae065c618c0d165b" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>friend class</type>
+        <definition>friend class b2Controller</definition>
+        <argsstring></argsstring>
+        <name>b2Controller</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2World.h" line="193" bodyfile="D:/pybox2d/Box2D/Dynamics/b2World.h" bodystart="193" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classb2_world_1ab02b03963ed73501770f7a89c9186e72" prot="private" static="no" mutable="no">
+        <type><ref refid="classb2_block_allocator" kindref="compound">b2BlockAllocator</ref></type>
+        <definition>b2BlockAllocator b2World::m_blockAllocator</definition>
+        <argsstring></argsstring>
+        <name>m_blockAllocator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2World.h" line="201" bodyfile="D:/pybox2d/Box2D/Dynamics/b2World.h" bodystart="201" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_world_1a9c56dd143340d0db681a7bb2f0c937e3" prot="private" static="no" mutable="no">
+        <type>b2StackAllocator</type>
+        <definition>b2StackAllocator b2World::m_stackAllocator</definition>
+        <argsstring></argsstring>
+        <name>m_stackAllocator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2World.h" line="202" bodyfile="D:/pybox2d/Box2D/Dynamics/b2World.h" bodystart="202" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_world_1a1b5cd8c24bf3a900dca9a7acec207e60" prot="private" static="no" mutable="no">
+        <type>int32</type>
+        <definition>int32 b2World::m_flags</definition>
+        <argsstring></argsstring>
+        <name>m_flags</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2World.h" line="204" bodyfile="D:/pybox2d/Box2D/Dynamics/b2World.h" bodystart="204" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_world_1adc5b9e56c3d3c84993901dda29341140" prot="private" static="no" mutable="no">
+        <type>b2ContactManager</type>
+        <definition>b2ContactManager b2World::m_contactManager</definition>
+        <argsstring></argsstring>
+        <name>m_contactManager</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2World.h" line="206" bodyfile="D:/pybox2d/Box2D/Dynamics/b2World.h" bodystart="206" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_world_1acb01b9fe3ae8e3014883d2cd8da5534a" prot="private" static="no" mutable="no">
+        <type><ref refid="classb2_body" kindref="compound">b2Body</ref> *</type>
+        <definition>b2Body* b2World::m_bodyList</definition>
+        <argsstring></argsstring>
+        <name>m_bodyList</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2World.h" line="208" bodyfile="D:/pybox2d/Box2D/Dynamics/b2World.h" bodystart="208" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_world_1abe24b2f269cec46974c4331bd5418f41" prot="private" static="no" mutable="no">
+        <type><ref refid="classb2_joint" kindref="compound">b2Joint</ref> *</type>
+        <definition>b2Joint* b2World::m_jointList</definition>
+        <argsstring></argsstring>
+        <name>m_jointList</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2World.h" line="209" bodyfile="D:/pybox2d/Box2D/Dynamics/b2World.h" bodystart="209" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_world_1aa24704aec207b3ae8359a2ffe6d01411" prot="private" static="no" mutable="no">
+        <type>int32</type>
+        <definition>int32 b2World::m_bodyCount</definition>
+        <argsstring></argsstring>
+        <name>m_bodyCount</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2World.h" line="211" bodyfile="D:/pybox2d/Box2D/Dynamics/b2World.h" bodystart="211" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_world_1a1f722f498830b3fcfc86792555f0f57f" prot="private" static="no" mutable="no">
+        <type>int32</type>
+        <definition>int32 b2World::m_jointCount</definition>
+        <argsstring></argsstring>
+        <name>m_jointCount</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2World.h" line="212" bodyfile="D:/pybox2d/Box2D/Dynamics/b2World.h" bodystart="212" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_world_1a3c8ec39b73bdec820e03b17ef1d18b28" prot="private" static="no" mutable="no">
+        <type><ref refid="structb2_vec2" kindref="compound">b2Vec2</ref></type>
+        <definition>b2Vec2 b2World::m_gravity</definition>
+        <argsstring></argsstring>
+        <name>m_gravity</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2World.h" line="214" bodyfile="D:/pybox2d/Box2D/Dynamics/b2World.h" bodystart="214" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_world_1a5a31013145f978e964cfee64c3c46d7e" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool b2World::m_allowSleep</definition>
+        <argsstring></argsstring>
+        <name>m_allowSleep</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2World.h" line="215" bodyfile="D:/pybox2d/Box2D/Dynamics/b2World.h" bodystart="215" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_world_1abf5abe16bd1ceef5ac15333042e71b4f" prot="private" static="no" mutable="no">
+        <type><ref refid="classb2_destruction_listener" kindref="compound">b2DestructionListener</ref> *</type>
+        <definition>b2DestructionListener* b2World::m_destructionListener</definition>
+        <argsstring></argsstring>
+        <name>m_destructionListener</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2World.h" line="217" bodyfile="D:/pybox2d/Box2D/Dynamics/b2World.h" bodystart="217" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_world_1a81e0739ec6aa0151f469e99662ab0789" prot="private" static="no" mutable="no">
+        <type><ref refid="classb2_debug_draw" kindref="compound">b2DebugDraw</ref> *</type>
+        <definition>b2DebugDraw* b2World::m_debugDraw</definition>
+        <argsstring></argsstring>
+        <name>m_debugDraw</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2World.h" line="218" bodyfile="D:/pybox2d/Box2D/Dynamics/b2World.h" bodystart="218" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_world_1aaac593d6db2b19c648202dc326f88ba4" prot="private" static="no" mutable="no">
+        <type>float32</type>
+        <definition>float32 b2World::m_inv_dt0</definition>
+        <argsstring></argsstring>
+        <name>m_inv_dt0</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2World.h" line="222" bodyfile="D:/pybox2d/Box2D/Dynamics/b2World.h" bodystart="222" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_world_1ab3c889781c1ad755f9f520f934e69b3d" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool b2World::m_warmStarting</definition>
+        <argsstring></argsstring>
+        <name>m_warmStarting</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2World.h" line="225" bodyfile="D:/pybox2d/Box2D/Dynamics/b2World.h" bodystart="225" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_world_1a6546f4a56849f5635b4ed48f823be9e0" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool b2World::m_continuousPhysics</definition>
+        <argsstring></argsstring>
+        <name>m_continuousPhysics</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2World.h" line="226" bodyfile="D:/pybox2d/Box2D/Dynamics/b2World.h" bodystart="226" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_world_1abfdc124ba03185a4b15cf220ebbacfe6" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool b2World::m_subStepping</definition>
+        <argsstring></argsstring>
+        <name>m_subStepping</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2World.h" line="227" bodyfile="D:/pybox2d/Box2D/Dynamics/b2World.h" bodystart="227" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_world_1ad2a6027e3148f79d1a7598db3941d10a" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool b2World::m_stepComplete</definition>
+        <argsstring></argsstring>
+        <name>m_stepComplete</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2World.h" line="229" bodyfile="D:/pybox2d/Box2D/Dynamics/b2World.h" bodystart="229" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classb2_world_1a9953cdbe9cb61cfb2a75ff9c1b1196d4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>b2World::b2World</definition>
+        <argsstring>(const b2Vec2 &amp;gravity, bool doSleep)</argsstring>
+        <name>b2World</name>
+        <param>
+          <type>const <ref refid="structb2_vec2" kindref="compound">b2Vec2</ref> &amp;</type>
+          <declname>gravity</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>doSleep</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Construct a world object. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>gravity</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the world gravity vector. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>doSleep</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>improve performance by not simulating inactive bodies. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2World.h" line="45" bodyfile="D:/pybox2d/Box2D/Dynamics/b2World.cpp" bodystart="35" bodyend="60"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_world_1a5250ae4487475c33ccefdead07c768c8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>b2World::~b2World</definition>
+        <argsstring>()</argsstring>
+        <name>~b2World</name>
+        <briefdescription>
+<para>Destruct the world. All physics entities are destroyed and all heap memory is released. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2World.h" line="48" bodyfile="D:/pybox2d/Box2D/Dynamics/b2World.cpp" bodystart="62" bodyend="81"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_world_1ae377f2dd5512ada7d27f4ad3541c75bf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void b2World::SetDestructionListener</definition>
+        <argsstring>(b2DestructionListener *listener)</argsstring>
+        <name>SetDestructionListener</name>
+        <param>
+          <type><ref refid="classb2_destruction_listener" kindref="compound">b2DestructionListener</ref> *</type>
+          <declname>listener</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Register a destruction listener. The listener is owned by you and must remain in scope. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2World.h" line="52" bodyfile="D:/pybox2d/Box2D/Dynamics/b2World.cpp" bodystart="83" bodyend="86"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_world_1a85e6e1e911c7d6366f8c7d57a12b72ff" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void b2World::SetContactFilter</definition>
+        <argsstring>(b2ContactFilter *filter)</argsstring>
+        <name>SetContactFilter</name>
+        <param>
+          <type><ref refid="classb2_contact_filter" kindref="compound">b2ContactFilter</ref> *</type>
+          <declname>filter</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Register a contact filter to provide specific control over collision. Otherwise the default filter is used (b2_defaultFilter). The listener is owned by you and must remain in scope. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2World.h" line="57" bodyfile="D:/pybox2d/Box2D/Dynamics/b2World.cpp" bodystart="88" bodyend="91"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_world_1a614549967fb8a1584b61c11e2d553d42" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void b2World::SetContactListener</definition>
+        <argsstring>(b2ContactListener *listener)</argsstring>
+        <name>SetContactListener</name>
+        <param>
+          <type><ref refid="classb2_contact_listener" kindref="compound">b2ContactListener</ref> *</type>
+          <declname>listener</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Register a contact event listener. The listener is owned by you and must remain in scope. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2World.h" line="61" bodyfile="D:/pybox2d/Box2D/Dynamics/b2World.cpp" bodystart="93" bodyend="96"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_world_1acefe206b97f91eac2b0cd9c4a0c7aaf1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void b2World::SetDebugDraw</definition>
+        <argsstring>(b2DebugDraw *debugDraw)</argsstring>
+        <name>SetDebugDraw</name>
+        <param>
+          <type><ref refid="classb2_debug_draw" kindref="compound">b2DebugDraw</ref> *</type>
+          <declname>debugDraw</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Register a routine for debug drawing. The debug draw functions are called inside with <ref refid="classb2_world_1a293d9865e407fd463e168b0a29856acc" kindref="member">b2World::DrawDebugData</ref> method. The debug draw object is owned by you and must remain in scope. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2World.h" line="66" bodyfile="D:/pybox2d/Box2D/Dynamics/b2World.cpp" bodystart="98" bodyend="101"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_world_1a2eb36e967e43294bfa03ec3d177c2dae" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classb2_body" kindref="compound">b2Body</ref> *</type>
+        <definition>b2Body * b2World::CreateBody</definition>
+        <argsstring>(const b2BodyDef *def)</argsstring>
+        <name>CreateBody</name>
+        <param>
+          <type>const <ref refid="structb2_body_def" kindref="compound">b2BodyDef</ref> *</type>
+          <declname>def</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Create a rigid body given a definition. No reference to the definition is retained. <simplesect kind="warning"><para>This function is locked during callbacks. </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2World.h" line="71" bodyfile="D:/pybox2d/Box2D/Dynamics/b2World.cpp" bodystart="103" bodyend="125"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_world_1ad52231ad7a9556ef5735ac79cbcd8fcf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void b2World::DestroyBody</definition>
+        <argsstring>(b2Body *body)</argsstring>
+        <name>DestroyBody</name>
+        <param>
+          <type><ref refid="classb2_body" kindref="compound">b2Body</ref> *</type>
+          <declname>body</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Destroy a rigid body given a definition. No reference to the definition is retained. This function is locked during callbacks. <simplesect kind="warning"><para>This automatically deletes all associated shapes and joints. </para><simplesectsep/><para>This function is locked during callbacks. </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2World.h" line="77" bodyfile="D:/pybox2d/Box2D/Dynamics/b2World.cpp" bodystart="127" bodyend="206"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_world_1a5cba9d0653149eb62504154e6fb35021" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classb2_joint" kindref="compound">b2Joint</ref> *</type>
+        <definition>b2Joint * b2World::CreateJoint</definition>
+        <argsstring>(const b2JointDef *def)</argsstring>
+        <name>CreateJoint</name>
+        <param>
+          <type>const <ref refid="structb2_joint_def" kindref="compound">b2JointDef</ref> *</type>
+          <declname>def</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Create a joint to constrain bodies together. No reference to the definition is retained. This may cause the connected bodies to cease colliding. <simplesect kind="warning"><para>This function is locked during callbacks. </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2World.h" line="82" bodyfile="D:/pybox2d/Box2D/Dynamics/b2World.cpp" bodystart="208" bodyend="266"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_world_1add5942aef171e54cfa384c8975746dca" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void b2World::DestroyJoint</definition>
+        <argsstring>(b2Joint *joint)</argsstring>
+        <name>DestroyJoint</name>
+        <param>
+          <type><ref refid="classb2_joint" kindref="compound">b2Joint</ref> *</type>
+          <declname>joint</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Destroy a joint. This may cause the connected bodies to begin colliding. <simplesect kind="warning"><para>This function is locked during callbacks. </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2World.h" line="86" bodyfile="D:/pybox2d/Box2D/Dynamics/b2World.cpp" bodystart="268" bodyend="361"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_world_1a7a8eff61af98461f978fe43f3af7be90" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void b2World::Step</definition>
+        <argsstring>(float32 timeStep, int32 velocityIterations, int32 positionIterations)</argsstring>
+        <name>Step</name>
+        <param>
+          <type>float32</type>
+          <declname>timeStep</declname>
+        </param>
+        <param>
+          <type>int32</type>
+          <declname>velocityIterations</declname>
+        </param>
+        <param>
+          <type>int32</type>
+          <declname>positionIterations</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Take a time step. This performs collision detection, integration, and constraint solution. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>timeStep</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the amount of time to simulate, this should not vary. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>velocityIterations</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>for the velocity constraint solver. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>positionIterations</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>for the position constraint solver. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2World.h" line="95" bodyfile="D:/pybox2d/Box2D/Dynamics/b2World.cpp" bodystart="853" bodyend="907"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_world_1ac082ab4c4ad0b1c5ec4674315eeec643" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void b2World::ClearForces</definition>
+        <argsstring>()</argsstring>
+        <name>ClearForces</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Manually clear the force buffer on all bodies. By default, forces are cleared automatically after each call to Step. The default behavior is modified by calling SetAutoClearForces. The purpose of this function is to support sub-stepping. Sub-stepping is often used to maintain a fixed sized time step under a variable frame-rate. When you perform sub-stepping you will disable auto clearing of forces and instead call ClearForces after all sub-steps are complete in one pass of your game loop. <simplesect kind="see"><para><ref refid="classb2_world_1aa2bced28ddef5bbb00ed5666e5e9f620" kindref="member">SetAutoClearForces</ref> </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2World.h" line="104" bodyfile="D:/pybox2d/Box2D/Dynamics/b2World.cpp" bodystart="909" bodyend="916"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_world_1a293d9865e407fd463e168b0a29856acc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void b2World::DrawDebugData</definition>
+        <argsstring>()</argsstring>
+        <name>DrawDebugData</name>
+        <briefdescription>
+<para>Call this to draw shapes and other debug draw data. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2World.h" line="107" bodyfile="D:/pybox2d/Box2D/Dynamics/b2World.cpp" bodystart="1075" bodyend="1177"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_world_1a711e55d2c6e68400f93472f807c3775b" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void b2World::QueryAABB</definition>
+        <argsstring>(b2QueryCallback *callback, const b2AABB &amp;aabb) const </argsstring>
+        <name>QueryAABB</name>
+        <param>
+          <type><ref refid="classb2_query_callback" kindref="compound">b2QueryCallback</ref> *</type>
+          <declname>callback</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structb2_a_a_b_b" kindref="compound">b2AABB</ref> &amp;</type>
+          <declname>aabb</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Query the world for all fixtures that potentially overlap the provided AABB. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>callback</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>a user implemented callback class. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>aabb</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the query box. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2World.h" line="113" bodyfile="D:/pybox2d/Box2D/Dynamics/b2World.cpp" bodystart="930" bodyend="936"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_world_1ad902548be84df9cc36eced0f4c89ab0a" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void b2World::RayCast</definition>
+        <argsstring>(b2RayCastCallback *callback, const b2Vec2 &amp;point1, const b2Vec2 &amp;point2) const </argsstring>
+        <name>RayCast</name>
+        <param>
+          <type><ref refid="classb2_ray_cast_callback" kindref="compound">b2RayCastCallback</ref> *</type>
+          <declname>callback</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structb2_vec2" kindref="compound">b2Vec2</ref> &amp;</type>
+          <declname>point1</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structb2_vec2" kindref="compound">b2Vec2</ref> &amp;</type>
+          <declname>point2</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Ray-cast the world for all fixtures in the path of the ray. Your callback controls whether you get the closest point, any point, or n-points. The ray-cast ignores shapes that contain the starting point. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>callback</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>a user implemented callback class. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>point1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the ray starting point </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>point2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the ray ending point </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2World.h" line="121" bodyfile="D:/pybox2d/Box2D/Dynamics/b2World.cpp" bodystart="963" bodyend="973"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_world_1a1b87c03955e3312d308ddf679adf3c85" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classb2_body" kindref="compound">b2Body</ref> *</type>
+        <definition>b2Body * b2World::GetBodyList</definition>
+        <argsstring>()</argsstring>
+        <name>GetBodyList</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Get the world body list. With the returned body, use <ref refid="classb2_body_1ad54182a11d02362b027a0eb072775bdc" kindref="member">b2Body::GetNext</ref> to get the next body in the world list. A NULL body indicates the end of the list. <simplesect kind="return"><para>the head of the world body list. </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2World.h" line="126" bodyfile="D:/pybox2d/Box2D/Dynamics/b2World.h" bodystart="232" bodyend="235"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_world_1ab7c43e574c60203db003645153663266" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="classb2_body" kindref="compound">b2Body</ref> *</type>
+        <definition>const b2Body * b2World::GetBodyList</definition>
+        <argsstring>() const </argsstring>
+        <name>GetBodyList</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2World.h" line="127" bodyfile="D:/pybox2d/Box2D/Dynamics/b2World.h" bodystart="237" bodyend="240"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_world_1a55db7240f8290aa02cab79f181934de8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classb2_joint" kindref="compound">b2Joint</ref> *</type>
+        <definition>b2Joint * b2World::GetJointList</definition>
+        <argsstring>()</argsstring>
+        <name>GetJointList</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Get the world joint list. With the returned joint, use <ref refid="classb2_joint_1a1a0e2137b631010750c728cb4e276e5d" kindref="member">b2Joint::GetNext</ref> to get the next joint in the world list. A NULL joint indicates the end of the list. <simplesect kind="return"><para>the head of the world joint list. </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2World.h" line="132" bodyfile="D:/pybox2d/Box2D/Dynamics/b2World.h" bodystart="242" bodyend="245"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_world_1a966ceb42d968a8a544d60826ce0ed925" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="classb2_joint" kindref="compound">b2Joint</ref> *</type>
+        <definition>const b2Joint * b2World::GetJointList</definition>
+        <argsstring>() const </argsstring>
+        <name>GetJointList</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2World.h" line="133" bodyfile="D:/pybox2d/Box2D/Dynamics/b2World.h" bodystart="247" bodyend="250"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_world_1ab1e1c59fd7534c0268c2a3e31370a425" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classb2_contact" kindref="compound">b2Contact</ref> *</type>
+        <definition>b2Contact * b2World::GetContactList</definition>
+        <argsstring>()</argsstring>
+        <name>GetContactList</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Get the world contact list. With the returned contact, use <ref refid="classb2_contact_1aebfebb1e4b27dc0bd7aa120093e3d650" kindref="member">b2Contact::GetNext</ref> to get the next contact in the world list. A NULL contact indicates the end of the list. <simplesect kind="return"><para>the head of the world contact list. </para></simplesect>
+<simplesect kind="warning"><para>contacts are </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2World.h" line="139" bodyfile="D:/pybox2d/Box2D/Dynamics/b2World.h" bodystart="252" bodyend="255"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_world_1a15e9281350c0494954197801372e3dbb" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="classb2_contact" kindref="compound">b2Contact</ref> *</type>
+        <definition>const b2Contact * b2World::GetContactList</definition>
+        <argsstring>() const </argsstring>
+        <name>GetContactList</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2World.h" line="140" bodyfile="D:/pybox2d/Box2D/Dynamics/b2World.h" bodystart="257" bodyend="260"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_world_1a8e8c12142e8c4884a18787926a261359" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void b2World::SetWarmStarting</definition>
+        <argsstring>(bool flag)</argsstring>
+        <name>SetWarmStarting</name>
+        <param>
+          <type>bool</type>
+          <declname>flag</declname>
+        </param>
+        <briefdescription>
+<para>Enable/disable warm starting. For testing. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2World.h" line="143" bodyfile="D:/pybox2d/Box2D/Dynamics/b2World.h" bodystart="143" bodyend="143"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_world_1a536dd9181c2e20096073e3cfe2c8530a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void b2World::SetContinuousPhysics</definition>
+        <argsstring>(bool flag)</argsstring>
+        <name>SetContinuousPhysics</name>
+        <param>
+          <type>bool</type>
+          <declname>flag</declname>
+        </param>
+        <briefdescription>
+<para>Enable/disable continuous physics. For testing. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2World.h" line="146" bodyfile="D:/pybox2d/Box2D/Dynamics/b2World.h" bodystart="146" bodyend="146"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_world_1ae8aacc78ea4753075067daff51b61778" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void b2World::SetSubStepping</definition>
+        <argsstring>(bool flag)</argsstring>
+        <name>SetSubStepping</name>
+        <param>
+          <type>bool</type>
+          <declname>flag</declname>
+        </param>
+        <briefdescription>
+<para>Enable/disable single stepped continuous physics. For testing. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2World.h" line="149" bodyfile="D:/pybox2d/Box2D/Dynamics/b2World.h" bodystart="149" bodyend="149"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_world_1a67f1f9fbdd85abd2100104c5eabe17cb" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>int32</type>
+        <definition>int32 b2World::GetProxyCount</definition>
+        <argsstring>() const </argsstring>
+        <name>GetProxyCount</name>
+        <briefdescription>
+<para>Get the number of broad-phase proxies. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2World.h" line="152" bodyfile="D:/pybox2d/Box2D/Dynamics/b2World.cpp" bodystart="1179" bodyend="1182"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_world_1a4559122ea51401b4fb7342eb6232ce74" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>int32</type>
+        <definition>int32 b2World::GetBodyCount</definition>
+        <argsstring>() const </argsstring>
+        <name>GetBodyCount</name>
+        <briefdescription>
+<para>Get the number of bodies. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2World.h" line="155" bodyfile="D:/pybox2d/Box2D/Dynamics/b2World.h" bodystart="262" bodyend="265"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_world_1a54a95a98787ed5f383c6549ee1f4c4d5" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>int32</type>
+        <definition>int32 b2World::GetJointCount</definition>
+        <argsstring>() const </argsstring>
+        <name>GetJointCount</name>
+        <briefdescription>
+<para>Get the number of joints. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2World.h" line="158" bodyfile="D:/pybox2d/Box2D/Dynamics/b2World.h" bodystart="267" bodyend="270"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_world_1abcc976f1755f9bb94a8650f5f4219a8d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>int32</type>
+        <definition>int32 b2World::GetContactCount</definition>
+        <argsstring>() const </argsstring>
+        <name>GetContactCount</name>
+        <briefdescription>
+<para>Get the number of contacts (each may have 0 or more contact points). </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2World.h" line="161" bodyfile="D:/pybox2d/Box2D/Dynamics/b2World.h" bodystart="272" bodyend="275"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_world_1aeafa43d6580e1dddb0675e672ca2375c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void b2World::SetGravity</definition>
+        <argsstring>(const b2Vec2 &amp;gravity)</argsstring>
+        <name>SetGravity</name>
+        <param>
+          <type>const <ref refid="structb2_vec2" kindref="compound">b2Vec2</ref> &amp;</type>
+          <declname>gravity</declname>
+        </param>
+        <briefdescription>
+<para>Change the global gravity vector. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2World.h" line="164" bodyfile="D:/pybox2d/Box2D/Dynamics/b2World.h" bodystart="277" bodyend="280"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_world_1a1e34bcd2f75fbdd41e2d84b3eb26d1ab" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="structb2_vec2" kindref="compound">b2Vec2</ref></type>
+        <definition>b2Vec2 b2World::GetGravity</definition>
+        <argsstring>() const </argsstring>
+        <name>GetGravity</name>
+        <briefdescription>
+<para>Get the global gravity vector. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2World.h" line="167" bodyfile="D:/pybox2d/Box2D/Dynamics/b2World.h" bodystart="282" bodyend="285"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_world_1ae50c318304546c9cc066ee382668c4a1" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool b2World::IsLocked</definition>
+        <argsstring>() const </argsstring>
+        <name>IsLocked</name>
+        <briefdescription>
+<para>Is the world locked (in the middle of a time step). </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2World.h" line="170" bodyfile="D:/pybox2d/Box2D/Dynamics/b2World.h" bodystart="287" bodyend="290"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_world_1aa2bced28ddef5bbb00ed5666e5e9f620" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void b2World::SetAutoClearForces</definition>
+        <argsstring>(bool flag)</argsstring>
+        <name>SetAutoClearForces</name>
+        <param>
+          <type>bool</type>
+          <declname>flag</declname>
+        </param>
+        <briefdescription>
+<para>Set flag to control automatic clearing of forces after each time step. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2World.h" line="173" bodyfile="D:/pybox2d/Box2D/Dynamics/b2World.h" bodystart="292" bodyend="302"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_world_1af56cc43ebde27946ed39382b4ea31640" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool b2World::GetAutoClearForces</definition>
+        <argsstring>() const </argsstring>
+        <name>GetAutoClearForces</name>
+        <briefdescription>
+<para>Get the flag that controls automatic clearing of forces after each time step. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2World.h" line="176" bodyfile="D:/pybox2d/Box2D/Dynamics/b2World.h" bodystart="305" bodyend="308"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_world_1a16259159ae1719c30808561c990a8c05" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const b2ContactManager &amp;</type>
+        <definition>const b2ContactManager &amp; b2World::GetContactManager</definition>
+        <argsstring>() const </argsstring>
+        <name>GetContactManager</name>
+        <briefdescription>
+<para>Get the contact manager for testing. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2World.h" line="179" bodyfile="D:/pybox2d/Box2D/Dynamics/b2World.h" bodystart="310" bodyend="313"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classb2_world_1a6cac2e86197dd42f05ed135e7bea41e0" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void b2World::Solve</definition>
+        <argsstring>(const b2TimeStep &amp;step)</argsstring>
+        <name>Solve</name>
+        <param>
+          <type>const <ref refid="structb2_time_step" kindref="compound">b2TimeStep</ref> &amp;</type>
+          <declname>step</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2World.h" line="195" bodyfile="D:/pybox2d/Box2D/Dynamics/b2World.cpp" bodystart="364" bodyend="540"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_world_1ae9524ce16eb46732d15df9148e715e0e" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void b2World::SolveTOI</definition>
+        <argsstring>(const b2TimeStep &amp;step)</argsstring>
+        <name>SolveTOI</name>
+        <param>
+          <type>const <ref refid="structb2_time_step" kindref="compound">b2TimeStep</ref> &amp;</type>
+          <declname>step</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2World.h" line="196" bodyfile="D:/pybox2d/Box2D/Dynamics/b2World.cpp" bodystart="543" bodyend="851"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_world_1af3d7aaf71b4cbb99760a7cd2f2ba43d7" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void b2World::DrawJoint</definition>
+        <argsstring>(b2Joint *joint)</argsstring>
+        <name>DrawJoint</name>
+        <param>
+          <type><ref refid="classb2_joint" kindref="compound">b2Joint</ref> *</type>
+          <declname>joint</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2World.h" line="198" bodyfile="D:/pybox2d/Box2D/Dynamics/b2World.cpp" bodystart="1034" bodyend="1073"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_world_1ac013bf7fbe36cda452a707ea62a46c39" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void b2World::DrawShape</definition>
+        <argsstring>(b2Fixture *shape, const b2Transform &amp;xf, const b2Color &amp;color)</argsstring>
+        <name>DrawShape</name>
+        <param>
+          <type><ref refid="classb2_fixture" kindref="compound">b2Fixture</ref> *</type>
+          <declname>shape</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structb2_transform" kindref="compound">b2Transform</ref> &amp;</type>
+          <declname>xf</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structb2_color" kindref="compound">b2Color</ref> &amp;</type>
+          <declname>color</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2World.h" line="199" bodyfile="D:/pybox2d/Box2D/Dynamics/b2World.cpp" bodystart="975" bodyend="1032"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>The world class manages all physics entities, dynamic simulation, and asynchronous queries. The world also contains efficient memory management facilities. </para>    </detaileddescription>
+    <collaborationgraph>
+      <node id="2165">
+        <label>b2Contact</label>
+        <link refid="classb2_contact"/>
+        <childnode refid="2165" relation="usage">
+          <edgelabel>m_prev</edgelabel>
+          <edgelabel>m_next</edgelabel>
+        </childnode>
+        <childnode refid="2166" relation="usage">
+          <edgelabel>m_manifold</edgelabel>
+        </childnode>
+        <childnode refid="2170" relation="usage">
+          <edgelabel>m_fixtureA</edgelabel>
+          <edgelabel>m_fixtureB</edgelabel>
+        </childnode>
+        <childnode refid="2164" relation="usage">
+          <edgelabel>m_nodeA</edgelabel>
+          <edgelabel>m_nodeB</edgelabel>
+        </childnode>
+      </node>
+      <node id="2157">
+        <label>b2Body</label>
+        <link refid="classb2_body"/>
+        <childnode refid="2157" relation="usage">
+          <edgelabel>m_prev</edgelabel>
+          <edgelabel>m_next</edgelabel>
+        </childnode>
+        <childnode refid="2158" relation="usage">
+          <edgelabel>m_jointList</edgelabel>
+        </childnode>
+        <childnode refid="2160" relation="usage">
+          <edgelabel>m_linearVelocity</edgelabel>
+          <edgelabel>m_force</edgelabel>
+        </childnode>
+        <childnode refid="2161" relation="usage">
+          <edgelabel>m_sweep</edgelabel>
+        </childnode>
+        <childnode refid="2162" relation="usage">
+          <edgelabel>m_xf</edgelabel>
+        </childnode>
+        <childnode refid="2164" relation="usage">
+          <edgelabel>m_contactList</edgelabel>
+        </childnode>
+        <childnode refid="2170" relation="usage">
+          <edgelabel>m_fixtureList</edgelabel>
+        </childnode>
+        <childnode refid="2156" relation="usage">
+          <edgelabel>m_world</edgelabel>
+        </childnode>
+      </node>
+      <node id="2169">
+        <label>b2ContactFeature</label>
+        <link refid="structb2_contact_feature"/>
+      </node>
+      <node id="2164">
+        <label>b2ContactEdge</label>
+        <link refid="structb2_contact_edge"/>
+        <childnode refid="2157" relation="usage">
+          <edgelabel>other</edgelabel>
+        </childnode>
+        <childnode refid="2165" relation="usage">
+          <edgelabel>contact</edgelabel>
+        </childnode>
+        <childnode refid="2164" relation="usage">
+          <edgelabel>prev</edgelabel>
+          <edgelabel>next</edgelabel>
+        </childnode>
+      </node>
+      <node id="2166">
+        <label>b2Manifold</label>
+        <link refid="structb2_manifold"/>
+        <childnode refid="2160" relation="usage">
+          <edgelabel>localPoint</edgelabel>
+          <edgelabel>localNormal</edgelabel>
+        </childnode>
+        <childnode refid="2167" relation="usage">
+          <edgelabel>points</edgelabel>
+        </childnode>
+      </node>
+      <node id="2176">
+        <label>b2BlockAllocator</label>
+        <link refid="classb2_block_allocator"/>
+      </node>
+      <node id="2177">
+        <label>b2DestructionListener</label>
+        <link refid="classb2_destruction_listener"/>
+      </node>
+      <node id="2156">
+        <label>b2World</label>
+        <link refid="classb2_world"/>
+        <childnode refid="2157" relation="usage">
+          <edgelabel>m_bodyList</edgelabel>
+        </childnode>
+        <childnode refid="2175" relation="usage">
+          <edgelabel>m_debugDraw</edgelabel>
+        </childnode>
+        <childnode refid="2160" relation="usage">
+          <edgelabel>m_gravity</edgelabel>
+        </childnode>
+        <childnode refid="2176" relation="usage">
+          <edgelabel>m_blockAllocator</edgelabel>
+        </childnode>
+        <childnode refid="2177" relation="usage">
+          <edgelabel>m_destructionListener</edgelabel>
+        </childnode>
+        <childnode refid="2159" relation="usage">
+          <edgelabel>m_jointList</edgelabel>
+        </childnode>
+      </node>
+      <node id="2171">
+        <label>b2FixtureProxy</label>
+        <link refid="structb2_fixture_proxy"/>
+        <childnode refid="2172" relation="usage">
+          <edgelabel>aabb</edgelabel>
+        </childnode>
+        <childnode refid="2170" relation="usage">
+          <edgelabel>fixture</edgelabel>
+        </childnode>
+      </node>
+      <node id="2163">
+        <label>b2Mat22</label>
+        <link refid="structb2_mat22"/>
+        <childnode refid="2160" relation="usage">
+          <edgelabel>col1</edgelabel>
+          <edgelabel>col2</edgelabel>
+        </childnode>
+      </node>
+      <node id="2161">
+        <label>b2Sweep</label>
+        <link refid="structb2_sweep"/>
+        <childnode refid="2160" relation="usage">
+          <edgelabel>c0</edgelabel>
+          <edgelabel>localCenter</edgelabel>
+          <edgelabel>c</edgelabel>
+        </childnode>
+      </node>
+      <node id="2162">
+        <label>b2Transform</label>
+        <link refid="structb2_transform"/>
+        <childnode refid="2160" relation="usage">
+          <edgelabel>position</edgelabel>
+        </childnode>
+        <childnode refid="2163" relation="usage">
+          <edgelabel>R</edgelabel>
+        </childnode>
+      </node>
+      <node id="2175">
+        <label>b2DebugDraw</label>
+        <link refid="classb2_debug_draw"/>
+      </node>
+      <node id="2174">
+        <label>b2Filter</label>
+        <link refid="structb2_filter"/>
+      </node>
+      <node id="2158">
+        <label>b2JointEdge</label>
+        <link refid="structb2_joint_edge"/>
+        <childnode refid="2157" relation="usage">
+          <edgelabel>other</edgelabel>
+        </childnode>
+        <childnode refid="2158" relation="usage">
+          <edgelabel>prev</edgelabel>
+          <edgelabel>next</edgelabel>
+        </childnode>
+        <childnode refid="2159" relation="usage">
+          <edgelabel>joint</edgelabel>
+        </childnode>
+      </node>
+      <node id="2159">
+        <label>b2Joint</label>
+        <link refid="classb2_joint"/>
+        <childnode refid="2157" relation="usage">
+          <edgelabel>m_bodyA</edgelabel>
+          <edgelabel>m_bodyB</edgelabel>
+        </childnode>
+        <childnode refid="2160" relation="usage">
+          <edgelabel>m_localCenterA</edgelabel>
+          <edgelabel>m_localCenterB</edgelabel>
+        </childnode>
+        <childnode refid="2158" relation="usage">
+          <edgelabel>m_edgeB</edgelabel>
+          <edgelabel>m_edgeA</edgelabel>
+        </childnode>
+        <childnode refid="2159" relation="usage">
+          <edgelabel>m_prev</edgelabel>
+          <edgelabel>m_next</edgelabel>
+        </childnode>
+      </node>
+      <node id="2160">
+        <label>b2Vec2</label>
+        <link refid="structb2_vec2"/>
+      </node>
+      <node id="2168">
+        <label>b2ContactID</label>
+        <link refid="unionb2_contact_i_d"/>
+        <childnode refid="2169" relation="usage">
+          <edgelabel>cf</edgelabel>
+        </childnode>
+      </node>
+      <node id="2173">
+        <label>b2Shape</label>
+        <link refid="classb2_shape"/>
+      </node>
+      <node id="2172">
+        <label>b2AABB</label>
+        <link refid="structb2_a_a_b_b"/>
+        <childnode refid="2160" relation="usage">
+          <edgelabel>lowerBound</edgelabel>
+          <edgelabel>upperBound</edgelabel>
+        </childnode>
+      </node>
+      <node id="2170">
+        <label>b2Fixture</label>
+        <link refid="classb2_fixture"/>
+        <childnode refid="2157" relation="usage">
+          <edgelabel>m_body</edgelabel>
+        </childnode>
+        <childnode refid="2171" relation="usage">
+          <edgelabel>m_proxies</edgelabel>
+        </childnode>
+        <childnode refid="2173" relation="usage">
+          <edgelabel>m_shape</edgelabel>
+        </childnode>
+        <childnode refid="2174" relation="usage">
+          <edgelabel>m_filter</edgelabel>
+        </childnode>
+        <childnode refid="2170" relation="usage">
+          <edgelabel>m_next</edgelabel>
+        </childnode>
+      </node>
+      <node id="2167">
+        <label>b2ManifoldPoint</label>
+        <link refid="structb2_manifold_point"/>
+        <childnode refid="2160" relation="usage">
+          <edgelabel>localPoint</edgelabel>
+        </childnode>
+        <childnode refid="2168" relation="usage">
+          <edgelabel>id</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="D:/pybox2d/Box2D/Dynamics/b2World.h" line="40" bodyfile="D:/pybox2d/Box2D/Dynamics/b2World.h" bodystart="39" bodyend="230"/>
+    <listofallmembers>
+      <member refid="classb2_world_1a010ab52de250e5fe30a45d642f46405b" prot="private" virt="non-virtual"><scope>b2World</scope><name>b2Body</name></member>
+      <member refid="classb2_world_1aece264d42f69aed410f5eb3beba6ddf2" prot="private" virt="non-virtual"><scope>b2World</scope><name>b2ContactManager</name></member>
+      <member refid="classb2_world_1ad0171f9dac44cc7aae065c618c0d165b" prot="private" virt="non-virtual"><scope>b2World</scope><name>b2Controller</name></member>
+      <member refid="classb2_world_1a9953cdbe9cb61cfb2a75ff9c1b1196d4" prot="public" virt="non-virtual"><scope>b2World</scope><name>b2World</name></member>
+      <member refid="classb2_world_1ac082ab4c4ad0b1c5ec4674315eeec643" prot="public" virt="non-virtual"><scope>b2World</scope><name>ClearForces</name></member>
+      <member refid="classb2_world_1a2eb36e967e43294bfa03ec3d177c2dae" prot="public" virt="non-virtual"><scope>b2World</scope><name>CreateBody</name></member>
+      <member refid="classb2_world_1a5cba9d0653149eb62504154e6fb35021" prot="public" virt="non-virtual"><scope>b2World</scope><name>CreateJoint</name></member>
+      <member refid="classb2_world_1ad52231ad7a9556ef5735ac79cbcd8fcf" prot="public" virt="non-virtual"><scope>b2World</scope><name>DestroyBody</name></member>
+      <member refid="classb2_world_1add5942aef171e54cfa384c8975746dca" prot="public" virt="non-virtual"><scope>b2World</scope><name>DestroyJoint</name></member>
+      <member refid="classb2_world_1a293d9865e407fd463e168b0a29856acc" prot="public" virt="non-virtual"><scope>b2World</scope><name>DrawDebugData</name></member>
+      <member refid="classb2_world_1af3d7aaf71b4cbb99760a7cd2f2ba43d7" prot="private" virt="non-virtual"><scope>b2World</scope><name>DrawJoint</name></member>
+      <member refid="classb2_world_1ac013bf7fbe36cda452a707ea62a46c39" prot="private" virt="non-virtual"><scope>b2World</scope><name>DrawShape</name></member>
+      <member refid="classb2_world_1a490b01df195e9d6f25a8202114f52bc1a21fc7672aa132ee5dcd63b5c3378f312" prot="private" virt="non-virtual"><scope>b2World</scope><name>e_clearForces</name></member>
+      <member refid="classb2_world_1a490b01df195e9d6f25a8202114f52bc1afd554e5ec320a10a80cbe627fa45b011" prot="private" virt="non-virtual"><scope>b2World</scope><name>e_locked</name></member>
+      <member refid="classb2_world_1a490b01df195e9d6f25a8202114f52bc1a9f229bfcdaf77858393ac67ad5ac07fc" prot="private" virt="non-virtual"><scope>b2World</scope><name>e_newFixture</name></member>
+      <member refid="classb2_world_1af56cc43ebde27946ed39382b4ea31640" prot="public" virt="non-virtual"><scope>b2World</scope><name>GetAutoClearForces</name></member>
+      <member refid="classb2_world_1a4559122ea51401b4fb7342eb6232ce74" prot="public" virt="non-virtual"><scope>b2World</scope><name>GetBodyCount</name></member>
+      <member refid="classb2_world_1a1b87c03955e3312d308ddf679adf3c85" prot="public" virt="non-virtual"><scope>b2World</scope><name>GetBodyList</name></member>
+      <member refid="classb2_world_1ab7c43e574c60203db003645153663266" prot="public" virt="non-virtual"><scope>b2World</scope><name>GetBodyList</name></member>
+      <member refid="classb2_world_1abcc976f1755f9bb94a8650f5f4219a8d" prot="public" virt="non-virtual"><scope>b2World</scope><name>GetContactCount</name></member>
+      <member refid="classb2_world_1ab1e1c59fd7534c0268c2a3e31370a425" prot="public" virt="non-virtual"><scope>b2World</scope><name>GetContactList</name></member>
+      <member refid="classb2_world_1a15e9281350c0494954197801372e3dbb" prot="public" virt="non-virtual"><scope>b2World</scope><name>GetContactList</name></member>
+      <member refid="classb2_world_1a16259159ae1719c30808561c990a8c05" prot="public" virt="non-virtual"><scope>b2World</scope><name>GetContactManager</name></member>
+      <member refid="classb2_world_1a1e34bcd2f75fbdd41e2d84b3eb26d1ab" prot="public" virt="non-virtual"><scope>b2World</scope><name>GetGravity</name></member>
+      <member refid="classb2_world_1a54a95a98787ed5f383c6549ee1f4c4d5" prot="public" virt="non-virtual"><scope>b2World</scope><name>GetJointCount</name></member>
+      <member refid="classb2_world_1a55db7240f8290aa02cab79f181934de8" prot="public" virt="non-virtual"><scope>b2World</scope><name>GetJointList</name></member>
+      <member refid="classb2_world_1a966ceb42d968a8a544d60826ce0ed925" prot="public" virt="non-virtual"><scope>b2World</scope><name>GetJointList</name></member>
+      <member refid="classb2_world_1a67f1f9fbdd85abd2100104c5eabe17cb" prot="public" virt="non-virtual"><scope>b2World</scope><name>GetProxyCount</name></member>
+      <member refid="classb2_world_1ae50c318304546c9cc066ee382668c4a1" prot="public" virt="non-virtual"><scope>b2World</scope><name>IsLocked</name></member>
+      <member refid="classb2_world_1a5a31013145f978e964cfee64c3c46d7e" prot="private" virt="non-virtual"><scope>b2World</scope><name>m_allowSleep</name></member>
+      <member refid="classb2_world_1ab02b03963ed73501770f7a89c9186e72" prot="private" virt="non-virtual"><scope>b2World</scope><name>m_blockAllocator</name></member>
+      <member refid="classb2_world_1aa24704aec207b3ae8359a2ffe6d01411" prot="private" virt="non-virtual"><scope>b2World</scope><name>m_bodyCount</name></member>
+      <member refid="classb2_world_1acb01b9fe3ae8e3014883d2cd8da5534a" prot="private" virt="non-virtual"><scope>b2World</scope><name>m_bodyList</name></member>
+      <member refid="classb2_world_1adc5b9e56c3d3c84993901dda29341140" prot="private" virt="non-virtual"><scope>b2World</scope><name>m_contactManager</name></member>
+      <member refid="classb2_world_1a6546f4a56849f5635b4ed48f823be9e0" prot="private" virt="non-virtual"><scope>b2World</scope><name>m_continuousPhysics</name></member>
+      <member refid="classb2_world_1a81e0739ec6aa0151f469e99662ab0789" prot="private" virt="non-virtual"><scope>b2World</scope><name>m_debugDraw</name></member>
+      <member refid="classb2_world_1abf5abe16bd1ceef5ac15333042e71b4f" prot="private" virt="non-virtual"><scope>b2World</scope><name>m_destructionListener</name></member>
+      <member refid="classb2_world_1a1b5cd8c24bf3a900dca9a7acec207e60" prot="private" virt="non-virtual"><scope>b2World</scope><name>m_flags</name></member>
+      <member refid="classb2_world_1a3c8ec39b73bdec820e03b17ef1d18b28" prot="private" virt="non-virtual"><scope>b2World</scope><name>m_gravity</name></member>
+      <member refid="classb2_world_1aaac593d6db2b19c648202dc326f88ba4" prot="private" virt="non-virtual"><scope>b2World</scope><name>m_inv_dt0</name></member>
+      <member refid="classb2_world_1a1f722f498830b3fcfc86792555f0f57f" prot="private" virt="non-virtual"><scope>b2World</scope><name>m_jointCount</name></member>
+      <member refid="classb2_world_1abe24b2f269cec46974c4331bd5418f41" prot="private" virt="non-virtual"><scope>b2World</scope><name>m_jointList</name></member>
+      <member refid="classb2_world_1a9c56dd143340d0db681a7bb2f0c937e3" prot="private" virt="non-virtual"><scope>b2World</scope><name>m_stackAllocator</name></member>
+      <member refid="classb2_world_1ad2a6027e3148f79d1a7598db3941d10a" prot="private" virt="non-virtual"><scope>b2World</scope><name>m_stepComplete</name></member>
+      <member refid="classb2_world_1abfdc124ba03185a4b15cf220ebbacfe6" prot="private" virt="non-virtual"><scope>b2World</scope><name>m_subStepping</name></member>
+      <member refid="classb2_world_1ab3c889781c1ad755f9f520f934e69b3d" prot="private" virt="non-virtual"><scope>b2World</scope><name>m_warmStarting</name></member>
+      <member refid="classb2_world_1a711e55d2c6e68400f93472f807c3775b" prot="public" virt="non-virtual"><scope>b2World</scope><name>QueryAABB</name></member>
+      <member refid="classb2_world_1ad902548be84df9cc36eced0f4c89ab0a" prot="public" virt="non-virtual"><scope>b2World</scope><name>RayCast</name></member>
+      <member refid="classb2_world_1aa2bced28ddef5bbb00ed5666e5e9f620" prot="public" virt="non-virtual"><scope>b2World</scope><name>SetAutoClearForces</name></member>
+      <member refid="classb2_world_1a85e6e1e911c7d6366f8c7d57a12b72ff" prot="public" virt="non-virtual"><scope>b2World</scope><name>SetContactFilter</name></member>
+      <member refid="classb2_world_1a614549967fb8a1584b61c11e2d553d42" prot="public" virt="non-virtual"><scope>b2World</scope><name>SetContactListener</name></member>
+      <member refid="classb2_world_1a536dd9181c2e20096073e3cfe2c8530a" prot="public" virt="non-virtual"><scope>b2World</scope><name>SetContinuousPhysics</name></member>
+      <member refid="classb2_world_1acefe206b97f91eac2b0cd9c4a0c7aaf1" prot="public" virt="non-virtual"><scope>b2World</scope><name>SetDebugDraw</name></member>
+      <member refid="classb2_world_1ae377f2dd5512ada7d27f4ad3541c75bf" prot="public" virt="non-virtual"><scope>b2World</scope><name>SetDestructionListener</name></member>
+      <member refid="classb2_world_1aeafa43d6580e1dddb0675e672ca2375c" prot="public" virt="non-virtual"><scope>b2World</scope><name>SetGravity</name></member>
+      <member refid="classb2_world_1ae8aacc78ea4753075067daff51b61778" prot="public" virt="non-virtual"><scope>b2World</scope><name>SetSubStepping</name></member>
+      <member refid="classb2_world_1a8e8c12142e8c4884a18787926a261359" prot="public" virt="non-virtual"><scope>b2World</scope><name>SetWarmStarting</name></member>
+      <member refid="classb2_world_1a6cac2e86197dd42f05ed135e7bea41e0" prot="private" virt="non-virtual"><scope>b2World</scope><name>Solve</name></member>
+      <member refid="classb2_world_1ae9524ce16eb46732d15df9148e715e0e" prot="private" virt="non-virtual"><scope>b2World</scope><name>SolveTOI</name></member>
+      <member refid="classb2_world_1a7a8eff61af98461f978fe43f3af7be90" prot="public" virt="non-virtual"><scope>b2World</scope><name>Step</name></member>
+      <member refid="classb2_world_1a5250ae4487475c33ccefdead07c768c8" prot="public" virt="non-virtual"><scope>b2World</scope><name>~b2World</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

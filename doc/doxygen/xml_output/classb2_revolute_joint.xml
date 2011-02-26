@@ -1,0 +1,913 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.7.2">
+  <compounddef id="classb2_revolute_joint" kind="class" prot="public">
+    <compoundname>b2RevoluteJoint</compoundname>
+    <basecompoundref refid="classb2_joint" prot="public" virt="non-virtual">b2Joint</basecompoundref>
+    <includes local="no">b2RevoluteJoint.h</includes>
+      <sectiondef kind="friend">
+      <memberdef kind="friend" id="classb2_revolute_joint_1a54ade8ed3d794298108d7f4c4e4793fa" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>friend class</type>
+        <definition>friend class b2Joint</definition>
+        <argsstring></argsstring>
+        <name>b2Joint</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2RevoluteJoint.h" line="146" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2RevoluteJoint.h" bodystart="146" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="friend" id="classb2_revolute_joint_1a13c275221e30bb485e17e4e04553cb71" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>friend class</type>
+        <definition>friend class b2GearJoint</definition>
+        <argsstring></argsstring>
+        <name>b2GearJoint</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2RevoluteJoint.h" line="147" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2RevoluteJoint.h" bodystart="147" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classb2_revolute_joint_1aa503ea89db9c1a50a8db269e7d17133d" prot="protected" static="no" mutable="no">
+        <type><ref refid="structb2_vec2" kindref="compound">b2Vec2</ref></type>
+        <definition>b2Vec2 b2RevoluteJoint::m_localAnchor1</definition>
+        <argsstring></argsstring>
+        <name>m_localAnchor1</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2RevoluteJoint.h" line="156" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2RevoluteJoint.h" bodystart="156" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_revolute_joint_1ada847216ba412785ec774ad0f77df4e6" prot="protected" static="no" mutable="no">
+        <type><ref refid="structb2_vec2" kindref="compound">b2Vec2</ref></type>
+        <definition>b2Vec2 b2RevoluteJoint::m_localAnchor2</definition>
+        <argsstring></argsstring>
+        <name>m_localAnchor2</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2RevoluteJoint.h" line="157" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2RevoluteJoint.h" bodystart="157" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_revolute_joint_1a00d576701b8e2ee886e9a59811b4df65" prot="protected" static="no" mutable="no">
+        <type><ref refid="structb2_vec3" kindref="compound">b2Vec3</ref></type>
+        <definition>b2Vec3 b2RevoluteJoint::m_impulse</definition>
+        <argsstring></argsstring>
+        <name>m_impulse</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2RevoluteJoint.h" line="158" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2RevoluteJoint.h" bodystart="158" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_revolute_joint_1a9275ac791803aa38c225d06b05ecfc26" prot="protected" static="no" mutable="no">
+        <type>float32</type>
+        <definition>float32 b2RevoluteJoint::m_motorImpulse</definition>
+        <argsstring></argsstring>
+        <name>m_motorImpulse</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2RevoluteJoint.h" line="159" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2RevoluteJoint.h" bodystart="159" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_revolute_joint_1a284ae761074305d5032a2b666efb0650" prot="protected" static="no" mutable="no">
+        <type><ref refid="structb2_mat33" kindref="compound">b2Mat33</ref></type>
+        <definition>b2Mat33 b2RevoluteJoint::m_mass</definition>
+        <argsstring></argsstring>
+        <name>m_mass</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2RevoluteJoint.h" line="161" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2RevoluteJoint.h" bodystart="161" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_revolute_joint_1aced7e455dd33ccb17a1d4ff9bb80c442" prot="protected" static="no" mutable="no">
+        <type>float32</type>
+        <definition>float32 b2RevoluteJoint::m_motorMass</definition>
+        <argsstring></argsstring>
+        <name>m_motorMass</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2RevoluteJoint.h" line="162" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2RevoluteJoint.h" bodystart="162" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_revolute_joint_1a8fcdcbfc9fd51e8b5dc98ed8ea652e13" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool b2RevoluteJoint::m_enableMotor</definition>
+        <argsstring></argsstring>
+        <name>m_enableMotor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2RevoluteJoint.h" line="164" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2RevoluteJoint.h" bodystart="164" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_revolute_joint_1a06ab30be0a455599bd3b5b6a11d6a43a" prot="protected" static="no" mutable="no">
+        <type>float32</type>
+        <definition>float32 b2RevoluteJoint::m_maxMotorTorque</definition>
+        <argsstring></argsstring>
+        <name>m_maxMotorTorque</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2RevoluteJoint.h" line="165" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2RevoluteJoint.h" bodystart="165" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_revolute_joint_1a7b6f51d7aa4b0132b12ec1091fdebfca" prot="protected" static="no" mutable="no">
+        <type>float32</type>
+        <definition>float32 b2RevoluteJoint::m_motorSpeed</definition>
+        <argsstring></argsstring>
+        <name>m_motorSpeed</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2RevoluteJoint.h" line="166" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2RevoluteJoint.h" bodystart="166" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_revolute_joint_1adb179e134ac49c612201caa20340e090" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool b2RevoluteJoint::m_enableLimit</definition>
+        <argsstring></argsstring>
+        <name>m_enableLimit</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2RevoluteJoint.h" line="168" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2RevoluteJoint.h" bodystart="168" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_revolute_joint_1a7648b770a9165ee9cd97edcf2df6ed9e" prot="protected" static="no" mutable="no">
+        <type>float32</type>
+        <definition>float32 b2RevoluteJoint::m_referenceAngle</definition>
+        <argsstring></argsstring>
+        <name>m_referenceAngle</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2RevoluteJoint.h" line="169" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2RevoluteJoint.h" bodystart="169" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_revolute_joint_1a7c57732200aae93368481970731630b1" prot="protected" static="no" mutable="no">
+        <type>float32</type>
+        <definition>float32 b2RevoluteJoint::m_lowerAngle</definition>
+        <argsstring></argsstring>
+        <name>m_lowerAngle</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2RevoluteJoint.h" line="170" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2RevoluteJoint.h" bodystart="170" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_revolute_joint_1adf7a2ab69e1e7a72697a2c9d92877c52" prot="protected" static="no" mutable="no">
+        <type>float32</type>
+        <definition>float32 b2RevoluteJoint::m_upperAngle</definition>
+        <argsstring></argsstring>
+        <name>m_upperAngle</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2RevoluteJoint.h" line="171" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2RevoluteJoint.h" bodystart="171" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_revolute_joint_1abe77594f4773d21dabd8912d6630dc6a" prot="protected" static="no" mutable="no">
+        <type>b2LimitState</type>
+        <definition>b2LimitState b2RevoluteJoint::m_limitState</definition>
+        <argsstring></argsstring>
+        <name>m_limitState</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2RevoluteJoint.h" line="172" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2RevoluteJoint.h" bodystart="172" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classb2_revolute_joint_1a7f266986c12009973fd74c9828b6c236" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type><ref refid="structb2_vec2" kindref="compound">b2Vec2</ref></type>
+        <definition>b2Vec2 b2RevoluteJoint::GetAnchorA</definition>
+        <argsstring>() const </argsstring>
+        <name>GetAnchorA</name>
+        <reimplements refid="classb2_joint_1abe46ca3aad5db73909a9b5a7b2117447">GetAnchorA</reimplements>
+        <briefdescription>
+<para>Get the anchor point on bodyA in world coordinates. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2RevoluteJoint.h" line="93" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2RevoluteJoint.cpp" bodystart="383" bodyend="386"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_revolute_joint_1a3a67ad189b29ea8ab6602a28697807f6" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type><ref refid="structb2_vec2" kindref="compound">b2Vec2</ref></type>
+        <definition>b2Vec2 b2RevoluteJoint::GetAnchorB</definition>
+        <argsstring>() const </argsstring>
+        <name>GetAnchorB</name>
+        <reimplements refid="classb2_joint_1a88e947c65d4ea26fe539f02a8cb7f7a9">GetAnchorB</reimplements>
+        <briefdescription>
+<para>Get the anchor point on bodyB in world coordinates. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2RevoluteJoint.h" line="94" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2RevoluteJoint.cpp" bodystart="388" bodyend="391"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_revolute_joint_1ab20fc12ce5ad5d84a032eb613c80764a" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>float32</type>
+        <definition>float32 b2RevoluteJoint::GetJointAngle</definition>
+        <argsstring>() const </argsstring>
+        <name>GetJointAngle</name>
+        <briefdescription>
+<para>Get the current joint angle in radians. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2RevoluteJoint.h" line="97" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2RevoluteJoint.cpp" bodystart="404" bodyend="409"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_revolute_joint_1a48e4db13c187af159587d731656aa0c4" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>float32</type>
+        <definition>float32 b2RevoluteJoint::GetJointSpeed</definition>
+        <argsstring>() const </argsstring>
+        <name>GetJointSpeed</name>
+        <briefdescription>
+<para>Get the current joint angle speed in radians per second. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2RevoluteJoint.h" line="100" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2RevoluteJoint.cpp" bodystart="411" bodyend="416"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_revolute_joint_1a7711afbfbdba4451d2dbfa8e55b9ded8" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool b2RevoluteJoint::IsLimitEnabled</definition>
+        <argsstring>() const </argsstring>
+        <name>IsLimitEnabled</name>
+        <briefdescription>
+<para>Is the joint limit enabled? </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2RevoluteJoint.h" line="103" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2RevoluteJoint.cpp" bodystart="449" bodyend="452"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_revolute_joint_1a56bdfdd04e906e52d0258f6a481b9093" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void b2RevoluteJoint::EnableLimit</definition>
+        <argsstring>(bool flag)</argsstring>
+        <name>EnableLimit</name>
+        <param>
+          <type>bool</type>
+          <declname>flag</declname>
+        </param>
+        <briefdescription>
+<para>Enable/disable the joint limit. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2RevoluteJoint.h" line="106" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2RevoluteJoint.cpp" bodystart="454" bodyend="459"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_revolute_joint_1a0f33656869e46ec9405f42d68e858220" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>float32</type>
+        <definition>float32 b2RevoluteJoint::GetLowerLimit</definition>
+        <argsstring>() const </argsstring>
+        <name>GetLowerLimit</name>
+        <briefdescription>
+<para>Get the lower joint limit in radians. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2RevoluteJoint.h" line="109" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2RevoluteJoint.cpp" bodystart="461" bodyend="464"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_revolute_joint_1a9bb683118879611e84e4cb26bdc8d39f" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>float32</type>
+        <definition>float32 b2RevoluteJoint::GetUpperLimit</definition>
+        <argsstring>() const </argsstring>
+        <name>GetUpperLimit</name>
+        <briefdescription>
+<para>Get the upper joint limit in radians. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2RevoluteJoint.h" line="112" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2RevoluteJoint.cpp" bodystart="466" bodyend="469"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_revolute_joint_1a32f9393d8a6b993fd523f0f643c28107" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void b2RevoluteJoint::SetLimits</definition>
+        <argsstring>(float32 lower, float32 upper)</argsstring>
+        <name>SetLimits</name>
+        <param>
+          <type>float32</type>
+          <declname>lower</declname>
+        </param>
+        <param>
+          <type>float32</type>
+          <declname>upper</declname>
+        </param>
+        <briefdescription>
+<para>Set the joint limits in radians. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2RevoluteJoint.h" line="115" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2RevoluteJoint.cpp" bodystart="471" bodyend="478"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_revolute_joint_1a9477b305db080e17dce8f2c6da0babb0" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool b2RevoluteJoint::IsMotorEnabled</definition>
+        <argsstring>() const </argsstring>
+        <name>IsMotorEnabled</name>
+        <briefdescription>
+<para>Is the joint motor enabled? </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2RevoluteJoint.h" line="118" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2RevoluteJoint.cpp" bodystart="418" bodyend="421"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_revolute_joint_1a80ed5a07d9a0e07d010808a73ffae6ff" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void b2RevoluteJoint::EnableMotor</definition>
+        <argsstring>(bool flag)</argsstring>
+        <name>EnableMotor</name>
+        <param>
+          <type>bool</type>
+          <declname>flag</declname>
+        </param>
+        <briefdescription>
+<para>Enable/disable the joint motor. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2RevoluteJoint.h" line="121" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2RevoluteJoint.cpp" bodystart="423" bodyend="428"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_revolute_joint_1a56f60bb1ea69048c8a455da49d62bf65" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void b2RevoluteJoint::SetMotorSpeed</definition>
+        <argsstring>(float32 speed)</argsstring>
+        <name>SetMotorSpeed</name>
+        <param>
+          <type>float32</type>
+          <declname>speed</declname>
+        </param>
+        <briefdescription>
+<para>Set the motor speed in radians per second. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2RevoluteJoint.h" line="124" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2RevoluteJoint.cpp" bodystart="435" bodyend="440"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_revolute_joint_1a5ebdb2b410725d2c7999d8fce792e0da" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>float32</type>
+        <definition>float32 b2RevoluteJoint::GetMotorSpeed</definition>
+        <argsstring>() const </argsstring>
+        <name>GetMotorSpeed</name>
+        <briefdescription>
+<para>Get the motor speed in radians per second. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2RevoluteJoint.h" line="127" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2RevoluteJoint.h" bodystart="175" bodyend="178"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_revolute_joint_1a41779d7ec05be33e6368ef00123a3581" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void b2RevoluteJoint::SetMaxMotorTorque</definition>
+        <argsstring>(float32 torque)</argsstring>
+        <name>SetMaxMotorTorque</name>
+        <param>
+          <type>float32</type>
+          <declname>torque</declname>
+        </param>
+        <briefdescription>
+<para>Set the maximum motor torque, usually in N-m. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2RevoluteJoint.h" line="130" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2RevoluteJoint.cpp" bodystart="442" bodyend="447"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_revolute_joint_1a1e5d6eb28f3f35e825cfc42dbd23d66e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type><ref refid="structb2_vec2" kindref="compound">b2Vec2</ref></type>
+        <definition>b2Vec2 b2RevoluteJoint::GetReactionForce</definition>
+        <argsstring>(float32 inv_dt) const </argsstring>
+        <name>GetReactionForce</name>
+        <reimplements refid="classb2_joint_1a7e0eddefb9b69ad050b8ef6425838a74">GetReactionForce</reimplements>
+        <param>
+          <type>float32</type>
+          <declname>inv_dt</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Get the reaction force given the inverse time step. Unit is N. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2RevoluteJoint.h" line="134" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2RevoluteJoint.cpp" bodystart="393" bodyend="397"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_revolute_joint_1a85cdf204bf80dc0a4df6536e2e9a941e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>float32</type>
+        <definition>float32 b2RevoluteJoint::GetReactionTorque</definition>
+        <argsstring>(float32 inv_dt) const </argsstring>
+        <name>GetReactionTorque</name>
+        <reimplements refid="classb2_joint_1ae355e441c2aa842777dc04e24f15ced0">GetReactionTorque</reimplements>
+        <param>
+          <type>float32</type>
+          <declname>inv_dt</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Get the reaction torque due to the joint limit given the inverse time step. Unit is N*m. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2RevoluteJoint.h" line="138" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2RevoluteJoint.cpp" bodystart="399" bodyend="402"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_revolute_joint_1a64579cb1db5e9674ec17244133c72920" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>float32</type>
+        <definition>float32 b2RevoluteJoint::GetMotorTorque</definition>
+        <argsstring>(float32 inv_dt) const </argsstring>
+        <name>GetMotorTorque</name>
+        <param>
+          <type>float32</type>
+          <declname>inv_dt</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Get the current motor torque given the inverse time step. Unit is N*m. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2RevoluteJoint.h" line="142" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2RevoluteJoint.cpp" bodystart="430" bodyend="433"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classb2_revolute_joint_1a2571c1438e909fb3518de6f88bb29e01" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>b2RevoluteJoint::b2RevoluteJoint</definition>
+        <argsstring>(const b2RevoluteJointDef *def)</argsstring>
+        <name>b2RevoluteJoint</name>
+        <param>
+          <type>const <ref refid="structb2_revolute_joint_def" kindref="compound">b2RevoluteJointDef</ref> *</type>
+          <declname>def</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2RevoluteJoint.h" line="149" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2RevoluteJoint.cpp" bodystart="45" bodyend="62"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_revolute_joint_1ac8c76ea71dafcfaa68173c379a467e68" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void b2RevoluteJoint::InitVelocityConstraints</definition>
+        <argsstring>(const b2TimeStep &amp;step)</argsstring>
+        <name>InitVelocityConstraints</name>
+        <reimplements refid="classb2_joint_1aa28338c9b814ac08dac1cd3464f95c8e">InitVelocityConstraints</reimplements>
+        <param>
+          <type>const <ref refid="structb2_time_step" kindref="compound">b2TimeStep</ref> &amp;</type>
+          <declname>step</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2RevoluteJoint.h" line="151" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2RevoluteJoint.cpp" bodystart="64" bodyend="166"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_revolute_joint_1a915a7cc9a6060a56d5f340ab3da3def3" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void b2RevoluteJoint::SolveVelocityConstraints</definition>
+        <argsstring>(const b2TimeStep &amp;step)</argsstring>
+        <name>SolveVelocityConstraints</name>
+        <reimplements refid="classb2_joint_1a34c667efb15706f9d3413336d8af93cb">SolveVelocityConstraints</reimplements>
+        <param>
+          <type>const <ref refid="structb2_time_step" kindref="compound">b2TimeStep</ref> &amp;</type>
+          <declname>step</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2RevoluteJoint.h" line="152" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2RevoluteJoint.cpp" bodystart="168" bodyend="272"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_revolute_joint_1a537f65f626e650a9c80123c3c4d322b0" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>bool</type>
+        <definition>bool b2RevoluteJoint::SolvePositionConstraints</definition>
+        <argsstring>(float32 baumgarte)</argsstring>
+        <name>SolvePositionConstraints</name>
+        <reimplements refid="classb2_joint_1aab43f57e4a2d352c93cc1f4bd0639f90">SolvePositionConstraints</reimplements>
+        <param>
+          <type>float32</type>
+          <declname>baumgarte</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2RevoluteJoint.h" line="154" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2RevoluteJoint.cpp" bodystart="274" bodyend="381"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>A revolute joint constrains two bodies to share a common point while they are free to rotate about the point. The relative rotation about the shared point is the joint angle. You can limit the relative rotation with a joint limit that specifies a lower and upper angle. You can use a motor to drive the relative rotation about the shared point. A maximum motor torque is provided so that infinite forces are not generated. </para>    </detaileddescription>
+    <inheritancegraph>
+      <node id="1951">
+        <label>b2RevoluteJoint</label>
+        <link refid="classb2_revolute_joint"/>
+        <childnode refid="1952" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1952">
+        <label>b2Joint</label>
+        <link refid="classb2_joint"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1962">
+        <label>b2Contact</label>
+        <link refid="classb2_contact"/>
+        <childnode refid="1962" relation="usage">
+          <edgelabel>m_prev</edgelabel>
+          <edgelabel>m_next</edgelabel>
+        </childnode>
+        <childnode refid="1963" relation="usage">
+          <edgelabel>m_manifold</edgelabel>
+        </childnode>
+        <childnode refid="1967" relation="usage">
+          <edgelabel>m_fixtureA</edgelabel>
+          <edgelabel>m_fixtureB</edgelabel>
+        </childnode>
+        <childnode refid="1961" relation="usage">
+          <edgelabel>m_nodeA</edgelabel>
+          <edgelabel>m_nodeB</edgelabel>
+        </childnode>
+      </node>
+      <node id="1955">
+        <label>b2Body</label>
+        <link refid="classb2_body"/>
+        <childnode refid="1955" relation="usage">
+          <edgelabel>m_prev</edgelabel>
+          <edgelabel>m_next</edgelabel>
+        </childnode>
+        <childnode refid="1956" relation="usage">
+          <edgelabel>m_jointList</edgelabel>
+        </childnode>
+        <childnode refid="1957" relation="usage">
+          <edgelabel>m_linearVelocity</edgelabel>
+          <edgelabel>m_force</edgelabel>
+        </childnode>
+        <childnode refid="1958" relation="usage">
+          <edgelabel>m_sweep</edgelabel>
+        </childnode>
+        <childnode refid="1959" relation="usage">
+          <edgelabel>m_xf</edgelabel>
+        </childnode>
+        <childnode refid="1961" relation="usage">
+          <edgelabel>m_contactList</edgelabel>
+        </childnode>
+        <childnode refid="1967" relation="usage">
+          <edgelabel>m_fixtureList</edgelabel>
+        </childnode>
+        <childnode refid="1972" relation="usage">
+          <edgelabel>m_world</edgelabel>
+        </childnode>
+      </node>
+      <node id="1966">
+        <label>b2ContactFeature</label>
+        <link refid="structb2_contact_feature"/>
+      </node>
+      <node id="1961">
+        <label>b2ContactEdge</label>
+        <link refid="structb2_contact_edge"/>
+        <childnode refid="1955" relation="usage">
+          <edgelabel>other</edgelabel>
+        </childnode>
+        <childnode refid="1962" relation="usage">
+          <edgelabel>contact</edgelabel>
+        </childnode>
+        <childnode refid="1961" relation="usage">
+          <edgelabel>prev</edgelabel>
+          <edgelabel>next</edgelabel>
+        </childnode>
+      </node>
+      <node id="1963">
+        <label>b2Manifold</label>
+        <link refid="structb2_manifold"/>
+        <childnode refid="1957" relation="usage">
+          <edgelabel>localPoint</edgelabel>
+          <edgelabel>localNormal</edgelabel>
+        </childnode>
+        <childnode refid="1964" relation="usage">
+          <edgelabel>points</edgelabel>
+        </childnode>
+      </node>
+      <node id="1974">
+        <label>b2BlockAllocator</label>
+        <link refid="classb2_block_allocator"/>
+      </node>
+      <node id="1975">
+        <label>b2DestructionListener</label>
+        <link refid="classb2_destruction_listener"/>
+      </node>
+      <node id="1972">
+        <label>b2World</label>
+        <link refid="classb2_world"/>
+        <childnode refid="1955" relation="usage">
+          <edgelabel>m_bodyList</edgelabel>
+        </childnode>
+        <childnode refid="1973" relation="usage">
+          <edgelabel>m_debugDraw</edgelabel>
+        </childnode>
+        <childnode refid="1957" relation="usage">
+          <edgelabel>m_gravity</edgelabel>
+        </childnode>
+        <childnode refid="1974" relation="usage">
+          <edgelabel>m_blockAllocator</edgelabel>
+        </childnode>
+        <childnode refid="1975" relation="usage">
+          <edgelabel>m_destructionListener</edgelabel>
+        </childnode>
+        <childnode refid="1954" relation="usage">
+          <edgelabel>m_jointList</edgelabel>
+        </childnode>
+      </node>
+      <node id="1976">
+        <label>b2Mat33</label>
+        <link refid="structb2_mat33"/>
+        <childnode refid="1977" relation="usage">
+          <edgelabel>col1</edgelabel>
+          <edgelabel>col2</edgelabel>
+          <edgelabel>col3</edgelabel>
+        </childnode>
+      </node>
+      <node id="1968">
+        <label>b2FixtureProxy</label>
+        <link refid="structb2_fixture_proxy"/>
+        <childnode refid="1969" relation="usage">
+          <edgelabel>aabb</edgelabel>
+        </childnode>
+        <childnode refid="1967" relation="usage">
+          <edgelabel>fixture</edgelabel>
+        </childnode>
+      </node>
+      <node id="1960">
+        <label>b2Mat22</label>
+        <link refid="structb2_mat22"/>
+        <childnode refid="1957" relation="usage">
+          <edgelabel>col1</edgelabel>
+          <edgelabel>col2</edgelabel>
+        </childnode>
+      </node>
+      <node id="1953">
+        <label>b2RevoluteJoint</label>
+        <link refid="classb2_revolute_joint"/>
+        <childnode refid="1954" relation="public-inheritance">
+        </childnode>
+        <childnode refid="1976" relation="usage">
+          <edgelabel>m_mass</edgelabel>
+        </childnode>
+        <childnode refid="1957" relation="usage">
+          <edgelabel>m_localAnchor1</edgelabel>
+          <edgelabel>m_localAnchor2</edgelabel>
+        </childnode>
+        <childnode refid="1977" relation="usage">
+          <edgelabel>m_impulse</edgelabel>
+        </childnode>
+      </node>
+      <node id="1958">
+        <label>b2Sweep</label>
+        <link refid="structb2_sweep"/>
+        <childnode refid="1957" relation="usage">
+          <edgelabel>c0</edgelabel>
+          <edgelabel>localCenter</edgelabel>
+          <edgelabel>c</edgelabel>
+        </childnode>
+      </node>
+      <node id="1959">
+        <label>b2Transform</label>
+        <link refid="structb2_transform"/>
+        <childnode refid="1957" relation="usage">
+          <edgelabel>position</edgelabel>
+        </childnode>
+        <childnode refid="1960" relation="usage">
+          <edgelabel>R</edgelabel>
+        </childnode>
+      </node>
+      <node id="1973">
+        <label>b2DebugDraw</label>
+        <link refid="classb2_debug_draw"/>
+      </node>
+      <node id="1971">
+        <label>b2Filter</label>
+        <link refid="structb2_filter"/>
+      </node>
+      <node id="1956">
+        <label>b2JointEdge</label>
+        <link refid="structb2_joint_edge"/>
+        <childnode refid="1955" relation="usage">
+          <edgelabel>other</edgelabel>
+        </childnode>
+        <childnode refid="1956" relation="usage">
+          <edgelabel>prev</edgelabel>
+          <edgelabel>next</edgelabel>
+        </childnode>
+        <childnode refid="1954" relation="usage">
+          <edgelabel>joint</edgelabel>
+        </childnode>
+      </node>
+      <node id="1954">
+        <label>b2Joint</label>
+        <link refid="classb2_joint"/>
+        <childnode refid="1955" relation="usage">
+          <edgelabel>m_bodyA</edgelabel>
+          <edgelabel>m_bodyB</edgelabel>
+        </childnode>
+        <childnode refid="1957" relation="usage">
+          <edgelabel>m_localCenterA</edgelabel>
+          <edgelabel>m_localCenterB</edgelabel>
+        </childnode>
+        <childnode refid="1956" relation="usage">
+          <edgelabel>m_edgeB</edgelabel>
+          <edgelabel>m_edgeA</edgelabel>
+        </childnode>
+        <childnode refid="1954" relation="usage">
+          <edgelabel>m_prev</edgelabel>
+          <edgelabel>m_next</edgelabel>
+        </childnode>
+      </node>
+      <node id="1957">
+        <label>b2Vec2</label>
+        <link refid="structb2_vec2"/>
+      </node>
+      <node id="1977">
+        <label>b2Vec3</label>
+        <link refid="structb2_vec3"/>
+      </node>
+      <node id="1965">
+        <label>b2ContactID</label>
+        <link refid="unionb2_contact_i_d"/>
+        <childnode refid="1966" relation="usage">
+          <edgelabel>cf</edgelabel>
+        </childnode>
+      </node>
+      <node id="1970">
+        <label>b2Shape</label>
+        <link refid="classb2_shape"/>
+      </node>
+      <node id="1969">
+        <label>b2AABB</label>
+        <link refid="structb2_a_a_b_b"/>
+        <childnode refid="1957" relation="usage">
+          <edgelabel>lowerBound</edgelabel>
+          <edgelabel>upperBound</edgelabel>
+        </childnode>
+      </node>
+      <node id="1967">
+        <label>b2Fixture</label>
+        <link refid="classb2_fixture"/>
+        <childnode refid="1955" relation="usage">
+          <edgelabel>m_body</edgelabel>
+        </childnode>
+        <childnode refid="1968" relation="usage">
+          <edgelabel>m_proxies</edgelabel>
+        </childnode>
+        <childnode refid="1970" relation="usage">
+          <edgelabel>m_shape</edgelabel>
+        </childnode>
+        <childnode refid="1971" relation="usage">
+          <edgelabel>m_filter</edgelabel>
+        </childnode>
+        <childnode refid="1967" relation="usage">
+          <edgelabel>m_next</edgelabel>
+        </childnode>
+      </node>
+      <node id="1964">
+        <label>b2ManifoldPoint</label>
+        <link refid="structb2_manifold_point"/>
+        <childnode refid="1957" relation="usage">
+          <edgelabel>localPoint</edgelabel>
+        </childnode>
+        <childnode refid="1965" relation="usage">
+          <edgelabel>id</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2RevoluteJoint.h" line="91" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2RevoluteJoint.h" bodystart="90" bodyend="173"/>
+    <listofallmembers>
+      <member refid="classb2_joint_1a010ab52de250e5fe30a45d642f46405b" prot="protected" virt="non-virtual"><scope>b2RevoluteJoint</scope><name>b2Body</name></member>
+      <member refid="classb2_revolute_joint_1a13c275221e30bb485e17e4e04553cb71" prot="protected" virt="non-virtual"><scope>b2RevoluteJoint</scope><name>b2GearJoint</name></member>
+      <member refid="classb2_joint_1afc682950b8c4f251804fc1938663098b" prot="protected" virt="non-virtual"><scope>b2RevoluteJoint</scope><name>b2Island</name></member>
+      <member refid="classb2_revolute_joint_1a54ade8ed3d794298108d7f4c4e4793fa" prot="protected" virt="non-virtual"><scope>b2RevoluteJoint</scope><name>b2Joint</name></member>
+      <member refid="classb2_joint_1a8d6cce91546335fe95325d5e29c06a19" prot="protected" virt="non-virtual" ambiguityscope="b2Joint::"><scope>b2RevoluteJoint</scope><name>b2Joint</name></member>
+      <member refid="classb2_revolute_joint_1a2571c1438e909fb3518de6f88bb29e01" prot="protected" virt="non-virtual"><scope>b2RevoluteJoint</scope><name>b2RevoluteJoint</name></member>
+      <member refid="classb2_joint_1a4bd536c5a7c0587913765bbc2693ceea" prot="protected" virt="non-virtual"><scope>b2RevoluteJoint</scope><name>b2World</name></member>
+      <member refid="classb2_joint_1a2e500c93107d0bf6b0a21654528faeab" prot="protected" virt="non-virtual"><scope>b2RevoluteJoint</scope><name>Create</name></member>
+      <member refid="classb2_joint_1acf52946b6672d77f268b849ccb09e003" prot="protected" virt="non-virtual"><scope>b2RevoluteJoint</scope><name>Destroy</name></member>
+      <member refid="classb2_revolute_joint_1a56bdfdd04e906e52d0258f6a481b9093" prot="public" virt="non-virtual"><scope>b2RevoluteJoint</scope><name>EnableLimit</name></member>
+      <member refid="classb2_revolute_joint_1a80ed5a07d9a0e07d010808a73ffae6ff" prot="public" virt="non-virtual"><scope>b2RevoluteJoint</scope><name>EnableMotor</name></member>
+      <member refid="classb2_revolute_joint_1a7f266986c12009973fd74c9828b6c236" prot="public" virt="virtual"><scope>b2RevoluteJoint</scope><name>GetAnchorA</name></member>
+      <member refid="classb2_revolute_joint_1a3a67ad189b29ea8ab6602a28697807f6" prot="public" virt="virtual"><scope>b2RevoluteJoint</scope><name>GetAnchorB</name></member>
+      <member refid="classb2_joint_1a2ed5eca3dbdce48665c14452b280613f" prot="public" virt="non-virtual"><scope>b2RevoluteJoint</scope><name>GetBodyA</name></member>
+      <member refid="classb2_joint_1a700b3d4c87f34f456151b9598e4641a0" prot="public" virt="non-virtual"><scope>b2RevoluteJoint</scope><name>GetBodyB</name></member>
+      <member refid="classb2_revolute_joint_1ab20fc12ce5ad5d84a032eb613c80764a" prot="public" virt="non-virtual"><scope>b2RevoluteJoint</scope><name>GetJointAngle</name></member>
+      <member refid="classb2_revolute_joint_1a48e4db13c187af159587d731656aa0c4" prot="public" virt="non-virtual"><scope>b2RevoluteJoint</scope><name>GetJointSpeed</name></member>
+      <member refid="classb2_revolute_joint_1a0f33656869e46ec9405f42d68e858220" prot="public" virt="non-virtual"><scope>b2RevoluteJoint</scope><name>GetLowerLimit</name></member>
+      <member refid="classb2_revolute_joint_1a5ebdb2b410725d2c7999d8fce792e0da" prot="public" virt="non-virtual"><scope>b2RevoluteJoint</scope><name>GetMotorSpeed</name></member>
+      <member refid="classb2_revolute_joint_1a64579cb1db5e9674ec17244133c72920" prot="public" virt="non-virtual"><scope>b2RevoluteJoint</scope><name>GetMotorTorque</name></member>
+      <member refid="classb2_joint_1a1a0e2137b631010750c728cb4e276e5d" prot="public" virt="non-virtual"><scope>b2RevoluteJoint</scope><name>GetNext</name></member>
+      <member refid="classb2_joint_1a1ac83edb39806085608c9d549dd98550" prot="public" virt="non-virtual"><scope>b2RevoluteJoint</scope><name>GetNext</name></member>
+      <member refid="classb2_revolute_joint_1a1e5d6eb28f3f35e825cfc42dbd23d66e" prot="public" virt="virtual"><scope>b2RevoluteJoint</scope><name>GetReactionForce</name></member>
+      <member refid="classb2_revolute_joint_1a85cdf204bf80dc0a4df6536e2e9a941e" prot="public" virt="virtual"><scope>b2RevoluteJoint</scope><name>GetReactionTorque</name></member>
+      <member refid="classb2_joint_1a37a2ca3f0d41c6903d2cc73757f02be2" prot="public" virt="non-virtual"><scope>b2RevoluteJoint</scope><name>GetType</name></member>
+      <member refid="classb2_revolute_joint_1a9bb683118879611e84e4cb26bdc8d39f" prot="public" virt="non-virtual"><scope>b2RevoluteJoint</scope><name>GetUpperLimit</name></member>
+      <member refid="classb2_joint_1a505ab02c234f1cc20aa3375f3ab7b587" prot="public" virt="non-virtual"><scope>b2RevoluteJoint</scope><name>GetUserData</name></member>
+      <member refid="classb2_revolute_joint_1ac8c76ea71dafcfaa68173c379a467e68" prot="protected" virt="virtual"><scope>b2RevoluteJoint</scope><name>InitVelocityConstraints</name></member>
+      <member refid="classb2_joint_1a825d3a6abb32014f31fd622f2bfc0363" prot="public" virt="non-virtual"><scope>b2RevoluteJoint</scope><name>IsActive</name></member>
+      <member refid="classb2_revolute_joint_1a7711afbfbdba4451d2dbfa8e55b9ded8" prot="public" virt="non-virtual"><scope>b2RevoluteJoint</scope><name>IsLimitEnabled</name></member>
+      <member refid="classb2_revolute_joint_1a9477b305db080e17dce8f2c6da0babb0" prot="public" virt="non-virtual"><scope>b2RevoluteJoint</scope><name>IsMotorEnabled</name></member>
+      <member refid="classb2_joint_1abaebb784a51abb7d66de302ba07a4467" prot="protected" virt="non-virtual"><scope>b2RevoluteJoint</scope><name>m_bodyA</name></member>
+      <member refid="classb2_joint_1a1fd77fcbcb8a8a3729c7dc5b790d7200" prot="protected" virt="non-virtual"><scope>b2RevoluteJoint</scope><name>m_bodyB</name></member>
+      <member refid="classb2_joint_1ac1a93c14c8dd666bb487db6c98daad33" prot="protected" virt="non-virtual"><scope>b2RevoluteJoint</scope><name>m_collideConnected</name></member>
+      <member refid="classb2_joint_1a406ea423db1fe6484408d73df647f7b2" prot="protected" virt="non-virtual"><scope>b2RevoluteJoint</scope><name>m_edgeA</name></member>
+      <member refid="classb2_joint_1a1041219dcd353ea815ebd78f904af547" prot="protected" virt="non-virtual"><scope>b2RevoluteJoint</scope><name>m_edgeB</name></member>
+      <member refid="classb2_revolute_joint_1adb179e134ac49c612201caa20340e090" prot="protected" virt="non-virtual"><scope>b2RevoluteJoint</scope><name>m_enableLimit</name></member>
+      <member refid="classb2_revolute_joint_1a8fcdcbfc9fd51e8b5dc98ed8ea652e13" prot="protected" virt="non-virtual"><scope>b2RevoluteJoint</scope><name>m_enableMotor</name></member>
+      <member refid="classb2_revolute_joint_1a00d576701b8e2ee886e9a59811b4df65" prot="protected" virt="non-virtual"><scope>b2RevoluteJoint</scope><name>m_impulse</name></member>
+      <member refid="classb2_joint_1a346a821b249dc84799f450cf936f7c3c" prot="protected" virt="non-virtual"><scope>b2RevoluteJoint</scope><name>m_invIA</name></member>
+      <member refid="classb2_joint_1a8f40b92ac3e39a96c717595dbb44d15b" prot="protected" virt="non-virtual"><scope>b2RevoluteJoint</scope><name>m_invIB</name></member>
+      <member refid="classb2_joint_1ad7c87d31bd96e0c783105bfed10dc8a2" prot="protected" virt="non-virtual"><scope>b2RevoluteJoint</scope><name>m_invMassA</name></member>
+      <member refid="classb2_joint_1a6cb90224d27cff346fba95794cd140c5" prot="protected" virt="non-virtual"><scope>b2RevoluteJoint</scope><name>m_invMassB</name></member>
+      <member refid="classb2_joint_1a777e45428d9a74d626f4afa1b45e1975" prot="protected" virt="non-virtual"><scope>b2RevoluteJoint</scope><name>m_islandFlag</name></member>
+      <member refid="classb2_revolute_joint_1abe77594f4773d21dabd8912d6630dc6a" prot="protected" virt="non-virtual"><scope>b2RevoluteJoint</scope><name>m_limitState</name></member>
+      <member refid="classb2_revolute_joint_1aa503ea89db9c1a50a8db269e7d17133d" prot="protected" virt="non-virtual"><scope>b2RevoluteJoint</scope><name>m_localAnchor1</name></member>
+      <member refid="classb2_revolute_joint_1ada847216ba412785ec774ad0f77df4e6" prot="protected" virt="non-virtual"><scope>b2RevoluteJoint</scope><name>m_localAnchor2</name></member>
+      <member refid="classb2_joint_1ae3fc5cef379493406f69a198062d79cf" prot="protected" virt="non-virtual"><scope>b2RevoluteJoint</scope><name>m_localCenterA</name></member>
+      <member refid="classb2_joint_1afe3a98a639dc6ac686a74701f7a34c5c" prot="protected" virt="non-virtual"><scope>b2RevoluteJoint</scope><name>m_localCenterB</name></member>
+      <member refid="classb2_revolute_joint_1a7c57732200aae93368481970731630b1" prot="protected" virt="non-virtual"><scope>b2RevoluteJoint</scope><name>m_lowerAngle</name></member>
+      <member refid="classb2_revolute_joint_1a284ae761074305d5032a2b666efb0650" prot="protected" virt="non-virtual"><scope>b2RevoluteJoint</scope><name>m_mass</name></member>
+      <member refid="classb2_revolute_joint_1a06ab30be0a455599bd3b5b6a11d6a43a" prot="protected" virt="non-virtual"><scope>b2RevoluteJoint</scope><name>m_maxMotorTorque</name></member>
+      <member refid="classb2_revolute_joint_1a9275ac791803aa38c225d06b05ecfc26" prot="protected" virt="non-virtual"><scope>b2RevoluteJoint</scope><name>m_motorImpulse</name></member>
+      <member refid="classb2_revolute_joint_1aced7e455dd33ccb17a1d4ff9bb80c442" prot="protected" virt="non-virtual"><scope>b2RevoluteJoint</scope><name>m_motorMass</name></member>
+      <member refid="classb2_revolute_joint_1a7b6f51d7aa4b0132b12ec1091fdebfca" prot="protected" virt="non-virtual"><scope>b2RevoluteJoint</scope><name>m_motorSpeed</name></member>
+      <member refid="classb2_joint_1aad16778ba9c51cebb767ff7df6ed80b5" prot="protected" virt="non-virtual"><scope>b2RevoluteJoint</scope><name>m_next</name></member>
+      <member refid="classb2_joint_1a940166e7b5d87cec1ad0603e0388854a" prot="protected" virt="non-virtual"><scope>b2RevoluteJoint</scope><name>m_prev</name></member>
+      <member refid="classb2_revolute_joint_1a7648b770a9165ee9cd97edcf2df6ed9e" prot="protected" virt="non-virtual"><scope>b2RevoluteJoint</scope><name>m_referenceAngle</name></member>
+      <member refid="classb2_joint_1a3fd3f2532d108d81df81427815210a59" prot="protected" virt="non-virtual"><scope>b2RevoluteJoint</scope><name>m_type</name></member>
+      <member refid="classb2_revolute_joint_1adf7a2ab69e1e7a72697a2c9d92877c52" prot="protected" virt="non-virtual"><scope>b2RevoluteJoint</scope><name>m_upperAngle</name></member>
+      <member refid="classb2_joint_1ae8a31b6d5d6e76ccf7c975b2b3ae7366" prot="protected" virt="non-virtual"><scope>b2RevoluteJoint</scope><name>m_userData</name></member>
+      <member refid="classb2_revolute_joint_1a32f9393d8a6b993fd523f0f643c28107" prot="public" virt="non-virtual"><scope>b2RevoluteJoint</scope><name>SetLimits</name></member>
+      <member refid="classb2_revolute_joint_1a41779d7ec05be33e6368ef00123a3581" prot="public" virt="non-virtual"><scope>b2RevoluteJoint</scope><name>SetMaxMotorTorque</name></member>
+      <member refid="classb2_revolute_joint_1a56f60bb1ea69048c8a455da49d62bf65" prot="public" virt="non-virtual"><scope>b2RevoluteJoint</scope><name>SetMotorSpeed</name></member>
+      <member refid="classb2_joint_1a492f2d02496437572aaec6013ebdc1c8" prot="public" virt="non-virtual"><scope>b2RevoluteJoint</scope><name>SetUserData</name></member>
+      <member refid="classb2_revolute_joint_1a537f65f626e650a9c80123c3c4d322b0" prot="protected" virt="virtual"><scope>b2RevoluteJoint</scope><name>SolvePositionConstraints</name></member>
+      <member refid="classb2_revolute_joint_1a915a7cc9a6060a56d5f340ab3da3def3" prot="protected" virt="virtual"><scope>b2RevoluteJoint</scope><name>SolveVelocityConstraints</name></member>
+      <member refid="classb2_joint_1ab44cde7b81c3e77540400e0da90d6ceb" prot="protected" virt="virtual"><scope>b2RevoluteJoint</scope><name>~b2Joint</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,386 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.7.2">
+  <compounddef id="b2_collision_8cpp" kind="file">
+    <compoundname>b2Collision.cpp</compoundname>
+    <includes refid="b2_collision_8h" local="no">Box2D/Collision/b2Collision.h</includes>
+    <includes refid="b2_distance_8h" local="no">Box2D/Collision/b2Distance.h</includes>
+    <incdepgraph>
+      <node id="38">
+        <label>Box2D/Collision/b2Collision.cpp</label>
+        <link refid="b2Collision.cpp"/>
+        <childnode refid="39" relation="include">
+        </childnode>
+      </node>
+      <node id="39">
+        <label>Box2D/Collision/b2Collision.h</label>
+        <link refid="b2_collision_8h"/>
+        <childnode refid="40" relation="include">
+        </childnode>
+      </node>
+      <node id="40">
+        <label>climits</label>
+      </node>
+    </incdepgraph>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="b2_collision_8cpp_1a401e2747d276e9fbfd131989e02ff568" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void b2GetPointStates</definition>
+        <argsstring>(b2PointState state1[b2_maxManifoldPoints], b2PointState state2[b2_maxManifoldPoints], const b2Manifold *manifold1, const b2Manifold *manifold2)</argsstring>
+        <name>b2GetPointStates</name>
+        <param>
+          <type><ref refid="b2_collision_8h_1a0a894e3715ce8c61b7958dd6e083663d" kindref="member">b2PointState</ref></type>
+          <declname>state1</declname>
+          <array>[b2_maxManifoldPoints]</array>
+        </param>
+        <param>
+          <type><ref refid="b2_collision_8h_1a0a894e3715ce8c61b7958dd6e083663d" kindref="member">b2PointState</ref></type>
+          <declname>state2</declname>
+          <array>[b2_maxManifoldPoints]</array>
+        </param>
+        <param>
+          <type>const <ref refid="structb2_manifold" kindref="compound">b2Manifold</ref> *</type>
+          <declname>manifold1</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structb2_manifold" kindref="compound">b2Manifold</ref> *</type>
+          <declname>manifold2</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Compute the point states given two manifolds. The states pertain to the transition from manifold1 to manifold2. So state1 is either persist or remove while state2 is either add or persist. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Collision/b2Collision.cpp" line="87" bodyfile="D:/pybox2d/Box2D/Collision/b2Collision.cpp" bodystart="85" bodyend="127"/>
+      </memberdef>
+      <memberdef kind="function" id="b2_collision_8cpp_1a8b36e651798f55f2533f9837462ded41" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int32</type>
+        <definition>int32 b2ClipSegmentToLine</definition>
+        <argsstring>(b2ClipVertex vOut[2], const b2ClipVertex vIn[2], const b2Vec2 &amp;normal, float32 offset, int32 vertexIndexA)</argsstring>
+        <name>b2ClipSegmentToLine</name>
+        <param>
+          <type><ref refid="structb2_clip_vertex" kindref="compound">b2ClipVertex</ref></type>
+          <declname>vOut</declname>
+          <array>[2]</array>
+        </param>
+        <param>
+          <type>const <ref refid="structb2_clip_vertex" kindref="compound">b2ClipVertex</ref></type>
+          <declname>vIn</declname>
+          <array>[2]</array>
+        </param>
+        <param>
+          <type>const <ref refid="structb2_vec2" kindref="compound">b2Vec2</ref> &amp;</type>
+          <declname>normal</declname>
+        </param>
+        <param>
+          <type>float32</type>
+          <declname>offset</declname>
+        </param>
+        <param>
+          <type>int32</type>
+          <declname>vertexIndexA</declname>
+        </param>
+        <briefdescription>
+<para>Clipping for contact manifolds. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Collision/b2Collision.cpp" line="200" bodyfile="D:/pybox2d/Box2D/Collision/b2Collision.cpp" bodystart="198" bodyend="228"/>
+      </memberdef>
+      <memberdef kind="function" id="b2_collision_8cpp_1ae7601420d0b42c1ee494e879dd2009a5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool b2TestOverlap</definition>
+        <argsstring>(const b2Shape *shapeA, int32 indexA, const b2Shape *shapeB, int32 indexB, const b2Transform &amp;xfA, const b2Transform &amp;xfB)</argsstring>
+        <name>b2TestOverlap</name>
+        <param>
+          <type>const <ref refid="classb2_shape" kindref="compound">b2Shape</ref> *</type>
+          <declname>shapeA</declname>
+        </param>
+        <param>
+          <type>int32</type>
+          <declname>indexA</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classb2_shape" kindref="compound">b2Shape</ref> *</type>
+          <declname>shapeB</declname>
+        </param>
+        <param>
+          <type>int32</type>
+          <declname>indexB</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structb2_transform" kindref="compound">b2Transform</ref> &amp;</type>
+          <declname>xfA</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structb2_transform" kindref="compound">b2Transform</ref> &amp;</type>
+          <declname>xfB</declname>
+        </param>
+        <briefdescription>
+<para>Determine if two generic shapes overlap. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Collision/b2Collision.cpp" line="233" bodyfile="D:/pybox2d/Box2D/Collision/b2Collision.cpp" bodystart="230" bodyend="249"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment">*<sp/>Copyright<sp/>(c)<sp/>2007-2009<sp/>Erin<sp/>Catto<sp/>http://www.gphysics.com</highlight></codeline>
+<codeline lineno="3"><highlight class="comment">*</highlight></codeline>
+<codeline lineno="4"><highlight class="comment">*<sp/>This<sp/>software<sp/>is<sp/>provided<sp/>&apos;as-is&apos;,<sp/>without<sp/>any<sp/>express<sp/>or<sp/>implied</highlight></codeline>
+<codeline lineno="5"><highlight class="comment">*<sp/>warranty.<sp/><sp/>In<sp/>no<sp/>event<sp/>will<sp/>the<sp/>authors<sp/>be<sp/>held<sp/>liable<sp/>for<sp/>any<sp/>damages</highlight></codeline>
+<codeline lineno="6"><highlight class="comment">*<sp/>arising<sp/>from<sp/>the<sp/>use<sp/>of<sp/>this<sp/>software.</highlight></codeline>
+<codeline lineno="7"><highlight class="comment">*<sp/>Permission<sp/>is<sp/>granted<sp/>to<sp/>anyone<sp/>to<sp/>use<sp/>this<sp/>software<sp/>for<sp/>any<sp/>purpose,</highlight></codeline>
+<codeline lineno="8"><highlight class="comment">*<sp/>including<sp/>commercial<sp/>applications,<sp/>and<sp/>to<sp/>alter<sp/>it<sp/>and<sp/>redistribute<sp/>it</highlight></codeline>
+<codeline lineno="9"><highlight class="comment">*<sp/>freely,<sp/>subject<sp/>to<sp/>the<sp/>following<sp/>restrictions:</highlight></codeline>
+<codeline lineno="10"><highlight class="comment">*<sp/>1.<sp/>The<sp/>origin<sp/>of<sp/>this<sp/>software<sp/>must<sp/>not<sp/>be<sp/>misrepresented;<sp/>you<sp/>must<sp/>not</highlight></codeline>
+<codeline lineno="11"><highlight class="comment">*<sp/>claim<sp/>that<sp/>you<sp/>wrote<sp/>the<sp/>original<sp/>software.<sp/>If<sp/>you<sp/>use<sp/>this<sp/>software</highlight></codeline>
+<codeline lineno="12"><highlight class="comment">*<sp/>in<sp/>a<sp/>product,<sp/>an<sp/>acknowledgment<sp/>in<sp/>the<sp/>product<sp/>documentation<sp/>would<sp/>be</highlight></codeline>
+<codeline lineno="13"><highlight class="comment">*<sp/>appreciated<sp/>but<sp/>is<sp/>not<sp/>required.</highlight></codeline>
+<codeline lineno="14"><highlight class="comment">*<sp/>2.<sp/>Altered<sp/>source<sp/>versions<sp/>must<sp/>be<sp/>plainly<sp/>marked<sp/>as<sp/>such,<sp/>and<sp/>must<sp/>not<sp/>be</highlight></codeline>
+<codeline lineno="15"><highlight class="comment">*<sp/>misrepresented<sp/>as<sp/>being<sp/>the<sp/>original<sp/>software.</highlight></codeline>
+<codeline lineno="16"><highlight class="comment">*<sp/>3.<sp/>This<sp/>notice<sp/>may<sp/>not<sp/>be<sp/>removed<sp/>or<sp/>altered<sp/>from<sp/>any<sp/>source<sp/>distribution.</highlight></codeline>
+<codeline lineno="17"><highlight class="comment">*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="b2_collision_8h" kindref="compound">Box2D/Collision/b2Collision.h</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;Box2D/Collision/b2Distance.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="structb2_world_manifold_1a896dd7e7d4d6f6a5bc69e19fbd6871bd" kindref="member">b2WorldManifold::Initialize</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structb2_manifold" kindref="compound">b2Manifold</ref>*<sp/>manifold,</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structb2_transform" kindref="compound">b2Transform</ref>&amp;<sp/>xfA,<sp/>float32<sp/>radiusA,</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structb2_transform" kindref="compound">b2Transform</ref>&amp;<sp/>xfB,<sp/>float32<sp/>radiusB)</highlight></codeline>
+<codeline lineno="25"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(manifold-&gt;<ref refid="structb2_manifold_1abf59ff6fa36bed34b0242ad54951a696" kindref="member" tooltip="the number of manifold points">pointCount</ref><sp/>==<sp/>0)</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">switch</highlight><highlight class="normal"><sp/>(manifold-&gt;type)</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>b2Manifold::e_circles:</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structb2_world_manifold_1acf8de61b73d9784d16f7d0e824ce44bf" kindref="member" tooltip="world vector pointing from A to B">normal</ref>.<ref refid="structb2_vec2_1a4d61640a645e470a50b451307d8e94c3" kindref="member" tooltip="Set this vector to some specified coordinates.">Set</ref>(1.0f,<sp/>0.0f);</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structb2_vec2" kindref="compound" tooltip="A 2D column vector.">b2Vec2</ref><sp/>pointA<sp/>=<sp/>b2Mul(xfA,<sp/>manifold-&gt;<ref refid="structb2_manifold_1a8825cea31b27dbbaf22c13c3070870d5" kindref="member" tooltip="usage depends on manifold type">localPoint</ref>);</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structb2_vec2" kindref="compound" tooltip="A 2D column vector.">b2Vec2</ref><sp/>pointB<sp/>=<sp/>b2Mul(xfB,<sp/>manifold-&gt;<ref refid="structb2_manifold_1ab8021128e9792cc7391a8804ea02173d" kindref="member" tooltip="the points of contact">points</ref>[0].<ref refid="structb2_manifold_point_1ab3616990e7d1644deeeb691246094bfa" kindref="member" tooltip="usage depends on manifold type">localPoint</ref>);</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(b2DistanceSquared(pointA,<sp/>pointB)<sp/>&gt;<sp/>b2_epsilon<sp/>*<sp/>b2_epsilon)</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structb2_world_manifold_1acf8de61b73d9784d16f7d0e824ce44bf" kindref="member" tooltip="world vector pointing from A to B">normal</ref><sp/>=<sp/>pointB<sp/>-<sp/>pointA;</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structb2_world_manifold_1acf8de61b73d9784d16f7d0e824ce44bf" kindref="member" tooltip="world vector pointing from A to B">normal</ref>.<ref refid="structb2_vec2_1adda78c92f318fe53d8a53f9b5cfd8e41" kindref="member" tooltip="Convert this vector into a unit vector. Returns the length.">Normalize</ref>();</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structb2_vec2" kindref="compound" tooltip="A 2D column vector.">b2Vec2</ref><sp/>cA<sp/>=<sp/>pointA<sp/>+<sp/>radiusA<sp/>*<sp/><ref refid="structb2_world_manifold_1acf8de61b73d9784d16f7d0e824ce44bf" kindref="member" tooltip="world vector pointing from A to B">normal</ref>;</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structb2_vec2" kindref="compound" tooltip="A 2D column vector.">b2Vec2</ref><sp/>cB<sp/>=<sp/>pointB<sp/>-<sp/>radiusB<sp/>*<sp/><ref refid="structb2_world_manifold_1acf8de61b73d9784d16f7d0e824ce44bf" kindref="member" tooltip="world vector pointing from A to B">normal</ref>;</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structb2_world_manifold_1af15e84b90f102c0ac433be2d63604021" kindref="member" tooltip="world contact point (point of intersection)">points</ref>[0]<sp/>=<sp/>0.5f<sp/>*<sp/>(cA<sp/>+<sp/>cB);</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>b2Manifold::e_faceA:</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structb2_world_manifold_1acf8de61b73d9784d16f7d0e824ce44bf" kindref="member" tooltip="world vector pointing from A to B">normal</ref><sp/>=<sp/>b2Mul(xfA.R,<sp/>manifold-&gt;<ref refid="structb2_manifold_1a3604e9fef2a03347c5649c71a9fd4c79" kindref="member" tooltip="not use for Type::e_points">localNormal</ref>);</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structb2_vec2" kindref="compound" tooltip="A 2D column vector.">b2Vec2</ref><sp/>planePoint<sp/>=<sp/>b2Mul(xfA,<sp/>manifold-&gt;<ref refid="structb2_manifold_1a8825cea31b27dbbaf22c13c3070870d5" kindref="member" tooltip="usage depends on manifold type">localPoint</ref>);</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(int32<sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>manifold-&gt;<ref refid="structb2_manifold_1abf59ff6fa36bed34b0242ad54951a696" kindref="member" tooltip="the number of manifold points">pointCount</ref>;<sp/>++i)</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structb2_vec2" kindref="compound" tooltip="A 2D column vector.">b2Vec2</ref><sp/>clipPoint<sp/>=<sp/>b2Mul(xfB,<sp/>manifold-&gt;<ref refid="structb2_manifold_1ab8021128e9792cc7391a8804ea02173d" kindref="member" tooltip="the points of contact">points</ref>[i].<ref refid="structb2_manifold_point_1ab3616990e7d1644deeeb691246094bfa" kindref="member" tooltip="usage depends on manifold type">localPoint</ref>);</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structb2_vec2" kindref="compound" tooltip="A 2D column vector.">b2Vec2</ref><sp/>cA<sp/>=<sp/>clipPoint<sp/>+<sp/>(radiusA<sp/>-<sp/>b2Dot(clipPoint<sp/>-<sp/>planePoint,<sp/><ref refid="structb2_world_manifold_1acf8de61b73d9784d16f7d0e824ce44bf" kindref="member" tooltip="world vector pointing from A to B">normal</ref>))<sp/>*<sp/><ref refid="structb2_world_manifold_1acf8de61b73d9784d16f7d0e824ce44bf" kindref="member" tooltip="world vector pointing from A to B">normal</ref>;</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structb2_vec2" kindref="compound" tooltip="A 2D column vector.">b2Vec2</ref><sp/>cB<sp/>=<sp/>clipPoint<sp/>-<sp/>radiusB<sp/>*<sp/><ref refid="structb2_world_manifold_1acf8de61b73d9784d16f7d0e824ce44bf" kindref="member" tooltip="world vector pointing from A to B">normal</ref>;</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structb2_world_manifold_1af15e84b90f102c0ac433be2d63604021" kindref="member" tooltip="world contact point (point of intersection)">points</ref>[i]<sp/>=<sp/>0.5f<sp/>*<sp/>(cA<sp/>+<sp/>cB);</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>b2Manifold::e_faceB:</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structb2_world_manifold_1acf8de61b73d9784d16f7d0e824ce44bf" kindref="member" tooltip="world vector pointing from A to B">normal</ref><sp/>=<sp/>b2Mul(xfB.R,<sp/>manifold-&gt;<ref refid="structb2_manifold_1a3604e9fef2a03347c5649c71a9fd4c79" kindref="member" tooltip="not use for Type::e_points">localNormal</ref>);</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structb2_vec2" kindref="compound" tooltip="A 2D column vector.">b2Vec2</ref><sp/>planePoint<sp/>=<sp/>b2Mul(xfB,<sp/>manifold-&gt;<ref refid="structb2_manifold_1a8825cea31b27dbbaf22c13c3070870d5" kindref="member" tooltip="usage depends on manifold type">localPoint</ref>);</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(int32<sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>manifold-&gt;<ref refid="structb2_manifold_1abf59ff6fa36bed34b0242ad54951a696" kindref="member" tooltip="the number of manifold points">pointCount</ref>;<sp/>++i)</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structb2_vec2" kindref="compound" tooltip="A 2D column vector.">b2Vec2</ref><sp/>clipPoint<sp/>=<sp/>b2Mul(xfA,<sp/>manifold-&gt;<ref refid="structb2_manifold_1ab8021128e9792cc7391a8804ea02173d" kindref="member" tooltip="the points of contact">points</ref>[i].<ref refid="structb2_manifold_point_1ab3616990e7d1644deeeb691246094bfa" kindref="member" tooltip="usage depends on manifold type">localPoint</ref>);</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structb2_vec2" kindref="compound" tooltip="A 2D column vector.">b2Vec2</ref><sp/>cB<sp/>=<sp/>clipPoint<sp/>+<sp/>(radiusB<sp/>-<sp/>b2Dot(clipPoint<sp/>-<sp/>planePoint,<sp/><ref refid="structb2_world_manifold_1acf8de61b73d9784d16f7d0e824ce44bf" kindref="member" tooltip="world vector pointing from A to B">normal</ref>))<sp/>*<sp/><ref refid="structb2_world_manifold_1acf8de61b73d9784d16f7d0e824ce44bf" kindref="member" tooltip="world vector pointing from A to B">normal</ref>;</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structb2_vec2" kindref="compound" tooltip="A 2D column vector.">b2Vec2</ref><sp/>cA<sp/>=<sp/>clipPoint<sp/>-<sp/>radiusA<sp/>*<sp/><ref refid="structb2_world_manifold_1acf8de61b73d9784d16f7d0e824ce44bf" kindref="member" tooltip="world vector pointing from A to B">normal</ref>;</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structb2_world_manifold_1af15e84b90f102c0ac433be2d63604021" kindref="member" tooltip="world contact point (point of intersection)">points</ref>[i]<sp/>=<sp/>0.5f<sp/>*<sp/>(cA<sp/>+<sp/>cB);</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Ensure<sp/>normal<sp/>points<sp/>from<sp/>A<sp/>to<sp/>B.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structb2_world_manifold_1acf8de61b73d9784d16f7d0e824ce44bf" kindref="member" tooltip="world vector pointing from A to B">normal</ref><sp/>=<sp/>-<ref refid="structb2_world_manifold_1acf8de61b73d9784d16f7d0e824ce44bf" kindref="member" tooltip="world vector pointing from A to B">normal</ref>;</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="83"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>b2GetPointStates(<ref refid="b2_collision_8h_1a0a894e3715ce8c61b7958dd6e083663d" kindref="member" tooltip="This is used for determining the state of contact points.">b2PointState</ref><sp/>state1[<ref refid="b2_settings_8h_1aa5f44cc9edf711433dea2b2ec94f3c42" kindref="member" tooltip="The maximum number of contact points between two convex shapes.">b2_maxManifoldPoints</ref>],<sp/><ref refid="b2_collision_8h_1a0a894e3715ce8c61b7958dd6e083663d" kindref="member" tooltip="This is used for determining the state of contact points.">b2PointState</ref><sp/>state2[b2_maxManifoldPoints],</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structb2_manifold" kindref="compound">b2Manifold</ref>*<sp/>manifold1,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structb2_manifold" kindref="compound">b2Manifold</ref>*<sp/>manifold2)</highlight></codeline>
+<codeline lineno="87"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(int32<sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/><ref refid="b2_settings_8h_1aa5f44cc9edf711433dea2b2ec94f3c42" kindref="member" tooltip="The maximum number of contact points between two convex shapes.">b2_maxManifoldPoints</ref>;<sp/>++i)</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>state1[i]<sp/>=<sp/><ref refid="b2_collision_8h_1a0a894e3715ce8c61b7958dd6e083663da7ce77ce1a592f49d92939997976c217b" kindref="member" tooltip="point does not exist">b2_nullState</ref>;</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>state2[i]<sp/>=<sp/><ref refid="b2_collision_8h_1a0a894e3715ce8c61b7958dd6e083663da7ce77ce1a592f49d92939997976c217b" kindref="member" tooltip="point does not exist">b2_nullState</ref>;</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"></highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Detect<sp/>persists<sp/>and<sp/>removes.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(int32<sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>manifold1-&gt;<ref refid="structb2_manifold_1abf59ff6fa36bed34b0242ad54951a696" kindref="member" tooltip="the number of manifold points">pointCount</ref>;<sp/>++i)</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="unionb2_contact_i_d" kindref="compound" tooltip="Contact ids to facilitate warm starting.">b2ContactID</ref><sp/></highlight><highlight class="keywordtype">id</highlight><highlight class="normal"><sp/>=<sp/>manifold1-&gt;<ref refid="structb2_manifold_1ab8021128e9792cc7391a8804ea02173d" kindref="member" tooltip="the points of contact">points</ref>[i].<ref refid="structb2_manifold_point_1afa7ec272b2b27abe129540f8fbe57fc5" kindref="member" tooltip="uniquely identifies a contact point between two shapes">id</ref>;</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"></highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>state1[i]<sp/>=<sp/><ref refid="b2_collision_8h_1a0a894e3715ce8c61b7958dd6e083663da42ca6d7de57b948c8c895cd6f51ee8be" kindref="member" tooltip="point was removed in the update">b2_removeState</ref>;</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"></highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(int32<sp/>j<sp/>=<sp/>0;<sp/>j<sp/>&lt;<sp/>manifold2-&gt;<ref refid="structb2_manifold_1abf59ff6fa36bed34b0242ad54951a696" kindref="member" tooltip="the number of manifold points">pointCount</ref>;<sp/>++j)</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(manifold2-&gt;<ref refid="structb2_manifold_1ab8021128e9792cc7391a8804ea02173d" kindref="member" tooltip="the points of contact">points</ref>[j].<ref refid="structb2_manifold_point_1afa7ec272b2b27abe129540f8fbe57fc5" kindref="member" tooltip="uniquely identifies a contact point between two shapes">id</ref>.<ref refid="unionb2_contact_i_d_1a04c04f8fdcb799b33552d01b3aa3f245" kindref="member" tooltip="Used to quickly compare contact ids.">key</ref><sp/>==<sp/></highlight><highlight class="keywordtype">id</highlight><highlight class="normal">.key)</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>state1[i]<sp/>=<sp/><ref refid="b2_collision_8h_1a0a894e3715ce8c61b7958dd6e083663dafb032f2175741fa95361e55d1c069e0a" kindref="member" tooltip="point persisted across the update">b2_persistState</ref>;</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"></highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Detect<sp/>persists<sp/>and<sp/>adds.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(int32<sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>manifold2-&gt;<ref refid="structb2_manifold_1abf59ff6fa36bed34b0242ad54951a696" kindref="member" tooltip="the number of manifold points">pointCount</ref>;<sp/>++i)</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="unionb2_contact_i_d" kindref="compound" tooltip="Contact ids to facilitate warm starting.">b2ContactID</ref><sp/></highlight><highlight class="keywordtype">id</highlight><highlight class="normal"><sp/>=<sp/>manifold2-&gt;<ref refid="structb2_manifold_1ab8021128e9792cc7391a8804ea02173d" kindref="member" tooltip="the points of contact">points</ref>[i].<ref refid="structb2_manifold_point_1afa7ec272b2b27abe129540f8fbe57fc5" kindref="member" tooltip="uniquely identifies a contact point between two shapes">id</ref>;</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"></highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>state2[i]<sp/>=<sp/><ref refid="b2_collision_8h_1a0a894e3715ce8c61b7958dd6e083663dac60dc479bee2089a695b37948179b3d4" kindref="member" tooltip="point was added in the update">b2_addState</ref>;</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"></highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(int32<sp/>j<sp/>=<sp/>0;<sp/>j<sp/>&lt;<sp/>manifold1-&gt;<ref refid="structb2_manifold_1abf59ff6fa36bed34b0242ad54951a696" kindref="member" tooltip="the number of manifold points">pointCount</ref>;<sp/>++j)</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(manifold1-&gt;<ref refid="structb2_manifold_1ab8021128e9792cc7391a8804ea02173d" kindref="member" tooltip="the points of contact">points</ref>[j].<ref refid="structb2_manifold_point_1afa7ec272b2b27abe129540f8fbe57fc5" kindref="member" tooltip="uniquely identifies a contact point between two shapes">id</ref>.<ref refid="unionb2_contact_i_d_1a04c04f8fdcb799b33552d01b3aa3f245" kindref="member" tooltip="Used to quickly compare contact ids.">key</ref><sp/>==<sp/></highlight><highlight class="keywordtype">id</highlight><highlight class="normal">.key)</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>state2[i]<sp/>=<sp/><ref refid="b2_collision_8h_1a0a894e3715ce8c61b7958dd6e083663dafb032f2175741fa95361e55d1c069e0a" kindref="member" tooltip="point persisted across the update">b2_persistState</ref>;</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="127"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"></highlight></codeline>
+<codeline lineno="129"><highlight class="normal"></highlight><highlight class="comment">//<sp/>From<sp/>Real-time<sp/>Collision<sp/>Detection,<sp/>p179.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="130"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>b2AABB::RayCast(<ref refid="structb2_ray_cast_output" kindref="compound">b2RayCastOutput</ref>*<sp/>output,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structb2_ray_cast_input" kindref="compound" tooltip="Ray-cast input data. The ray extends from p1 to p1 + maxFraction * (p2 - p1).">b2RayCastInput</ref>&amp;<sp/>input)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="131"><highlight class="keyword"></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>float32<sp/>tmin<sp/>=<sp/>-b2_maxFloat;</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>float32<sp/>tmax<sp/>=<sp/>b2_maxFloat;</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"></highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structb2_vec2" kindref="compound" tooltip="A 2D column vector.">b2Vec2</ref><sp/>p<sp/>=<sp/>input.p1;</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structb2_vec2" kindref="compound" tooltip="A 2D column vector.">b2Vec2</ref><sp/>d<sp/>=<sp/>input.p2<sp/>-<sp/>input.p1;</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structb2_vec2" kindref="compound" tooltip="A 2D column vector.">b2Vec2</ref><sp/>absD<sp/>=<sp/>b2Abs(d);</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"></highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structb2_vec2" kindref="compound" tooltip="A 2D column vector.">b2Vec2</ref><sp/>normal;</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"></highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(int32<sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>2;<sp/>++i)</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(absD(i)<sp/>&lt;<sp/>b2_epsilon)</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Parallel.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(p(i)<sp/>&lt;<sp/><ref refid="structb2_a_a_b_b_1ab94b68fbad8348b22b0522469b11bdb5" kindref="member" tooltip="the lower vertex">lowerBound</ref>(i)<sp/>||<sp/><ref refid="structb2_a_a_b_b_1ad4a8ec483ba13a2c02918b01d058a18f" kindref="member" tooltip="the upper vertex">upperBound</ref>(i)<sp/>&lt;<sp/>p(i))</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>float32<sp/>inv_d<sp/>=<sp/>1.0f<sp/>/<sp/>d(i);</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>float32<sp/>t1<sp/>=<sp/>(<ref refid="structb2_a_a_b_b_1ab94b68fbad8348b22b0522469b11bdb5" kindref="member" tooltip="the lower vertex">lowerBound</ref>(i)<sp/>-<sp/>p(i))<sp/>*<sp/>inv_d;</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>float32<sp/>t2<sp/>=<sp/>(<ref refid="structb2_a_a_b_b_1ad4a8ec483ba13a2c02918b01d058a18f" kindref="member" tooltip="the upper vertex">upperBound</ref>(i)<sp/>-<sp/>p(i))<sp/>*<sp/>inv_d;</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"></highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Sign<sp/>of<sp/>the<sp/>normal<sp/>vector.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>float32<sp/>s<sp/>=<sp/>-1.0f;</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"></highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(t1<sp/>&gt;<sp/>t2)</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>b2Swap(t1,<sp/>t2);</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>s<sp/>=<sp/>1.0f;</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"></highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Push<sp/>the<sp/>min<sp/>up</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(t1<sp/>&gt;<sp/>tmin)</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>normal.<ref refid="structb2_vec2_1a5c6cbe27cfb29c6dbb29b9a3285b88d0" kindref="member" tooltip="Set this vector to all zeros.">SetZero</ref>();</highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>normal(i)<sp/>=<sp/>s;</highlight></codeline>
+<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>tmin<sp/>=<sp/>t1;</highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="173"><highlight class="normal"></highlight></codeline>
+<codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Pull<sp/>the<sp/>max<sp/>down</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>tmax<sp/>=<sp/>b2Min(tmax,<sp/>t2);</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"></highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(tmin<sp/>&gt;<sp/>tmax)</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="180"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="183"><highlight class="normal"></highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Does<sp/>the<sp/>ray<sp/>start<sp/>inside<sp/>the<sp/>box?</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Does<sp/>the<sp/>ray<sp/>intersect<sp/>beyond<sp/>the<sp/>max<sp/>fraction?</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="186"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(tmin<sp/>&lt;<sp/>0.0f<sp/>||<sp/>input.maxFraction<sp/>&lt;<sp/>tmin)</highlight></codeline>
+<codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="189"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="190"><highlight class="normal"></highlight></codeline>
+<codeline lineno="191"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Intersection.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="192"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>output-&gt;fraction<sp/>=<sp/>tmin;</highlight></codeline>
+<codeline lineno="193"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>output-&gt;normal<sp/>=<sp/>normal;</highlight></codeline>
+<codeline lineno="194"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="195"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="196"><highlight class="normal"></highlight></codeline>
+<codeline lineno="197"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Sutherland-Hodgman<sp/>clipping.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="198"><highlight class="normal">int32<sp/>b2ClipSegmentToLine(<ref refid="structb2_clip_vertex" kindref="compound" tooltip="Used for computing contact manifolds.">b2ClipVertex</ref><sp/>vOut[2],<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structb2_clip_vertex" kindref="compound" tooltip="Used for computing contact manifolds.">b2ClipVertex</ref><sp/>vIn[2],</highlight></codeline>
+<codeline lineno="199"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structb2_vec2" kindref="compound" tooltip="A 2D column vector.">b2Vec2</ref>&amp;<sp/>normal,<sp/>float32<sp/>offset,<sp/>int32<sp/>vertexIndexA)</highlight></codeline>
+<codeline lineno="200"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="201"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Start<sp/>with<sp/>no<sp/>output<sp/>points</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="202"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>int32<sp/>numOut<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="203"><highlight class="normal"></highlight></codeline>
+<codeline lineno="204"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Calculate<sp/>the<sp/>distance<sp/>of<sp/>end<sp/>points<sp/>to<sp/>the<sp/>line</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="205"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>float32<sp/>distance0<sp/>=<sp/>b2Dot(normal,<sp/>vIn[0].v)<sp/>-<sp/>offset;</highlight></codeline>
+<codeline lineno="206"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>float32<sp/>distance1<sp/>=<sp/>b2Dot(normal,<sp/>vIn[1].v)<sp/>-<sp/>offset;</highlight></codeline>
+<codeline lineno="207"><highlight class="normal"></highlight></codeline>
+<codeline lineno="208"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>If<sp/>the<sp/>points<sp/>are<sp/>behind<sp/>the<sp/>plane</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="209"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(distance0<sp/>&lt;=<sp/>0.0f)<sp/>vOut[numOut++]<sp/>=<sp/>vIn[0];</highlight></codeline>
+<codeline lineno="210"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(distance1<sp/>&lt;=<sp/>0.0f)<sp/>vOut[numOut++]<sp/>=<sp/>vIn[1];</highlight></codeline>
+<codeline lineno="211"><highlight class="normal"></highlight></codeline>
+<codeline lineno="212"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>If<sp/>the<sp/>points<sp/>are<sp/>on<sp/>different<sp/>sides<sp/>of<sp/>the<sp/>plane</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="213"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(distance0<sp/>*<sp/>distance1<sp/>&lt;<sp/>0.0f)</highlight></codeline>
+<codeline lineno="214"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="215"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Find<sp/>intersection<sp/>point<sp/>of<sp/>edge<sp/>and<sp/>plane</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="216"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>float32<sp/>interp<sp/>=<sp/>distance0<sp/>/<sp/>(distance0<sp/>-<sp/>distance1);</highlight></codeline>
+<codeline lineno="217"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vOut[numOut].v<sp/>=<sp/>vIn[0].v<sp/>+<sp/>interp<sp/>*<sp/>(vIn[1].v<sp/>-<sp/>vIn[0].v);</highlight></codeline>
+<codeline lineno="218"><highlight class="normal"></highlight></codeline>
+<codeline lineno="219"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>VertexA<sp/>is<sp/>hitting<sp/>edgeB.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="220"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vOut[numOut].id.cf.<ref refid="structb2_contact_feature_1a833bc746e7cb5e3cd458f1c0809101d0" kindref="member" tooltip="Feature index on shapeA.">indexA</ref><sp/>=<sp/>vertexIndexA;</highlight></codeline>
+<codeline lineno="221"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vOut[numOut].id.cf.<ref refid="structb2_contact_feature_1ad96712b6a0cc1f4b22b85b5948eab81d" kindref="member" tooltip="Feature index on shapeB.">indexB</ref><sp/>=<sp/>vIn[0].id.cf.<ref refid="structb2_contact_feature_1ad96712b6a0cc1f4b22b85b5948eab81d" kindref="member" tooltip="Feature index on shapeB.">indexB</ref>;</highlight></codeline>
+<codeline lineno="222"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vOut[numOut].id.cf.<ref refid="structb2_contact_feature_1a3361b651f0a88fb60ec6aba9f4921cc2" kindref="member" tooltip="The feature type on shapeA.">typeA</ref><sp/>=<sp/>b2ContactFeature::e_vertex;</highlight></codeline>
+<codeline lineno="223"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vOut[numOut].id.cf.<ref refid="structb2_contact_feature_1abb74afd6ee5b60834a3f8e2616182bdf" kindref="member" tooltip="The feature type on shapeB.">typeB</ref><sp/>=<sp/>b2ContactFeature::e_face;</highlight></codeline>
+<codeline lineno="224"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>++numOut;</highlight></codeline>
+<codeline lineno="225"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="226"><highlight class="normal"></highlight></codeline>
+<codeline lineno="227"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>numOut;</highlight></codeline>
+<codeline lineno="228"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="229"><highlight class="normal"></highlight></codeline>
+<codeline lineno="230"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>b2TestOverlap(<sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classb2_shape" kindref="compound">b2Shape</ref>*<sp/>shapeA,<sp/>int32<sp/>indexA,</highlight></codeline>
+<codeline lineno="231"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classb2_shape" kindref="compound">b2Shape</ref>*<sp/>shapeB,<sp/>int32<sp/>indexB,</highlight></codeline>
+<codeline lineno="232"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structb2_transform" kindref="compound">b2Transform</ref>&amp;<sp/>xfA,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structb2_transform" kindref="compound">b2Transform</ref>&amp;<sp/>xfB)</highlight></codeline>
+<codeline lineno="233"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="234"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structb2_distance_input" kindref="compound">b2DistanceInput</ref><sp/>input;</highlight></codeline>
+<codeline lineno="235"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>input.proxyA.<ref refid="structb2_distance_proxy_1a80a59a9c9e952482a8fc6db4b883365d" kindref="member">Set</ref>(shapeA,<sp/>indexA);</highlight></codeline>
+<codeline lineno="236"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>input.proxyB.<ref refid="structb2_distance_proxy_1a80a59a9c9e952482a8fc6db4b883365d" kindref="member">Set</ref>(shapeB,<sp/>indexB);</highlight></codeline>
+<codeline lineno="237"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>input.transformA<sp/>=<sp/>xfA;</highlight></codeline>
+<codeline lineno="238"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>input.transformB<sp/>=<sp/>xfB;</highlight></codeline>
+<codeline lineno="239"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>input.useRadii<sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="240"><highlight class="normal"></highlight></codeline>
+<codeline lineno="241"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structb2_simplex_cache" kindref="compound">b2SimplexCache</ref><sp/>cache;</highlight></codeline>
+<codeline lineno="242"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cache.count<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="243"><highlight class="normal"></highlight></codeline>
+<codeline lineno="244"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structb2_distance_output" kindref="compound" tooltip="Output for b2Distance.">b2DistanceOutput</ref><sp/>output;</highlight></codeline>
+<codeline lineno="245"><highlight class="normal"></highlight></codeline>
+<codeline lineno="246"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>b2Distance(&amp;output,<sp/>&amp;cache,<sp/>&amp;input);</highlight></codeline>
+<codeline lineno="247"><highlight class="normal"></highlight></codeline>
+<codeline lineno="248"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>output.distance<sp/>&lt;<sp/>10.0f<sp/>*<sp/>b2_epsilon;</highlight></codeline>
+<codeline lineno="249"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="D:/pybox2d/Box2D/Collision/b2Collision.cpp"/>
+  </compounddef>
+</doxygen>

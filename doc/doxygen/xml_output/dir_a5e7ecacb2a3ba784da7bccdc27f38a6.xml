@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.7.2">
+  <compounddef id="dir_a5e7ecacb2a3ba784da7bccdc27f38a6" kind="dir">
+    <compoundname>Box2D/Dynamics/</compoundname>
+    <innerdir refid="dir_b406a4506a96bcdc617b90f80262da30">Box2D/Dynamics/Contacts/</innerdir>
+    <innerdir refid="dir_972785d72ecd79a4b53fb82a2520c42b">Box2D/Dynamics/Joints/</innerdir>
+    <innerfile refid="b2_body_8cpp">b2Body.cpp</innerfile>
+    <innerfile refid="b2_body_8h">b2Body.h</innerfile>
+    <innerfile refid="b2_contact_manager_8cpp">b2ContactManager.cpp</innerfile>
+    <innerfile refid="b2_contact_manager_8h">b2ContactManager.h</innerfile>
+    <innerfile refid="b2_fixture_8cpp">b2Fixture.cpp</innerfile>
+    <innerfile refid="b2_fixture_8h">b2Fixture.h</innerfile>
+    <innerfile refid="b2_island_8cpp">b2Island.cpp</innerfile>
+    <innerfile refid="b2_island_8h">b2Island.h</innerfile>
+    <innerfile refid="b2_time_step_8h">b2TimeStep.h</innerfile>
+    <innerfile refid="b2_world_8cpp">b2World.cpp</innerfile>
+    <innerfile refid="b2_world_8h">b2World.h</innerfile>
+    <innerfile refid="b2_world_callbacks_8cpp">b2WorldCallbacks.cpp</innerfile>
+    <innerfile refid="b2_world_callbacks_8h">b2WorldCallbacks.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="D:/pybox2d/Box2D/Dynamics/"/>
+  </compounddef>
+</doxygen>

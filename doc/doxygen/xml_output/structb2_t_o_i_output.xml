@@ -1,0 +1,96 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.7.2">
+  <compounddef id="structb2_t_o_i_output" kind="struct" prot="public">
+    <compoundname>b2TOIOutput</compoundname>
+      <sectiondef kind="public-type">
+      <memberdef kind="enum" id="structb2_t_o_i_output_1a12c3cf4dc0551f5c8249dc1dd867959a" prot="public" static="no">
+        <name>State</name>
+        <enumvalue id="structb2_t_o_i_output_1a12c3cf4dc0551f5c8249dc1dd867959aab73a45bbab8c3b7d82a6b43ec66ff3c5" prot="public">
+          <name>e_unknown</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="structb2_t_o_i_output_1a12c3cf4dc0551f5c8249dc1dd867959aac25604b5e961c2f50353d0c5114b0f2f" prot="public">
+          <name>e_failed</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="structb2_t_o_i_output_1a12c3cf4dc0551f5c8249dc1dd867959aa305f55a9143e09cf416f6a994c786c84" prot="public">
+          <name>e_overlapped</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="structb2_t_o_i_output_1a12c3cf4dc0551f5c8249dc1dd867959aa4d4178a0a0f89410d1b6b3a49f0c08d9" prot="public">
+          <name>e_touching</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="structb2_t_o_i_output_1a12c3cf4dc0551f5c8249dc1dd867959aad8752c7cabc15b4522bd97e99acf66d1" prot="public">
+          <name>e_separated</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Collision/b2TimeOfImpact.h" line="39" bodyfile="D:/pybox2d/Box2D/Collision/b2TimeOfImpact.h" bodystart="38" bodyend="45"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structb2_t_o_i_output_1aaacbf28f437b965ffecabf1407a77915" prot="public" static="no" mutable="no">
+        <type>State</type>
+        <definition>State b2TOIOutput::state</definition>
+        <argsstring></argsstring>
+        <name>state</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Collision/b2TimeOfImpact.h" line="47" bodyfile="D:/pybox2d/Box2D/Collision/b2TimeOfImpact.h" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structb2_t_o_i_output_1a94f8b756e060892226ec006db4be7ee3" prot="public" static="no" mutable="no">
+        <type>float32</type>
+        <definition>float32 b2TOIOutput::t</definition>
+        <argsstring></argsstring>
+        <name>t</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Collision/b2TimeOfImpact.h" line="48" bodyfile="D:/pybox2d/Box2D/Collision/b2TimeOfImpact.h" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="D:/pybox2d/Box2D/Collision/b2TimeOfImpact.h" line="37" bodyfile="D:/pybox2d/Box2D/Collision/b2TimeOfImpact.h" bodystart="36" bodyend="49"/>
+    <listofallmembers>
+      <member refid="structb2_t_o_i_output_1a12c3cf4dc0551f5c8249dc1dd867959aac25604b5e961c2f50353d0c5114b0f2f" prot="public" virt="non-virtual"><scope>b2TOIOutput</scope><name>e_failed</name></member>
+      <member refid="structb2_t_o_i_output_1a12c3cf4dc0551f5c8249dc1dd867959aa305f55a9143e09cf416f6a994c786c84" prot="public" virt="non-virtual"><scope>b2TOIOutput</scope><name>e_overlapped</name></member>
+      <member refid="structb2_t_o_i_output_1a12c3cf4dc0551f5c8249dc1dd867959aad8752c7cabc15b4522bd97e99acf66d1" prot="public" virt="non-virtual"><scope>b2TOIOutput</scope><name>e_separated</name></member>
+      <member refid="structb2_t_o_i_output_1a12c3cf4dc0551f5c8249dc1dd867959aa4d4178a0a0f89410d1b6b3a49f0c08d9" prot="public" virt="non-virtual"><scope>b2TOIOutput</scope><name>e_touching</name></member>
+      <member refid="structb2_t_o_i_output_1a12c3cf4dc0551f5c8249dc1dd867959aab73a45bbab8c3b7d82a6b43ec66ff3c5" prot="public" virt="non-virtual"><scope>b2TOIOutput</scope><name>e_unknown</name></member>
+      <member refid="structb2_t_o_i_output_1aaacbf28f437b965ffecabf1407a77915" prot="public" virt="non-virtual"><scope>b2TOIOutput</scope><name>state</name></member>
+      <member refid="structb2_t_o_i_output_1a12c3cf4dc0551f5c8249dc1dd867959a" prot="public" virt="non-virtual"><scope>b2TOIOutput</scope><name>State</name></member>
+      <member refid="structb2_t_o_i_output_1a94f8b756e060892226ec006db4be7ee3" prot="public" virt="non-virtual"><scope>b2TOIOutput</scope><name>t</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

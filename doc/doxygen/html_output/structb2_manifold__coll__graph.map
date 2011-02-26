@@ -1,0 +1,6 @@
+<map id="G" name="G">
+<area shape="rect" id="node2" href="$structb2_vec2.html" title="A 2D column vector." alt="" coords="5,101,72,131"/>
+<area shape="rect" id="node4" href="$structb2_manifold_point.html" title="b2ManifoldPoint" alt="" coords="109,200,224,229"/>
+<area shape="rect" id="node7" href="$unionb2_contact_i_d.html" title="Contact ids to facilitate warm starting." alt="" coords="120,101,213,131"/>
+<area shape="rect" id="node9" href="$structb2_contact_feature.html" title="b2ContactFeature" alt="" coords="104,5,229,35"/>
+</map>

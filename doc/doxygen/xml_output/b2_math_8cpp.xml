@@ -1,0 +1,106 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.7.2">
+  <compounddef id="b2_math_8cpp" kind="file">
+    <compoundname>b2Math.cpp</compoundname>
+    <includes refid="b2_math_8h" local="no">Box2D/Common/b2Math.h</includes>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="b2_math_8cpp_1a45ff8686179210d981610e82525b27a8" prot="public" static="no" mutable="no">
+        <type>const <ref refid="structb2_vec2" kindref="compound">b2Vec2</ref></type>
+        <definition>const b2Vec2 b2Vec2_zero(0.0f, 0.0f)</definition>
+        <argsstring>(0.0f, 0.0f)</argsstring>
+        <name>b2Vec2_zero</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Common/b2Math.cpp" line="21"/>
+      </memberdef>
+      <memberdef kind="variable" id="b2_math_8cpp_1a45b644b25391fe0ffd92d51027fde572" prot="public" static="no" mutable="no">
+        <type>const <ref refid="structb2_mat22" kindref="compound">b2Mat22</ref></type>
+        <definition>const b2Mat22 b2Mat22_identity(1.0f, 0.0f, 0.0f, 1.0f)</definition>
+        <argsstring>(1.0f, 0.0f, 0.0f, 1.0f)</argsstring>
+        <name>b2Mat22_identity</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Common/b2Math.cpp" line="22"/>
+      </memberdef>
+      <memberdef kind="variable" id="b2_math_8cpp_1a98ed833f47776af8f370b49a456347b7" prot="public" static="no" mutable="no">
+        <type>const <ref refid="structb2_transform" kindref="compound">b2Transform</ref></type>
+        <definition>const b2Transform b2Transform_identity(b2Vec2_zero, b2Mat22_identity)</definition>
+        <argsstring>(b2Vec2_zero, b2Mat22_identity)</argsstring>
+        <name>b2Transform_identity</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Common/b2Math.cpp" line="23"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment">*<sp/>Copyright<sp/>(c)<sp/>2007-2009<sp/>Erin<sp/>Catto<sp/>http://www.gphysics.com</highlight></codeline>
+<codeline lineno="3"><highlight class="comment">*</highlight></codeline>
+<codeline lineno="4"><highlight class="comment">*<sp/>This<sp/>software<sp/>is<sp/>provided<sp/>&apos;as-is&apos;,<sp/>without<sp/>any<sp/>express<sp/>or<sp/>implied</highlight></codeline>
+<codeline lineno="5"><highlight class="comment">*<sp/>warranty.<sp/><sp/>In<sp/>no<sp/>event<sp/>will<sp/>the<sp/>authors<sp/>be<sp/>held<sp/>liable<sp/>for<sp/>any<sp/>damages</highlight></codeline>
+<codeline lineno="6"><highlight class="comment">*<sp/>arising<sp/>from<sp/>the<sp/>use<sp/>of<sp/>this<sp/>software.</highlight></codeline>
+<codeline lineno="7"><highlight class="comment">*<sp/>Permission<sp/>is<sp/>granted<sp/>to<sp/>anyone<sp/>to<sp/>use<sp/>this<sp/>software<sp/>for<sp/>any<sp/>purpose,</highlight></codeline>
+<codeline lineno="8"><highlight class="comment">*<sp/>including<sp/>commercial<sp/>applications,<sp/>and<sp/>to<sp/>alter<sp/>it<sp/>and<sp/>redistribute<sp/>it</highlight></codeline>
+<codeline lineno="9"><highlight class="comment">*<sp/>freely,<sp/>subject<sp/>to<sp/>the<sp/>following<sp/>restrictions:</highlight></codeline>
+<codeline lineno="10"><highlight class="comment">*<sp/>1.<sp/>The<sp/>origin<sp/>of<sp/>this<sp/>software<sp/>must<sp/>not<sp/>be<sp/>misrepresented;<sp/>you<sp/>must<sp/>not</highlight></codeline>
+<codeline lineno="11"><highlight class="comment">*<sp/>claim<sp/>that<sp/>you<sp/>wrote<sp/>the<sp/>original<sp/>software.<sp/>If<sp/>you<sp/>use<sp/>this<sp/>software</highlight></codeline>
+<codeline lineno="12"><highlight class="comment">*<sp/>in<sp/>a<sp/>product,<sp/>an<sp/>acknowledgment<sp/>in<sp/>the<sp/>product<sp/>documentation<sp/>would<sp/>be</highlight></codeline>
+<codeline lineno="13"><highlight class="comment">*<sp/>appreciated<sp/>but<sp/>is<sp/>not<sp/>required.</highlight></codeline>
+<codeline lineno="14"><highlight class="comment">*<sp/>2.<sp/>Altered<sp/>source<sp/>versions<sp/>must<sp/>be<sp/>plainly<sp/>marked<sp/>as<sp/>such,<sp/>and<sp/>must<sp/>not<sp/>be</highlight></codeline>
+<codeline lineno="15"><highlight class="comment">*<sp/>misrepresented<sp/>as<sp/>being<sp/>the<sp/>original<sp/>software.</highlight></codeline>
+<codeline lineno="16"><highlight class="comment">*<sp/>3.<sp/>This<sp/>notice<sp/>may<sp/>not<sp/>be<sp/>removed<sp/>or<sp/>altered<sp/>from<sp/>any<sp/>source<sp/>distribution.</highlight></codeline>
+<codeline lineno="17"><highlight class="comment">*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;Box2D/Common/b2Math.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structb2_vec2" kindref="compound" tooltip="A 2D column vector.">b2Vec2</ref><sp/>b2Vec2_zero(0.0f,<sp/>0.0f);</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structb2_mat22" kindref="compound" tooltip="A 2-by-2 matrix. Stored in column-major order.">b2Mat22</ref><sp/>b2Mat22_identity(1.0f,<sp/>0.0f,<sp/>0.0f,<sp/>1.0f);</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structb2_transform" kindref="compound">b2Transform</ref><sp/>b2Transform_identity(b2Vec2_zero,<sp/>b2Mat22_identity);</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><ref refid="structb2_vec3" kindref="compound" tooltip="A 2D column vector with 3 elements.">b2Vec3</ref><sp/><ref refid="structb2_mat33_1a478872c7b6a3bedd13fbedd3ec7a2edb" kindref="member">b2Mat33::Solve33</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structb2_vec3" kindref="compound" tooltip="A 2D column vector with 3 elements.">b2Vec3</ref>&amp;<sp/>b)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="28"><highlight class="keyword"></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>float32<sp/>det<sp/>=<sp/>b2Dot(col1,<sp/>b2Cross(col2,<sp/>col3));</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(det<sp/>!=<sp/>0.0f)</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>det<sp/>=<sp/>1.0f<sp/>/<sp/>det;</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structb2_vec3" kindref="compound" tooltip="A 2D column vector with 3 elements.">b2Vec3</ref><sp/>x;</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>x.x<sp/>=<sp/>det<sp/>*<sp/>b2Dot(b,<sp/>b2Cross(col2,<sp/>col3));</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>x.y<sp/>=<sp/>det<sp/>*<sp/>b2Dot(col1,<sp/>b2Cross(b,<sp/>col3));</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>x.z<sp/>=<sp/>det<sp/>*<sp/>b2Dot(col1,<sp/>b2Cross(col2,<sp/>b));</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>x;</highlight></codeline>
+<codeline lineno="39"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><ref refid="structb2_vec2" kindref="compound" tooltip="A 2D column vector.">b2Vec2</ref><sp/><ref refid="structb2_mat33_1a2580ac2afadc48028a63ed4c8a1f16bc" kindref="member">b2Mat33::Solve22</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structb2_vec2" kindref="compound" tooltip="A 2D column vector.">b2Vec2</ref>&amp;<sp/>b)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="44"><highlight class="keyword"></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>float32<sp/>a11<sp/>=<sp/>col1.x,<sp/>a12<sp/>=<sp/>col2.x,<sp/>a21<sp/>=<sp/>col1.y,<sp/>a22<sp/>=<sp/>col2.y;</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>float32<sp/>det<sp/>=<sp/>a11<sp/>*<sp/>a22<sp/>-<sp/>a12<sp/>*<sp/>a21;</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(det<sp/>!=<sp/>0.0f)</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>det<sp/>=<sp/>1.0f<sp/>/<sp/>det;</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structb2_vec2" kindref="compound" tooltip="A 2D column vector.">b2Vec2</ref><sp/>x;</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>x.x<sp/>=<sp/>det<sp/>*<sp/>(a22<sp/>*<sp/>b.x<sp/>-<sp/>a12<sp/>*<sp/>b.y);</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>x.y<sp/>=<sp/>det<sp/>*<sp/>(a11<sp/>*<sp/>b.y<sp/>-<sp/>a21<sp/>*<sp/>b.x);</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>x;</highlight></codeline>
+<codeline lineno="55"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="D:/pybox2d/Box2D/Common/b2Math.cpp"/>
+  </compounddef>
+</doxygen>

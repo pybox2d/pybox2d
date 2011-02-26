@@ -1,0 +1,3 @@
+<map id="G" name="G">
+<area shape="rect" id="node1" href="$classb2_body.html" title="A rigid body. These are created via b2World::CreateBody." alt="" coords="5,5,72,35"/>
+</map>

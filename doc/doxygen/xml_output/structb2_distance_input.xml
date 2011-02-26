@@ -1,0 +1,130 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.7.2">
+  <compounddef id="structb2_distance_input" kind="struct" prot="public">
+    <compoundname>b2DistanceInput</compoundname>
+    <includes local="no">b2Distance.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structb2_distance_input_1a84d378f4f0e2f06fbe03d413e9dfbbd9" prot="public" static="no" mutable="no">
+        <type><ref refid="structb2_distance_proxy" kindref="compound">b2DistanceProxy</ref></type>
+        <definition>b2DistanceProxy b2DistanceInput::proxyA</definition>
+        <argsstring></argsstring>
+        <name>proxyA</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Collision/b2Distance.h" line="70" bodyfile="D:/pybox2d/Box2D/Collision/b2Distance.h" bodystart="70" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structb2_distance_input_1ad08521a9cdf9d418ececfd44de83a5d3" prot="public" static="no" mutable="no">
+        <type><ref refid="structb2_distance_proxy" kindref="compound">b2DistanceProxy</ref></type>
+        <definition>b2DistanceProxy b2DistanceInput::proxyB</definition>
+        <argsstring></argsstring>
+        <name>proxyB</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Collision/b2Distance.h" line="71" bodyfile="D:/pybox2d/Box2D/Collision/b2Distance.h" bodystart="71" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structb2_distance_input_1a0889c2f7120ba521d6e40e2a22834ddb" prot="public" static="no" mutable="no">
+        <type><ref refid="structb2_transform" kindref="compound">b2Transform</ref></type>
+        <definition>b2Transform b2DistanceInput::transformA</definition>
+        <argsstring></argsstring>
+        <name>transformA</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Collision/b2Distance.h" line="72" bodyfile="D:/pybox2d/Box2D/Collision/b2Distance.h" bodystart="72" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structb2_distance_input_1a47352d7c5b3db80b2fb8cf338f1c1895" prot="public" static="no" mutable="no">
+        <type><ref refid="structb2_transform" kindref="compound">b2Transform</ref></type>
+        <definition>b2Transform b2DistanceInput::transformB</definition>
+        <argsstring></argsstring>
+        <name>transformB</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Collision/b2Distance.h" line="73" bodyfile="D:/pybox2d/Box2D/Collision/b2Distance.h" bodystart="73" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structb2_distance_input_1ab72a770be4a91997d00112409de5fea7" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool b2DistanceInput::useRadii</definition>
+        <argsstring></argsstring>
+        <name>useRadii</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Collision/b2Distance.h" line="74" bodyfile="D:/pybox2d/Box2D/Collision/b2Distance.h" bodystart="74" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>Input for b2Distance. You have to option to use the shape radii in the computation. Even </para>    </detaileddescription>
+    <collaborationgraph>
+      <node id="1154">
+        <label>b2DistanceProxy</label>
+        <link refid="structb2_distance_proxy"/>
+        <childnode refid="1155" relation="usage">
+          <edgelabel>m_vertices</edgelabel>
+          <edgelabel>m_buffer</edgelabel>
+        </childnode>
+      </node>
+      <node id="1157">
+        <label>b2Mat22</label>
+        <link refid="structb2_mat22"/>
+        <childnode refid="1155" relation="usage">
+          <edgelabel>col1</edgelabel>
+          <edgelabel>col2</edgelabel>
+        </childnode>
+      </node>
+      <node id="1153">
+        <label>b2DistanceInput</label>
+        <link refid="structb2_distance_input"/>
+        <childnode refid="1154" relation="usage">
+          <edgelabel>proxyA</edgelabel>
+          <edgelabel>proxyB</edgelabel>
+        </childnode>
+        <childnode refid="1156" relation="usage">
+          <edgelabel>transformA</edgelabel>
+          <edgelabel>transformB</edgelabel>
+        </childnode>
+      </node>
+      <node id="1156">
+        <label>b2Transform</label>
+        <link refid="structb2_transform"/>
+        <childnode refid="1155" relation="usage">
+          <edgelabel>position</edgelabel>
+        </childnode>
+        <childnode refid="1157" relation="usage">
+          <edgelabel>R</edgelabel>
+        </childnode>
+      </node>
+      <node id="1155">
+        <label>b2Vec2</label>
+        <link refid="structb2_vec2"/>
+      </node>
+    </collaborationgraph>
+    <location file="D:/pybox2d/Box2D/Collision/b2Distance.h" line="69" bodyfile="D:/pybox2d/Box2D/Collision/b2Distance.h" bodystart="68" bodyend="75"/>
+    <listofallmembers>
+      <member refid="structb2_distance_input_1a84d378f4f0e2f06fbe03d413e9dfbbd9" prot="public" virt="non-virtual"><scope>b2DistanceInput</scope><name>proxyA</name></member>
+      <member refid="structb2_distance_input_1ad08521a9cdf9d418ececfd44de83a5d3" prot="public" virt="non-virtual"><scope>b2DistanceInput</scope><name>proxyB</name></member>
+      <member refid="structb2_distance_input_1a0889c2f7120ba521d6e40e2a22834ddb" prot="public" virt="non-virtual"><scope>b2DistanceInput</scope><name>transformA</name></member>
+      <member refid="structb2_distance_input_1a47352d7c5b3db80b2fb8cf338f1c1895" prot="public" virt="non-virtual"><scope>b2DistanceInput</scope><name>transformB</name></member>
+      <member refid="structb2_distance_input_1ab72a770be4a91997d00112409de5fea7" prot="public" virt="non-virtual"><scope>b2DistanceInput</scope><name>useRadii</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

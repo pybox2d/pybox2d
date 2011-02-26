@@ -1,0 +1,24 @@
+[epydoc]
+
+# Information about the project.
+name: pybox2d
+url: http://code.google.com/p/pybox2d
+
+modules: ../library/Box2D/Box2D.py
+
+# hide all the uglies
+private: no 
+sourcecode: yes
+
+frames: no
+# Write html output to the directory "apidocs"
+output: html
+target: epydoc/
+
+# Include all automatically generated graphs.  These graphs are
+# generated using Graphviz dot.
+graph: all
+dotpath: ../../dev/graphviz/bin/dot
+graph-font: Calibri
+
+css: white

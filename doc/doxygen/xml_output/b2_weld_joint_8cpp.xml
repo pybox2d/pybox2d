@@ -1,0 +1,235 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.7.2">
+  <compounddef id="b2_weld_joint_8cpp" kind="file">
+    <compoundname>b2WeldJoint.cpp</compoundname>
+    <includes refid="b2_weld_joint_8h" local="no">Box2D/Dynamics/Joints/b2WeldJoint.h</includes>
+    <includes refid="b2_body_8h" local="no">Box2D/Dynamics/b2Body.h</includes>
+    <includes refid="b2_time_step_8h" local="no">Box2D/Dynamics/b2TimeStep.h</includes>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment">*<sp/>Copyright<sp/>(c)<sp/>2006-2009<sp/>Erin<sp/>Catto<sp/>http://www.gphysics.com</highlight></codeline>
+<codeline lineno="3"><highlight class="comment">*</highlight></codeline>
+<codeline lineno="4"><highlight class="comment">*<sp/>This<sp/>software<sp/>is<sp/>provided<sp/>&apos;as-is&apos;,<sp/>without<sp/>any<sp/>express<sp/>or<sp/>implied</highlight></codeline>
+<codeline lineno="5"><highlight class="comment">*<sp/>warranty.<sp/><sp/>In<sp/>no<sp/>event<sp/>will<sp/>the<sp/>authors<sp/>be<sp/>held<sp/>liable<sp/>for<sp/>any<sp/>damages</highlight></codeline>
+<codeline lineno="6"><highlight class="comment">*<sp/>arising<sp/>from<sp/>the<sp/>use<sp/>of<sp/>this<sp/>software.</highlight></codeline>
+<codeline lineno="7"><highlight class="comment">*<sp/>Permission<sp/>is<sp/>granted<sp/>to<sp/>anyone<sp/>to<sp/>use<sp/>this<sp/>software<sp/>for<sp/>any<sp/>purpose,</highlight></codeline>
+<codeline lineno="8"><highlight class="comment">*<sp/>including<sp/>commercial<sp/>applications,<sp/>and<sp/>to<sp/>alter<sp/>it<sp/>and<sp/>redistribute<sp/>it</highlight></codeline>
+<codeline lineno="9"><highlight class="comment">*<sp/>freely,<sp/>subject<sp/>to<sp/>the<sp/>following<sp/>restrictions:</highlight></codeline>
+<codeline lineno="10"><highlight class="comment">*<sp/>1.<sp/>The<sp/>origin<sp/>of<sp/>this<sp/>software<sp/>must<sp/>not<sp/>be<sp/>misrepresented;<sp/>you<sp/>must<sp/>not</highlight></codeline>
+<codeline lineno="11"><highlight class="comment">*<sp/>claim<sp/>that<sp/>you<sp/>wrote<sp/>the<sp/>original<sp/>software.<sp/>If<sp/>you<sp/>use<sp/>this<sp/>software</highlight></codeline>
+<codeline lineno="12"><highlight class="comment">*<sp/>in<sp/>a<sp/>product,<sp/>an<sp/>acknowledgment<sp/>in<sp/>the<sp/>product<sp/>documentation<sp/>would<sp/>be</highlight></codeline>
+<codeline lineno="13"><highlight class="comment">*<sp/>appreciated<sp/>but<sp/>is<sp/>not<sp/>required.</highlight></codeline>
+<codeline lineno="14"><highlight class="comment">*<sp/>2.<sp/>Altered<sp/>source<sp/>versions<sp/>must<sp/>be<sp/>plainly<sp/>marked<sp/>as<sp/>such,<sp/>and<sp/>must<sp/>not<sp/>be</highlight></codeline>
+<codeline lineno="15"><highlight class="comment">*<sp/>misrepresented<sp/>as<sp/>being<sp/>the<sp/>original<sp/>software.</highlight></codeline>
+<codeline lineno="16"><highlight class="comment">*<sp/>3.<sp/>This<sp/>notice<sp/>may<sp/>not<sp/>be<sp/>removed<sp/>or<sp/>altered<sp/>from<sp/>any<sp/>source<sp/>distribution.</highlight></codeline>
+<codeline lineno="17"><highlight class="comment">*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;Box2D/Dynamics/Joints/b2WeldJoint.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;Box2D/Dynamics/b2Body.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;Box2D/Dynamics/b2TimeStep.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Point-to-point<sp/>constraint</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="comment">//<sp/>C<sp/>=<sp/>p2<sp/>-<sp/>p1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Cdot<sp/>=<sp/>v2<sp/>-<sp/>v1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>v2<sp/>+<sp/>cross(w2,<sp/>r2)<sp/>-<sp/>v1<sp/>-<sp/>cross(w1,<sp/>r1)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="comment">//<sp/>J<sp/>=<sp/>[-I<sp/>-r1_skew<sp/>I<sp/>r2_skew<sp/>]</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Identity<sp/>used:</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="comment">//<sp/>w<sp/>k<sp/>%<sp/>(rx<sp/>i<sp/>+<sp/>ry<sp/>j)<sp/>=<sp/>w<sp/>*<sp/>(-ry<sp/>i<sp/>+<sp/>rx<sp/>j)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Angle<sp/>constraint</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="comment">//<sp/>C<sp/>=<sp/>angle2<sp/>-<sp/>angle1<sp/>-<sp/>referenceAngle</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Cdot<sp/>=<sp/>w2<sp/>-<sp/>w1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="comment">//<sp/>J<sp/>=<sp/>[0<sp/>0<sp/>-1<sp/>0<sp/>0<sp/>1]</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="comment">//<sp/>K<sp/>=<sp/>invI1<sp/>+<sp/>invI2</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="structb2_weld_joint_def_1aff78d10c31a5adab449b22439d7ac512" kindref="member">b2WeldJointDef::Initialize</ref>(<ref refid="classb2_body" kindref="compound" tooltip="A rigid body. These are created via b2World::CreateBody.">b2Body</ref>*<sp/>bA,<sp/><ref refid="classb2_body" kindref="compound" tooltip="A rigid body. These are created via b2World::CreateBody.">b2Body</ref>*<sp/>bB,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structb2_vec2" kindref="compound" tooltip="A 2D column vector.">b2Vec2</ref>&amp;<sp/>anchor)</highlight></codeline>
+<codeline lineno="38"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structb2_joint_def_1a8cd54c93da396be75a9788f2c6897f05" kindref="member" tooltip="The first attached body.">bodyA</ref><sp/>=<sp/>bA;</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structb2_joint_def_1aa4f4dee2fbcd12187b19506b60e68e3d" kindref="member" tooltip="The second attached body.">bodyB</ref><sp/>=<sp/>bB;</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structb2_weld_joint_def_1a3b04af6164bb32efc3f5cf3e8d2b7109" kindref="member" tooltip="The local anchor point relative to body1&amp;#39;s origin.">localAnchorA</ref><sp/>=<sp/><ref refid="structb2_joint_def_1a8cd54c93da396be75a9788f2c6897f05" kindref="member" tooltip="The first attached body.">bodyA</ref>-&gt;<ref refid="classb2_body_1a8f9ef0226b7eb989e700fa8898d29fc0" kindref="member">GetLocalPoint</ref>(anchor);</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structb2_weld_joint_def_1a528262b92dac10de37411ad8c5637149" kindref="member" tooltip="The local anchor point relative to body2&amp;#39;s origin.">localAnchorB</ref><sp/>=<sp/><ref refid="structb2_joint_def_1aa4f4dee2fbcd12187b19506b60e68e3d" kindref="member" tooltip="The second attached body.">bodyB</ref>-&gt;<ref refid="classb2_body_1a8f9ef0226b7eb989e700fa8898d29fc0" kindref="member">GetLocalPoint</ref>(anchor);</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structb2_weld_joint_def_1a31aeb208f15842091c55e3f1bab6d8f1" kindref="member" tooltip="The body2 angle minus body1 angle in the reference state (radians).">referenceAngle</ref><sp/>=<sp/><ref refid="structb2_joint_def_1aa4f4dee2fbcd12187b19506b60e68e3d" kindref="member" tooltip="The second attached body.">bodyB</ref>-&gt;<ref refid="classb2_body_1a57c4a1946a6dd5a00e28691bc419fdcd" kindref="member">GetAngle</ref>()<sp/>-<sp/><ref refid="structb2_joint_def_1a8cd54c93da396be75a9788f2c6897f05" kindref="member" tooltip="The first attached body.">bodyA</ref>-&gt;<ref refid="classb2_body_1a57c4a1946a6dd5a00e28691bc419fdcd" kindref="member">GetAngle</ref>();</highlight></codeline>
+<codeline lineno="44"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal">b2WeldJoint::b2WeldJoint(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structb2_weld_joint_def" kindref="compound">b2WeldJointDef</ref>*<sp/>def)</highlight></codeline>
+<codeline lineno="47"><highlight class="normal">:<sp/><ref refid="classb2_joint" kindref="compound">b2Joint</ref>(def)</highlight></codeline>
+<codeline lineno="48"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>m_localAnchorA<sp/>=<sp/>def-&gt;<ref refid="structb2_weld_joint_def_1a3b04af6164bb32efc3f5cf3e8d2b7109" kindref="member" tooltip="The local anchor point relative to body1&amp;#39;s origin.">localAnchorA</ref>;</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>m_localAnchorB<sp/>=<sp/>def-&gt;<ref refid="structb2_weld_joint_def_1a528262b92dac10de37411ad8c5637149" kindref="member" tooltip="The local anchor point relative to body2&amp;#39;s origin.">localAnchorB</ref>;</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>m_referenceAngle<sp/>=<sp/>def-&gt;<ref refid="structb2_weld_joint_def_1a31aeb208f15842091c55e3f1bab6d8f1" kindref="member" tooltip="The body2 angle minus body1 angle in the reference state (radians).">referenceAngle</ref>;</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>m_impulse.SetZero();</highlight></codeline>
+<codeline lineno="54"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>b2WeldJoint::InitVelocityConstraints(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structb2_time_step" kindref="compound" tooltip="This is an internal structure.">b2TimeStep</ref>&amp;<sp/>step)</highlight></codeline>
+<codeline lineno="57"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classb2_body" kindref="compound" tooltip="A rigid body. These are created via b2World::CreateBody.">b2Body</ref>*<sp/>bA<sp/>=<sp/>m_bodyA;</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classb2_body" kindref="compound" tooltip="A rigid body. These are created via b2World::CreateBody.">b2Body</ref>*<sp/>bB<sp/>=<sp/>m_bodyB;</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Compute<sp/>the<sp/>effective<sp/>mass<sp/>matrix.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structb2_vec2" kindref="compound" tooltip="A 2D column vector.">b2Vec2</ref><sp/>rA<sp/>=<sp/>b2Mul(bA-&gt;<ref refid="classb2_body_1adaaebca750d0bda56a543884adc5f519" kindref="member">GetTransform</ref>().R,<sp/>m_localAnchorA<sp/>-<sp/>bA-&gt;<ref refid="classb2_body_1a27ed7f8a3b36ddfb01069ee8f7106033" kindref="member" tooltip="Get the local position of the center of mass.">GetLocalCenter</ref>());</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structb2_vec2" kindref="compound" tooltip="A 2D column vector.">b2Vec2</ref><sp/>rB<sp/>=<sp/>b2Mul(bB-&gt;<ref refid="classb2_body_1adaaebca750d0bda56a543884adc5f519" kindref="member">GetTransform</ref>().R,<sp/>m_localAnchorB<sp/>-<sp/>bB-&gt;<ref refid="classb2_body_1a27ed7f8a3b36ddfb01069ee8f7106033" kindref="member" tooltip="Get the local position of the center of mass.">GetLocalCenter</ref>());</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>J<sp/>=<sp/>[-I<sp/>-r1_skew<sp/>I<sp/>r2_skew]</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/>[<sp/>0<sp/><sp/><sp/><sp/><sp/><sp/><sp/>-1<sp/>0<sp/><sp/><sp/><sp/><sp/><sp/><sp/>1]</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>r_skew<sp/>=<sp/>[-ry;<sp/>rx]</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Matlab</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>K<sp/>=<sp/>[<sp/>mA+r1y^2*iA+mB+r2y^2*iB,<sp/><sp/>-r1y*iA*r1x-r2y*iB*r2x,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>-r1y*iA-r2y*iB]</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/>[<sp/><sp/>-r1y*iA*r1x-r2y*iB*r2x,<sp/>mA+r1x^2*iA+mB+r2x^2*iB,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r1x*iA+r2x*iB]</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/>[<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>-r1y*iA-r2y*iB,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r1x*iA+r2x*iB,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>iA+iB]</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>float32<sp/>mA<sp/>=<sp/>bA-&gt;m_invMass,<sp/>mB<sp/>=<sp/>bB-&gt;m_invMass;</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>float32<sp/>iA<sp/>=<sp/>bA-&gt;m_invI,<sp/>iB<sp/>=<sp/>bB-&gt;m_invI;</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>m_mass.col1.x<sp/>=<sp/>mA<sp/>+<sp/>mB<sp/>+<sp/>rA.y<sp/>*<sp/>rA.y<sp/>*<sp/>iA<sp/>+<sp/>rB.y<sp/>*<sp/>rB.y<sp/>*<sp/>iB;</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>m_mass.col2.x<sp/>=<sp/>-rA.y<sp/>*<sp/>rA.x<sp/>*<sp/>iA<sp/>-<sp/>rB.y<sp/>*<sp/>rB.x<sp/>*<sp/>iB;</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>m_mass.col3.x<sp/>=<sp/>-rA.y<sp/>*<sp/>iA<sp/>-<sp/>rB.y<sp/>*<sp/>iB;</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>m_mass.col1.y<sp/>=<sp/>m_mass.col2.x;</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>m_mass.col2.y<sp/>=<sp/>mA<sp/>+<sp/>mB<sp/>+<sp/>rA.x<sp/>*<sp/>rA.x<sp/>*<sp/>iA<sp/>+<sp/>rB.x<sp/>*<sp/>rB.x<sp/>*<sp/>iB;</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>m_mass.col3.y<sp/>=<sp/>rA.x<sp/>*<sp/>iA<sp/>+<sp/>rB.x<sp/>*<sp/>iB;</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>m_mass.col1.z<sp/>=<sp/>m_mass.col3.x;</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>m_mass.col2.z<sp/>=<sp/>m_mass.col3.y;</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>m_mass.col3.z<sp/>=<sp/>iA<sp/>+<sp/>iB;</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"></highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(step.warmStarting)</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Scale<sp/>impulses<sp/>to<sp/>support<sp/>a<sp/>variable<sp/>time<sp/>step.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>m_impulse<sp/>*=<sp/>step.dtRatio;</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structb2_vec2" kindref="compound" tooltip="A 2D column vector.">b2Vec2</ref><sp/>P(m_impulse.x,<sp/>m_impulse.y);</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"></highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>bA-&gt;m_linearVelocity<sp/>-=<sp/>mA<sp/>*<sp/>P;</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>bA-&gt;m_angularVelocity<sp/>-=<sp/>iA<sp/>*<sp/>(b2Cross(rA,<sp/>P)<sp/>+<sp/>m_impulse.z);</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"></highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>bB-&gt;m_linearVelocity<sp/>+=<sp/>mB<sp/>*<sp/>P;</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>bB-&gt;m_angularVelocity<sp/>+=<sp/>iB<sp/>*<sp/>(b2Cross(rB,<sp/>P)<sp/>+<sp/>m_impulse.z);</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>m_impulse.<ref refid="structb2_vec3_1a5a459ed49f1910a347ca247f848a2dd8" kindref="member" tooltip="Set this vector to all zeros.">SetZero</ref>();</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="104"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>b2WeldJoint::SolveVelocityConstraints(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structb2_time_step" kindref="compound" tooltip="This is an internal structure.">b2TimeStep</ref>&amp;<sp/>step)</highlight></codeline>
+<codeline lineno="107"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>B2_NOT_USED(step);</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"></highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classb2_body" kindref="compound" tooltip="A rigid body. These are created via b2World::CreateBody.">b2Body</ref>*<sp/>bA<sp/>=<sp/>m_bodyA;</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classb2_body" kindref="compound" tooltip="A rigid body. These are created via b2World::CreateBody.">b2Body</ref>*<sp/>bB<sp/>=<sp/>m_bodyB;</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"></highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structb2_vec2" kindref="compound" tooltip="A 2D column vector.">b2Vec2</ref><sp/>vA<sp/>=<sp/>bA-&gt;m_linearVelocity;</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>float32<sp/>wA<sp/>=<sp/>bA-&gt;m_angularVelocity;</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structb2_vec2" kindref="compound" tooltip="A 2D column vector.">b2Vec2</ref><sp/>vB<sp/>=<sp/>bB-&gt;m_linearVelocity;</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>float32<sp/>wB<sp/>=<sp/>bB-&gt;m_angularVelocity;</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"></highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>float32<sp/>mA<sp/>=<sp/>bA-&gt;m_invMass,<sp/>mB<sp/>=<sp/>bB-&gt;m_invMass;</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>float32<sp/>iA<sp/>=<sp/>bA-&gt;m_invI,<sp/>iB<sp/>=<sp/>bB-&gt;m_invI;</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"></highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structb2_vec2" kindref="compound" tooltip="A 2D column vector.">b2Vec2</ref><sp/>rA<sp/>=<sp/>b2Mul(bA-&gt;<ref refid="classb2_body_1adaaebca750d0bda56a543884adc5f519" kindref="member">GetTransform</ref>().R,<sp/>m_localAnchorA<sp/>-<sp/>bA-&gt;<ref refid="classb2_body_1a27ed7f8a3b36ddfb01069ee8f7106033" kindref="member" tooltip="Get the local position of the center of mass.">GetLocalCenter</ref>());</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structb2_vec2" kindref="compound" tooltip="A 2D column vector.">b2Vec2</ref><sp/>rB<sp/>=<sp/>b2Mul(bB-&gt;<ref refid="classb2_body_1adaaebca750d0bda56a543884adc5f519" kindref="member">GetTransform</ref>().R,<sp/>m_localAnchorB<sp/>-<sp/>bB-&gt;<ref refid="classb2_body_1a27ed7f8a3b36ddfb01069ee8f7106033" kindref="member" tooltip="Get the local position of the center of mass.">GetLocalCenter</ref>());</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"></highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Solve<sp/>point-to-point<sp/>constraint</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structb2_vec2" kindref="compound" tooltip="A 2D column vector.">b2Vec2</ref><sp/>Cdot1<sp/>=<sp/>vB<sp/>+<sp/>b2Cross(wB,<sp/>rB)<sp/>-<sp/>vA<sp/>-<sp/>b2Cross(wA,<sp/>rA);</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>float32<sp/>Cdot2<sp/>=<sp/>wB<sp/>-<sp/>wA;</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structb2_vec3" kindref="compound" tooltip="A 2D column vector with 3 elements.">b2Vec3</ref><sp/>Cdot(Cdot1.x,<sp/>Cdot1.y,<sp/>Cdot2);</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"></highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structb2_vec3" kindref="compound" tooltip="A 2D column vector with 3 elements.">b2Vec3</ref><sp/>impulse<sp/>=<sp/>m_mass.<ref refid="structb2_mat33_1a478872c7b6a3bedd13fbedd3ec7a2edb" kindref="member">Solve33</ref>(-Cdot);</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>m_impulse<sp/>+=<sp/>impulse;</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"></highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structb2_vec2" kindref="compound" tooltip="A 2D column vector.">b2Vec2</ref><sp/>P(impulse.x,<sp/>impulse.y);</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"></highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vA<sp/>-=<sp/>mA<sp/>*<sp/>P;</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>wA<sp/>-=<sp/>iA<sp/>*<sp/>(b2Cross(rA,<sp/>P)<sp/>+<sp/>impulse.z);</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"></highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vB<sp/>+=<sp/>mB<sp/>*<sp/>P;</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>wB<sp/>+=<sp/>iB<sp/>*<sp/>(b2Cross(rB,<sp/>P)<sp/>+<sp/>impulse.z);</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"></highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>bA-&gt;m_linearVelocity<sp/>=<sp/>vA;</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>bA-&gt;m_angularVelocity<sp/>=<sp/>wA;</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>bB-&gt;m_linearVelocity<sp/>=<sp/>vB;</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>bB-&gt;m_angularVelocity<sp/>=<sp/>wB;</highlight></codeline>
+<codeline lineno="144"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"></highlight></codeline>
+<codeline lineno="146"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>b2WeldJoint::SolvePositionConstraints(float32<sp/>baumgarte)</highlight></codeline>
+<codeline lineno="147"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>B2_NOT_USED(baumgarte);</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"></highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classb2_body" kindref="compound" tooltip="A rigid body. These are created via b2World::CreateBody.">b2Body</ref>*<sp/>bA<sp/>=<sp/>m_bodyA;</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classb2_body" kindref="compound" tooltip="A rigid body. These are created via b2World::CreateBody.">b2Body</ref>*<sp/>bB<sp/>=<sp/>m_bodyB;</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"></highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>float32<sp/>mA<sp/>=<sp/>bA-&gt;m_invMass,<sp/>mB<sp/>=<sp/>bB-&gt;m_invMass;</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>float32<sp/>iA<sp/>=<sp/>bA-&gt;m_invI,<sp/>iB<sp/>=<sp/>bB-&gt;m_invI;</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"></highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structb2_vec2" kindref="compound" tooltip="A 2D column vector.">b2Vec2</ref><sp/>rA<sp/>=<sp/>b2Mul(bA-&gt;<ref refid="classb2_body_1adaaebca750d0bda56a543884adc5f519" kindref="member">GetTransform</ref>().R,<sp/>m_localAnchorA<sp/>-<sp/>bA-&gt;<ref refid="classb2_body_1a27ed7f8a3b36ddfb01069ee8f7106033" kindref="member" tooltip="Get the local position of the center of mass.">GetLocalCenter</ref>());</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structb2_vec2" kindref="compound" tooltip="A 2D column vector.">b2Vec2</ref><sp/>rB<sp/>=<sp/>b2Mul(bB-&gt;<ref refid="classb2_body_1adaaebca750d0bda56a543884adc5f519" kindref="member">GetTransform</ref>().R,<sp/>m_localAnchorB<sp/>-<sp/>bB-&gt;<ref refid="classb2_body_1a27ed7f8a3b36ddfb01069ee8f7106033" kindref="member" tooltip="Get the local position of the center of mass.">GetLocalCenter</ref>());</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"></highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structb2_vec2" kindref="compound" tooltip="A 2D column vector.">b2Vec2</ref><sp/>C1<sp/>=<sp/><sp/>bB-&gt;m_sweep.<ref refid="structb2_sweep_1a1b5402e01b92cc82473389fc6f0375c3" kindref="member" tooltip="center world positions">c</ref><sp/>+<sp/>rB<sp/>-<sp/>bA-&gt;m_sweep.<ref refid="structb2_sweep_1a1b5402e01b92cc82473389fc6f0375c3" kindref="member" tooltip="center world positions">c</ref><sp/>-<sp/>rA;</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>float32<sp/>C2<sp/>=<sp/>bB-&gt;m_sweep.<ref refid="structb2_sweep_1afa96bacc91dd3c92ae716a45512332d6" kindref="member" tooltip="world angles">a</ref><sp/>-<sp/>bA-&gt;m_sweep.<ref refid="structb2_sweep_1afa96bacc91dd3c92ae716a45512332d6" kindref="member" tooltip="world angles">a</ref><sp/>-<sp/>m_referenceAngle;</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"></highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Handle<sp/>large<sp/>detachment.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>float32<sp/>k_allowedStretch<sp/>=<sp/>10.0f<sp/>*<sp/><ref refid="b2_settings_8h_1a57268ade379c5c3373d0ff558b0350cf" kindref="member">b2_linearSlop</ref>;</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>float32<sp/>positionError<sp/>=<sp/>C1.Length();</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>float32<sp/>angularError<sp/>=<sp/>b2Abs(C2);</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(positionError<sp/>&gt;<sp/>k_allowedStretch)</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>iA<sp/>*=<sp/>1.0f;</highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>iB<sp/>*=<sp/>1.0f;</highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="171"><highlight class="normal"></highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>m_mass.col1.x<sp/>=<sp/>mA<sp/>+<sp/>mB<sp/>+<sp/>rA.y<sp/>*<sp/>rA.y<sp/>*<sp/>iA<sp/>+<sp/>rB.y<sp/>*<sp/>rB.y<sp/>*<sp/>iB;</highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>m_mass.col2.x<sp/>=<sp/>-rA.y<sp/>*<sp/>rA.x<sp/>*<sp/>iA<sp/>-<sp/>rB.y<sp/>*<sp/>rB.x<sp/>*<sp/>iB;</highlight></codeline>
+<codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>m_mass.col3.x<sp/>=<sp/>-rA.y<sp/>*<sp/>iA<sp/>-<sp/>rB.y<sp/>*<sp/>iB;</highlight></codeline>
+<codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>m_mass.col1.y<sp/>=<sp/>m_mass.col2.x;</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>m_mass.col2.y<sp/>=<sp/>mA<sp/>+<sp/>mB<sp/>+<sp/>rA.x<sp/>*<sp/>rA.x<sp/>*<sp/>iA<sp/>+<sp/>rB.x<sp/>*<sp/>rB.x<sp/>*<sp/>iB;</highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>m_mass.col3.y<sp/>=<sp/>rA.x<sp/>*<sp/>iA<sp/>+<sp/>rB.x<sp/>*<sp/>iB;</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>m_mass.col1.z<sp/>=<sp/>m_mass.col3.x;</highlight></codeline>
+<codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>m_mass.col2.z<sp/>=<sp/>m_mass.col3.y;</highlight></codeline>
+<codeline lineno="180"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>m_mass.col3.z<sp/>=<sp/>iA<sp/>+<sp/>iB;</highlight></codeline>
+<codeline lineno="181"><highlight class="normal"></highlight></codeline>
+<codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structb2_vec3" kindref="compound" tooltip="A 2D column vector with 3 elements.">b2Vec3</ref><sp/>C(C1.x,<sp/>C1.y,<sp/>C2);</highlight></codeline>
+<codeline lineno="183"><highlight class="normal"></highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structb2_vec3" kindref="compound" tooltip="A 2D column vector with 3 elements.">b2Vec3</ref><sp/>impulse<sp/>=<sp/>m_mass.<ref refid="structb2_mat33_1a478872c7b6a3bedd13fbedd3ec7a2edb" kindref="member">Solve33</ref>(-C);</highlight></codeline>
+<codeline lineno="185"><highlight class="normal"></highlight></codeline>
+<codeline lineno="186"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structb2_vec2" kindref="compound" tooltip="A 2D column vector.">b2Vec2</ref><sp/>P(impulse.x,<sp/>impulse.y);</highlight></codeline>
+<codeline lineno="187"><highlight class="normal"></highlight></codeline>
+<codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>bA-&gt;m_sweep.<ref refid="structb2_sweep_1a1b5402e01b92cc82473389fc6f0375c3" kindref="member" tooltip="center world positions">c</ref><sp/>-=<sp/>mA<sp/>*<sp/>P;</highlight></codeline>
+<codeline lineno="189"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>bA-&gt;m_sweep.<ref refid="structb2_sweep_1afa96bacc91dd3c92ae716a45512332d6" kindref="member" tooltip="world angles">a</ref><sp/>-=<sp/>iA<sp/>*<sp/>(b2Cross(rA,<sp/>P)<sp/>+<sp/>impulse.z);</highlight></codeline>
+<codeline lineno="190"><highlight class="normal"></highlight></codeline>
+<codeline lineno="191"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>bB-&gt;m_sweep.<ref refid="structb2_sweep_1a1b5402e01b92cc82473389fc6f0375c3" kindref="member" tooltip="center world positions">c</ref><sp/>+=<sp/>mB<sp/>*<sp/>P;</highlight></codeline>
+<codeline lineno="192"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>bB-&gt;m_sweep.<ref refid="structb2_sweep_1afa96bacc91dd3c92ae716a45512332d6" kindref="member" tooltip="world angles">a</ref><sp/>+=<sp/>iB<sp/>*<sp/>(b2Cross(rB,<sp/>P)<sp/>+<sp/>impulse.z);</highlight></codeline>
+<codeline lineno="193"><highlight class="normal"></highlight></codeline>
+<codeline lineno="194"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>bA-&gt;SynchronizeTransform();</highlight></codeline>
+<codeline lineno="195"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>bB-&gt;SynchronizeTransform();</highlight></codeline>
+<codeline lineno="196"><highlight class="normal"></highlight></codeline>
+<codeline lineno="197"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>positionError<sp/>&lt;=<sp/><ref refid="b2_settings_8h_1a57268ade379c5c3373d0ff558b0350cf" kindref="member">b2_linearSlop</ref><sp/>&amp;&amp;<sp/>angularError<sp/>&lt;=<sp/><ref refid="b2_settings_8h_1a67810fb101bb7a7e0b3afc14845383ee" kindref="member">b2_angularSlop</ref>;</highlight></codeline>
+<codeline lineno="198"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="199"><highlight class="normal"></highlight></codeline>
+<codeline lineno="200"><highlight class="normal"><ref refid="structb2_vec2" kindref="compound" tooltip="A 2D column vector.">b2Vec2</ref><sp/><ref refid="classb2_weld_joint_1a8550de74e174a08856bc4bc7a4853429" kindref="member" tooltip="Get the anchor point on bodyA in world coordinates.">b2WeldJoint::GetAnchorA</ref>()</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="201"><highlight class="keyword"></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="202"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>m_bodyA-&gt;<ref refid="classb2_body_1a8055b90bccb51383caa8c42fbc96c9c3" kindref="member">GetWorldPoint</ref>(m_localAnchorA);</highlight></codeline>
+<codeline lineno="203"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="204"><highlight class="normal"></highlight></codeline>
+<codeline lineno="205"><highlight class="normal"><ref refid="structb2_vec2" kindref="compound" tooltip="A 2D column vector.">b2Vec2</ref><sp/><ref refid="classb2_weld_joint_1a2030794df9b2a3111bcf7a1eb0593960" kindref="member" tooltip="Get the anchor point on bodyB in world coordinates.">b2WeldJoint::GetAnchorB</ref>()</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="206"><highlight class="keyword"></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="207"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>m_bodyB-&gt;<ref refid="classb2_body_1a8055b90bccb51383caa8c42fbc96c9c3" kindref="member">GetWorldPoint</ref>(m_localAnchorB);</highlight></codeline>
+<codeline lineno="208"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="209"><highlight class="normal"></highlight></codeline>
+<codeline lineno="210"><highlight class="normal"><ref refid="structb2_vec2" kindref="compound" tooltip="A 2D column vector.">b2Vec2</ref><sp/><ref refid="classb2_weld_joint_1a2ca6323d03b9fd4b591a0bfadddc25a8" kindref="member" tooltip="Get the reaction force on body2 at the joint anchor in Newtons.">b2WeldJoint::GetReactionForce</ref>(float32<sp/>inv_dt)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="211"><highlight class="keyword"></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="212"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structb2_vec2" kindref="compound" tooltip="A 2D column vector.">b2Vec2</ref><sp/>P(m_impulse.x,<sp/>m_impulse.y);</highlight></codeline>
+<codeline lineno="213"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>inv_dt<sp/>*<sp/>P;</highlight></codeline>
+<codeline lineno="214"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="215"><highlight class="normal"></highlight></codeline>
+<codeline lineno="216"><highlight class="normal">float32<sp/><ref refid="classb2_weld_joint_1a7199b5cce47b29624b4b231d78af71a3" kindref="member" tooltip="Get the reaction torque on body2 in N*m.">b2WeldJoint::GetReactionTorque</ref>(float32<sp/>inv_dt)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="217"><highlight class="keyword"></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="218"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>inv_dt<sp/>*<sp/>m_impulse.z;</highlight></codeline>
+<codeline lineno="219"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2WeldJoint.cpp"/>
+  </compounddef>
+</doxygen>

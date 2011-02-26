@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.7.2">
+  <compounddef id="dir_e5808a8f383892418b227dccf27a2df2" kind="dir">
+    <compoundname>Box2D/Collision/</compoundname>
+    <innerdir refid="dir_33760e6d8ab0dee8fa365b2c0466cce8">Box2D/Collision/Shapes/</innerdir>
+    <innerfile refid="b2_broad_phase_8cpp">b2BroadPhase.cpp</innerfile>
+    <innerfile refid="b2_broad_phase_8h">b2BroadPhase.h</innerfile>
+    <innerfile refid="b2_collide_circle_8cpp">b2CollideCircle.cpp</innerfile>
+    <innerfile refid="b2_collide_edge_8cpp">b2CollideEdge.cpp</innerfile>
+    <innerfile refid="b2_collide_polygon_8cpp">b2CollidePolygon.cpp</innerfile>
+    <innerfile refid="b2_collision_8cpp">b2Collision.cpp</innerfile>
+    <innerfile refid="b2_collision_8h">b2Collision.h</innerfile>
+    <innerfile refid="b2_distance_8cpp">b2Distance.cpp</innerfile>
+    <innerfile refid="b2_distance_8h">b2Distance.h</innerfile>
+    <innerfile refid="b2_dynamic_tree_8cpp">b2DynamicTree.cpp</innerfile>
+    <innerfile refid="b2_dynamic_tree_8h">b2DynamicTree.h</innerfile>
+    <innerfile refid="b2_time_of_impact_8cpp">b2TimeOfImpact.cpp</innerfile>
+    <innerfile refid="b2_time_of_impact_8h">b2TimeOfImpact.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="D:/pybox2d/Box2D/Collision/"/>
+  </compounddef>
+</doxygen>

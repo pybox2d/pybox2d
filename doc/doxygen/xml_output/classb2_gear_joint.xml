@@ -1,0 +1,780 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.7.2">
+  <compounddef id="classb2_gear_joint" kind="class" prot="public">
+    <compoundname>b2GearJoint</compoundname>
+    <basecompoundref refid="classb2_joint" prot="public" virt="non-virtual">b2Joint</basecompoundref>
+    <includes local="no">b2GearJoint.h</includes>
+      <sectiondef kind="friend">
+      <memberdef kind="friend" id="classb2_gear_joint_1a54ade8ed3d794298108d7f4c4e4793fa" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>friend class</type>
+        <definition>friend class b2Joint</definition>
+        <argsstring></argsstring>
+        <name>b2Joint</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2GearJoint.h" line="75" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2GearJoint.h" bodystart="75" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classb2_gear_joint_1a47dca9f8ba92cd6647ed158a5f447be6" prot="protected" static="no" mutable="no">
+        <type><ref refid="classb2_body" kindref="compound">b2Body</ref> *</type>
+        <definition>b2Body* b2GearJoint::m_ground1</definition>
+        <argsstring></argsstring>
+        <name>m_ground1</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2GearJoint.h" line="82" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2GearJoint.h" bodystart="82" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_gear_joint_1a0572ae1643597a5deb4909ef18dbfec6" prot="protected" static="no" mutable="no">
+        <type><ref refid="classb2_body" kindref="compound">b2Body</ref> *</type>
+        <definition>b2Body* b2GearJoint::m_ground2</definition>
+        <argsstring></argsstring>
+        <name>m_ground2</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2GearJoint.h" line="83" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2GearJoint.h" bodystart="83" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_gear_joint_1ae9251a1afce470b1ee6ee2c7499a851f" prot="protected" static="no" mutable="no">
+        <type><ref refid="classb2_revolute_joint" kindref="compound">b2RevoluteJoint</ref> *</type>
+        <definition>b2RevoluteJoint* b2GearJoint::m_revolute1</definition>
+        <argsstring></argsstring>
+        <name>m_revolute1</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2GearJoint.h" line="86" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2GearJoint.h" bodystart="86" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_gear_joint_1ad47015db2966cd1c45cea07ccea2a41f" prot="protected" static="no" mutable="no">
+        <type><ref refid="classb2_prismatic_joint" kindref="compound">b2PrismaticJoint</ref> *</type>
+        <definition>b2PrismaticJoint* b2GearJoint::m_prismatic1</definition>
+        <argsstring></argsstring>
+        <name>m_prismatic1</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2GearJoint.h" line="87" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2GearJoint.h" bodystart="87" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_gear_joint_1aa557c896cae576f04437307e4edc1faa" prot="protected" static="no" mutable="no">
+        <type><ref refid="classb2_revolute_joint" kindref="compound">b2RevoluteJoint</ref> *</type>
+        <definition>b2RevoluteJoint* b2GearJoint::m_revolute2</definition>
+        <argsstring></argsstring>
+        <name>m_revolute2</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2GearJoint.h" line="90" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2GearJoint.h" bodystart="90" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_gear_joint_1abda5c964855aa1c6f3103e5386b2d3d6" prot="protected" static="no" mutable="no">
+        <type><ref refid="classb2_prismatic_joint" kindref="compound">b2PrismaticJoint</ref> *</type>
+        <definition>b2PrismaticJoint* b2GearJoint::m_prismatic2</definition>
+        <argsstring></argsstring>
+        <name>m_prismatic2</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2GearJoint.h" line="91" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2GearJoint.h" bodystart="91" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_gear_joint_1afd6731070a9d2ad786c74ea1a2c61db1" prot="protected" static="no" mutable="no">
+        <type><ref refid="structb2_vec2" kindref="compound">b2Vec2</ref></type>
+        <definition>b2Vec2 b2GearJoint::m_groundAnchor1</definition>
+        <argsstring></argsstring>
+        <name>m_groundAnchor1</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2GearJoint.h" line="93" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2GearJoint.h" bodystart="93" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_gear_joint_1aae9231772a75f2dfbb1e52aa04af92f0" prot="protected" static="no" mutable="no">
+        <type><ref refid="structb2_vec2" kindref="compound">b2Vec2</ref></type>
+        <definition>b2Vec2 b2GearJoint::m_groundAnchor2</definition>
+        <argsstring></argsstring>
+        <name>m_groundAnchor2</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2GearJoint.h" line="94" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2GearJoint.h" bodystart="94" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_gear_joint_1a4d8500001a2028a78be29880d9ab4996" prot="protected" static="no" mutable="no">
+        <type><ref refid="structb2_vec2" kindref="compound">b2Vec2</ref></type>
+        <definition>b2Vec2 b2GearJoint::m_localAnchor1</definition>
+        <argsstring></argsstring>
+        <name>m_localAnchor1</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2GearJoint.h" line="96" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2GearJoint.h" bodystart="96" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_gear_joint_1a7b28a2e7d874cee2a1293e8143c7e604" prot="protected" static="no" mutable="no">
+        <type><ref refid="structb2_vec2" kindref="compound">b2Vec2</ref></type>
+        <definition>b2Vec2 b2GearJoint::m_localAnchor2</definition>
+        <argsstring></argsstring>
+        <name>m_localAnchor2</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2GearJoint.h" line="97" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2GearJoint.h" bodystart="97" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_gear_joint_1abc68af8cac74c943f343bdb13cbe295e" prot="protected" static="no" mutable="no">
+        <type>b2Jacobian</type>
+        <definition>b2Jacobian b2GearJoint::m_J</definition>
+        <argsstring></argsstring>
+        <name>m_J</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2GearJoint.h" line="99" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2GearJoint.h" bodystart="99" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_gear_joint_1af67d237380cdcbfe93053b1ceb72f17b" prot="protected" static="no" mutable="no">
+        <type>float32</type>
+        <definition>float32 b2GearJoint::m_constant</definition>
+        <argsstring></argsstring>
+        <name>m_constant</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2GearJoint.h" line="101" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2GearJoint.h" bodystart="101" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_gear_joint_1ad6b9106922b65f873dd02c6e68e6778a" prot="protected" static="no" mutable="no">
+        <type>float32</type>
+        <definition>float32 b2GearJoint::m_ratio</definition>
+        <argsstring></argsstring>
+        <name>m_ratio</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2GearJoint.h" line="102" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2GearJoint.h" bodystart="102" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_gear_joint_1a71ac3578918bc97d257d652777b6b87f" prot="protected" static="no" mutable="no">
+        <type>float32</type>
+        <definition>float32 b2GearJoint::m_mass</definition>
+        <argsstring></argsstring>
+        <name>m_mass</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2GearJoint.h" line="105" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2GearJoint.h" bodystart="105" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_gear_joint_1ae19e7fb67c7623f39776f1160b76d62f" prot="protected" static="no" mutable="no">
+        <type>float32</type>
+        <definition>float32 b2GearJoint::m_impulse</definition>
+        <argsstring></argsstring>
+        <name>m_impulse</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2GearJoint.h" line="108" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2GearJoint.h" bodystart="108" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classb2_gear_joint_1a2b5cdcb78c7ac3df4bd47e4195443a05" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type><ref refid="structb2_vec2" kindref="compound">b2Vec2</ref></type>
+        <definition>b2Vec2 b2GearJoint::GetAnchorA</definition>
+        <argsstring>() const </argsstring>
+        <name>GetAnchorA</name>
+        <reimplements refid="classb2_joint_1abe46ca3aad5db73909a9b5a7b2117447">GetAnchorA</reimplements>
+        <briefdescription>
+<para>Get the anchor point on bodyA in world coordinates. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2GearJoint.h" line="63" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2GearJoint.cpp" bodystart="224" bodyend="227"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_gear_joint_1a84b9aedb8918a98b84032c9f0f823e13" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type><ref refid="structb2_vec2" kindref="compound">b2Vec2</ref></type>
+        <definition>b2Vec2 b2GearJoint::GetAnchorB</definition>
+        <argsstring>() const </argsstring>
+        <name>GetAnchorB</name>
+        <reimplements refid="classb2_joint_1a88e947c65d4ea26fe539f02a8cb7f7a9">GetAnchorB</reimplements>
+        <briefdescription>
+<para>Get the anchor point on bodyB in world coordinates. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2GearJoint.h" line="64" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2GearJoint.cpp" bodystart="229" bodyend="232"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_gear_joint_1ad415f3db70ba3e60a132ef668c263713" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type><ref refid="structb2_vec2" kindref="compound">b2Vec2</ref></type>
+        <definition>b2Vec2 b2GearJoint::GetReactionForce</definition>
+        <argsstring>(float32 inv_dt) const </argsstring>
+        <name>GetReactionForce</name>
+        <reimplements refid="classb2_joint_1a7e0eddefb9b69ad050b8ef6425838a74">GetReactionForce</reimplements>
+        <param>
+          <type>float32</type>
+          <declname>inv_dt</declname>
+        </param>
+        <briefdescription>
+<para>Get the reaction force on body2 at the joint anchor in Newtons. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2GearJoint.h" line="66" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2GearJoint.cpp" bodystart="234" bodyend="239"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_gear_joint_1ae2c4b1ae1cf00f14331332c4fe9ae964" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>float32</type>
+        <definition>float32 b2GearJoint::GetReactionTorque</definition>
+        <argsstring>(float32 inv_dt) const </argsstring>
+        <name>GetReactionTorque</name>
+        <reimplements refid="classb2_joint_1ae355e441c2aa842777dc04e24f15ced0">GetReactionTorque</reimplements>
+        <param>
+          <type>float32</type>
+          <declname>inv_dt</declname>
+        </param>
+        <briefdescription>
+<para>Get the reaction torque on body2 in N*m. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2GearJoint.h" line="67" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2GearJoint.cpp" bodystart="241" bodyend="248"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_gear_joint_1a21c867bdc00c15ade2f399d370f92636" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void b2GearJoint::SetRatio</definition>
+        <argsstring>(float32 ratio)</argsstring>
+        <name>SetRatio</name>
+        <param>
+          <type>float32</type>
+          <declname>ratio</declname>
+        </param>
+        <briefdescription>
+<para>Set/Get the gear ratio. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2GearJoint.h" line="70" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2GearJoint.cpp" bodystart="250" bodyend="254"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_gear_joint_1a72758d0f94cb9bea6074d29a98d79162" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>float32</type>
+        <definition>float32 b2GearJoint::GetRatio</definition>
+        <argsstring>() const </argsstring>
+        <name>GetRatio</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2GearJoint.h" line="71" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2GearJoint.cpp" bodystart="256" bodyend="259"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classb2_gear_joint_1a4b247c79e74cb1e5b906527fe7d151ce" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>b2GearJoint::b2GearJoint</definition>
+        <argsstring>(const b2GearJointDef *data)</argsstring>
+        <name>b2GearJoint</name>
+        <param>
+          <type>const <ref refid="structb2_gear_joint_def" kindref="compound">b2GearJointDef</ref> *</type>
+          <declname>data</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2GearJoint.h" line="76" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2GearJoint.cpp" bodystart="45" bodyend="102"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_gear_joint_1a8627997e4680c5f650d06e41aadcf601" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void b2GearJoint::InitVelocityConstraints</definition>
+        <argsstring>(const b2TimeStep &amp;step)</argsstring>
+        <name>InitVelocityConstraints</name>
+        <reimplements refid="classb2_joint_1aa28338c9b814ac08dac1cd3464f95c8e">InitVelocityConstraints</reimplements>
+        <param>
+          <type>const <ref refid="structb2_time_step" kindref="compound">b2TimeStep</ref> &amp;</type>
+          <declname>step</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2GearJoint.h" line="78" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2GearJoint.cpp" bodystart="104" bodyend="159"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_gear_joint_1a8e9d0e33cae095c0829d3cd498e975b0" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void b2GearJoint::SolveVelocityConstraints</definition>
+        <argsstring>(const b2TimeStep &amp;step)</argsstring>
+        <name>SolveVelocityConstraints</name>
+        <reimplements refid="classb2_joint_1a34c667efb15706f9d3413336d8af93cb">SolveVelocityConstraints</reimplements>
+        <param>
+          <type>const <ref refid="structb2_time_step" kindref="compound">b2TimeStep</ref> &amp;</type>
+          <declname>step</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2GearJoint.h" line="79" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2GearJoint.cpp" bodystart="161" bodyend="178"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_gear_joint_1a08a5760640d9bdd27274a6101cdf4d41" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>bool</type>
+        <definition>bool b2GearJoint::SolvePositionConstraints</definition>
+        <argsstring>(float32 baumgarte)</argsstring>
+        <name>SolvePositionConstraints</name>
+        <reimplements refid="classb2_joint_1aab43f57e4a2d352c93cc1f4bd0639f90">SolvePositionConstraints</reimplements>
+        <param>
+          <type>float32</type>
+          <declname>baumgarte</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2GearJoint.h" line="80" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2GearJoint.cpp" bodystart="180" bodyend="222"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>A gear joint is used to connect two joints together. Either joint can be a revolute or prismatic joint. You specify a gear ratio to bind the motions together: coordinate1 + ratio * coordinate2 = constant The ratio can be negative or positive. If one joint is a revolute joint and the other joint is a prismatic joint, then the ratio will have units of length or units of 1/length. <simplesect kind="warning"><para>The revolute and prismatic joints must be attached to fixed bodies (which must be body1 on those joints). </para></simplesect>
+</para>    </detaileddescription>
+    <inheritancegraph>
+      <node id="1395">
+        <label>b2GearJoint</label>
+        <link refid="classb2_gear_joint"/>
+        <childnode refid="1396" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1396">
+        <label>b2Joint</label>
+        <link refid="classb2_joint"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1406">
+        <label>b2Contact</label>
+        <link refid="classb2_contact"/>
+        <childnode refid="1406" relation="usage">
+          <edgelabel>m_prev</edgelabel>
+          <edgelabel>m_next</edgelabel>
+        </childnode>
+        <childnode refid="1407" relation="usage">
+          <edgelabel>m_manifold</edgelabel>
+        </childnode>
+        <childnode refid="1411" relation="usage">
+          <edgelabel>m_fixtureA</edgelabel>
+          <edgelabel>m_fixtureB</edgelabel>
+        </childnode>
+        <childnode refid="1405" relation="usage">
+          <edgelabel>m_nodeA</edgelabel>
+          <edgelabel>m_nodeB</edgelabel>
+        </childnode>
+      </node>
+      <node id="1399">
+        <label>b2Body</label>
+        <link refid="classb2_body"/>
+        <childnode refid="1399" relation="usage">
+          <edgelabel>m_prev</edgelabel>
+          <edgelabel>m_next</edgelabel>
+        </childnode>
+        <childnode refid="1400" relation="usage">
+          <edgelabel>m_jointList</edgelabel>
+        </childnode>
+        <childnode refid="1401" relation="usage">
+          <edgelabel>m_linearVelocity</edgelabel>
+          <edgelabel>m_force</edgelabel>
+        </childnode>
+        <childnode refid="1402" relation="usage">
+          <edgelabel>m_sweep</edgelabel>
+        </childnode>
+        <childnode refid="1403" relation="usage">
+          <edgelabel>m_xf</edgelabel>
+        </childnode>
+        <childnode refid="1405" relation="usage">
+          <edgelabel>m_contactList</edgelabel>
+        </childnode>
+        <childnode refid="1411" relation="usage">
+          <edgelabel>m_fixtureList</edgelabel>
+        </childnode>
+        <childnode refid="1416" relation="usage">
+          <edgelabel>m_world</edgelabel>
+        </childnode>
+      </node>
+      <node id="1410">
+        <label>b2ContactFeature</label>
+        <link refid="structb2_contact_feature"/>
+      </node>
+      <node id="1405">
+        <label>b2ContactEdge</label>
+        <link refid="structb2_contact_edge"/>
+        <childnode refid="1399" relation="usage">
+          <edgelabel>other</edgelabel>
+        </childnode>
+        <childnode refid="1406" relation="usage">
+          <edgelabel>contact</edgelabel>
+        </childnode>
+        <childnode refid="1405" relation="usage">
+          <edgelabel>prev</edgelabel>
+          <edgelabel>next</edgelabel>
+        </childnode>
+      </node>
+      <node id="1407">
+        <label>b2Manifold</label>
+        <link refid="structb2_manifold"/>
+        <childnode refid="1401" relation="usage">
+          <edgelabel>localPoint</edgelabel>
+          <edgelabel>localNormal</edgelabel>
+        </childnode>
+        <childnode refid="1408" relation="usage">
+          <edgelabel>points</edgelabel>
+        </childnode>
+      </node>
+      <node id="1418">
+        <label>b2BlockAllocator</label>
+        <link refid="classb2_block_allocator"/>
+      </node>
+      <node id="1419">
+        <label>b2DestructionListener</label>
+        <link refid="classb2_destruction_listener"/>
+      </node>
+      <node id="1416">
+        <label>b2World</label>
+        <link refid="classb2_world"/>
+        <childnode refid="1399" relation="usage">
+          <edgelabel>m_bodyList</edgelabel>
+        </childnode>
+        <childnode refid="1417" relation="usage">
+          <edgelabel>m_debugDraw</edgelabel>
+        </childnode>
+        <childnode refid="1401" relation="usage">
+          <edgelabel>m_gravity</edgelabel>
+        </childnode>
+        <childnode refid="1418" relation="usage">
+          <edgelabel>m_blockAllocator</edgelabel>
+        </childnode>
+        <childnode refid="1419" relation="usage">
+          <edgelabel>m_destructionListener</edgelabel>
+        </childnode>
+        <childnode refid="1398" relation="usage">
+          <edgelabel>m_jointList</edgelabel>
+        </childnode>
+      </node>
+      <node id="1423">
+        <label>b2PrismaticJoint</label>
+        <link refid="classb2_prismatic_joint"/>
+        <childnode refid="1398" relation="public-inheritance">
+        </childnode>
+        <childnode refid="1421" relation="usage">
+          <edgelabel>m_K</edgelabel>
+        </childnode>
+        <childnode refid="1401" relation="usage">
+          <edgelabel>m_localAnchor1</edgelabel>
+          <edgelabel>m_axis</edgelabel>
+          <edgelabel>m_localAnchor2</edgelabel>
+          <edgelabel>m_perp</edgelabel>
+          <edgelabel>m_localYAxis1</edgelabel>
+          <edgelabel>m_localXAxis1</edgelabel>
+        </childnode>
+        <childnode refid="1422" relation="usage">
+          <edgelabel>m_impulse</edgelabel>
+        </childnode>
+      </node>
+      <node id="1421">
+        <label>b2Mat33</label>
+        <link refid="structb2_mat33"/>
+        <childnode refid="1422" relation="usage">
+          <edgelabel>col1</edgelabel>
+          <edgelabel>col2</edgelabel>
+          <edgelabel>col3</edgelabel>
+        </childnode>
+      </node>
+      <node id="1412">
+        <label>b2FixtureProxy</label>
+        <link refid="structb2_fixture_proxy"/>
+        <childnode refid="1413" relation="usage">
+          <edgelabel>aabb</edgelabel>
+        </childnode>
+        <childnode refid="1411" relation="usage">
+          <edgelabel>fixture</edgelabel>
+        </childnode>
+      </node>
+      <node id="1404">
+        <label>b2Mat22</label>
+        <link refid="structb2_mat22"/>
+        <childnode refid="1401" relation="usage">
+          <edgelabel>col1</edgelabel>
+          <edgelabel>col2</edgelabel>
+        </childnode>
+      </node>
+      <node id="1420">
+        <label>b2RevoluteJoint</label>
+        <link refid="classb2_revolute_joint"/>
+        <childnode refid="1398" relation="public-inheritance">
+        </childnode>
+        <childnode refid="1421" relation="usage">
+          <edgelabel>m_mass</edgelabel>
+        </childnode>
+        <childnode refid="1401" relation="usage">
+          <edgelabel>m_localAnchor1</edgelabel>
+          <edgelabel>m_localAnchor2</edgelabel>
+        </childnode>
+        <childnode refid="1422" relation="usage">
+          <edgelabel>m_impulse</edgelabel>
+        </childnode>
+      </node>
+      <node id="1402">
+        <label>b2Sweep</label>
+        <link refid="structb2_sweep"/>
+        <childnode refid="1401" relation="usage">
+          <edgelabel>c0</edgelabel>
+          <edgelabel>localCenter</edgelabel>
+          <edgelabel>c</edgelabel>
+        </childnode>
+      </node>
+      <node id="1397">
+        <label>b2GearJoint</label>
+        <link refid="classb2_gear_joint"/>
+        <childnode refid="1398" relation="public-inheritance">
+        </childnode>
+        <childnode refid="1399" relation="usage">
+          <edgelabel>m_ground1</edgelabel>
+          <edgelabel>m_ground2</edgelabel>
+        </childnode>
+        <childnode refid="1401" relation="usage">
+          <edgelabel>m_localAnchor1</edgelabel>
+          <edgelabel>m_localAnchor2</edgelabel>
+          <edgelabel>m_groundAnchor1</edgelabel>
+          <edgelabel>m_groundAnchor2</edgelabel>
+        </childnode>
+        <childnode refid="1420" relation="usage">
+          <edgelabel>m_revolute2</edgelabel>
+          <edgelabel>m_revolute1</edgelabel>
+        </childnode>
+        <childnode refid="1423" relation="usage">
+          <edgelabel>m_prismatic1</edgelabel>
+          <edgelabel>m_prismatic2</edgelabel>
+        </childnode>
+      </node>
+      <node id="1403">
+        <label>b2Transform</label>
+        <link refid="structb2_transform"/>
+        <childnode refid="1401" relation="usage">
+          <edgelabel>position</edgelabel>
+        </childnode>
+        <childnode refid="1404" relation="usage">
+          <edgelabel>R</edgelabel>
+        </childnode>
+      </node>
+      <node id="1417">
+        <label>b2DebugDraw</label>
+        <link refid="classb2_debug_draw"/>
+      </node>
+      <node id="1415">
+        <label>b2Filter</label>
+        <link refid="structb2_filter"/>
+      </node>
+      <node id="1400">
+        <label>b2JointEdge</label>
+        <link refid="structb2_joint_edge"/>
+        <childnode refid="1399" relation="usage">
+          <edgelabel>other</edgelabel>
+        </childnode>
+        <childnode refid="1400" relation="usage">
+          <edgelabel>prev</edgelabel>
+          <edgelabel>next</edgelabel>
+        </childnode>
+        <childnode refid="1398" relation="usage">
+          <edgelabel>joint</edgelabel>
+        </childnode>
+      </node>
+      <node id="1398">
+        <label>b2Joint</label>
+        <link refid="classb2_joint"/>
+        <childnode refid="1399" relation="usage">
+          <edgelabel>m_bodyA</edgelabel>
+          <edgelabel>m_bodyB</edgelabel>
+        </childnode>
+        <childnode refid="1401" relation="usage">
+          <edgelabel>m_localCenterA</edgelabel>
+          <edgelabel>m_localCenterB</edgelabel>
+        </childnode>
+        <childnode refid="1400" relation="usage">
+          <edgelabel>m_edgeB</edgelabel>
+          <edgelabel>m_edgeA</edgelabel>
+        </childnode>
+        <childnode refid="1398" relation="usage">
+          <edgelabel>m_prev</edgelabel>
+          <edgelabel>m_next</edgelabel>
+        </childnode>
+      </node>
+      <node id="1401">
+        <label>b2Vec2</label>
+        <link refid="structb2_vec2"/>
+      </node>
+      <node id="1422">
+        <label>b2Vec3</label>
+        <link refid="structb2_vec3"/>
+      </node>
+      <node id="1409">
+        <label>b2ContactID</label>
+        <link refid="unionb2_contact_i_d"/>
+        <childnode refid="1410" relation="usage">
+          <edgelabel>cf</edgelabel>
+        </childnode>
+      </node>
+      <node id="1414">
+        <label>b2Shape</label>
+        <link refid="classb2_shape"/>
+      </node>
+      <node id="1413">
+        <label>b2AABB</label>
+        <link refid="structb2_a_a_b_b"/>
+        <childnode refid="1401" relation="usage">
+          <edgelabel>lowerBound</edgelabel>
+          <edgelabel>upperBound</edgelabel>
+        </childnode>
+      </node>
+      <node id="1411">
+        <label>b2Fixture</label>
+        <link refid="classb2_fixture"/>
+        <childnode refid="1399" relation="usage">
+          <edgelabel>m_body</edgelabel>
+        </childnode>
+        <childnode refid="1412" relation="usage">
+          <edgelabel>m_proxies</edgelabel>
+        </childnode>
+        <childnode refid="1414" relation="usage">
+          <edgelabel>m_shape</edgelabel>
+        </childnode>
+        <childnode refid="1415" relation="usage">
+          <edgelabel>m_filter</edgelabel>
+        </childnode>
+        <childnode refid="1411" relation="usage">
+          <edgelabel>m_next</edgelabel>
+        </childnode>
+      </node>
+      <node id="1408">
+        <label>b2ManifoldPoint</label>
+        <link refid="structb2_manifold_point"/>
+        <childnode refid="1401" relation="usage">
+          <edgelabel>localPoint</edgelabel>
+        </childnode>
+        <childnode refid="1409" relation="usage">
+          <edgelabel>id</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2GearJoint.h" line="61" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2GearJoint.h" bodystart="60" bodyend="109"/>
+    <listofallmembers>
+      <member refid="classb2_joint_1a010ab52de250e5fe30a45d642f46405b" prot="protected" virt="non-virtual"><scope>b2GearJoint</scope><name>b2Body</name></member>
+      <member refid="classb2_gear_joint_1a4b247c79e74cb1e5b906527fe7d151ce" prot="protected" virt="non-virtual"><scope>b2GearJoint</scope><name>b2GearJoint</name></member>
+      <member refid="classb2_joint_1afc682950b8c4f251804fc1938663098b" prot="protected" virt="non-virtual"><scope>b2GearJoint</scope><name>b2Island</name></member>
+      <member refid="classb2_gear_joint_1a54ade8ed3d794298108d7f4c4e4793fa" prot="protected" virt="non-virtual"><scope>b2GearJoint</scope><name>b2Joint</name></member>
+      <member refid="classb2_joint_1a8d6cce91546335fe95325d5e29c06a19" prot="protected" virt="non-virtual" ambiguityscope="b2Joint::"><scope>b2GearJoint</scope><name>b2Joint</name></member>
+      <member refid="classb2_joint_1a4bd536c5a7c0587913765bbc2693ceea" prot="protected" virt="non-virtual"><scope>b2GearJoint</scope><name>b2World</name></member>
+      <member refid="classb2_joint_1a2e500c93107d0bf6b0a21654528faeab" prot="protected" virt="non-virtual"><scope>b2GearJoint</scope><name>Create</name></member>
+      <member refid="classb2_joint_1acf52946b6672d77f268b849ccb09e003" prot="protected" virt="non-virtual"><scope>b2GearJoint</scope><name>Destroy</name></member>
+      <member refid="classb2_gear_joint_1a2b5cdcb78c7ac3df4bd47e4195443a05" prot="public" virt="virtual"><scope>b2GearJoint</scope><name>GetAnchorA</name></member>
+      <member refid="classb2_gear_joint_1a84b9aedb8918a98b84032c9f0f823e13" prot="public" virt="virtual"><scope>b2GearJoint</scope><name>GetAnchorB</name></member>
+      <member refid="classb2_joint_1a2ed5eca3dbdce48665c14452b280613f" prot="public" virt="non-virtual"><scope>b2GearJoint</scope><name>GetBodyA</name></member>
+      <member refid="classb2_joint_1a700b3d4c87f34f456151b9598e4641a0" prot="public" virt="non-virtual"><scope>b2GearJoint</scope><name>GetBodyB</name></member>
+      <member refid="classb2_joint_1a1a0e2137b631010750c728cb4e276e5d" prot="public" virt="non-virtual"><scope>b2GearJoint</scope><name>GetNext</name></member>
+      <member refid="classb2_joint_1a1ac83edb39806085608c9d549dd98550" prot="public" virt="non-virtual"><scope>b2GearJoint</scope><name>GetNext</name></member>
+      <member refid="classb2_gear_joint_1a72758d0f94cb9bea6074d29a98d79162" prot="public" virt="non-virtual"><scope>b2GearJoint</scope><name>GetRatio</name></member>
+      <member refid="classb2_gear_joint_1ad415f3db70ba3e60a132ef668c263713" prot="public" virt="virtual"><scope>b2GearJoint</scope><name>GetReactionForce</name></member>
+      <member refid="classb2_gear_joint_1ae2c4b1ae1cf00f14331332c4fe9ae964" prot="public" virt="virtual"><scope>b2GearJoint</scope><name>GetReactionTorque</name></member>
+      <member refid="classb2_joint_1a37a2ca3f0d41c6903d2cc73757f02be2" prot="public" virt="non-virtual"><scope>b2GearJoint</scope><name>GetType</name></member>
+      <member refid="classb2_joint_1a505ab02c234f1cc20aa3375f3ab7b587" prot="public" virt="non-virtual"><scope>b2GearJoint</scope><name>GetUserData</name></member>
+      <member refid="classb2_gear_joint_1a8627997e4680c5f650d06e41aadcf601" prot="protected" virt="virtual"><scope>b2GearJoint</scope><name>InitVelocityConstraints</name></member>
+      <member refid="classb2_joint_1a825d3a6abb32014f31fd622f2bfc0363" prot="public" virt="non-virtual"><scope>b2GearJoint</scope><name>IsActive</name></member>
+      <member refid="classb2_joint_1abaebb784a51abb7d66de302ba07a4467" prot="protected" virt="non-virtual"><scope>b2GearJoint</scope><name>m_bodyA</name></member>
+      <member refid="classb2_joint_1a1fd77fcbcb8a8a3729c7dc5b790d7200" prot="protected" virt="non-virtual"><scope>b2GearJoint</scope><name>m_bodyB</name></member>
+      <member refid="classb2_joint_1ac1a93c14c8dd666bb487db6c98daad33" prot="protected" virt="non-virtual"><scope>b2GearJoint</scope><name>m_collideConnected</name></member>
+      <member refid="classb2_gear_joint_1af67d237380cdcbfe93053b1ceb72f17b" prot="protected" virt="non-virtual"><scope>b2GearJoint</scope><name>m_constant</name></member>
+      <member refid="classb2_joint_1a406ea423db1fe6484408d73df647f7b2" prot="protected" virt="non-virtual"><scope>b2GearJoint</scope><name>m_edgeA</name></member>
+      <member refid="classb2_joint_1a1041219dcd353ea815ebd78f904af547" prot="protected" virt="non-virtual"><scope>b2GearJoint</scope><name>m_edgeB</name></member>
+      <member refid="classb2_gear_joint_1a47dca9f8ba92cd6647ed158a5f447be6" prot="protected" virt="non-virtual"><scope>b2GearJoint</scope><name>m_ground1</name></member>
+      <member refid="classb2_gear_joint_1a0572ae1643597a5deb4909ef18dbfec6" prot="protected" virt="non-virtual"><scope>b2GearJoint</scope><name>m_ground2</name></member>
+      <member refid="classb2_gear_joint_1afd6731070a9d2ad786c74ea1a2c61db1" prot="protected" virt="non-virtual"><scope>b2GearJoint</scope><name>m_groundAnchor1</name></member>
+      <member refid="classb2_gear_joint_1aae9231772a75f2dfbb1e52aa04af92f0" prot="protected" virt="non-virtual"><scope>b2GearJoint</scope><name>m_groundAnchor2</name></member>
+      <member refid="classb2_gear_joint_1ae19e7fb67c7623f39776f1160b76d62f" prot="protected" virt="non-virtual"><scope>b2GearJoint</scope><name>m_impulse</name></member>
+      <member refid="classb2_joint_1a346a821b249dc84799f450cf936f7c3c" prot="protected" virt="non-virtual"><scope>b2GearJoint</scope><name>m_invIA</name></member>
+      <member refid="classb2_joint_1a8f40b92ac3e39a96c717595dbb44d15b" prot="protected" virt="non-virtual"><scope>b2GearJoint</scope><name>m_invIB</name></member>
+      <member refid="classb2_joint_1ad7c87d31bd96e0c783105bfed10dc8a2" prot="protected" virt="non-virtual"><scope>b2GearJoint</scope><name>m_invMassA</name></member>
+      <member refid="classb2_joint_1a6cb90224d27cff346fba95794cd140c5" prot="protected" virt="non-virtual"><scope>b2GearJoint</scope><name>m_invMassB</name></member>
+      <member refid="classb2_joint_1a777e45428d9a74d626f4afa1b45e1975" prot="protected" virt="non-virtual"><scope>b2GearJoint</scope><name>m_islandFlag</name></member>
+      <member refid="classb2_gear_joint_1abc68af8cac74c943f343bdb13cbe295e" prot="protected" virt="non-virtual"><scope>b2GearJoint</scope><name>m_J</name></member>
+      <member refid="classb2_gear_joint_1a4d8500001a2028a78be29880d9ab4996" prot="protected" virt="non-virtual"><scope>b2GearJoint</scope><name>m_localAnchor1</name></member>
+      <member refid="classb2_gear_joint_1a7b28a2e7d874cee2a1293e8143c7e604" prot="protected" virt="non-virtual"><scope>b2GearJoint</scope><name>m_localAnchor2</name></member>
+      <member refid="classb2_joint_1ae3fc5cef379493406f69a198062d79cf" prot="protected" virt="non-virtual"><scope>b2GearJoint</scope><name>m_localCenterA</name></member>
+      <member refid="classb2_joint_1afe3a98a639dc6ac686a74701f7a34c5c" prot="protected" virt="non-virtual"><scope>b2GearJoint</scope><name>m_localCenterB</name></member>
+      <member refid="classb2_gear_joint_1a71ac3578918bc97d257d652777b6b87f" prot="protected" virt="non-virtual"><scope>b2GearJoint</scope><name>m_mass</name></member>
+      <member refid="classb2_joint_1aad16778ba9c51cebb767ff7df6ed80b5" prot="protected" virt="non-virtual"><scope>b2GearJoint</scope><name>m_next</name></member>
+      <member refid="classb2_joint_1a940166e7b5d87cec1ad0603e0388854a" prot="protected" virt="non-virtual"><scope>b2GearJoint</scope><name>m_prev</name></member>
+      <member refid="classb2_gear_joint_1ad47015db2966cd1c45cea07ccea2a41f" prot="protected" virt="non-virtual"><scope>b2GearJoint</scope><name>m_prismatic1</name></member>
+      <member refid="classb2_gear_joint_1abda5c964855aa1c6f3103e5386b2d3d6" prot="protected" virt="non-virtual"><scope>b2GearJoint</scope><name>m_prismatic2</name></member>
+      <member refid="classb2_gear_joint_1ad6b9106922b65f873dd02c6e68e6778a" prot="protected" virt="non-virtual"><scope>b2GearJoint</scope><name>m_ratio</name></member>
+      <member refid="classb2_gear_joint_1ae9251a1afce470b1ee6ee2c7499a851f" prot="protected" virt="non-virtual"><scope>b2GearJoint</scope><name>m_revolute1</name></member>
+      <member refid="classb2_gear_joint_1aa557c896cae576f04437307e4edc1faa" prot="protected" virt="non-virtual"><scope>b2GearJoint</scope><name>m_revolute2</name></member>
+      <member refid="classb2_joint_1a3fd3f2532d108d81df81427815210a59" prot="protected" virt="non-virtual"><scope>b2GearJoint</scope><name>m_type</name></member>
+      <member refid="classb2_joint_1ae8a31b6d5d6e76ccf7c975b2b3ae7366" prot="protected" virt="non-virtual"><scope>b2GearJoint</scope><name>m_userData</name></member>
+      <member refid="classb2_gear_joint_1a21c867bdc00c15ade2f399d370f92636" prot="public" virt="non-virtual"><scope>b2GearJoint</scope><name>SetRatio</name></member>
+      <member refid="classb2_joint_1a492f2d02496437572aaec6013ebdc1c8" prot="public" virt="non-virtual"><scope>b2GearJoint</scope><name>SetUserData</name></member>
+      <member refid="classb2_gear_joint_1a08a5760640d9bdd27274a6101cdf4d41" prot="protected" virt="virtual"><scope>b2GearJoint</scope><name>SolvePositionConstraints</name></member>
+      <member refid="classb2_gear_joint_1a8e9d0e33cae095c0829d3cd498e975b0" prot="protected" virt="virtual"><scope>b2GearJoint</scope><name>SolveVelocityConstraints</name></member>
+      <member refid="classb2_joint_1ab44cde7b81c3e77540400e0da90d6ceb" prot="protected" virt="virtual"><scope>b2GearJoint</scope><name>~b2Joint</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

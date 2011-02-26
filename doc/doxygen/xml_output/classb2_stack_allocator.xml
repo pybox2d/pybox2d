@@ -1,0 +1,179 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.7.2">
+  <compounddef id="classb2_stack_allocator" kind="class" prot="public">
+    <compoundname>b2StackAllocator</compoundname>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classb2_stack_allocator_1a8f92993e1115afc12f0a8ef91dafb2db" prot="private" static="no" mutable="no">
+        <type>char</type>
+        <definition>char b2StackAllocator::m_data[b2_stackSize]</definition>
+        <argsstring>[b2_stackSize]</argsstring>
+        <name>m_data</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Common/b2StackAllocator.h" line="50" bodyfile="D:/pybox2d/Box2D/Common/b2StackAllocator.h" bodystart="50" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_stack_allocator_1ad639a2c5f0311d560808a432145880ff" prot="private" static="no" mutable="no">
+        <type>int32</type>
+        <definition>int32 b2StackAllocator::m_index</definition>
+        <argsstring></argsstring>
+        <name>m_index</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Common/b2StackAllocator.h" line="51" bodyfile="D:/pybox2d/Box2D/Common/b2StackAllocator.h" bodystart="51" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_stack_allocator_1a111e25a7ddc869c5087ecadf8cd79f13" prot="private" static="no" mutable="no">
+        <type>int32</type>
+        <definition>int32 b2StackAllocator::m_allocation</definition>
+        <argsstring></argsstring>
+        <name>m_allocation</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Common/b2StackAllocator.h" line="53" bodyfile="D:/pybox2d/Box2D/Common/b2StackAllocator.h" bodystart="53" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_stack_allocator_1ab77bbb95bc3506e1a4fdb0f2733a57d9" prot="private" static="no" mutable="no">
+        <type>int32</type>
+        <definition>int32 b2StackAllocator::m_maxAllocation</definition>
+        <argsstring></argsstring>
+        <name>m_maxAllocation</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Common/b2StackAllocator.h" line="54" bodyfile="D:/pybox2d/Box2D/Common/b2StackAllocator.h" bodystart="54" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_stack_allocator_1a493e5a470028ffbeea30c1a5e973897e" prot="private" static="no" mutable="no">
+        <type>b2StackEntry</type>
+        <definition>b2StackEntry b2StackAllocator::m_entries[b2_maxStackEntries]</definition>
+        <argsstring>[b2_maxStackEntries]</argsstring>
+        <name>m_entries</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Common/b2StackAllocator.h" line="56" bodyfile="D:/pybox2d/Box2D/Common/b2StackAllocator.h" bodystart="56" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_stack_allocator_1a8c7f90ede3160a2c3c86cdbd80c22065" prot="private" static="no" mutable="no">
+        <type>int32</type>
+        <definition>int32 b2StackAllocator::m_entryCount</definition>
+        <argsstring></argsstring>
+        <name>m_entryCount</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Common/b2StackAllocator.h" line="57" bodyfile="D:/pybox2d/Box2D/Common/b2StackAllocator.h" bodystart="57" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classb2_stack_allocator_1a00f8771300fe1efeb6fbaab489a8dd0a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>b2StackAllocator::b2StackAllocator</definition>
+        <argsstring>()</argsstring>
+        <name>b2StackAllocator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Common/b2StackAllocator.h" line="40" bodyfile="D:/pybox2d/Box2D/Common/b2StackAllocator.cpp" bodystart="22" bodyend="28"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_stack_allocator_1a9f9bd23569d3521316d2f00b1de454b2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>b2StackAllocator::~b2StackAllocator</definition>
+        <argsstring>()</argsstring>
+        <name>~b2StackAllocator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Common/b2StackAllocator.h" line="41" bodyfile="D:/pybox2d/Box2D/Common/b2StackAllocator.cpp" bodystart="30" bodyend="34"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_stack_allocator_1a4b8c515d8e1a1c2d5b151c3a2f96fa19" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void *</type>
+        <definition>void * b2StackAllocator::Allocate</definition>
+        <argsstring>(int32 size)</argsstring>
+        <name>Allocate</name>
+        <param>
+          <type>int32</type>
+          <declname>size</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Common/b2StackAllocator.h" line="43" bodyfile="D:/pybox2d/Box2D/Common/b2StackAllocator.cpp" bodystart="36" bodyend="59"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_stack_allocator_1a3a4384cf5f467828db3022985673db66" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void b2StackAllocator::Free</definition>
+        <argsstring>(void *p)</argsstring>
+        <name>Free</name>
+        <param>
+          <type>void *</type>
+          <declname>p</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Common/b2StackAllocator.h" line="44" bodyfile="D:/pybox2d/Box2D/Common/b2StackAllocator.cpp" bodystart="61" bodyend="78"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_stack_allocator_1a1530b6889eaa679ab1b0e092e4911366" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>int32</type>
+        <definition>int32 b2StackAllocator::GetMaxAllocation</definition>
+        <argsstring>() const </argsstring>
+        <name>GetMaxAllocation</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Common/b2StackAllocator.h" line="46" bodyfile="D:/pybox2d/Box2D/Common/b2StackAllocator.cpp" bodystart="80" bodyend="83"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="D:/pybox2d/Box2D/Common/b2StackAllocator.h" line="38" bodyfile="D:/pybox2d/Box2D/Common/b2StackAllocator.h" bodystart="37" bodyend="58"/>
+    <listofallmembers>
+      <member refid="classb2_stack_allocator_1a4b8c515d8e1a1c2d5b151c3a2f96fa19" prot="public" virt="non-virtual"><scope>b2StackAllocator</scope><name>Allocate</name></member>
+      <member refid="classb2_stack_allocator_1a00f8771300fe1efeb6fbaab489a8dd0a" prot="public" virt="non-virtual"><scope>b2StackAllocator</scope><name>b2StackAllocator</name></member>
+      <member refid="classb2_stack_allocator_1a3a4384cf5f467828db3022985673db66" prot="public" virt="non-virtual"><scope>b2StackAllocator</scope><name>Free</name></member>
+      <member refid="classb2_stack_allocator_1a1530b6889eaa679ab1b0e092e4911366" prot="public" virt="non-virtual"><scope>b2StackAllocator</scope><name>GetMaxAllocation</name></member>
+      <member refid="classb2_stack_allocator_1a111e25a7ddc869c5087ecadf8cd79f13" prot="private" virt="non-virtual"><scope>b2StackAllocator</scope><name>m_allocation</name></member>
+      <member refid="classb2_stack_allocator_1a8f92993e1115afc12f0a8ef91dafb2db" prot="private" virt="non-virtual"><scope>b2StackAllocator</scope><name>m_data</name></member>
+      <member refid="classb2_stack_allocator_1a493e5a470028ffbeea30c1a5e973897e" prot="private" virt="non-virtual"><scope>b2StackAllocator</scope><name>m_entries</name></member>
+      <member refid="classb2_stack_allocator_1a8c7f90ede3160a2c3c86cdbd80c22065" prot="private" virt="non-virtual"><scope>b2StackAllocator</scope><name>m_entryCount</name></member>
+      <member refid="classb2_stack_allocator_1ad639a2c5f0311d560808a432145880ff" prot="private" virt="non-virtual"><scope>b2StackAllocator</scope><name>m_index</name></member>
+      <member refid="classb2_stack_allocator_1ab77bbb95bc3506e1a4fdb0f2733a57d9" prot="private" virt="non-virtual"><scope>b2StackAllocator</scope><name>m_maxAllocation</name></member>
+      <member refid="classb2_stack_allocator_1a9f9bd23569d3521316d2f00b1de454b2" prot="public" virt="non-virtual"><scope>b2StackAllocator</scope><name>~b2StackAllocator</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

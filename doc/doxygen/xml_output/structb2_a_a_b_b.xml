@@ -1,0 +1,196 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.7.2">
+  <compounddef id="structb2_a_a_b_b" kind="struct" prot="public">
+    <compoundname>b2AABB</compoundname>
+    <includes local="no">b2Collision.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structb2_a_a_b_b_1ab94b68fbad8348b22b0522469b11bdb5" prot="public" static="no" mutable="no">
+        <type><ref refid="structb2_vec2" kindref="compound">b2Vec2</ref></type>
+        <definition>b2Vec2 b2AABB::lowerBound</definition>
+        <argsstring></argsstring>
+        <name>lowerBound</name>
+        <briefdescription>
+<para>the lower vertex </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Collision/b2Collision.h" line="214" bodyfile="D:/pybox2d/Box2D/Collision/b2Collision.h" bodystart="214" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structb2_a_a_b_b_1ad4a8ec483ba13a2c02918b01d058a18f" prot="public" static="no" mutable="no">
+        <type><ref refid="structb2_vec2" kindref="compound">b2Vec2</ref></type>
+        <definition>b2Vec2 b2AABB::upperBound</definition>
+        <argsstring></argsstring>
+        <name>upperBound</name>
+        <briefdescription>
+<para>the upper vertex </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Collision/b2Collision.h" line="215" bodyfile="D:/pybox2d/Box2D/Collision/b2Collision.h" bodystart="215" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structb2_a_a_b_b_1a8d170a2de7a267c3e19f5365685b713d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool b2AABB::IsValid</definition>
+        <argsstring>() const </argsstring>
+        <name>IsValid</name>
+        <briefdescription>
+<para>Verify that the bounds are sorted. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Collision/b2Collision.h" line="165" bodyfile="D:/pybox2d/Box2D/Collision/b2Collision.h" bodystart="254" bodyend="260"/>
+      </memberdef>
+      <memberdef kind="function" id="structb2_a_a_b_b_1aa26703e234bd6fb30fd443cd5001795a" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="structb2_vec2" kindref="compound">b2Vec2</ref></type>
+        <definition>b2Vec2 b2AABB::GetCenter</definition>
+        <argsstring>() const </argsstring>
+        <name>GetCenter</name>
+        <briefdescription>
+<para>Get the center of the AABB. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Collision/b2Collision.h" line="169" bodyfile="D:/pybox2d/Box2D/Collision/b2Collision.h" bodystart="168" bodyend="171"/>
+      </memberdef>
+      <memberdef kind="function" id="structb2_a_a_b_b_1aff8b9aa64069a33fe45025299aa0e9b7" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="structb2_vec2" kindref="compound">b2Vec2</ref></type>
+        <definition>b2Vec2 b2AABB::GetExtents</definition>
+        <argsstring>() const </argsstring>
+        <name>GetExtents</name>
+        <briefdescription>
+<para>Get the extents of the AABB (half-widths). </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Collision/b2Collision.h" line="175" bodyfile="D:/pybox2d/Box2D/Collision/b2Collision.h" bodystart="174" bodyend="177"/>
+      </memberdef>
+      <memberdef kind="function" id="structb2_a_a_b_b_1ace4448c60ef309726e59247a8ae67db5" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>float32</type>
+        <definition>float32 b2AABB::GetPerimeter</definition>
+        <argsstring>() const </argsstring>
+        <name>GetPerimeter</name>
+        <briefdescription>
+<para>Get the perimeter length. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Collision/b2Collision.h" line="181" bodyfile="D:/pybox2d/Box2D/Collision/b2Collision.h" bodystart="180" bodyend="185"/>
+      </memberdef>
+      <memberdef kind="function" id="structb2_a_a_b_b_1ad551edba62d2ad6094672a9ba3e26496" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void b2AABB::Combine</definition>
+        <argsstring>(const b2AABB &amp;aabb)</argsstring>
+        <name>Combine</name>
+        <param>
+          <type>const <ref refid="structb2_a_a_b_b" kindref="compound">b2AABB</ref> &amp;</type>
+          <declname>aabb</declname>
+        </param>
+        <briefdescription>
+<para>Combine an AABB into this one. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Collision/b2Collision.h" line="189" bodyfile="D:/pybox2d/Box2D/Collision/b2Collision.h" bodystart="188" bodyend="192"/>
+      </memberdef>
+      <memberdef kind="function" id="structb2_a_a_b_b_1a34b9c7d824df845c10caa9c12ae90452" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void b2AABB::Combine</definition>
+        <argsstring>(const b2AABB &amp;aabb1, const b2AABB &amp;aabb2)</argsstring>
+        <name>Combine</name>
+        <param>
+          <type>const <ref refid="structb2_a_a_b_b" kindref="compound">b2AABB</ref> &amp;</type>
+          <declname>aabb1</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structb2_a_a_b_b" kindref="compound">b2AABB</ref> &amp;</type>
+          <declname>aabb2</declname>
+        </param>
+        <briefdescription>
+<para>Combine two AABBs into this one. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Collision/b2Collision.h" line="196" bodyfile="D:/pybox2d/Box2D/Collision/b2Collision.h" bodystart="195" bodyend="199"/>
+      </memberdef>
+      <memberdef kind="function" id="structb2_a_a_b_b_1aba5fc112e3c8d05e034a21d95fc37704" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool b2AABB::Contains</definition>
+        <argsstring>(const b2AABB &amp;aabb) const </argsstring>
+        <name>Contains</name>
+        <param>
+          <type>const <ref refid="structb2_a_a_b_b" kindref="compound">b2AABB</ref> &amp;</type>
+          <declname>aabb</declname>
+        </param>
+        <briefdescription>
+<para>Does this aabb contain the provided AABB. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Collision/b2Collision.h" line="203" bodyfile="D:/pybox2d/Box2D/Collision/b2Collision.h" bodystart="202" bodyend="210"/>
+      </memberdef>
+      <memberdef kind="function" id="structb2_a_a_b_b_1a8a9a3dbc76c1175e80bb767437240ef5" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool b2AABB::RayCast</definition>
+        <argsstring>(b2RayCastOutput *output, const b2RayCastInput &amp;input) const </argsstring>
+        <name>RayCast</name>
+        <param>
+          <type><ref refid="structb2_ray_cast_output" kindref="compound">b2RayCastOutput</ref> *</type>
+          <declname>output</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structb2_ray_cast_input" kindref="compound">b2RayCastInput</ref> &amp;</type>
+          <declname>input</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Collision/b2Collision.h" line="212" bodyfile="D:/pybox2d/Box2D/Collision/b2Collision.cpp" bodystart="130" bodyend="195"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>An axis aligned bounding box. </para>    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="929">
+        <label>b2Vec2</label>
+        <link refid="structb2_vec2"/>
+      </node>
+      <node id="928">
+        <label>b2AABB</label>
+        <link refid="structb2_a_a_b_b"/>
+        <childnode refid="929" relation="usage">
+          <edgelabel>lowerBound</edgelabel>
+          <edgelabel>upperBound</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="D:/pybox2d/Box2D/Collision/b2Collision.h" line="163" bodyfile="D:/pybox2d/Box2D/Collision/b2Collision.h" bodystart="162" bodyend="216"/>
+    <listofallmembers>
+      <member refid="structb2_a_a_b_b_1ad551edba62d2ad6094672a9ba3e26496" prot="public" virt="non-virtual"><scope>b2AABB</scope><name>Combine</name></member>
+      <member refid="structb2_a_a_b_b_1a34b9c7d824df845c10caa9c12ae90452" prot="public" virt="non-virtual"><scope>b2AABB</scope><name>Combine</name></member>
+      <member refid="structb2_a_a_b_b_1aba5fc112e3c8d05e034a21d95fc37704" prot="public" virt="non-virtual"><scope>b2AABB</scope><name>Contains</name></member>
+      <member refid="structb2_a_a_b_b_1aa26703e234bd6fb30fd443cd5001795a" prot="public" virt="non-virtual"><scope>b2AABB</scope><name>GetCenter</name></member>
+      <member refid="structb2_a_a_b_b_1aff8b9aa64069a33fe45025299aa0e9b7" prot="public" virt="non-virtual"><scope>b2AABB</scope><name>GetExtents</name></member>
+      <member refid="structb2_a_a_b_b_1ace4448c60ef309726e59247a8ae67db5" prot="public" virt="non-virtual"><scope>b2AABB</scope><name>GetPerimeter</name></member>
+      <member refid="structb2_a_a_b_b_1a8d170a2de7a267c3e19f5365685b713d" prot="public" virt="non-virtual"><scope>b2AABB</scope><name>IsValid</name></member>
+      <member refid="structb2_a_a_b_b_1ab94b68fbad8348b22b0522469b11bdb5" prot="public" virt="non-virtual"><scope>b2AABB</scope><name>lowerBound</name></member>
+      <member refid="structb2_a_a_b_b_1a8a9a3dbc76c1175e80bb767437240ef5" prot="public" virt="non-virtual"><scope>b2AABB</scope><name>RayCast</name></member>
+      <member refid="structb2_a_a_b_b_1ad4a8ec483ba13a2c02918b01d058a18f" prot="public" virt="non-virtual"><scope>b2AABB</scope><name>upperBound</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

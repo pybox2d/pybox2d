@@ -1,0 +1,160 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.7.2">
+  <compounddef id="b2_pulley_joint_8h" kind="file">
+    <compoundname>b2PulleyJoint.h</compoundname>
+    <includes refid="b2_joint_8h" local="no">Box2D/Dynamics/Joints/b2Joint.h</includes>
+    <includedby refid="_box2_d_8h" local="no">Box2D/Box2D.h</includedby>
+    <includedby refid="b2_world_8cpp" local="no">Box2D/Dynamics/b2World.cpp</includedby>
+    <includedby refid="b2_joint_8cpp" local="no">Box2D/Dynamics/Joints/b2Joint.cpp</includedby>
+    <includedby refid="b2_pulley_joint_8cpp" local="no">Box2D/Dynamics/Joints/b2PulleyJoint.cpp</includedby>
+    <innerclass refid="structb2_pulley_joint_def" prot="public">b2PulleyJointDef</innerclass>
+    <innerclass refid="classb2_pulley_joint" prot="public">b2PulleyJoint</innerclass>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="b2_pulley_joint_8h_1aba070b75f7a267ec754c1e43d76169c3" prot="public" static="no" mutable="no">
+        <type>const float32</type>
+        <definition>const float32 b2_minPulleyLength</definition>
+        <argsstring></argsstring>
+        <name>b2_minPulleyLength</name>
+        <initializer> 2.0f</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2PulleyJoint.h" line="24" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2PulleyJoint.h" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment">*<sp/>Copyright<sp/>(c)<sp/>2006-2007<sp/>Erin<sp/>Catto<sp/>http://www.gphysics.com</highlight></codeline>
+<codeline lineno="3"><highlight class="comment">*</highlight></codeline>
+<codeline lineno="4"><highlight class="comment">*<sp/>This<sp/>software<sp/>is<sp/>provided<sp/>&apos;as-is&apos;,<sp/>without<sp/>any<sp/>express<sp/>or<sp/>implied</highlight></codeline>
+<codeline lineno="5"><highlight class="comment">*<sp/>warranty.<sp/><sp/>In<sp/>no<sp/>event<sp/>will<sp/>the<sp/>authors<sp/>be<sp/>held<sp/>liable<sp/>for<sp/>any<sp/>damages</highlight></codeline>
+<codeline lineno="6"><highlight class="comment">*<sp/>arising<sp/>from<sp/>the<sp/>use<sp/>of<sp/>this<sp/>software.</highlight></codeline>
+<codeline lineno="7"><highlight class="comment">*<sp/>Permission<sp/>is<sp/>granted<sp/>to<sp/>anyone<sp/>to<sp/>use<sp/>this<sp/>software<sp/>for<sp/>any<sp/>purpose,</highlight></codeline>
+<codeline lineno="8"><highlight class="comment">*<sp/>including<sp/>commercial<sp/>applications,<sp/>and<sp/>to<sp/>alter<sp/>it<sp/>and<sp/>redistribute<sp/>it</highlight></codeline>
+<codeline lineno="9"><highlight class="comment">*<sp/>freely,<sp/>subject<sp/>to<sp/>the<sp/>following<sp/>restrictions:</highlight></codeline>
+<codeline lineno="10"><highlight class="comment">*<sp/>1.<sp/>The<sp/>origin<sp/>of<sp/>this<sp/>software<sp/>must<sp/>not<sp/>be<sp/>misrepresented;<sp/>you<sp/>must<sp/>not</highlight></codeline>
+<codeline lineno="11"><highlight class="comment">*<sp/>claim<sp/>that<sp/>you<sp/>wrote<sp/>the<sp/>original<sp/>software.<sp/>If<sp/>you<sp/>use<sp/>this<sp/>software</highlight></codeline>
+<codeline lineno="12"><highlight class="comment">*<sp/>in<sp/>a<sp/>product,<sp/>an<sp/>acknowledgment<sp/>in<sp/>the<sp/>product<sp/>documentation<sp/>would<sp/>be</highlight></codeline>
+<codeline lineno="13"><highlight class="comment">*<sp/>appreciated<sp/>but<sp/>is<sp/>not<sp/>required.</highlight></codeline>
+<codeline lineno="14"><highlight class="comment">*<sp/>2.<sp/>Altered<sp/>source<sp/>versions<sp/>must<sp/>be<sp/>plainly<sp/>marked<sp/>as<sp/>such,<sp/>and<sp/>must<sp/>not<sp/>be</highlight></codeline>
+<codeline lineno="15"><highlight class="comment">*<sp/>misrepresented<sp/>as<sp/>being<sp/>the<sp/>original<sp/>software.</highlight></codeline>
+<codeline lineno="16"><highlight class="comment">*<sp/>3.<sp/>This<sp/>notice<sp/>may<sp/>not<sp/>be<sp/>removed<sp/>or<sp/>altered<sp/>from<sp/>any<sp/>source<sp/>distribution.</highlight></codeline>
+<codeline lineno="17"><highlight class="comment">*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>B2_PULLEY_JOINT_H</highlight></codeline>
+<codeline lineno="20"><highlight class="preprocessor"></highlight><highlight class="preprocessor">#define<sp/>B2_PULLEY_JOINT_H</highlight></codeline>
+<codeline lineno="21"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;Box2D/Dynamics/Joints/b2Joint.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>float32<sp/>b2_minPulleyLength<sp/>=<sp/>2.0f;</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="29" refid="structb2_pulley_joint_def" refkind="compound"><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structb2_pulley_joint_def" kindref="compound">b2PulleyJointDef</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="structb2_joint_def" kindref="compound" tooltip="Joint definitions are used to construct joints.">b2JointDef</ref></highlight></codeline>
+<codeline lineno="30"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structb2_pulley_joint_def" kindref="compound">b2PulleyJointDef</ref>()</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structb2_joint_def_1a470f2879b24adb05facbd49f338856fb" kindref="member" tooltip="The joint type is set automatically for concrete joint types.">type</ref><sp/>=<sp/>e_pulleyJoint;</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structb2_pulley_joint_def_1aae77c020ce4629ab9e03560e28aa853d" kindref="member" tooltip="The first ground anchor in world coordinates. This point never moves.">groundAnchorA</ref>.<ref refid="structb2_vec2_1a4d61640a645e470a50b451307d8e94c3" kindref="member" tooltip="Set this vector to some specified coordinates.">Set</ref>(-1.0f,<sp/>1.0f);</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structb2_pulley_joint_def_1aa412b9f3bffd1fb69ace14f9b3e03b82" kindref="member" tooltip="The second ground anchor in world coordinates. This point never moves.">groundAnchorB</ref>.<ref refid="structb2_vec2_1a4d61640a645e470a50b451307d8e94c3" kindref="member" tooltip="Set this vector to some specified coordinates.">Set</ref>(1.0f,<sp/>1.0f);</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structb2_pulley_joint_def_1ad7677a4ad02a6e7cb8699fc5012eac3e" kindref="member" tooltip="The local anchor point relative to bodyA&amp;#39;s origin.">localAnchorA</ref>.<ref refid="structb2_vec2_1a4d61640a645e470a50b451307d8e94c3" kindref="member" tooltip="Set this vector to some specified coordinates.">Set</ref>(-1.0f,<sp/>0.0f);</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structb2_pulley_joint_def_1aed3f9c9f5f4145ceb32e7e164de73144" kindref="member" tooltip="The local anchor point relative to bodyB&amp;#39;s origin.">localAnchorB</ref>.<ref refid="structb2_vec2_1a4d61640a645e470a50b451307d8e94c3" kindref="member" tooltip="Set this vector to some specified coordinates.">Set</ref>(1.0f,<sp/>0.0f);</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structb2_pulley_joint_def_1a51d945882c1d7a78af2b0e9ffb31a33b" kindref="member" tooltip="The a reference length for the segment attached to bodyA.">lengthA</ref><sp/>=<sp/>0.0f;</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structb2_pulley_joint_def_1aa36fe43a9b9a31be30b0491838803232" kindref="member" tooltip="The maximum length of the segment attached to bodyA.">maxLengthA</ref><sp/>=<sp/>0.0f;</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structb2_pulley_joint_def_1a5857d5b5b9880b6c8201ce3ee8c3eef0" kindref="member" tooltip="The a reference length for the segment attached to bodyB.">lengthB</ref><sp/>=<sp/>0.0f;</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structb2_pulley_joint_def_1a85e003e42446251cbea89cc2eb745427" kindref="member" tooltip="The maximum length of the segment attached to bodyB.">maxLengthB</ref><sp/>=<sp/>0.0f;</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structb2_pulley_joint_def_1af35074246aeacbf239c11682642b31f5" kindref="member" tooltip="The pulley ratio, used to simulate a block-and-tackle.">ratio</ref><sp/>=<sp/>1.0f;</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structb2_joint_def_1aef099a1f89b64e230173b6016848ea9b" kindref="member" tooltip="Set this flag to true if the attached bodies should collide.">collideConnected</ref><sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="structb2_pulley_joint_def_1abef614a93562b82aa3b5f8cac17d1ce8" kindref="member" tooltip="Initialize the bodies, anchors, lengths, max lengths, and ratio using the world anchors.">Initialize</ref>(<ref refid="classb2_body" kindref="compound" tooltip="A rigid body. These are created via b2World::CreateBody.">b2Body</ref>*<sp/><ref refid="structb2_joint_def_1a8cd54c93da396be75a9788f2c6897f05" kindref="member" tooltip="The first attached body.">bodyA</ref>,<sp/><ref refid="classb2_body" kindref="compound" tooltip="A rigid body. These are created via b2World::CreateBody.">b2Body</ref>*<sp/><ref refid="structb2_joint_def_1aa4f4dee2fbcd12187b19506b60e68e3d" kindref="member" tooltip="The second attached body.">bodyB</ref>,</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structb2_vec2" kindref="compound" tooltip="A 2D column vector.">b2Vec2</ref>&amp;<sp/><ref refid="structb2_pulley_joint_def_1aae77c020ce4629ab9e03560e28aa853d" kindref="member" tooltip="The first ground anchor in world coordinates. This point never moves.">groundAnchorA</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structb2_vec2" kindref="compound" tooltip="A 2D column vector.">b2Vec2</ref>&amp;<sp/><ref refid="structb2_pulley_joint_def_1aa412b9f3bffd1fb69ace14f9b3e03b82" kindref="member" tooltip="The second ground anchor in world coordinates. This point never moves.">groundAnchorB</ref>,</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structb2_vec2" kindref="compound" tooltip="A 2D column vector.">b2Vec2</ref>&amp;<sp/>anchorA,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structb2_vec2" kindref="compound" tooltip="A 2D column vector.">b2Vec2</ref>&amp;<sp/>anchorB,</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>float32<sp/><ref refid="structb2_pulley_joint_def_1af35074246aeacbf239c11682642b31f5" kindref="member" tooltip="The pulley ratio, used to simulate a block-and-tackle.">ratio</ref>);</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structb2_vec2" kindref="compound" tooltip="A 2D column vector.">b2Vec2</ref><sp/><ref refid="structb2_pulley_joint_def_1aae77c020ce4629ab9e03560e28aa853d" kindref="member" tooltip="The first ground anchor in world coordinates. This point never moves.">groundAnchorA</ref>;</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structb2_vec2" kindref="compound" tooltip="A 2D column vector.">b2Vec2</ref><sp/><ref refid="structb2_pulley_joint_def_1aa412b9f3bffd1fb69ace14f9b3e03b82" kindref="member" tooltip="The second ground anchor in world coordinates. This point never moves.">groundAnchorB</ref>;</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structb2_vec2" kindref="compound" tooltip="A 2D column vector.">b2Vec2</ref><sp/><ref refid="structb2_pulley_joint_def_1ad7677a4ad02a6e7cb8699fc5012eac3e" kindref="member" tooltip="The local anchor point relative to bodyA&amp;#39;s origin.">localAnchorA</ref>;</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structb2_vec2" kindref="compound" tooltip="A 2D column vector.">b2Vec2</ref><sp/><ref refid="structb2_pulley_joint_def_1aed3f9c9f5f4145ceb32e7e164de73144" kindref="member" tooltip="The local anchor point relative to bodyB&amp;#39;s origin.">localAnchorB</ref>;</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>float32<sp/><ref refid="structb2_pulley_joint_def_1a51d945882c1d7a78af2b0e9ffb31a33b" kindref="member" tooltip="The a reference length for the segment attached to bodyA.">lengthA</ref>;</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>float32<sp/><ref refid="structb2_pulley_joint_def_1aa36fe43a9b9a31be30b0491838803232" kindref="member" tooltip="The maximum length of the segment attached to bodyA.">maxLengthA</ref>;</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>float32<sp/><ref refid="structb2_pulley_joint_def_1a5857d5b5b9880b6c8201ce3ee8c3eef0" kindref="member" tooltip="The a reference length for the segment attached to bodyB.">lengthB</ref>;</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>float32<sp/><ref refid="structb2_pulley_joint_def_1a85e003e42446251cbea89cc2eb745427" kindref="member" tooltip="The maximum length of the segment attached to bodyB.">maxLengthB</ref>;</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>float32<sp/><ref refid="structb2_pulley_joint_def_1af35074246aeacbf239c11682642b31f5" kindref="member" tooltip="The pulley ratio, used to simulate a block-and-tackle.">ratio</ref>;</highlight></codeline>
+<codeline lineno="78"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight></codeline>
+<codeline lineno="86" refid="classb2_pulley_joint" refkind="compound"><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classb2_pulley_joint" kindref="compound">b2PulleyJoint</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="classb2_joint" kindref="compound">b2Joint</ref></highlight></codeline>
+<codeline lineno="87"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structb2_vec2" kindref="compound" tooltip="A 2D column vector.">b2Vec2</ref><sp/><ref refid="classb2_pulley_joint_1a05ac0d0d927e9541f08b07cb1bf9ec56" kindref="member" tooltip="Get the anchor point on bodyA in world coordinates.">GetAnchorA</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structb2_vec2" kindref="compound" tooltip="A 2D column vector.">b2Vec2</ref><sp/><ref refid="classb2_pulley_joint_1a5cc3596f683d621b9a885c2569ecd452" kindref="member" tooltip="Get the anchor point on bodyB in world coordinates.">GetAnchorB</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structb2_vec2" kindref="compound" tooltip="A 2D column vector.">b2Vec2</ref><sp/><ref refid="classb2_pulley_joint_1a38c174bf1cf1011063ff4c16556b331e" kindref="member" tooltip="Get the reaction force on body2 at the joint anchor in Newtons.">GetReactionForce</ref>(float32<sp/>inv_dt)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>float32<sp/><ref refid="classb2_pulley_joint_1a418b200055623474c44742b1342dd278" kindref="member" tooltip="Get the reaction torque on body2 in N*m.">GetReactionTorque</ref>(float32<sp/>inv_dt)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structb2_vec2" kindref="compound" tooltip="A 2D column vector.">b2Vec2</ref><sp/><ref refid="classb2_pulley_joint_1a19eefa28d2647882406ea9bfe2850a9e" kindref="member" tooltip="Get the first ground anchor.">GetGroundAnchorA</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"></highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structb2_vec2" kindref="compound" tooltip="A 2D column vector.">b2Vec2</ref><sp/><ref refid="classb2_pulley_joint_1a1b49d0dbce802f19711a9ab6d7dadfee" kindref="member" tooltip="Get the second ground anchor.">GetGroundAnchorB</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"></highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>float32<sp/><ref refid="classb2_pulley_joint_1ad86007aa86e33083dfc5300263086116" kindref="member" tooltip="Get the current length of the segment attached to body1.">GetLength1</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"></highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>float32<sp/><ref refid="classb2_pulley_joint_1a71619df4bf772363fde4b5841215bdb0" kindref="member" tooltip="Get the current length of the segment attached to body2.">GetLength2</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"></highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>float32<sp/><ref refid="classb2_pulley_joint_1a625685e60d95b7c5a725e8586d146752" kindref="member" tooltip="Get the pulley ratio.">GetRatio</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"></highlight></codeline>
+<codeline lineno="110"><highlight class="normal"></highlight><highlight class="keyword">protected</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"></highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">friend</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classb2_joint" kindref="compound">b2Joint</ref>;</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classb2_pulley_joint" kindref="compound">b2PulleyJoint</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structb2_pulley_joint_def" kindref="compound">b2PulleyJointDef</ref>*<sp/>data);</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"></highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>InitVelocityConstraints(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structb2_time_step" kindref="compound" tooltip="This is an internal structure.">b2TimeStep</ref>&amp;<sp/>step);</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>SolveVelocityConstraints(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structb2_time_step" kindref="compound" tooltip="This is an internal structure.">b2TimeStep</ref>&amp;<sp/>step);</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>SolvePositionConstraints(float32<sp/>baumgarte);</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"></highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structb2_vec2" kindref="compound" tooltip="A 2D column vector.">b2Vec2</ref><sp/>m_groundAnchor1;</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structb2_vec2" kindref="compound" tooltip="A 2D column vector.">b2Vec2</ref><sp/>m_groundAnchor2;</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structb2_vec2" kindref="compound" tooltip="A 2D column vector.">b2Vec2</ref><sp/>m_localAnchor1;</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structb2_vec2" kindref="compound" tooltip="A 2D column vector.">b2Vec2</ref><sp/>m_localAnchor2;</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"></highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structb2_vec2" kindref="compound" tooltip="A 2D column vector.">b2Vec2</ref><sp/>m_u1;</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structb2_vec2" kindref="compound" tooltip="A 2D column vector.">b2Vec2</ref><sp/>m_u2;</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>float32<sp/>m_constant;</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>float32<sp/>m_ratio;</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>float32<sp/>m_maxLength1;</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>float32<sp/>m_maxLength2;</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"></highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Effective<sp/>masses</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>float32<sp/>m_pulleyMass;</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>float32<sp/>m_limitMass1;</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>float32<sp/>m_limitMass2;</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"></highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Impulses<sp/>for<sp/>accumulation/warm<sp/>starting.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>float32<sp/>m_impulse;</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>float32<sp/>m_limitImpulse1;</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>float32<sp/>m_limitImpulse2;</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"></highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>b2LimitState<sp/>m_state;</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>b2LimitState<sp/>m_limitState1;</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>b2LimitState<sp/>m_limitState2;</highlight></codeline>
+<codeline lineno="146"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"></highlight></codeline>
+<codeline lineno="148"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2PulleyJoint.h"/>
+  </compounddef>
+</doxygen>

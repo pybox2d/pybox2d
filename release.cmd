@@ -1,0 +1,2 @@
+cd doc
+@call release

@@ -1,0 +1,164 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.7.2">
+  <compounddef id="structb2_fixture_def" kind="struct" prot="public">
+    <compoundname>b2FixtureDef</compoundname>
+    <includes local="no">b2Fixture.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structb2_fixture_def_1a1e41753d89abf3443e7897e2498a3240" prot="public" static="no" mutable="no">
+        <type>const <ref refid="classb2_shape" kindref="compound">b2Shape</ref> *</type>
+        <definition>const b2Shape* b2FixtureDef::shape</definition>
+        <argsstring></argsstring>
+        <name>shape</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>The shape, this must be set. The shape will be cloned, so you can create the shape on the stack. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2Fixture.h" line="69" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Fixture.h" bodystart="69" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structb2_fixture_def_1a4f77ef2b2585a40899b61faf53db1093" prot="public" static="no" mutable="no">
+        <type>void *</type>
+        <definition>void* b2FixtureDef::userData</definition>
+        <argsstring></argsstring>
+        <name>userData</name>
+        <briefdescription>
+<para>Use this to store application specific fixture data. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2Fixture.h" line="72" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Fixture.h" bodystart="72" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structb2_fixture_def_1a66081c8d0e12d4bdb0b341fb97b46eb6" prot="public" static="no" mutable="no">
+        <type>float32</type>
+        <definition>float32 b2FixtureDef::friction</definition>
+        <argsstring></argsstring>
+        <name>friction</name>
+        <briefdescription>
+<para>The friction coefficient, usually in the range [0,1]. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2Fixture.h" line="75" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Fixture.h" bodystart="75" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structb2_fixture_def_1ad7ee26656e4749f7b548d2cc0cf9f168" prot="public" static="no" mutable="no">
+        <type>float32</type>
+        <definition>float32 b2FixtureDef::restitution</definition>
+        <argsstring></argsstring>
+        <name>restitution</name>
+        <briefdescription>
+<para>The restitution (elasticity) usually in the range [0,1]. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2Fixture.h" line="78" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Fixture.h" bodystart="78" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structb2_fixture_def_1a6e27d733789a35aa689af2b30a1de0ff" prot="public" static="no" mutable="no">
+        <type>float32</type>
+        <definition>float32 b2FixtureDef::density</definition>
+        <argsstring></argsstring>
+        <name>density</name>
+        <briefdescription>
+<para>The density, usually in kg/m^2. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2Fixture.h" line="81" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Fixture.h" bodystart="81" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structb2_fixture_def_1ac8cfcc6208663c92861eaab3b3fdc57e" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool b2FixtureDef::isSensor</definition>
+        <argsstring></argsstring>
+        <name>isSensor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>A sensor shape collects contact information but never generates a collision response. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2Fixture.h" line="85" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Fixture.h" bodystart="85" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structb2_fixture_def_1a4c3e493a13d11ab27fcc2eee9f52fd61" prot="public" static="no" mutable="no">
+        <type><ref refid="structb2_filter" kindref="compound">b2Filter</ref></type>
+        <definition>b2Filter b2FixtureDef::filter</definition>
+        <argsstring></argsstring>
+        <name>filter</name>
+        <briefdescription>
+<para>Contact filtering data. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2Fixture.h" line="88" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Fixture.h" bodystart="88" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structb2_fixture_def_1aa34ba06bcf0d6d981931a83cf124a602" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>b2FixtureDef::b2FixtureDef</definition>
+        <argsstring>()</argsstring>
+        <name>b2FixtureDef</name>
+        <briefdescription>
+<para>The constructor sets the default fixture definition values. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2Fixture.h" line="53" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Fixture.h" bodystart="52" bodyend="63"/>
+      </memberdef>
+      <memberdef kind="function" id="structb2_fixture_def_1a6c56ed53845bad868ce103b2248ae82a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual b2FixtureDef::~b2FixtureDef</definition>
+        <argsstring>()</argsstring>
+        <name>~b2FixtureDef</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2Fixture.h" line="65" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Fixture.h" bodystart="65" bodyend="65"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>A fixture definition is used to create a fixture. This class defines an abstract fixture definition. You can reuse fixture definitions safely. </para>    </detaileddescription>
+    <collaborationgraph>
+      <node id="1318">
+        <label>b2FixtureDef</label>
+        <link refid="structb2_fixture_def"/>
+        <childnode refid="1319" relation="usage">
+          <edgelabel>shape</edgelabel>
+        </childnode>
+        <childnode refid="1320" relation="usage">
+          <edgelabel>filter</edgelabel>
+        </childnode>
+      </node>
+      <node id="1320">
+        <label>b2Filter</label>
+        <link refid="structb2_filter"/>
+      </node>
+      <node id="1319">
+        <label>b2Shape</label>
+        <link refid="classb2_shape"/>
+      </node>
+    </collaborationgraph>
+    <location file="D:/pybox2d/Box2D/Dynamics/b2Fixture.h" line="50" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Fixture.h" bodystart="49" bodyend="89"/>
+    <listofallmembers>
+      <member refid="structb2_fixture_def_1aa34ba06bcf0d6d981931a83cf124a602" prot="public" virt="non-virtual"><scope>b2FixtureDef</scope><name>b2FixtureDef</name></member>
+      <member refid="structb2_fixture_def_1a6e27d733789a35aa689af2b30a1de0ff" prot="public" virt="non-virtual"><scope>b2FixtureDef</scope><name>density</name></member>
+      <member refid="structb2_fixture_def_1a4c3e493a13d11ab27fcc2eee9f52fd61" prot="public" virt="non-virtual"><scope>b2FixtureDef</scope><name>filter</name></member>
+      <member refid="structb2_fixture_def_1a66081c8d0e12d4bdb0b341fb97b46eb6" prot="public" virt="non-virtual"><scope>b2FixtureDef</scope><name>friction</name></member>
+      <member refid="structb2_fixture_def_1ac8cfcc6208663c92861eaab3b3fdc57e" prot="public" virt="non-virtual"><scope>b2FixtureDef</scope><name>isSensor</name></member>
+      <member refid="structb2_fixture_def_1ad7ee26656e4749f7b548d2cc0cf9f168" prot="public" virt="non-virtual"><scope>b2FixtureDef</scope><name>restitution</name></member>
+      <member refid="structb2_fixture_def_1a1e41753d89abf3443e7897e2498a3240" prot="public" virt="non-virtual"><scope>b2FixtureDef</scope><name>shape</name></member>
+      <member refid="structb2_fixture_def_1a4f77ef2b2585a40899b61faf53db1093" prot="public" virt="non-virtual"><scope>b2FixtureDef</scope><name>userData</name></member>
+      <member refid="structb2_fixture_def_1a6c56ed53845bad868ce103b2248ae82a" prot="public" virt="virtual"><scope>b2FixtureDef</scope><name>~b2FixtureDef</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

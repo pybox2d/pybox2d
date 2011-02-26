@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.7.2">
+  <compounddef id="dir_14ce791a84e148eef49e93ec4917fe1e" kind="dir">
+    <compoundname>Box2D/Common/</compoundname>
+    <innerfile refid="b2_block_allocator_8cpp">b2BlockAllocator.cpp</innerfile>
+    <innerfile refid="b2_block_allocator_8h">b2BlockAllocator.h</innerfile>
+    <innerfile refid="b2_growable_stack_8h">b2GrowableStack.h</innerfile>
+    <innerfile refid="b2_math_8cpp">b2Math.cpp</innerfile>
+    <innerfile refid="b2_math_8h">b2Math.h</innerfile>
+    <innerfile refid="b2_settings_8cpp">b2Settings.cpp</innerfile>
+    <innerfile refid="b2_settings_8h">b2Settings.h</innerfile>
+    <innerfile refid="b2_stack_allocator_8cpp">b2StackAllocator.cpp</innerfile>
+    <innerfile refid="b2_stack_allocator_8h">b2StackAllocator.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="D:/pybox2d/Box2D/Common/"/>
+  </compounddef>
+</doxygen>

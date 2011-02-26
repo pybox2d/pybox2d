@@ -1,0 +1,544 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.7.2">
+  <compounddef id="classb2_broad_phase" kind="class" prot="public">
+    <compoundname>b2BroadPhase</compoundname>
+    <includes local="no">b2BroadPhase.h</includes>
+      <sectiondef kind="public-type">
+      <memberdef kind="enum" id="classb2_broad_phase_1ad14dca932793724b27024e60a6ade466" prot="public" static="no">
+        <name>@0</name>
+        <enumvalue id="classb2_broad_phase_1ad14dca932793724b27024e60a6ade466a8a4f9965a5b0bbb13a35c20a37fef0ad" prot="public">
+          <name>e_nullProxy</name>
+          <initializer> -1</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Collision/b2BroadPhase.h" line="42" bodyfile="D:/pybox2d/Box2D/Collision/b2BroadPhase.h" bodystart="41" bodyend="44"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="friend">
+      <memberdef kind="friend" id="classb2_broad_phase_1afc450dc71ee33ab0c9e7f1c31d6f7f60" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>friend class</type>
+        <definition>friend class b2DynamicTree</definition>
+        <argsstring></argsstring>
+        <name>b2DynamicTree</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Collision/b2BroadPhase.h" line="96" bodyfile="D:/pybox2d/Box2D/Collision/b2BroadPhase.h" bodystart="96" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classb2_broad_phase_1a553b3344719751484472098774ad132a" prot="private" static="no" mutable="no">
+        <type><ref refid="classb2_dynamic_tree" kindref="compound">b2DynamicTree</ref></type>
+        <definition>b2DynamicTree b2BroadPhase::m_tree</definition>
+        <argsstring></argsstring>
+        <name>m_tree</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Collision/b2BroadPhase.h" line="103" bodyfile="D:/pybox2d/Box2D/Collision/b2BroadPhase.h" bodystart="103" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_broad_phase_1acd748c026ed9ed0f21633df6bd79b1ac" prot="private" static="no" mutable="no">
+        <type>int32</type>
+        <definition>int32 b2BroadPhase::m_proxyCount</definition>
+        <argsstring></argsstring>
+        <name>m_proxyCount</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Collision/b2BroadPhase.h" line="105" bodyfile="D:/pybox2d/Box2D/Collision/b2BroadPhase.h" bodystart="105" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_broad_phase_1a320b6be7b85c29ae14fa7b4c34bc8938" prot="private" static="no" mutable="no">
+        <type>int32 *</type>
+        <definition>int32* b2BroadPhase::m_moveBuffer</definition>
+        <argsstring></argsstring>
+        <name>m_moveBuffer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Collision/b2BroadPhase.h" line="107" bodyfile="D:/pybox2d/Box2D/Collision/b2BroadPhase.h" bodystart="107" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_broad_phase_1aad2464ca4943c5b7c57fe7b72f868600" prot="private" static="no" mutable="no">
+        <type>int32</type>
+        <definition>int32 b2BroadPhase::m_moveCapacity</definition>
+        <argsstring></argsstring>
+        <name>m_moveCapacity</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Collision/b2BroadPhase.h" line="108" bodyfile="D:/pybox2d/Box2D/Collision/b2BroadPhase.h" bodystart="108" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_broad_phase_1a8261c4be18ed7abe064c86352861c711" prot="private" static="no" mutable="no">
+        <type>int32</type>
+        <definition>int32 b2BroadPhase::m_moveCount</definition>
+        <argsstring></argsstring>
+        <name>m_moveCount</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Collision/b2BroadPhase.h" line="109" bodyfile="D:/pybox2d/Box2D/Collision/b2BroadPhase.h" bodystart="109" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_broad_phase_1a082a4d4dc794e1a023e96b43c933be33" prot="private" static="no" mutable="no">
+        <type>b2Pair *</type>
+        <definition>b2Pair* b2BroadPhase::m_pairBuffer</definition>
+        <argsstring></argsstring>
+        <name>m_pairBuffer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Collision/b2BroadPhase.h" line="111" bodyfile="D:/pybox2d/Box2D/Collision/b2BroadPhase.h" bodystart="111" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_broad_phase_1aa406224944d006cdbdba2742370a3c67" prot="private" static="no" mutable="no">
+        <type>int32</type>
+        <definition>int32 b2BroadPhase::m_pairCapacity</definition>
+        <argsstring></argsstring>
+        <name>m_pairCapacity</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Collision/b2BroadPhase.h" line="112" bodyfile="D:/pybox2d/Box2D/Collision/b2BroadPhase.h" bodystart="112" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_broad_phase_1a492a7a5e5574df1b9dc51c5e56d7af95" prot="private" static="no" mutable="no">
+        <type>int32</type>
+        <definition>int32 b2BroadPhase::m_pairCount</definition>
+        <argsstring></argsstring>
+        <name>m_pairCount</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Collision/b2BroadPhase.h" line="113" bodyfile="D:/pybox2d/Box2D/Collision/b2BroadPhase.h" bodystart="113" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_broad_phase_1a0c7b404407c5e6626fb3fc8b55240516" prot="private" static="no" mutable="no">
+        <type>int32</type>
+        <definition>int32 b2BroadPhase::m_queryProxyId</definition>
+        <argsstring></argsstring>
+        <name>m_queryProxyId</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Collision/b2BroadPhase.h" line="115" bodyfile="D:/pybox2d/Box2D/Collision/b2BroadPhase.h" bodystart="115" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classb2_broad_phase_1ac58820d4cb10df81a33923c7c75d8f85" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>b2BroadPhase::b2BroadPhase</definition>
+        <argsstring>()</argsstring>
+        <name>b2BroadPhase</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Collision/b2BroadPhase.h" line="46" bodyfile="D:/pybox2d/Box2D/Collision/b2BroadPhase.cpp" bodystart="23" bodyend="34"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_broad_phase_1a40cebf62f00ebfa7ca373ad96f76661f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>b2BroadPhase::~b2BroadPhase</definition>
+        <argsstring>()</argsstring>
+        <name>~b2BroadPhase</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Collision/b2BroadPhase.h" line="47" bodyfile="D:/pybox2d/Box2D/Collision/b2BroadPhase.cpp" bodystart="36" bodyend="40"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_broad_phase_1ae2f7af756bc55ece45221466c5af449c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int32</type>
+        <definition>int32 b2BroadPhase::CreateProxy</definition>
+        <argsstring>(const b2AABB &amp;aabb, void *userData)</argsstring>
+        <name>CreateProxy</name>
+        <param>
+          <type>const <ref refid="structb2_a_a_b_b" kindref="compound">b2AABB</ref> &amp;</type>
+          <declname>aabb</declname>
+        </param>
+        <param>
+          <type>void *</type>
+          <declname>userData</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Create a proxy with an initial AABB. Pairs are not reported until UpdatePairs is called. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Collision/b2BroadPhase.h" line="51" bodyfile="D:/pybox2d/Box2D/Collision/b2BroadPhase.cpp" bodystart="42" bodyend="48"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_broad_phase_1a84f0fb227dc01a9b9baa55c7b8c68984" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void b2BroadPhase::DestroyProxy</definition>
+        <argsstring>(int32 proxyId)</argsstring>
+        <name>DestroyProxy</name>
+        <param>
+          <type>int32</type>
+          <declname>proxyId</declname>
+        </param>
+        <briefdescription>
+<para>Destroy a proxy. It is up to the client to remove any pairs. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Collision/b2BroadPhase.h" line="54" bodyfile="D:/pybox2d/Box2D/Collision/b2BroadPhase.cpp" bodystart="50" bodyend="55"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_broad_phase_1a01dc18a19c2b5d0cc1d9cd8c8554234c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void b2BroadPhase::MoveProxy</definition>
+        <argsstring>(int32 proxyId, const b2AABB &amp;aabb, const b2Vec2 &amp;displacement)</argsstring>
+        <name>MoveProxy</name>
+        <param>
+          <type>int32</type>
+          <declname>proxyId</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structb2_a_a_b_b" kindref="compound">b2AABB</ref> &amp;</type>
+          <declname>aabb</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structb2_vec2" kindref="compound">b2Vec2</ref> &amp;</type>
+          <declname>displacement</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Call MoveProxy as many times as you like, then when you are done call UpdatePairs to finalized the proxy pairs (for your time step). </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Collision/b2BroadPhase.h" line="58" bodyfile="D:/pybox2d/Box2D/Collision/b2BroadPhase.cpp" bodystart="57" bodyend="64"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_broad_phase_1a7b00ac700db52e52248a25397007d4ff" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="structb2_a_a_b_b" kindref="compound">b2AABB</ref> &amp;</type>
+        <definition>const b2AABB &amp; b2BroadPhase::GetFatAABB</definition>
+        <argsstring>(int32 proxyId) const </argsstring>
+        <name>GetFatAABB</name>
+        <param>
+          <type>int32</type>
+          <declname>proxyId</declname>
+        </param>
+        <briefdescription>
+<para>Get the fat AABB for a proxy. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Collision/b2BroadPhase.h" line="61" bodyfile="D:/pybox2d/Box2D/Collision/b2BroadPhase.h" bodystart="146" bodyend="149"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_broad_phase_1a89c099e95237d68577376d8f9a4ed013" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>void *</type>
+        <definition>void * b2BroadPhase::GetUserData</definition>
+        <argsstring>(int32 proxyId) const </argsstring>
+        <name>GetUserData</name>
+        <param>
+          <type>int32</type>
+          <declname>proxyId</declname>
+        </param>
+        <briefdescription>
+<para>Get user data from a proxy. Returns NULL if the id is invalid. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Collision/b2BroadPhase.h" line="64" bodyfile="D:/pybox2d/Box2D/Collision/b2BroadPhase.h" bodystart="134" bodyend="137"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_broad_phase_1a1785eb29d14997d81bd537f064d22aba" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool b2BroadPhase::TestOverlap</definition>
+        <argsstring>(int32 proxyIdA, int32 proxyIdB) const </argsstring>
+        <name>TestOverlap</name>
+        <param>
+          <type>int32</type>
+          <declname>proxyIdA</declname>
+        </param>
+        <param>
+          <type>int32</type>
+          <declname>proxyIdB</declname>
+        </param>
+        <briefdescription>
+<para>Test overlap of fat AABBs. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Collision/b2BroadPhase.h" line="67" bodyfile="D:/pybox2d/Box2D/Collision/b2BroadPhase.h" bodystart="139" bodyend="144"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_broad_phase_1a399fa4f5289a1ec46a65f726f3bac890" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>int32</type>
+        <definition>int32 b2BroadPhase::GetProxyCount</definition>
+        <argsstring>() const </argsstring>
+        <name>GetProxyCount</name>
+        <briefdescription>
+<para>Get the number of proxies. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Collision/b2BroadPhase.h" line="70" bodyfile="D:/pybox2d/Box2D/Collision/b2BroadPhase.h" bodystart="151" bodyend="154"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_broad_phase_1af495b2ffd8e92406a295f70ad8149739" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void b2BroadPhase::UpdatePairs</definition>
+        <argsstring>(T *callback)</argsstring>
+        <name>UpdatePairs</name>
+        <param>
+          <type>T *</type>
+          <declname>callback</declname>
+        </param>
+        <briefdescription>
+<para>Update the pairs. This results in pair callbacks. This can only add pairs. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Collision/b2BroadPhase.h" line="74" bodyfile="D:/pybox2d/Box2D/Collision/b2BroadPhase.h" bodystart="162" bodyend="215"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_broad_phase_1a3d0d344b12ac8d83c180817b7478745f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void b2BroadPhase::Query</definition>
+        <argsstring>(T *callback, const b2AABB &amp;aabb) const </argsstring>
+        <name>Query</name>
+        <param>
+          <type>T *</type>
+          <declname>callback</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structb2_a_a_b_b" kindref="compound">b2AABB</ref> &amp;</type>
+          <declname>aabb</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Query an AABB for overlapping proxies. The callback class is called for each proxy that overlaps the supplied AABB. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Collision/b2BroadPhase.h" line="79" bodyfile="D:/pybox2d/Box2D/Collision/b2BroadPhase.h" bodystart="218" bodyend="221"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_broad_phase_1ab76ed048057a1ea81583938136107e95" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void b2BroadPhase::RayCast</definition>
+        <argsstring>(T *callback, const b2RayCastInput &amp;input) const </argsstring>
+        <name>RayCast</name>
+        <param>
+          <type>T *</type>
+          <declname>callback</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structb2_ray_cast_input" kindref="compound">b2RayCastInput</ref> &amp;</type>
+          <declname>input</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Ray-cast against the proxies in the tree. This relies on the callback to perform a exact ray-cast in the case were the proxy contains a shape. The callback also performs the any collision filtering. This has performance roughly equal to k * log(n), where k is the number of collisions and n is the number of proxies in the tree. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>input</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the ray-cast input data. The ray extends from p1 to p1 + maxFraction * (p2 - p1). </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>callback</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>a callback class that is called for each proxy that is hit by the ray. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Collision/b2BroadPhase.h" line="89" bodyfile="D:/pybox2d/Box2D/Collision/b2BroadPhase.h" bodystart="224" bodyend="227"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_broad_phase_1ac57cd0cb0630db42e7a1cb28f6fd31b0" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>int32</type>
+        <definition>int32 b2BroadPhase::ComputeHeight</definition>
+        <argsstring>() const </argsstring>
+        <name>ComputeHeight</name>
+        <briefdescription>
+<para>Compute the height of the embedded tree. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Collision/b2BroadPhase.h" line="92" bodyfile="D:/pybox2d/Box2D/Collision/b2BroadPhase.h" bodystart="156" bodyend="159"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classb2_broad_phase_1a4917a3c91402339757b5edc1a07ac1f9" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void b2BroadPhase::BufferMove</definition>
+        <argsstring>(int32 proxyId)</argsstring>
+        <name>BufferMove</name>
+        <param>
+          <type>int32</type>
+          <declname>proxyId</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Collision/b2BroadPhase.h" line="98" bodyfile="D:/pybox2d/Box2D/Collision/b2BroadPhase.cpp" bodystart="66" bodyend="79"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_broad_phase_1a5744c0e7a5cbc0bceb0fca334827ca35" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void b2BroadPhase::UnBufferMove</definition>
+        <argsstring>(int32 proxyId)</argsstring>
+        <name>UnBufferMove</name>
+        <param>
+          <type>int32</type>
+          <declname>proxyId</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Collision/b2BroadPhase.h" line="99" bodyfile="D:/pybox2d/Box2D/Collision/b2BroadPhase.cpp" bodystart="81" bodyend="91"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_broad_phase_1a7c24ab9e23c062ea51d8018aee0d03f5" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool b2BroadPhase::QueryCallback</definition>
+        <argsstring>(int32 proxyId)</argsstring>
+        <name>QueryCallback</name>
+        <param>
+          <type>int32</type>
+          <declname>proxyId</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Collision/b2BroadPhase.h" line="101" bodyfile="D:/pybox2d/Box2D/Collision/b2BroadPhase.cpp" bodystart="94" bodyend="117"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>The broad-phase is used for computing pairs and performing volume queries and ray casts. This broad-phase does not persist pairs. Instead, this reports potentially new pairs. It is up to the client to consume the new pairs and to track subsequent overlap. </para>    </detaileddescription>
+    <collaborationgraph>
+      <node id="964">
+        <label>b2DynamicTree</label>
+        <link refid="classb2_dynamic_tree"/>
+        <childnode refid="965" relation="usage">
+          <edgelabel>m_nodes</edgelabel>
+        </childnode>
+      </node>
+      <node id="963">
+        <label>b2BroadPhase</label>
+        <link refid="classb2_broad_phase"/>
+        <childnode refid="964" relation="usage">
+          <edgelabel>m_tree</edgelabel>
+        </childnode>
+      </node>
+      <node id="965">
+        <label>b2DynamicTreeNode</label>
+        <link refid="structb2_dynamic_tree_node"/>
+        <childnode refid="966" relation="usage">
+          <edgelabel>aabb</edgelabel>
+        </childnode>
+      </node>
+      <node id="967">
+        <label>b2Vec2</label>
+        <link refid="structb2_vec2"/>
+      </node>
+      <node id="966">
+        <label>b2AABB</label>
+        <link refid="structb2_a_a_b_b"/>
+        <childnode refid="967" relation="usage">
+          <edgelabel>lowerBound</edgelabel>
+          <edgelabel>upperBound</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="D:/pybox2d/Box2D/Collision/b2BroadPhase.h" line="38" bodyfile="D:/pybox2d/Box2D/Collision/b2BroadPhase.h" bodystart="37" bodyend="116"/>
+    <listofallmembers>
+      <member refid="classb2_broad_phase_1ac58820d4cb10df81a33923c7c75d8f85" prot="public" virt="non-virtual"><scope>b2BroadPhase</scope><name>b2BroadPhase</name></member>
+      <member refid="classb2_broad_phase_1afc450dc71ee33ab0c9e7f1c31d6f7f60" prot="private" virt="non-virtual"><scope>b2BroadPhase</scope><name>b2DynamicTree</name></member>
+      <member refid="classb2_broad_phase_1a4917a3c91402339757b5edc1a07ac1f9" prot="private" virt="non-virtual"><scope>b2BroadPhase</scope><name>BufferMove</name></member>
+      <member refid="classb2_broad_phase_1ac57cd0cb0630db42e7a1cb28f6fd31b0" prot="public" virt="non-virtual"><scope>b2BroadPhase</scope><name>ComputeHeight</name></member>
+      <member refid="classb2_broad_phase_1ae2f7af756bc55ece45221466c5af449c" prot="public" virt="non-virtual"><scope>b2BroadPhase</scope><name>CreateProxy</name></member>
+      <member refid="classb2_broad_phase_1a84f0fb227dc01a9b9baa55c7b8c68984" prot="public" virt="non-virtual"><scope>b2BroadPhase</scope><name>DestroyProxy</name></member>
+      <member refid="classb2_broad_phase_1ad14dca932793724b27024e60a6ade466a8a4f9965a5b0bbb13a35c20a37fef0ad" prot="public" virt="non-virtual"><scope>b2BroadPhase</scope><name>e_nullProxy</name></member>
+      <member refid="classb2_broad_phase_1a7b00ac700db52e52248a25397007d4ff" prot="public" virt="non-virtual"><scope>b2BroadPhase</scope><name>GetFatAABB</name></member>
+      <member refid="classb2_broad_phase_1a399fa4f5289a1ec46a65f726f3bac890" prot="public" virt="non-virtual"><scope>b2BroadPhase</scope><name>GetProxyCount</name></member>
+      <member refid="classb2_broad_phase_1a89c099e95237d68577376d8f9a4ed013" prot="public" virt="non-virtual"><scope>b2BroadPhase</scope><name>GetUserData</name></member>
+      <member refid="classb2_broad_phase_1a320b6be7b85c29ae14fa7b4c34bc8938" prot="private" virt="non-virtual"><scope>b2BroadPhase</scope><name>m_moveBuffer</name></member>
+      <member refid="classb2_broad_phase_1aad2464ca4943c5b7c57fe7b72f868600" prot="private" virt="non-virtual"><scope>b2BroadPhase</scope><name>m_moveCapacity</name></member>
+      <member refid="classb2_broad_phase_1a8261c4be18ed7abe064c86352861c711" prot="private" virt="non-virtual"><scope>b2BroadPhase</scope><name>m_moveCount</name></member>
+      <member refid="classb2_broad_phase_1a082a4d4dc794e1a023e96b43c933be33" prot="private" virt="non-virtual"><scope>b2BroadPhase</scope><name>m_pairBuffer</name></member>
+      <member refid="classb2_broad_phase_1aa406224944d006cdbdba2742370a3c67" prot="private" virt="non-virtual"><scope>b2BroadPhase</scope><name>m_pairCapacity</name></member>
+      <member refid="classb2_broad_phase_1a492a7a5e5574df1b9dc51c5e56d7af95" prot="private" virt="non-virtual"><scope>b2BroadPhase</scope><name>m_pairCount</name></member>
+      <member refid="classb2_broad_phase_1acd748c026ed9ed0f21633df6bd79b1ac" prot="private" virt="non-virtual"><scope>b2BroadPhase</scope><name>m_proxyCount</name></member>
+      <member refid="classb2_broad_phase_1a0c7b404407c5e6626fb3fc8b55240516" prot="private" virt="non-virtual"><scope>b2BroadPhase</scope><name>m_queryProxyId</name></member>
+      <member refid="classb2_broad_phase_1a553b3344719751484472098774ad132a" prot="private" virt="non-virtual"><scope>b2BroadPhase</scope><name>m_tree</name></member>
+      <member refid="classb2_broad_phase_1a01dc18a19c2b5d0cc1d9cd8c8554234c" prot="public" virt="non-virtual"><scope>b2BroadPhase</scope><name>MoveProxy</name></member>
+      <member refid="classb2_broad_phase_1a3d0d344b12ac8d83c180817b7478745f" prot="public" virt="non-virtual"><scope>b2BroadPhase</scope><name>Query</name></member>
+      <member refid="classb2_broad_phase_1a7c24ab9e23c062ea51d8018aee0d03f5" prot="private" virt="non-virtual"><scope>b2BroadPhase</scope><name>QueryCallback</name></member>
+      <member refid="classb2_broad_phase_1ab76ed048057a1ea81583938136107e95" prot="public" virt="non-virtual"><scope>b2BroadPhase</scope><name>RayCast</name></member>
+      <member refid="classb2_broad_phase_1a1785eb29d14997d81bd537f064d22aba" prot="public" virt="non-virtual"><scope>b2BroadPhase</scope><name>TestOverlap</name></member>
+      <member refid="classb2_broad_phase_1a5744c0e7a5cbc0bceb0fca334827ca35" prot="private" virt="non-virtual"><scope>b2BroadPhase</scope><name>UnBufferMove</name></member>
+      <member refid="classb2_broad_phase_1af495b2ffd8e92406a295f70ad8149739" prot="public" virt="non-virtual"><scope>b2BroadPhase</scope><name>UpdatePairs</name></member>
+      <member refid="classb2_broad_phase_1a40cebf62f00ebfa7ca373ad96f76661f" prot="public" virt="non-virtual"><scope>b2BroadPhase</scope><name>~b2BroadPhase</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

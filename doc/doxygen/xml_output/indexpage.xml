@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.7.2">
+  <compounddef id="indexpage" kind="page">
+    <compoundname>index</compoundname>
+    <title>Box2D API Documentation</title>
+    <detaileddescription>
+<sect1 id="index_1intro_sec">
+<title>Getting Started</title>
+<para>For documentation please see <ulink url="http://box2d.org/documentation.html">http://box2d.org/documentation.html</ulink></para><para>For discussion please visit <ulink url="http://box2d.org/forum">http://box2d.org/forum</ulink> </para></sect1>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

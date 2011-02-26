@@ -1,0 +1,170 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.7.2">
+  <compounddef id="b2_block_allocator_8h" kind="file">
+    <compoundname>b2BlockAllocator.h</compoundname>
+    <includes refid="b2_settings_8h" local="no">Box2D/Common/b2Settings.h</includes>
+    <includedby refid="b2_shape_8h" local="no">Box2D/Collision/Shapes/b2Shape.h</includedby>
+    <includedby refid="b2_block_allocator_8cpp" local="no">Box2D/Common/b2BlockAllocator.cpp</includedby>
+    <includedby refid="b2_fixture_8cpp" local="no">Box2D/Dynamics/b2Fixture.cpp</includedby>
+    <includedby refid="b2_world_8h" local="no">Box2D/Dynamics/b2World.h</includedby>
+    <includedby refid="b2_circle_contact_8cpp" local="no">Box2D/Dynamics/Contacts/b2CircleContact.cpp</includedby>
+    <includedby refid="b2_contact_8cpp" local="no">Box2D/Dynamics/Contacts/b2Contact.cpp</includedby>
+    <includedby refid="b2_edge_and_circle_contact_8cpp" local="no">Box2D/Dynamics/Contacts/b2EdgeAndCircleContact.cpp</includedby>
+    <includedby refid="b2_edge_and_polygon_contact_8cpp" local="no">Box2D/Dynamics/Contacts/b2EdgeAndPolygonContact.cpp</includedby>
+    <includedby refid="b2_loop_and_circle_contact_8cpp" local="no">Box2D/Dynamics/Contacts/b2LoopAndCircleContact.cpp</includedby>
+    <includedby refid="b2_loop_and_polygon_contact_8cpp" local="no">Box2D/Dynamics/Contacts/b2LoopAndPolygonContact.cpp</includedby>
+    <includedby refid="b2_polygon_and_circle_contact_8cpp" local="no">Box2D/Dynamics/Contacts/b2PolygonAndCircleContact.cpp</includedby>
+    <includedby refid="b2_polygon_contact_8cpp" local="no">Box2D/Dynamics/Contacts/b2PolygonContact.cpp</includedby>
+    <includedby refid="b2_joint_8cpp" local="no">Box2D/Dynamics/Joints/b2Joint.cpp</includedby>
+    <incdepgraph>
+      <node id="98">
+        <label>cmath</label>
+      </node>
+      <node id="97">
+        <label>cassert</label>
+      </node>
+      <node id="95">
+        <label>Box2D/Common/b2BlockAllocator.h</label>
+        <link refid="b2BlockAllocator.h"/>
+        <childnode refid="96" relation="include">
+        </childnode>
+      </node>
+      <node id="99">
+        <label>Python.h</label>
+      </node>
+      <node id="96">
+        <label>Box2D/Common/b2Settings.h</label>
+        <link refid="b2_settings_8h"/>
+        <childnode refid="97" relation="include">
+        </childnode>
+        <childnode refid="98" relation="include">
+        </childnode>
+        <childnode refid="99" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <innerclass refid="classb2_block_allocator" prot="public">b2BlockAllocator</innerclass>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="b2_block_allocator_8h_1a911ec59e46ab201a0f5326550bd3d30a" prot="public" static="no" mutable="no">
+        <type>const int32</type>
+        <definition>const int32 b2_chunkSize</definition>
+        <argsstring></argsstring>
+        <name>b2_chunkSize</name>
+        <initializer> 4096</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Common/b2BlockAllocator.h" line="24" bodyfile="D:/pybox2d/Box2D/Common/b2BlockAllocator.h" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="b2_block_allocator_8h_1a828c28d738659ce7ad2af589a1f3cebc" prot="public" static="no" mutable="no">
+        <type>const int32</type>
+        <definition>const int32 b2_maxBlockSize</definition>
+        <argsstring></argsstring>
+        <name>b2_maxBlockSize</name>
+        <initializer> 640</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Common/b2BlockAllocator.h" line="25" bodyfile="D:/pybox2d/Box2D/Common/b2BlockAllocator.h" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="b2_block_allocator_8h_1a5b62b6dca4dae27d8de51f130ab6f5b8" prot="public" static="no" mutable="no">
+        <type>const int32</type>
+        <definition>const int32 b2_blockSizes</definition>
+        <argsstring></argsstring>
+        <name>b2_blockSizes</name>
+        <initializer> 14</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Common/b2BlockAllocator.h" line="26" bodyfile="D:/pybox2d/Box2D/Common/b2BlockAllocator.h" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="b2_block_allocator_8h_1aea90339946bc263db8eec04ce1f8ae73" prot="public" static="no" mutable="no">
+        <type>const int32</type>
+        <definition>const int32 b2_chunkArrayIncrement</definition>
+        <argsstring></argsstring>
+        <name>b2_chunkArrayIncrement</name>
+        <initializer> 128</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Common/b2BlockAllocator.h" line="27" bodyfile="D:/pybox2d/Box2D/Common/b2BlockAllocator.h" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment">*<sp/>Copyright<sp/>(c)<sp/>2006-2009<sp/>Erin<sp/>Catto<sp/>http://www.gphysics.com</highlight></codeline>
+<codeline lineno="3"><highlight class="comment">*</highlight></codeline>
+<codeline lineno="4"><highlight class="comment">*<sp/>This<sp/>software<sp/>is<sp/>provided<sp/>&apos;as-is&apos;,<sp/>without<sp/>any<sp/>express<sp/>or<sp/>implied</highlight></codeline>
+<codeline lineno="5"><highlight class="comment">*<sp/>warranty.<sp/><sp/>In<sp/>no<sp/>event<sp/>will<sp/>the<sp/>authors<sp/>be<sp/>held<sp/>liable<sp/>for<sp/>any<sp/>damages</highlight></codeline>
+<codeline lineno="6"><highlight class="comment">*<sp/>arising<sp/>from<sp/>the<sp/>use<sp/>of<sp/>this<sp/>software.</highlight></codeline>
+<codeline lineno="7"><highlight class="comment">*<sp/>Permission<sp/>is<sp/>granted<sp/>to<sp/>anyone<sp/>to<sp/>use<sp/>this<sp/>software<sp/>for<sp/>any<sp/>purpose,</highlight></codeline>
+<codeline lineno="8"><highlight class="comment">*<sp/>including<sp/>commercial<sp/>applications,<sp/>and<sp/>to<sp/>alter<sp/>it<sp/>and<sp/>redistribute<sp/>it</highlight></codeline>
+<codeline lineno="9"><highlight class="comment">*<sp/>freely,<sp/>subject<sp/>to<sp/>the<sp/>following<sp/>restrictions:</highlight></codeline>
+<codeline lineno="10"><highlight class="comment">*<sp/>1.<sp/>The<sp/>origin<sp/>of<sp/>this<sp/>software<sp/>must<sp/>not<sp/>be<sp/>misrepresented;<sp/>you<sp/>must<sp/>not</highlight></codeline>
+<codeline lineno="11"><highlight class="comment">*<sp/>claim<sp/>that<sp/>you<sp/>wrote<sp/>the<sp/>original<sp/>software.<sp/>If<sp/>you<sp/>use<sp/>this<sp/>software</highlight></codeline>
+<codeline lineno="12"><highlight class="comment">*<sp/>in<sp/>a<sp/>product,<sp/>an<sp/>acknowledgment<sp/>in<sp/>the<sp/>product<sp/>documentation<sp/>would<sp/>be</highlight></codeline>
+<codeline lineno="13"><highlight class="comment">*<sp/>appreciated<sp/>but<sp/>is<sp/>not<sp/>required.</highlight></codeline>
+<codeline lineno="14"><highlight class="comment">*<sp/>2.<sp/>Altered<sp/>source<sp/>versions<sp/>must<sp/>be<sp/>plainly<sp/>marked<sp/>as<sp/>such,<sp/>and<sp/>must<sp/>not<sp/>be</highlight></codeline>
+<codeline lineno="15"><highlight class="comment">*<sp/>misrepresented<sp/>as<sp/>being<sp/>the<sp/>original<sp/>software.</highlight></codeline>
+<codeline lineno="16"><highlight class="comment">*<sp/>3.<sp/>This<sp/>notice<sp/>may<sp/>not<sp/>be<sp/>removed<sp/>or<sp/>altered<sp/>from<sp/>any<sp/>source<sp/>distribution.</highlight></codeline>
+<codeline lineno="17"><highlight class="comment">*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>B2_BLOCK_ALLOCATOR_H</highlight></codeline>
+<codeline lineno="20"><highlight class="preprocessor"></highlight><highlight class="preprocessor">#define<sp/>B2_BLOCK_ALLOCATOR_H</highlight></codeline>
+<codeline lineno="21"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="b2_settings_8h" kindref="compound">Box2D/Common/b2Settings.h</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>int32<sp/>b2_chunkSize<sp/>=<sp/>4096;</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>int32<sp/>b2_maxBlockSize<sp/>=<sp/>640;</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>int32<sp/>b2_blockSizes<sp/>=<sp/>14;</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>int32<sp/>b2_chunkArrayIncrement<sp/>=<sp/>128;</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">b2Block;</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">b2Chunk;</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="35" refid="classb2_block_allocator" refkind="compound"><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classb2_block_allocator" kindref="compound">b2BlockAllocator</ref></highlight></codeline>
+<codeline lineno="36"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classb2_block_allocator" kindref="compound">b2BlockAllocator</ref>();</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>~<ref refid="classb2_block_allocator" kindref="compound">b2BlockAllocator</ref>();</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/><ref refid="classb2_block_allocator_1a437bf775c23f6e36af11a6d1653d7040" kindref="member" tooltip="Allocate memory. This will use b2Alloc if the size is larger than b2_maxBlockSize.">Allocate</ref>(int32<sp/>size);</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classb2_block_allocator_1a945fdf86e260318b930a53dcc887ca8b" kindref="member" tooltip="Free memory. This will use b2Free if the size is larger than b2_maxBlockSize.">Free</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>p,<sp/>int32<sp/>size);</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Clear();</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>b2Chunk*<sp/>m_chunks;</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>int32<sp/>m_chunkCount;</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>int32<sp/>m_chunkSpace;</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>b2Block*<sp/>m_freeLists[b2_blockSizes];</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>int32<sp/>s_blockSizes[b2_blockSizes];</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>uint8<sp/>s_blockSizeLookup[b2_maxBlockSize<sp/>+<sp/>1];</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>s_blockSizeLookupInitialized;</highlight></codeline>
+<codeline lineno="60"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="D:/pybox2d/Box2D/Common/b2BlockAllocator.h"/>
+  </compounddef>
+</doxygen>

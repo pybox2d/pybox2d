@@ -1,0 +1,187 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.7.2">
+  <compounddef id="structb2_sweep" kind="struct" prot="public">
+    <compoundname>b2Sweep</compoundname>
+    <includes local="no">b2Math.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structb2_sweep_1a4bcc302cf78771896d6256fc53f2f8be" prot="public" static="no" mutable="no">
+        <type><ref refid="structb2_vec2" kindref="compound">b2Vec2</ref></type>
+        <definition>b2Vec2 b2Sweep::localCenter</definition>
+        <argsstring></argsstring>
+        <name>localCenter</name>
+        <briefdescription>
+<para>local center of mass position </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Common/b2Math.h" line="377" bodyfile="D:/pybox2d/Box2D/Common/b2Math.h" bodystart="377" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structb2_sweep_1a16dacd7188f3c7b2adef3242012587d8" prot="public" static="no" mutable="no">
+        <type><ref refid="structb2_vec2" kindref="compound">b2Vec2</ref></type>
+        <definition>b2Vec2 b2Sweep::c0</definition>
+        <argsstring></argsstring>
+        <name>c0</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Common/b2Math.h" line="378" bodyfile="D:/pybox2d/Box2D/Common/b2Math.h" bodystart="378" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structb2_sweep_1a1b5402e01b92cc82473389fc6f0375c3" prot="public" static="no" mutable="no">
+        <type><ref refid="structb2_vec2" kindref="compound">b2Vec2</ref></type>
+        <definition>b2Vec2 b2Sweep::c</definition>
+        <argsstring></argsstring>
+        <name>c</name>
+        <briefdescription>
+<para>center world positions </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Common/b2Math.h" line="378" bodyfile="D:/pybox2d/Box2D/Common/b2Math.h" bodystart="378" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structb2_sweep_1acf89c7d1223f8ab27501ff033aeac92b" prot="public" static="no" mutable="no">
+        <type>float32</type>
+        <definition>float32 b2Sweep::a0</definition>
+        <argsstring></argsstring>
+        <name>a0</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Common/b2Math.h" line="379" bodyfile="D:/pybox2d/Box2D/Common/b2Math.h" bodystart="379" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structb2_sweep_1afa96bacc91dd3c92ae716a45512332d6" prot="public" static="no" mutable="no">
+        <type>float32</type>
+        <definition>float32 b2Sweep::a</definition>
+        <argsstring></argsstring>
+        <name>a</name>
+        <briefdescription>
+<para>world angles </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Common/b2Math.h" line="379" bodyfile="D:/pybox2d/Box2D/Common/b2Math.h" bodystart="379" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structb2_sweep_1aa5f8ab90178b58bc0777096cbc6b91cf" prot="public" static="no" mutable="no">
+        <type>float32</type>
+        <definition>float32 b2Sweep::alpha0</definition>
+        <argsstring></argsstring>
+        <name>alpha0</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Fraction of the current time step in the range [0,1] c0 and a0 are the positions at alpha0. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Common/b2Math.h" line="383" bodyfile="D:/pybox2d/Box2D/Common/b2Math.h" bodystart="383" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structb2_sweep_1a6a78abe0478c9752cd0166df6ec52b1e" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void b2Sweep::GetTransform</definition>
+        <argsstring>(b2Transform *xf, float32 beta) const </argsstring>
+        <name>GetTransform</name>
+        <param>
+          <type><ref refid="structb2_transform" kindref="compound">b2Transform</ref> *</type>
+          <declname>xf</declname>
+        </param>
+        <param>
+          <type>float32</type>
+          <declname>beta</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Get the interpolated transform at a specific time. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>beta</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is a factor in [0,1], where 0 indicates alpha0. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Common/b2Math.h" line="368" bodyfile="D:/pybox2d/Box2D/Common/b2Math.h" bodystart="612" bodyend="620"/>
+      </memberdef>
+      <memberdef kind="function" id="structb2_sweep_1a35eb9b976ca87c9b8d758bec070c6c06" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void b2Sweep::Advance</definition>
+        <argsstring>(float32 alpha)</argsstring>
+        <name>Advance</name>
+        <param>
+          <type>float32</type>
+          <declname>alpha</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Advance the sweep forward, yielding a new initial state. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>alpha</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the new initial time. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Common/b2Math.h" line="372" bodyfile="D:/pybox2d/Box2D/Common/b2Math.h" bodystart="622" bodyend="629"/>
+      </memberdef>
+      <memberdef kind="function" id="structb2_sweep_1ad66a3086bc7656df9cf7454013a2f61b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void b2Sweep::Normalize</definition>
+        <argsstring>()</argsstring>
+        <name>Normalize</name>
+        <briefdescription>
+<para>Normalize the angles. </para>        </briefdescription>
+        <detaileddescription>
+<para>Normalize an angle in radians to be between -pi and pi. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Common/b2Math.h" line="375" bodyfile="D:/pybox2d/Box2D/Common/b2Math.h" bodystart="632" bodyend="638"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>This describes the motion of a body/shape for TOI computation. Shapes are defined with respect to the body origin, which may no coincide with the center of mass. However, to support dynamics we must interpolate the center of mass position. </para>    </detaileddescription>
+    <collaborationgraph>
+      <node id="2078">
+        <label>b2Sweep</label>
+        <link refid="structb2_sweep"/>
+        <childnode refid="2079" relation="usage">
+          <edgelabel>c0</edgelabel>
+          <edgelabel>localCenter</edgelabel>
+          <edgelabel>c</edgelabel>
+        </childnode>
+      </node>
+      <node id="2079">
+        <label>b2Vec2</label>
+        <link refid="structb2_vec2"/>
+      </node>
+    </collaborationgraph>
+    <location file="D:/pybox2d/Box2D/Common/b2Math.h" line="365" bodyfile="D:/pybox2d/Box2D/Common/b2Math.h" bodystart="364" bodyend="384"/>
+    <listofallmembers>
+      <member refid="structb2_sweep_1afa96bacc91dd3c92ae716a45512332d6" prot="public" virt="non-virtual"><scope>b2Sweep</scope><name>a</name></member>
+      <member refid="structb2_sweep_1acf89c7d1223f8ab27501ff033aeac92b" prot="public" virt="non-virtual"><scope>b2Sweep</scope><name>a0</name></member>
+      <member refid="structb2_sweep_1a35eb9b976ca87c9b8d758bec070c6c06" prot="public" virt="non-virtual"><scope>b2Sweep</scope><name>Advance</name></member>
+      <member refid="structb2_sweep_1aa5f8ab90178b58bc0777096cbc6b91cf" prot="public" virt="non-virtual"><scope>b2Sweep</scope><name>alpha0</name></member>
+      <member refid="structb2_sweep_1a1b5402e01b92cc82473389fc6f0375c3" prot="public" virt="non-virtual"><scope>b2Sweep</scope><name>c</name></member>
+      <member refid="structb2_sweep_1a16dacd7188f3c7b2adef3242012587d8" prot="public" virt="non-virtual"><scope>b2Sweep</scope><name>c0</name></member>
+      <member refid="structb2_sweep_1a6a78abe0478c9752cd0166df6ec52b1e" prot="public" virt="non-virtual"><scope>b2Sweep</scope><name>GetTransform</name></member>
+      <member refid="structb2_sweep_1a4bcc302cf78771896d6256fc53f2f8be" prot="public" virt="non-virtual"><scope>b2Sweep</scope><name>localCenter</name></member>
+      <member refid="structb2_sweep_1ad66a3086bc7656df9cf7454013a2f61b" prot="public" virt="non-virtual"><scope>b2Sweep</scope><name>Normalize</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

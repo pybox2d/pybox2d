@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.7.2">
+  <compounddef id="structb2_distance_output" kind="struct" prot="public">
+    <compoundname>b2DistanceOutput</compoundname>
+    <includes local="no">b2Distance.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structb2_distance_output_1a7e0f1f44a64e596dc7d37570c69eefce" prot="public" static="no" mutable="no">
+        <type><ref refid="structb2_vec2" kindref="compound">b2Vec2</ref></type>
+        <definition>b2Vec2 b2DistanceOutput::pointA</definition>
+        <argsstring></argsstring>
+        <name>pointA</name>
+        <briefdescription>
+<para>closest point on shapeA </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Collision/b2Distance.h" line="80" bodyfile="D:/pybox2d/Box2D/Collision/b2Distance.h" bodystart="80" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structb2_distance_output_1aa85beca17337a506cd4a924d0c6f92cc" prot="public" static="no" mutable="no">
+        <type><ref refid="structb2_vec2" kindref="compound">b2Vec2</ref></type>
+        <definition>b2Vec2 b2DistanceOutput::pointB</definition>
+        <argsstring></argsstring>
+        <name>pointB</name>
+        <briefdescription>
+<para>closest point on shapeB </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Collision/b2Distance.h" line="81" bodyfile="D:/pybox2d/Box2D/Collision/b2Distance.h" bodystart="81" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structb2_distance_output_1ae67f480ff37d4ab732e6366f485c7f55" prot="public" static="no" mutable="no">
+        <type>float32</type>
+        <definition>float32 b2DistanceOutput::distance</definition>
+        <argsstring></argsstring>
+        <name>distance</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Collision/b2Distance.h" line="82" bodyfile="D:/pybox2d/Box2D/Collision/b2Distance.h" bodystart="82" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structb2_distance_output_1ae2d4c84dd3d05ea4f4d20c91099ec8d5" prot="public" static="no" mutable="no">
+        <type>int32</type>
+        <definition>int32 b2DistanceOutput::iterations</definition>
+        <argsstring></argsstring>
+        <name>iterations</name>
+        <briefdescription>
+<para>number of GJK iterations used </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Collision/b2Distance.h" line="83" bodyfile="D:/pybox2d/Box2D/Collision/b2Distance.h" bodystart="83" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Output for b2Distance. </para>    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1210">
+        <label>b2DistanceOutput</label>
+        <link refid="structb2_distance_output"/>
+        <childnode refid="1211" relation="usage">
+          <edgelabel>pointA</edgelabel>
+          <edgelabel>pointB</edgelabel>
+        </childnode>
+      </node>
+      <node id="1211">
+        <label>b2Vec2</label>
+        <link refid="structb2_vec2"/>
+      </node>
+    </collaborationgraph>
+    <location file="D:/pybox2d/Box2D/Collision/b2Distance.h" line="79" bodyfile="D:/pybox2d/Box2D/Collision/b2Distance.h" bodystart="78" bodyend="84"/>
+    <listofallmembers>
+      <member refid="structb2_distance_output_1ae67f480ff37d4ab732e6366f485c7f55" prot="public" virt="non-virtual"><scope>b2DistanceOutput</scope><name>distance</name></member>
+      <member refid="structb2_distance_output_1ae2d4c84dd3d05ea4f4d20c91099ec8d5" prot="public" virt="non-virtual"><scope>b2DistanceOutput</scope><name>iterations</name></member>
+      <member refid="structb2_distance_output_1a7e0f1f44a64e596dc7d37570c69eefce" prot="public" virt="non-virtual"><scope>b2DistanceOutput</scope><name>pointA</name></member>
+      <member refid="structb2_distance_output_1aa85beca17337a506cd4a924d0c6f92cc" prot="public" virt="non-virtual"><scope>b2DistanceOutput</scope><name>pointB</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

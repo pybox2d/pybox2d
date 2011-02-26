@@ -1,0 +1,711 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.7.2">
+  <compounddef id="classb2_distance_joint" kind="class" prot="public">
+    <compoundname>b2DistanceJoint</compoundname>
+    <basecompoundref refid="classb2_joint" prot="public" virt="non-virtual">b2Joint</basecompoundref>
+    <includes local="no">b2DistanceJoint.h</includes>
+      <sectiondef kind="friend">
+      <memberdef kind="friend" id="classb2_distance_joint_1a54ade8ed3d794298108d7f4c4e4793fa" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>friend class</type>
+        <definition>friend class b2Joint</definition>
+        <argsstring></argsstring>
+        <name>b2Joint</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2DistanceJoint.h" line="96" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2DistanceJoint.h" bodystart="96" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classb2_distance_joint_1a75f3cf1424a21a16f8ac98580429ffda" prot="protected" static="no" mutable="no">
+        <type><ref refid="structb2_vec2" kindref="compound">b2Vec2</ref></type>
+        <definition>b2Vec2 b2DistanceJoint::m_localAnchor1</definition>
+        <argsstring></argsstring>
+        <name>m_localAnchor1</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2DistanceJoint.h" line="103" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2DistanceJoint.h" bodystart="103" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_distance_joint_1aa748bb76c74a92567729f0121e7d6e4e" prot="protected" static="no" mutable="no">
+        <type><ref refid="structb2_vec2" kindref="compound">b2Vec2</ref></type>
+        <definition>b2Vec2 b2DistanceJoint::m_localAnchor2</definition>
+        <argsstring></argsstring>
+        <name>m_localAnchor2</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2DistanceJoint.h" line="104" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2DistanceJoint.h" bodystart="104" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_distance_joint_1a78f45f86d3cf68701a0871e9de71fcd0" prot="protected" static="no" mutable="no">
+        <type><ref refid="structb2_vec2" kindref="compound">b2Vec2</ref></type>
+        <definition>b2Vec2 b2DistanceJoint::m_u</definition>
+        <argsstring></argsstring>
+        <name>m_u</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2DistanceJoint.h" line="105" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2DistanceJoint.h" bodystart="105" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_distance_joint_1a90327211c322fa19ea7b8c58d0c27ea8" prot="protected" static="no" mutable="no">
+        <type>float32</type>
+        <definition>float32 b2DistanceJoint::m_frequencyHz</definition>
+        <argsstring></argsstring>
+        <name>m_frequencyHz</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2DistanceJoint.h" line="106" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2DistanceJoint.h" bodystart="106" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_distance_joint_1a1339d37474c5e66cd4f66d42e9440307" prot="protected" static="no" mutable="no">
+        <type>float32</type>
+        <definition>float32 b2DistanceJoint::m_dampingRatio</definition>
+        <argsstring></argsstring>
+        <name>m_dampingRatio</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2DistanceJoint.h" line="107" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2DistanceJoint.h" bodystart="107" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_distance_joint_1a0ca755fb59c838c59d0ad162af8ab484" prot="protected" static="no" mutable="no">
+        <type>float32</type>
+        <definition>float32 b2DistanceJoint::m_gamma</definition>
+        <argsstring></argsstring>
+        <name>m_gamma</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2DistanceJoint.h" line="108" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2DistanceJoint.h" bodystart="108" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_distance_joint_1a91f829c0a95e0d5f204a512a506e29f0" prot="protected" static="no" mutable="no">
+        <type>float32</type>
+        <definition>float32 b2DistanceJoint::m_bias</definition>
+        <argsstring></argsstring>
+        <name>m_bias</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2DistanceJoint.h" line="109" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2DistanceJoint.h" bodystart="109" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_distance_joint_1a75713391126d712f728d1a4f33b32a9f" prot="protected" static="no" mutable="no">
+        <type>float32</type>
+        <definition>float32 b2DistanceJoint::m_impulse</definition>
+        <argsstring></argsstring>
+        <name>m_impulse</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2DistanceJoint.h" line="110" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2DistanceJoint.h" bodystart="110" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_distance_joint_1aee25a31b1096e91b55a29731cf67d99d" prot="protected" static="no" mutable="no">
+        <type>float32</type>
+        <definition>float32 b2DistanceJoint::m_mass</definition>
+        <argsstring></argsstring>
+        <name>m_mass</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2DistanceJoint.h" line="111" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2DistanceJoint.h" bodystart="111" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_distance_joint_1a11b4805df34c380f53c3c346dd33da6c" prot="protected" static="no" mutable="no">
+        <type>float32</type>
+        <definition>float32 b2DistanceJoint::m_length</definition>
+        <argsstring></argsstring>
+        <name>m_length</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2DistanceJoint.h" line="112" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2DistanceJoint.h" bodystart="112" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classb2_distance_joint_1a66c1cb4deff1166c1dab67df6047a89c" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type><ref refid="structb2_vec2" kindref="compound">b2Vec2</ref></type>
+        <definition>b2Vec2 b2DistanceJoint::GetAnchorA</definition>
+        <argsstring>() const </argsstring>
+        <name>GetAnchorA</name>
+        <reimplements refid="classb2_joint_1abe46ca3aad5db73909a9b5a7b2117447">GetAnchorA</reimplements>
+        <briefdescription>
+<para>Get the anchor point on bodyA in world coordinates. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2DistanceJoint.h" line="70" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2DistanceJoint.cpp" bodystart="191" bodyend="194"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_distance_joint_1afc58d85cf7cc5e23082cf469e1a1a067" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type><ref refid="structb2_vec2" kindref="compound">b2Vec2</ref></type>
+        <definition>b2Vec2 b2DistanceJoint::GetAnchorB</definition>
+        <argsstring>() const </argsstring>
+        <name>GetAnchorB</name>
+        <reimplements refid="classb2_joint_1a88e947c65d4ea26fe539f02a8cb7f7a9">GetAnchorB</reimplements>
+        <briefdescription>
+<para>Get the anchor point on bodyB in world coordinates. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2DistanceJoint.h" line="71" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2DistanceJoint.cpp" bodystart="196" bodyend="199"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_distance_joint_1a99413cc114b2f4dc4ce7693c062ce226" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type><ref refid="structb2_vec2" kindref="compound">b2Vec2</ref></type>
+        <definition>b2Vec2 b2DistanceJoint::GetReactionForce</definition>
+        <argsstring>(float32 inv_dt) const </argsstring>
+        <name>GetReactionForce</name>
+        <reimplements refid="classb2_joint_1a7e0eddefb9b69ad050b8ef6425838a74">GetReactionForce</reimplements>
+        <param>
+          <type>float32</type>
+          <declname>inv_dt</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Get the reaction force given the inverse time step. Unit is N. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2DistanceJoint.h" line="75" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2DistanceJoint.cpp" bodystart="201" bodyend="205"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_distance_joint_1a8d65840abe0b398399020524852788fd" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>float32</type>
+        <definition>float32 b2DistanceJoint::GetReactionTorque</definition>
+        <argsstring>(float32 inv_dt) const </argsstring>
+        <name>GetReactionTorque</name>
+        <reimplements refid="classb2_joint_1ae355e441c2aa842777dc04e24f15ced0">GetReactionTorque</reimplements>
+        <param>
+          <type>float32</type>
+          <declname>inv_dt</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Get the reaction torque given the inverse time step. Unit is N*m. This is always zero for a distance joint. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2DistanceJoint.h" line="79" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2DistanceJoint.cpp" bodystart="207" bodyend="211"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_distance_joint_1a950a0f187ef691208e50de40ed9223fe" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void b2DistanceJoint::SetLength</definition>
+        <argsstring>(float32 length)</argsstring>
+        <name>SetLength</name>
+        <param>
+          <type>float32</type>
+          <declname>length</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Set/get the natural length. Manipulating the length can lead to non-physical behavior when the frequency is zero. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2DistanceJoint.h" line="83" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2DistanceJoint.h" bodystart="115" bodyend="118"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_distance_joint_1abd3c4bef772c179e4e1d39056335ddf8" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>float32</type>
+        <definition>float32 b2DistanceJoint::GetLength</definition>
+        <argsstring>() const </argsstring>
+        <name>GetLength</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2DistanceJoint.h" line="84" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2DistanceJoint.h" bodystart="120" bodyend="123"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_distance_joint_1a1a12446f8926a1324edd481d9cd28c8a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void b2DistanceJoint::SetFrequency</definition>
+        <argsstring>(float32 hz)</argsstring>
+        <name>SetFrequency</name>
+        <param>
+          <type>float32</type>
+          <declname>hz</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2DistanceJoint.h" line="87" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2DistanceJoint.h" bodystart="125" bodyend="128"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_distance_joint_1a7b50b34335055ac815d9a1a38ac318f0" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>float32</type>
+        <definition>float32 b2DistanceJoint::GetFrequency</definition>
+        <argsstring>() const </argsstring>
+        <name>GetFrequency</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2DistanceJoint.h" line="88" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2DistanceJoint.h" bodystart="130" bodyend="133"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_distance_joint_1a58da61301a1f1398a715107b76649923" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void b2DistanceJoint::SetDampingRatio</definition>
+        <argsstring>(float32 ratio)</argsstring>
+        <name>SetDampingRatio</name>
+        <param>
+          <type>float32</type>
+          <declname>ratio</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2DistanceJoint.h" line="91" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2DistanceJoint.h" bodystart="135" bodyend="138"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_distance_joint_1adb86c244721abd89abdd825bf17eb334" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>float32</type>
+        <definition>float32 b2DistanceJoint::GetDampingRatio</definition>
+        <argsstring>() const </argsstring>
+        <name>GetDampingRatio</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2DistanceJoint.h" line="92" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2DistanceJoint.h" bodystart="140" bodyend="143"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classb2_distance_joint_1ad2bb6de92a47868629a7397e23256454" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>b2DistanceJoint::b2DistanceJoint</definition>
+        <argsstring>(const b2DistanceJointDef *data)</argsstring>
+        <name>b2DistanceJoint</name>
+        <param>
+          <type>const <ref refid="structb2_distance_joint_def" kindref="compound">b2DistanceJointDef</ref> *</type>
+          <declname>data</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2DistanceJoint.h" line="97" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2DistanceJoint.cpp" bodystart="50" bodyend="61"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_distance_joint_1a84a8ab18c345aaad055952b4daf49d0c" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void b2DistanceJoint::InitVelocityConstraints</definition>
+        <argsstring>(const b2TimeStep &amp;step)</argsstring>
+        <name>InitVelocityConstraints</name>
+        <reimplements refid="classb2_joint_1aa28338c9b814ac08dac1cd3464f95c8e">InitVelocityConstraints</reimplements>
+        <param>
+          <type>const <ref refid="structb2_time_step" kindref="compound">b2TimeStep</ref> &amp;</type>
+          <declname>step</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2DistanceJoint.h" line="99" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2DistanceJoint.cpp" bodystart="63" bodyend="127"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_distance_joint_1ac46e6dec63249371b145da3093144e67" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void b2DistanceJoint::SolveVelocityConstraints</definition>
+        <argsstring>(const b2TimeStep &amp;step)</argsstring>
+        <name>SolveVelocityConstraints</name>
+        <reimplements refid="classb2_joint_1a34c667efb15706f9d3413336d8af93cb">SolveVelocityConstraints</reimplements>
+        <param>
+          <type>const <ref refid="structb2_time_step" kindref="compound">b2TimeStep</ref> &amp;</type>
+          <declname>step</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2DistanceJoint.h" line="100" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2DistanceJoint.cpp" bodystart="129" bodyend="152"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_distance_joint_1ae4cafc9789c59d84a4f034b462e32aaf" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>bool</type>
+        <definition>bool b2DistanceJoint::SolvePositionConstraints</definition>
+        <argsstring>(float32 baumgarte)</argsstring>
+        <name>SolvePositionConstraints</name>
+        <reimplements refid="classb2_joint_1aab43f57e4a2d352c93cc1f4bd0639f90">SolvePositionConstraints</reimplements>
+        <param>
+          <type>float32</type>
+          <declname>baumgarte</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2DistanceJoint.h" line="101" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2DistanceJoint.cpp" bodystart="154" bodyend="189"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>A distance joint constrains two points on two bodies to remain at a fixed distance from each other. You can view this as a massless, rigid rod. </para>    </detaileddescription>
+    <inheritancegraph>
+      <node id="1159">
+        <label>b2Joint</label>
+        <link refid="classb2_joint"/>
+      </node>
+      <node id="1158">
+        <label>b2DistanceJoint</label>
+        <link refid="classb2_distance_joint"/>
+        <childnode refid="1159" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1169">
+        <label>b2Contact</label>
+        <link refid="classb2_contact"/>
+        <childnode refid="1169" relation="usage">
+          <edgelabel>m_prev</edgelabel>
+          <edgelabel>m_next</edgelabel>
+        </childnode>
+        <childnode refid="1170" relation="usage">
+          <edgelabel>m_manifold</edgelabel>
+        </childnode>
+        <childnode refid="1174" relation="usage">
+          <edgelabel>m_fixtureA</edgelabel>
+          <edgelabel>m_fixtureB</edgelabel>
+        </childnode>
+        <childnode refid="1168" relation="usage">
+          <edgelabel>m_nodeA</edgelabel>
+          <edgelabel>m_nodeB</edgelabel>
+        </childnode>
+      </node>
+      <node id="1162">
+        <label>b2Body</label>
+        <link refid="classb2_body"/>
+        <childnode refid="1162" relation="usage">
+          <edgelabel>m_prev</edgelabel>
+          <edgelabel>m_next</edgelabel>
+        </childnode>
+        <childnode refid="1163" relation="usage">
+          <edgelabel>m_jointList</edgelabel>
+        </childnode>
+        <childnode refid="1164" relation="usage">
+          <edgelabel>m_linearVelocity</edgelabel>
+          <edgelabel>m_force</edgelabel>
+        </childnode>
+        <childnode refid="1165" relation="usage">
+          <edgelabel>m_sweep</edgelabel>
+        </childnode>
+        <childnode refid="1166" relation="usage">
+          <edgelabel>m_xf</edgelabel>
+        </childnode>
+        <childnode refid="1168" relation="usage">
+          <edgelabel>m_contactList</edgelabel>
+        </childnode>
+        <childnode refid="1174" relation="usage">
+          <edgelabel>m_fixtureList</edgelabel>
+        </childnode>
+        <childnode refid="1179" relation="usage">
+          <edgelabel>m_world</edgelabel>
+        </childnode>
+      </node>
+      <node id="1173">
+        <label>b2ContactFeature</label>
+        <link refid="structb2_contact_feature"/>
+      </node>
+      <node id="1168">
+        <label>b2ContactEdge</label>
+        <link refid="structb2_contact_edge"/>
+        <childnode refid="1162" relation="usage">
+          <edgelabel>other</edgelabel>
+        </childnode>
+        <childnode refid="1169" relation="usage">
+          <edgelabel>contact</edgelabel>
+        </childnode>
+        <childnode refid="1168" relation="usage">
+          <edgelabel>prev</edgelabel>
+          <edgelabel>next</edgelabel>
+        </childnode>
+      </node>
+      <node id="1170">
+        <label>b2Manifold</label>
+        <link refid="structb2_manifold"/>
+        <childnode refid="1164" relation="usage">
+          <edgelabel>localPoint</edgelabel>
+          <edgelabel>localNormal</edgelabel>
+        </childnode>
+        <childnode refid="1171" relation="usage">
+          <edgelabel>points</edgelabel>
+        </childnode>
+      </node>
+      <node id="1181">
+        <label>b2BlockAllocator</label>
+        <link refid="classb2_block_allocator"/>
+      </node>
+      <node id="1182">
+        <label>b2DestructionListener</label>
+        <link refid="classb2_destruction_listener"/>
+      </node>
+      <node id="1179">
+        <label>b2World</label>
+        <link refid="classb2_world"/>
+        <childnode refid="1162" relation="usage">
+          <edgelabel>m_bodyList</edgelabel>
+        </childnode>
+        <childnode refid="1180" relation="usage">
+          <edgelabel>m_debugDraw</edgelabel>
+        </childnode>
+        <childnode refid="1164" relation="usage">
+          <edgelabel>m_gravity</edgelabel>
+        </childnode>
+        <childnode refid="1181" relation="usage">
+          <edgelabel>m_blockAllocator</edgelabel>
+        </childnode>
+        <childnode refid="1182" relation="usage">
+          <edgelabel>m_destructionListener</edgelabel>
+        </childnode>
+        <childnode refid="1161" relation="usage">
+          <edgelabel>m_jointList</edgelabel>
+        </childnode>
+      </node>
+      <node id="1175">
+        <label>b2FixtureProxy</label>
+        <link refid="structb2_fixture_proxy"/>
+        <childnode refid="1176" relation="usage">
+          <edgelabel>aabb</edgelabel>
+        </childnode>
+        <childnode refid="1174" relation="usage">
+          <edgelabel>fixture</edgelabel>
+        </childnode>
+      </node>
+      <node id="1167">
+        <label>b2Mat22</label>
+        <link refid="structb2_mat22"/>
+        <childnode refid="1164" relation="usage">
+          <edgelabel>col1</edgelabel>
+          <edgelabel>col2</edgelabel>
+        </childnode>
+      </node>
+      <node id="1165">
+        <label>b2Sweep</label>
+        <link refid="structb2_sweep"/>
+        <childnode refid="1164" relation="usage">
+          <edgelabel>c0</edgelabel>
+          <edgelabel>localCenter</edgelabel>
+          <edgelabel>c</edgelabel>
+        </childnode>
+      </node>
+      <node id="1166">
+        <label>b2Transform</label>
+        <link refid="structb2_transform"/>
+        <childnode refid="1164" relation="usage">
+          <edgelabel>position</edgelabel>
+        </childnode>
+        <childnode refid="1167" relation="usage">
+          <edgelabel>R</edgelabel>
+        </childnode>
+      </node>
+      <node id="1180">
+        <label>b2DebugDraw</label>
+        <link refid="classb2_debug_draw"/>
+      </node>
+      <node id="1178">
+        <label>b2Filter</label>
+        <link refid="structb2_filter"/>
+      </node>
+      <node id="1163">
+        <label>b2JointEdge</label>
+        <link refid="structb2_joint_edge"/>
+        <childnode refid="1162" relation="usage">
+          <edgelabel>other</edgelabel>
+        </childnode>
+        <childnode refid="1163" relation="usage">
+          <edgelabel>prev</edgelabel>
+          <edgelabel>next</edgelabel>
+        </childnode>
+        <childnode refid="1161" relation="usage">
+          <edgelabel>joint</edgelabel>
+        </childnode>
+      </node>
+      <node id="1161">
+        <label>b2Joint</label>
+        <link refid="classb2_joint"/>
+        <childnode refid="1162" relation="usage">
+          <edgelabel>m_bodyA</edgelabel>
+          <edgelabel>m_bodyB</edgelabel>
+        </childnode>
+        <childnode refid="1164" relation="usage">
+          <edgelabel>m_localCenterA</edgelabel>
+          <edgelabel>m_localCenterB</edgelabel>
+        </childnode>
+        <childnode refid="1163" relation="usage">
+          <edgelabel>m_edgeB</edgelabel>
+          <edgelabel>m_edgeA</edgelabel>
+        </childnode>
+        <childnode refid="1161" relation="usage">
+          <edgelabel>m_prev</edgelabel>
+          <edgelabel>m_next</edgelabel>
+        </childnode>
+      </node>
+      <node id="1160">
+        <label>b2DistanceJoint</label>
+        <link refid="classb2_distance_joint"/>
+        <childnode refid="1161" relation="public-inheritance">
+        </childnode>
+        <childnode refid="1164" relation="usage">
+          <edgelabel>m_localAnchor1</edgelabel>
+          <edgelabel>m_localAnchor2</edgelabel>
+          <edgelabel>m_u</edgelabel>
+        </childnode>
+      </node>
+      <node id="1164">
+        <label>b2Vec2</label>
+        <link refid="structb2_vec2"/>
+      </node>
+      <node id="1172">
+        <label>b2ContactID</label>
+        <link refid="unionb2_contact_i_d"/>
+        <childnode refid="1173" relation="usage">
+          <edgelabel>cf</edgelabel>
+        </childnode>
+      </node>
+      <node id="1177">
+        <label>b2Shape</label>
+        <link refid="classb2_shape"/>
+      </node>
+      <node id="1176">
+        <label>b2AABB</label>
+        <link refid="structb2_a_a_b_b"/>
+        <childnode refid="1164" relation="usage">
+          <edgelabel>lowerBound</edgelabel>
+          <edgelabel>upperBound</edgelabel>
+        </childnode>
+      </node>
+      <node id="1174">
+        <label>b2Fixture</label>
+        <link refid="classb2_fixture"/>
+        <childnode refid="1162" relation="usage">
+          <edgelabel>m_body</edgelabel>
+        </childnode>
+        <childnode refid="1175" relation="usage">
+          <edgelabel>m_proxies</edgelabel>
+        </childnode>
+        <childnode refid="1177" relation="usage">
+          <edgelabel>m_shape</edgelabel>
+        </childnode>
+        <childnode refid="1178" relation="usage">
+          <edgelabel>m_filter</edgelabel>
+        </childnode>
+        <childnode refid="1174" relation="usage">
+          <edgelabel>m_next</edgelabel>
+        </childnode>
+      </node>
+      <node id="1171">
+        <label>b2ManifoldPoint</label>
+        <link refid="structb2_manifold_point"/>
+        <childnode refid="1164" relation="usage">
+          <edgelabel>localPoint</edgelabel>
+        </childnode>
+        <childnode refid="1172" relation="usage">
+          <edgelabel>id</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2DistanceJoint.h" line="67" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2DistanceJoint.h" bodystart="66" bodyend="113"/>
+    <listofallmembers>
+      <member refid="classb2_joint_1a010ab52de250e5fe30a45d642f46405b" prot="protected" virt="non-virtual"><scope>b2DistanceJoint</scope><name>b2Body</name></member>
+      <member refid="classb2_distance_joint_1ad2bb6de92a47868629a7397e23256454" prot="protected" virt="non-virtual"><scope>b2DistanceJoint</scope><name>b2DistanceJoint</name></member>
+      <member refid="classb2_joint_1afc682950b8c4f251804fc1938663098b" prot="protected" virt="non-virtual"><scope>b2DistanceJoint</scope><name>b2Island</name></member>
+      <member refid="classb2_distance_joint_1a54ade8ed3d794298108d7f4c4e4793fa" prot="protected" virt="non-virtual"><scope>b2DistanceJoint</scope><name>b2Joint</name></member>
+      <member refid="classb2_joint_1a8d6cce91546335fe95325d5e29c06a19" prot="protected" virt="non-virtual" ambiguityscope="b2Joint::"><scope>b2DistanceJoint</scope><name>b2Joint</name></member>
+      <member refid="classb2_joint_1a4bd536c5a7c0587913765bbc2693ceea" prot="protected" virt="non-virtual"><scope>b2DistanceJoint</scope><name>b2World</name></member>
+      <member refid="classb2_joint_1a2e500c93107d0bf6b0a21654528faeab" prot="protected" virt="non-virtual"><scope>b2DistanceJoint</scope><name>Create</name></member>
+      <member refid="classb2_joint_1acf52946b6672d77f268b849ccb09e003" prot="protected" virt="non-virtual"><scope>b2DistanceJoint</scope><name>Destroy</name></member>
+      <member refid="classb2_distance_joint_1a66c1cb4deff1166c1dab67df6047a89c" prot="public" virt="virtual"><scope>b2DistanceJoint</scope><name>GetAnchorA</name></member>
+      <member refid="classb2_distance_joint_1afc58d85cf7cc5e23082cf469e1a1a067" prot="public" virt="virtual"><scope>b2DistanceJoint</scope><name>GetAnchorB</name></member>
+      <member refid="classb2_joint_1a2ed5eca3dbdce48665c14452b280613f" prot="public" virt="non-virtual"><scope>b2DistanceJoint</scope><name>GetBodyA</name></member>
+      <member refid="classb2_joint_1a700b3d4c87f34f456151b9598e4641a0" prot="public" virt="non-virtual"><scope>b2DistanceJoint</scope><name>GetBodyB</name></member>
+      <member refid="classb2_distance_joint_1adb86c244721abd89abdd825bf17eb334" prot="public" virt="non-virtual"><scope>b2DistanceJoint</scope><name>GetDampingRatio</name></member>
+      <member refid="classb2_distance_joint_1a7b50b34335055ac815d9a1a38ac318f0" prot="public" virt="non-virtual"><scope>b2DistanceJoint</scope><name>GetFrequency</name></member>
+      <member refid="classb2_distance_joint_1abd3c4bef772c179e4e1d39056335ddf8" prot="public" virt="non-virtual"><scope>b2DistanceJoint</scope><name>GetLength</name></member>
+      <member refid="classb2_joint_1a1a0e2137b631010750c728cb4e276e5d" prot="public" virt="non-virtual"><scope>b2DistanceJoint</scope><name>GetNext</name></member>
+      <member refid="classb2_joint_1a1ac83edb39806085608c9d549dd98550" prot="public" virt="non-virtual"><scope>b2DistanceJoint</scope><name>GetNext</name></member>
+      <member refid="classb2_distance_joint_1a99413cc114b2f4dc4ce7693c062ce226" prot="public" virt="virtual"><scope>b2DistanceJoint</scope><name>GetReactionForce</name></member>
+      <member refid="classb2_distance_joint_1a8d65840abe0b398399020524852788fd" prot="public" virt="virtual"><scope>b2DistanceJoint</scope><name>GetReactionTorque</name></member>
+      <member refid="classb2_joint_1a37a2ca3f0d41c6903d2cc73757f02be2" prot="public" virt="non-virtual"><scope>b2DistanceJoint</scope><name>GetType</name></member>
+      <member refid="classb2_joint_1a505ab02c234f1cc20aa3375f3ab7b587" prot="public" virt="non-virtual"><scope>b2DistanceJoint</scope><name>GetUserData</name></member>
+      <member refid="classb2_distance_joint_1a84a8ab18c345aaad055952b4daf49d0c" prot="protected" virt="virtual"><scope>b2DistanceJoint</scope><name>InitVelocityConstraints</name></member>
+      <member refid="classb2_joint_1a825d3a6abb32014f31fd622f2bfc0363" prot="public" virt="non-virtual"><scope>b2DistanceJoint</scope><name>IsActive</name></member>
+      <member refid="classb2_distance_joint_1a91f829c0a95e0d5f204a512a506e29f0" prot="protected" virt="non-virtual"><scope>b2DistanceJoint</scope><name>m_bias</name></member>
+      <member refid="classb2_joint_1abaebb784a51abb7d66de302ba07a4467" prot="protected" virt="non-virtual"><scope>b2DistanceJoint</scope><name>m_bodyA</name></member>
+      <member refid="classb2_joint_1a1fd77fcbcb8a8a3729c7dc5b790d7200" prot="protected" virt="non-virtual"><scope>b2DistanceJoint</scope><name>m_bodyB</name></member>
+      <member refid="classb2_joint_1ac1a93c14c8dd666bb487db6c98daad33" prot="protected" virt="non-virtual"><scope>b2DistanceJoint</scope><name>m_collideConnected</name></member>
+      <member refid="classb2_distance_joint_1a1339d37474c5e66cd4f66d42e9440307" prot="protected" virt="non-virtual"><scope>b2DistanceJoint</scope><name>m_dampingRatio</name></member>
+      <member refid="classb2_joint_1a406ea423db1fe6484408d73df647f7b2" prot="protected" virt="non-virtual"><scope>b2DistanceJoint</scope><name>m_edgeA</name></member>
+      <member refid="classb2_joint_1a1041219dcd353ea815ebd78f904af547" prot="protected" virt="non-virtual"><scope>b2DistanceJoint</scope><name>m_edgeB</name></member>
+      <member refid="classb2_distance_joint_1a90327211c322fa19ea7b8c58d0c27ea8" prot="protected" virt="non-virtual"><scope>b2DistanceJoint</scope><name>m_frequencyHz</name></member>
+      <member refid="classb2_distance_joint_1a0ca755fb59c838c59d0ad162af8ab484" prot="protected" virt="non-virtual"><scope>b2DistanceJoint</scope><name>m_gamma</name></member>
+      <member refid="classb2_distance_joint_1a75713391126d712f728d1a4f33b32a9f" prot="protected" virt="non-virtual"><scope>b2DistanceJoint</scope><name>m_impulse</name></member>
+      <member refid="classb2_joint_1a346a821b249dc84799f450cf936f7c3c" prot="protected" virt="non-virtual"><scope>b2DistanceJoint</scope><name>m_invIA</name></member>
+      <member refid="classb2_joint_1a8f40b92ac3e39a96c717595dbb44d15b" prot="protected" virt="non-virtual"><scope>b2DistanceJoint</scope><name>m_invIB</name></member>
+      <member refid="classb2_joint_1ad7c87d31bd96e0c783105bfed10dc8a2" prot="protected" virt="non-virtual"><scope>b2DistanceJoint</scope><name>m_invMassA</name></member>
+      <member refid="classb2_joint_1a6cb90224d27cff346fba95794cd140c5" prot="protected" virt="non-virtual"><scope>b2DistanceJoint</scope><name>m_invMassB</name></member>
+      <member refid="classb2_joint_1a777e45428d9a74d626f4afa1b45e1975" prot="protected" virt="non-virtual"><scope>b2DistanceJoint</scope><name>m_islandFlag</name></member>
+      <member refid="classb2_distance_joint_1a11b4805df34c380f53c3c346dd33da6c" prot="protected" virt="non-virtual"><scope>b2DistanceJoint</scope><name>m_length</name></member>
+      <member refid="classb2_distance_joint_1a75f3cf1424a21a16f8ac98580429ffda" prot="protected" virt="non-virtual"><scope>b2DistanceJoint</scope><name>m_localAnchor1</name></member>
+      <member refid="classb2_distance_joint_1aa748bb76c74a92567729f0121e7d6e4e" prot="protected" virt="non-virtual"><scope>b2DistanceJoint</scope><name>m_localAnchor2</name></member>
+      <member refid="classb2_joint_1ae3fc5cef379493406f69a198062d79cf" prot="protected" virt="non-virtual"><scope>b2DistanceJoint</scope><name>m_localCenterA</name></member>
+      <member refid="classb2_joint_1afe3a98a639dc6ac686a74701f7a34c5c" prot="protected" virt="non-virtual"><scope>b2DistanceJoint</scope><name>m_localCenterB</name></member>
+      <member refid="classb2_distance_joint_1aee25a31b1096e91b55a29731cf67d99d" prot="protected" virt="non-virtual"><scope>b2DistanceJoint</scope><name>m_mass</name></member>
+      <member refid="classb2_joint_1aad16778ba9c51cebb767ff7df6ed80b5" prot="protected" virt="non-virtual"><scope>b2DistanceJoint</scope><name>m_next</name></member>
+      <member refid="classb2_joint_1a940166e7b5d87cec1ad0603e0388854a" prot="protected" virt="non-virtual"><scope>b2DistanceJoint</scope><name>m_prev</name></member>
+      <member refid="classb2_joint_1a3fd3f2532d108d81df81427815210a59" prot="protected" virt="non-virtual"><scope>b2DistanceJoint</scope><name>m_type</name></member>
+      <member refid="classb2_distance_joint_1a78f45f86d3cf68701a0871e9de71fcd0" prot="protected" virt="non-virtual"><scope>b2DistanceJoint</scope><name>m_u</name></member>
+      <member refid="classb2_joint_1ae8a31b6d5d6e76ccf7c975b2b3ae7366" prot="protected" virt="non-virtual"><scope>b2DistanceJoint</scope><name>m_userData</name></member>
+      <member refid="classb2_distance_joint_1a58da61301a1f1398a715107b76649923" prot="public" virt="non-virtual"><scope>b2DistanceJoint</scope><name>SetDampingRatio</name></member>
+      <member refid="classb2_distance_joint_1a1a12446f8926a1324edd481d9cd28c8a" prot="public" virt="non-virtual"><scope>b2DistanceJoint</scope><name>SetFrequency</name></member>
+      <member refid="classb2_distance_joint_1a950a0f187ef691208e50de40ed9223fe" prot="public" virt="non-virtual"><scope>b2DistanceJoint</scope><name>SetLength</name></member>
+      <member refid="classb2_joint_1a492f2d02496437572aaec6013ebdc1c8" prot="public" virt="non-virtual"><scope>b2DistanceJoint</scope><name>SetUserData</name></member>
+      <member refid="classb2_distance_joint_1ae4cafc9789c59d84a4f034b462e32aaf" prot="protected" virt="virtual"><scope>b2DistanceJoint</scope><name>SolvePositionConstraints</name></member>
+      <member refid="classb2_distance_joint_1ac46e6dec63249371b145da3093144e67" prot="protected" virt="virtual"><scope>b2DistanceJoint</scope><name>SolveVelocityConstraints</name></member>
+      <member refid="classb2_joint_1ab44cde7b81c3e77540400e0da90d6ceb" prot="protected" virt="virtual"><scope>b2DistanceJoint</scope><name>~b2Joint</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

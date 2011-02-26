@@ -1,0 +1,620 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Box2D.Box2D.b2Mat22</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="Box2D.Box2D-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="http://code.google.com/p/pybox2d">pybox2d</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        Package&nbsp;Box2D ::
+        <a href="Box2D.Box2D-module.html">Module&nbsp;Box2D</a> ::
+        Class&nbsp;b2Mat22
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- ==================== CLASS DESCRIPTION ==================== -->
+<h1 class="epydoc">Class b2Mat22</h1><p class="nomargin-top"><span class="codelink"><a href="Box2D.Box2D-pysrc.html#b2Mat22">source&nbsp;code</a></span></p>
+<center>
+<center>  <map id="uml_class_diagram_for_box2d_bo_45" name="uml_class_diagram_for_box2d_bo_45">
+<area shape="rect" id="node77" href="Box2D.Box2D.b2Mat22-class.html#angle" title="__GetAngle(self) &#45;&gt; float32" alt="" coords="17,31,137,49"/>
+<area shape="rect" id="node77" href="Box2D.Box2D.b2Mat22-class.html#col1" title="b2Mat22_col1_get(b2Mat22 self) &#45;&gt; b2Vec2" alt="" coords="17,49,137,68"/>
+<area shape="rect" id="node77" href="Box2D.Box2D.b2Mat22-class.html#col2" title="b2Mat22_col2_get(b2Mat22 self) &#45;&gt; b2Vec2" alt="" coords="17,68,137,87"/>
+<area shape="rect" id="node77" href="Box2D.Box2D.b2Mat22-class.html#inverse" title="__GetInverse(self) &#45;&gt; b2Mat22" alt="" coords="17,87,137,105"/>
+<area shape="rect" id="node77" href="Box2D.Box2D.b2Mat22-class.html#SetIdentity" title="b2Mat22_SetIdentity(b2Mat22 self)" alt="" coords="17,108,137,127"/>
+<area shape="rect" id="node77" href="Box2D.Box2D.b2Mat22-class.html#SetZero" title="b2Mat22_SetZero(b2Mat22 self)" alt="" coords="17,127,137,145"/>
+<area shape="rect" id="node77" href="Box2D.Box2D.b2Mat22-class.html#Solve" title="b2Mat22_Solve(b2Mat22 self, b2Vec2 b) &#45;&gt; b2Vec2" alt="" coords="17,145,137,164"/>
+<area shape="rect" id="node77" href="Box2D.Box2D.b2Mat22-class.html#__add__" title="b2Mat22___add__(b2Mat22 self, b2Mat22 m) &#45;&gt; b2Mat22" alt="" coords="17,164,137,183"/>
+<area shape="rect" id="node77" href="Box2D.Box2D.b2Mat22-class.html#__dir__" title="Box2D.Box2D.b2Mat22.__dir__" alt="" coords="17,183,137,201"/>
+<area shape="rect" id="node77" href="Box2D.Box2D.b2Mat22-class.html#__init__" title="__init__(self, b2Vec2 c1, b2Vec2 c2) &#45;&gt; b2Mat22 __init__(self, float32 a11, float32 a12, float32 a21, float32 a22) &#45;&gt; b2Mat22 __init__(self, float32 &#160;angle) &#45;&gt; b2Mat22" alt="" coords="17,201,137,220"/>
+<area shape="rect" id="node77" href="Box2D.Box2D.b2Mat22-class.html#__mul__" title="__mul__(b2Vec2 v) &#45;&gt; b2Vec2 b2Mat22___mul__(b2Mat22 self, b2Mat22 m) &#45;&gt; &#160;b2Mat22" alt="" coords="17,220,137,239"/>
+<area shape="rect" id="node77" href="Box2D.Box2D.b2Mat22-class.html#__repr__" title="repr(x)" alt="" coords="17,239,137,257"/>
+<area shape="rect" id="node77" href="Box2D.Box2D.b2Mat22-class.html#__sub__" title="b2Mat22___sub__(b2Mat22 self, b2Mat22 m) &#45;&gt; b2Mat22" alt="" coords="17,257,137,276"/>
+<area shape="rect" id="node77" href="Box2D.Box2D.b2Mat22-class.html#__swig_destroy__" title="delete_b2Mat22(b2Mat22 self)" alt="" coords="17,276,137,295"/>
+<area shape="rect" id="node77" href="Box2D.Box2D.b2Mat22-class.html#set" title="set(b2Vec2 c1, b2Vec2 c2) b2Mat22_set(b2Mat22 self, float32 angle)" alt="" coords="17,295,137,313"/>
+<area shape="rect" id="node1" href="Box2D.Box2D.b2Mat22-class.html" title="A 2&#45;by&#45;2 matrix." alt="" coords="5,6,149,319"/>
+</map>
+  <img src="uml_class_diagram_for_box2d_bo_45.gif" alt='' usemap="#uml_class_diagram_for_box2d_bo_45" ismap="ismap" class="graph-without-title" />
+</center>
+</center>
+<hr />
+<p>A 2-by-2 matrix. Stored in column-major order.</p>
+
+<!-- ==================== INSTANCE METHODS ==================== -->
+<a name="section-InstanceMethods"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td align="left" colspan="2" class="table-header">
+    <span class="table-header">Instance Methods</span></td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="Box2D.Box2D.b2Mat22-class.html#SetIdentity" class="summary-sig-name">SetIdentity</a>(<span class="summary-sig-arg">...</span>)</span><br />
+      b2Mat22_SetIdentity(b2Mat22 self)</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="Box2D.Box2D-pysrc.html#b2Mat22.SetIdentity">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="Box2D.Box2D.b2Mat22-class.html#SetZero" class="summary-sig-name">SetZero</a>(<span class="summary-sig-arg">...</span>)</span><br />
+      b2Mat22_SetZero(b2Mat22 self)</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="Box2D.Box2D-pysrc.html#b2Mat22.SetZero">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="Box2D.Box2D.b2Mat22-class.html#Solve" class="summary-sig-name">Solve</a>(<span class="summary-sig-arg">...</span>)</span><br />
+      b2Mat22_Solve(b2Mat22 self, b2Vec2 b) -&gt; b2Vec2</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="Box2D.Box2D-pysrc.html#b2Mat22.Solve">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="__add__"></a><span class="summary-sig-name">__add__</span>(<span class="summary-sig-arg">...</span>)</span><br />
+      b2Mat22___add__(b2Mat22 self, b2Mat22 m) -&gt; b2Mat22</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="Box2D.Box2D-pysrc.html#b2Mat22.__add__">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="__dir__"></a><span class="summary-sig-name">__dir__</span>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="Box2D.Box2D-pysrc.html#_dir_filter">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">b2Mat22</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="Box2D.Box2D.b2Mat22-class.html#__init__" class="summary-sig-name">__init__</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      __init__(self, b2Vec2 c1, b2Vec2 c2) -&gt; b2Mat22 __init__(self, 
+      float32 a11, float32 a12, float32 a21, float32 a22) -&gt; b2Mat22 
+      __init__(self, float32 angle) -&gt; b2Mat22</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="Box2D.Box2D-pysrc.html#b2Mat22.__init__">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="__mul__"></a><span class="summary-sig-name">__mul__</span>(<span class="summary-sig-arg">...</span>)</span><br />
+      __mul__(b2Vec2 v) -&gt; b2Vec2 b2Mat22___mul__(b2Mat22 self, b2Mat22 
+      m) -&gt; b2Mat22</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="Box2D.Box2D-pysrc.html#b2Mat22.__mul__">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="Box2D.Box2D.b2Mat22-class.html#__repr__" class="summary-sig-name">__repr__</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      repr(x)</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="Box2D.Box2D-pysrc.html#b2Mat22.__repr__">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="__sub__"></a><span class="summary-sig-name">__sub__</span>(<span class="summary-sig-arg">...</span>)</span><br />
+      b2Mat22___sub__(b2Mat22 self, b2Mat22 m) -&gt; b2Mat22</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="Box2D.Box2D-pysrc.html#b2Mat22.__sub__">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="__swig_destroy__"></a><span class="summary-sig-name">__swig_destroy__</span>(<span class="summary-sig-arg">...</span>)</span><br />
+      delete_b2Mat22(b2Mat22 self)</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="Box2D.Box2D.b2Mat22-class.html#set" class="summary-sig-name">set</a>(<span class="summary-sig-arg">...</span>)</span><br />
+      set(b2Vec2 c1, b2Vec2 c2) b2Mat22_set(b2Mat22 self, float32 angle)</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="Box2D.Box2D-pysrc.html#b2Mat22.set">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code>object</code></b>:
+      <code>__delattr__</code>,
+      <code>__format__</code>,
+      <code>__getattribute__</code>,
+      <code>__hash__</code>,
+      <code>__new__</code>,
+      <code>__reduce__</code>,
+      <code>__reduce_ex__</code>,
+      <code>__setattr__</code>,
+      <code>__sizeof__</code>,
+      <code>__str__</code>,
+      <code>__subclasshook__</code>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== PROPERTIES ==================== -->
+<a name="section-Properties"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td align="left" colspan="2" class="table-header">
+    <span class="table-header">Properties</span></td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="Box2D.Box2D.b2Mat22-class.html#angle" class="summary-name">angle</a><br />
+      __GetAngle(self) -&gt; float32
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="Box2D.Box2D.b2Mat22-class.html#col1" class="summary-name">col1</a><br />
+      b2Mat22_col1_get(b2Mat22 self) -&gt; b2Vec2
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="Box2D.Box2D.b2Mat22-class.html#col2" class="summary-name">col2</a><br />
+      b2Mat22_col2_get(b2Mat22 self) -&gt; b2Vec2
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="Box2D.Box2D.b2Mat22-class.html#inverse" class="summary-name">inverse</a><br />
+      __GetInverse(self) -&gt; b2Mat22
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code>object</code></b>:
+      <code>__class__</code>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== METHOD DETAILS ==================== -->
+<a name="section-MethodDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td align="left" colspan="2" class="table-header">
+    <span class="table-header">Method Details</span></td>
+</tr>
+</table>
+<a name="SetIdentity"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">SetIdentity</span>(<span class="sig-arg">...</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="Box2D.Box2D-pysrc.html#b2Mat22.SetIdentity">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>b2Mat22_SetIdentity(b2Mat22 self)</p>
+  <p>Set this to the identity matrix.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="SetZero"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">SetZero</span>(<span class="sig-arg">...</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="Box2D.Box2D-pysrc.html#b2Mat22.SetZero">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>b2Mat22_SetZero(b2Mat22 self)</p>
+  <p>Set this matrix to all zeros.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="Solve"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">Solve</span>(<span class="sig-arg">...</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="Box2D.Box2D-pysrc.html#b2Mat22.Solve">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>b2Mat22_Solve(b2Mat22 self, b2Vec2 b) -&gt; b2Vec2</p>
+  <p>Solve A * x = b, where b is a column vector. This is more efficient 
+  than computing the inverse in one-shot cases.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="__init__"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">__init__</span>(<span class="sig-arg">self</span>)</span>
+    <br /><em class="fname">(Constructor)</em>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="Box2D.Box2D-pysrc.html#b2Mat22.__init__">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>__init__(self, b2Vec2 c1, b2Vec2 c2) -&gt; b2Mat22 __init__(self, 
+  float32 a11, float32 a12, float32 a21, float32 a22) -&gt; b2Mat22 
+  __init__(self, float32 angle) -&gt; b2Mat22</p>
+  <p>Construct this matrix using an angle. This matrix becomes an 
+  orthonormal rotation matrix.</p>
+  <dl class="fields">
+    <dt>Returns: b2Mat22</dt>
+    <dt>Overrides:
+        object.__init__
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="__repr__"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">__repr__</span>(<span class="sig-arg">self</span>)</span>
+    <br /><em class="fname">(Representation operator)</em>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="Box2D.Box2D-pysrc.html#b2Mat22.__repr__">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>repr(x)</p>
+  <dl class="fields">
+    <dt>Overrides:
+        object.__repr__
+        <dd><em class="note">(inherited documentation)</em></dd>
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="set"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">set</span>(<span class="sig-arg">...</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="Box2D.Box2D-pysrc.html#b2Mat22.set">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>set(b2Vec2 c1, b2Vec2 c2) b2Mat22_set(b2Mat22 self, float32 angle)</p>
+  <p>Initialize this matrix using an angle. This matrix becomes an 
+  orthonormal rotation matrix.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== PROPERTY DETAILS ==================== -->
+<a name="section-PropertyDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td align="left" colspan="2" class="table-header">
+    <span class="table-header">Property Details</span></td>
+</tr>
+</table>
+<a name="angle"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">angle</h3>
+  <p>__GetAngle(self) -&gt; float32</p>
+  <p>Extract the angle from this matrix (assumed to be a rotation 
+  matrix).</p>
+  <dl class="fields">
+    <dt>Get Method:</dt>
+    <dd class="value"><span class="summary-sig"><a href="Box2D.Box2D.b2Mat22-class.html#__GetAngle" class="summary-sig-name" onclick="show_private();">__GetAngle</a>(<span class="summary-sig-arg">self</span>)</span>
+        - Extract the angle from this matrix (assumed to be a rotation matrix).
+    </dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="col1"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">col1</h3>
+  <p>b2Mat22_col1_get(b2Mat22 self) -&gt; b2Vec2</p>
+  <dl class="fields">
+    <dt>Get Method:</dt>
+    <dd class="value"><span class="summary-sig"><i>unreachable</i>.b2Mat22_col1_get(<span class="summary-sig-arg">...</span>)</span>
+        - b2Mat22_col1_get(b2Mat22 self) -&gt; b2Vec2
+    </dd>
+    <dt>Set Method:</dt>
+    <dd class="value"><span class="summary-sig"><i>unreachable</i>.b2Mat22_col1_set(<span class="summary-sig-arg">...</span>)</span>
+        - b2Mat22_col1_set(b2Mat22 self, b2Vec2 col1)
+    </dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="col2"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">col2</h3>
+  <p>b2Mat22_col2_get(b2Mat22 self) -&gt; b2Vec2</p>
+  <dl class="fields">
+    <dt>Get Method:</dt>
+    <dd class="value"><span class="summary-sig"><i>unreachable</i>.b2Mat22_col2_get(<span class="summary-sig-arg">...</span>)</span>
+        - b2Mat22_col2_get(b2Mat22 self) -&gt; b2Vec2
+    </dd>
+    <dt>Set Method:</dt>
+    <dd class="value"><span class="summary-sig"><i>unreachable</i>.b2Mat22_col2_set(<span class="summary-sig-arg">...</span>)</span>
+        - b2Mat22_col2_set(b2Mat22 self, b2Vec2 col2)
+    </dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="inverse"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">inverse</h3>
+  <p>__GetInverse(self) -&gt; b2Mat22</p>
+  <dl class="fields">
+    <dt>Get Method:</dt>
+    <dd class="value"><span class="summary-sig"><a href="Box2D.Box2D.b2Mat22-class.html#__GetInverse" class="summary-sig-name" onclick="show_private();">__GetInverse</a>(<span class="summary-sig-arg">self</span>)</span>
+    </dd>
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="Box2D.Box2D-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="http://code.google.com/p/pybox2d">pybox2d</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Thu Nov 18 22:51:45 2010
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

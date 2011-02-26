@@ -1,0 +1,23 @@
+<map id="G" name="G">
+<area shape="rect" id="node5" href="$structb2_joint_edge.html" title="b2JointEdge" alt="" coords="445,352,539,381"/>
+<area shape="rect" id="node54" href="$classb2_world.html" title="b2World" alt="" coords="973,563,1043,592"/>
+<area shape="rect" id="node2" href="$classb2_body.html" title="A rigid body. These are created via b2World::CreateBody." alt="" coords="577,464,644,493"/>
+<area shape="rect" id="node21" href="$structb2_contact_edge.html" title="b2ContactEdge" alt="" coords="219,795,328,824"/>
+<area shape="rect" id="node37" href="$classb2_fixture.html" title="b2Fixture" alt="" coords="343,563,417,592"/>
+<area shape="rect" id="node10" href="$structb2_vec2.html" title="A 2D column vector." alt="" coords="487,101,553,131"/>
+<area shape="rect" id="node12" href="$structb2_sweep.html" title="b2Sweep" alt="" coords="343,293,417,323"/>
+<area shape="rect" id="node15" href="$structb2_transform.html" title="b2Transform" alt="" coords="716,352,809,381"/>
+<area shape="rect" id="node18" href="$structb2_mat22.html" title="A 2&#45;by&#45;2 matrix. Stored in column&#45;major order." alt="" coords="643,235,715,264"/>
+<area shape="rect" id="node27" href="$structb2_manifold.html" title="b2Manifold" alt="" coords="60,352,143,381"/>
+<area shape="rect" id="node30" href="$structb2_manifold_point.html" title="b2ManifoldPoint" alt="" coords="24,235,139,264"/>
+<area shape="rect" id="node42" href="$structb2_a_a_b_b.html" title="An axis aligned bounding box." alt="" coords="271,408,343,437"/>
+<area shape="rect" id="node24" href="$classb2_contact.html" title="b2Contact" alt="" coords="215,677,295,707"/>
+<area shape="rect" id="node33" href="$unionb2_contact_i_d.html" title="Contact ids to facilitate warm starting." alt="" coords="21,101,115,131"/>
+<area shape="rect" id="node35" href="$structb2_contact_feature.html" title="b2ContactFeature" alt="" coords="5,5,131,35"/>
+<area shape="rect" id="node40" href="$structb2_fixture_proxy.html" title="This proxy is used internally to connect fixtures to the broad&#45;phase." alt="" coords="392,677,501,707"/>
+<area shape="rect" id="node46" href="$classb2_shape.html" title="b2Shape" alt="" coords="159,464,231,493"/>
+<area shape="rect" id="node48" href="$structb2_filter.html" title="This holds contact filtering data." alt="" coords="255,464,319,493"/>
+<area shape="rect" id="node57" href="$classb2_debug_draw.html" title="b2DebugDraw" alt="" coords="1045,464,1147,493"/>
+<area shape="rect" id="node60" href="$classb2_block_allocator.html" title="b2BlockAllocator" alt="" coords="1171,464,1291,493"/>
+<area shape="rect" id="node62" href="$classb2_destruction_listener.html" title="b2DestructionListener" alt="" coords="1315,464,1461,493"/>
+</map>

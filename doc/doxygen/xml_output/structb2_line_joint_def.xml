@@ -1,0 +1,467 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.7.2">
+  <compounddef id="structb2_line_joint_def" kind="struct" prot="public">
+    <compoundname>b2LineJointDef</compoundname>
+    <basecompoundref refid="structb2_joint_def" prot="public" virt="non-virtual">b2JointDef</basecompoundref>
+    <includes local="no">b2LineJoint.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structb2_line_joint_def_1ae6f279d10b200490c86e3ae7e3ee8cb1" prot="public" static="no" mutable="no">
+        <type><ref refid="structb2_vec2" kindref="compound">b2Vec2</ref></type>
+        <definition>b2Vec2 b2LineJointDef::localAnchorA</definition>
+        <argsstring></argsstring>
+        <name>localAnchorA</name>
+        <briefdescription>
+<para>The local anchor point relative to body1&apos;s origin. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2LineJoint.h" line="51" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2LineJoint.h" bodystart="51" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structb2_line_joint_def_1a4ed461be2a9dd186aa40caf0c1a4da44" prot="public" static="no" mutable="no">
+        <type><ref refid="structb2_vec2" kindref="compound">b2Vec2</ref></type>
+        <definition>b2Vec2 b2LineJointDef::localAnchorB</definition>
+        <argsstring></argsstring>
+        <name>localAnchorB</name>
+        <briefdescription>
+<para>The local anchor point relative to body2&apos;s origin. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2LineJoint.h" line="54" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2LineJoint.h" bodystart="54" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structb2_line_joint_def_1a65a789e7de1b0d498a58fdec33db030e" prot="public" static="no" mutable="no">
+        <type><ref refid="structb2_vec2" kindref="compound">b2Vec2</ref></type>
+        <definition>b2Vec2 b2LineJointDef::localAxisA</definition>
+        <argsstring></argsstring>
+        <name>localAxisA</name>
+        <briefdescription>
+<para>The local translation axis in body1. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2LineJoint.h" line="57" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2LineJoint.h" bodystart="57" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structb2_line_joint_def_1a7170e8220ea288e16942818e5047915e" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool b2LineJointDef::enableLimit</definition>
+        <argsstring></argsstring>
+        <name>enableLimit</name>
+        <briefdescription>
+<para>Enable/disable the joint limit. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2LineJoint.h" line="60" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2LineJoint.h" bodystart="60" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structb2_line_joint_def_1a2b7386e6b142bdb4f5dd533b5f2cc2aa" prot="public" static="no" mutable="no">
+        <type>float32</type>
+        <definition>float32 b2LineJointDef::lowerTranslation</definition>
+        <argsstring></argsstring>
+        <name>lowerTranslation</name>
+        <briefdescription>
+<para>The lower translation limit, usually in meters. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2LineJoint.h" line="63" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2LineJoint.h" bodystart="63" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structb2_line_joint_def_1a9c7d61a2faf9d3ea0e100509131ee988" prot="public" static="no" mutable="no">
+        <type>float32</type>
+        <definition>float32 b2LineJointDef::upperTranslation</definition>
+        <argsstring></argsstring>
+        <name>upperTranslation</name>
+        <briefdescription>
+<para>The upper translation limit, usually in meters. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2LineJoint.h" line="66" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2LineJoint.h" bodystart="66" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structb2_line_joint_def_1a62bd92436cffcb038f7125a0899b1a1c" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool b2LineJointDef::enableMotor</definition>
+        <argsstring></argsstring>
+        <name>enableMotor</name>
+        <briefdescription>
+<para>Enable/disable the joint motor. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2LineJoint.h" line="69" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2LineJoint.h" bodystart="69" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structb2_line_joint_def_1ade43dd25a96aee4b7d6c7c6b2306c17d" prot="public" static="no" mutable="no">
+        <type>float32</type>
+        <definition>float32 b2LineJointDef::maxMotorForce</definition>
+        <argsstring></argsstring>
+        <name>maxMotorForce</name>
+        <briefdescription>
+<para>The maximum motor torque, usually in N-m. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2LineJoint.h" line="72" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2LineJoint.h" bodystart="72" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structb2_line_joint_def_1af20dff10875012d19cea7b34b3b704a6" prot="public" static="no" mutable="no">
+        <type>float32</type>
+        <definition>float32 b2LineJointDef::motorSpeed</definition>
+        <argsstring></argsstring>
+        <name>motorSpeed</name>
+        <briefdescription>
+<para>The desired motor speed in radians per second. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2LineJoint.h" line="75" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2LineJoint.h" bodystart="75" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structb2_line_joint_def_1adab69c558f922ef48465c93108fcc1ed" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>b2LineJointDef::b2LineJointDef</definition>
+        <argsstring>()</argsstring>
+        <name>b2LineJointDef</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2LineJoint.h" line="33" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2LineJoint.h" bodystart="32" bodyend="44"/>
+      </memberdef>
+      <memberdef kind="function" id="structb2_line_joint_def_1a30147d732c0b47641b94826cd1793a5e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void b2LineJointDef::Initialize</definition>
+        <argsstring>(b2Body *bodyA, b2Body *bodyB, const b2Vec2 &amp;anchor, const b2Vec2 &amp;axis)</argsstring>
+        <name>Initialize</name>
+        <param>
+          <type><ref refid="classb2_body" kindref="compound">b2Body</ref> *</type>
+          <declname>bodyA</declname>
+        </param>
+        <param>
+          <type><ref refid="classb2_body" kindref="compound">b2Body</ref> *</type>
+          <declname>bodyB</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structb2_vec2" kindref="compound">b2Vec2</ref> &amp;</type>
+          <declname>anchor</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structb2_vec2" kindref="compound">b2Vec2</ref> &amp;</type>
+          <declname>axis</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Initialize the bodies, anchors, axis, and reference angle using the world anchor and world axis. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2LineJoint.h" line="48" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2LineJoint.cpp" bodystart="83" bodyend="90"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>Line joint definition. This requires defining a line of motion using an axis and an anchor point. The definition uses local anchor points and a local axis so that the initial configuration can violate the constraint slightly. The joint translation is zero when the local anchor points coincide in world space. Using local anchors and a local axis helps when saving and loading a game. </para>    </detaileddescription>
+    <inheritancegraph>
+      <node id="1597">
+        <label>b2LineJointDef</label>
+        <link refid="structb2_line_joint_def"/>
+        <childnode refid="1598" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1598">
+        <label>b2JointDef</label>
+        <link refid="structb2_joint_def"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1609">
+        <label>b2Contact</label>
+        <link refid="classb2_contact"/>
+        <childnode refid="1609" relation="usage">
+          <edgelabel>m_prev</edgelabel>
+          <edgelabel>m_next</edgelabel>
+        </childnode>
+        <childnode refid="1610" relation="usage">
+          <edgelabel>m_manifold</edgelabel>
+        </childnode>
+        <childnode refid="1614" relation="usage">
+          <edgelabel>m_fixtureA</edgelabel>
+          <edgelabel>m_fixtureB</edgelabel>
+        </childnode>
+        <childnode refid="1608" relation="usage">
+          <edgelabel>m_nodeA</edgelabel>
+          <edgelabel>m_nodeB</edgelabel>
+        </childnode>
+      </node>
+      <node id="1601">
+        <label>b2Body</label>
+        <link refid="classb2_body"/>
+        <childnode refid="1601" relation="usage">
+          <edgelabel>m_prev</edgelabel>
+          <edgelabel>m_next</edgelabel>
+        </childnode>
+        <childnode refid="1602" relation="usage">
+          <edgelabel>m_jointList</edgelabel>
+        </childnode>
+        <childnode refid="1604" relation="usage">
+          <edgelabel>m_linearVelocity</edgelabel>
+          <edgelabel>m_force</edgelabel>
+        </childnode>
+        <childnode refid="1605" relation="usage">
+          <edgelabel>m_sweep</edgelabel>
+        </childnode>
+        <childnode refid="1606" relation="usage">
+          <edgelabel>m_xf</edgelabel>
+        </childnode>
+        <childnode refid="1608" relation="usage">
+          <edgelabel>m_contactList</edgelabel>
+        </childnode>
+        <childnode refid="1614" relation="usage">
+          <edgelabel>m_fixtureList</edgelabel>
+        </childnode>
+        <childnode refid="1619" relation="usage">
+          <edgelabel>m_world</edgelabel>
+        </childnode>
+      </node>
+      <node id="1613">
+        <label>b2ContactFeature</label>
+        <link refid="structb2_contact_feature"/>
+      </node>
+      <node id="1608">
+        <label>b2ContactEdge</label>
+        <link refid="structb2_contact_edge"/>
+        <childnode refid="1601" relation="usage">
+          <edgelabel>other</edgelabel>
+        </childnode>
+        <childnode refid="1609" relation="usage">
+          <edgelabel>contact</edgelabel>
+        </childnode>
+        <childnode refid="1608" relation="usage">
+          <edgelabel>prev</edgelabel>
+          <edgelabel>next</edgelabel>
+        </childnode>
+      </node>
+      <node id="1599">
+        <label>b2LineJointDef</label>
+        <link refid="structb2_line_joint_def"/>
+        <childnode refid="1600" relation="public-inheritance">
+        </childnode>
+        <childnode refid="1604" relation="usage">
+          <edgelabel>localAxisA</edgelabel>
+          <edgelabel>localAnchorA</edgelabel>
+          <edgelabel>localAnchorB</edgelabel>
+        </childnode>
+      </node>
+      <node id="1610">
+        <label>b2Manifold</label>
+        <link refid="structb2_manifold"/>
+        <childnode refid="1604" relation="usage">
+          <edgelabel>localPoint</edgelabel>
+          <edgelabel>localNormal</edgelabel>
+        </childnode>
+        <childnode refid="1611" relation="usage">
+          <edgelabel>points</edgelabel>
+        </childnode>
+      </node>
+      <node id="1621">
+        <label>b2BlockAllocator</label>
+        <link refid="classb2_block_allocator"/>
+      </node>
+      <node id="1622">
+        <label>b2DestructionListener</label>
+        <link refid="classb2_destruction_listener"/>
+      </node>
+      <node id="1619">
+        <label>b2World</label>
+        <link refid="classb2_world"/>
+        <childnode refid="1601" relation="usage">
+          <edgelabel>m_bodyList</edgelabel>
+        </childnode>
+        <childnode refid="1620" relation="usage">
+          <edgelabel>m_debugDraw</edgelabel>
+        </childnode>
+        <childnode refid="1604" relation="usage">
+          <edgelabel>m_gravity</edgelabel>
+        </childnode>
+        <childnode refid="1621" relation="usage">
+          <edgelabel>m_blockAllocator</edgelabel>
+        </childnode>
+        <childnode refid="1622" relation="usage">
+          <edgelabel>m_destructionListener</edgelabel>
+        </childnode>
+        <childnode refid="1603" relation="usage">
+          <edgelabel>m_jointList</edgelabel>
+        </childnode>
+      </node>
+      <node id="1600">
+        <label>b2JointDef</label>
+        <link refid="structb2_joint_def"/>
+        <childnode refid="1601" relation="usage">
+          <edgelabel>bodyA</edgelabel>
+          <edgelabel>bodyB</edgelabel>
+        </childnode>
+      </node>
+      <node id="1615">
+        <label>b2FixtureProxy</label>
+        <link refid="structb2_fixture_proxy"/>
+        <childnode refid="1616" relation="usage">
+          <edgelabel>aabb</edgelabel>
+        </childnode>
+        <childnode refid="1614" relation="usage">
+          <edgelabel>fixture</edgelabel>
+        </childnode>
+      </node>
+      <node id="1607">
+        <label>b2Mat22</label>
+        <link refid="structb2_mat22"/>
+        <childnode refid="1604" relation="usage">
+          <edgelabel>col1</edgelabel>
+          <edgelabel>col2</edgelabel>
+        </childnode>
+      </node>
+      <node id="1605">
+        <label>b2Sweep</label>
+        <link refid="structb2_sweep"/>
+        <childnode refid="1604" relation="usage">
+          <edgelabel>c0</edgelabel>
+          <edgelabel>localCenter</edgelabel>
+          <edgelabel>c</edgelabel>
+        </childnode>
+      </node>
+      <node id="1606">
+        <label>b2Transform</label>
+        <link refid="structb2_transform"/>
+        <childnode refid="1604" relation="usage">
+          <edgelabel>position</edgelabel>
+        </childnode>
+        <childnode refid="1607" relation="usage">
+          <edgelabel>R</edgelabel>
+        </childnode>
+      </node>
+      <node id="1620">
+        <label>b2DebugDraw</label>
+        <link refid="classb2_debug_draw"/>
+      </node>
+      <node id="1618">
+        <label>b2Filter</label>
+        <link refid="structb2_filter"/>
+      </node>
+      <node id="1602">
+        <label>b2JointEdge</label>
+        <link refid="structb2_joint_edge"/>
+        <childnode refid="1601" relation="usage">
+          <edgelabel>other</edgelabel>
+        </childnode>
+        <childnode refid="1602" relation="usage">
+          <edgelabel>prev</edgelabel>
+          <edgelabel>next</edgelabel>
+        </childnode>
+        <childnode refid="1603" relation="usage">
+          <edgelabel>joint</edgelabel>
+        </childnode>
+      </node>
+      <node id="1603">
+        <label>b2Joint</label>
+        <link refid="classb2_joint"/>
+        <childnode refid="1601" relation="usage">
+          <edgelabel>m_bodyA</edgelabel>
+          <edgelabel>m_bodyB</edgelabel>
+        </childnode>
+        <childnode refid="1604" relation="usage">
+          <edgelabel>m_localCenterA</edgelabel>
+          <edgelabel>m_localCenterB</edgelabel>
+        </childnode>
+        <childnode refid="1602" relation="usage">
+          <edgelabel>m_edgeB</edgelabel>
+          <edgelabel>m_edgeA</edgelabel>
+        </childnode>
+        <childnode refid="1603" relation="usage">
+          <edgelabel>m_prev</edgelabel>
+          <edgelabel>m_next</edgelabel>
+        </childnode>
+      </node>
+      <node id="1604">
+        <label>b2Vec2</label>
+        <link refid="structb2_vec2"/>
+      </node>
+      <node id="1612">
+        <label>b2ContactID</label>
+        <link refid="unionb2_contact_i_d"/>
+        <childnode refid="1613" relation="usage">
+          <edgelabel>cf</edgelabel>
+        </childnode>
+      </node>
+      <node id="1617">
+        <label>b2Shape</label>
+        <link refid="classb2_shape"/>
+      </node>
+      <node id="1616">
+        <label>b2AABB</label>
+        <link refid="structb2_a_a_b_b"/>
+        <childnode refid="1604" relation="usage">
+          <edgelabel>lowerBound</edgelabel>
+          <edgelabel>upperBound</edgelabel>
+        </childnode>
+      </node>
+      <node id="1614">
+        <label>b2Fixture</label>
+        <link refid="classb2_fixture"/>
+        <childnode refid="1601" relation="usage">
+          <edgelabel>m_body</edgelabel>
+        </childnode>
+        <childnode refid="1615" relation="usage">
+          <edgelabel>m_proxies</edgelabel>
+        </childnode>
+        <childnode refid="1617" relation="usage">
+          <edgelabel>m_shape</edgelabel>
+        </childnode>
+        <childnode refid="1618" relation="usage">
+          <edgelabel>m_filter</edgelabel>
+        </childnode>
+        <childnode refid="1614" relation="usage">
+          <edgelabel>m_next</edgelabel>
+        </childnode>
+      </node>
+      <node id="1611">
+        <label>b2ManifoldPoint</label>
+        <link refid="structb2_manifold_point"/>
+        <childnode refid="1604" relation="usage">
+          <edgelabel>localPoint</edgelabel>
+        </childnode>
+        <childnode refid="1612" relation="usage">
+          <edgelabel>id</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2LineJoint.h" line="31" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2LineJoint.h" bodystart="30" bodyend="76"/>
+    <listofallmembers>
+      <member refid="structb2_joint_def_1a1fdb44829d4fd13c72edb1daacb72f89" prot="public" virt="non-virtual"><scope>b2LineJointDef</scope><name>b2JointDef</name></member>
+      <member refid="structb2_line_joint_def_1adab69c558f922ef48465c93108fcc1ed" prot="public" virt="non-virtual"><scope>b2LineJointDef</scope><name>b2LineJointDef</name></member>
+      <member refid="structb2_joint_def_1a8cd54c93da396be75a9788f2c6897f05" prot="public" virt="non-virtual"><scope>b2LineJointDef</scope><name>bodyA</name></member>
+      <member refid="structb2_joint_def_1aa4f4dee2fbcd12187b19506b60e68e3d" prot="public" virt="non-virtual"><scope>b2LineJointDef</scope><name>bodyB</name></member>
+      <member refid="structb2_joint_def_1aef099a1f89b64e230173b6016848ea9b" prot="public" virt="non-virtual"><scope>b2LineJointDef</scope><name>collideConnected</name></member>
+      <member refid="structb2_line_joint_def_1a7170e8220ea288e16942818e5047915e" prot="public" virt="non-virtual"><scope>b2LineJointDef</scope><name>enableLimit</name></member>
+      <member refid="structb2_line_joint_def_1a62bd92436cffcb038f7125a0899b1a1c" prot="public" virt="non-virtual"><scope>b2LineJointDef</scope><name>enableMotor</name></member>
+      <member refid="structb2_line_joint_def_1a30147d732c0b47641b94826cd1793a5e" prot="public" virt="non-virtual"><scope>b2LineJointDef</scope><name>Initialize</name></member>
+      <member refid="structb2_line_joint_def_1ae6f279d10b200490c86e3ae7e3ee8cb1" prot="public" virt="non-virtual"><scope>b2LineJointDef</scope><name>localAnchorA</name></member>
+      <member refid="structb2_line_joint_def_1a4ed461be2a9dd186aa40caf0c1a4da44" prot="public" virt="non-virtual"><scope>b2LineJointDef</scope><name>localAnchorB</name></member>
+      <member refid="structb2_line_joint_def_1a65a789e7de1b0d498a58fdec33db030e" prot="public" virt="non-virtual"><scope>b2LineJointDef</scope><name>localAxisA</name></member>
+      <member refid="structb2_line_joint_def_1a2b7386e6b142bdb4f5dd533b5f2cc2aa" prot="public" virt="non-virtual"><scope>b2LineJointDef</scope><name>lowerTranslation</name></member>
+      <member refid="structb2_line_joint_def_1ade43dd25a96aee4b7d6c7c6b2306c17d" prot="public" virt="non-virtual"><scope>b2LineJointDef</scope><name>maxMotorForce</name></member>
+      <member refid="structb2_line_joint_def_1af20dff10875012d19cea7b34b3b704a6" prot="public" virt="non-virtual"><scope>b2LineJointDef</scope><name>motorSpeed</name></member>
+      <member refid="structb2_joint_def_1a470f2879b24adb05facbd49f338856fb" prot="public" virt="non-virtual"><scope>b2LineJointDef</scope><name>type</name></member>
+      <member refid="structb2_line_joint_def_1a9c7d61a2faf9d3ea0e100509131ee988" prot="public" virt="non-virtual"><scope>b2LineJointDef</scope><name>upperTranslation</name></member>
+      <member refid="structb2_joint_def_1a07eb150daaaa52fc09c3bcf402b295fe" prot="public" virt="non-virtual"><scope>b2LineJointDef</scope><name>userData</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

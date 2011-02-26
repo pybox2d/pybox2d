@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.7.2">
+  <compounddef id="dir_aa6d22041d06415b7e28abe89cf022a9" kind="dir">
+    <compoundname>D:/pybox2d/</compoundname>
+    <innerdir refid="dir_580b0a7acc6d578a368a8f922b53686c">D:/pybox2d/Box2D/</innerdir>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="D:/pybox2d/"/>
+  </compounddef>
+</doxygen>

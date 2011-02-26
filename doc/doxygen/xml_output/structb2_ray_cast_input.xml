@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.7.2">
+  <compounddef id="structb2_ray_cast_input" kind="struct" prot="public">
+    <compoundname>b2RayCastInput</compoundname>
+    <includes local="no">b2Collision.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structb2_ray_cast_input_1a7254a7062422833b1124fa464ab4caf3" prot="public" static="no" mutable="no">
+        <type><ref refid="structb2_vec2" kindref="compound">b2Vec2</ref></type>
+        <definition>b2Vec2 b2RayCastInput::p1</definition>
+        <argsstring></argsstring>
+        <name>p1</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Collision/b2Collision.h" line="149" bodyfile="D:/pybox2d/Box2D/Collision/b2Collision.h" bodystart="149" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structb2_ray_cast_input_1a850102c843469781a3a627c871043d0b" prot="public" static="no" mutable="no">
+        <type><ref refid="structb2_vec2" kindref="compound">b2Vec2</ref></type>
+        <definition>b2Vec2 b2RayCastInput::p2</definition>
+        <argsstring></argsstring>
+        <name>p2</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Collision/b2Collision.h" line="149" bodyfile="D:/pybox2d/Box2D/Collision/b2Collision.h" bodystart="149" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structb2_ray_cast_input_1acb5c88e0ef2c3716a1334611522ab0b2" prot="public" static="no" mutable="no">
+        <type>float32</type>
+        <definition>float32 b2RayCastInput::maxFraction</definition>
+        <argsstring></argsstring>
+        <name>maxFraction</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Collision/b2Collision.h" line="150" bodyfile="D:/pybox2d/Box2D/Collision/b2Collision.h" bodystart="150" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Ray-cast input data. The ray extends from p1 to p1 + maxFraction * (p2 - p1). </para>    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1946">
+        <label>b2RayCastInput</label>
+        <link refid="structb2_ray_cast_input"/>
+        <childnode refid="1947" relation="usage">
+          <edgelabel>p1</edgelabel>
+          <edgelabel>p2</edgelabel>
+        </childnode>
+      </node>
+      <node id="1947">
+        <label>b2Vec2</label>
+        <link refid="structb2_vec2"/>
+      </node>
+    </collaborationgraph>
+    <location file="D:/pybox2d/Box2D/Collision/b2Collision.h" line="148" bodyfile="D:/pybox2d/Box2D/Collision/b2Collision.h" bodystart="147" bodyend="151"/>
+    <listofallmembers>
+      <member refid="structb2_ray_cast_input_1acb5c88e0ef2c3716a1334611522ab0b2" prot="public" virt="non-virtual"><scope>b2RayCastInput</scope><name>maxFraction</name></member>
+      <member refid="structb2_ray_cast_input_1a7254a7062422833b1124fa464ab4caf3" prot="public" virt="non-virtual"><scope>b2RayCastInput</scope><name>p1</name></member>
+      <member refid="structb2_ray_cast_input_1a850102c843469781a3a627c871043d0b" prot="public" virt="non-virtual"><scope>b2RayCastInput</scope><name>p2</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

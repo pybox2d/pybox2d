@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.7.2">
+  <compounddef id="structb2_version" kind="struct" prot="public">
+    <compoundname>b2Version</compoundname>
+    <includes local="no">b2Settings.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structb2_version_1a720da8e346364d1cb34d176125380b44" prot="public" static="no" mutable="no">
+        <type>int32</type>
+        <definition>int32 b2Version::major</definition>
+        <argsstring></argsstring>
+        <name>major</name>
+        <briefdescription>
+<para>significant changes </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Common/b2Settings.h" line="144" bodyfile="D:/pybox2d/Box2D/Common/b2Settings.h" bodystart="144" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structb2_version_1a115b8797a6e0b8e53f54502bd20d89da" prot="public" static="no" mutable="no">
+        <type>int32</type>
+        <definition>int32 b2Version::minor</definition>
+        <argsstring></argsstring>
+        <name>minor</name>
+        <briefdescription>
+<para>incremental changes </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Common/b2Settings.h" line="145" bodyfile="D:/pybox2d/Box2D/Common/b2Settings.h" bodystart="145" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structb2_version_1a395cfe1434e348115d2ead3d72b88847" prot="public" static="no" mutable="no">
+        <type>int32</type>
+        <definition>int32 b2Version::revision</definition>
+        <argsstring></argsstring>
+        <name>revision</name>
+        <briefdescription>
+<para>bug fixes </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Common/b2Settings.h" line="146" bodyfile="D:/pybox2d/Box2D/Common/b2Settings.h" bodystart="146" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>Version numbering scheme. See <ulink url="http://en.wikipedia.org/wiki/Software_versioning">http://en.wikipedia.org/wiki/Software_versioning</ulink> </para>    </detaileddescription>
+    <location file="D:/pybox2d/Box2D/Common/b2Settings.h" line="143" bodyfile="D:/pybox2d/Box2D/Common/b2Settings.h" bodystart="142" bodyend="147"/>
+    <listofallmembers>
+      <member refid="structb2_version_1a720da8e346364d1cb34d176125380b44" prot="public" virt="non-virtual"><scope>b2Version</scope><name>major</name></member>
+      <member refid="structb2_version_1a115b8797a6e0b8e53f54502bd20d89da" prot="public" virt="non-virtual"><scope>b2Version</scope><name>minor</name></member>
+      <member refid="structb2_version_1a395cfe1434e348115d2ead3d72b88847" prot="public" virt="non-virtual"><scope>b2Version</scope><name>revision</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

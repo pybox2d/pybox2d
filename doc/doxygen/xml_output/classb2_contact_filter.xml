@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.7.2">
+  <compounddef id="classb2_contact_filter" kind="class" prot="public">
+    <compoundname>b2ContactFilter</compoundname>
+    <includes local="no">b2WorldCallbacks.h</includes>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classb2_contact_filter_1a1a6f1ad4208624b180e4536ff4bc1d9c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual b2ContactFilter::~b2ContactFilter</definition>
+        <argsstring>()</argsstring>
+        <name>~b2ContactFilter</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2WorldCallbacks.h" line="55" bodyfile="D:/pybox2d/Box2D/Dynamics/b2WorldCallbacks.h" bodystart="55" bodyend="55"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_contact_filter_1aac8f6155d1f577d125db587f5269289b" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>bool</type>
+        <definition>bool b2ContactFilter::ShouldCollide</definition>
+        <argsstring>(b2Fixture *fixtureA, b2Fixture *fixtureB)</argsstring>
+        <name>ShouldCollide</name>
+        <param>
+          <type><ref refid="classb2_fixture" kindref="compound">b2Fixture</ref> *</type>
+          <declname>fixtureA</declname>
+        </param>
+        <param>
+          <type><ref refid="classb2_fixture" kindref="compound">b2Fixture</ref> *</type>
+          <declname>fixtureB</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Return true if contact calculations should be performed between these two shapes. <simplesect kind="warning"><para>for performance reasons this is only called when the AABBs begin to overlap. </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2WorldCallbacks.h" line="59" bodyfile="D:/pybox2d/Box2D/Dynamics/b2WorldCallbacks.cpp" bodystart="24" bodyend="36"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>Implement this class to provide collision filtering. In other words, you can implement this class if you want finer control over contact creation. </para>    </detaileddescription>
+    <location file="D:/pybox2d/Box2D/Dynamics/b2WorldCallbacks.h" line="53" bodyfile="D:/pybox2d/Box2D/Dynamics/b2WorldCallbacks.h" bodystart="52" bodyend="60"/>
+    <listofallmembers>
+      <member refid="classb2_contact_filter_1aac8f6155d1f577d125db587f5269289b" prot="public" virt="virtual"><scope>b2ContactFilter</scope><name>ShouldCollide</name></member>
+      <member refid="classb2_contact_filter_1a1a6f1ad4208624b180e4536ff4bc1d9c" prot="public" virt="virtual"><scope>b2ContactFilter</scope><name>~b2ContactFilter</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

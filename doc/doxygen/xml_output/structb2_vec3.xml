@@ -1,0 +1,208 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.7.2">
+  <compounddef id="structb2_vec3" kind="struct" prot="public">
+    <compoundname>b2Vec3</compoundname>
+    <includes local="no">b2Math.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structb2_vec3_1aedc5e37849caa413a8e767fc47741db2" prot="public" static="no" mutable="no">
+        <type>float32</type>
+        <definition>float32 b2Vec3::x</definition>
+        <argsstring></argsstring>
+        <name>x</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Common/b2Math.h" line="189" bodyfile="D:/pybox2d/Box2D/Common/b2Math.h" bodystart="189" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structb2_vec3_1af5a7e99d13d02ff9abb323838d44d3b1" prot="public" static="no" mutable="no">
+        <type>float32</type>
+        <definition>float32 b2Vec3::y</definition>
+        <argsstring></argsstring>
+        <name>y</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Common/b2Math.h" line="189" bodyfile="D:/pybox2d/Box2D/Common/b2Math.h" bodystart="189" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structb2_vec3_1a7cb88968ff10fa500df0b10f5c425536" prot="public" static="no" mutable="no">
+        <type>float32</type>
+        <definition>float32 b2Vec3::z</definition>
+        <argsstring></argsstring>
+        <name>z</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Common/b2Math.h" line="189" bodyfile="D:/pybox2d/Box2D/Common/b2Math.h" bodystart="189" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structb2_vec3_1a837423f66d6fb72d815e7390c09938b9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>b2Vec3::b2Vec3</definition>
+        <argsstring>()</argsstring>
+        <name>b2Vec3</name>
+        <briefdescription>
+<para>Default constructor does nothing (for performance). </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Common/b2Math.h" line="157" bodyfile="D:/pybox2d/Box2D/Common/b2Math.h" bodystart="157" bodyend="157"/>
+      </memberdef>
+      <memberdef kind="function" id="structb2_vec3_1a47df55b26ab254dcf42a16638c7feeeb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>b2Vec3::b2Vec3</definition>
+        <argsstring>(float32 x, float32 y, float32 z)</argsstring>
+        <name>b2Vec3</name>
+        <param>
+          <type>float32</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>float32</type>
+          <declname>y</declname>
+        </param>
+        <param>
+          <type>float32</type>
+          <declname>z</declname>
+        </param>
+        <briefdescription>
+<para>Construct using coordinates. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Common/b2Math.h" line="160" bodyfile="D:/pybox2d/Box2D/Common/b2Math.h" bodystart="160" bodyend="160"/>
+      </memberdef>
+      <memberdef kind="function" id="structb2_vec3_1a5a459ed49f1910a347ca247f848a2dd8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void b2Vec3::SetZero</definition>
+        <argsstring>()</argsstring>
+        <name>SetZero</name>
+        <briefdescription>
+<para>Set this vector to all zeros. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Common/b2Math.h" line="163" bodyfile="D:/pybox2d/Box2D/Common/b2Math.h" bodystart="163" bodyend="163"/>
+      </memberdef>
+      <memberdef kind="function" id="structb2_vec3_1a12a1bc14bbe722dfb175a492d2d00a79" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void b2Vec3::Set</definition>
+        <argsstring>(float32 x_, float32 y_, float32 z_)</argsstring>
+        <name>Set</name>
+        <param>
+          <type>float32</type>
+          <declname>x_</declname>
+        </param>
+        <param>
+          <type>float32</type>
+          <declname>y_</declname>
+        </param>
+        <param>
+          <type>float32</type>
+          <declname>z_</declname>
+        </param>
+        <briefdescription>
+<para>Set this vector to some specified coordinates. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Common/b2Math.h" line="166" bodyfile="D:/pybox2d/Box2D/Common/b2Math.h" bodystart="166" bodyend="166"/>
+      </memberdef>
+      <memberdef kind="function" id="structb2_vec3_1a246cb7ed59d3e758989939ed4e30e5ec" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="structb2_vec3" kindref="compound">b2Vec3</ref></type>
+        <definition>b2Vec3 b2Vec3::operator-</definition>
+        <argsstring>() const </argsstring>
+        <name>operator-</name>
+        <briefdescription>
+<para>Negate this vector. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Common/b2Math.h" line="169" bodyfile="D:/pybox2d/Box2D/Common/b2Math.h" bodystart="169" bodyend="169"/>
+      </memberdef>
+      <memberdef kind="function" id="structb2_vec3_1a2aaeed3f5308aad85d19c5f0efc72641" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void b2Vec3::operator+=</definition>
+        <argsstring>(const b2Vec3 &amp;v)</argsstring>
+        <name>operator+=</name>
+        <param>
+          <type>const <ref refid="structb2_vec3" kindref="compound">b2Vec3</ref> &amp;</type>
+          <declname>v</declname>
+        </param>
+        <briefdescription>
+<para>Add a vector to this vector. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Common/b2Math.h" line="173" bodyfile="D:/pybox2d/Box2D/Common/b2Math.h" bodystart="172" bodyend="175"/>
+      </memberdef>
+      <memberdef kind="function" id="structb2_vec3_1a9e5b535548e1c5dfc0dc258d08f5ca32" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void b2Vec3::operator-=</definition>
+        <argsstring>(const b2Vec3 &amp;v)</argsstring>
+        <name>operator-=</name>
+        <param>
+          <type>const <ref refid="structb2_vec3" kindref="compound">b2Vec3</ref> &amp;</type>
+          <declname>v</declname>
+        </param>
+        <briefdescription>
+<para>Subtract a vector from this vector. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Common/b2Math.h" line="179" bodyfile="D:/pybox2d/Box2D/Common/b2Math.h" bodystart="178" bodyend="181"/>
+      </memberdef>
+      <memberdef kind="function" id="structb2_vec3_1aaa9aa20195cd0ee53c7176a9a9b02389" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void b2Vec3::operator*=</definition>
+        <argsstring>(float32 s)</argsstring>
+        <name>operator*=</name>
+        <param>
+          <type>float32</type>
+          <declname>s</declname>
+        </param>
+        <briefdescription>
+<para>Multiply this vector by a scalar. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Common/b2Math.h" line="185" bodyfile="D:/pybox2d/Box2D/Common/b2Math.h" bodystart="184" bodyend="187"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>A 2D column vector with 3 elements. </para>    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="D:/pybox2d/Box2D/Common/b2Math.h" line="155" bodyfile="D:/pybox2d/Box2D/Common/b2Math.h" bodystart="154" bodyend="190"/>
+    <listofallmembers>
+      <member refid="structb2_vec3_1a837423f66d6fb72d815e7390c09938b9" prot="public" virt="non-virtual"><scope>b2Vec3</scope><name>b2Vec3</name></member>
+      <member refid="structb2_vec3_1a47df55b26ab254dcf42a16638c7feeeb" prot="public" virt="non-virtual"><scope>b2Vec3</scope><name>b2Vec3</name></member>
+      <member refid="structb2_vec3_1aaa9aa20195cd0ee53c7176a9a9b02389" prot="public" virt="non-virtual"><scope>b2Vec3</scope><name>operator*=</name></member>
+      <member refid="structb2_vec3_1a2aaeed3f5308aad85d19c5f0efc72641" prot="public" virt="non-virtual"><scope>b2Vec3</scope><name>operator+=</name></member>
+      <member refid="structb2_vec3_1a246cb7ed59d3e758989939ed4e30e5ec" prot="public" virt="non-virtual"><scope>b2Vec3</scope><name>operator-</name></member>
+      <member refid="structb2_vec3_1a9e5b535548e1c5dfc0dc258d08f5ca32" prot="public" virt="non-virtual"><scope>b2Vec3</scope><name>operator-=</name></member>
+      <member refid="structb2_vec3_1a12a1bc14bbe722dfb175a492d2d00a79" prot="public" virt="non-virtual"><scope>b2Vec3</scope><name>Set</name></member>
+      <member refid="structb2_vec3_1a5a459ed49f1910a347ca247f848a2dd8" prot="public" virt="non-virtual"><scope>b2Vec3</scope><name>SetZero</name></member>
+      <member refid="structb2_vec3_1aedc5e37849caa413a8e767fc47741db2" prot="public" virt="non-virtual"><scope>b2Vec3</scope><name>x</name></member>
+      <member refid="structb2_vec3_1af5a7e99d13d02ff9abb323838d44d3b1" prot="public" virt="non-virtual"><scope>b2Vec3</scope><name>y</name></member>
+      <member refid="structb2_vec3_1a7cb88968ff10fa500df0b10f5c425536" prot="public" virt="non-virtual"><scope>b2Vec3</scope><name>z</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

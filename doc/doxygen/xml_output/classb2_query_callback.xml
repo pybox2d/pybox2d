@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.7.2">
+  <compounddef id="classb2_query_callback" kind="class" prot="public">
+    <compoundname>b2QueryCallback</compoundname>
+    <includes local="no">b2WorldCallbacks.h</includes>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classb2_query_callback_1a8749b2ff1ab37e3d47e2b162749dbd52" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual b2QueryCallback::~b2QueryCallback</definition>
+        <argsstring>()</argsstring>
+        <name>~b2QueryCallback</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2WorldCallbacks.h" line="125" bodyfile="D:/pybox2d/Box2D/Dynamics/b2WorldCallbacks.h" bodystart="125" bodyend="125"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_query_callback_1a187dd04dd0f5164fb05c2ce2cbfd9ee5" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>bool</type>
+        <definition>virtual bool b2QueryCallback::ReportFixture</definition>
+        <argsstring>(b2Fixture *fixture)=0</argsstring>
+        <name>ReportFixture</name>
+        <param>
+          <type><ref refid="classb2_fixture" kindref="compound">b2Fixture</ref> *</type>
+          <declname>fixture</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Called for each fixture found in the query AABB. <simplesect kind="return"><para>false to terminate the query. </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2WorldCallbacks.h" line="129"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>Callback class for AABB queries. See b2World::Query </para>    </detaileddescription>
+    <location file="D:/pybox2d/Box2D/Dynamics/b2WorldCallbacks.h" line="123" bodyfile="D:/pybox2d/Box2D/Dynamics/b2WorldCallbacks.h" bodystart="122" bodyend="130"/>
+    <listofallmembers>
+      <member refid="classb2_query_callback_1a187dd04dd0f5164fb05c2ce2cbfd9ee5" prot="public" virt="pure-virtual"><scope>b2QueryCallback</scope><name>ReportFixture</name></member>
+      <member refid="classb2_query_callback_1a8749b2ff1ab37e3d47e2b162749dbd52" prot="public" virt="virtual"><scope>b2QueryCallback</scope><name>~b2QueryCallback</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

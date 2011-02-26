@@ -1,0 +1,97 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.7.2">
+  <compounddef id="b2_loop_shape_8h" kind="file">
+    <compoundname>b2LoopShape.h</compoundname>
+    <includes refid="b2_shape_8h" local="no">Box2D/Collision/Shapes/b2Shape.h</includes>
+    <includedby refid="_box2_d_8h" local="no">Box2D/Box2D.h</includedby>
+    <includedby refid="b2_distance_8cpp" local="no">Box2D/Collision/b2Distance.cpp</includedby>
+    <includedby refid="b2_loop_shape_8cpp" local="no">Box2D/Collision/Shapes/b2LoopShape.cpp</includedby>
+    <includedby refid="b2_fixture_8cpp" local="no">Box2D/Dynamics/b2Fixture.cpp</includedby>
+    <includedby refid="b2_world_8cpp" local="no">Box2D/Dynamics/b2World.cpp</includedby>
+    <includedby refid="b2_loop_and_circle_contact_8cpp" local="no">Box2D/Dynamics/Contacts/b2LoopAndCircleContact.cpp</includedby>
+    <includedby refid="b2_loop_and_polygon_contact_8cpp" local="no">Box2D/Dynamics/Contacts/b2LoopAndPolygonContact.cpp</includedby>
+    <innerclass refid="classb2_loop_shape" prot="public">b2LoopShape</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment">*<sp/>Copyright<sp/>(c)<sp/>2006-2010<sp/>Erin<sp/>Catto<sp/>http://www.gphysics.com</highlight></codeline>
+<codeline lineno="3"><highlight class="comment">*</highlight></codeline>
+<codeline lineno="4"><highlight class="comment">*<sp/>This<sp/>software<sp/>is<sp/>provided<sp/>&apos;as-is&apos;,<sp/>without<sp/>any<sp/>express<sp/>or<sp/>implied</highlight></codeline>
+<codeline lineno="5"><highlight class="comment">*<sp/>warranty.<sp/><sp/>In<sp/>no<sp/>event<sp/>will<sp/>the<sp/>authors<sp/>be<sp/>held<sp/>liable<sp/>for<sp/>any<sp/>damages</highlight></codeline>
+<codeline lineno="6"><highlight class="comment">*<sp/>arising<sp/>from<sp/>the<sp/>use<sp/>of<sp/>this<sp/>software.</highlight></codeline>
+<codeline lineno="7"><highlight class="comment">*<sp/>Permission<sp/>is<sp/>granted<sp/>to<sp/>anyone<sp/>to<sp/>use<sp/>this<sp/>software<sp/>for<sp/>any<sp/>purpose,</highlight></codeline>
+<codeline lineno="8"><highlight class="comment">*<sp/>including<sp/>commercial<sp/>applications,<sp/>and<sp/>to<sp/>alter<sp/>it<sp/>and<sp/>redistribute<sp/>it</highlight></codeline>
+<codeline lineno="9"><highlight class="comment">*<sp/>freely,<sp/>subject<sp/>to<sp/>the<sp/>following<sp/>restrictions:</highlight></codeline>
+<codeline lineno="10"><highlight class="comment">*<sp/>1.<sp/>The<sp/>origin<sp/>of<sp/>this<sp/>software<sp/>must<sp/>not<sp/>be<sp/>misrepresented;<sp/>you<sp/>must<sp/>not</highlight></codeline>
+<codeline lineno="11"><highlight class="comment">*<sp/>claim<sp/>that<sp/>you<sp/>wrote<sp/>the<sp/>original<sp/>software.<sp/>If<sp/>you<sp/>use<sp/>this<sp/>software</highlight></codeline>
+<codeline lineno="12"><highlight class="comment">*<sp/>in<sp/>a<sp/>product,<sp/>an<sp/>acknowledgment<sp/>in<sp/>the<sp/>product<sp/>documentation<sp/>would<sp/>be</highlight></codeline>
+<codeline lineno="13"><highlight class="comment">*<sp/>appreciated<sp/>but<sp/>is<sp/>not<sp/>required.</highlight></codeline>
+<codeline lineno="14"><highlight class="comment">*<sp/>2.<sp/>Altered<sp/>source<sp/>versions<sp/>must<sp/>be<sp/>plainly<sp/>marked<sp/>as<sp/>such,<sp/>and<sp/>must<sp/>not<sp/>be</highlight></codeline>
+<codeline lineno="15"><highlight class="comment">*<sp/>misrepresented<sp/>as<sp/>being<sp/>the<sp/>original<sp/>software.</highlight></codeline>
+<codeline lineno="16"><highlight class="comment">*<sp/>3.<sp/>This<sp/>notice<sp/>may<sp/>not<sp/>be<sp/>removed<sp/>or<sp/>altered<sp/>from<sp/>any<sp/>source<sp/>distribution.</highlight></codeline>
+<codeline lineno="17"><highlight class="comment">*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>B2_LOOP_SHAPE_H</highlight></codeline>
+<codeline lineno="20"><highlight class="preprocessor"></highlight><highlight class="preprocessor">#define<sp/>B2_LOOP_SHAPE_H</highlight></codeline>
+<codeline lineno="21"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;Box2D/Collision/Shapes/b2Shape.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classb2_edge_shape" kindref="compound">b2EdgeShape</ref>;</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31" refid="classb2_loop_shape" refkind="compound"><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classb2_loop_shape" kindref="compound">b2LoopShape</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="classb2_shape" kindref="compound">b2Shape</ref></highlight></codeline>
+<codeline lineno="32"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classb2_loop_shape" kindref="compound">b2LoopShape</ref>();</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classb2_loop_shape_1a7679c8e95031b327f88c003a00158968" kindref="member" tooltip="The destructor frees the vertices using b2Free.">~b2LoopShape</ref>();</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classb2_loop_shape_1a0c3bce4c2d9ecb46f7254f07ff1fc5f1" kindref="member" tooltip="Create the loop shape, copy all vertices.">Create</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structb2_vec2" kindref="compound" tooltip="A 2D column vector.">b2Vec2</ref>*<sp/>vertices,<sp/>int32<sp/>count);</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classb2_shape" kindref="compound">b2Shape</ref>*<sp/><ref refid="classb2_loop_shape_1ab9a2476a92138a3b5af8c9fd59fa80f7" kindref="member" tooltip="Implement b2Shape. Vertices are cloned using b2Alloc.">Clone</ref>(<ref refid="classb2_block_allocator" kindref="compound">b2BlockAllocator</ref>*<sp/>allocator)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>int32<sp/><ref refid="classb2_loop_shape_1a0f4cc5a2d60b9fbf34828d7d278a2b82" kindref="member">GetChildCount</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classb2_loop_shape_1ae2eae913758c092e2e1cd81c637730e6" kindref="member" tooltip="Get a child edge.">GetChildEdge</ref>(<ref refid="classb2_edge_shape" kindref="compound">b2EdgeShape</ref>*<sp/>edge,<sp/>int32<sp/>index)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classb2_loop_shape_1a59aa72ec73022f4343284af459df7947" kindref="member">TestPoint</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structb2_transform" kindref="compound">b2Transform</ref>&amp;<sp/>transform,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structb2_vec2" kindref="compound" tooltip="A 2D column vector.">b2Vec2</ref>&amp;<sp/>p)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classb2_loop_shape_1a0060e62049e0700f04317f63f36aaed9" kindref="member" tooltip="Implement b2Shape.">RayCast</ref>(<ref refid="structb2_ray_cast_output" kindref="compound">b2RayCastOutput</ref>*<sp/>output,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structb2_ray_cast_input" kindref="compound" tooltip="Ray-cast input data. The ray extends from p1 to p1 + maxFraction * (p2 - p1).">b2RayCastInput</ref>&amp;<sp/>input,</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structb2_transform" kindref="compound">b2Transform</ref>&amp;<sp/>transform,<sp/>int32<sp/>childIndex)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classb2_loop_shape_1a159a4cbb26619fc69b84a759a5cedd27" kindref="member">ComputeAABB</ref>(<ref refid="structb2_a_a_b_b" kindref="compound" tooltip="An axis aligned bounding box.">b2AABB</ref>*<sp/>aabb,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structb2_transform" kindref="compound">b2Transform</ref>&amp;<sp/>transform,<sp/>int32<sp/>childIndex)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classb2_loop_shape_1a594eeb6cf245f75d82d200f7c260a809" kindref="member">ComputeMass</ref>(<ref refid="structb2_mass_data" kindref="compound" tooltip="This holds the mass data computed for a shape.">b2MassData</ref>*<sp/>massData,<sp/>float32<sp/>density)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>int32<sp/><ref refid="classb2_loop_shape_1a814d2be57d69c2f69b67ee7dc751ed5a" kindref="member" tooltip="Get the number of vertices.">GetCount</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classb2_loop_shape_1a1a3ee2cdeb1ae64cf998a20064cb5e00" kindref="member" tooltip="The vertex count.">m_count</ref>;<sp/>}</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structb2_vec2" kindref="compound" tooltip="A 2D column vector.">b2Vec2</ref>&amp;<sp/><ref refid="classb2_loop_shape_1a6c290473932bb99e7017f5b9e8ad78bf" kindref="member" tooltip="Get the vertices (read-only).">GetVertex</ref>(int32<sp/>index)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="71"><highlight class="keyword"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>b2Assert(0<sp/>&lt;=<sp/>index<sp/>&amp;&amp;<sp/>index<sp/>&lt;<sp/><ref refid="classb2_loop_shape_1a1a3ee2cdeb1ae64cf998a20064cb5e00" kindref="member" tooltip="The vertex count.">m_count</ref>);</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classb2_loop_shape_1afc20abf90431c0e56cf06a647d22fbd9" kindref="member" tooltip="The vertices. Owned by this class.">m_vertices</ref>[index];</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structb2_vec2" kindref="compound" tooltip="A 2D column vector.">b2Vec2</ref>*<sp/><ref refid="classb2_loop_shape_1ab3791135f1c797c4a7ca068666ee3e9a" kindref="member" tooltip="Get the vertices (read-only).">GetVertices</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classb2_loop_shape_1afc20abf90431c0e56cf06a647d22fbd9" kindref="member" tooltip="The vertices. Owned by this class.">m_vertices</ref>;<sp/>}</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight><highlight class="keyword">protected</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"></highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structb2_vec2" kindref="compound" tooltip="A 2D column vector.">b2Vec2</ref>*<sp/><ref refid="classb2_loop_shape_1afc20abf90431c0e56cf06a647d22fbd9" kindref="member" tooltip="The vertices. Owned by this class.">m_vertices</ref>;</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>int32<sp/><ref refid="classb2_loop_shape_1a1a3ee2cdeb1ae64cf998a20064cb5e00" kindref="member" tooltip="The vertex count.">m_count</ref>;</highlight></codeline>
+<codeline lineno="86"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/>b2LoopShape::b2LoopShape()</highlight></codeline>
+<codeline lineno="89"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>m_type<sp/>=<sp/>e_loop;</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>m_radius<sp/>=<sp/><ref refid="b2_settings_8h_1afc0f934dabffb1e83e081249133ad860" kindref="member">b2_polygonRadius</ref>;</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classb2_loop_shape_1afc20abf90431c0e56cf06a647d22fbd9" kindref="member" tooltip="The vertices. Owned by this class.">m_vertices</ref><sp/>=<sp/>NULL;</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classb2_loop_shape_1a1a3ee2cdeb1ae64cf998a20064cb5e00" kindref="member" tooltip="The vertex count.">m_count</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="94"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="D:/pybox2d/Box2D/Collision/Shapes/b2LoopShape.h"/>
+  </compounddef>
+</doxygen>

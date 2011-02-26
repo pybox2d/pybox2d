@@ -1,0 +1,427 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.7.2">
+  <compounddef id="structb2_joint_def" kind="struct" prot="public">
+    <compoundname>b2JointDef</compoundname>
+    <derivedcompoundref refid="structb2_distance_joint_def" prot="public" virt="non-virtual">b2DistanceJointDef</derivedcompoundref>
+    <derivedcompoundref refid="structb2_friction_joint_def" prot="public" virt="non-virtual">b2FrictionJointDef</derivedcompoundref>
+    <derivedcompoundref refid="structb2_gear_joint_def" prot="public" virt="non-virtual">b2GearJointDef</derivedcompoundref>
+    <derivedcompoundref refid="structb2_line_joint_def" prot="public" virt="non-virtual">b2LineJointDef</derivedcompoundref>
+    <derivedcompoundref refid="structb2_mouse_joint_def" prot="public" virt="non-virtual">b2MouseJointDef</derivedcompoundref>
+    <derivedcompoundref refid="structb2_prismatic_joint_def" prot="public" virt="non-virtual">b2PrismaticJointDef</derivedcompoundref>
+    <derivedcompoundref refid="structb2_pulley_joint_def" prot="public" virt="non-virtual">b2PulleyJointDef</derivedcompoundref>
+    <derivedcompoundref refid="structb2_revolute_joint_def" prot="public" virt="non-virtual">b2RevoluteJointDef</derivedcompoundref>
+    <derivedcompoundref refid="structb2_rope_joint_def" prot="public" virt="non-virtual">b2RopeJointDef</derivedcompoundref>
+    <derivedcompoundref refid="structb2_weld_joint_def" prot="public" virt="non-virtual">b2WeldJointDef</derivedcompoundref>
+    <includes local="no">b2Joint.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structb2_joint_def_1a470f2879b24adb05facbd49f338856fb" prot="public" static="no" mutable="no">
+        <type>b2JointType</type>
+        <definition>b2JointType b2JointDef::type</definition>
+        <argsstring></argsstring>
+        <name>type</name>
+        <briefdescription>
+<para>The joint type is set automatically for concrete joint types. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2Joint.h" line="90" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2Joint.h" bodystart="90" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structb2_joint_def_1a07eb150daaaa52fc09c3bcf402b295fe" prot="public" static="no" mutable="no">
+        <type>void *</type>
+        <definition>void* b2JointDef::userData</definition>
+        <argsstring></argsstring>
+        <name>userData</name>
+        <briefdescription>
+<para>Use this to attach application specific data to your joints. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2Joint.h" line="93" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2Joint.h" bodystart="93" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structb2_joint_def_1a8cd54c93da396be75a9788f2c6897f05" prot="public" static="no" mutable="no">
+        <type><ref refid="classb2_body" kindref="compound">b2Body</ref> *</type>
+        <definition>b2Body* b2JointDef::bodyA</definition>
+        <argsstring></argsstring>
+        <name>bodyA</name>
+        <briefdescription>
+<para>The first attached body. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2Joint.h" line="96" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2Joint.h" bodystart="96" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structb2_joint_def_1aa4f4dee2fbcd12187b19506b60e68e3d" prot="public" static="no" mutable="no">
+        <type><ref refid="classb2_body" kindref="compound">b2Body</ref> *</type>
+        <definition>b2Body* b2JointDef::bodyB</definition>
+        <argsstring></argsstring>
+        <name>bodyB</name>
+        <briefdescription>
+<para>The second attached body. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2Joint.h" line="99" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2Joint.h" bodystart="99" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structb2_joint_def_1aef099a1f89b64e230173b6016848ea9b" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool b2JointDef::collideConnected</definition>
+        <argsstring></argsstring>
+        <name>collideConnected</name>
+        <briefdescription>
+<para>Set this flag to true if the attached bodies should collide. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2Joint.h" line="102" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2Joint.h" bodystart="102" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structb2_joint_def_1a1fdb44829d4fd13c72edb1daacb72f89" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>b2JointDef::b2JointDef</definition>
+        <argsstring>()</argsstring>
+        <name>b2JointDef</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2Joint.h" line="81" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2Joint.h" bodystart="80" bodyend="87"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Joint definitions are used to construct joints. </para>    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1524">
+        <label>b2RopeJointDef</label>
+        <link refid="structb2_rope_joint_def"/>
+        <childnode refid="1515" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1516">
+        <label>b2DistanceJointDef</label>
+        <link refid="structb2_distance_joint_def"/>
+        <childnode refid="1515" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1519">
+        <label>b2LineJointDef</label>
+        <link refid="structb2_line_joint_def"/>
+        <childnode refid="1515" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1522">
+        <label>b2PulleyJointDef</label>
+        <link refid="structb2_pulley_joint_def"/>
+        <childnode refid="1515" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1517">
+        <label>b2FrictionJointDef</label>
+        <link refid="structb2_friction_joint_def"/>
+        <childnode refid="1515" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1525">
+        <label>b2WeldJointDef</label>
+        <link refid="structb2_weld_joint_def"/>
+        <childnode refid="1515" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1515">
+        <label>b2JointDef</label>
+        <link refid="structb2_joint_def"/>
+      </node>
+      <node id="1520">
+        <label>b2MouseJointDef</label>
+        <link refid="structb2_mouse_joint_def"/>
+        <childnode refid="1515" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1518">
+        <label>b2GearJointDef</label>
+        <link refid="structb2_gear_joint_def"/>
+        <childnode refid="1515" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1521">
+        <label>b2PrismaticJointDef</label>
+        <link refid="structb2_prismatic_joint_def"/>
+        <childnode refid="1515" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1523">
+        <label>b2RevoluteJointDef</label>
+        <link refid="structb2_revolute_joint_def"/>
+        <childnode refid="1515" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1535">
+        <label>b2Contact</label>
+        <link refid="classb2_contact"/>
+        <childnode refid="1535" relation="usage">
+          <edgelabel>m_prev</edgelabel>
+          <edgelabel>m_next</edgelabel>
+        </childnode>
+        <childnode refid="1536" relation="usage">
+          <edgelabel>m_manifold</edgelabel>
+        </childnode>
+        <childnode refid="1540" relation="usage">
+          <edgelabel>m_fixtureA</edgelabel>
+          <edgelabel>m_fixtureB</edgelabel>
+        </childnode>
+        <childnode refid="1534" relation="usage">
+          <edgelabel>m_nodeA</edgelabel>
+          <edgelabel>m_nodeB</edgelabel>
+        </childnode>
+      </node>
+      <node id="1527">
+        <label>b2Body</label>
+        <link refid="classb2_body"/>
+        <childnode refid="1527" relation="usage">
+          <edgelabel>m_prev</edgelabel>
+          <edgelabel>m_next</edgelabel>
+        </childnode>
+        <childnode refid="1528" relation="usage">
+          <edgelabel>m_jointList</edgelabel>
+        </childnode>
+        <childnode refid="1530" relation="usage">
+          <edgelabel>m_linearVelocity</edgelabel>
+          <edgelabel>m_force</edgelabel>
+        </childnode>
+        <childnode refid="1531" relation="usage">
+          <edgelabel>m_sweep</edgelabel>
+        </childnode>
+        <childnode refid="1532" relation="usage">
+          <edgelabel>m_xf</edgelabel>
+        </childnode>
+        <childnode refid="1534" relation="usage">
+          <edgelabel>m_contactList</edgelabel>
+        </childnode>
+        <childnode refid="1540" relation="usage">
+          <edgelabel>m_fixtureList</edgelabel>
+        </childnode>
+        <childnode refid="1545" relation="usage">
+          <edgelabel>m_world</edgelabel>
+        </childnode>
+      </node>
+      <node id="1539">
+        <label>b2ContactFeature</label>
+        <link refid="structb2_contact_feature"/>
+      </node>
+      <node id="1534">
+        <label>b2ContactEdge</label>
+        <link refid="structb2_contact_edge"/>
+        <childnode refid="1527" relation="usage">
+          <edgelabel>other</edgelabel>
+        </childnode>
+        <childnode refid="1535" relation="usage">
+          <edgelabel>contact</edgelabel>
+        </childnode>
+        <childnode refid="1534" relation="usage">
+          <edgelabel>prev</edgelabel>
+          <edgelabel>next</edgelabel>
+        </childnode>
+      </node>
+      <node id="1536">
+        <label>b2Manifold</label>
+        <link refid="structb2_manifold"/>
+        <childnode refid="1530" relation="usage">
+          <edgelabel>localPoint</edgelabel>
+          <edgelabel>localNormal</edgelabel>
+        </childnode>
+        <childnode refid="1537" relation="usage">
+          <edgelabel>points</edgelabel>
+        </childnode>
+      </node>
+      <node id="1547">
+        <label>b2BlockAllocator</label>
+        <link refid="classb2_block_allocator"/>
+      </node>
+      <node id="1548">
+        <label>b2DestructionListener</label>
+        <link refid="classb2_destruction_listener"/>
+      </node>
+      <node id="1545">
+        <label>b2World</label>
+        <link refid="classb2_world"/>
+        <childnode refid="1527" relation="usage">
+          <edgelabel>m_bodyList</edgelabel>
+        </childnode>
+        <childnode refid="1546" relation="usage">
+          <edgelabel>m_debugDraw</edgelabel>
+        </childnode>
+        <childnode refid="1530" relation="usage">
+          <edgelabel>m_gravity</edgelabel>
+        </childnode>
+        <childnode refid="1547" relation="usage">
+          <edgelabel>m_blockAllocator</edgelabel>
+        </childnode>
+        <childnode refid="1548" relation="usage">
+          <edgelabel>m_destructionListener</edgelabel>
+        </childnode>
+        <childnode refid="1529" relation="usage">
+          <edgelabel>m_jointList</edgelabel>
+        </childnode>
+      </node>
+      <node id="1526">
+        <label>b2JointDef</label>
+        <link refid="structb2_joint_def"/>
+        <childnode refid="1527" relation="usage">
+          <edgelabel>bodyA</edgelabel>
+          <edgelabel>bodyB</edgelabel>
+        </childnode>
+      </node>
+      <node id="1541">
+        <label>b2FixtureProxy</label>
+        <link refid="structb2_fixture_proxy"/>
+        <childnode refid="1542" relation="usage">
+          <edgelabel>aabb</edgelabel>
+        </childnode>
+        <childnode refid="1540" relation="usage">
+          <edgelabel>fixture</edgelabel>
+        </childnode>
+      </node>
+      <node id="1533">
+        <label>b2Mat22</label>
+        <link refid="structb2_mat22"/>
+        <childnode refid="1530" relation="usage">
+          <edgelabel>col1</edgelabel>
+          <edgelabel>col2</edgelabel>
+        </childnode>
+      </node>
+      <node id="1531">
+        <label>b2Sweep</label>
+        <link refid="structb2_sweep"/>
+        <childnode refid="1530" relation="usage">
+          <edgelabel>c0</edgelabel>
+          <edgelabel>localCenter</edgelabel>
+          <edgelabel>c</edgelabel>
+        </childnode>
+      </node>
+      <node id="1532">
+        <label>b2Transform</label>
+        <link refid="structb2_transform"/>
+        <childnode refid="1530" relation="usage">
+          <edgelabel>position</edgelabel>
+        </childnode>
+        <childnode refid="1533" relation="usage">
+          <edgelabel>R</edgelabel>
+        </childnode>
+      </node>
+      <node id="1546">
+        <label>b2DebugDraw</label>
+        <link refid="classb2_debug_draw"/>
+      </node>
+      <node id="1544">
+        <label>b2Filter</label>
+        <link refid="structb2_filter"/>
+      </node>
+      <node id="1528">
+        <label>b2JointEdge</label>
+        <link refid="structb2_joint_edge"/>
+        <childnode refid="1527" relation="usage">
+          <edgelabel>other</edgelabel>
+        </childnode>
+        <childnode refid="1528" relation="usage">
+          <edgelabel>prev</edgelabel>
+          <edgelabel>next</edgelabel>
+        </childnode>
+        <childnode refid="1529" relation="usage">
+          <edgelabel>joint</edgelabel>
+        </childnode>
+      </node>
+      <node id="1529">
+        <label>b2Joint</label>
+        <link refid="classb2_joint"/>
+        <childnode refid="1527" relation="usage">
+          <edgelabel>m_bodyA</edgelabel>
+          <edgelabel>m_bodyB</edgelabel>
+        </childnode>
+        <childnode refid="1530" relation="usage">
+          <edgelabel>m_localCenterA</edgelabel>
+          <edgelabel>m_localCenterB</edgelabel>
+        </childnode>
+        <childnode refid="1528" relation="usage">
+          <edgelabel>m_edgeB</edgelabel>
+          <edgelabel>m_edgeA</edgelabel>
+        </childnode>
+        <childnode refid="1529" relation="usage">
+          <edgelabel>m_prev</edgelabel>
+          <edgelabel>m_next</edgelabel>
+        </childnode>
+      </node>
+      <node id="1530">
+        <label>b2Vec2</label>
+        <link refid="structb2_vec2"/>
+      </node>
+      <node id="1538">
+        <label>b2ContactID</label>
+        <link refid="unionb2_contact_i_d"/>
+        <childnode refid="1539" relation="usage">
+          <edgelabel>cf</edgelabel>
+        </childnode>
+      </node>
+      <node id="1543">
+        <label>b2Shape</label>
+        <link refid="classb2_shape"/>
+      </node>
+      <node id="1542">
+        <label>b2AABB</label>
+        <link refid="structb2_a_a_b_b"/>
+        <childnode refid="1530" relation="usage">
+          <edgelabel>lowerBound</edgelabel>
+          <edgelabel>upperBound</edgelabel>
+        </childnode>
+      </node>
+      <node id="1540">
+        <label>b2Fixture</label>
+        <link refid="classb2_fixture"/>
+        <childnode refid="1527" relation="usage">
+          <edgelabel>m_body</edgelabel>
+        </childnode>
+        <childnode refid="1541" relation="usage">
+          <edgelabel>m_proxies</edgelabel>
+        </childnode>
+        <childnode refid="1543" relation="usage">
+          <edgelabel>m_shape</edgelabel>
+        </childnode>
+        <childnode refid="1544" relation="usage">
+          <edgelabel>m_filter</edgelabel>
+        </childnode>
+        <childnode refid="1540" relation="usage">
+          <edgelabel>m_next</edgelabel>
+        </childnode>
+      </node>
+      <node id="1537">
+        <label>b2ManifoldPoint</label>
+        <link refid="structb2_manifold_point"/>
+        <childnode refid="1530" relation="usage">
+          <edgelabel>localPoint</edgelabel>
+        </childnode>
+        <childnode refid="1538" relation="usage">
+          <edgelabel>id</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="D:/pybox2d/Box2D/Dynamics/Joints/b2Joint.h" line="79" bodyfile="D:/pybox2d/Box2D/Dynamics/Joints/b2Joint.h" bodystart="78" bodyend="103"/>
+    <listofallmembers>
+      <member refid="structb2_joint_def_1a1fdb44829d4fd13c72edb1daacb72f89" prot="public" virt="non-virtual"><scope>b2JointDef</scope><name>b2JointDef</name></member>
+      <member refid="structb2_joint_def_1a8cd54c93da396be75a9788f2c6897f05" prot="public" virt="non-virtual"><scope>b2JointDef</scope><name>bodyA</name></member>
+      <member refid="structb2_joint_def_1aa4f4dee2fbcd12187b19506b60e68e3d" prot="public" virt="non-virtual"><scope>b2JointDef</scope><name>bodyB</name></member>
+      <member refid="structb2_joint_def_1aef099a1f89b64e230173b6016848ea9b" prot="public" virt="non-virtual"><scope>b2JointDef</scope><name>collideConnected</name></member>
+      <member refid="structb2_joint_def_1a470f2879b24adb05facbd49f338856fb" prot="public" virt="non-virtual"><scope>b2JointDef</scope><name>type</name></member>
+      <member refid="structb2_joint_def_1a07eb150daaaa52fc09c3bcf402b295fe" prot="public" virt="non-virtual"><scope>b2JointDef</scope><name>userData</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

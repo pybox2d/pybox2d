@@ -1,0 +1,859 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Box2D.Box2D.b2Fixture</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="Box2D.Box2D-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="http://code.google.com/p/pybox2d">pybox2d</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        Package&nbsp;Box2D ::
+        <a href="Box2D.Box2D-module.html">Module&nbsp;Box2D</a> ::
+        Class&nbsp;b2Fixture
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- ==================== CLASS DESCRIPTION ==================== -->
+<h1 class="epydoc">Class b2Fixture</h1><p class="nomargin-top"><span class="codelink"><a href="Box2D.Box2D-pysrc.html#b2Fixture">source&nbsp;code</a></span></p>
+<center>
+<center>  <map id="uml_class_diagram_for_box2d_bo_28" name="uml_class_diagram_for_box2d_bo_28">
+<area shape="rect" id="node33" href="Box2D.Box2D.b2Fixture-class.html#body" title="__GetBody(self) &#45;&gt; b2Body __GetBody(self) &#45;&gt; b2Body" alt="" coords="17,31,189,49"/>
+<area shape="rect" id="node33" href="Box2D.Box2D.b2Fixture-class.html#density" title="__GetDensity(self) &#45;&gt; float32" alt="" coords="17,49,189,68"/>
+<area shape="rect" id="node33" href="Box2D.Box2D.b2Fixture-class.html#filterData" title="__GetFilterData(self) &#45;&gt; b2Filter" alt="" coords="17,68,189,87"/>
+<area shape="rect" id="node33" href="Box2D.Box2D.b2Fixture-class.html#friction" title="__GetFriction(self) &#45;&gt; float32" alt="" coords="17,87,189,105"/>
+<area shape="rect" id="node33" href="Box2D.Box2D.b2Fixture-class.html#massData" title="Box2D.Box2D.b2Fixture.massData" alt="" coords="17,105,189,124"/>
+<area shape="rect" id="node33" href="Box2D.Box2D.b2Fixture-class.html#next" title="__GetNext(self) &#45;&gt; b2Fixture __GetNext(self) &#45;&gt; b2Fixture" alt="" coords="17,124,189,143"/>
+<area shape="rect" id="node33" href="Box2D.Box2D.b2Fixture-class.html#restitution" title="__GetRestitution(self) &#45;&gt; float32" alt="" coords="17,143,189,161"/>
+<area shape="rect" id="node33" href="Box2D.Box2D.b2Fixture-class.html#sensor" title="__IsSensor(self) &#45;&gt; bool" alt="" coords="17,161,189,180"/>
+<area shape="rect" id="node33" href="Box2D.Box2D.b2Fixture-class.html#shape" title="__GetShape(self) &#45;&gt; b2Shape __GetShape(self) &#45;&gt; b2Shape" alt="" coords="17,180,189,199"/>
+<area shape="rect" id="node33" href="Box2D.Box2D.b2Fixture-class.html#type" title="__GetType(self) &#45;&gt; Type" alt="" coords="17,199,189,217"/>
+<area shape="rect" id="node33" href="Box2D.Box2D.b2Fixture-class.html#userData" title="__GetUserData(self) &#45;&gt; PyObject" alt="" coords="17,217,189,236"/>
+<area shape="rect" id="node33" href="Box2D.Box2D.b2Fixture-class.html#ClearUserData" title="b2Fixture_ClearUserData(b2Fixture self)" alt="" coords="17,239,189,257"/>
+<area shape="rect" id="node33" href="Box2D.Box2D.b2Fixture-class.html#GetAABB" title="b2Fixture_GetAABB(b2Fixture self, int32 childIndex) &#45;&gt; b2AABB" alt="" coords="17,257,189,276"/>
+<area shape="rect" id="node33" href="Box2D.Box2D.b2Fixture-class.html#RayCast" title="b2Fixture_RayCast(b2Fixture self, b2RayCastOutput output, b2RayCastInput input, &#160;&#160;&#160;&#160;&#160;int32 childIndex) &#45;&gt; bool" alt="" coords="17,276,189,295"/>
+<area shape="rect" id="node33" href="Box2D.Box2D.b2Fixture-class.html#TestPoint" title="b2Fixture_TestPoint(b2Fixture self, b2Vec2 p) &#45;&gt; bool" alt="" coords="17,295,189,313"/>
+<area shape="rect" id="node33" href="Box2D.Box2D.b2Fixture-class.html#__dir__" title="Box2D.Box2D.b2Fixture.__dir__" alt="" coords="17,313,189,332"/>
+<area shape="rect" id="node33" href="Box2D.Box2D.b2Fixture-class.html#__eq__" title="Box2D.Box2D.b2Fixture.__eq__" alt="" coords="17,332,189,351"/>
+<area shape="rect" id="node33" href="Box2D.Box2D.b2Fixture-class.html#__hash__" title="b2Fixture___hash__(b2Fixture self) &#45;&gt; long" alt="" coords="17,351,189,369"/>
+<area shape="rect" id="node33" href="Box2D.Box2D.b2Fixture-class.html#__init__" title="x.__init__(...) initializes x; see x.__class__.__doc__ for signature" alt="" coords="17,369,189,388"/>
+<area shape="rect" id="node33" href="Box2D.Box2D.b2Fixture-class.html#__ne__" title="Box2D.Box2D.b2Fixture.__ne__" alt="" coords="17,388,189,407"/>
+<area shape="rect" id="node33" href="Box2D.Box2D.b2Fixture-class.html#__repr__" title="repr(x)" alt="" coords="17,407,189,425"/>
+<area shape="rect" id="node33" href="Box2D.Box2D.b2Fixture-class.html#__swig_destroy__" title="delete_b2Fixture(b2Fixture self)" alt="" coords="17,425,189,444"/>
+<area shape="rect" id="node1" href="Box2D.Box2D.b2Fixture-class.html" title="A fixture is used to attach a shape to a body for collision detection." alt="" coords="5,6,200,450"/>
+</map>
+  <img src="uml_class_diagram_for_box2d_bo_28.gif" alt='' usemap="#uml_class_diagram_for_box2d_bo_28" ismap="ismap" class="graph-without-title" />
+</center>
+</center>
+<hr />
+<p>A fixture is used to attach a shape to a body for collision detection.
+  A fixture inherits its transform from its parent. Fixtures hold 
+  additional non-geometric data such as friction, collision filters, etc. 
+  Fixtures are created via  b2Body::CreateFixture. WARNING: you cannot 
+  reuse fixtures.</p>
+
+<!-- ==================== INSTANCE METHODS ==================== -->
+<a name="section-InstanceMethods"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td align="left" colspan="2" class="table-header">
+    <span class="table-header">Instance Methods</span></td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="ClearUserData"></a><span class="summary-sig-name">ClearUserData</span>(<span class="summary-sig-arg">...</span>)</span><br />
+      b2Fixture_ClearUserData(b2Fixture self)</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="Box2D.Box2D-pysrc.html#b2Fixture.ClearUserData">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="Box2D.Box2D.b2Fixture-class.html#GetAABB" class="summary-sig-name">GetAABB</a>(<span class="summary-sig-arg">...</span>)</span><br />
+      b2Fixture_GetAABB(b2Fixture self, int32 childIndex) -&gt; b2AABB</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="Box2D.Box2D-pysrc.html#b2Fixture.GetAABB">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="Box2D.Box2D.b2Fixture-class.html#RayCast" class="summary-sig-name">RayCast</a>(<span class="summary-sig-arg">...</span>)</span><br />
+      b2Fixture_RayCast(b2Fixture self, b2RayCastOutput output, b2RayCastInput input, 
+    int32 childIndex) -&gt; bool</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="Box2D.Box2D-pysrc.html#b2Fixture.RayCast">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="Box2D.Box2D.b2Fixture-class.html#TestPoint" class="summary-sig-name">TestPoint</a>(<span class="summary-sig-arg">...</span>)</span><br />
+      b2Fixture_TestPoint(b2Fixture self, b2Vec2 p) -&gt; bool</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="Box2D.Box2D-pysrc.html#b2Fixture.TestPoint">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="__dir__"></a><span class="summary-sig-name">__dir__</span>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="Box2D.Box2D-pysrc.html#_dir_filter">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="__eq__"></a><span class="summary-sig-name">__eq__</span>(<span class="summary-sig-arg">a</span>,
+        <span class="summary-sig-arg">b</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="Box2D.Box2D-pysrc.html#b2FixtureCompare">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="Box2D.Box2D.b2Fixture-class.html#__hash__" class="summary-sig-name">__hash__</a>(<span class="summary-sig-arg">...</span>)</span><br />
+      b2Fixture___hash__(b2Fixture self) -&gt; long</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="Box2D.Box2D-pysrc.html#b2Fixture.__hash__">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="Box2D.Box2D.b2Fixture-class.html#__init__" class="summary-sig-name">__init__</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">*args</span>,
+        <span class="summary-sig-arg">**kwargs</span>)</span><br />
+      x.__init__(...) initializes x; see x.__class__.__doc__ for signature</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="Box2D.Box2D-pysrc.html#b2Fixture.__init__">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="__ne__"></a><span class="summary-sig-name">__ne__</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">other</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="Box2D.Box2D-pysrc.html#b2Fixture.__ne__">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="Box2D.Box2D.b2Fixture-class.html#__repr__" class="summary-sig-name">__repr__</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      repr(x)</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="Box2D.Box2D-pysrc.html#b2Fixture.__repr__">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="__swig_destroy__"></a><span class="summary-sig-name">__swig_destroy__</span>(<span class="summary-sig-arg">...</span>)</span><br />
+      delete_b2Fixture(b2Fixture self)</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code>object</code></b>:
+      <code>__delattr__</code>,
+      <code>__format__</code>,
+      <code>__getattribute__</code>,
+      <code>__new__</code>,
+      <code>__reduce__</code>,
+      <code>__reduce_ex__</code>,
+      <code>__setattr__</code>,
+      <code>__sizeof__</code>,
+      <code>__str__</code>,
+      <code>__subclasshook__</code>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== PROPERTIES ==================== -->
+<a name="section-Properties"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td align="left" colspan="2" class="table-header">
+    <span class="table-header">Properties</span></td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="Box2D.Box2D.b2Fixture-class.html#body" class="summary-name">body</a><br />
+      __GetBody(self) -&gt; b2Body __GetBody(self) -&gt; b2Body
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="Box2D.Box2D.b2Fixture-class.html#density" class="summary-name">density</a><br />
+      __GetDensity(self) -&gt; float32
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="Box2D.Box2D.b2Fixture-class.html#filterData" class="summary-name">filterData</a><br />
+      __GetFilterData(self) -&gt; b2Filter
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="Box2D.Box2D.b2Fixture-class.html#friction" class="summary-name">friction</a><br />
+      __GetFriction(self) -&gt; float32
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="Box2D.Box2D.b2Fixture-class.html#massData" class="summary-name">massData</a>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="Box2D.Box2D.b2Fixture-class.html#next" class="summary-name">next</a><br />
+      __GetNext(self) -&gt; b2Fixture __GetNext(self) -&gt; b2Fixture
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="Box2D.Box2D.b2Fixture-class.html#restitution" class="summary-name">restitution</a><br />
+      __GetRestitution(self) -&gt; float32
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="Box2D.Box2D.b2Fixture-class.html#sensor" class="summary-name">sensor</a><br />
+      __IsSensor(self) -&gt; bool
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="Box2D.Box2D.b2Fixture-class.html#shape" class="summary-name">shape</a><br />
+      __GetShape(self) -&gt; b2Shape __GetShape(self) -&gt; b2Shape
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="Box2D.Box2D.b2Fixture-class.html#type" class="summary-name">type</a><br />
+      __GetType(self) -&gt; Type
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="Box2D.Box2D.b2Fixture-class.html#userData" class="summary-name">userData</a><br />
+      __GetUserData(self) -&gt; PyObject
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code>object</code></b>:
+      <code>__class__</code>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== METHOD DETAILS ==================== -->
+<a name="section-MethodDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td align="left" colspan="2" class="table-header">
+    <span class="table-header">Method Details</span></td>
+</tr>
+</table>
+<a name="GetAABB"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">GetAABB</span>(<span class="sig-arg">...</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="Box2D.Box2D-pysrc.html#b2Fixture.GetAABB">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>b2Fixture_GetAABB(b2Fixture self, int32 childIndex) -&gt; b2AABB</p>
+  <p>Get the fixture's AABB. This AABB may be enlarge and/or stale. If you 
+  need a more accurate AABB, compute it using the shape and the body 
+  transform.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="RayCast"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">RayCast</span>(<span class="sig-arg">...</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="Box2D.Box2D-pysrc.html#b2Fixture.RayCast">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+
+b2Fixture_RayCast(b2Fixture self, b2RayCastOutput output, b2RayCastInput input, 
+    int32 childIndex) -&gt; bool
+
+Cast a ray against this shape.
+
+Parameters:
+-----------
+
+output: 
+the ray-cast results.
+
+input: 
+the ray-cast input parameters.
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="TestPoint"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">TestPoint</span>(<span class="sig-arg">...</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="Box2D.Box2D-pysrc.html#b2Fixture.TestPoint">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+
+b2Fixture_TestPoint(b2Fixture self, b2Vec2 p) -&gt; bool
+
+Test a point for containment in this fixture.
+
+Parameters:
+-----------
+
+p: 
+a point in world coordinates.
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="__hash__"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">__hash__</span>(<span class="sig-arg">...</span>)</span>
+    <br /><em class="fname">(Hashing function)</em>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="Box2D.Box2D-pysrc.html#b2Fixture.__hash__">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>b2Fixture___hash__(b2Fixture self) -&gt; long</p>
+  <dl class="fields">
+    <dt>Overrides:
+        object.__hash__
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="__init__"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">__init__</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">*args</span>,
+        <span class="sig-arg">**kwargs</span>)</span>
+    <br /><em class="fname">(Constructor)</em>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="Box2D.Box2D-pysrc.html#b2Fixture.__init__">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>x.__init__(...) initializes x; see x.__class__.__doc__ for 
+  signature</p>
+  <dl class="fields">
+    <dt>Overrides:
+        object.__init__
+        <dd><em class="note">(inherited documentation)</em></dd>
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="__repr__"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">__repr__</span>(<span class="sig-arg">self</span>)</span>
+    <br /><em class="fname">(Representation operator)</em>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="Box2D.Box2D-pysrc.html#b2Fixture.__repr__">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>repr(x)</p>
+  <dl class="fields">
+    <dt>Overrides:
+        object.__repr__
+        <dd><em class="note">(inherited documentation)</em></dd>
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== PROPERTY DETAILS ==================== -->
+<a name="section-PropertyDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td align="left" colspan="2" class="table-header">
+    <span class="table-header">Property Details</span></td>
+</tr>
+</table>
+<a name="body"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">body</h3>
+  <p>__GetBody(self) -&gt; b2Body __GetBody(self) -&gt; b2Body</p>
+  <p>Get the parent body of this fixture. This is NULL if the fixture is 
+  not attached. the parent body.</p>
+  <dl class="fields">
+    <dt>Get Method:</dt>
+    <dd class="value"><span class="summary-sig"><a href="Box2D.Box2D.b2Fixture-class.html#__GetBody" class="summary-sig-name" onclick="show_private();">__GetBody</a>(<span class="summary-sig-arg">self</span>)</span>
+        - __GetBody(self) -&gt; b2Body
+    </dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="density"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">density</h3>
+  <p>__GetDensity(self) -&gt; float32</p>
+  <p>Get the density of this fixture.</p>
+  <dl class="fields">
+    <dt>Get Method:</dt>
+    <dd class="value"><span class="summary-sig"><i>unreachable</i>.__GetDensity(<span class="summary-sig-arg">self</span>)</span>
+        - Get the density of this fixture.
+    </dd>
+    <dt>Set Method:</dt>
+    <dd class="value"><span class="summary-sig"><a href="Box2D.Box2D.b2Fixture-class.html#__SetDensity" class="summary-sig-name" onclick="show_private();">__SetDensity</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">*args</span>,
+        <span class="summary-sig-arg">**kwargs</span>)</span>
+        - __SetDensity(self, float32 density)
+    </dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="filterData"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">filterData</h3>
+  <p>__GetFilterData(self) -&gt; b2Filter</p>
+  <p>Get the contact filtering data.</p>
+  <dl class="fields">
+    <dt>Get Method:</dt>
+    <dd class="value"><span class="summary-sig"><a href="Box2D.Box2D.b2Fixture-class.html#__GetFilterData" class="summary-sig-name" onclick="show_private();">__GetFilterData</a>(<span class="summary-sig-arg">self</span>)</span>
+        - Get the contact filtering data.
+    </dd>
+    <dt>Set Method:</dt>
+    <dd class="value"><span class="summary-sig"><i>unreachable</i>.__SetFilterData(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">*args</span>,
+        <span class="summary-sig-arg">**kwargs</span>)</span>
+        - __SetFilterData(self, b2Filter filter)
+    </dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="friction"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">friction</h3>
+  <p>__GetFriction(self) -&gt; float32</p>
+  <p>Get the coefficient of friction.</p>
+  <dl class="fields">
+    <dt>Get Method:</dt>
+    <dd class="value"><span class="summary-sig"><a href="Box2D.Box2D.b2Fixture-class.html#__GetFriction" class="summary-sig-name" onclick="show_private();">__GetFriction</a>(<span class="summary-sig-arg">self</span>)</span>
+        - Get the coefficient of friction.
+    </dd>
+    <dt>Set Method:</dt>
+    <dd class="value"><span class="summary-sig"><i>unreachable</i>.__SetFriction(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">*args</span>,
+        <span class="summary-sig-arg">**kwargs</span>)</span>
+        - __SetFriction(self, float32 friction)
+    </dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="massData"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">massData</h3>
+  
+  <dl class="fields">
+    <dt>Get Method:</dt>
+    <dd class="value"><span class="summary-sig"><i>unreachable</i>.massData(<span class="summary-sig-arg">self</span>)</span>
+    </dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="next"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">next</h3>
+  <p>__GetNext(self) -&gt; b2Fixture __GetNext(self) -&gt; b2Fixture</p>
+  <p>Get the next fixture in the parent body's fixture list. the next 
+  shape.</p>
+  <dl class="fields">
+    <dt>Get Method:</dt>
+    <dd class="value"><span class="summary-sig"><i>unreachable</i>.__GetNext(<span class="summary-sig-arg">self</span>)</span>
+        - __GetNext(self) -&gt; b2Fixture
+    </dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="restitution"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">restitution</h3>
+  <p>__GetRestitution(self) -&gt; float32</p>
+  <p>Get the coefficient of restitution.</p>
+  <dl class="fields">
+    <dt>Get Method:</dt>
+    <dd class="value"><span class="summary-sig"><i>unreachable</i>.__GetRestitution(<span class="summary-sig-arg">self</span>)</span>
+        - Get the coefficient of restitution.
+    </dd>
+    <dt>Set Method:</dt>
+    <dd class="value"><span class="summary-sig"><a href="Box2D.Box2D.b2Fixture-class.html#__SetRestitution" class="summary-sig-name" onclick="show_private();">__SetRestitution</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">*args</span>,
+        <span class="summary-sig-arg">**kwargs</span>)</span>
+        - __SetRestitution(self, float32 restitution)
+    </dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="sensor"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">sensor</h3>
+  <p>__IsSensor(self) -&gt; bool</p>
+  <p>Is this fixture a sensor (non-solid)? the true if the shape is a 
+  sensor.</p>
+  <dl class="fields">
+    <dt>Get Method:</dt>
+    <dd class="value"><span class="summary-sig"><a href="Box2D.Box2D.b2Fixture-class.html#__IsSensor" class="summary-sig-name" onclick="show_private();">__IsSensor</a>(<span class="summary-sig-arg">self</span>)</span>
+        - Is this fixture a sensor (non-solid)? the true if the shape is a sensor.
+    </dd>
+    <dt>Set Method:</dt>
+    <dd class="value"><span class="summary-sig"><i>unreachable</i>.__SetSensor(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">*args</span>,
+        <span class="summary-sig-arg">**kwargs</span>)</span>
+        - __SetSensor(self, bool sensor)
+    </dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="shape"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">shape</h3>
+  <p>__GetShape(self) -&gt; b2Shape __GetShape(self) -&gt; b2Shape</p>
+  <p>Get the child shape. You can modify the child shape, however you 
+  should not change the number of vertices because this will crash some 
+  collision caching mechanisms. Manipulating the shape may lead to 
+  non-physical behavior.</p>
+  <dl class="fields">
+    <dt>Get Method:</dt>
+    <dd class="value"><span class="summary-sig"><a href="Box2D.Box2D.b2Fixture-class.html#__GetShape" class="summary-sig-name" onclick="show_private();">__GetShape</a>(<span class="summary-sig-arg">self</span>)</span>
+        - __GetShape(self) -&gt; b2Shape
+    </dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="type"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">type</h3>
+  <p>__GetType(self) -&gt; Type</p>
+  <p>Get the type of the child shape. You can use this to down cast to the 
+  concrete shape. the shape type.</p>
+  <dl class="fields">
+    <dt>Get Method:</dt>
+    <dd class="value"><span class="summary-sig"><a href="Box2D.Box2D.b2Fixture-class.html#__GetType" class="summary-sig-name" onclick="show_private();">__GetType</a>(<span class="summary-sig-arg">self</span>)</span>
+        - Get the type of the child shape.
+    </dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="userData"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">userData</h3>
+  <p>__GetUserData(self) -&gt; PyObject</p>
+  <dl class="fields">
+    <dt>Get Method:</dt>
+    <dd class="value"><span class="summary-sig"><a href="Box2D.Box2D.b2Fixture-class.html#__GetUserData" class="summary-sig-name" onclick="show_private();">__GetUserData</a>(<span class="summary-sig-arg">self</span>)</span>
+    </dd>
+    <dt>Set Method:</dt>
+    <dd class="value"><span class="summary-sig"><i>unreachable</i>.__SetUserData(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">*args</span>,
+        <span class="summary-sig-arg">**kwargs</span>)</span>
+        - __SetUserData(self, PyObject data)
+    </dd>
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="Box2D.Box2D-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="http://code.google.com/p/pybox2d">pybox2d</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Thu Nov 18 22:51:44 2010
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

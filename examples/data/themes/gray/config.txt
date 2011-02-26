@@ -1,0 +1,244 @@
+desktop background desktop.png
+
+input font Vera.ttf 16 
+input background input.normal.png
+input color #000000
+input:focus background input.focus.png
+input padding_left 6
+input padding_right 6
+input padding_top 3
+input padding_bottom 3
+
+label font Vera.ttf 16
+label color #000000
+
+document font Vera.ttf 16
+document color #000000
+div font Vera.ttf 16
+div color #000000
+
+td font Vera.ttf 16
+td color #000000
+th font Vera.ttf 16
+th color #000000
+
+h1 font Vera.ttf 24
+h1 color #000000
+h2 font Vera.ttf 20
+h2 color #000000
+h3 font Vera.ttf 16
+h3 color #000000
+h4 font Vera.ttf 14
+h4 color #000000
+h5 font Vera.ttf 12
+h5 color #000000
+h6 font Vera.ttf 10
+h6 color #000000
+
+ul font Vera.ttf 16
+ul color #000000
+ol font Vera.ttf 16
+ol color #000000
+li font Vera.ttf 16
+li color #000000
+li padding_left 32
+
+pre font mono 16
+pre color #000000
+code font mono 16
+code color #000000
+
+checkbox off checkbox.off.normal.png
+checkbox on checkbox.on.normal.png
+checkbox:down off checkbox.off.down.png
+checkbox:down on checkbox.on.down.png
+
+switch off checkbox.off.normal.png
+switch on checkbox.on.normal.png
+switch:down off checkbox.off.down.png
+switch:down on checkbox.on.down.png
+
+radio off radio.off.normal.png
+radio on radio.on.normal.png
+radio:down off radio.off.down.png
+radio:down on radio.on.down.png
+
+button background button.normal.png
+button:down background button.down.png
+button padding_left 8
+button padding_right 8
+button padding_top 1
+button padding_bottom 1
+button.label font Vera.ttf 16
+button.label color #000000
+
+slider background slider.png
+slider bar slider.bar.normal.png
+slider:down bar slider.bar.down.png
+slider width 16
+slider height 16
+
+hslider background slider.png
+hslider bar slider.bar.normal.png
+hslider:down bar slider.bar.down.png
+hslider width 16
+hslider height 16
+
+vslider background slider.png
+vslider bar slider.bar.normal.png
+vslider:down bar slider.bar.down.png
+vslider width 16
+vslider height 16
+
+select.selected background select.selected.normal.png
+#select.selected:down background select.selected.down.png
+select.selected padding_left 4
+select.selected padding_right 4
+select.selected padding_top 1
+select.selected padding_bottom 1
+select.arrow background select.arrow.normal.png
+select.arrow:down background select.arrow.down.png
+select.arrow padding_left 1
+select.arrow padding_right 1
+
+select.options background select.options.png
+select.option background select.option.normal.png
+#select.option:hover background select.option.hover.png
+select.option padding_left 4
+select.option padding_right 4
+select.option padding_top 1
+select.option padding_bottom 1
+#select.option border_top 1
+#select.option border_right 1
+#select.option border_bottom 1
+#select.option border_left 1
+
+select.option.label font Vera.ttf 16
+select.option.label color #000000
+select.options padding_left 1
+select.options padding_right 1
+select.options padding_top 1
+select.options padding_bottom 1
+select arrow select.arrow.png
+
+
+dialog.bar background dialog.bar.png
+dialog.bar padding_left 8
+dialog.bar padding_right 8
+dialog.bar padding_top 2
+dialog.bar padding_bottom 1
+dialog.bar.close image dialog.close.normal.png
+dialog.bar.close:down image dialog.close.down.png
+dialog.main background dialog.png
+dialog.main padding_left 8
+dialog.main padding_right 8
+dialog.main padding_top 4
+dialog.main padding_bottom 4
+
+keysym font helvetica 16
+keysym background input.normal.png
+keysym color #000000
+keysym:focus background input.focus.png
+keysym padding_left 6
+keysym padding_right 6
+keysym padding_top 3
+keysym padding_bottom 3
+
+tool background tool.normal.png
+tool:down background tool.down.png
+tool padding_left 4
+tool padding_right 4
+tool padding_top 1
+tool padding_bottom 1
+tool.label font Vera.ttf 16
+tool.label color #000000
+
+menu background menu.normal.png
+menu:hover background menu.hover.png
+menu:down background menu.down.png
+menu padding_left 6
+menu padding_right 6
+menu padding_top 3
+menu padding_bottom 3
+menu.label font Vera.ttf 16
+menu.label color #000000
+
+menu-open background menu.down.png
+menu-open:down background menu.down.png
+menu-open padding_left 6
+menu-open padding_right 6
+menu-open padding_top 3
+menu-open padding_bottom 3
+
+menu.options background select.options.png
+menu.option background menu.option.normal.png
+menu.option:hover background menu.option.hover.png
+#menu.option.label color #FF0000
+menu.option padding_left 6
+menu.option padding_right 6
+menu.option padding_top 1
+menu.option padding_bottom 1
+menu.option.label font Vera.ttf 16
+menu.option.label color #000000
+menu.options padding_left 1
+menu.options padding_right 1
+menu.options padding_top 1
+menu.options padding_bottom 1
+menu arrow select.arrow.png
+
+
+scrollarea.content background #ffffff
+scrollarea.content padding_left 1
+scrollarea.content padding_right 1
+scrollarea.content padding_top 1
+scrollarea.content padding_bottom 1
+hscrollbar height 15
+##hscrollbar background scroller.slide.h.png
+hscrollbar background slider.png
+##hscrollbar bar scroller.slide.bar.normal.png
+hscrollbar bar slider.bar.normal.png
+##hscrollbar:down bar scroller.slide.bar.down.png
+vscrollbar width 15
+##vscrollbar background scroller.slide.v.png
+vscrollbar background slider.png
+##vscrollbar bar scroller.slide.bar.normal.png
+vscrollbar bar slider.bar.normal.png
+##vscrollbar:down bar scroller.slide.bar.down.png
+
+list.item background list.item.normal.png
+#list.item:down background list.item.down.png
+list.item padding_left 4
+list.item padding_right 4
+list.item padding_top 2
+list.item padding_bottom 2
+list.item margin_bottom 1
+list.item align -1
+list.item.label font Vera.ttf 14
+list.item.label color #000000
+
+list background list.png
+list padding_left 1
+list padding_right 1
+list padding_top 1
+list padding_bottom 1
+list.content background #eeeeee
+list.content padding_left 1
+list.content padding_right 1
+list.content padding_top 1
+list.content padding_bottom 1
+
+filedialog.folder image filebrowser.folder.png
+filedialog.label font Vera.ttf 14
+filedialog.label color #000000
+filedialog.title.label font Vera.ttf 16
+filedialog.title.label color #000000
+filedialog.input font Vera.ttf 14
+filedialog.input background input.normal.png
+filedialog.input color #000000
+filedialog.input:focus background input.focus.png
+filedialog.input padding_left 6
+filedialog.input padding_right 6
+filedialog.input padding_top 3
+filedialog.input padding_bottom 3
+
+

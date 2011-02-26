@@ -1,0 +1,4 @@
+<map id="G" name="G">
+<area shape="rect" id="node2" href="$structb2_vec2.html" title="A 2D column vector." alt="" coords="35,5,101,35"/>
+<area shape="rect" id="node4" href="$structb2_mat22.html" title="A 2&#45;by&#45;2 matrix. Stored in column&#45;major order." alt="" coords="100,117,172,147"/>
+</map>

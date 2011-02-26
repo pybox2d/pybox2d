@@ -1,0 +1,6 @@
+<map id="G" name="G">
+<area shape="rect" id="node2" href="$structb2_distance_proxy.html" title="b2DistanceProxy" alt="" coords="5,171,125,200"/>
+<area shape="rect" id="node4" href="$structb2_vec2.html" title="A 2D column vector." alt="" coords="115,5,181,35"/>
+<area shape="rect" id="node6" href="$structb2_transform.html" title="b2Transform" alt="" coords="131,227,224,256"/>
+<area shape="rect" id="node9" href="$structb2_mat22.html" title="A 2&#45;by&#45;2 matrix. Stored in column&#45;major order." alt="" coords="217,117,289,147"/>
+</map>

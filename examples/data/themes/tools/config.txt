@@ -1,0 +1,11 @@
+tool.draw image icons48.draw.tga
+tool.pixel image icons48.pixel.tga
+tool.line image icons48.line.tga
+tool.fill image icons48.fill.tga
+
+tool.select image icons48.select.tga
+tool.eraser image icons48.eraser.tga
+
+tool.tile image icons48.tile.tga
+tool.code image icons48.code.tga
+tool.bkgr image icons48.bkgr.tga

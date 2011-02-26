@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.7.2">
+  <compounddef id="structb2_position" kind="struct" prot="public">
+    <compoundname>b2Position</compoundname>
+    <includes local="no">b2Island.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structb2_position_1a8217c116b1880d698b677d5ca2445bc0" prot="public" static="no" mutable="no">
+        <type><ref refid="structb2_vec2" kindref="compound">b2Vec2</ref></type>
+        <definition>b2Vec2 b2Position::x</definition>
+        <argsstring></argsstring>
+        <name>x</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2Island.h" line="35" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Island.h" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structb2_position_1a19d9362011e8c080059ac7f692cc7d8f" prot="public" static="no" mutable="no">
+        <type>float32</type>
+        <definition>float32 b2Position::a</definition>
+        <argsstring></argsstring>
+        <name>a</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Dynamics/b2Island.h" line="36" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Island.h" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>This is an internal structure. </para>    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1832">
+        <label>b2Position</label>
+        <link refid="structb2_position"/>
+        <childnode refid="1833" relation="usage">
+          <edgelabel>x</edgelabel>
+        </childnode>
+      </node>
+      <node id="1833">
+        <label>b2Vec2</label>
+        <link refid="structb2_vec2"/>
+      </node>
+    </collaborationgraph>
+    <location file="D:/pybox2d/Box2D/Dynamics/b2Island.h" line="34" bodyfile="D:/pybox2d/Box2D/Dynamics/b2Island.h" bodystart="33" bodyend="37"/>
+    <listofallmembers>
+      <member refid="structb2_position_1a19d9362011e8c080059ac7f692cc7d8f" prot="public" virt="non-virtual"><scope>b2Position</scope><name>a</name></member>
+      <member refid="structb2_position_1a8217c116b1880d698b677d5ca2445bc0" prot="public" virt="non-virtual"><scope>b2Position</scope><name>x</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

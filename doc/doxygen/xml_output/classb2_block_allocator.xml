@@ -1,0 +1,217 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.7.2">
+  <compounddef id="classb2_block_allocator" kind="class" prot="public">
+    <compoundname>b2BlockAllocator</compoundname>
+    <includes local="no">b2BlockAllocator.h</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classb2_block_allocator_1a340443648b0c00b3e901fd5460759a0c" prot="private" static="no" mutable="no">
+        <type>b2Chunk *</type>
+        <definition>b2Chunk* b2BlockAllocator::m_chunks</definition>
+        <argsstring></argsstring>
+        <name>m_chunks</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Common/b2BlockAllocator.h" line="51" bodyfile="D:/pybox2d/Box2D/Common/b2BlockAllocator.h" bodystart="51" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_block_allocator_1a6f23a8eb32475bf1766ddd94a8c00b99" prot="private" static="no" mutable="no">
+        <type>int32</type>
+        <definition>int32 b2BlockAllocator::m_chunkCount</definition>
+        <argsstring></argsstring>
+        <name>m_chunkCount</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Common/b2BlockAllocator.h" line="52" bodyfile="D:/pybox2d/Box2D/Common/b2BlockAllocator.h" bodystart="52" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_block_allocator_1ad4861c267d5d9392b10a2a0e44ec93e8" prot="private" static="no" mutable="no">
+        <type>int32</type>
+        <definition>int32 b2BlockAllocator::m_chunkSpace</definition>
+        <argsstring></argsstring>
+        <name>m_chunkSpace</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Common/b2BlockAllocator.h" line="53" bodyfile="D:/pybox2d/Box2D/Common/b2BlockAllocator.h" bodystart="53" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_block_allocator_1af61bf3e75cc51ddbfbc5d10681b62df1" prot="private" static="no" mutable="no">
+        <type>b2Block *</type>
+        <definition>b2Block* b2BlockAllocator::m_freeLists[b2_blockSizes]</definition>
+        <argsstring>[b2_blockSizes]</argsstring>
+        <name>m_freeLists</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Common/b2BlockAllocator.h" line="55" bodyfile="D:/pybox2d/Box2D/Common/b2BlockAllocator.h" bodystart="55" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="classb2_block_allocator_1a235f8511a784d4a5611ce45b86057ced" prot="private" static="yes" mutable="no">
+        <type>int32</type>
+        <definition>int32 b2BlockAllocator::s_blockSizes</definition>
+        <argsstring>[b2_blockSizes]</argsstring>
+        <name>s_blockSizes</name>
+        <initializer> 
+{
+	16,		
+	32,		
+	64,		
+	96,		
+	128,	
+	160,	
+	192,	
+	224,	
+	256,	
+	320,	
+	384,	
+	448,	
+	512,	
+	640,	
+}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Common/b2BlockAllocator.h" line="57" bodyfile="D:/pybox2d/Box2D/Common/b2BlockAllocator.h" bodystart="57" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_block_allocator_1a2a84d0454d9fa81534d7c463b2f24189" prot="private" static="yes" mutable="no">
+        <type>uint8</type>
+        <definition>uint8 b2BlockAllocator::s_blockSizeLookup</definition>
+        <argsstring>[b2_maxBlockSize+1]</argsstring>
+        <name>s_blockSizeLookup</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Common/b2BlockAllocator.h" line="58" bodyfile="D:/pybox2d/Box2D/Common/b2BlockAllocator.h" bodystart="58" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classb2_block_allocator_1a8133162b02c5bb0d8a9abbcadd899524" prot="private" static="yes" mutable="no">
+        <type>bool</type>
+        <definition>bool b2BlockAllocator::s_blockSizeLookupInitialized</definition>
+        <argsstring></argsstring>
+        <name>s_blockSizeLookupInitialized</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Common/b2BlockAllocator.h" line="59" bodyfile="D:/pybox2d/Box2D/Common/b2BlockAllocator.h" bodystart="59" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classb2_block_allocator_1aed5dab4fea4c2636724dac550105f8c1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>b2BlockAllocator::b2BlockAllocator</definition>
+        <argsstring>()</argsstring>
+        <name>b2BlockAllocator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Common/b2BlockAllocator.h" line="38" bodyfile="D:/pybox2d/Box2D/Common/b2BlockAllocator.cpp" bodystart="57" bodyend="87"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_block_allocator_1a4179da8aa8fc463cd06adeab926e9c89" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>b2BlockAllocator::~b2BlockAllocator</definition>
+        <argsstring>()</argsstring>
+        <name>~b2BlockAllocator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Common/b2BlockAllocator.h" line="39" bodyfile="D:/pybox2d/Box2D/Common/b2BlockAllocator.cpp" bodystart="89" bodyend="97"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_block_allocator_1a437bf775c23f6e36af11a6d1653d7040" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void *</type>
+        <definition>void * b2BlockAllocator::Allocate</definition>
+        <argsstring>(int32 size)</argsstring>
+        <name>Allocate</name>
+        <param>
+          <type>int32</type>
+          <declname>size</declname>
+        </param>
+        <briefdescription>
+<para>Allocate memory. This will use b2Alloc if the size is larger than b2_maxBlockSize. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Common/b2BlockAllocator.h" line="42" bodyfile="D:/pybox2d/Box2D/Common/b2BlockAllocator.cpp" bodystart="99" bodyend="155"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_block_allocator_1a945fdf86e260318b930a53dcc887ca8b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void b2BlockAllocator::Free</definition>
+        <argsstring>(void *p, int32 size)</argsstring>
+        <name>Free</name>
+        <param>
+          <type>void *</type>
+          <declname>p</declname>
+        </param>
+        <param>
+          <type>int32</type>
+          <declname>size</declname>
+        </param>
+        <briefdescription>
+<para>Free memory. This will use b2Free if the size is larger than b2_maxBlockSize. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Common/b2BlockAllocator.h" line="45" bodyfile="D:/pybox2d/Box2D/Common/b2BlockAllocator.cpp" bodystart="157" bodyend="204"/>
+      </memberdef>
+      <memberdef kind="function" id="classb2_block_allocator_1a3d3bac86217eba9d1eb6dff2acee0d77" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void b2BlockAllocator::Clear</definition>
+        <argsstring>()</argsstring>
+        <name>Clear</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Common/b2BlockAllocator.h" line="47" bodyfile="D:/pybox2d/Box2D/Common/b2BlockAllocator.cpp" bodystart="206" bodyend="217"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>This is a small object allocator used for allocating small objects that persist for more than one time step. See: <ulink url="http://www.codeproject.com/useritems/Small_Block_Allocator.asp">http://www.codeproject.com/useritems/Small_Block_Allocator.asp</ulink> </para>    </detaileddescription>
+    <location file="D:/pybox2d/Box2D/Common/b2BlockAllocator.h" line="36" bodyfile="D:/pybox2d/Box2D/Common/b2BlockAllocator.h" bodystart="35" bodyend="60"/>
+    <listofallmembers>
+      <member refid="classb2_block_allocator_1a437bf775c23f6e36af11a6d1653d7040" prot="public" virt="non-virtual"><scope>b2BlockAllocator</scope><name>Allocate</name></member>
+      <member refid="classb2_block_allocator_1aed5dab4fea4c2636724dac550105f8c1" prot="public" virt="non-virtual"><scope>b2BlockAllocator</scope><name>b2BlockAllocator</name></member>
+      <member refid="classb2_block_allocator_1a3d3bac86217eba9d1eb6dff2acee0d77" prot="public" virt="non-virtual"><scope>b2BlockAllocator</scope><name>Clear</name></member>
+      <member refid="classb2_block_allocator_1a945fdf86e260318b930a53dcc887ca8b" prot="public" virt="non-virtual"><scope>b2BlockAllocator</scope><name>Free</name></member>
+      <member refid="classb2_block_allocator_1a6f23a8eb32475bf1766ddd94a8c00b99" prot="private" virt="non-virtual"><scope>b2BlockAllocator</scope><name>m_chunkCount</name></member>
+      <member refid="classb2_block_allocator_1a340443648b0c00b3e901fd5460759a0c" prot="private" virt="non-virtual"><scope>b2BlockAllocator</scope><name>m_chunks</name></member>
+      <member refid="classb2_block_allocator_1ad4861c267d5d9392b10a2a0e44ec93e8" prot="private" virt="non-virtual"><scope>b2BlockAllocator</scope><name>m_chunkSpace</name></member>
+      <member refid="classb2_block_allocator_1af61bf3e75cc51ddbfbc5d10681b62df1" prot="private" virt="non-virtual"><scope>b2BlockAllocator</scope><name>m_freeLists</name></member>
+      <member refid="classb2_block_allocator_1a2a84d0454d9fa81534d7c463b2f24189" prot="private" virt="non-virtual"><scope>b2BlockAllocator</scope><name>s_blockSizeLookup</name></member>
+      <member refid="classb2_block_allocator_1a8133162b02c5bb0d8a9abbcadd899524" prot="private" virt="non-virtual"><scope>b2BlockAllocator</scope><name>s_blockSizeLookupInitialized</name></member>
+      <member refid="classb2_block_allocator_1a235f8511a784d4a5611ce45b86057ced" prot="private" virt="non-virtual"><scope>b2BlockAllocator</scope><name>s_blockSizes</name></member>
+      <member refid="classb2_block_allocator_1a4179da8aa8fc463cd06adeab926e9c89" prot="public" virt="non-virtual"><scope>b2BlockAllocator</scope><name>~b2BlockAllocator</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

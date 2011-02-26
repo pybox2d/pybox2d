@@ -1,0 +1,165 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.7.2">
+  <compounddef id="structb2_mat33" kind="struct" prot="public">
+    <compoundname>b2Mat33</compoundname>
+    <includes local="no">b2Math.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structb2_mat33_1a0c7a3bc7bdd2261eec0bc8a86015c7e1" prot="public" static="no" mutable="no">
+        <type><ref refid="structb2_vec3" kindref="compound">b2Vec3</ref></type>
+        <definition>b2Vec3 b2Mat33::col1</definition>
+        <argsstring></argsstring>
+        <name>col1</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Common/b2Math.h" line="323" bodyfile="D:/pybox2d/Box2D/Common/b2Math.h" bodystart="323" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structb2_mat33_1ac70ff40ca27a16fb16bb840a28f503b7" prot="public" static="no" mutable="no">
+        <type><ref refid="structb2_vec3" kindref="compound">b2Vec3</ref></type>
+        <definition>b2Vec3 b2Mat33::col2</definition>
+        <argsstring></argsstring>
+        <name>col2</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Common/b2Math.h" line="323" bodyfile="D:/pybox2d/Box2D/Common/b2Math.h" bodystart="323" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structb2_mat33_1a8898cdd129e19fa5e291e16ec457a37e" prot="public" static="no" mutable="no">
+        <type><ref refid="structb2_vec3" kindref="compound">b2Vec3</ref></type>
+        <definition>b2Vec3 b2Mat33::col3</definition>
+        <argsstring></argsstring>
+        <name>col3</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Common/b2Math.h" line="323" bodyfile="D:/pybox2d/Box2D/Common/b2Math.h" bodystart="323" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structb2_mat33_1a1f4d7ddf1c8a202fc08ec64dfe191463" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>b2Mat33::b2Mat33</definition>
+        <argsstring>()</argsstring>
+        <name>b2Mat33</name>
+        <briefdescription>
+<para>The default constructor does nothing (for performance). </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Common/b2Math.h" line="296" bodyfile="D:/pybox2d/Box2D/Common/b2Math.h" bodystart="296" bodyend="296"/>
+      </memberdef>
+      <memberdef kind="function" id="structb2_mat33_1a36d99a037008776c8d09fe0aeb5c759c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>b2Mat33::b2Mat33</definition>
+        <argsstring>(const b2Vec3 &amp;c1, const b2Vec3 &amp;c2, const b2Vec3 &amp;c3)</argsstring>
+        <name>b2Mat33</name>
+        <param>
+          <type>const <ref refid="structb2_vec3" kindref="compound">b2Vec3</ref> &amp;</type>
+          <declname>c1</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structb2_vec3" kindref="compound">b2Vec3</ref> &amp;</type>
+          <declname>c2</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structb2_vec3" kindref="compound">b2Vec3</ref> &amp;</type>
+          <declname>c3</declname>
+        </param>
+        <briefdescription>
+<para>Construct this matrix using columns. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Common/b2Math.h" line="300" bodyfile="D:/pybox2d/Box2D/Common/b2Math.h" bodystart="299" bodyend="304"/>
+      </memberdef>
+      <memberdef kind="function" id="structb2_mat33_1a42fc6953b025e1c8b59717d0ee7accde" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void b2Mat33::SetZero</definition>
+        <argsstring>()</argsstring>
+        <name>SetZero</name>
+        <briefdescription>
+<para>Set this matrix to all zeros. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Common/b2Math.h" line="308" bodyfile="D:/pybox2d/Box2D/Common/b2Math.h" bodystart="307" bodyend="312"/>
+      </memberdef>
+      <memberdef kind="function" id="structb2_mat33_1a478872c7b6a3bedd13fbedd3ec7a2edb" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structb2_vec3" kindref="compound">b2Vec3</ref></type>
+        <definition>b2Vec3 b2Mat33::Solve33</definition>
+        <argsstring>(const b2Vec3 &amp;b) const </argsstring>
+        <name>Solve33</name>
+        <param>
+          <type>const <ref refid="structb2_vec3" kindref="compound">b2Vec3</ref> &amp;</type>
+          <declname>b</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Solve A * x = b, where b is a column vector. This is more efficient than computing the inverse in one-shot cases. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Common/b2Math.h" line="316" bodyfile="D:/pybox2d/Box2D/Common/b2Math.cpp" bodystart="27" bodyend="39"/>
+      </memberdef>
+      <memberdef kind="function" id="structb2_mat33_1a2580ac2afadc48028a63ed4c8a1f16bc" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structb2_vec2" kindref="compound">b2Vec2</ref></type>
+        <definition>b2Vec2 b2Mat33::Solve22</definition>
+        <argsstring>(const b2Vec2 &amp;b) const </argsstring>
+        <name>Solve22</name>
+        <param>
+          <type>const <ref refid="structb2_vec2" kindref="compound">b2Vec2</ref> &amp;</type>
+          <declname>b</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Solve A * x = b, where b is a column vector. This is more efficient than computing the inverse in one-shot cases. Solve only the upper 2-by-2 matrix equation.</para><para>Solve A * x = b, where b is a column vector. This is more efficient than computing the inverse in one-shot cases. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Common/b2Math.h" line="321" bodyfile="D:/pybox2d/Box2D/Common/b2Math.cpp" bodystart="43" bodyend="55"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>A 3-by-3 matrix. Stored in column-major order. </para>    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1696">
+        <label>b2Mat33</label>
+        <link refid="structb2_mat33"/>
+        <childnode refid="1697" relation="usage">
+          <edgelabel>col1</edgelabel>
+          <edgelabel>col2</edgelabel>
+          <edgelabel>col3</edgelabel>
+        </childnode>
+      </node>
+      <node id="1697">
+        <label>b2Vec3</label>
+        <link refid="structb2_vec3"/>
+      </node>
+    </collaborationgraph>
+    <location file="D:/pybox2d/Box2D/Common/b2Math.h" line="294" bodyfile="D:/pybox2d/Box2D/Common/b2Math.h" bodystart="293" bodyend="324"/>
+    <listofallmembers>
+      <member refid="structb2_mat33_1a1f4d7ddf1c8a202fc08ec64dfe191463" prot="public" virt="non-virtual"><scope>b2Mat33</scope><name>b2Mat33</name></member>
+      <member refid="structb2_mat33_1a36d99a037008776c8d09fe0aeb5c759c" prot="public" virt="non-virtual"><scope>b2Mat33</scope><name>b2Mat33</name></member>
+      <member refid="structb2_mat33_1a0c7a3bc7bdd2261eec0bc8a86015c7e1" prot="public" virt="non-virtual"><scope>b2Mat33</scope><name>col1</name></member>
+      <member refid="structb2_mat33_1ac70ff40ca27a16fb16bb840a28f503b7" prot="public" virt="non-virtual"><scope>b2Mat33</scope><name>col2</name></member>
+      <member refid="structb2_mat33_1a8898cdd129e19fa5e291e16ec457a37e" prot="public" virt="non-virtual"><scope>b2Mat33</scope><name>col3</name></member>
+      <member refid="structb2_mat33_1a42fc6953b025e1c8b59717d0ee7accde" prot="public" virt="non-virtual"><scope>b2Mat33</scope><name>SetZero</name></member>
+      <member refid="structb2_mat33_1a2580ac2afadc48028a63ed4c8a1f16bc" prot="public" virt="non-virtual"><scope>b2Mat33</scope><name>Solve22</name></member>
+      <member refid="structb2_mat33_1a478872c7b6a3bedd13fbedd3ec7a2edb" prot="public" virt="non-virtual"><scope>b2Mat33</scope><name>Solve33</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

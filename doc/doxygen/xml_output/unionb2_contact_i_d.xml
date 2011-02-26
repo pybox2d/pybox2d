@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.7.2">
+  <compounddef id="unionb2_contact_i_d" kind="union" prot="public">
+    <compoundname>b2ContactID</compoundname>
+    <includes local="no">b2Collision.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="unionb2_contact_i_d_1a58b6732f909bc760f75e7aff3cd4be08" prot="public" static="no" mutable="no">
+        <type><ref refid="structb2_contact_feature" kindref="compound">b2ContactFeature</ref></type>
+        <definition>b2ContactFeature b2ContactID::cf</definition>
+        <argsstring></argsstring>
+        <name>cf</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Collision/b2Collision.h" line="55" bodyfile="D:/pybox2d/Box2D/Collision/b2Collision.h" bodystart="55" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionb2_contact_i_d_1a04c04f8fdcb799b33552d01b3aa3f245" prot="public" static="no" mutable="no">
+        <type>uint32</type>
+        <definition>uint32 b2ContactID::key</definition>
+        <argsstring></argsstring>
+        <name>key</name>
+        <briefdescription>
+<para>Used to quickly compare contact ids. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/pybox2d/Box2D/Collision/b2Collision.h" line="56" bodyfile="D:/pybox2d/Box2D/Collision/b2Collision.h" bodystart="56" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Contact ids to facilitate warm starting. </para>    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1086">
+        <label>b2ContactFeature</label>
+        <link refid="structb2_contact_feature"/>
+      </node>
+      <node id="1085">
+        <label>b2ContactID</label>
+        <link refid="unionb2_contact_i_d"/>
+        <childnode refid="1086" relation="usage">
+          <edgelabel>cf</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="D:/pybox2d/Box2D/Collision/b2Collision.h" line="54" bodyfile="D:/pybox2d/Box2D/Collision/b2Collision.h" bodystart="53" bodyend="57"/>
+    <listofallmembers>
+      <member refid="unionb2_contact_i_d_1a58b6732f909bc760f75e7aff3cd4be08" prot="public" virt="non-virtual"><scope>b2ContactID</scope><name>cf</name></member>
+      <member refid="unionb2_contact_i_d_1a04c04f8fdcb799b33552d01b3aa3f245" prot="public" virt="non-virtual"><scope>b2ContactID</scope><name>key</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>
