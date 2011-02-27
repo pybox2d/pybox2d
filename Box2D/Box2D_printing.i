@@ -69,7 +69,10 @@ def _format_repr(item, props, indent_amount=4, max_level=4, max_str_len=250, max
     
     if len(ret) <= 3:
         ret[-1]+=')'
-        return [''.join(ret)]
+        if _format_recursed==0:
+            return ''.join(ret)
+        else:
+            return [''.join(ret)]
     else:
         ret.append(')')
         return separator.join(ret)

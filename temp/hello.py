@@ -20,7 +20,7 @@ world = b2World(gravity, doSleep)
 
 # Define the ground body.
 groundBodyDef = b2BodyDef()
-groundBodyDef.position = [0, -10]
+groundBodyDef.position = (0, -10)
  
 # Call the body factory which allocates memory for the ground body
 # from a pool and creates the ground box shape (also from a pool).
