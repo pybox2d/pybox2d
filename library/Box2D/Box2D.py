@@ -187,7 +187,6 @@ def _format_repr(item, props, indent_amount=4, max_level=4, max_str_len=250, max
             return ''.join(ret)
         else:
             return [''.join(ret)]
-
     else:
         ret.append(')')
         return separator.join(ret)
@@ -1702,6 +1701,7 @@ def _b2Vec2Array_frompointer(*args, **kwargs):
   """_b2Vec2Array_frompointer(b2Vec2 t) -> _b2Vec2Array"""
   return _Box2D._b2Vec2Array_frompointer(*args, **kwargs)
 
+e_convertVertices = _Box2D.e_convertVertices
 class b2DestructionListener(object):
     """Joints and fixtures are destroyed when their associated body is destroyed. Implement this listener so that you may nullify references to these joints and shapes."""
     thisown = _swig_property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc='The membership flag')
@@ -2203,6 +2203,7 @@ class b2DebugDraw(object):
         ['drawAABBs', e_aabbBit ],
         ['drawPairs', e_pairBit ],
         ['drawCOMs', e_centerOfMassBit ],
+        ['convertVertices', e_convertVertices ],
     ]
     def _SetFlags(self, value):
         flags = 0
@@ -2325,20 +2326,6 @@ class b2DebugDrawExtended(b2DebugDraw):
 
     def __repr__(self):
         return _format_repr(self, ['center','convertVertices','flags','flipX','flipY','offset','screenSize','zoom']) 
-
-    def SetFlags(self, **kwargs):
-        flags = 0
-        if 'drawShapes' in kwargs and kwargs['drawShapes']:
-            flags |= b2DebugDraw.e_shapeBit
-        if 'drawJoints' in kwargs and kwargs['drawJoints']:
-            flags |= b2DebugDraw.e_jointBit
-        if 'drawAABBs' in kwargs and kwargs['drawAABBs']:
-            flags |= b2DebugDraw.e_aabbBit
-        if 'drawPairs' in kwargs and kwargs['drawPairs']:
-            flags |= b2DebugDraw.e_pairBit
-        if 'drawCOMs' in kwargs and kwargs['drawCOMs']:
-            flags |= b2DebugDraw.e_centerOfMassBit
-        self.__SetFlags(flags)
 
     def __disown__(self):
         self.this.disown()

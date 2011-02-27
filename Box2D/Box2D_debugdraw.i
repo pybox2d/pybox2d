@@ -27,6 +27,7 @@ public:
             ['drawAABBs', e_aabbBit ],
             ['drawPairs', e_pairBit ],
             ['drawCOMs', e_centerOfMassBit ],
+            ['convertVertices', e_convertVertices ],
         ]
         def _SetFlags(self, value):
             flags = 0
@@ -48,6 +49,8 @@ public:
 %rename (__SetFlags) b2DebugDraw::SetFlags;
 %rename (__GetFlags) b2DebugDraw::GetFlags;
 
+#define e_convertVertices 0x1000
+
 /* 
  DebugDrawExtended
 
@@ -68,21 +71,6 @@ public:
 
 %extend b2DebugDrawExtended {
 public:
-    %pythoncode %{
-        def SetFlags(self, **kwargs):
-            flags = 0
-            if 'drawShapes' in kwargs and kwargs['drawShapes']:
-                flags |= b2DebugDraw.e_shapeBit
-            if 'drawJoints' in kwargs and kwargs['drawJoints']:
-                flags |= b2DebugDraw.e_jointBit
-            if 'drawAABBs' in kwargs and kwargs['drawAABBs']:
-                flags |= b2DebugDraw.e_aabbBit
-            if 'drawPairs' in kwargs and kwargs['drawPairs']:
-                flags |= b2DebugDraw.e_pairBit
-            if 'drawCOMs' in kwargs and kwargs['drawCOMs']:
-                flags |= b2DebugDraw.e_centerOfMassBit
-            self.__SetFlags(flags)
-    %}
 }
 
 
@@ -109,7 +97,7 @@ public:
 
         PyObject* __Convert(const b2Vec2* verts, int32 vertexCount) {
             PyObject* ret=PyTuple_New(vertexCount);
-            if (GetFlags() & 0x1000) {
+            if (GetFlags() & e_convertVertices) {
                 // Convert the verts
                 PyObject* vertex;
                 long x, y;
@@ -164,7 +152,7 @@ public:
 
         void __SetFlags(uint32 flags) {
             if (convertVertices)
-                SetFlags(0x1000 | flags);
+                SetFlags(e_convertVertices | flags);
             else 
                 SetFlags(flags);
         }
@@ -175,7 +163,7 @@ public:
             offset.SetZero();
             zoom=1.0;
             screenSize.SetZero();
-            SetFlags(0x1000);
+            SetFlags(convertVertices ? e_convertVertices : 0x00);
         }
 
     };

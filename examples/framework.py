@@ -151,7 +151,11 @@ class FrameworkBase(b2ContactListener):
                 drawJoints=settings.drawJoints,
                 drawAABBs =settings.drawAABBs,
                 drawPairs =settings.drawPairs,
-                drawCOMs  =settings.drawCOMs
+                drawCOMs  =settings.drawCOMs,
+                # The following is only applicable when using b2DebugDrawExtended.
+                # It indicates that the C code should transform box2d coords to
+                # screen coordinates.
+                convertVertices=isinstance(self.debugDraw, b2DebugDrawExtended) 
                 )
 
         # Update the debug draw settings so that the vertices will be properly

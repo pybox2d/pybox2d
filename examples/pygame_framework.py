@@ -169,6 +169,20 @@ class PygameDebugDraw(b2DebugDrawExtended):
             pygame.draw.polygon(self.surface, (color/2).bytes+[127], vertices, 0)
             pygame.draw.polygon(self.surface, color.bytes, vertices, 1)
 
+    # the to_screen conversions are done in C with b2DebugDrawExtended, leading to 
+    # an increase in fps.
+    # You can also use the base b2DebugDraw and implement these yourself, as the
+    # b2DebugDrawExtended is implemented:
+    # def to_screen(self, point):
+    #     x=(point.x * self.zoom)-self.offset.x
+    #     if self.flipX:
+    #         x = self.screenSize.x - x
+    #     y=(point.y * self.zoom)-self.offset.y
+    #     if self.flipY:
+    #         y = self.screenSize.y-y
+    #     return (x, y)
+       
+
 class PygameFramework(FrameworkBase):
     TEXTLINE_START=30
     def setup_keys(self):
