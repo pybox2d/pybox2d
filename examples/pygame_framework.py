@@ -48,7 +48,7 @@ except ImportError as ex:
     print('ImportError: %s' % ex)
     GUIEnabled = False
 
-class PygameDebugDraw(b2DebugDrawExtended):
+class PygameDraw(b2DrawExtended):
     """
     This debug draw class accepts callbacks from Box2D (which specifies what to draw)
     and handles all of the rendering.
@@ -58,7 +58,7 @@ class PygameDebugDraw(b2DebugDrawExtended):
     """
     surface = None
     def __init__(self, **kwargs): 
-        super(PygameDebugDraw, self).__init__(**kwargs)
+        b2DrawExtended.__init__(self, **kwargs)
         self.flipX = False
         self.flipY = True
         self.convertVertices = True
@@ -169,10 +169,10 @@ class PygameDebugDraw(b2DebugDrawExtended):
             pygame.draw.polygon(self.surface, (color/2).bytes+[127], vertices, 0)
             pygame.draw.polygon(self.surface, color.bytes, vertices, 1)
 
-    # the to_screen conversions are done in C with b2DebugDrawExtended, leading to 
+    # the to_screen conversions are done in C with b2DrawExtended, leading to 
     # an increase in fps.
     # You can also use the base b2DebugDraw and implement these yourself, as the
-    # b2DebugDrawExtended is implemented:
+    # b2DrawExtended is implemented:
     # def to_screen(self, point):
     #     x=(point.x * self.zoom)-self.offset.x
     #     if self.flipX:
@@ -224,8 +224,8 @@ class PygameFramework(FrameworkBase):
         self.screen = pygame.display.set_mode( (640,480) )
         self.screenSize = b2Vec2(*self.screen.get_size())
 
-        self.debugDraw = PygameDebugDraw(surface=self.screen, test=self)
-        self.world.debugDraw=self.debugDraw
+        self.renderer = PygameDraw(surface=self.screen, test=self)
+        self.world.renderer=self.renderer
         
         try:
             self.font = pygame.font.Font(None, 15)
@@ -245,7 +245,7 @@ class PygameFramework(FrameworkBase):
             container.add(self.gui_table,0,0)
             self.gui_app.init(container)
 
-        self.viewCenter = (0,10.0*20.0)
+        self.viewCenter = (0,20.0)
         self.groundbody = self.world.CreateBody()
 
     def setCenter(self, value):
@@ -255,6 +255,7 @@ class PygameFramework(FrameworkBase):
         Tells the debug draw to update its values also.
         """
         self._viewCenter = b2Vec2( *value )
+        self._viewCenter*= self._viewZoom
         self._viewOffset = self._viewCenter - self.screenSize/2
     
     def setZoom(self, zoom):
@@ -262,7 +263,7 @@ class PygameFramework(FrameworkBase):
 
     viewZoom   = property(lambda self: self._viewZoom, setZoom,
                            doc='Zoom factor for the display')
-    viewCenter = property(lambda self: self._viewCenter, setCenter, 
+    viewCenter = property(lambda self: self._viewCenter/self._viewZoom, setCenter, 
                            doc='Screen center in camera coordinates')
     viewOffset = property(lambda self: self._viewOffset,
                            doc='The offset of the top-left corner of the screen')
@@ -307,7 +308,7 @@ class PygameFramework(FrameworkBase):
                 self.MouseMove(p)
 
                 if self.rMouseDown:
-                    self.viewCenter -= (event.rel[0], -event.rel[1])
+                    self.viewCenter -= (event.rel[0]/5.0, -event.rel[1]/5.0)
 
             if GUIEnabled:
                 self.gui_app.event(event) #Pass the event to the GUI
@@ -351,7 +352,7 @@ class PygameFramework(FrameworkBase):
 
         self.world.contactListener = None
         self.world.destructionListener=None
-        self.world.debugDraw=None
+        self.world.renderer=None
 
     def _Keyboard_Event(self, key, down=True):
         """

@@ -106,6 +106,7 @@ public:
     length = property(__Length, None)
     lengthSquared = property(__LengthSquared, None)
     valid = property(__IsValid, None)
+    skew = property(__Skew, None) 
 
     %}
     bool __equ(b2Vec2& other) {
@@ -145,6 +146,7 @@ public:
 %rename (__Length) b2Vec2::Length;
 %rename (__LengthSquared) b2Vec2::LengthSquared;
 %rename (__IsValid) b2Vec2::IsValid;
+%rename (__Skew) b2Vec2::Skew;
 
 %extend b2Vec3 {
 public:

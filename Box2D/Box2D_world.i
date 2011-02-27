@@ -324,8 +324,8 @@ public:
                                   lambda self, fcn: self.__SetData('contact', fcn, self.__SetContactListener_internal))
         contactFilter= property(lambda self: self.__GetData('contactfilter'),
                                 lambda self, fcn: self.__SetData('contactfilter', fcn, self.__SetContactFilter_internal))
-        debugDraw= property(lambda self: self.__GetData('debugdraw'),
-                            lambda self, fcn: self.__SetData('debugdraw', fcn, self.__SetDebugDraw_internal))
+        renderer= property(lambda self: self.__GetData('renderer'),
+                            lambda self, fcn: self.__SetData('renderer', fcn, self.__SetDebugDraw_internal))
         continuousPhysics = property(lambda self: self.__GetData('continuousphysics'), 
                                      lambda self, fcn: self.__SetData('continuousphysics', fcn, self.__SetContinuousPhysics_internal))
         warmStarting = property(lambda self: self.__GetData('warmstarting'), 

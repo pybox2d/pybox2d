@@ -263,17 +263,15 @@ class testJoints (unittest.TestCase):
 
     def line_asserts(self, dfn, joint):
         self.check(dfn, joint, "motorSpeed")
-        self.check(dfn, joint, "lowerTranslation", "lowerLimit")
-        self.check(dfn, joint, "upperTranslation", "upperLimit")
+        self.check(dfn, joint, "maxMotorTorque")
         self.check(dfn, joint, "enableMotor", "motorEnabled")
-        self.check(dfn, joint, "enableLimit", "limitEnabled")
         self.check(dfn, joint, "bodyA")
         self.check(dfn, joint, "bodyB")
-        self.check(dfn, joint, "maxMotorForce")
+        self.check(dfn, joint, "frequencyHz", "springFrequencyHz")
+        self.check(dfn, joint, "dampingRatio", "springDampingRatio")
 
     def line_checks(self, dfn, joint):
         # check to make sure they are at least accessible 
-        i = joint.GetMotorForce(1.0)
         i = joint.anchorA
         i = joint.anchorB
         i = joint.speed

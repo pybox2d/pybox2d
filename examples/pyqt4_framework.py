@@ -48,7 +48,7 @@ import string
 import sys
 import re
 
-class Pyqt4DebugDraw(object):
+class Pyqt4Draw(object):
     """
     This debug drawing class differs from the other frameworks.
     It provides an example of how to iterate through all the objects
@@ -600,11 +600,11 @@ class Pyqt4Framework(FrameworkBase):
         self.window.show()
 
         self.window.setWindowTitle( "Python Box2D Testbed - " + self.name)
-        self.debugDraw = Pyqt4DebugDraw(self)
+        self.renderer = Pyqt4Draw(self)
 
         # Note that in this framework, we override the draw debug data routine
         # that occurs in Step(), and we implement the normal C++ code in Python.
-        self.world.DrawDebugData = lambda: self.debugDraw.ManualDraw()
+        self.world.DrawDebugData = lambda: self.renderer.ManualDraw()
         self.screenSize = b2Vec2(0,0)
         self.viewCenter = (0,10.0*20.0)
         self.groundbody = self.world.CreateBody()
@@ -649,7 +649,7 @@ class Pyqt4Framework(FrameworkBase):
         print('Cleaning up...')
         self.world.contactListener=None
         self.world.destructionListener=None
-        self.world.debugDraw=None
+        self.world.renderer=None
         self.world=None
 
     def _Keyboard_Event(self, key, down=True):
@@ -824,13 +824,13 @@ class Pyqt4Framework(FrameworkBase):
         """
         return b2Vec2(x, y)
     
-    DrawString=lambda self, *args: self.debugDraw.DrawString(*args)
+    DrawString=lambda self, *args: self.renderer.DrawString(*args)
     def DrawStringCR(self, str, color=(229,153,153,255)):
         """
         Draw some text at the top status lines and advance to the next line.
         """
         self.DrawString(5, self.textLine, str, color)
-        self.textLine += self.debugDraw.font_spacing
+        self.textLine += self.renderer.font_spacing
 
     def Keyboard(self, key):
         """
@@ -855,9 +855,9 @@ class Pyqt4Framework(FrameworkBase):
         if shape==self.selected_shapebody[0]:
             self.selected_shapebody=None, None
             self.window.reset_properties_list()
-        if hash(shape) in self.debugDraw.item_cache:
-            scene_items=self.debugDraw.item_cache[hash(shape)]
+        if hash(shape) in self.renderer.item_cache:
+            scene_items=self.renderer.item_cache[hash(shape)]
             for item in scene_items:
                 self.window.scene.removeItem(item)
-            del self.debugDraw.item_cache[hash(shape)]
+            del self.renderer.item_cache[hash(shape)]
 

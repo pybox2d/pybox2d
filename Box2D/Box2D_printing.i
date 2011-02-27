@@ -180,13 +180,13 @@ def _format_repr(item, props, indent_amount=4, max_level=4, max_str_len=250, max
             return _format_repr(self, ['fixtureA','fixtureB','normal','position','state']) 
     %}
 }
-%extend b2DebugDraw {
+%extend b2Draw {
     %pythoncode %{
         def __repr__(self):
             return _format_repr(self, ['flags']) 
     %}
 }
-%extend b2DebugDrawExtended {
+%extend b2DrawExtended {
     %pythoncode %{
         def __repr__(self):
             return _format_repr(self, ['center','convertVertices','flags','flipX','flipY','offset','screenSize','zoom']) 

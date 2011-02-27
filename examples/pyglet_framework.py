@@ -91,7 +91,7 @@ class grText(pyglet.graphics.Group):
         gl.glPopMatrix()
         gl.glMatrixMode(gl.GL_MODELVIEW)
 
-class PygletDebugDraw(b2DebugDraw):
+class PygletDraw(b2Draw):
     """
     This debug draw class accepts callbacks from Box2D (which specifies what to draw)
     and handles all of the rendering.
@@ -105,7 +105,7 @@ class PygletDebugDraw(b2DebugDraw):
     circle_cache_tf = {} # triangle fan (inside)
     circle_cache_ll = {} # line loop (border)
     def __init__(self, test): 
-        super(PygletDebugDraw, self).__init__()
+        super(PygletDraw, self).__init__()
         self.test=test
 
     def StartDraw(self): pass
@@ -321,7 +321,7 @@ class PygletDebugDraw(b2DebugDraw):
         """
         Draw a wireframe around the AABB with the given color.
         """
-        self.debugDraw.batch.add(8, gl.GL_LINES, None,
+        self.renderer.batch.add(8, gl.GL_LINES, None,
             ('v2f', (aabb.lowerBound.x, aabb.lowerBound.y, abb.upperBound.x, aabb.lowerBound.y,
                 abb.upperBound.x, aabb.lowerBound.y, aabb.upperBound.x, aabb.upperBound.y,
                 aabb.upperBound.x, aabb.upperBound.y, aabb.lowerBound.x, aabb.upperBound.y,
@@ -459,9 +459,9 @@ class PygletFramework(FrameworkBase):
         self.font = pyglet.font.load(self.fontname, self.fontsize)
         self.screenSize = b2Vec2(self.window.width, self.window.height)
 
-        self.debugDraw = PygletDebugDraw(self)
-        self.debugDraw.surface = self.window.screen
-        self.world.debugDraw=self.debugDraw
+        self.renderer = PygletDraw(self)
+        self.renderer.surface = self.window.screen
+        self.world.renderer=self.renderer
         self._viewCenter = b2Vec2(0,10.0)
         self.groundbody = self.world.CreateBody()
 
@@ -519,7 +519,7 @@ class PygletFramework(FrameworkBase):
 
         self.world.contactListener = None
         self.world.destructionListener=None
-        self.world.debugDraw=None
+        self.world.renderer=None
 
     def SimulationLoop(self, dt):
         """
@@ -536,7 +536,7 @@ class PygletFramework(FrameworkBase):
         self.window.push_handlers(self.keys)
 
         # Create a new batch for drawing
-        self.debugDraw.batch = pyglet.graphics.Batch()
+        self.renderer.batch = pyglet.graphics.Batch()
 
         # Reset the text position
         self.textLine=15
@@ -546,7 +546,7 @@ class PygletFramework(FrameworkBase):
 
         # Step the physics
         self.Step(self.settings)
-        self.debugDraw.batch.draw()
+        self.renderer.batch.draw()
         self.window.invalid = True
 
         self.fps = pyglet.clock.get_fps()
@@ -625,14 +625,14 @@ class PygletFramework(FrameworkBase):
         Draw some text, str, at screen coordinates (x, y).
         """
         text = pyglet.text.Label(str, font_name=self.fontname, font_size=self.fontsize, 
-                                 x=x, y=self.window.height-y, color=color, batch=self.debugDraw.batch, group=self.textGroup)
+                                 x=x, y=self.window.height-y, color=color, batch=self.renderer.batch, group=self.textGroup)
 
     def DrawStringCR(self, str, color=(229,153,153,255)):
         """
         Draw some text, str, at screen coordinates (x, y).
         """
         text = pyglet.text.Label(str, font_name=self.fontname, font_size=self.fontsize, 
-                      x=5, y=self.window.height-self.textLine, color=color, batch=self.debugDraw.batch, group=self.textGroup)
+                      x=5, y=self.window.height-self.textLine, color=color, batch=self.renderer.batch, group=self.textGroup)
         self.textLine += 15
 
     def Keyboard(self, key):

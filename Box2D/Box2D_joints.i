@@ -107,12 +107,10 @@ public:
 
         # Read-write properties
         motorSpeed = property(__GetMotorSpeed, __SetMotorSpeed)
-        maxMotorForce = property(__GetMaxMotorForce, __SetMaxMotorForce)
         motorEnabled = property(__IsMotorEnabled, __EnableMotor)
-        limitEnabled = property(__IsLimitEnabled, __EnableLimit)
-        upperLimit = property(__GetUpperLimit, lambda self, v: self.__SetLimits(self.lowerLimit, v))
-        lowerLimit = property(__GetLowerLimit, lambda self, v: self.__SetLimits(v, self.upperLimit))
-        limits = property(lambda self: (self.lowerLimit, self.upperLimit), lambda self, v: self.__SetLimits(*v) )
+        maxMotorTorque = property(__GetMaxMotorTorque, __SetMaxMotorTorque)
+        springFrequencyHz = property(__GetSpringFrequencyHz , __SetSpringFrequencyHz)
+        springDampingRatio = property(__GetSpringDampingRatio , __SetSpringDampingRatio)
 
         # Read-only
         speed = property(__GetJointSpeed, None)
@@ -121,18 +119,18 @@ public:
     %}
 }
 
-%rename(__SetLimits) b2LineJoint::SetLimits;
 %rename(__IsMotorEnabled) b2LineJoint::IsMotorEnabled;
 %rename(__GetMotorSpeed) b2LineJoint::GetMotorSpeed;
-%rename(__GetMaxMotorForce) b2LineJoint::GetMaxMotorForce;
-%rename(__GetUpperLimit) b2LineJoint::GetUpperLimit;
 %rename(__GetJointSpeed) b2LineJoint::GetJointSpeed;
 %rename(__GetJointTranslation) b2LineJoint::GetJointTranslation;
 %rename(__IsLimitEnabled) b2LineJoint::IsLimitEnabled;
-%rename(__GetLowerLimit) b2LineJoint::GetLowerLimit;
 %rename(__SetMotorSpeed) b2LineJoint::SetMotorSpeed;
-%rename(__EnableLimit) b2LineJoint::EnableLimit;
-%rename(__SetMaxMotorForce) b2LineJoint::SetMaxMotorForce;
+%rename(__GetSpringFrequencyHz) b2LineJoint::GetSpringFrequencyHz;
+%rename(__SetSpringFrequencyHz) b2LineJoint::SetSpringFrequencyHz;
+%rename(__GetSpringDampingRatio) b2LineJoint::GetSpringDampingRatio;
+%rename(__SetSpringDampingRatio) b2LineJoint::SetSpringDampingRatio;
+%rename(__GetMaxMotorTorque) b2LineJoint::GetMaxMotorTorque;
+%rename(__SetMaxMotorTorque) b2LineJoint::SetMaxMotorTorque;
 %rename(__EnableMotor) b2LineJoint::EnableMotor;
 
 /**** PrismaticJoint ****/

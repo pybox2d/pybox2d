@@ -56,7 +56,7 @@
        them back to Python. 
        
        Example: 
-       If there is a typo in your b2DebugDraw instance's DrawPolygon (in
+       If there is a typo in your b2Draw instance's DrawPolygon (in
        Python), when you call world.DrawDebugData(), callbacks will be made
        to such functions as that. Being Python code called from the C++ module, 
        they turn into director exceptions then and will crash the application
@@ -123,8 +123,8 @@
     %feature("director") b2ContactListener;
     %feature("director") b2ContactFilter;
     %feature("director") b2DestructionListener;
-    %feature("director") b2DebugDraw;
-    %feature("director") b2DebugDrawExtended;
+    %feature("director") b2Draw;
+    %feature("director") b2DrawExtended;
     %feature("director") b2QueryCallback;
     %feature("director") b2RayCastCallback;
 

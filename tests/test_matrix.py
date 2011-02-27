@@ -12,6 +12,8 @@ class testMatrix (unittest.TestCase):
         v2 = b2Vec2(x, y)
         v3 = b2Vec3(x, y, z)
 
+        self.checkAlmostEqual(v2.skew, (-v2.y, v2.x), msg='skew')
+
         m2 = b2Mat22((x, y), (y, x))
         # Note that you can't do:
         # m2 = b2Mat22(col1=(x, y), col2=(y, x))

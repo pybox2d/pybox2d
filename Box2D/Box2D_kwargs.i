@@ -74,23 +74,23 @@
 }
 
 
-%feature("shadow") b2DebugDraw::b2DebugDraw() {
+%feature("shadow") b2Draw::b2Draw() {
     def __init__(self, **kwargs):
-        if self.__class__ == b2DebugDraw:
+        if self.__class__ == b2Draw:
             _self = None
         else:
             _self = self
-        _Box2D.b2DebugDraw_swiginit(self,_Box2D.new_b2DebugDraw(_self, ))
+        _Box2D.b2Draw_swiginit(self,_Box2D.new_b2Draw(_self, ))
         _init_kwargs(self, **kwargs)
 }
 
-%feature("shadow") b2DebugDrawExtended::b2DebugDrawExtended() {
+%feature("shadow") b2DrawExtended::b2DrawExtended() {
     def __init__(self, **kwargs):
-        if self.__class__ == b2DebugDrawExtended:
+        if self.__class__ == b2DrawExtended:
             _self = None
         else:
             _self = self
-        _Box2D.b2DebugDrawExtended_swiginit(self,_Box2D.new_b2DebugDrawExtended(_self, ))
+        _Box2D.b2DrawExtended_swiginit(self,_Box2D.new_b2DrawExtended(_self, ))
         _init_kwargs(self, **kwargs)
 }
 

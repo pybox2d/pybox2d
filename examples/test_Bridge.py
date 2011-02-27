@@ -19,6 +19,45 @@
 
 from framework import *
 
+def create_bridge(world, ground, (width, height), (x_offset, y_offset), plank_count, friction=0.6, density=1.0):
+    """
+    Create a bridge with plank_count planks,
+    utilizing rectangular planks of size (width, height).
+    The bridge should start at x_offset, and continue to
+    roughly x_offset+width*plank_count.
+    The y will not change.
+    """
+    half_height=height/2
+    plank=b2FixtureDef( 
+                shape=b2PolygonShape(box=(width/2,height/2)),
+                friction=friction,
+                density=density,
+                )
+   
+    bodies=[] 
+    prevBody = ground
+    for i in range(plank_count):
+        body = world.CreateDynamicBody(
+                    position=(x_offset+width*i, y_offset),
+                    fixtures=plank,
+                )
+        bodies.append(body)
+
+        world.CreateRevoluteJoint(
+                bodyA=prevBody,
+                bodyB=body,
+                anchor=(x_offset+width*(i-0.5),y_offset)
+            )
+        
+        prevBody = body
+
+    world.CreateRevoluteJoint(
+            bodyA=prevBody,
+            bodyB=ground,
+            anchor=(x_offset+width*(plank_count-0.5),y_offset),
+        )
+    return bodies
+
 class Bridge (Framework):
     name="Bridge"
     numPlanks = 30 # Number of planks in the bridge
@@ -30,32 +69,7 @@ class Bridge (Framework):
                     shapes=b2EdgeShape(vertices=[(-40,0),(40,0)]) 
                 )
 
-        plank=b2FixtureDef( 
-                    shape=b2PolygonShape(box=(0.5,0.125)),
-                    friction=0.2,
-                    density=20
-                    )
-
-        prevBody = ground
-        for i in range(self.numPlanks):
-            body = self.world.CreateDynamicBody(
-                        position=(-14.5+i,5), 
-                        fixtures=plank,
-                    )
-
-            self.world.CreateRevoluteJoint(
-                    bodyA=prevBody,
-                    bodyB=body,
-                    anchor=(-15+i,5)
-                )
-
-            prevBody = body
-
-        self.world.CreateRevoluteJoint(
-                bodyA=prevBody,
-                bodyB=ground,
-                anchor=(-15+self.numPlanks,5)
-            )
+        create_bridge(self.world, ground, (1.0,0.25), (-14.5,5), self.numPlanks, 0.2, 20)
 
         fixture=b2FixtureDef(
                 shape=b2PolygonShape(vertices=

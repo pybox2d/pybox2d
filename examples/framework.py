@@ -104,7 +104,7 @@ class FrameworkBase(b2ContactListener):
 
         # Box2D-callbacks
         self.destructionListener= None
-        self.debugDraw          = None
+        self.renderer          = None
 
     def __init__(self):
         super(FrameworkBase, self).__init__()
@@ -146,21 +146,21 @@ class FrameworkBase(b2ContactListener):
             self.DrawStringCR("****PAUSED****", (200,0,0))
 
         # Set the flags based on what the settings show
-        self.debugDraw.flags=dict(
+        self.renderer.flags=dict(
                 drawShapes=settings.drawShapes,
                 drawJoints=settings.drawJoints,
                 drawAABBs =settings.drawAABBs,
                 drawPairs =settings.drawPairs,
                 drawCOMs  =settings.drawCOMs,
-                # The following is only applicable when using b2DebugDrawExtended.
+                # The following is only applicable when using b2DrawExtended.
                 # It indicates that the C code should transform box2d coords to
                 # screen coordinates.
-                convertVertices=isinstance(self.debugDraw, b2DebugDrawExtended) 
+                convertVertices=isinstance(self.renderer, b2DrawExtended) 
                 )
 
         # Update the debug draw settings so that the vertices will be properly
         # converted to screen coordinates
-        self.debugDraw.StartDraw()
+        self.renderer.StartDraw()
 
         # Set the other settings that aren't contained in the flags
         self.world.warmStarting=settings.enableWarmStarting
@@ -196,31 +196,31 @@ class FrameworkBase(b2ContactListener):
             p1 = self.mouseJoint.anchorB
             p2 = self.mouseJoint.target
 
-            self.debugDraw.DrawPoint(p1, settings.pointSize, b2Color(0,1,0), world_coordinates=True)
-            self.debugDraw.DrawPoint(p2, settings.pointSize, b2Color(0,1,0), world_coordinates=True)
-            self.debugDraw.DrawSegment(p1, p2, b2Color(0.8,0.8,0.8), world_coordinates=True)
+            self.renderer.DrawPoint(p1, settings.pointSize, b2Color(0,1,0), world_coordinates=True)
+            self.renderer.DrawPoint(p2, settings.pointSize, b2Color(0,1,0), world_coordinates=True)
+            self.renderer.DrawSegment(p1, p2, b2Color(0.8,0.8,0.8), world_coordinates=True)
 
         # Draw the slingshot bomb
         if self.bombSpawning:
-            self.debugDraw.DrawPoint(self.bombSpawnPoint, settings.pointSize, b2Color(0,0,1.0), world_coordinates=True)
-            self.debugDraw.DrawSegment(self.bombSpawnPoint, self.mouseWorld, b2Color(0.8,0.8,0.8), world_coordinates=True)
+            self.renderer.DrawPoint(self.bombSpawnPoint, settings.pointSize, b2Color(0,0,1.0), world_coordinates=True)
+            self.renderer.DrawSegment(self.bombSpawnPoint, self.mouseWorld, b2Color(0.8,0.8,0.8), world_coordinates=True)
 
         # Draw each of the contact points in different colors.
         if self.settings.drawContactPoints:
             for point in self.points:
                 if point['state'] == b2_addState:
-                    self.debugDraw.DrawPoint(point['position'], settings.pointSize, b2Color(0.3, 0.95, 0.3), world_coordinates=True)
+                    self.renderer.DrawPoint(point['position'], settings.pointSize, b2Color(0.3, 0.95, 0.3), world_coordinates=True)
                 elif point['state'] == b2_persistState:
-                    self.debugDraw.DrawPoint(point['position'], settings.pointSize, b2Color(0.3, 0.3, 0.95), world_coordinates=True)
+                    self.renderer.DrawPoint(point['position'], settings.pointSize, b2Color(0.3, 0.3, 0.95), world_coordinates=True)
 
         if settings.drawContactNormals:
             axisScale = 0.3
             for point in self.points:
                 p1 = b2Vec2(point['position'])
                 p2 = p1 + axisScale * point['normal']
-                self.debugDraw.DrawSegment(p1, p2, b2Color(0.4, 0.9, 0.4), world_coordinates=True)
+                self.renderer.DrawSegment(p1, p2, b2Color(0.4, 0.9, 0.4), world_coordinates=True)
 
-        self.debugDraw.EndDraw()
+        self.renderer.EndDraw()
 
     def ShiftMouseDown(self, p):
         """

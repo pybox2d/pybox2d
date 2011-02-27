@@ -132,7 +132,7 @@
 }
 
 
-%extend b2DebugDraw {
+%extend b2Draw {
     %pythoncode %{
         __dir__ = _dir_filter
     %}

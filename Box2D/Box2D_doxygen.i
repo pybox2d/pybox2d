@@ -422,27 +422,27 @@ You cannot create/destroy Box2D entities inside these callbacks.";
 
 
 // File: classb2_debug_draw.xml
-%feature("docstring") b2DebugDraw "Implement and register this class with a  b2Worldto provide debug drawing of physics entities in your game.";
+%feature("docstring") b2Draw "Implement and register this class with a  b2Worldto provide debug drawing of physics entities in your game.";
 
-%feature("docstring") b2DebugDraw::SetFlags "Set the drawing flags.";
+%feature("docstring") b2Draw::SetFlags "Set the drawing flags.";
 
-%feature("docstring") b2DebugDraw::GetFlags "Get the drawing flags.";
+%feature("docstring") b2Draw::GetFlags "Get the drawing flags.";
 
-%feature("docstring") b2DebugDraw::AppendFlags "Append flags to the current flags.";
+%feature("docstring") b2Draw::AppendFlags "Append flags to the current flags.";
 
-%feature("docstring") b2DebugDraw::ClearFlags "Clear flags from the current flags.";
+%feature("docstring") b2Draw::ClearFlags "Clear flags from the current flags.";
 
-%feature("docstring") b2DebugDraw::DrawPolygon "Draw a closed polygon provided in CCW order.";
+%feature("docstring") b2Draw::DrawPolygon "Draw a closed polygon provided in CCW order.";
 
-%feature("docstring") b2DebugDraw::DrawSolidPolygon "Draw a solid closed polygon provided in CCW order.";
+%feature("docstring") b2Draw::DrawSolidPolygon "Draw a solid closed polygon provided in CCW order.";
 
-%feature("docstring") b2DebugDraw::DrawCircle "Draw a circle.";
+%feature("docstring") b2Draw::DrawCircle "Draw a circle.";
 
-%feature("docstring") b2DebugDraw::DrawSolidCircle "Draw a solid circle.";
+%feature("docstring") b2Draw::DrawSolidCircle "Draw a solid circle.";
 
-%feature("docstring") b2DebugDraw::DrawSegment "Draw a line segment.";
+%feature("docstring") b2Draw::DrawSegment "Draw a line segment.";
 
-%feature("docstring") b2DebugDraw::DrawTransform "Draw a transform. Choose your own length scale.
+%feature("docstring") b2Draw::DrawTransform "Draw a transform. Choose your own length scale.
 
 Parameters:
 -----------
@@ -1330,7 +1330,7 @@ improve performance by not simulating inactive bodies.";
 
 %feature("docstring") b2World::SetContactListener "Register a contact event listener. The listener is owned by you and must remain in scope.";
 
-%feature("docstring") b2World::SetDebugDraw "Register a routine for debug drawing. The debug draw functions are called inside with  b2World::DrawDebugDatamethod. The debug draw object is owned by you and must remain in scope.";
+%feature("docstring") b2World::SetDraw "Register a routine for debug drawing. The debug draw functions are called inside with  b2World::DrawDebugDatamethod. The debug draw object is owned by you and must remain in scope.";
 
 %feature("docstring") b2World::CreateBody "Create a rigid body given a definition. No reference to the definition is retained. 
 WARNING: 

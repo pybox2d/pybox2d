@@ -582,6 +582,10 @@ class b2Vec2(object):
         """
         return _Box2D.b2Vec2___IsValid(self)
 
+    def __Skew(self):
+        """__Skew(self) -> b2Vec2"""
+        return _Box2D.b2Vec2___Skew(self)
+
     x = _swig_property(_Box2D.b2Vec2_x_get, _Box2D.b2Vec2_x_set)
     y = _swig_property(_Box2D.b2Vec2_y_get, _Box2D.b2Vec2_y_set)
     __dir__ = _dir_filter
@@ -657,6 +661,7 @@ class b2Vec2(object):
     length = property(__Length, None)
     lengthSquared = property(__LengthSquared, None)
     valid = property(__IsValid, None)
+    skew = property(__Skew, None) 
 
 
     def __equ(self, *args, **kwargs):
@@ -711,6 +716,7 @@ b2Vec2.__Length = new_instancemethod(_Box2D.b2Vec2___Length,None,b2Vec2)
 b2Vec2.__LengthSquared = new_instancemethod(_Box2D.b2Vec2___LengthSquared,None,b2Vec2)
 b2Vec2.Normalize = new_instancemethod(_Box2D.b2Vec2_Normalize,None,b2Vec2)
 b2Vec2.__IsValid = new_instancemethod(_Box2D.b2Vec2___IsValid,None,b2Vec2)
+b2Vec2.__Skew = new_instancemethod(_Box2D.b2Vec2___Skew,None,b2Vec2)
 b2Vec2.__equ = new_instancemethod(_Box2D.b2Vec2___equ,None,b2Vec2)
 b2Vec2.dot = new_instancemethod(_Box2D.b2Vec2_dot,None,b2Vec2)
 b2Vec2.__truediv__ = new_instancemethod(_Box2D.b2Vec2___truediv__,None,b2Vec2)
@@ -1702,258 +1708,6 @@ def _b2Vec2Array_frompointer(*args, **kwargs):
   return _Box2D._b2Vec2Array_frompointer(*args, **kwargs)
 
 e_convertVertices = _Box2D.e_convertVertices
-class b2DestructionListener(object):
-    """Joints and fixtures are destroyed when their associated body is destroyed. Implement this listener so that you may nullify references to these joints and shapes."""
-    thisown = _swig_property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc='The membership flag')
-    __repr__ = _swig_repr
-    __swig_destroy__ = _Box2D.delete_b2DestructionListener
-    def SayGoodbye(self, *args):
-        """
-        SayGoodbye(self, b2Joint joint)
-        SayGoodbye(self, b2Fixture fixture)
-
-        Called when any fixture is about to be destroyed due to the destruction of its parent body.
-        """
-        return _Box2D.b2DestructionListener_SayGoodbye(self, *args)
-
-    __dir__ = _dir_filter
-
-    def __repr__(self):
-        return "b2DestructionListener()"
-
-    def __init__(self, **kwargs):
-        if self.__class__ == b2DestructionListener:
-            _self = None
-        else:
-            _self = self
-        _Box2D.b2DestructionListener_swiginit(self,_Box2D.new_b2DestructionListener(_self, ))
-        _init_kwargs(self, **kwargs)
-
-
-    def __disown__(self):
-        self.this.disown()
-        _Box2D.disown_b2DestructionListener(self)
-        return weakref_proxy(self)
-b2DestructionListener.SayGoodbye = new_instancemethod(_Box2D.b2DestructionListener_SayGoodbye,None,b2DestructionListener)
-b2DestructionListener_swigregister = _Box2D.b2DestructionListener_swigregister
-b2DestructionListener_swigregister(b2DestructionListener)
-
-class b2ContactFilter(object):
-    """Implement this class to provide collision filtering. In other words, you can implement this class if you want finer control over contact creation."""
-    thisown = _swig_property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc='The membership flag')
-    __repr__ = _swig_repr
-    __swig_destroy__ = _Box2D.delete_b2ContactFilter
-    def ShouldCollide(self, *args, **kwargs):
-        """
-        ShouldCollide(self, b2Fixture fixtureA, b2Fixture fixtureB) -> bool
-
-        Return true if contact calculations should be performed between these two shapes. 
-        WARNING: 
-        for performance reasons this is only called when the AABBs begin to overlap.
-        """
-        return _Box2D.b2ContactFilter_ShouldCollide(self, *args, **kwargs)
-
-    __dir__ = _dir_filter
-
-    def __repr__(self):
-        return "b2ContactFilter()"
-
-    def __init__(self, **kwargs):
-        if self.__class__ == b2ContactFilter:
-            _self = None
-        else:
-            _self = self
-        _Box2D.b2ContactFilter_swiginit(self,_Box2D.new_b2ContactFilter(_self, ))
-        _init_kwargs(self, **kwargs)
-
-
-    def __disown__(self):
-        self.this.disown()
-        _Box2D.disown_b2ContactFilter(self)
-        return weakref_proxy(self)
-b2ContactFilter.ShouldCollide = new_instancemethod(_Box2D.b2ContactFilter_ShouldCollide,None,b2ContactFilter)
-b2ContactFilter_swigregister = _Box2D.b2ContactFilter_swigregister
-b2ContactFilter_swigregister(b2ContactFilter)
-
-class b2ContactImpulse(object):
-    """Contact impulses for reporting. Impulses are used instead of forces because sub-step forces may approach infinity for rigid body collisions. These match up one-to-one with the contact points in  b2Manifold."""
-    thisown = _swig_property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc='The membership flag')
-    __repr__ = _swig_repr
-    __dir__ = _dir_filter
-
-    def __repr__(self):
-        return _format_repr(self, ['normalImpulses','tangentImpulses']) 
-
-    def __get_normal_impulses(self):
-        """__get_normal_impulses(self) -> PyObject"""
-        return _Box2D.b2ContactImpulse___get_normal_impulses(self)
-
-    def __get_tangent_impulses(self):
-        """__get_tangent_impulses(self) -> PyObject"""
-        return _Box2D.b2ContactImpulse___get_tangent_impulses(self)
-
-    normalImpulses = property(__get_normal_impulses, None)
-    tangentImpulses = property(__get_tangent_impulses, None)
-
-    def __init__(self, **kwargs):
-        _Box2D.b2ContactImpulse_swiginit(self,_Box2D.new_b2ContactImpulse())
-        _init_kwargs(self, **kwargs)
-
-
-    __swig_destroy__ = _Box2D.delete_b2ContactImpulse
-b2ContactImpulse.__get_normal_impulses = new_instancemethod(_Box2D.b2ContactImpulse___get_normal_impulses,None,b2ContactImpulse)
-b2ContactImpulse.__get_tangent_impulses = new_instancemethod(_Box2D.b2ContactImpulse___get_tangent_impulses,None,b2ContactImpulse)
-b2ContactImpulse_swigregister = _Box2D.b2ContactImpulse_swigregister
-b2ContactImpulse_swigregister(b2ContactImpulse)
-
-class b2ContactListener(object):
-    """
-    Implement this class to get contact information. You can use these results for things like sounds and game logic. You can also get contact results by traversing the contact lists after the time step. However, you might miss some contacts because continuous physics leads to sub-stepping. Additionally you may receive multiple callbacks for the same contact in a single time step. You should strive to make your callbacks efficient because there may be many callbacks per time step. 
-    WARNING: 
-    You cannot create/destroy Box2D entities inside these callbacks.
-    """
-    thisown = _swig_property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc='The membership flag')
-    __repr__ = _swig_repr
-    __swig_destroy__ = _Box2D.delete_b2ContactListener
-    def BeginContact(self, *args, **kwargs):
-        """
-        BeginContact(self, b2Contact contact)
-
-        Called when two fixtures begin to touch.
-        """
-        return _Box2D.b2ContactListener_BeginContact(self, *args, **kwargs)
-
-    def EndContact(self, *args, **kwargs):
-        """
-        EndContact(self, b2Contact contact)
-
-        Called when two fixtures cease to touch.
-        """
-        return _Box2D.b2ContactListener_EndContact(self, *args, **kwargs)
-
-    def PreSolve(self, *args, **kwargs):
-        """
-        PreSolve(self, b2Contact contact, b2Manifold oldManifold)
-
-        This is called after a contact is updated. This allows you to inspect a contact before it goes to the solver. If you are careful, you can modify the contact manifold (e.g. disable contact). A copy of the old manifold is provided so that you can detect changes. Note: this is called only for awake bodies. Note: this is called even when the number of contact points is zero. Note: this is not called for sensors. Note: if you set the number of contact points to zero, you will not get an EndContact callback. However, you may get a BeginContact callback the next step.
-        """
-        return _Box2D.b2ContactListener_PreSolve(self, *args, **kwargs)
-
-    def PostSolve(self, *args, **kwargs):
-        """
-        PostSolve(self, b2Contact contact, b2ContactImpulse impulse)
-
-        This lets you inspect a contact after the solver is finished. This is useful for inspecting impulses. Note: the contact manifold does not include time of impact impulses, which can be arbitrarily large if the sub-step is small. Hence the impulse is provided explicitly in a separate data structure. Note: this is only called for contacts that are touching, solid, and awake.
-        """
-        return _Box2D.b2ContactListener_PostSolve(self, *args, **kwargs)
-
-    __dir__ = _dir_filter
-
-    def __repr__(self):
-        return "b2ContactListener()"
-
-    def __init__(self, **kwargs):
-        if self.__class__ == b2ContactListener:
-            _self = None
-        else:
-            _self = self
-        _Box2D.b2ContactListener_swiginit(self,_Box2D.new_b2ContactListener(_self, ))
-        _init_kwargs(self, **kwargs)
-
-
-    def __disown__(self):
-        self.this.disown()
-        _Box2D.disown_b2ContactListener(self)
-        return weakref_proxy(self)
-b2ContactListener.BeginContact = new_instancemethod(_Box2D.b2ContactListener_BeginContact,None,b2ContactListener)
-b2ContactListener.EndContact = new_instancemethod(_Box2D.b2ContactListener_EndContact,None,b2ContactListener)
-b2ContactListener.PreSolve = new_instancemethod(_Box2D.b2ContactListener_PreSolve,None,b2ContactListener)
-b2ContactListener.PostSolve = new_instancemethod(_Box2D.b2ContactListener_PostSolve,None,b2ContactListener)
-b2ContactListener_swigregister = _Box2D.b2ContactListener_swigregister
-b2ContactListener_swigregister(b2ContactListener)
-
-class b2QueryCallback(object):
-    """Callback class for AABB queries. See b2World::Query"""
-    thisown = _swig_property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc='The membership flag')
-    __repr__ = _swig_repr
-    __swig_destroy__ = _Box2D.delete_b2QueryCallback
-    def ReportFixture(self, *args, **kwargs):
-        """
-        ReportFixture(self, b2Fixture fixture) -> bool
-
-        Called for each fixture found in the query AABB. 
-        false to terminate the query.
-        """
-        return _Box2D.b2QueryCallback_ReportFixture(self, *args, **kwargs)
-
-    __dir__ = _dir_filter
-
-    def __repr__(self):
-        return "b2QueryCallback()"
-
-    def __init__(self, **kwargs):
-        if self.__class__ == b2QueryCallback:
-            _self = None
-        else:
-            _self = self
-        _Box2D.b2QueryCallback_swiginit(self,_Box2D.new_b2QueryCallback(_self, ))
-        _init_kwargs(self, **kwargs)
-
-
-    def __disown__(self):
-        self.this.disown()
-        _Box2D.disown_b2QueryCallback(self)
-        return weakref_proxy(self)
-b2QueryCallback.ReportFixture = new_instancemethod(_Box2D.b2QueryCallback_ReportFixture,None,b2QueryCallback)
-b2QueryCallback_swigregister = _Box2D.b2QueryCallback_swigregister
-b2QueryCallback_swigregister(b2QueryCallback)
-
-class b2RayCastCallback(object):
-    """Callback class for ray casts. See  b2World::RayCast"""
-    thisown = _swig_property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc='The membership flag')
-    __repr__ = _swig_repr
-    __swig_destroy__ = _Box2D.delete_b2RayCastCallback
-    def ReportFixture(self, *args, **kwargs):
-        """
-        ReportFixture(self, b2Fixture fixture, b2Vec2 point, b2Vec2 normal, float32 fraction) -> float32
-
-        Called for each fixture found in the query. You control how the ray cast proceeds by returning a float: return -1: ignore this fixture and continue return 0: terminate the ray cast return fraction: clip the ray to this point return 1: don't clip the ray and continue
-
-        Parameters:
-        -----------
-
-        fixture: 
-        the fixture hit by the ray
-
-        point: 
-        the point of initial intersection
-
-        normal: 
-        the normal vector at the point of intersection 
-        -1 to filter, 0 to terminate, fraction to clip the ray for closest hit, 1 to continue
-        """
-        return _Box2D.b2RayCastCallback_ReportFixture(self, *args, **kwargs)
-
-    __dir__ = _dir_filter
-
-    def __repr__(self):
-        return "b2RayCastCallback()"
-
-    def __init__(self): 
-        """__init__(self) -> b2RayCastCallback"""
-        if self.__class__ == b2RayCastCallback:
-            _self = None
-        else:
-            _self = self
-        _Box2D.b2RayCastCallback_swiginit(self,_Box2D.new_b2RayCastCallback(_self, ))
-    def __disown__(self):
-        self.this.disown()
-        _Box2D.disown_b2RayCastCallback(self)
-        return weakref_proxy(self)
-b2RayCastCallback.ReportFixture = new_instancemethod(_Box2D.b2RayCastCallback_ReportFixture,None,b2RayCastCallback)
-b2RayCastCallback_swigregister = _Box2D.b2RayCastCallback_swigregister
-b2RayCastCallback_swigregister(b2RayCastCallback)
-
 class b2Color(object):
     """Color for debug drawing. Each value has the range [0,1]."""
     thisown = _swig_property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc='The membership flag')
@@ -2087,32 +1841,32 @@ b2Color.__equ = new_instancemethod(_Box2D.b2Color___equ,None,b2Color)
 b2Color_swigregister = _Box2D.b2Color_swigregister
 b2Color_swigregister(b2Color)
 
-class b2DebugDraw(object):
+class b2Draw(object):
     """Implement and register this class with a  b2Worldto provide debug drawing of physics entities in your game."""
     thisown = _swig_property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc='The membership flag')
     __repr__ = _swig_repr
     def __init__(self, **kwargs):
-        if self.__class__ == b2DebugDraw:
+        if self.__class__ == b2Draw:
             _self = None
         else:
             _self = self
-        _Box2D.b2DebugDraw_swiginit(self,_Box2D.new_b2DebugDraw(_self, ))
+        _Box2D.b2Draw_swiginit(self,_Box2D.new_b2Draw(_self, ))
         _init_kwargs(self, **kwargs)
 
 
-    __swig_destroy__ = _Box2D.delete_b2DebugDraw
-    e_shapeBit = _Box2D.b2DebugDraw_e_shapeBit
-    e_jointBit = _Box2D.b2DebugDraw_e_jointBit
-    e_aabbBit = _Box2D.b2DebugDraw_e_aabbBit
-    e_pairBit = _Box2D.b2DebugDraw_e_pairBit
-    e_centerOfMassBit = _Box2D.b2DebugDraw_e_centerOfMassBit
+    __swig_destroy__ = _Box2D.delete_b2Draw
+    e_shapeBit = _Box2D.b2Draw_e_shapeBit
+    e_jointBit = _Box2D.b2Draw_e_jointBit
+    e_aabbBit = _Box2D.b2Draw_e_aabbBit
+    e_pairBit = _Box2D.b2Draw_e_pairBit
+    e_centerOfMassBit = _Box2D.b2Draw_e_centerOfMassBit
     def __SetFlags(self, *args, **kwargs):
         """
         __SetFlags(self, uint32 flags)
 
         Set the drawing flags.
         """
-        return _Box2D.b2DebugDraw___SetFlags(self, *args, **kwargs)
+        return _Box2D.b2Draw___SetFlags(self, *args, **kwargs)
 
     def __GetFlags(self):
         """
@@ -2120,7 +1874,7 @@ class b2DebugDraw(object):
 
         Get the drawing flags.
         """
-        return _Box2D.b2DebugDraw___GetFlags(self)
+        return _Box2D.b2Draw___GetFlags(self)
 
     def AppendFlags(self, *args, **kwargs):
         """
@@ -2128,7 +1882,7 @@ class b2DebugDraw(object):
 
         Append flags to the current flags.
         """
-        return _Box2D.b2DebugDraw_AppendFlags(self, *args, **kwargs)
+        return _Box2D.b2Draw_AppendFlags(self, *args, **kwargs)
 
     def ClearFlags(self, *args, **kwargs):
         """
@@ -2136,7 +1890,7 @@ class b2DebugDraw(object):
 
         Clear flags from the current flags.
         """
-        return _Box2D.b2DebugDraw_ClearFlags(self, *args, **kwargs)
+        return _Box2D.b2Draw_ClearFlags(self, *args, **kwargs)
 
     def DrawPolygon(self, *args, **kwargs):
         """
@@ -2144,7 +1898,7 @@ class b2DebugDraw(object):
 
         Draw a closed polygon provided in CCW order.
         """
-        return _Box2D.b2DebugDraw_DrawPolygon(self, *args, **kwargs)
+        return _Box2D.b2Draw_DrawPolygon(self, *args, **kwargs)
 
     def DrawSolidPolygon(self, *args, **kwargs):
         """
@@ -2152,7 +1906,7 @@ class b2DebugDraw(object):
 
         Draw a solid closed polygon provided in CCW order.
         """
-        return _Box2D.b2DebugDraw_DrawSolidPolygon(self, *args, **kwargs)
+        return _Box2D.b2Draw_DrawSolidPolygon(self, *args, **kwargs)
 
     def DrawCircle(self, *args, **kwargs):
         """
@@ -2160,7 +1914,7 @@ class b2DebugDraw(object):
 
         Draw a circle.
         """
-        return _Box2D.b2DebugDraw_DrawCircle(self, *args, **kwargs)
+        return _Box2D.b2Draw_DrawCircle(self, *args, **kwargs)
 
     def DrawSolidCircle(self, *args, **kwargs):
         """
@@ -2168,7 +1922,7 @@ class b2DebugDraw(object):
 
         Draw a solid circle.
         """
-        return _Box2D.b2DebugDraw_DrawSolidCircle(self, *args, **kwargs)
+        return _Box2D.b2Draw_DrawSolidCircle(self, *args, **kwargs)
 
     def DrawSegment(self, *args, **kwargs):
         """
@@ -2176,7 +1930,7 @@ class b2DebugDraw(object):
 
         Draw a line segment.
         """
-        return _Box2D.b2DebugDraw_DrawSegment(self, *args, **kwargs)
+        return _Box2D.b2Draw_DrawSegment(self, *args, **kwargs)
 
     def DrawTransform(self, *args, **kwargs):
         """
@@ -2190,7 +1944,7 @@ class b2DebugDraw(object):
         xf: 
         a transform.
         """
-        return _Box2D.b2DebugDraw_DrawTransform(self, *args, **kwargs)
+        return _Box2D.b2Draw_DrawTransform(self, *args, **kwargs)
 
     __dir__ = _dir_filter
 
@@ -2222,39 +1976,39 @@ class b2DebugDraw(object):
 
     def __disown__(self):
         self.this.disown()
-        _Box2D.disown_b2DebugDraw(self)
+        _Box2D.disown_b2Draw(self)
         return weakref_proxy(self)
-b2DebugDraw.__SetFlags = new_instancemethod(_Box2D.b2DebugDraw___SetFlags,None,b2DebugDraw)
-b2DebugDraw.__GetFlags = new_instancemethod(_Box2D.b2DebugDraw___GetFlags,None,b2DebugDraw)
-b2DebugDraw.AppendFlags = new_instancemethod(_Box2D.b2DebugDraw_AppendFlags,None,b2DebugDraw)
-b2DebugDraw.ClearFlags = new_instancemethod(_Box2D.b2DebugDraw_ClearFlags,None,b2DebugDraw)
-b2DebugDraw.DrawPolygon = new_instancemethod(_Box2D.b2DebugDraw_DrawPolygon,None,b2DebugDraw)
-b2DebugDraw.DrawSolidPolygon = new_instancemethod(_Box2D.b2DebugDraw_DrawSolidPolygon,None,b2DebugDraw)
-b2DebugDraw.DrawCircle = new_instancemethod(_Box2D.b2DebugDraw_DrawCircle,None,b2DebugDraw)
-b2DebugDraw.DrawSolidCircle = new_instancemethod(_Box2D.b2DebugDraw_DrawSolidCircle,None,b2DebugDraw)
-b2DebugDraw.DrawSegment = new_instancemethod(_Box2D.b2DebugDraw_DrawSegment,None,b2DebugDraw)
-b2DebugDraw.DrawTransform = new_instancemethod(_Box2D.b2DebugDraw_DrawTransform,None,b2DebugDraw)
-b2DebugDraw_swigregister = _Box2D.b2DebugDraw_swigregister
-b2DebugDraw_swigregister(b2DebugDraw)
+b2Draw.__SetFlags = new_instancemethod(_Box2D.b2Draw___SetFlags,None,b2Draw)
+b2Draw.__GetFlags = new_instancemethod(_Box2D.b2Draw___GetFlags,None,b2Draw)
+b2Draw.AppendFlags = new_instancemethod(_Box2D.b2Draw_AppendFlags,None,b2Draw)
+b2Draw.ClearFlags = new_instancemethod(_Box2D.b2Draw_ClearFlags,None,b2Draw)
+b2Draw.DrawPolygon = new_instancemethod(_Box2D.b2Draw_DrawPolygon,None,b2Draw)
+b2Draw.DrawSolidPolygon = new_instancemethod(_Box2D.b2Draw_DrawSolidPolygon,None,b2Draw)
+b2Draw.DrawCircle = new_instancemethod(_Box2D.b2Draw_DrawCircle,None,b2Draw)
+b2Draw.DrawSolidCircle = new_instancemethod(_Box2D.b2Draw_DrawSolidCircle,None,b2Draw)
+b2Draw.DrawSegment = new_instancemethod(_Box2D.b2Draw_DrawSegment,None,b2Draw)
+b2Draw.DrawTransform = new_instancemethod(_Box2D.b2Draw_DrawTransform,None,b2Draw)
+b2Draw_swigregister = _Box2D.b2Draw_swigregister
+b2Draw_swigregister(b2Draw)
 
-class b2DebugDrawExtended(b2DebugDraw):
-    """Proxy of C++ b2DebugDrawExtended class"""
+class b2DrawExtended(b2Draw):
+    """Proxy of C++ b2DrawExtended class"""
     thisown = _swig_property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc='The membership flag')
     __repr__ = _swig_repr
-    convertVertices = _swig_property(_Box2D.b2DebugDrawExtended_convertVertices_get, _Box2D.b2DebugDrawExtended_convertVertices_set)
-    center = _swig_property(_Box2D.b2DebugDrawExtended_center_get, _Box2D.b2DebugDrawExtended_center_set)
-    offset = _swig_property(_Box2D.b2DebugDrawExtended_offset_get, _Box2D.b2DebugDrawExtended_offset_set)
-    zoom = _swig_property(_Box2D.b2DebugDrawExtended_zoom_get, _Box2D.b2DebugDrawExtended_zoom_set)
-    screenSize = _swig_property(_Box2D.b2DebugDrawExtended_screenSize_get, _Box2D.b2DebugDrawExtended_screenSize_set)
-    flipY = _swig_property(_Box2D.b2DebugDrawExtended_flipY_get, _Box2D.b2DebugDrawExtended_flipY_set)
-    flipX = _swig_property(_Box2D.b2DebugDrawExtended_flipX_get, _Box2D.b2DebugDrawExtended_flipX_set)
+    convertVertices = _swig_property(_Box2D.b2DrawExtended_convertVertices_get, _Box2D.b2DrawExtended_convertVertices_set)
+    center = _swig_property(_Box2D.b2DrawExtended_center_get, _Box2D.b2DrawExtended_center_set)
+    offset = _swig_property(_Box2D.b2DrawExtended_offset_get, _Box2D.b2DrawExtended_offset_set)
+    zoom = _swig_property(_Box2D.b2DrawExtended_zoom_get, _Box2D.b2DrawExtended_zoom_set)
+    screenSize = _swig_property(_Box2D.b2DrawExtended_screenSize_get, _Box2D.b2DrawExtended_screenSize_set)
+    flipY = _swig_property(_Box2D.b2DrawExtended_flipY_get, _Box2D.b2DrawExtended_flipY_set)
+    flipX = _swig_property(_Box2D.b2DrawExtended_flipX_get, _Box2D.b2DrawExtended_flipX_set)
     def __Convert(self, *args, **kwargs):
         """__Convert(self, b2Vec2 verts, int32 vertexCount) -> PyObject"""
-        return _Box2D.b2DebugDrawExtended___Convert(self, *args, **kwargs)
+        return _Box2D.b2DrawExtended___Convert(self, *args, **kwargs)
 
     def to_screen(self, *args, **kwargs):
         """to_screen(self, b2Vec2 point) -> PyObject"""
-        return _Box2D.b2DebugDrawExtended_to_screen(self, *args, **kwargs)
+        return _Box2D.b2DrawExtended_to_screen(self, *args, **kwargs)
 
     def DrawPolygon(self, *args, **kwargs):
         """
@@ -2262,7 +2016,7 @@ class b2DebugDrawExtended(b2DebugDraw):
 
         Draw a closed polygon provided in CCW order.
         """
-        return _Box2D.b2DebugDrawExtended_DrawPolygon(self, *args, **kwargs)
+        return _Box2D.b2DrawExtended_DrawPolygon(self, *args, **kwargs)
 
     def DrawSolidPolygon(self, *args, **kwargs):
         """
@@ -2270,7 +2024,7 @@ class b2DebugDrawExtended(b2DebugDraw):
 
         Draw a solid closed polygon provided in CCW order.
         """
-        return _Box2D.b2DebugDrawExtended_DrawSolidPolygon(self, *args, **kwargs)
+        return _Box2D.b2DrawExtended_DrawSolidPolygon(self, *args, **kwargs)
 
     def DrawCircle(self, *args, **kwargs):
         """
@@ -2278,7 +2032,7 @@ class b2DebugDrawExtended(b2DebugDraw):
 
         Draw a circle.
         """
-        return _Box2D.b2DebugDrawExtended_DrawCircle(self, *args, **kwargs)
+        return _Box2D.b2DrawExtended_DrawCircle(self, *args, **kwargs)
 
     def DrawSolidCircle(self, *args, **kwargs):
         """
@@ -2286,7 +2040,7 @@ class b2DebugDrawExtended(b2DebugDraw):
 
         Draw a solid circle.
         """
-        return _Box2D.b2DebugDrawExtended_DrawSolidCircle(self, *args, **kwargs)
+        return _Box2D.b2DrawExtended_DrawSolidCircle(self, *args, **kwargs)
 
     def DrawSegment(self, *args, **kwargs):
         """
@@ -2294,7 +2048,7 @@ class b2DebugDrawExtended(b2DebugDraw):
 
         Draw a line segment.
         """
-        return _Box2D.b2DebugDrawExtended_DrawSegment(self, *args, **kwargs)
+        return _Box2D.b2DrawExtended_DrawSegment(self, *args, **kwargs)
 
     def DrawTransform(self, *args, **kwargs):
         """
@@ -2308,19 +2062,19 @@ class b2DebugDrawExtended(b2DebugDraw):
         xf: 
         a transform.
         """
-        return _Box2D.b2DebugDrawExtended_DrawTransform(self, *args, **kwargs)
+        return _Box2D.b2DrawExtended_DrawTransform(self, *args, **kwargs)
 
     def __SetFlags(self, *args, **kwargs):
         """__SetFlags(self, uint32 flags)"""
-        return _Box2D.b2DebugDrawExtended___SetFlags(self, *args, **kwargs)
+        return _Box2D.b2DrawExtended___SetFlags(self, *args, **kwargs)
 
-    __swig_destroy__ = _Box2D.delete_b2DebugDrawExtended
+    __swig_destroy__ = _Box2D.delete_b2DrawExtended
     def __init__(self, **kwargs):
-        if self.__class__ == b2DebugDrawExtended:
+        if self.__class__ == b2DrawExtended:
             _self = None
         else:
             _self = self
-        _Box2D.b2DebugDrawExtended_swiginit(self,_Box2D.new_b2DebugDrawExtended(_self, ))
+        _Box2D.b2DrawExtended_swiginit(self,_Box2D.new_b2DrawExtended(_self, ))
         _init_kwargs(self, **kwargs)
 
 
@@ -2329,19 +2083,19 @@ class b2DebugDrawExtended(b2DebugDraw):
 
     def __disown__(self):
         self.this.disown()
-        _Box2D.disown_b2DebugDrawExtended(self)
+        _Box2D.disown_b2DrawExtended(self)
         return weakref_proxy(self)
-b2DebugDrawExtended.__Convert = new_instancemethod(_Box2D.b2DebugDrawExtended___Convert,None,b2DebugDrawExtended)
-b2DebugDrawExtended.to_screen = new_instancemethod(_Box2D.b2DebugDrawExtended_to_screen,None,b2DebugDrawExtended)
-b2DebugDrawExtended.DrawPolygon = new_instancemethod(_Box2D.b2DebugDrawExtended_DrawPolygon,None,b2DebugDrawExtended)
-b2DebugDrawExtended.DrawSolidPolygon = new_instancemethod(_Box2D.b2DebugDrawExtended_DrawSolidPolygon,None,b2DebugDrawExtended)
-b2DebugDrawExtended.DrawCircle = new_instancemethod(_Box2D.b2DebugDrawExtended_DrawCircle,None,b2DebugDrawExtended)
-b2DebugDrawExtended.DrawSolidCircle = new_instancemethod(_Box2D.b2DebugDrawExtended_DrawSolidCircle,None,b2DebugDrawExtended)
-b2DebugDrawExtended.DrawSegment = new_instancemethod(_Box2D.b2DebugDrawExtended_DrawSegment,None,b2DebugDrawExtended)
-b2DebugDrawExtended.DrawTransform = new_instancemethod(_Box2D.b2DebugDrawExtended_DrawTransform,None,b2DebugDrawExtended)
-b2DebugDrawExtended.__SetFlags = new_instancemethod(_Box2D.b2DebugDrawExtended___SetFlags,None,b2DebugDrawExtended)
-b2DebugDrawExtended_swigregister = _Box2D.b2DebugDrawExtended_swigregister
-b2DebugDrawExtended_swigregister(b2DebugDrawExtended)
+b2DrawExtended.__Convert = new_instancemethod(_Box2D.b2DrawExtended___Convert,None,b2DrawExtended)
+b2DrawExtended.to_screen = new_instancemethod(_Box2D.b2DrawExtended_to_screen,None,b2DrawExtended)
+b2DrawExtended.DrawPolygon = new_instancemethod(_Box2D.b2DrawExtended_DrawPolygon,None,b2DrawExtended)
+b2DrawExtended.DrawSolidPolygon = new_instancemethod(_Box2D.b2DrawExtended_DrawSolidPolygon,None,b2DrawExtended)
+b2DrawExtended.DrawCircle = new_instancemethod(_Box2D.b2DrawExtended_DrawCircle,None,b2DrawExtended)
+b2DrawExtended.DrawSolidCircle = new_instancemethod(_Box2D.b2DrawExtended_DrawSolidCircle,None,b2DrawExtended)
+b2DrawExtended.DrawSegment = new_instancemethod(_Box2D.b2DrawExtended_DrawSegment,None,b2DrawExtended)
+b2DrawExtended.DrawTransform = new_instancemethod(_Box2D.b2DrawExtended_DrawTransform,None,b2DrawExtended)
+b2DrawExtended.__SetFlags = new_instancemethod(_Box2D.b2DrawExtended___SetFlags,None,b2DrawExtended)
+b2DrawExtended_swigregister = _Box2D.b2DrawExtended_swigregister
+b2DrawExtended_swigregister(b2DrawExtended)
 
 class b2MassData(object):
     """This holds the mass data computed for a shape."""
@@ -2932,6 +2686,10 @@ class b2BroadPhase(object):
         """
         return _Box2D.b2BroadPhase_MoveProxy(self, *args, **kwargs)
 
+    def TouchProxy(self, *args, **kwargs):
+        """TouchProxy(self, int32 proxyId)"""
+        return _Box2D.b2BroadPhase_TouchProxy(self, *args, **kwargs)
+
     def GetFatAABB(self, *args, **kwargs):
         """
         GetFatAABB(self, int32 proxyId) -> b2AABB
@@ -2972,6 +2730,7 @@ class b2BroadPhase(object):
 b2BroadPhase.CreateProxy = new_instancemethod(_Box2D.b2BroadPhase_CreateProxy,None,b2BroadPhase)
 b2BroadPhase.DestroyProxy = new_instancemethod(_Box2D.b2BroadPhase_DestroyProxy,None,b2BroadPhase)
 b2BroadPhase.MoveProxy = new_instancemethod(_Box2D.b2BroadPhase_MoveProxy,None,b2BroadPhase)
+b2BroadPhase.TouchProxy = new_instancemethod(_Box2D.b2BroadPhase_TouchProxy,None,b2BroadPhase)
 b2BroadPhase.GetFatAABB = new_instancemethod(_Box2D.b2BroadPhase_GetFatAABB,None,b2BroadPhase)
 b2BroadPhase.TestOverlap = new_instancemethod(_Box2D.b2BroadPhase_TestOverlap,None,b2BroadPhase)
 b2BroadPhase.__GetProxyCount = new_instancemethod(_Box2D.b2BroadPhase___GetProxyCount,None,b2BroadPhase)
@@ -4051,7 +3810,6 @@ class b2FixtureDef(object):
         _init_kwargs(self, **kwargs)
 
 
-    __swig_destroy__ = _Box2D.delete_b2FixtureDef
     shape = _swig_property(_Box2D.b2FixtureDef_shape_get, _Box2D.b2FixtureDef_shape_set)
     friction = _swig_property(_Box2D.b2FixtureDef_friction_get, _Box2D.b2FixtureDef_friction_set)
     restitution = _swig_property(_Box2D.b2FixtureDef_restitution_get, _Box2D.b2FixtureDef_restitution_set)
@@ -4090,6 +3848,7 @@ class b2FixtureDef(object):
     groupIndex=property(lambda self: self.filter.groupIndex, __SetGroupIndex)
     maskBits=property(lambda self: self.filter.maskBits, __SetMaskBits)
 
+    __swig_destroy__ = _Box2D.delete_b2FixtureDef
 b2FixtureDef.__GetUserData = new_instancemethod(_Box2D.b2FixtureDef___GetUserData,None,b2FixtureDef)
 b2FixtureDef.__SetUserData = new_instancemethod(_Box2D.b2FixtureDef___SetUserData,None,b2FixtureDef)
 b2FixtureDef.ClearUserData = new_instancemethod(_Box2D.b2FixtureDef_ClearUserData,None,b2FixtureDef)
@@ -4173,6 +3932,10 @@ class b2Fixture(object):
         Get the contact filtering data.
         """
         return _Box2D.b2Fixture___GetFilterData(self)
+
+    def Refilter(self):
+        """Refilter(self)"""
+        return _Box2D.b2Fixture_Refilter(self)
 
     def __GetBody(self, *args):
         """
@@ -4341,6 +4104,7 @@ b2Fixture.__SetSensor = new_instancemethod(_Box2D.b2Fixture___SetSensor,None,b2F
 b2Fixture.__IsSensor = new_instancemethod(_Box2D.b2Fixture___IsSensor,None,b2Fixture)
 b2Fixture.__SetFilterData = new_instancemethod(_Box2D.b2Fixture___SetFilterData,None,b2Fixture)
 b2Fixture.__GetFilterData = new_instancemethod(_Box2D.b2Fixture___GetFilterData,None,b2Fixture)
+b2Fixture.Refilter = new_instancemethod(_Box2D.b2Fixture_Refilter,None,b2Fixture)
 b2Fixture.__GetBody = new_instancemethod(_Box2D.b2Fixture___GetBody,None,b2Fixture)
 b2Fixture.__GetNext = new_instancemethod(_Box2D.b2Fixture___GetNext,None,b2Fixture)
 b2Fixture.TestPoint = new_instancemethod(_Box2D.b2Fixture_TestPoint,None,b2Fixture)
@@ -4359,6 +4123,258 @@ b2Fixture.ClearUserData = new_instancemethod(_Box2D.b2Fixture_ClearUserData,None
 b2Fixture.__hash__ = new_instancemethod(_Box2D.b2Fixture___hash__,None,b2Fixture)
 b2Fixture_swigregister = _Box2D.b2Fixture_swigregister
 b2Fixture_swigregister(b2Fixture)
+
+class b2DestructionListener(object):
+    """Joints and fixtures are destroyed when their associated body is destroyed. Implement this listener so that you may nullify references to these joints and shapes."""
+    thisown = _swig_property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc='The membership flag')
+    __repr__ = _swig_repr
+    __swig_destroy__ = _Box2D.delete_b2DestructionListener
+    def SayGoodbye(self, *args):
+        """
+        SayGoodbye(self, b2Joint joint)
+        SayGoodbye(self, b2Fixture fixture)
+
+        Called when any fixture is about to be destroyed due to the destruction of its parent body.
+        """
+        return _Box2D.b2DestructionListener_SayGoodbye(self, *args)
+
+    __dir__ = _dir_filter
+
+    def __repr__(self):
+        return "b2DestructionListener()"
+
+    def __init__(self, **kwargs):
+        if self.__class__ == b2DestructionListener:
+            _self = None
+        else:
+            _self = self
+        _Box2D.b2DestructionListener_swiginit(self,_Box2D.new_b2DestructionListener(_self, ))
+        _init_kwargs(self, **kwargs)
+
+
+    def __disown__(self):
+        self.this.disown()
+        _Box2D.disown_b2DestructionListener(self)
+        return weakref_proxy(self)
+b2DestructionListener.SayGoodbye = new_instancemethod(_Box2D.b2DestructionListener_SayGoodbye,None,b2DestructionListener)
+b2DestructionListener_swigregister = _Box2D.b2DestructionListener_swigregister
+b2DestructionListener_swigregister(b2DestructionListener)
+
+class b2ContactFilter(object):
+    """Implement this class to provide collision filtering. In other words, you can implement this class if you want finer control over contact creation."""
+    thisown = _swig_property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc='The membership flag')
+    __repr__ = _swig_repr
+    __swig_destroy__ = _Box2D.delete_b2ContactFilter
+    def ShouldCollide(self, *args, **kwargs):
+        """
+        ShouldCollide(self, b2Fixture fixtureA, b2Fixture fixtureB) -> bool
+
+        Return true if contact calculations should be performed between these two shapes. 
+        WARNING: 
+        for performance reasons this is only called when the AABBs begin to overlap.
+        """
+        return _Box2D.b2ContactFilter_ShouldCollide(self, *args, **kwargs)
+
+    __dir__ = _dir_filter
+
+    def __repr__(self):
+        return "b2ContactFilter()"
+
+    def __init__(self, **kwargs):
+        if self.__class__ == b2ContactFilter:
+            _self = None
+        else:
+            _self = self
+        _Box2D.b2ContactFilter_swiginit(self,_Box2D.new_b2ContactFilter(_self, ))
+        _init_kwargs(self, **kwargs)
+
+
+    def __disown__(self):
+        self.this.disown()
+        _Box2D.disown_b2ContactFilter(self)
+        return weakref_proxy(self)
+b2ContactFilter.ShouldCollide = new_instancemethod(_Box2D.b2ContactFilter_ShouldCollide,None,b2ContactFilter)
+b2ContactFilter_swigregister = _Box2D.b2ContactFilter_swigregister
+b2ContactFilter_swigregister(b2ContactFilter)
+
+class b2ContactImpulse(object):
+    """Contact impulses for reporting. Impulses are used instead of forces because sub-step forces may approach infinity for rigid body collisions. These match up one-to-one with the contact points in  b2Manifold."""
+    thisown = _swig_property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc='The membership flag')
+    __repr__ = _swig_repr
+    __dir__ = _dir_filter
+
+    def __repr__(self):
+        return _format_repr(self, ['normalImpulses','tangentImpulses']) 
+
+    def __get_normal_impulses(self):
+        """__get_normal_impulses(self) -> PyObject"""
+        return _Box2D.b2ContactImpulse___get_normal_impulses(self)
+
+    def __get_tangent_impulses(self):
+        """__get_tangent_impulses(self) -> PyObject"""
+        return _Box2D.b2ContactImpulse___get_tangent_impulses(self)
+
+    normalImpulses = property(__get_normal_impulses, None)
+    tangentImpulses = property(__get_tangent_impulses, None)
+
+    def __init__(self, **kwargs):
+        _Box2D.b2ContactImpulse_swiginit(self,_Box2D.new_b2ContactImpulse())
+        _init_kwargs(self, **kwargs)
+
+
+    __swig_destroy__ = _Box2D.delete_b2ContactImpulse
+b2ContactImpulse.__get_normal_impulses = new_instancemethod(_Box2D.b2ContactImpulse___get_normal_impulses,None,b2ContactImpulse)
+b2ContactImpulse.__get_tangent_impulses = new_instancemethod(_Box2D.b2ContactImpulse___get_tangent_impulses,None,b2ContactImpulse)
+b2ContactImpulse_swigregister = _Box2D.b2ContactImpulse_swigregister
+b2ContactImpulse_swigregister(b2ContactImpulse)
+
+class b2ContactListener(object):
+    """
+    Implement this class to get contact information. You can use these results for things like sounds and game logic. You can also get contact results by traversing the contact lists after the time step. However, you might miss some contacts because continuous physics leads to sub-stepping. Additionally you may receive multiple callbacks for the same contact in a single time step. You should strive to make your callbacks efficient because there may be many callbacks per time step. 
+    WARNING: 
+    You cannot create/destroy Box2D entities inside these callbacks.
+    """
+    thisown = _swig_property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc='The membership flag')
+    __repr__ = _swig_repr
+    __swig_destroy__ = _Box2D.delete_b2ContactListener
+    def BeginContact(self, *args, **kwargs):
+        """
+        BeginContact(self, b2Contact contact)
+
+        Called when two fixtures begin to touch.
+        """
+        return _Box2D.b2ContactListener_BeginContact(self, *args, **kwargs)
+
+    def EndContact(self, *args, **kwargs):
+        """
+        EndContact(self, b2Contact contact)
+
+        Called when two fixtures cease to touch.
+        """
+        return _Box2D.b2ContactListener_EndContact(self, *args, **kwargs)
+
+    def PreSolve(self, *args, **kwargs):
+        """
+        PreSolve(self, b2Contact contact, b2Manifold oldManifold)
+
+        This is called after a contact is updated. This allows you to inspect a contact before it goes to the solver. If you are careful, you can modify the contact manifold (e.g. disable contact). A copy of the old manifold is provided so that you can detect changes. Note: this is called only for awake bodies. Note: this is called even when the number of contact points is zero. Note: this is not called for sensors. Note: if you set the number of contact points to zero, you will not get an EndContact callback. However, you may get a BeginContact callback the next step.
+        """
+        return _Box2D.b2ContactListener_PreSolve(self, *args, **kwargs)
+
+    def PostSolve(self, *args, **kwargs):
+        """
+        PostSolve(self, b2Contact contact, b2ContactImpulse impulse)
+
+        This lets you inspect a contact after the solver is finished. This is useful for inspecting impulses. Note: the contact manifold does not include time of impact impulses, which can be arbitrarily large if the sub-step is small. Hence the impulse is provided explicitly in a separate data structure. Note: this is only called for contacts that are touching, solid, and awake.
+        """
+        return _Box2D.b2ContactListener_PostSolve(self, *args, **kwargs)
+
+    __dir__ = _dir_filter
+
+    def __repr__(self):
+        return "b2ContactListener()"
+
+    def __init__(self, **kwargs):
+        if self.__class__ == b2ContactListener:
+            _self = None
+        else:
+            _self = self
+        _Box2D.b2ContactListener_swiginit(self,_Box2D.new_b2ContactListener(_self, ))
+        _init_kwargs(self, **kwargs)
+
+
+    def __disown__(self):
+        self.this.disown()
+        _Box2D.disown_b2ContactListener(self)
+        return weakref_proxy(self)
+b2ContactListener.BeginContact = new_instancemethod(_Box2D.b2ContactListener_BeginContact,None,b2ContactListener)
+b2ContactListener.EndContact = new_instancemethod(_Box2D.b2ContactListener_EndContact,None,b2ContactListener)
+b2ContactListener.PreSolve = new_instancemethod(_Box2D.b2ContactListener_PreSolve,None,b2ContactListener)
+b2ContactListener.PostSolve = new_instancemethod(_Box2D.b2ContactListener_PostSolve,None,b2ContactListener)
+b2ContactListener_swigregister = _Box2D.b2ContactListener_swigregister
+b2ContactListener_swigregister(b2ContactListener)
+
+class b2QueryCallback(object):
+    """Callback class for AABB queries. See b2World::Query"""
+    thisown = _swig_property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc='The membership flag')
+    __repr__ = _swig_repr
+    __swig_destroy__ = _Box2D.delete_b2QueryCallback
+    def ReportFixture(self, *args, **kwargs):
+        """
+        ReportFixture(self, b2Fixture fixture) -> bool
+
+        Called for each fixture found in the query AABB. 
+        false to terminate the query.
+        """
+        return _Box2D.b2QueryCallback_ReportFixture(self, *args, **kwargs)
+
+    __dir__ = _dir_filter
+
+    def __repr__(self):
+        return "b2QueryCallback()"
+
+    def __init__(self, **kwargs):
+        if self.__class__ == b2QueryCallback:
+            _self = None
+        else:
+            _self = self
+        _Box2D.b2QueryCallback_swiginit(self,_Box2D.new_b2QueryCallback(_self, ))
+        _init_kwargs(self, **kwargs)
+
+
+    def __disown__(self):
+        self.this.disown()
+        _Box2D.disown_b2QueryCallback(self)
+        return weakref_proxy(self)
+b2QueryCallback.ReportFixture = new_instancemethod(_Box2D.b2QueryCallback_ReportFixture,None,b2QueryCallback)
+b2QueryCallback_swigregister = _Box2D.b2QueryCallback_swigregister
+b2QueryCallback_swigregister(b2QueryCallback)
+
+class b2RayCastCallback(object):
+    """Callback class for ray casts. See  b2World::RayCast"""
+    thisown = _swig_property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc='The membership flag')
+    __repr__ = _swig_repr
+    __swig_destroy__ = _Box2D.delete_b2RayCastCallback
+    def ReportFixture(self, *args, **kwargs):
+        """
+        ReportFixture(self, b2Fixture fixture, b2Vec2 point, b2Vec2 normal, float32 fraction) -> float32
+
+        Called for each fixture found in the query. You control how the ray cast proceeds by returning a float: return -1: ignore this fixture and continue return 0: terminate the ray cast return fraction: clip the ray to this point return 1: don't clip the ray and continue
+
+        Parameters:
+        -----------
+
+        fixture: 
+        the fixture hit by the ray
+
+        point: 
+        the point of initial intersection
+
+        normal: 
+        the normal vector at the point of intersection 
+        -1 to filter, 0 to terminate, fraction to clip the ray for closest hit, 1 to continue
+        """
+        return _Box2D.b2RayCastCallback_ReportFixture(self, *args, **kwargs)
+
+    __dir__ = _dir_filter
+
+    def __repr__(self):
+        return "b2RayCastCallback()"
+
+    def __init__(self): 
+        """__init__(self) -> b2RayCastCallback"""
+        if self.__class__ == b2RayCastCallback:
+            _self = None
+        else:
+            _self = self
+        _Box2D.b2RayCastCallback_swiginit(self,_Box2D.new_b2RayCastCallback(_self, ))
+    def __disown__(self):
+        self.this.disown()
+        _Box2D.disown_b2RayCastCallback(self)
+        return weakref_proxy(self)
+b2RayCastCallback.ReportFixture = new_instancemethod(_Box2D.b2RayCastCallback_ReportFixture,None,b2RayCastCallback)
+b2RayCastCallback_swigregister = _Box2D.b2RayCastCallback_swigregister
+b2RayCastCallback_swigregister(b2RayCastCallback)
 
 class b2ContactManager(object):
     """Proxy of C++ b2ContactManager class"""
@@ -4476,11 +4492,7 @@ class b2World(object):
         return _Box2D.b2World___SetContactListener_internal(self, *args, **kwargs)
 
     def __SetDebugDraw_internal(self, *args, **kwargs):
-        """
-        __SetDebugDraw_internal(self, b2DebugDraw debugDraw)
-
-        Register a routine for debug drawing. The debug draw functions are called inside with  b2World::DrawDebugDatamethod. The debug draw object is owned by you and must remain in scope.
-        """
+        """__SetDebugDraw_internal(self, b2Draw debugDraw)"""
         return _Box2D.b2World___SetDebugDraw_internal(self, *args, **kwargs)
 
     def Step(self, *args, **kwargs):
@@ -4987,8 +4999,8 @@ class b2World(object):
                               lambda self, fcn: self.__SetData('contact', fcn, self.__SetContactListener_internal))
     contactFilter= property(lambda self: self.__GetData('contactfilter'),
                             lambda self, fcn: self.__SetData('contactfilter', fcn, self.__SetContactFilter_internal))
-    debugDraw= property(lambda self: self.__GetData('debugdraw'),
-                        lambda self, fcn: self.__SetData('debugdraw', fcn, self.__SetDebugDraw_internal))
+    renderer= property(lambda self: self.__GetData('renderer'),
+                        lambda self, fcn: self.__SetData('renderer', fcn, self.__SetDebugDraw_internal))
     continuousPhysics = property(lambda self: self.__GetData('continuousphysics'), 
                                  lambda self, fcn: self.__SetData('continuousphysics', fcn, self.__SetContinuousPhysics_internal))
     warmStarting = property(lambda self: self.__GetData('warmstarting'), 
@@ -5749,12 +5761,11 @@ class b2LineJointDef(b2JointDef):
     localAnchorA = _swig_property(_Box2D.b2LineJointDef_localAnchorA_get, _Box2D.b2LineJointDef_localAnchorA_set)
     localAnchorB = _swig_property(_Box2D.b2LineJointDef_localAnchorB_get, _Box2D.b2LineJointDef_localAnchorB_set)
     localAxisA = _swig_property(_Box2D.b2LineJointDef_localAxisA_get, _Box2D.b2LineJointDef_localAxisA_set)
-    enableLimit = _swig_property(_Box2D.b2LineJointDef_enableLimit_get, _Box2D.b2LineJointDef_enableLimit_set)
-    lowerTranslation = _swig_property(_Box2D.b2LineJointDef_lowerTranslation_get, _Box2D.b2LineJointDef_lowerTranslation_set)
-    upperTranslation = _swig_property(_Box2D.b2LineJointDef_upperTranslation_get, _Box2D.b2LineJointDef_upperTranslation_set)
     enableMotor = _swig_property(_Box2D.b2LineJointDef_enableMotor_get, _Box2D.b2LineJointDef_enableMotor_set)
-    maxMotorForce = _swig_property(_Box2D.b2LineJointDef_maxMotorForce_get, _Box2D.b2LineJointDef_maxMotorForce_set)
+    maxMotorTorque = _swig_property(_Box2D.b2LineJointDef_maxMotorTorque_get, _Box2D.b2LineJointDef_maxMotorTorque_set)
     motorSpeed = _swig_property(_Box2D.b2LineJointDef_motorSpeed_get, _Box2D.b2LineJointDef_motorSpeed_set)
+    frequencyHz = _swig_property(_Box2D.b2LineJointDef_frequencyHz_get, _Box2D.b2LineJointDef_frequencyHz_set)
+    dampingRatio = _swig_property(_Box2D.b2LineJointDef_dampingRatio_get, _Box2D.b2LineJointDef_dampingRatio_set)
     __dir__ = _dir_filter
 
     def __repr__(self):
@@ -5818,46 +5829,6 @@ class b2LineJoint(b2Joint):
         """
         return _Box2D.b2LineJoint___GetJointSpeed(self)
 
-    def __IsLimitEnabled(self):
-        """
-        __IsLimitEnabled(self) -> bool
-
-        Is the joint limit enabled?
-        """
-        return _Box2D.b2LineJoint___IsLimitEnabled(self)
-
-    def __EnableLimit(self, *args, **kwargs):
-        """
-        __EnableLimit(self, bool flag)
-
-        Enable/disable the joint limit.
-        """
-        return _Box2D.b2LineJoint___EnableLimit(self, *args, **kwargs)
-
-    def __GetLowerLimit(self):
-        """
-        __GetLowerLimit(self) -> float32
-
-        Get the lower joint limit, usually in meters.
-        """
-        return _Box2D.b2LineJoint___GetLowerLimit(self)
-
-    def __GetUpperLimit(self):
-        """
-        __GetUpperLimit(self) -> float32
-
-        Get the upper joint limit, usually in meters.
-        """
-        return _Box2D.b2LineJoint___GetUpperLimit(self)
-
-    def __SetLimits(self, *args, **kwargs):
-        """
-        __SetLimits(self, float32 lower, float32 upper)
-
-        Set the joint limits, usually in meters.
-        """
-        return _Box2D.b2LineJoint___SetLimits(self, *args, **kwargs)
-
     def __IsMotorEnabled(self):
         """
         __IsMotorEnabled(self) -> bool
@@ -5890,25 +5861,33 @@ class b2LineJoint(b2Joint):
         """
         return _Box2D.b2LineJoint___GetMotorSpeed(self)
 
-    def __SetMaxMotorForce(self, *args, **kwargs):
-        """
-        __SetMaxMotorForce(self, float32 force)
+    def __SetMaxMotorTorque(self, *args, **kwargs):
+        """__SetMaxMotorTorque(self, float32 torque)"""
+        return _Box2D.b2LineJoint___SetMaxMotorTorque(self, *args, **kwargs)
 
-        Set/Get the maximum motor force, usually in N.
-        """
-        return _Box2D.b2LineJoint___SetMaxMotorForce(self, *args, **kwargs)
+    def __GetMaxMotorTorque(self):
+        """__GetMaxMotorTorque(self) -> float32"""
+        return _Box2D.b2LineJoint___GetMaxMotorTorque(self)
 
-    def __GetMaxMotorForce(self):
-        """__GetMaxMotorForce(self) -> float32"""
-        return _Box2D.b2LineJoint___GetMaxMotorForce(self)
+    def GetMotorTorque(self, *args, **kwargs):
+        """GetMotorTorque(self, float32 inv_dt) -> float32"""
+        return _Box2D.b2LineJoint_GetMotorTorque(self, *args, **kwargs)
 
-    def GetMotorForce(self, *args, **kwargs):
-        """
-        GetMotorForce(self, float32 inv_dt) -> float32
+    def __SetSpringFrequencyHz(self, *args, **kwargs):
+        """__SetSpringFrequencyHz(self, float32 hz)"""
+        return _Box2D.b2LineJoint___SetSpringFrequencyHz(self, *args, **kwargs)
 
-        Get the current motor force given the inverse time step, usually in N.
-        """
-        return _Box2D.b2LineJoint_GetMotorForce(self, *args, **kwargs)
+    def __GetSpringFrequencyHz(self):
+        """__GetSpringFrequencyHz(self) -> float32"""
+        return _Box2D.b2LineJoint___GetSpringFrequencyHz(self)
+
+    def __SetSpringDampingRatio(self, *args, **kwargs):
+        """__SetSpringDampingRatio(self, float32 ratio)"""
+        return _Box2D.b2LineJoint___SetSpringDampingRatio(self, *args, **kwargs)
+
+    def __GetSpringDampingRatio(self):
+        """__GetSpringDampingRatio(self) -> float32"""
+        return _Box2D.b2LineJoint___GetSpringDampingRatio(self)
 
     __dir__ = _dir_filter
 
@@ -5917,12 +5896,10 @@ class b2LineJoint(b2Joint):
 
     # Read-write properties
     motorSpeed = property(__GetMotorSpeed, __SetMotorSpeed)
-    maxMotorForce = property(__GetMaxMotorForce, __SetMaxMotorForce)
     motorEnabled = property(__IsMotorEnabled, __EnableMotor)
-    limitEnabled = property(__IsLimitEnabled, __EnableLimit)
-    upperLimit = property(__GetUpperLimit, lambda self, v: self.__SetLimits(self.lowerLimit, v))
-    lowerLimit = property(__GetLowerLimit, lambda self, v: self.__SetLimits(v, self.upperLimit))
-    limits = property(lambda self: (self.lowerLimit, self.upperLimit), lambda self, v: self.__SetLimits(*v) )
+    maxMotorTorque = property(__GetMaxMotorTorque, __SetMaxMotorTorque)
+    springFrequencyHz = property(__GetSpringFrequencyHz , __SetSpringFrequencyHz)
+    springDampingRatio = property(__GetSpringDampingRatio , __SetSpringDampingRatio)
 
     # Read-only
     speed = property(__GetJointSpeed, None)
@@ -5932,18 +5909,17 @@ class b2LineJoint(b2Joint):
     __swig_destroy__ = _Box2D.delete_b2LineJoint
 b2LineJoint.__GetJointTranslation = new_instancemethod(_Box2D.b2LineJoint___GetJointTranslation,None,b2LineJoint)
 b2LineJoint.__GetJointSpeed = new_instancemethod(_Box2D.b2LineJoint___GetJointSpeed,None,b2LineJoint)
-b2LineJoint.__IsLimitEnabled = new_instancemethod(_Box2D.b2LineJoint___IsLimitEnabled,None,b2LineJoint)
-b2LineJoint.__EnableLimit = new_instancemethod(_Box2D.b2LineJoint___EnableLimit,None,b2LineJoint)
-b2LineJoint.__GetLowerLimit = new_instancemethod(_Box2D.b2LineJoint___GetLowerLimit,None,b2LineJoint)
-b2LineJoint.__GetUpperLimit = new_instancemethod(_Box2D.b2LineJoint___GetUpperLimit,None,b2LineJoint)
-b2LineJoint.__SetLimits = new_instancemethod(_Box2D.b2LineJoint___SetLimits,None,b2LineJoint)
 b2LineJoint.__IsMotorEnabled = new_instancemethod(_Box2D.b2LineJoint___IsMotorEnabled,None,b2LineJoint)
 b2LineJoint.__EnableMotor = new_instancemethod(_Box2D.b2LineJoint___EnableMotor,None,b2LineJoint)
 b2LineJoint.__SetMotorSpeed = new_instancemethod(_Box2D.b2LineJoint___SetMotorSpeed,None,b2LineJoint)
 b2LineJoint.__GetMotorSpeed = new_instancemethod(_Box2D.b2LineJoint___GetMotorSpeed,None,b2LineJoint)
-b2LineJoint.__SetMaxMotorForce = new_instancemethod(_Box2D.b2LineJoint___SetMaxMotorForce,None,b2LineJoint)
-b2LineJoint.__GetMaxMotorForce = new_instancemethod(_Box2D.b2LineJoint___GetMaxMotorForce,None,b2LineJoint)
-b2LineJoint.GetMotorForce = new_instancemethod(_Box2D.b2LineJoint_GetMotorForce,None,b2LineJoint)
+b2LineJoint.__SetMaxMotorTorque = new_instancemethod(_Box2D.b2LineJoint___SetMaxMotorTorque,None,b2LineJoint)
+b2LineJoint.__GetMaxMotorTorque = new_instancemethod(_Box2D.b2LineJoint___GetMaxMotorTorque,None,b2LineJoint)
+b2LineJoint.GetMotorTorque = new_instancemethod(_Box2D.b2LineJoint_GetMotorTorque,None,b2LineJoint)
+b2LineJoint.__SetSpringFrequencyHz = new_instancemethod(_Box2D.b2LineJoint___SetSpringFrequencyHz,None,b2LineJoint)
+b2LineJoint.__GetSpringFrequencyHz = new_instancemethod(_Box2D.b2LineJoint___GetSpringFrequencyHz,None,b2LineJoint)
+b2LineJoint.__SetSpringDampingRatio = new_instancemethod(_Box2D.b2LineJoint___SetSpringDampingRatio,None,b2LineJoint)
+b2LineJoint.__GetSpringDampingRatio = new_instancemethod(_Box2D.b2LineJoint___GetSpringDampingRatio,None,b2LineJoint)
 b2LineJoint_swigregister = _Box2D.b2LineJoint_swigregister
 b2LineJoint_swigregister(b2LineJoint)
 

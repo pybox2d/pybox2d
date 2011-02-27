@@ -17,8 +17,8 @@
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
-/**** DebugDraw ****/
-%extend b2DebugDraw {
+/**** Draw ****/
+%extend b2Draw {
 public:
     %pythoncode %{
         _flag_entries = [
@@ -46,13 +46,13 @@ public:
         %}
 }
 
-%rename (__SetFlags) b2DebugDraw::SetFlags;
-%rename (__GetFlags) b2DebugDraw::GetFlags;
+%rename (__SetFlags) b2Draw::SetFlags;
+%rename (__GetFlags) b2Draw::GetFlags;
 
 #define e_convertVertices 0x1000
 
 /* 
- DebugDrawExtended
+ DrawExtended
 
  This was a feeble attempt at speeding up the drawing routines. It converts the incoming
  b2Vec2s to screen coordinates so the Python side doesn't have to.
@@ -64,12 +64,12 @@ public:
  fashion and still have them work with Box2D thanks to inheritance. 
 
  I'm going to leave it in for the cleanliness aspect of it. The conversion
- routines can be disabled by setting convertVertices to False, or the base b2DebugDraw
+ routines can be disabled by setting convertVertices to False, or the base b2Draw
  can still be used.
 
 */
 
-%extend b2DebugDrawExtended {
+%extend b2DrawExtended {
 public:
 }
 
@@ -84,9 +84,9 @@ public:
     $input = this->to_screen((b2Vec2&)$1_name);
 }
 
-%include "Box2D/Dynamics/b2WorldCallbacks.h"
+%include "Box2D/Common/b2Draw.h"
 %inline {
-    class b2DebugDrawExtended : public b2DebugDraw {
+    class b2DrawExtended : public b2Draw {
     public:
         bool convertVertices;
         b2Vec2 center;
@@ -157,8 +157,8 @@ public:
                 SetFlags(flags);
         }
 
-        virtual ~b2DebugDrawExtended() { }
-        b2DebugDrawExtended() : convertVertices(false), flipX(false), flipY(false) {
+        virtual ~b2DrawExtended() { }
+        b2DrawExtended() : convertVertices(false), flipX(false), flipY(false) {
             center.SetZero();
             offset.SetZero();
             zoom=1.0;
@@ -168,4 +168,4 @@ public:
 
     };
 }
-%feature("director") b2DebugDrawExtended;
+%feature("director") b2DrawExtended;
