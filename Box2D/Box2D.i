@@ -182,7 +182,9 @@
 
     /* And finally tag on the secondary namespace code to the end of Box2D.py */
     %pythoncode %{
-        # Initialize the alternative namespace b2.*
+        # Initialize the alternative namespace b2.*, and clean-up the
+        # dir listing of Box2D by removing *_swigregister.
+        #
         # To see what this is, try import Box2D; print(dir(Box2D.b2))
         from sys import version_info
         if version_info >= (2, 5):
@@ -192,8 +194,11 @@
         del locals()['version_info']
 
         s=None
+        to_remove=[]
         for s in locals():
-            if 'swigregister' not in s and s!='b2' and s[:2]=='b2':
+            if s.endswith('_swigregister'):
+                to_remove.append(s)
+            elif s!='b2' and s[:2]=='b2':
                 if s[2]=='_': # Covers b2_*
                     setattr(b2, s[3].lower() + s[4:], locals()[s])
                 else: # The other b2*
@@ -201,7 +206,11 @@
                         setattr(b2, s[2:], locals()[s])
                     else:
                         setattr(b2, s[2].lower() + s[3:], locals()[s])
+        for s in to_remove:
+            del locals()[s]
+
         del locals()['s']
+        del locals()['to_remove']
     %}
 
 #endif

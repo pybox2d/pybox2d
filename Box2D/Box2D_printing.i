@@ -309,13 +309,13 @@ def _format_repr(item, props, indent_amount=4, max_level=4, max_str_len=250, max
 %extend b2LineJoint {
     %pythoncode %{
         def __repr__(self):
-            return _format_repr(self, ['active','anchorA','anchorB','bodyA','bodyB','limitEnabled','limits','lowerLimit','maxMotorForce','motorEnabled','motorSpeed','speed','translation','type','upperLimit','userData']) 
+            return _format_repr(self, ['active','anchorA','anchorB','bodyA','bodyB','maxMotorTorque','motorEnabled','motorSpeed','speed','springDampingRatio','springFrequencyHz','translation','type','userData']) 
     %}
 }
 %extend b2LineJointDef {
     %pythoncode %{
         def __repr__(self):
-            return _format_repr(self, ['anchor','axis','bodyA','bodyB','collideConnected','enableLimit','enableMotor','localAnchorA','localAnchorB','localAxisA','lowerTranslation','maxMotorForce','motorSpeed','type','upperTranslation','userData']) 
+            return _format_repr(self, ['anchor','axis','bodyA','bodyB','collideConnected','dampingRatio','enableMotor','frequencyHz','localAnchorA','localAnchorB','localAxisA','maxMotorTorque','motorSpeed','type','userData']) 
     %}
 }
 %extend b2LoopShape {
@@ -513,7 +513,7 @@ def _format_repr(item, props, indent_amount=4, max_level=4, max_str_len=250, max
 %extend b2World {
     %pythoncode %{
         def __repr__(self):
-            return _format_repr(self, ['autoClearForces','bodies','bodyCount','contactCount','contactFilter','contactListener','contactManager','contacts','continuousPhysics','debugDraw','destructionListener','gravity','jointCount','joints','locked','proxyCount','subStepping','warmStarting']) 
+            return _format_repr(self, ['autoClearForces','bodies','bodyCount','contactCount','contactFilter','contactListener','contactManager','contacts','continuousPhysics','destructionListener','gravity','jointCount','joints','locked','proxyCount','renderer','subStepping','warmStarting']) 
     %}
 }
 %extend b2WorldManifold {
