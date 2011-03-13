@@ -198,7 +198,7 @@
         for s in locals():
             if s.endswith('_swigregister'):
                 to_remove.append(s)
-            elif s!='b2' and s[:2]=='b2':
+            elif s!='b2' and s.startswith('b2'):
                 if s[2]=='_': # Covers b2_*
                     setattr(b2, s[3].lower() + s[4:], locals()[s])
                 else: # The other b2*

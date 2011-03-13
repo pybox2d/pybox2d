@@ -131,7 +131,7 @@ class PygameDraw(b2DrawExtended):
 
     def DrawPolygon(self, vertices, color):
         """
-        Draw a wireframe polygon given the screen vertices (tuples) with the specified color.
+        Draw a wireframe polygon given the screen vertices with the specified color.
         """
         if not vertices:
             return
@@ -143,7 +143,7 @@ class PygameDraw(b2DrawExtended):
         
     def DrawSolidPolygon(self, vertices, color):
         """
-        Draw a filled polygon given the screen vertices (tuples) with the specified color.
+        Draw a filled polygon given the screen vertices with the specified color.
         """
         if not vertices:
             return
