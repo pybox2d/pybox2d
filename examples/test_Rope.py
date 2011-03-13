@@ -89,9 +89,9 @@ class Rope (Framework):
         super(Rope, self).Step(settings)
 
         if self.rope:
-            self.DrawStringCR('Rope ON')
+            self.Print('Rope ON')
         else:
-            self.DrawStringCR('Rope OFF')
+            self.Print('Rope OFF')
 
     def Keyboard(self, key):
          if key == Keys.K_j:

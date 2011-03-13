@@ -59,7 +59,7 @@ class Empty(Framework):
         # do stuff
 
         # Placed after the physics step, it will draw on top of physics objects
-        self.DrawStringCR("*** Base your own testbeds on me! ***")
+        self.Print("*** Base your own testbeds on me! ***")
 
     def ShapeDestroyed(self, shape):
         """

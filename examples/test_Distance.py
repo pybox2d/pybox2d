@@ -22,6 +22,9 @@ from framework import *
 class Distance (Framework):
     name="Distance"
     description="Use WASD to move and QE to rotate the small rectangle.\nThe distance between the marked points is shown."
+    point_a_color=b2Color(1,0,0)
+    point_b_color=b2Color(1,1,0)
+    poly_color   =b2Color(0.9,0.9,0.9)
     def __init__(self):
         super(Distance, self).__init__()
         # Transform A -- a simple translation/offset of (0,-0.2)
@@ -47,16 +50,16 @@ class Distance (Framework):
 
         pointA, pointB, distance, iterations=dist_result
 
-        self.DrawStringCR('Distance = %g' % distance)
-        self.DrawStringCR('Iterations = %d' % iterations)
+        self.Print('Distance = %g' % distance)
+        self.Print('Iterations = %d' % iterations)
 
         # Manually transform the vertices and draw the shapes
         for shape, transform in [(self.polygonA, self.transformA), (self.polygonB, self.transformB)]:
-            new_verts = [transform * v for v in shape.vertices]
-            self.debugDraw.DrawPolygon(new_verts, b2Color(0.9, 0.9, 0.9), world_coordinates=True)
+            new_verts = [self.renderer.to_screen(transform*v) for v in shape.vertices]
+            self.renderer.DrawPolygon(new_verts, self.poly_color)
 
-        self.debugDraw.DrawPoint(pointA, 4, b2Color(1,0,0), world_coordinates=True)
-        self.debugDraw.DrawPoint(pointB, 4, b2Color(1,1,0), world_coordinates=True)
+        self.renderer.DrawPoint(self.renderer.to_screen(pointA), 4, self.point_a_color)
+        self.renderer.DrawPoint(self.renderer.to_screen(pointB), 4, self.point_b_color)
 
     def Keyboard(self, key):
         if key==Keys.K_a:

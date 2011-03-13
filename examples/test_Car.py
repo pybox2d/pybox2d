@@ -116,7 +116,7 @@ class Car (Framework):
 
         # Teeter
         body=self.world.CreateDynamicBody(
-            position=(140, 1),
+            position=(140, 0.90),
             fixtures=b2FixtureDef(
                         shape=b2PolygonShape(box=(10,0.25)),
                         density=1.0,
@@ -146,7 +146,6 @@ class Car (Framework):
                     )
 
         car, wheels, springs=create_car(self.world, offset=(0.0, 1.0), wheel_radius=0.4, wheel_separation=2.0, scale=(1,1))
-#def create_car(world, offset, wheel_radius, wheel_separation, density=1, wheel_friction=0.9, scale=(1.0,1.0), chassis_vertices=None, wheel_axis=(0,1), wheel_torques=[20, 10], wheel_drives=[True, False], hz=4.0, zeta=0.7, **kwargs):
         self.car=car
         self.wheels=wheels
         self.springs=springs
@@ -170,7 +169,7 @@ class Car (Framework):
     def Step(self, settings):
         super(Car, self).Step(settings)
         self.viewCenter = (self.car.position.x, 20)
-        self.DrawStringCR("frequency = %g hz, damping ratio = %g" % (self.hz, self.zeta))
+        self.Print("frequency = %g hz, damping ratio = %g" % (self.hz, self.zeta))
 
 if __name__=="__main__":
      main(Car)

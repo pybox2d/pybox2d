@@ -71,15 +71,13 @@ class PygameDraw(b2DrawExtended):
 
     def EndDraw(self): pass
 
-    def DrawPoint(self, p, size, color, world_coordinates=False):
+    def DrawPoint(self, p, size, color):
         """
         Draw a single point at point p given a pixel size and color.
         """
-        if world_coordinates:
-            p=self.to_screen(p)
         self.DrawCircle(p, size/self.zoom, color, drawwidth=0)
         
-    def DrawAABB(self, aabb, color, world_coordinates=False):
+    def DrawAABB(self, aabb, color):
         """
         Draw a wireframe around the AABB with the given color.
         """
@@ -88,17 +86,12 @@ class PygameDraw(b2DrawExtended):
                     (aabb.upperBound.x, aabb.upperBound.y ),
                     (aabb.lowerBound.x, aabb.upperBound.y ) ]
         
-        if world_coordinates:
-            points=[self.to_screen(p) for p in points]
         pygame.draw.aalines(self.surface, color, True, points)
 
-    def DrawSegment(self, p1, p2, color, world_coordinates=False):
+    def DrawSegment(self, p1, p2, color):
         """
         Draw the line segment from p1-p2 with the specified color.
         """
-        if world_coordinates:
-            p1, p2 = self.to_screen(p1), self.to_screen(p2)
-
         pygame.draw.aaline(self.surface, color.bytes, p1, p2)
 
     def DrawTransform(self, xf):
@@ -114,55 +107,47 @@ class PygameDraw(b2DrawExtended):
         pygame.draw.aaline(self.surface, (255,0,0), p1, p2)
         pygame.draw.aaline(self.surface, (0,255,0), p1, p3)
 
-    def DrawCircle(self, center, radius, color, drawwidth=1, world_coordinates=False):
+    def DrawCircle(self, center, radius, color, drawwidth=1):
         """
         Draw a wireframe circle given the center, radius, axis of orientation and color.
         """
         radius *= self.zoom
         if radius < 1: radius = 1
         else: radius = int(radius)
-        if world_coordinates:
-            p1, p2 = self.to_screen(p1), self.to_screen(p2)
 
         pygame.draw.circle(self.surface, color.bytes, center, radius, drawwidth)
 
-    def DrawSolidCircle(self, center, radius, axis, color, world_coordinates=False):
+    def DrawSolidCircle(self, center, radius, axis, color):
         """
         Draw a solid circle given the center, radius, axis of orientation and color.
         """
         radius *= self.zoom
         if radius < 1: radius = 1
         else: radius = int(radius)
-        if world_coordinates:
-            center = self.to_screen(center)
+
         pygame.draw.circle(self.surface, (color/2).bytes+[127], center, radius, 0)
         pygame.draw.circle(self.surface, color.bytes, center, radius, 1)
         pygame.draw.aaline(self.surface, (255,0,0), center, (center[0] - radius*axis[0], center[1] + radius*axis[1])) 
 
-    def DrawPolygon(self, vertices, color, world_coordinates=False):
+    def DrawPolygon(self, vertices, color):
         """
-        Draw a wireframe polygon given the world vertices vertices (tuples) with the specified color.
+        Draw a wireframe polygon given the screen vertices (tuples) with the specified color.
         """
         if not vertices:
             return
-
-        if world_coordinates:
-            vertices = [self.to_screen(v) for v in vertices]
 
         if len(vertices) == 2:
             pygame.draw.aaline(self.surface, color.bytes, vertices[0], vertices)
         else:
             pygame.draw.polygon(self.surface, color.bytes, vertices, 1)
         
-    def DrawSolidPolygon(self, vertices, color, world_coordinates=False):
+    def DrawSolidPolygon(self, vertices, color):
         """
-        Draw a filled polygon given the world vertices vertices (tuples) with the specified color.
+        Draw a filled polygon given the screen vertices (tuples) with the specified color.
         """
         if not vertices:
             return
 
-        if world_coordinates:
-            vertices = [self.to_screen(v) for v in vertices]
         if len(vertices) == 2:
             pygame.draw.aaline(self.surface, color.bytes, vertices[0], vertices[1])
         else:
@@ -171,9 +156,14 @@ class PygameDraw(b2DrawExtended):
 
     # the to_screen conversions are done in C with b2DrawExtended, leading to 
     # an increase in fps.
-    # You can also use the base b2DebugDraw and implement these yourself, as the
+    # You can also use the base b2Draw and implement these yourself, as the
     # b2DrawExtended is implemented:
     # def to_screen(self, point):
+    #     """
+    #     Convert from world to screen coordinates.
+    #     In the class instance, we store a zoom factor, an offset indicating where
+    #     the view extents start at, and the screen size (in pixels).
+    #     """
     #     x=(point.x * self.zoom)-self.offset.x
     #     if self.flipX:
     #         x = self.screenSize.x - x
@@ -332,7 +322,6 @@ class PygameFramework(FrameworkBase):
 
         running = True
         clock = pygame.time.Clock()
-
         while running:
             running = self.checkEvents()
             self.screen.fill( (0,0,0) )
@@ -349,7 +338,7 @@ class PygameFramework(FrameworkBase):
             pygame.display.flip()
             clock.tick(self.settings.hz)
             self.fps = clock.get_fps()
-
+    
         self.world.contactListener = None
         self.world.destructionListener=None
         self.world.renderer=None
@@ -415,13 +404,13 @@ class PygameFramework(FrameworkBase):
                            ((self.screenSize.y - y + self.viewOffset.y) / self.viewZoom))
 
 
-    def DrawString(self, x, y, str, color=(229,153,153,255)):
+    def DrawStringAt(self, x, y, str, color=(229,153,153,255)):
         """
         Draw some text, str, at screen coordinates (x, y).
         """
         self.screen.blit(self.font.render(str, True, color), (x,y))
 
-    def DrawStringCR(self, str, color=(229,153,153,255)):
+    def Print(self, str, color=(229,153,153,255)):
         """
         Draw some text at the top status lines
         and advance to the next line.

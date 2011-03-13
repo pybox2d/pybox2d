@@ -41,7 +41,6 @@ from PyQt4.QtGui import QTableWidget, QTableWidgetItem, QColor, QPixmap
 from PyQt4.QtCore import Qt, QSettings
 from pyqt4_gui import Ui_MainWindow
 from framework import *
-#from Box2D.b2 import *
 from time import time
 import settings
 import string
@@ -78,6 +77,7 @@ class Pyqt4Draw(object):
         self.temp_items=[]
         self.status_font=QtGui.QFont("Times", 10, QtGui.QFont.Bold)
         self.font_spacing=QtGui.QFontMetrics(self.status_font).lineSpacing()
+        self.draw_idx=0
 
     def StartDraw(self):
         for item in self.temp_items:
@@ -90,15 +90,16 @@ class Pyqt4Draw(object):
         render_time=time() - self.render_start
         self.render_times.append(render_time)
 
+        self.draw_idx=(self.draw_idx+1) % self.MAX_TIMES
         if len(self.render_times) > self.MAX_TIMES:
             self.render_times.pop(0)
-        
         average_time=sum(self.render_times) / len(self.render_times)
         if average_time > 1e-10:
-            status_text=('average frame render time %.2gms, potential fps: %.5g' % (average_time*1000, 1./average_time))
             pen=QtGui.QPen(QColor(255,255,255))
-            self.test.fps=1./average_time
-            self.DrawString(0, 0, status_text, (255,255,255))
+            if self.draw_idx==0:
+                self.test.fps=1./average_time
+            status_text=('Avg frame render time %.2gms, potential fps: %.0f' % (average_time*1000, 1./average_time))
+            self.DrawStringAt(0, 0, status_text, (255,255,255))
 
     def SetFlags(self, **kwargs): 
         """
@@ -106,7 +107,7 @@ class Pyqt4Draw(object):
         """
         pass
 
-    def DrawString(self, x, y, str, color):
+    def DrawStringAt(self, x, y, str, color):
         item=QtGui.QGraphicsSimpleTextItem(str)
         #brush=QtGui.QBrush(QColor(*color))
         brush=QtGui.QBrush(QColor(255,255,255,255))
@@ -118,13 +119,13 @@ class Pyqt4Draw(object):
 
         self.scene.addItem(item)
 
-    def DrawPoint(self, p, size, color, world_coordinates=True):
+    def DrawPoint(self, p, size, color):
         """
         Draw a single point at point p given a pixel size and color.
         """
         self.DrawCircle(p, size/self.test.viewZoom, color, drawwidth=0)
         
-    def DrawAABB(self, aabb, color, world_coordinates=True):
+    def DrawAABB(self, aabb, color):
         """
         Draw a wireframe around the AABB with the given color.
         """
@@ -135,7 +136,7 @@ class Pyqt4Draw(object):
         self.temp_items.append(line1)
         self.temp_items.append(line2)
 
-    def DrawSegment(self, p1, p2, color, world_coordinates=True):
+    def DrawSegment(self, p1, p2, color):
         """
         Draw the line segment from p1-p2 with the specified color.
         """
@@ -156,7 +157,7 @@ class Pyqt4Draw(object):
         self.temp_items.append(line1)
         self.temp_items.append(line2)
 
-    def DrawCircle(self, center, radius, color, drawwidth=1, shape=None, world_coordinates=True):
+    def DrawCircle(self, center, radius, color, drawwidth=1, shape=None):
         """
         Draw a wireframe circle given the center, radius, axis of orientation and color.
         Note that these functions 
@@ -166,7 +167,7 @@ class Pyqt4Draw(object):
         ellipse=self.scene.addEllipse(center[0]-radius, center[1]-radius, radius*2, radius*2, pen=pen)
         self.temp_items.append(ellipse)
 
-    def DrawSolidCircle(self, center, radius, axis, color, shape=None, world_coordinates=True):
+    def DrawSolidCircle(self, center, radius, axis, color, shape=None):
         """
         Draw a solid circle given the center, radius, axis of orientation and color.
         """
@@ -180,7 +181,7 @@ class Pyqt4Draw(object):
         self.temp_items.append(ellipse)
         self.temp_items.append(line)
 
-    def DrawPolygon(self, vertices, color, shape=None, world_coordinates=True):
+    def DrawPolygon(self, vertices, color, shape=None):
         """
         Draw a wireframe polygon given the world vertices vertices (tuples) with the specified color.
         """
@@ -193,7 +194,7 @@ class Pyqt4Draw(object):
         item=self.scene.addPolygon(poly, pen=pen)
         self.temp_items.append(item)
 
-    def DrawSolidPolygon(self, vertices, color, shape=None, world_coordinates=True):
+    def DrawSolidPolygon(self, vertices, color, shape=None):
         """
         Draw a filled polygon given the world vertices vertices (tuples) with the specified color.
         """
@@ -386,6 +387,11 @@ class Pyqt4Draw(object):
                     for childIndex in range(shape.childCount):
                         self.DrawAABB(shape.getAABB(transform, childIndex), color)
 
+    def to_screen(self, point):
+        """
+        In here for compatibility with other frameworks.
+        """
+        return tuple(point)
 
 class GraphicsScene (QtGui.QGraphicsScene):
     def __init__(self, test, parent=None):
@@ -824,12 +830,12 @@ class Pyqt4Framework(FrameworkBase):
         """
         return b2Vec2(x, y)
     
-    DrawString=lambda self, *args: self.renderer.DrawString(*args)
-    def DrawStringCR(self, str, color=(229,153,153,255)):
+    DrawStringAt=lambda self, *args: self.renderer.DrawStringAt(*args)
+    def Print(self, str, color=(229,153,153,255)):
         """
         Draw some text at the top status lines and advance to the next line.
         """
-        self.DrawString(5, self.textLine, str, color)
+        self.DrawStringAt(5, self.textLine, str, color)
         self.textLine += self.renderer.font_spacing
 
     def Keyboard(self, key):

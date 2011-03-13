@@ -42,6 +42,10 @@ class RayCastCallback(b2RayCastCallback):
 class Raycast (Framework):
     name="Raycast"
     description="Press 1-5 to drop stuff, and d to delete"
+    p1_color=b2Color(0.4, 0.9, 0.4)
+    s1_color=b2Color(0.8, 0.8, 0.8)
+    s2_color=b2Color(0.9, 0.9, 0.4)
+    callback=RayCastCallback()
     def __init__(self):
         super(Raycast, self).__init__()
 
@@ -105,28 +109,33 @@ class Raycast (Framework):
     def Step(self, settings):
         super(Raycast, self).Step(settings)
 
-        callback = RayCastCallback()
-
         # Set up the raycast line
         length=11
         point1=b2Vec2(0, 10)
         d     =(length * cos(self.angle), length * sin(self.angle))
         point2= point1 + d
 
+        callback=self.callback
+        callback.fixture=None
+
         self.world.RayCast(callback, point1, point2)
 
         # The callback has been called by this point, and if a fixture was hit it will have been
         # set to callback.fixture.
+        point1=self.renderer.to_screen(point1)
+        point2=self.renderer.to_screen(point2)
         if callback.fixture:
-            self.debugDraw.DrawPoint(callback.point, 5.0, b2Color(0.4, 0.9, 0.4), world_coordinates=True)
-            self.debugDraw.DrawSegment(point1, callback.point, b2Color(0.8, 0.8, 0.8), world_coordinates=True)
+            cb_point=self.renderer.to_screen(callback.point)
+            self.renderer.DrawPoint(cb_point, 5.0, self.p1_color)
+            self.renderer.DrawSegment(point1, cb_point, self.s1_color)
 
-            head = callback.point + 0.5 * callback.normal
-            self.debugDraw.DrawSegment(callback.point, head, b2Color(0.9, 0.9, 0.4), world_coordinates=True)
+            head = b2Vec2(cb_point) + 0.5 * callback.normal
+            self.renderer.DrawSegment(cb_point, head, self.s2_color)
         else:
-            self.debugDraw.DrawSegment(point1, point2, b2Color(0.8, 0.8, 0.8), world_coordinates=True)
+            self.renderer.DrawSegment(point1, point2, self.s1_color)
 
-        self.angle += 0.25*b2_pi/180
+        if not settings.pause or settings.singleStep:
+            self.angle += 0.25*b2_pi/180
         
 if __name__=="__main__":
      main(Raycast)

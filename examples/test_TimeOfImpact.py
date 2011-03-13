@@ -62,19 +62,19 @@ class TimeOfImpact (Framework):
         #  input=b2TOIInput(proxyA=b2DistanceProxy(shape=self.shapeA), proxyB=b2DistanceProxy(shape=self.shapeB), sweepA=sweepA, sweepB=sweepB, tMax=1.0)
         #  type_, t = b2TimeOfImpact(input)
 
-        self.DrawStringCR("TOI = %g" % time_of_impact)
-        self.DrawStringCR("max toi iters = %d, max root iters = %d" % (b2Globals.b2_toiMaxIters, b2Globals.b2_toiMaxRootIters))
+        self.Print("TOI = %g" % time_of_impact)
+        self.Print("max toi iters = %d, max root iters = %d" % (b2Globals.b2_toiMaxIters, b2Globals.b2_toiMaxRootIters))
 
         # Draw the shapes at their current position (t=0)
         # shapeA (the vertical polygon)
         transform = sweepA.GetTransform(0)
-        self.debugDraw.DrawPolygon([transform * v for v in self.shapeA.vertices],
-                b2Color(0.9, 0.9, 0.9), world_coordinates=True)
+        self.renderer.DrawPolygon([self.renderer.to_screen(transform*v) for v in self.shapeA.vertices],
+                b2Color(0.9, 0.9, 0.9))
 
         # shapeB (the horizontal polygon)
         transform = sweepB.GetTransform(0)
-        self.debugDraw.DrawPolygon([transform * v for v in self.shapeB.vertices],
-                b2Color(0.5, 0.9, 0.5), world_coordinates=True)
+        self.renderer.DrawPolygon([self.renderer.to_screen(transform*v) for v in self.shapeB.vertices],
+                b2Color(0.5, 0.9, 0.5))
 
         # localPoint=(2, -0.1)
         # rB = transform * localPoint - sweepB.c0
@@ -85,14 +85,14 @@ class TimeOfImpact (Framework):
         # Now, draw shapeB in a different color when they would collide (i.e., at t=time of impact)
         # This shows that the polygon would rotate upon collision
         transform = sweepB.GetTransform(time_of_impact)
-        self.debugDraw.DrawPolygon([transform * v for v in self.shapeB.vertices],
-                b2Color(0.5, 0.7, 0.9), world_coordinates=True)
+        self.renderer.DrawPolygon([self.renderer.to_screen(transform*v) for v in self.shapeB.vertices],
+                b2Color(0.5, 0.7, 0.9))
 
         # And finally, draw shapeB at t=1.0, where it would be if it did not collide with shapeA
         # In this case, time_of_impact = 1.0, so these become the same polygon.
         transform = sweepB.GetTransform(1.0)
-        self.debugDraw.DrawPolygon([transform * v for v in self.shapeB.vertices],
-                b2Color(0.9, 0.5, 0.5), world_coordinates=True)
+        self.renderer.DrawPolygon([self.renderer.to_screen(transform*v) for v in self.shapeB.vertices],
+                b2Color(0.9, 0.5, 0.5))
 
 if __name__=="__main__":
      main(TimeOfImpact)

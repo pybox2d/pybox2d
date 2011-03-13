@@ -68,7 +68,7 @@ class Tiles (Framework):
         leafCount=cm.broadPhase.proxyCount
         minNodeCount=2*leafCount-1
         minHeight=ceil(log(float(minNodeCount)) / log(2))
-        self.DrawStringCR('Dynamic tree height=%d, min=%d' % (height, minHeight))
+        self.Print('Dynamic tree height=%d, min=%d' % (height, minHeight))
 
 if __name__=="__main__":
      main(Tiles)

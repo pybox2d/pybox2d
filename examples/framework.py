@@ -86,6 +86,14 @@ class FrameworkBase(b2ContactListener):
     name = "None"
     description = None
     TEXTLINE_START=30
+    colors={
+        'mouse_point'     : b2Color(0,1,0),
+        'bomb_center'     : b2Color(0,0,1.0),
+        'joint_line'      : b2Color(0.8,0.8,0.8),
+        'contact_add'     : b2Color(0.3, 0.95, 0.3),
+        'contact_persist' : b2Color(0.3, 0.3, 0.95),
+        'contact_normal'  : b2Color(0.4, 0.9, 0.4),
+    }
 
     def __reset(self):
         """ Reset all of the variables to their starting values.
@@ -143,7 +151,7 @@ class FrameworkBase(b2ContactListener):
             else:
                 timeStep = 0.0
 
-            self.DrawStringCR("****PAUSED****", (200,0,0))
+            self.Print("****PAUSED****", (200,0,0))
 
         # Set the flags based on what the settings show
         self.renderer.flags=dict(
@@ -181,44 +189,44 @@ class FrameworkBase(b2ContactListener):
             self.bomb = None
 
         if settings.drawFPS:
-            self.DrawStringCR("FPS %d" % self.fps)
+            self.Print("FPS %d" % self.fps)
         
         # Take care of additional drawing (stats, fps, mouse joint, slingshot bomb, contact points)
         if settings.drawStats:
-            self.DrawStringCR("bodies=%d contacts=%d joints=%d proxies=%d" %
+            self.Print("bodies=%d contacts=%d joints=%d proxies=%d" %
                 (self.world.bodyCount, self.world.contactCount, self.world.jointCount, self.world.proxyCount))
 
-            self.DrawStringCR("hz %d vel/pos iterations %d/%d" %
+            self.Print("hz %d vel/pos iterations %d/%d" %
                 (settings.hz, settings.velocityIterations, settings.positionIterations))
 
         # If there's a mouse joint, draw the connection between the object and the current pointer position.
         if self.mouseJoint:
-            p1 = self.mouseJoint.anchorB
-            p2 = self.mouseJoint.target
+            p1 = self.renderer.to_screen(self.mouseJoint.anchorB)
+            p2 = self.renderer.to_screen(self.mouseJoint.target)
 
-            self.renderer.DrawPoint(p1, settings.pointSize, b2Color(0,1,0), world_coordinates=True)
-            self.renderer.DrawPoint(p2, settings.pointSize, b2Color(0,1,0), world_coordinates=True)
-            self.renderer.DrawSegment(p1, p2, b2Color(0.8,0.8,0.8), world_coordinates=True)
+            self.renderer.DrawPoint(p1, settings.pointSize, self.colors['mouse_point'])
+            self.renderer.DrawPoint(p2, settings.pointSize, self.colors['mouse_point'])
+            self.renderer.DrawSegment(p1, p2, self.colors['joint_line'])
 
         # Draw the slingshot bomb
         if self.bombSpawning:
-            self.renderer.DrawPoint(self.bombSpawnPoint, settings.pointSize, b2Color(0,0,1.0), world_coordinates=True)
-            self.renderer.DrawSegment(self.bombSpawnPoint, self.mouseWorld, b2Color(0.8,0.8,0.8), world_coordinates=True)
+            self.renderer.DrawPoint(self.renderer.to_screen(self.bombSpawnPoint), settings.pointSize, self.colors['bomb_center'])
+            self.renderer.DrawSegment(self.renderer.to_screen(self.bombSpawnPoint), self.mouseWorld, self.colors['bomb_line'])
 
         # Draw each of the contact points in different colors.
         if self.settings.drawContactPoints:
             for point in self.points:
                 if point['state'] == b2_addState:
-                    self.renderer.DrawPoint(point['position'], settings.pointSize, b2Color(0.3, 0.95, 0.3), world_coordinates=True)
+                    self.renderer.DrawPoint(point['position'], settings.pointSize, self.colors['contact_add'])
                 elif point['state'] == b2_persistState:
-                    self.renderer.DrawPoint(point['position'], settings.pointSize, b2Color(0.3, 0.3, 0.95), world_coordinates=True)
+                    self.renderer.DrawPoint(point['position'], settings.pointSize, self.colors['contact_persist'])
 
         if settings.drawContactNormals:
             axisScale = 0.3
             for point in self.points:
-                p1 = b2Vec2(point['position'])
+                p1 = self.renderer.to_screen(point['position'])
                 p2 = p1 + axisScale * point['normal']
-                self.renderer.DrawSegment(p1, p2, b2Color(0.4, 0.9, 0.4), world_coordinates=True)
+                self.renderer.DrawSegment(p1, p2, self.colors['contact_normal']) 
 
         self.renderer.EndDraw()
 
@@ -337,12 +345,12 @@ class FrameworkBase(b2ContactListener):
         self.textLine = self.TEXTLINE_START
 
         # Draw the name of the test running
-        self.DrawStringCR(self.name, (127,127,255))
+        self.Print(self.name, (127,127,255))
 
         if self.description:
             # Draw the name of the test running
             for s in self.description.split('\n'):
-                self.DrawStringCR(s, (127,255,127))
+                self.Print(s, (127,255,127))
 
         # Do the main physics step
         self.Step(self.settings)
@@ -354,14 +362,14 @@ class FrameworkBase(b2ContactListener):
         """
         raise NotImplementedError()
 
-    def DrawString(self, x, y, str, color=(229,153,153,255)):
+    def DrawStringAt(self, x, y, str, color=(229,153,153,255)):
         """
         Draw some text, str, at screen coordinates (x, y).
         NOTE: Renderer subclasses must implement this
         """
         raise NotImplementedError()
 
-    def DrawStringCR(self, str, color=(229,153,153,255)):
+    def Print(self, str, color=(229,153,153,255)):
         """
         Draw some text at the top status lines
         and advance to the next line.

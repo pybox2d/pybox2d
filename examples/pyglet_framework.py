@@ -217,7 +217,7 @@ class PygletDraw(b2Draw):
             ret_ll.extend( (x+center[0], y+center[1]) )
         return ret_tf, ret_ll
 
-    def DrawCircle(self, center, radius, color, world_coordinates=True):
+    def DrawCircle(self, center, radius, color):
         """
         Draw an unfilled circle given center, radius and color.
         """
@@ -228,7 +228,7 @@ class PygletDraw(b2Draw):
             ('v2f', ll_vertices),
             ('c4f', [color.r, color.g, color.b, 1.0] * (ll_count)))
 
-    def DrawSolidCircle(self, center, radius, axis, color, world_coordinates=True):
+    def DrawSolidCircle(self, center, radius, axis, color):
         """
         Draw an filled circle given center, radius, axis (of orientation) and color.
         """
@@ -248,7 +248,7 @@ class PygletDraw(b2Draw):
             ('v2f', (center[0], center[1], p[0], p[1])),
             ('c3f', [1.0, 0.0, 0.0] * 2))
 
-    def DrawPolygon(self, vertices, color, world_coordinates=True):
+    def DrawPolygon(self, vertices, color):
         """
         Draw a wireframe polygon given the world vertices (tuples) with the specified color.
         """
@@ -264,7 +264,7 @@ class PygletDraw(b2Draw):
                 ('v2f', ll_vertices),
                 ('c4f', [color.r, color.g, color.b, 1.0] * (ll_count)))
 
-    def DrawSolidPolygon(self, vertices, color, world_coordinates=True):
+    def DrawSolidPolygon(self, vertices, color):
         """
         Draw a filled polygon given the world vertices (tuples) with the specified color.
         """
@@ -288,7 +288,7 @@ class PygletDraw(b2Draw):
                 ('v2f', ll_vertices),
                 ('c4f', [color.r, color.g, color.b, 1.0] * (ll_count)))
 
-    def DrawSegment(self, p1, p2, color, world_coordinates=True):
+    def DrawSegment(self, p1, p2, color):
         """
         Draw the line segment from p1-p2 with the specified color.
         """
@@ -296,7 +296,7 @@ class PygletDraw(b2Draw):
             ('v2f', (p1[0], p1[1], p2[0], p2[1])),
             ('c3f', [color.r, color.g, color.b]*2))
 
-    def DrawXForm(self, xf, world_coordinates=True):
+    def DrawXForm(self, xf):
         """
         Draw the transform xf on the screen
         """
@@ -309,7 +309,7 @@ class PygletDraw(b2Draw):
             ('v2f', (p1[0], p1[1], p2[0], p2[1], p1[0], p1[1], p3[0], p3[1])),
             ('c3f', [1.0, 0.0, 0.0] * 2 + [0.0, 1.0, 0.0] * 2))
 
-    def DrawPoint(self, p, size, color, world_coordinates=True):
+    def DrawPoint(self, p, size, color):
         """
         Draw a single point at point p given a point size and color.
         """
@@ -317,7 +317,7 @@ class PygletDraw(b2Draw):
             ('v2f', (p[0], p[1])),
             ('c3f', [color.r, color.g, color.b]))
        
-    def DrawAABB(self, aabb, color, world_coordinates=True):
+    def DrawAABB(self, aabb, color):
         """
         Draw a wireframe around the AABB with the given color.
         """
@@ -327,6 +327,12 @@ class PygletDraw(b2Draw):
                 aabb.upperBound.x, aabb.upperBound.y, aabb.lowerBound.x, aabb.upperBound.y,
                 aabb.lowerBound.x, aabb.upperBound.y, aabb.lowerBound.x, aabb.lowerBound.y)),
             ('c3f', [color.r, color.g, color.b] * 8))
+
+    def to_screen(self, point):
+        """
+        In here for compatibility with other frameworks.
+        """
+        return tuple(point)
 
 class PygletWindow(pyglet.window.Window):
     def __init__(self, test):
@@ -542,7 +548,7 @@ class PygletFramework(FrameworkBase):
         self.textLine=15
 
         # Draw the title of the test at the top
-        self.DrawStringCR(self.name)
+        self.Print(self.name)
 
         # Step the physics
         self.Step(self.settings)
@@ -620,14 +626,14 @@ class PygletFramework(FrameworkBase):
 
         return p
 
-    def DrawString(self, x, y, str, color=(229,153,153,255)):
+    def DrawStringAt(self, x, y, str, color=(229,153,153,255)):
         """
         Draw some text, str, at screen coordinates (x, y).
         """
         text = pyglet.text.Label(str, font_name=self.fontname, font_size=self.fontsize, 
                                  x=x, y=self.window.height-y, color=color, batch=self.renderer.batch, group=self.textGroup)
 
-    def DrawStringCR(self, str, color=(229,153,153,255)):
+    def Print(self, str, color=(229,153,153,255)):
         """
         Draw some text, str, at screen coordinates (x, y).
         """

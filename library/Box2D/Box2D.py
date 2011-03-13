@@ -2628,6 +2628,7 @@ b2PolygonShape_swigregister = _Box2D.b2PolygonShape_swigregister
 b2PolygonShape_swigregister(b2PolygonShape)
 
 b2_nullNode = _Box2D.b2_nullNode
+B2_USE_DYNAMIC_TREE = _Box2D.B2_USE_DYNAMIC_TREE
 class b2Pair(object):
     """Proxy of C++ b2Pair class"""
     thisown = _swig_property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc='The membership flag')
