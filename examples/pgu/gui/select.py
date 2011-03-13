@@ -3,29 +3,20 @@
 
 import traceback
 
-from const import *
-from button import Button
-from basic import Label, Image
-from table import Table
+from .const import *
+from .button import Button
+from .basic import Label, Image
+from .table import Table
 
 class Select(Table):
-    """A select input.
+    """A combo dropdown box widget.
     
-    <pre>Select(value=None)</pre>
-    
-    <dl>
-    <dt>value<dd>initial value
-    </dl>
-    
-    <strong>Example</strong>
-    <code>
-    w = Select(value="goats")
-    w.add("Cats","cats")
-    w.add("Goats","goats")
-    w.add("Dogs","Dogs")
-    
-    w.value = 'dogs' #changes the value from goats to dogs
-    </code>
+    Example:
+        w = Select(value="goats")
+        w.add("Cats","cats")
+        w.add("Goats","goats")
+        w.add("Dogs","Dogs")
+        w.value = 'dogs' #changes the value from goats to dogs
     
     """
 
@@ -37,6 +28,7 @@ class Select(Table):
     firstOption = None
     # The PGU table of options
     options = None
+    _value = None
 
     def __init__(self,value=None,**params):
         params.setdefault('cls','select')
@@ -125,41 +117,28 @@ class Select(Table):
         #self.repaint() #this will happen anyways
         
     
-    
-    def __setattr__(self,k,v):
+    @property
+    def value(self):
+        return self._value
+
+    @value.setter
+    def value(self, val):
         mywidget = None
-        if k == 'value':
-            for w in self.values:
-                if w._value == v:
-                    mywidget = w
-        _v = self.__dict__.get(k,NOATTR)
-        self.__dict__[k]=v
-        if k == 'value' and _v != NOATTR and _v != v: 
+        for w in self.values:
+            if w._value == val:
+                mywidget = w
+        oldval = self._value
+        self._value = val
+        if (oldval != val):
             self.send(CHANGE)
             self.repaint()
-        if k == 'value':
-            if not mywidget:
-                mywidget = Label(" ",cls=self.cls+".option.label")
-            self.top_selected.value = mywidget
+        if not mywidget:
+            mywidget = Label(" ",cls=self.cls+".option.label")
+        self.top_selected.value = mywidget
+        
     
     def add(self,w,value=None):
-        """Add a widget, value item to the Select.
-        
-        <pre>Select.add(widget,value=None)</pre>
-        
-        <dl>
-        <dt>widget<dd>Widget or string to represent the item
-        <dt>value<dd>value for this item
-        </dl>
-        
-        <strong>Example</strong>
-        <code>
-        w = Select()
-        w.add("Goat") #adds a Label
-        w.add("Goat","goat") #adds a Label with the value goat
-        w.add(gui.Label("Cuzco"),"goat") #adds a Label with value goat
-        </code>
-        """
+        """Add a widget and associated value to the dropdown box."""
         
         if type(w) == str: w = Label(w,cls=self.cls+".option.label")
         
@@ -178,3 +157,4 @@ class Select(Table):
         if self.value == w._value:
             self.top_selected.value = w
         self.values.append(w)
+

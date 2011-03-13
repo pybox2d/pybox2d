@@ -180,18 +180,6 @@ def _format_repr(item, props, indent_amount=4, max_level=4, max_str_len=250, max
             return _format_repr(self, ['fixtureA','fixtureB','normal','position','state']) 
     %}
 }
-%extend b2Draw {
-    %pythoncode %{
-        def __repr__(self):
-            return _format_repr(self, ['flags']) 
-    %}
-}
-%extend b2DrawExtended {
-    %pythoncode %{
-        def __repr__(self):
-            return _format_repr(self, ['center','convertVertices','flags','flipX','flipY','offset','screenSize','zoom']) 
-    %}
-}
 %extend b2DestructionListener {
     %pythoncode %{
         def __repr__(self):
@@ -226,6 +214,18 @@ def _format_repr(item, props, indent_amount=4, max_level=4, max_str_len=250, max
     %pythoncode %{
         def __repr__(self):
             return _format_repr(self, ['m_buffer','shape','vertices']) 
+    %}
+}
+%extend b2Draw {
+    %pythoncode %{
+        def __repr__(self):
+            return _format_repr(self, ['flags']) 
+    %}
+}
+%extend b2DrawExtended {
+    %pythoncode %{
+        def __repr__(self):
+            return _format_repr(self, ['center','convertVertices','flags','flipX','flipY','offset','screenSize','zoom']) 
     %}
 }
 %extend b2EdgeShape {
@@ -483,7 +483,7 @@ def _format_repr(item, props, indent_amount=4, max_level=4, max_str_len=250, max
 %extend b2Vec2 {
     %pythoncode %{
         def __repr__(self):
-            return _format_repr(self, ['length','lengthSquared','tuple','valid','x','y']) 
+            return _format_repr(self, ['length','lengthSquared','skew','tuple','valid','x','y']) 
     %}
 }
 %extend b2Vec3 {

@@ -3,15 +3,13 @@
 import pygame
 from pygame.locals import *
 
-from const import *
-import widget, surface
-import pguglobals
+from .const import *
+from . import widget, surface
+from . import pguglobals
 
 class Container(widget.Widget):
-    """The base container widget, can be used as a template as well as stand alone.
-    
-    <pre>Container()</pre>
-    """
+    """The base container widget, can be used as a template as well as stand alone."""
+
     def __init__(self,**params):
         widget.Widget.__init__(self,**params)
         self.myfocus = None
@@ -87,10 +85,10 @@ class Container(widget.Widget):
             try:
                 sub = surface.subsurface(s, w.rect)
             except: 
-                print 'container.paint(): %s not inside %s' % (
-                    w.__class__.__name__,self.__class__.__name__)
-                print s.get_width(), s.get_height(), w.rect
-                print ""
+                print('container.paint(): %s not inside %s' % (
+                    w.__class__.__name__,self.__class__.__name__))
+                print(s.get_width(), s.get_height(), w.rect)
+                print("")
             else:
 #                if (not hasattr(w,'_container_bkgr') or 
 #                    w._container_bkgr.get_size() != sub.get_size()):
@@ -256,24 +254,14 @@ class Container(widget.Widget):
         return widgets
 
     def remove(self,w):
-        """Remove a widget from the container.
-        
-        <pre>Container.remove(w)</pre>
-        """
+        """Remove a widget from the container."""
         self.blur(w)
         self.widgets.remove(w)
         #self.repaint()
         self.chsize()
     
     def add(self,w,x,y):
-        """Add a widget to the container.
-        
-        <pre>Container.add(w,x,y)</pre>
-        
-        <dl>
-        <dt>x, y<dd>position of the widget
-        </dl>
-        """
+        """Add a widget to the container given the position."""
         w.style.x = x
         w.style.y = y 
         w.container = self

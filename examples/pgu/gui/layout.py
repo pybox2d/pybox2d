@@ -1,9 +1,7 @@
-"""document layout engine."""
+"""Document layout engine."""
+
 class Layout:
-    """the document layout engine
-    
-    .widgets -- elements are kept in this list.  read-only, use add to add items to it. 
-    """
+    """The document layout engine."""
     
     def __init__(self,rect=None):
         """initialize the object with the size of the box."""
@@ -11,24 +9,28 @@ class Layout:
         self.rect = rect
         
     def add(self,e): 
-        """add a document element to the layout.
+        """Add a document element to the layout.
         
-        a document element may be
-        - a tuple (w,h) if it is a whitespace element
-        - a tuple (0,h) if it is a linebreak element
-        - an integer -1,0,1 if it is a command to start a new block of elements that are aligned either left,center, or right.
-        - an object with a .rect (for size) -- such as a word element
-        - an object with a .rect (for size) and .align -- such as an image element
+        The document element may be
+        * a tuple (w,h) if it is a whitespace element
+        * a tuple (0,h) if it is a linebreak element
+        * an integer -1,0,1 if it is a command to start a new block of elements 
+            that are aligned either left,center, or right.
+        * an object with a .rect (for size) -- such as a word element
+        * an object with a .rect (for size) and .align -- such as an image element
+
         """
         
         self._widgets.append(e)
         
         
     def resize(self):
-        """resize the layout
-        this method recalculates the position of all document elements
-        after they have been added to the document.  .rect.x,y will be updated for all
-        objects.
+        """Resize the layout.
+
+        This method recalculates the position of all document elements after 
+        they have been added to the document.  .rect.x,y will be updated for
+        all objects.
+
         """
         self.init()
         self.widgets = []
@@ -168,5 +170,3 @@ class Layout:
         self.h = 0
         
 
-
-# vim: set filetype=python sts=4 sw=4 noet si :

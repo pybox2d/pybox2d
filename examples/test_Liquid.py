@@ -115,7 +115,7 @@ class Liquid (Framework):
         hash=self.hash
         neighbors=set()
         # Populate the neighbor list from the 9 nearest cells
-        for drop, ((worldx, worldy), (mx,my), (mvx, mvy)) in info.items():
+        for drop, ((worldx, worldy), (mx,my), (mvx, mvy)) in list(info.items()):
             hx=int((worldx/dx) * hash_width)
             hy=int((worldy/dy) * hash_height)
             neighbors.clear()
@@ -178,7 +178,7 @@ class Liquid (Framework):
 
             change[drop]+=(changex, changey) 
 
-        for drop, (dx_, dy_) in change.items():
+        for drop, (dx_, dy_) in list(change.items()):
             if dx_!=0 or dy_!=0:
                 drop.position+=(dx_/multiplier, dy_/multiplier)
                 drop.linearVelocity+=(dx_/(multiplier*dt), dy_/(multiplier*dt))

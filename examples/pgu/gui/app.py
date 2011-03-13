@@ -1,36 +1,25 @@
-"""
-"""
+"""Defines the top-level application widget"""
+
 import pygame
 from pygame.locals import *
 
-import pguglobals
-import container
-from const import *
+from . import pguglobals
+from . import container
+from .const import *
 
 class App(container.Container):
     """The top-level widget for an application.
     
-    <pre>App(theme=None)</pre>
-    
-    <dl>
-    <dt>theme<dd>an instance of a Theme, optional as it will use the default Theme class.
-    </dl>
-    
-    <strong>Basic Example</strong>
-    <code>
-    app = gui.App()
-    app.run(widget=widget,screen=screen)
-    </code>
-    
-    <strong>Integrated Example</strong>
-    <code>
-    app = gui.App()
-    gui.init(widget=widget)
-    while 1:
-        for e in pygame.event.get():
-            app.event(e)
-        app.update(screen)
-    </code>
+    Example:
+        import pygame
+        from pgu import gui
+
+        widget = gui.Button("Testing")
+
+        app = gui.App()
+        app.init(widget=widget)
+        app.run()
+
     """
 
     # The top-level widget in the application
@@ -43,11 +32,12 @@ class App(container.Container):
     # coordinates into the subsurface coordinates.
     appArea = None
 
-    def __init__(self,theme=None,**params):
+    def __init__(self, theme=None, **params):
+        """Create a new application given the (optional) theme instance."""
         self.set_global_app()
 
         if theme == None: 
-            from theme import Theme
+            from .theme import Theme
             theme = Theme()
         self.theme = theme
         
@@ -62,6 +52,8 @@ class App(container.Container):
         self.container = None
 
     def set_global_app(self):
+        """Registers this app as _the_ global PGU application. You 
+        generally shouldn't need to call this function."""
         # Keep a global reference to this application instance so that PGU
         # components can easily find it.
         pguglobals.app = self
@@ -104,14 +96,13 @@ class App(container.Container):
 
         self._chsize = False
 
-    
     def init(self, widget=None, screen=None, area=None):
         """Initialize the application.
 
         Keyword arguments:
-        widget -- the top-level widget
-        screen -- the pygame.Surface to render to
-        area -- the rectangle (within 'screen') to use for rendering
+            widget -- the top-level widget in the application
+            screen -- the pygame surface to render to
+            area -- the rectangle (within 'screen') to use for rendering
         """
 
         self.set_global_app()
@@ -145,13 +136,9 @@ class App(container.Container):
         self.send(INIT)
     
     def event(self,ev):
-        """Pass an event to the main widget.
-        
-        <pre>App.event(e)</pre>
-        
-        <dl>
-        <dt>e<dd>event
-        </dl>
+        """Pass an event to the main widget. If you are managing your own
+        mainloop, this function should be called periodically when you are
+        processing pygame events.
         """
         self.set_global_app()
 
@@ -180,6 +167,8 @@ class App(container.Container):
                 container.Container.event(self,sub)
     
     def loop(self):
+        """Performs one iteration of the PGU application loop, which
+        processes events and update the pygame display."""
         self.set_global_app()
 
         for e in pygame.event.get():
@@ -190,6 +179,7 @@ class App(container.Container):
         
         
     def paint(self,screen=None):
+        """Renders the application onto the given pygame surface"""
         if (screen):
             self.screen = screen
 
@@ -203,12 +193,8 @@ class App(container.Container):
         container.Container.paint(self, self.screen)
 
     def update(self,screen=None):
-        """Update the screen.
-        
-        <dl>
-        <dt>screen<dd>pygame surface
-        </dl>
-        """
+        """Update the screen in a semi-efficient manner, and returns
+        a list of pygame rects to be updated."""
         if (screen):
             self.screen = screen
 
@@ -234,31 +220,41 @@ class App(container.Container):
 
         return rects
     
-    def run(self,widget=None,screen=None): 
+    def run(self, widget=None, screen=None, delay=10): 
         """Run an application.
         
-        <p>Automatically calls <tt>App.init</tt> and then forever loops <tt>App.event</tt> and <tt>App.update</tt></p>
-        
-        <dl>
-        <dt>widget<dd>main widget
-        <dt>screen<dd>pygame.Surface to render to
-        </dl>
+        Automatically calls App.init and then forever loops while
+        calling App.event and App.update
+
+        Keyword arguments:
+            widget -- the top-level widget to use
+            screen -- the pygame surface to render to
+            delay -- the delay between updates (in milliseconds)
         """
         self.init(widget,screen)
         while not self._quit:
             self.loop()
-            pygame.time.wait(10)
-    
-    def reupdate(self,w=None): pass
-    def repaint(self,w=None): self._repaint = True
-    def repaintall(self): self._repaint = True
-    def chsize(self):
-        self._chsize = True
+            pygame.time.wait(delay)
+
+    def reupdate(self,w=None): 
+        pass
+
+    def repaint(self,w=None): 
         self._repaint = True
+
+    def repaintall(self): 
+        self._repaint = True
+
+    def chsize(self):
+        if (not self._chsize):
+            self._chsize = True
+            self._repaint = True
     
-    def quit(self,value=None): self._quit = True
+    def quit(self,value=None): 
+        self._quit = True
 
     def open(self, w, pos=None):
+        """Opens the given PGU window and positions it on the screen"""
         w.container = self
         
         if (w.rect.w == 0 or w.rect.h == 0):
@@ -278,6 +274,7 @@ class App(container.Container):
         w.send(OPEN)
 
     def close(self, w):
+        """Closes the previously opened PGU window"""
         if self.myfocus is w: self.blur(w)
 
         if w not in self.windows: return #no need to remove it twice! happens.
@@ -299,10 +296,8 @@ class App(container.Container):
 
 
 class Desktop(App):
-    """Create an App using the <tt>desktop</tt> theme class.
-    
-    <pre>Desktop()</pre>
-    """
+    """Create an App using the desktop theme class."""
     def __init__(self,**params):
         params.setdefault('cls','desktop')
         App.__init__(self,**params)
+

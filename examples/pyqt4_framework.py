@@ -487,7 +487,7 @@ class MainWindow(QtGui.QMainWindow,Ui_MainWindow):
         if step_settings is None:
             step_settings=self.test.settings
         
-        for var, widget in self.settings_widgets.items():
+        for var, widget in list(self.settings_widgets.items()):
             if isinstance(widget, QtGui.QCheckBox):
                 widget.setChecked(getattr(step_settings, var))
             else:
@@ -733,7 +733,7 @@ class Pyqt4Framework(FrameworkBase):
                                     lambda value, prop=prop: self.property_changed(prop, value))
                     widget.setValue(value)
                 # lists turn into -- lists
-                elif isinstance(value, (list, )):
+                elif isinstance(value, list):
                     widget=QtGui.QListWidget()
                     for entry in value:
                         widget.addItem(str(entry))

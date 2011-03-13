@@ -1,28 +1,29 @@
 """
 """
-from const import *
-import container
+
+import sys
+
+from .const import *
+from . import container
 
 class Table(container.Container):
-    """A table style container.
+    """A table style container widget.
     
-    <p>If you know HTML, this should all work roughly how you would expect.  If you are not
-    familiar with HTML, please read <a href="http://www.w3.org/TR/REC-html40/struct/tables.html">Tables in HTML Documents</a>.  Pay attention to TABLE, TR, TD related parts of the document.</p>
-    
-    <pre>Table()</pre>
-    
-    <strong>Example</strong>
-    <code>
-    t = gui.Table()
-    
-    t.tr()
-    t.td(gui.Label("First Name"), align=-1)
-    t.td(gui.Input())
+    Example:
+        t = gui.Table()
+        
+        # This starts a new row of the table
+        t.tr()
+        # The 'td' call creates a new table cell
+        t.td(gui.Label("Name:"), align=-1)
+        t.td(gui.Input())
 
-    t.tr()
-    t.td(gui.Label("Last Name"), align=-1)
-    t.td(gui.Input())
-    </code>
+        t.tr()
+        # The table cells can span multiple columns
+        t.td(gui.Label("Email"), align=-1, colspan=2)
+
+        t.tr()
+        t.td(gui.Input(), colspan=2)
         
     """
     
@@ -47,7 +48,7 @@ class Table(container.Container):
     
     def remove_row(self, n): #NOTE: won't work in all cases.
         if n >= self.getRows():
-            print "Trying to remove a nonexistant row:", n, "there are only", self.getRows(), "rows"
+            print("Trying to remove a nonexistant row:", n, "there are only", self.getRows(), "rows")
             return
         
         for cell in self._rows[n]:
@@ -80,7 +81,7 @@ class Table(container.Container):
         #print 'clear',self,self._rows
     
     def _addRow(self):
-        self._rows.append([None for x in xrange(self.getColumns())])
+        self._rows.append([None for x in range(self.getColumns())])
     
     def tr(self):
         """Start on the next row."""
@@ -114,35 +115,33 @@ class Table(container.Container):
         self.widgets.append(self._rows[row][col]["widget"])
         
         #set the spanned columns
-        #for acell in xrange(col + 1, col + colspan):
+        #for acell in range(col + 1, col + colspan):
         #    self._rows[row][acell] = True
         
         #set the spanned rows and the columns on them
-        #for arow in xrange(row + 1, row + rowspan):
-        #    for acell in xrange(col, col + colspan): #incorrect?
+        #for arow in range(row + 1, row + rowspan):
+        #    for acell in range(col, col + colspan): #incorrect?
         #        self._rows[arow][acell] = True
         
-        for arow in xrange(row, row + rowspan):
-            for acell in xrange(col, col + colspan): #incorrect?
+        for arow in range(row, row + rowspan):
+            for acell in range(col, col + colspan): #incorrect?
                 if row != arow or col != acell:
                     self._rows[arow][acell] = True
     
     
     def td(self, w, col=None, row=None, colspan=1, rowspan=1, **params):
         """Add a widget to a table after wrapping it in a TD container.
-        
-        <pre>Table.td(w,col=None,row=None,colspan=1,rowspan=1,**params)</pre>
-        
-        <dl>
-        <dt>w<dd>widget
-        <dt>col<dd>column
-        <dt>row<dd>row
-        <dt>colspan<dd>colspan
-        <dt>rowspan<dd>rowspan
-        <dt>align<dd>horizontal alignment (-1,0,1)
-        <dt>valign<dd>vertical alignment (-1,0,1)
-        <dt>params<dd>other params for the TD container, style information, etc
-        </dl>
+
+        Keyword arguments:        
+            w -- widget
+            col -- column
+            row -- row
+            colspan -- colspan
+            rowspan -- rowspan
+            align -- horizontal alignment (-1,0,1)
+            valign -- vertical alignment (-1,0,1)
+            params -- other params for the TD container, style information, etc
+
         """
         
         Table.add(self,_Table_td(w, **params), col=col, row=row, colspan=colspan, rowspan=rowspan)
@@ -150,9 +149,8 @@ class Table(container.Container):
     def add(self, w, col=None, row=None, colspan=1, rowspan=1):
         """Add a widget directly into the table, without wrapping it in a TD container.
         
-        <pre>Table.add(w,col=None,row=None,colspan=1,rowspan=1)</pre>
-        
-        <p>See Table.td for an explanation of the parameters.</p>
+        See Table.td for an explanation of the parameters.
+
         """
         self._trok = True
         #if no row was specifically specified, set it to the current row
@@ -166,7 +164,7 @@ class Table(container.Container):
         
         #try to find an open cell for the widget
         if col is None:
-            for cell in xrange(self.getColumns()):
+            for cell in range(self.getColumns()):
                 if col is None and not self._rows[row][cell]:
                     col = cell
                     break
@@ -186,8 +184,8 @@ class Table(container.Container):
         cell = self._rows[row][col]
         colspan,rowspan = cell['colspan'],cell['rowspan']
         
-        for arow in xrange(row , row + rowspan):
-            for acell in xrange(col, col + colspan): #incorrect?
+        for arow in range(row , row + rowspan):
+            for acell in range(col, col + colspan): #incorrect?
                 self._rows[arow][acell] = False
         self.widgets.remove(w)
         self.chsize()
@@ -208,10 +206,10 @@ class Table(container.Container):
             w.rect.w, w.rect.h = w.resize()
         
         #calculate row heights and column widths
-        rowsizes = [0 for y in xrange(self.getRows())]
-        columnsizes = [0 for x in xrange(self.getColumns())]
-        for row in xrange(self.getRows()):
-            for cell in xrange(self.getColumns()):
+        rowsizes = [0 for y in range(self.getRows())]
+        columnsizes = [0 for x in range(self.getColumns())]
+        for row in range(self.getRows()):
+            for cell in range(self.getColumns()):
                 if self._rows[row][cell] and self._rows[row][cell] is not True:
                     if not self._rows[row][cell]["colspan"] > 1:
                         columnsizes[cell] = max(columnsizes[cell], self._rows[row][cell]["widget"].rect.w)
@@ -219,11 +217,16 @@ class Table(container.Container):
                         rowsizes[row] = max(rowsizes[row], self._rows[row][cell]["widget"].rect.h)
         
         #distribute extra space if necessary for wide colspanning/rowspanning
-        for row in xrange(self.getRows()):
-            for cell in xrange(self.getColumns()):
+        def _table_div(a,b,c):
+            v,r = a/b, a%b
+            if r != 0 and (c%b)<r: v += 1
+            return v
+
+        for row in range(self.getRows()):
+            for cell in range(self.getColumns()):
                 if self._rows[row][cell] and self._rows[row][cell] is not True:
                     if self._rows[row][cell]["colspan"] > 1:
-                        columns = xrange(cell, cell + self._rows[row][cell]["colspan"])
+                        columns = range(cell, cell + self._rows[row][cell]["colspan"])
                         totalwidth = 0
                         for acol in columns:
                             totalwidth += columnsizes[acol]
@@ -231,7 +234,7 @@ class Table(container.Container):
                             for acol in columns:
                                 columnsizes[acol] += _table_div(self._rows[row][cell]["widget"].rect.w - totalwidth, self._rows[row][cell]["colspan"],acol)
                     if self._rows[row][cell]["rowspan"] > 1:
-                        rows = xrange(row, row + self._rows[row][cell]["rowspan"])
+                        rows = range(row, row + self._rows[row][cell]["rowspan"])
                         totalheight = 0
                         for arow in rows:
                             totalheight += rowsizes[arow]
@@ -239,26 +242,28 @@ class Table(container.Container):
                             for arow in rows:
                                 rowsizes[arow] += _table_div(self._rows[row][cell]["widget"].rect.h - totalheight, self._rows[row][cell]["rowspan"],arow)
 
+        # Now calculate the total width and height occupied by the rows and columns
         rowsizes = [sz+2*self._vpadding for sz in rowsizes]
         columnsizes = [sz+2*self._hpadding for sz in columnsizes]
 
-        #make everything fill out to self.style.width, self.style.heigh, not exact, but pretty close...
-        w, h = sum(columnsizes), sum(rowsizes)
-        if w > 0 and w < self.style.width and len(columnsizes):
-            d = (self.style.width - w) 
-            for n in xrange(0, len(columnsizes)):
-                v = columnsizes[n]
-                columnsizes[n] += v * d / w
-        if h > 0 and h < self.style.height and len(rowsizes):
-            d = (self.style.height - h) / len(rowsizes)
-            for n in xrange(0, len(rowsizes)):
-                v = rowsizes[n]
-                rowsizes[n] += v * d / h
+        # Now possibly expand the table cells to fill out the specified width
+        w = sum(columnsizes)
+        if (w > 0 and w < self.style.width):
+            amount = (self.style.width - w)/float(w)
+            for n in range(0, len(columnsizes)):
+                columnsizes[n] += columnsizes[n] * amount
+
+        # Do the same for the table height
+        h = sum(rowsizes)
+        if (h > 0 and h < self.style.height):
+            amount = (self.style.height - h) / float(h)
+            for n in range(0, len(rowsizes)):
+                rowsizes[n] += rowsizes[n] * amount
         
         #set the widget's position by calculating their row/column x/y offset
-        cellpositions = [[[sum(columnsizes[0:cell]), sum(rowsizes[0:row])] for cell in xrange(self.getColumns())] for row in xrange(self.getRows())]
-        for row in xrange(self.getRows()):
-            for cell in xrange(self.getColumns()):
+        cellpositions = [[[sum(columnsizes[0:cell]), sum(rowsizes[0:row])] for cell in range(self.getColumns())] for row in range(self.getRows())]
+        for row in range(self.getRows()):
+            for cell in range(self.getColumns()):
                 if self._rows[row][cell] and self._rows[row][cell] is not True:
                     x, y = cellpositions[row][cell]
                     w = sum(columnsizes[cell:cell+self._rows[row][cell]["colspan"]])
@@ -281,11 +286,6 @@ class Table(container.Container):
         #return the tables final size
         return sum(columnsizes),sum(rowsizes)
 
-        
-def _table_div(a,b,c):
-    v,r = a/b, a%b
-    if r != 0 and (c%b)<r: v += 1
-    return v
 
 class _Table_td(container.Container):
     def __init__(self,widget,**params):#hexpand=0,vexpand=0,
@@ -323,10 +323,14 @@ class _Table_td(container.Container):
   
         #in the case that the widget is too big, we try to resize it
         if (width != None and width < w.rect.w) or (height != None and height < w.rect.h):
-            w.rect.w,w.rect.h = w.resize(width,height)
+            (w.rect.w, w.rect.h) = w.resize(width, height)
+
+        # In python3 max and min no longer accept None as an argument
+        if (width == None): width = -sys.maxsize
+        if (height == None): height = -sys.maxsize
         
-        width = max(width,w.rect.w,self.style.width) #,self.style.cell_width)
-        height = max(height,w.rect.h,self.style.height) #,self.style.cell_height)
+        width = max(width, w.rect.w, self.style.width) #,self.style.cell_width)
+        height = max(height, w.rect.h, self.style.height) #,self.style.cell_height)
         
         dx = width-w.rect.w
         dy = height-w.rect.h
@@ -334,3 +338,4 @@ class _Table_td(container.Container):
         w.rect.y = (self.style.valign+1)*dy/2
         
         return width,height
+

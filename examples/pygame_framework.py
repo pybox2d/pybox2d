@@ -44,7 +44,7 @@ try:
     from pygame_gui import (fwGUI, gui)
     GUIEnabled = True
 except ImportError as ex:
-    print('Unable to load PGU; menu disabled (note that it does not work in Python 3.x).')
+    print('Unable to load PGU; menu disabled.')
     print('ImportError: %s' % ex)
     GUIEnabled = False
 

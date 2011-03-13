@@ -38,7 +38,7 @@ for i in range(60):
     world.ClearForces()
  
     # Now print the position and angle of the body.
-    print body.position, body.angle
+    print(body.position, body.angle)
 
 # --- end ---
 

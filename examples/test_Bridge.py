@@ -19,7 +19,7 @@
 
 from framework import *
 
-def create_bridge(world, ground, (width, height), (x_offset, y_offset), plank_count, friction=0.6, density=1.0):
+def create_bridge(world, ground, size, offset, plank_count, friction=0.6, density=1.0):
     """
     Create a bridge with plank_count planks,
     utilizing rectangular planks of size (width, height).
@@ -27,6 +27,8 @@ def create_bridge(world, ground, (width, height), (x_offset, y_offset), plank_co
     roughly x_offset+width*plank_count.
     The y will not change.
     """
+    width, height=size
+    x_offset, y_offset=offset
     half_height=height/2
     plank=b2FixtureDef( 
                 shape=b2PolygonShape(box=(width/2,height/2)),

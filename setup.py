@@ -11,7 +11,6 @@ If that worked, then:
  setup.py install
 """
 
-from __future__ import print_function
 import os
 import sys
 from glob import glob

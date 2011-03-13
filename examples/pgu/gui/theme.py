@@ -5,10 +5,10 @@
 import os, re
 import pygame
 
-from const import *
-import widget
-import surface
-from basic import parse_color, is_color
+from .const import *
+from . import widget
+from . import surface
+from .basic import parse_color, is_color
 
 __file__ = os.path.abspath(__file__)
 
@@ -22,24 +22,24 @@ def _list_themes(dir):
 class Theme:
     """Theme interface.
     
-    <p>If you wish to create your own theme, create a class with this interface, and 
-    pass it to gui.App via <tt>gui.App(theme=MyTheme())</tt>.</p>
+    If you wish to create your own theme, create a class with this interface, and 
+    pass it to gui.App via gui.App(theme=MyTheme()).
     
-    <strong>Default Theme</strong>
-    
-    <pre>Theme(dirs='default')</pre>
-    <dl>
-    <dt>dirs<dd>Name of the theme dir to load a theme from.  May be an absolute path to a theme, if pgu is not installed, or if you created your own theme.  May include several dirs in a list if data is spread across several themes.
-    </dl>
-    
-    <strong>Example</strong>
-    
-    <code>    
-    theme = gui.Theme("default")
-    theme = gui.Theme(["mytheme","mytheme2"])
-    </code>
     """
     def __init__(self,dirs='default'):
+        """Theme constructor.
+
+        Keyword arguments:
+            dirs -- Name of the theme dir to load a theme from.  May be an 
+                absolute path to a theme, if pgu is not installed, or if you 
+                created your own theme.  May include several dirs in a list if 
+                data is spread across several themes.
+        
+        Example:
+            theme = gui.Theme("default")
+            theme = gui.Theme(["mytheme","mytheme2"])
+
+        """
         self.config = {}
         self._loaded = []
         self.cache = {}
@@ -74,7 +74,7 @@ class Theme:
         for dname in dnames:
             if os.path.isdir(dname): break
         if not os.path.isdir(dname): 
-            raise 'could not find theme '+name
+            raise Exception('could not find theme '+name)
             
         fname = os.path.join(dname,"config.txt")
         if os.path.isfile(fname):
@@ -151,17 +151,13 @@ class Theme:
     def get(self,cls,pcls,attr):
         """Interface method -- get the value of a style attribute.
         
-        <pre>Theme.get(cls,pcls,attr): return value</pre>
+        Arguments:
+            cls -- class, for example "checkbox", "button", etc.
+            pcls -- pseudo class, for example "hover", "down", etc.
+            attr -- attribute, for example "image", "background", "font", "color", etc.
         
-        <dl>
-        <dt>cls<dd>class, for example "checkbox", "button", etc.
-        <dt>pcls<dd>pseudo class, for example "hover", "down", etc.
-        <dt>attr<dd>attribute, for example "image", "background", "font", "color", etc.
-        </dl>
-        
-        <p>returns the value of the attribute.</p>
-        
-        <p>This method is called from [[gui-style]].</p>
+        This method is called from [[gui-style]]
+
         """
 
         if not self._loaded: 
@@ -325,6 +321,11 @@ class Theme:
     def event(self,w,m):
         def func(e):
             rect = w._rect_content
+            if (not rect):
+                # This should never be the case, but it sometimes happens that _rect_content isn't
+                # set before a mouse event is received. In this case we'll ignore the event.
+                return m(e)
+
             if e.type == MOUSEBUTTONUP or e.type == MOUSEBUTTONDOWN:
                 sub = pygame.event.Event(e.type,{
                     'button':e.button,
@@ -340,8 +341,8 @@ class Theme:
                     'rel':e.rel})
             else:
                 sub = e
-            r = m(sub)
-            return r
+            return m(sub)
+
         return func
     
     def update(self,w,m):
@@ -375,15 +376,14 @@ class Theme:
     def decorate(self,widget,level):
         """Interface method -- decorate a widget.
         
-        <p>The theme system is given the opportunity to decorate a widget methods at the
-        end of the Widget initializer.</p>
+        The theme system is given the opportunity to decorate a widget 
+        methods at the end of the Widget initializer.
 
-        <pre>Theme.decorate(widget,level)</pre>
-                
-        <dl>
-        <dt>widget<dd>the widget to be decorated
-        <dt>level<dd>the amount of decoration to do, False for none, True for normal amount, 'app' for special treatment of App objects.
-        </dl>
+        Arguments:
+            widget -- the widget to be decorated
+            level -- the amount of decoration to do, False for none, True for 
+                normal amount, 'app' for special treatment of App objects.
+        
         """        
 
         w = widget
@@ -394,7 +394,7 @@ class Theme:
         
         if level == 'app': return
         
-        for k,v in w.style.__dict__.items():
+        for k,v in list(w.style.__dict__.items()):
             if k in ('border','margin','padding'):
                 for kk in ('top','bottom','left','right'):
                     setattr(w.style,'%s_%s'%(k,kk),v)
@@ -407,14 +407,11 @@ class Theme:
 
     def render(self,s,box,r):
         """Interface method - render a special widget feature.
-        
-        <pre>Theme.render(s,box,r)</pre>
-        
-        <dl>
-        <dt>s<dt>pygame.Surface
-        <dt>box<dt>box data, a value returned from Theme.get, typically a pygame.Surface
-        <dt>r<dt>pygame.Rect with the size that the box data should be rendered
-        </dl>
+
+        Arguments:
+            s -- a pygame surface
+            box -- box data, a value returned from Theme.get, typically a surface
+            r -- pygame.Rect with the size that the box data should be rendered
         
         """
         
@@ -425,40 +422,40 @@ class Theme:
             return
         
         x,y,w,h=r.x,r.y,r.w,r.h
-        ww,hh=box.get_width()/3,box.get_height()/3
+        ww,hh=int(box.get_width()/3),int(box.get_height()/3)
         xx,yy=x+w,y+h
         src = pygame.rect.Rect(0,0,ww,hh)
         dest = pygame.rect.Rect(0,0,ww,hh)
         
         s.set_clip(pygame.Rect(x+ww,y+hh,w-ww*2,h-hh*2))
         src.x,src.y = ww,hh
-        for dest.y in xrange(y+hh,yy-hh,hh): 
-            for dest.x in xrange(x+ww,xx-ww,ww): s.blit(box,dest,src)
+        for dest.y in range(y+hh,yy-hh,hh):
+            for dest.x in range(x+ww,xx-ww,ww): s.blit(box,dest,src)
         
         s.set_clip(pygame.Rect(x+ww,y,w-ww*3,hh))
         src.x,src.y,dest.y = ww,0,y
-        for dest.x in xrange(x+ww,xx-ww*2,ww): s.blit(box,dest,src)
+        for dest.x in range(x+ww,xx-ww*2,ww): s.blit(box,dest,src)
         dest.x = xx-ww*2
         s.set_clip(pygame.Rect(x+ww,y,w-ww*2,hh))
         s.blit(box,dest,src)
         
         s.set_clip(pygame.Rect(x+ww,yy-hh,w-ww*3,hh))
         src.x,src.y,dest.y = ww,hh*2,yy-hh
-        for dest.x in xrange(x+ww,xx-ww*2,ww): s.blit(box,dest,src)
+        for dest.x in range(x+ww,xx-ww*2,ww): s.blit(box,dest,src)
         dest.x = xx-ww*2
         s.set_clip(pygame.Rect(x+ww,yy-hh,w-ww*2,hh))
         s.blit(box,dest,src)
     
         s.set_clip(pygame.Rect(x,y+hh,xx,h-hh*3))
         src.y,src.x,dest.x = hh,0,x
-        for dest.y in xrange(y+hh,yy-hh*2,hh): s.blit(box,dest,src)
+        for dest.y in range(y+hh,yy-hh*2,hh): s.blit(box,dest,src)
         dest.y = yy-hh*2
         s.set_clip(pygame.Rect(x,y+hh,xx,h-hh*2))
         s.blit(box,dest,src)
     
         s.set_clip(pygame.Rect(xx-ww,y+hh,xx,h-hh*3))
         src.y,src.x,dest.x=hh,ww*2,xx-ww
-        for dest.y in xrange(y+hh,yy-hh*2,hh): s.blit(box,dest,src)
+        for dest.y in range(y+hh,yy-hh*2,hh): s.blit(box,dest,src)
         dest.y = yy-hh*2
         s.set_clip(pygame.Rect(xx-ww,y+hh,xx,h-hh*2))
         s.blit(box,dest,src)
@@ -491,3 +488,4 @@ class Background(widget.Widget):
             s.fill(v)
         else: 
             self.theme.render(s,v,r)
+

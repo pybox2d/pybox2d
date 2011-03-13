@@ -1,15 +1,13 @@
-"""
-"""
+"""Funtions for manipulating pygame surfaces."""
+
 import pygame
 
 def subsurface(s,r):
-    """Return the subsurface of a surface, with some help, checks.
-    
-    <pre>subsurface(s,r): return surface</pre>
-    """
+    """Return the subsurface of a surface, with some help, checks."""
     r = pygame.Rect(r)
     if r.x < 0 or r.y < 0:
-        raise "gui.subsurface: %d %d %s"%(s.get_width(),s.get_height(),r)
+        raise Exception("rectangle out of bounds: surface=%dx%d, rect=%s" % (
+        s.get_width(),s.get_height(),r))
     w,h = s.get_width(),s.get_height()
     if r.right > w:
         r.w -= r.right-w
@@ -22,24 +20,18 @@ class ProxySurface:
     """
     A surface-like object which smartly handle out-of-area blitting.
     
-    <pre>ProxySurface(parent, rect, real_surface=None, offset=(0, 0))</pre>
-    
-    <p>only one of parent and real_surface should be supplied (non None)</p>
-    <dl>
-    <dt>parent<dd>a ProxySurface object
-    <dt>real_surface<dd>a pygame Surface object
-    </dl>
-  
-    <strong>Variables</strong>  
-    
-    <dl>
-    <dt>mysubsurface<dd>a real and valid pygame.Surface object to be used
-                       for blitting.
-    <dt>x, y<dd>if the proxy surface is lefter or higher than the parent,
-                x, y hold the diffs.
-    <dt>offset<dd>an optional feature which let you scroll the whole blitted
-                  content.
-    </dl>
+    Note that only one of parent and real_surface should be supplied.
+
+    Arguments:
+        parent -- a ProxySurface object
+        real_surface -- a pygame Surface object
+
+    Attributes:
+        mysubsurface -- a real and valid pygame.Surface object to be used 
+            for blitting.
+        x, y -- if the proxy surface is to the left or above the parent
+        offset -- an option which let you scroll the whole blitted content
+
     """
     def __init__(self, parent, rect, real_surface, offset=(0, 0)):
         self.offset = offset
@@ -84,30 +76,9 @@ class ProxySurface:
 
 
 
-
 class xProxySurface:
-    """
-    A surface-like object which smartly handle out-of-area blitting.
-    
-    <pre>ProxySurface(parent, rect, real_surface=None, offset=(0, 0))</pre>
-    
-    <p>only one of parent and real_surface should be supplied (non None)</p>
-    <dl>
-    <dt>parent<dd>a ProxySurface object
-    <dt>real_surface<dd>a pygame Surface object
-    </dl>
-  
-    <strong>Variables</strong>  
-    
-    <dl>
-    <dt>mysubsurface<dd>a real and valid pygame.Surface object to be used
-                       for blitting.
-    <dt>x, y<dd>if the proxy surface is lefter or higher than the parent,
-                x, y hold the diffs.
-    <dt>offset<dd>an optional feature which let you scroll the whole blitted
-                  content.
-    </dl>
-    """
+    """This class is obsolete and is scheduled to be removed."""
+
     def __init__(self, parent, rect, real_surface, offset=(0, 0)):
         self.offset = offset
         self.x = self.y = 0
@@ -140,3 +111,4 @@ class xProxySurface:
         else: 
             rect = [rect[0] + self.offset[0] + self.x, rect[1] + self.offset[0] + self.y, rect[2], rect[3]]
             self.mysubsurface.set_clip(rect)
+

@@ -1,8 +1,8 @@
 """
 """
-from const import *
-import table
-import basic, button
+from .const import *
+from . import table
+from . import basic, button
 
 class _Menu_Options(table.Table):
     def __init__(self,menu,**params):
@@ -59,7 +59,7 @@ class _Menu(button.Button):
         self.repaint()
         self.options.close()
     
-    def _value(self,value):
+    def _valuefunc(self,value):
         self._close(None)
         if value['fnc'] != None:
             value['fnc'](value['value'])
@@ -73,7 +73,7 @@ class _Menu(button.Button):
     def add(self,w,fnc=None,value=None):
         w.style.align = -1
         b = button.Button(w,cls=self.cls+".option")
-        b.connect(CLICK,self._value,{'fnc':fnc,'value':value})
+        b.connect(CLICK,self._valuefunc,{'fnc':fnc,'value':value})
         
         self.options.tr()
         self.options.add(b)
@@ -82,24 +82,18 @@ class _Menu(button.Button):
 
 class Menus(table.Table):
     """A drop down menu bar.
-    
-    <pre>Menus(data)</pre>
-    
-    <dl>
-    <dt>data<dd>Menu data, a list of (path,fnc,value), see example below
-    </dl>
-    
-    <strong>Example</strong>
-    <code>
-    data = [
-        ('File/Save',fnc_save,None),
-        ('File/New',fnc_new,None),
-        ('Edit/Copy',fnc_copy,None),
-        ('Edit/Cut',fnc_cut,None),
-        ('Help/About',fnc_help,help_about_content),
-        ('Help/Reference',fnc_help,help_reference_content),
-        ]
-    w = Menus(data)
+
+    Example:
+        data = [
+            ('File/Save', fnc_save, None),
+            ('File/New', fnc_new, None),
+            ('Edit/Copy', fnc_copy, None),
+            ('Edit/Cut', fnc_cut, None),
+            ('Help/About', fnc_help, help_about_content),
+            ('Help/Reference', fnc_help, help_reference_content),
+            ]
+        w = Menus(data)
+
     """
     
     def __init__(self,data,menu_cls='menu',**params):
@@ -116,4 +110,6 @@ class Menus(table.Table):
                 m = _Menu(self,basic.Label(mt,cls=menu_cls+".label"),cls=menu_cls)
                 self.add(m,n,0)
                 n += 1
+            print ("add", parts[1], cmd, value)
             m.add(basic.Label(parts[1],cls=m.cls+".option.label"),cmd,value)
+

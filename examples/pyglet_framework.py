@@ -205,7 +205,7 @@ class PygletDraw(b2Draw):
 
         Returns: (tf_vertices, ll_vertices)
         """
-        if radius not in self.circle_cache_tf.keys():
+        if radius not in self.circle_cache_tf:
             self.circle_cache_tf[radius]=self._getTFCircleVertices(radius,points)
             self.circle_cache_ll[radius]=self._getLLCircleVertices(radius,points)
 

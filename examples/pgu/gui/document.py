@@ -2,8 +2,8 @@
 """
 import pygame
 
-import container
-import layout
+from . import container
+from . import layout
 
 class _document_widget:
     def __init__(self,w,align=None):
@@ -13,25 +13,20 @@ class _document_widget:
         if align != None: self.align = align
 
 class Document(container.Container):
-    """A document container contains many widgets strung together in a document format.  (How informative!)
-    
-    <pre>Document()</pre>
-    
-    """
+    """A document is a container that structures widgets in a left-to-right flow."""
+
     def __init__(self,**params):
         params.setdefault('cls','document')
         container.Container.__init__(self,**params)
         self.layout =  layout.Layout(pygame.Rect(0,0,self.rect.w,self.rect.h))
     
     def add(self,e,align=None):
-        """Add a widget.
-        
-        <pre>Document.add(e,align=None)</pre>
-        
-        <dl>
-        <dt>e<dd>widget
-        <dt>align<dd>alignment (None,-1,0,1)
-        </dl>
+        """Add a widget to the document flow.
+
+        Arguments:
+            e -- widget
+            align -- alignment (None,-1,0,1)
+
         """
         dw = _document_widget(e,align)
         self.layout.add(dw)
@@ -47,37 +42,16 @@ class Document(container.Container):
         
     
     def block(self,align):
-        """Start a new block.
-        
-        <pre>Document.block(align)</pre>
-        
-        <dl>
-        <dt>align<dd>alignment of block (-1,0,1)
-        </dl>
-        """
+        """Start a new block given the alignment (-1, 0, 1)"""
         self.layout.add(align)
     
-    def space(self,e):
-        """Add a spacer.
-        
-        <pre>Document.space(e)</pre>
-        
-        <dl>
-        <dt>e<dd>a (w,h) size for the spacer
-        </dl>
-        """
-        self.layout.add(e)
+    def space(self, size):
+        """Add a spacer given the size."""
+        self.layout.add(size)
     
     def br(self,height):
-        """Add a line break.
-        
-        <pre>Document.br(height)</pre>
-        
-        <dl>
-        <dt>height<dd>height of line break
-        </dl>
-        """
-        self.layout.add((0,height))
+        """Add a line break, given the height."""
+        self.layout.add((0, height))
     
     def resize(self,width=None,height=None):
         if self.style.width: width = self.style.width
@@ -110,3 +84,4 @@ class Document(container.Container):
         #self.rect.h = self.layout.rect.h
         #print 'document',_max_w,self.layout.rect.h
         return _max_w,self.layout.rect.h
+

@@ -3,8 +3,8 @@
 
 import pygame
 
-from const import *
-import widget
+from .const import *
+from . import widget
 
 # Turns a descriptive string or a tuple into a pygame color
 def parse_color(desc):
@@ -32,31 +32,26 @@ def is_color(col):
     return False
 
 class Spacer(widget.Widget):
-    """A invisible space.
-    
-    <pre>Spacer(width,height)</pre>
-    
-    """
+    """An invisible space widget."""
+
     def __init__(self,width,height,**params):
         params.setdefault('focusable',False)
         widget.Widget.__init__(self,width=width,height=height,**params)
         
 
 class Color(widget.Widget):
-    """A block of color.
+    """A widget that renders as a solid block of color.
     
-    <p>The color can be changed at run-time.</p>
-    
-    <pre>Color(value=None)</pre>
-    
-    <strong>Example</strong>
-    <code>
-    c = Color()
-    c.value = (255,0,0)
-    c.value = (0,255,0)
-    </code>
+    Note the color can be changed by setting the 'value' field, and the 
+    widget will automatically be repainted, eg:
+
+        c = Color()
+        c.value = (255,0,0)
+        c.value = (0,255,0)
+
     """
-    
+
+    _value = None
     
     def __init__(self,value=None,**params):
         params.setdefault('focusable',False)
@@ -65,57 +60,60 @@ class Color(widget.Widget):
     
     def paint(self,s):
         if hasattr(self,'value'): s.fill(self.value)
-    
-    def __setattr__(self,k,v):
-        if k == 'value' and type(v) == str:
-            v = parse_color(v)
-        _v = self.__dict__.get(k,NOATTR)
-        self.__dict__[k]=v
-        if k == 'value' and _v != NOATTR and _v != v: 
+
+    @property
+    def value(self):
+        return self._value
+
+    @value.setter
+    def value(self, val):
+        if (isinstance(val, basestring)):
+            # Parse the string as a color
+            val = parse_color(val)
+        oldval = self._value
+        self._value = val
+        if (oldval != val):
+            # Emit a change signal
             self.send(CHANGE)
             self.repaint()
+    
 
 class Label(widget.Widget):
-    """A text label.
-    
-    <pre>Label(value)</pre>
-    
-    <dl>
-    <dt>value<dd>text to be displayed
-    </dl>
-    
-    <strong>Example</strong>
-    <code>
-    w = Label(value="I own a rubber chicken!")
-    
-    w = Label("3 rubber chickens")
-    </code>
-    """
-    def __init__(self,value="",**params):
-        params.setdefault('focusable',False)
-        params.setdefault('cls','label')
-        widget.Widget.__init__(self,**params)
+    """A text label widget."""
+
+    def __init__(self, value="", **params):
+        params.setdefault('focusable', False)
+        params.setdefault('cls', 'label')
+        widget.Widget.__init__(self, **params)
         self.value = value
         self.font = self.style.font
         self.style.width, self.style.height = self.font.size(self.value)
     
     def paint(self,s):
+        """Renders the label onto the given surface in the upper-left corner."""
         s.blit(self.font.render(self.value, 1, self.style.color),(0,0))
 
     def set_text(self, txt):
+        """Set the text of this label."""
         self.value = txt
-        self.container.repaint(self)
+        # Signal to the application that we need to resize this widget
+        self.chsize()
+
+    def set_font(self, font):
+        """Set the font used to render this label."""
+        this.font = font
+        # Signal to the application that we need a resize
+        this.chsize()
+
+    def resize(self,width=None,height=None):
+        # Calculate the size of the rendered text
+        (self.style.width, self.style.height) = self.font.size(self.value)
+        return (self.style.width, self.style.height)
+
 
 class Image(widget.Widget):
-    """An image.
-    
-    <pre>Image(value)</pre>
-    
-    <dl>
-    <dt>value<dd>a file name or a pygame.Surface
-    </dl>
-    
-    """
+    """An image widget. The constructor takes a file name or a pygame surface."""
+
     def __init__(self,value,**params):
         params.setdefault('focusable',False)
         widget.Widget.__init__(self,**params)
@@ -138,3 +136,4 @@ class Image(widget.Widget):
     
     def paint(self,s):
         s.blit(self.value,(0,0))
+

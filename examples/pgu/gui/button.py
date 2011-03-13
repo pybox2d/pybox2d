@@ -1,13 +1,15 @@
-"""
-"""
+"""Contains various types of button widgets."""
 
 from pygame.locals import *
 
-from const import *
-import widget, surface
-import basic
+from .const import *
+from . import widget, surface
+from . import basic
 
 class _button(widget.Widget):
+    # The underlying 'value' accessed by the getter and setters below
+    _value = None
+
     def __init__(self,**params):
         widget.Widget.__init__(self,**params)
         self.state = 0
@@ -51,68 +53,56 @@ class _button(widget.Widget):
 class Button(_button):
     """A button, buttons can be clicked, they are usually used to set up callbacks.
     
-    <pre>Button(value=None)</pre>
-    
-    <dl>
-    <dt>value<dd>either a widget or a string
-    </dl>
-    
-    <strong>Example</strong>
-    <code>
-    w = gui.Button("Click Me")
-    w.connect(gui.CLICK,fnc,value)
-    </code>
+    Example:
+        w = gui.Button("Click Me")
+        w.connect(gui.CLICK, fnc, value)
+
     """
-    def __init__(self,value=None,**params):
-        params.setdefault('cls','button')
-        _button.__init__(self,**params)
-        self.value = value
-    
-    def __setattr__(self,k,v):
-        if k == 'value' and type(v) == str: v = basic.Label(v,cls=self.cls+".label")
-        _v = self.__dict__.get(k,NOATTR)
-        self.__dict__[k]=v
-        if k == 'value' and v != None:
-            pass
+
+    def __init__(self, value=None, **params):
+        """Button constructor, which takes either a string label or widget.
         
-        if k == 'value' and _v != NOATTR and _v != None and _v != v:
+        See Widget documentation for additional style parameters.
+
+        """
+        params.setdefault('cls', 'button')
+        _button.__init__(self, **params)
+        self.value = value
+
+    @property
+    def value(self):
+        return self._value
+
+    @value.setter
+    def value(self, val):
+        if (isinstance(val, basestring)):
+            # Allow the choice of font to propagate to the button label
+            params = {}
+            if (self.style.font):
+                params["font"] = self.style.font
+            val = basic.Label(val, cls=self.cls+".label", **params)
+            val.container = self
+
+        oldval = self._value
+        self._value = val
+
+        if (val != oldval):
             self.send(CHANGE)
             self.chsize()
-    
+
     def resize(self,width=None,height=None):
         self.value.rect.x,self.value.rect.y = 0,0
         self.value.rect.w,self.value.rect.h = self.value.resize(width,height)
         return self.value.rect.w,self.value.rect.h
-#         
-#         self.value._resize()
-#         self.rect.w,self.rect.h = self.value.rect_margin.w,self.value.rect_margin.h
-#         
-#         if self.style.width: self.rect.w = max(self.rect.w,self.style.width)
-#         if self.style.height: self.rect.w = max(self.rect.w,self.style.height)
-#         
-#         xt,xr,xb,xl = self.value.getspacing()
-#         
-#         self.value._resize(self.rect.w-(xl+xr),self.rect.h-(xt+xb))
-#     
+
     def paint(self,s):
         self.value.pcls = self.pcls
         self.value.paint(surface.subsurface(s,self.value.rect))
 
+
 class Switch(_button):
-    """A switch can have two states, True or False.
-    
-    <pre>Switch(value=False)</pre>
-    
-    <dl>
-    <dt>value<dd>initial value, (True, False)
-    </dl>
-    
-    <strong>Example</strong>
-    <code>
-    w = gui.Switch(True)
-    w.connect(gui.CHANGE,fnc,value)
-    </code>
-    """
+    """A switch can have two states, on or off."""
+
     def __init__(self,value=False,**params):
         params.setdefault('cls','switch')
         _button.__init__(self,**params)
@@ -129,10 +119,15 @@ class Switch(_button):
         else: img = self.style.off
         s.blit(img,(0,0))
     
-    def __setattr__(self,k,v):
-        _v = self.__dict__.get(k,NOATTR)
-        self.__dict__[k]=v
-        if k == 'value' and _v != NOATTR and _v != v: 
+    @property
+    def value(self):
+        return self._value
+
+    @value.setter
+    def value(self, val):
+        oldval = self._value
+        self._value = val
+        if oldval != val:
             self.send(CHANGE)
             self.repaint()
     
@@ -140,33 +135,36 @@ class Switch(_button):
         self.value = not self.value
 
 class Checkbox(_button):    
-    """Within a Group of Checkbox widgets several may be selected at a time.
+    """A type of switch that can be grouped with other checkboxes.
     
-    <pre>Checkbox(group,value=None)</pre>
-    
-    <dl>
-    <dt>group<dd>a gui.Group for the Checkbox to belong to
-    <dt>value<dd>the value
-    </dl>
-    
-    <strong>Example</strong>
-    <code>
-    g = gui.Group(name='colors',value=['r','b'])
-    
-    t = gui.Table()
-    t.tr()
-    t.td(gui.Label('Red'))
-    t.td(gui.Checkbox(g,'r'))
-    t.tr()
-    t.td(gui.Label('Green'))
-    t.td(gui.Checkbox(g,'g'))
-    t.tr()
-    t.td(gui.Label('Blue'))
-    t.td(gui.Checkbox(g,'b'))
-    </code>
+    Example:
+        # The 'value' parameter indicates which checkboxes are on by default
+        g = gui.Group(name='colors',value=['r','b'])
+        
+        t = gui.Table()
+        t.tr()
+        t.td(gui.Label('Red'))
+        t.td(gui.Checkbox(g,'r'))
+        t.tr()
+        t.td(gui.Label('Green'))
+        t.td(gui.Checkbox(g,'g'))
+        t.tr()
+        t.td(gui.Label('Blue'))
+        t.td(gui.Checkbox(g,'b'))
+
     """
     
     def __init__(self,group,value=None,**params):
+        """Checkbox constructor.
+
+        Keyword arguments:
+            group -- the Group that this checkbox belongs to
+            value -- the initial value (True or False)
+    
+        See Widget documentation for additional style parameters.
+
+        """
+
         params.setdefault('cls','checkbox')
         _button.__init__(self,**params)
         self.group = group
@@ -195,34 +193,33 @@ class Checkbox(_button):
         self.group._change()
 
 class Radio(_button):
-    """Within a Group of Radio widgets only one may be selected at a time.
+    """A type of switch that can be grouped with other radio buttons, except
+    that only one radio button can be active at a time.
     
-    <pre>Radio(group,value=None)</pre>
-    
-    <dl>
-    <dt>group<dd>a gui.Group for the Radio to belong to
-    <dt>value<dd>the value
-    </dl>
-    
-    <strong>Example</strong>
-    <code>
-    g = gui.Group(name='colors',value='g')
-    
-    t = gui.Table()
-    t.tr()
-    t.td(gui.Label('Red'))
-    t.td(gui.Radio(g,'r'))
-    t.tr()
-    t.td(gui.Label('Green'))
-    t.td(gui.Radio(g,'g'))
-    t.tr()
-    t.td(gui.Label('Blue'))
-    t.td(gui.Radio(g,'b'))
-    </code>
-    """
-    
+    Example:
+        g = gui.Group(name='colors',value='g')
+        
+        t = gui.Table()
+        t.tr()
+        t.td(gui.Label('Red'))
+        t.td(gui.Radio(g,'r'))
+        t.tr()
+        t.td(gui.Label('Green'))
+        t.td(gui.Radio(g,'g'))
+        t.tr()
+        t.td(gui.Label('Blue'))
+        t.td(gui.Radio(g,'b'))
+
+    """    
     
     def __init__(self,group=None,value=None,**params):
+        """Radio constructor.
+
+        Keyword arguments:    
+            group -- the Group this radio button belongs to
+            value -- the initial value (True or False)
+
+        """
         params.setdefault('cls','radio')
         _button.__init__(self,**params)
         self.group = group
@@ -245,30 +242,29 @@ class Radio(_button):
 
 class Tool(_button):
     """Within a Group of Tool widgets only one may be selected at a time.
-    
-    <pre>Tool(group,widget=None,value=None)</pre>
-    
-    <dl>
-    <dt>group<dd>a gui.Group for the Tool to belong to
-    <dt>widget<dd>a widget to appear on the Tool (similar to a Button)
-    <dt>value<dd>the value
-    </dl>
-    
-    <strong>Example</strong>
-    <code>
-    g = gui.Group(name='colors',value='g')
-    
-    t = gui.Table()
-    t.tr()
-    t.td(gui.Tool(g,'Red','r'))
-    t.tr()
-    t.td(gui.Tool(g,'Green','g'))
-    t.tr()
-    t.td(gui.Tool(g,'Blue','b'))
-    </code>
+
+    Example:
+        g = gui.Group(name='colors',value='g')
+        
+        t = gui.Table()
+        t.tr()
+        t.td(gui.Tool(g,'Red','r'))
+        t.tr()
+        t.td(gui.Tool(g,'Green','g'))
+        t.tr()
+        t.td(gui.Tool(g,'Blue','b'))
+
     """
 
     def __init__(self,group,widget=None,value=None,**params): #TODO widget= could conflict with module widget
+        """Tool constructor.
+
+        Keyword arguments:    
+            group -- a gui.Group for the Tool to belong to
+            widget -- a widget to appear on the Tool (similar to a Button)
+            value -- the value
+
+        """
         params.setdefault('cls','tool')
         _button.__init__(self,**params)
         self.group = group
@@ -322,21 +318,14 @@ class Icon(_button):
         s.blit(self.style.image,(0,0))
 
 class Link(_button):
-    """A link, links can be clicked, they are usually used to set up callbacks.  
-    Basically the same as the button widget, just text only with a different cls.  Made for
-    convenience.
+    """A link, links can be clicked, they are usually used to set up callbacks.
+    Basically the same as the button widget, just text only with a different cls.
+    Made for convenience.
     
-    <pre>Link(value=None)</pre>
-    
-    <dl>
-    <dt>value<dd>a string
-    </dl>
-    
-    <strong>Example</strong>
-    <code>
-    w = gui.Link("Click Me")
-    w.connect(gui.CLICK,fnc,value)
-    </code>
+    Example:
+        w = gui.Link("Click Me")
+        w.connect(gui.CLICK,fnc,value)
+
     """
     def __init__(self,value,**params):
         params.setdefault('focusable',True)

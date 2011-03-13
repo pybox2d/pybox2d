@@ -2,32 +2,31 @@
 """
 import os
 
-from const import *
-import table, area
-import basic, input, button
-import pguglobals
+from .const import *
+from . import table, area
+from . import basic, input, button
+from . import pguglobals
 
 class Dialog(table.Table):
     """A dialog window with a title bar and an "close" button on the bar.
     
-    <pre>Dialog(title,main)</pre>
-    
-    <dl>
-    <dt>title<dd>title widget, usually a label
-    <dt>main<dd>main widget, usually a container
-    </dl>
-    
-    <strong>Example</strong>
-    <code>
-    title = gui.Label("My Title")
-    main = gui.Container()
-    #add stuff to the container...
-    
-    d = gui.Dialog(title,main)
-    d.open()
-    </code>
+    Example:
+        title = gui.Label("My Title")
+        main = gui.Container()
+        #add stuff to the container...
+        
+        d = gui.Dialog(title,main)
+        d.open()
+
     """
     def __init__(self,title,main,**params):
+        """Dialog constructor.
+
+        Arguments:
+            title -- title widget, usually a label
+            main -- main widget, usually a container
+
+        """        
         params.setdefault('cls','dialog')
         table.Table.__init__(self,**params)
         
@@ -63,19 +62,18 @@ class Dialog(table.Table):
         
         
 class FileDialog(Dialog):
-    """A file picker dialog window.
-    
-    <pre>FileDialog()</pre>
-    <p>Some optional parameters:</p>
-    <dl>
-    <dt>title_txt<dd>title text
-    <dt>button_txt<dd>button text
-    <dt>path<dd>initial path
-    </dl>
-    """
+    """A file picker dialog window."""
     
     def __init__(self, title_txt="File Browser", button_txt="Okay", cls="dialog", path=None):
-        
+        """FileDialog constructor.
+
+        Keyword arguments:
+            title_txt -- title text
+            button_txt -- button text
+            path -- initial path
+
+        """
+
         cls1 = 'filedialog'
         if not path: self.curdir = os.getcwd()
         else: self.curdir = path
@@ -153,5 +151,6 @@ class FileDialog(Dialog):
                 self._list_dir_()
         else:
             self.value = os.path.join(self.curdir, self.input_file.value)
-	    self.send(CHANGE)
+            self.send(CHANGE)
             self.close()
+

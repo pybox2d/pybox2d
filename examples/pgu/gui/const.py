@@ -1,33 +1,26 @@
 """Constants.
-<br><br>
-<strong>Event Types</strong>
 
-<p>from pygame</p>
-<dl>
-<dt>QUIT
-<dt>MOUSEBUTTONDOWN
-<dt>MOUSEBUTTONUP
-<dt>MOUSEMOTION
-<dt>KEYDOWN
-</dl>
+From pygame:
+    QUIT
+    MOUSEBUTTONDOWN
+    MOUSEBUTTONUP
+    MOUSEMOTION
+    KEYDOWN
 
-<p>gui specific</p>
-<dl>
-<dt>ENTER
-<dt>EXIT
-<dt>BLUR
-<dt>FOCUS
-<dt>CLICK
-<dt>CHANGE
-<dt>OPEN
-<dt>CLOSE
-<dt>INIT
-</dl>
+PGU specific:
+    ENTER
+    EXIT
+    BLUR
+    FOCUS
+    CLICK
+    CHANGE
+    OPEN
+    CLOSE
+    INIT
 
-<strong>Other</strong>
-<dl>
-<dt>NOATTR
-</dl>
+Other:
+    NOATTR
+
 """
 import pygame
 
@@ -42,4 +35,7 @@ OPEN = pygame.locals.USEREVENT + 6
 CLOSE = pygame.locals.USEREVENT + 7
 INIT = 'init'
 
-class NOATTR: pass
+class NOATTR: 
+    pass
+
+

@@ -63,7 +63,9 @@ polygonShape.draw=my_draw_polygon
 def my_draw_circle(circle, body, fixture):
     position=body.transform*circle.pos*PPM
     position=(position[0], SCREEN_HEIGHT-position[1])
-    pygame.draw.circle(screen, colors[body.type], position, circle.radius*PPM)
+    pygame.draw.circle(screen, colors[body.type], [int(x) for x in position], int(circle.radius*PPM))
+    # Note: Python 3.x will enforce that pygame get the integers it requests,
+    #       and it will not convert from float.
 circleShape.draw=my_draw_circle
 
 # --- main game loop ---
