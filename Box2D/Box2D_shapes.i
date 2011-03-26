@@ -81,17 +81,33 @@ public:
 /**** PolygonShape ****/
 %extend b2PolygonShape {
 public:
+    PyObject* __get_vertices() {
+        PyObject* ret=PyList_New($self->m_vertexCount);
+        PyObject* vertex;
+        for (int i=0; i < $self->m_vertexCount; i++) {
+            vertex = PyTuple_New(2);
+            PyTuple_SetItem(vertex, 0, SWIG_From_double((float32)$self->m_vertices[i].x));
+            PyTuple_SetItem(vertex, 1, SWIG_From_double((float32)$self->m_vertices[i].y));
+            PyList_SetItem(ret, i, vertex);
+        }
+        return ret;
+    }
+
+    PyObject* __get_normals() {
+        PyObject* ret=PyList_New($self->m_vertexCount);
+        PyObject* vertex;
+        for (int i=0; i < $self->m_vertexCount; i++) {
+            vertex = PyTuple_New(2);
+            PyTuple_SetItem(vertex, 0, SWIG_From_double((float32)$self->m_normals[i].x));
+            PyTuple_SetItem(vertex, 1, SWIG_From_double((float32)$self->m_normals[i].y));
+            PyList_SetItem(ret, i, vertex);
+        }
+        return ret;
+    }
+
     %pythoncode %{
     def __repr__(self):
         return "b2PolygonShape(vertices: %s)" % (self.vertices)
-    def __get_vertices(self):
-        """Returns all of the vertices as a list of tuples [ (x1,y1), (x2,y2) ... (xN,yN) ]"""
-        return [ (self.__get_vertex(i).x, self.__get_vertex(i).y )
-                         for i in range(0, self.vertexCount)]
-    def __get_normals(self):
-        """Returns all of the normals as a list of tuples [ (x1,y1), (x2,y2) ... (xN,yN) ]"""
-        return [ (self.__get_normal(i).x, self.__get_normal(i).y )
-                         for i in range(0, self.vertexCount)]
     def __clear_vertices(self):
         self.vertexCount=0
         for i in range(0, b2_maxPolygonVertices):
@@ -104,12 +120,10 @@ public:
                 raise ValueError('Expected tuple or list of length >= 2 and less than b2_maxPolygonVertices=%d, got length %d.' %
                                      (b2_maxPolygonVertices, len(values)))
             for i,value in enumerate(values):
-                if isinstance(value, (tuple, list)):
+                if isinstance(value, (tuple, list, b2Vec2)):
                     if len(value) != 2:
                         raise ValueError('Expected tuple or list of length 2, got length %d' % len(value))
                     self.set_vertex(i, *value)
-                elif isinstance(value, b2Vec2):
-                    self.set_vertex(i, value)
                 else:
                     raise ValueError('Expected tuple, list, or b2Vec2, got %s' % type(value))
                 self.vertexCount=i+1 # follow along in case of an exception to indicate valid number set
@@ -127,8 +141,8 @@ public:
         return b2CheckPolygon(self)
 
     valid = property(__IsValid, None, doc="Checks the polygon to see if it can be properly created. Raises ValueError for invalid shapes.")
-    vertices = property(__get_vertices, __set_vertices)
-    normals = property(__get_normals, None)
+    vertices = property(__get_vertices, __set_vertices, doc="All of the vertices as a list of tuples [ (x1,y1), (x2,y2) ... (xN,yN) ]")
+    normals = property(__get_normals, None, doc="All of the normals as a list of tuples [ (x1,y1), (x2,y2) ... (xN,yN) ]")
     box = property(None, lambda self, value: self.SetAsBox(*value), doc="Property replacement for running SetAsBox (Write-only)")
     %}
 
@@ -170,6 +184,19 @@ public:
 
 %extend b2LoopShape {
 public:
+    PyObject* __get_vertices() {
+        int32 count=$self->GetCount();
+        PyObject* ret=PyList_New(count);
+        PyObject* vertex;
+        for (int i=0; i < count; i++) {
+            vertex = PyTuple_New(2);
+            PyTuple_SetItem(vertex, 0, SWIG_From_double((float32)$self->GetVertex(i).x));
+            PyTuple_SetItem(vertex, 1, SWIG_From_double((float32)$self->GetVertex(i).y));
+            PyList_SetItem(ret, i, vertex);
+        }
+        return ret;
+    }
+
     %pythoncode %{
     def __repr__(self):
         return "b2LoopShape(vertices: %s)" % (self.vertices)

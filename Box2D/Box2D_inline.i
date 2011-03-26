@@ -184,12 +184,12 @@
 b2_epsilon = 1.192092896e-07
 
 def _list_from_linked_list(first):
-    lst = []
     one = first
 
     if not one:
         return []
 
+    lst = []
     if hasattr(one, "GetNext"):
         while one:
             lst.append(one)

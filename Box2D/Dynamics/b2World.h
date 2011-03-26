@@ -1,5 +1,5 @@
 /*
-* Copyright (c) 2006-2009 Erin Catto http://www.gphysics.com
+* Copyright (c) 2006-2009 Erin Catto http://www.box2d.org
 *
 * This software is provided 'as-is', without any express or implied
 * warranty.  In no event will the authors be held liable for any damages
@@ -34,6 +34,15 @@ class b2Body;
 class b2Draw;
 class b2Fixture;
 class b2Joint;
+
+/// Profiling data. Times are in milliseconds.
+struct b2Profile
+{
+	float32 step;
+	float32 collide;
+	float32 solve;
+	float32 solveTOI;
+};
 
 /// The world class manages all physics entities, dynamic simulation,
 /// and asynchronous queries. The world also contains efficient memory
@@ -162,6 +171,16 @@ public:
 	/// Get the number of contacts (each may have 0 or more contact points).
 	int32 GetContactCount() const;
 
+	/// Get the height of the dynamic tree.
+	int32 GetTreeHeight() const;
+
+	/// Get the balance of the dynamic tree.
+	int32 GetTreeBalance() const;
+
+	/// Get the quality metric of the dynamic tree. The smaller the better.
+	/// The minimum is 1.
+	float32 GetTreeQuality() const;
+
 	/// Change the global gravity vector.
 	void SetGravity(const b2Vec2& gravity);
 	
@@ -179,6 +198,9 @@ public:
 
 	/// Get the contact manager for testing.
 	const b2ContactManager& GetContactManager() const;
+
+	/// Get the current profile.
+	const b2Profile& GetProfile() const;
 
 private:
 
@@ -230,6 +252,8 @@ private:
 	bool m_subStepping;
 
 	bool m_stepComplete;
+
+	b2Profile m_profile;
 };
 
 inline b2Body* b2World::GetBodyList()
@@ -313,6 +337,11 @@ inline bool b2World::GetAutoClearForces() const
 inline const b2ContactManager& b2World::GetContactManager() const
 {
 	return m_contactManager;
+}
+
+inline const b2Profile& b2World::GetProfile() const
+{
+	return m_profile;
 }
 
 #endif

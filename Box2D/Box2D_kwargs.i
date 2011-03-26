@@ -278,9 +278,9 @@
 }
 
 
-%feature("shadow") b2LineJoint::b2LineJoint() {
+%feature("shadow") b2WheelJoint::b2WheelJoint() {
     def __init__(self, **kwargs):
-        _Box2D.b2LineJoint_swiginit(self,_Box2D.new_b2LineJoint())
+        _Box2D.b2WheelJoint_swiginit(self,_Box2D.new_b2WheelJoint())
         _init_kwargs(self, **kwargs)
 }
 

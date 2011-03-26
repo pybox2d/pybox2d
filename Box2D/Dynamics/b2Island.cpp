@@ -1,5 +1,5 @@
 /*
-* Copyright (c) 2006-2009 Erin Catto http://www.gphysics.com
+* Copyright (c) 2006-2009 Erin Catto http://www.box2d.org
 *
 * This software is provided 'as-is', without any express or implied
 * warranty.  In no event will the authors be held liable for any damages
@@ -192,7 +192,7 @@ void b2Island::Solve(const b2TimeStep& step, const b2Vec2& gravity, bool allowSl
 		}
 
 		// Integrate velocities.
-		b->m_linearVelocity += step.dt * (gravity + b->m_invMass * b->m_force);
+		b->m_linearVelocity += step.dt * (b->m_gravityScale * gravity + b->m_invMass * b->m_force);
 		b->m_angularVelocity += step.dt * b->m_invI * b->m_torque;
 
 		// Apply damping.

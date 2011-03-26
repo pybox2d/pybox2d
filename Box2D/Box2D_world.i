@@ -200,15 +200,15 @@ public:
                 raise ValueError('Gear joint requires that both joint1 and joint2 be set')
             return self.__CreateJoint(b2GearJointDef(**kwargs))
 
-        def CreateLineJoint(self, **kwargs):
+        def CreateWheelJoint(self, **kwargs):
             """
-            Create a single b2LineJoint. Only accepts kwargs to the joint definition.
+            Create a single b2WheelJoint. Only accepts kwargs to the joint definition.
 
             Raises ValueError if either bodyA or bodyB is left unset.
             """
             if 'bodyA' not in kwargs or 'bodyB' not in kwargs:
                 raise ValueError('Requires at least bodyA and bodyB be set')
-            return self.__CreateJoint(b2LineJointDef(**kwargs))
+            return self.__CreateJoint(b2WheelJointDef(**kwargs))
 
         def CreateMouseJoint(self, **kwargs):
             """

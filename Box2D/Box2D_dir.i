@@ -259,14 +259,14 @@
 }
 
 
-%extend b2LineJoint {
+%extend b2WheelJoint {
     %pythoncode %{
         __dir__ = _dir_filter
     %}
 }
 
 
-%extend b2LineJointDef {
+%extend b2WheelJointDef {
     %pythoncode %{
         __dir__ = _dir_filter
     %}

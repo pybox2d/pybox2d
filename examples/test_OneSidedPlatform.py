@@ -1,6 +1,6 @@
 #!/usr/bin/python
 #
-# C++ version Copyright (c) 2006-2007 Erin Catto http://www.gphysics.com
+# C++ version Copyright (c) 2006-2007 Erin Catto http://www.box2d.org
 # Python version Copyright (c) 2010 Ken Lauer / sirkne at gmail dot com
 # 
 # This software is provided 'as-is', without any express or implied
@@ -64,7 +64,7 @@ class OneSidedPlatform (Framework):
             return
 
         # If below the top of the platform, disable the collision response
-        if (self.character.body.position.y - (self.character_radius-0.01)) < self.top:
+        if (self.character.body.position.y - self.character_radius+3.0*b2_linearSlop) < self.top:
             contact.enabled = False
 
 if __name__=="__main__":

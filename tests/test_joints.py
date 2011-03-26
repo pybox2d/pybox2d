@@ -249,9 +249,9 @@ class testJoints (unittest.TestCase):
         joint.GetReactionForce(1.0)
         joint.GetReactionTorque(1.0)
 
-    # ---- line joint ----
-    def line_definition(self, body1, body2, anchor, axis):
-        dfn=self.b2.b2LineJointDef()
+    # ---- wheel joint ----
+    def wheel_definition(self, body1, body2, anchor, axis):
+        dfn=self.b2.b2WheelJointDef()
         dfn.Initialize(body1, body2, anchor, axis)
         dfn.motorSpeed = 0
         dfn.maxMotorForce = 100.0
@@ -261,7 +261,7 @@ class testJoints (unittest.TestCase):
         dfn.enableLimit = True
         return dfn
 
-    def line_asserts(self, dfn, joint):
+    def wheel_asserts(self, dfn, joint):
         self.check(dfn, joint, "motorSpeed")
         self.check(dfn, joint, "maxMotorTorque")
         self.check(dfn, joint, "enableMotor", "motorEnabled")
@@ -270,7 +270,7 @@ class testJoints (unittest.TestCase):
         self.check(dfn, joint, "frequencyHz", "springFrequencyHz")
         self.check(dfn, joint, "dampingRatio", "springDampingRatio")
 
-    def line_checks(self, dfn, joint):
+    def wheel_checks(self, dfn, joint):
         # check to make sure they are at least accessible 
         i = joint.anchorA
         i = joint.anchorB
@@ -386,8 +386,8 @@ class testJoints (unittest.TestCase):
     def test_mouse(self):
         self.do_joint_test("mouse", {} )
 
-    def test_line(self):
-        self.do_joint_test("line", { 'anchor' : (0, 8.5), 'axis' : (2,1) })
+    def test_wheel(self):
+        self.do_joint_test("wheel", { 'anchor' : (0, 8.5), 'axis' : (2,1) })
 
     def test_weld(self):
         self.do_joint_test("weld", {} )

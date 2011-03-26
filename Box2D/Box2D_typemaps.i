@@ -41,20 +41,17 @@
 //Resolve ambiguities in overloaded functions when you pass a tuple or list when 
 //SWIG expects a b2Vec2 (b2Vec3, b2Color)
 %typemap(typecheck,precedence=SWIG_TYPECHECK_POINTER) b2Vec2*,b2Vec2& {
-   $1 = (PyList_Check($input)  || 
-         PyTuple_Check($input) || 
+   $1 = (PySequence_Check($input)  || 
          SWIG_CheckState(SWIG_ConvertPtr($input, 0, $descriptor(b2Vec2*), 0))
         ) ? 1 : 0;
 }
 %typemap(typecheck,precedence=SWIG_TYPECHECK_POINTER) b2Vec3*,b2Vec3& {
-   $1 = (PyList_Check($input)  || 
-         PyTuple_Check($input) || 
+   $1 = (PySequence_Check($input)  || 
          SWIG_CheckState(SWIG_ConvertPtr($input, 0, $descriptor(b2Vec3*), 0))
         ) ? 1 : 0;
 }
 %typemap(typecheck,precedence=SWIG_TYPECHECK_POINTER) b2Color*,b2Color& {
-   $1 = (PyList_Check($input)  || 
-         PyTuple_Check($input) || 
+   $1 = (PySequence_Check($input)  || 
          SWIG_CheckState(SWIG_ConvertPtr($input, 0, $descriptor(b2Color*), 0))
         ) ? 1 : 0;
 }
@@ -62,10 +59,9 @@
 // Allow b2Vec2* arguments be passed in as tuples or lists
 %typemap(in) b2Vec2* (b2Vec2 temp) {
     //input - $input -> ($1_type) $1 $1_descriptor
-    if (PyTuple_Check($input) || PyList_Check($input)) {
-        int sz = (PyList_Check($input) ? PyList_Size($input) : PyTuple_Size($input));
-        if (sz != 2) {
-            PyErr_Format(PyExc_TypeError, "Expected tuple or list of length 2, got length %d", sz);
+    if (PySequence_Check($input)) {
+        if (PySequence_Size($input) != 2) {
+            PyErr_Format(PyExc_TypeError, "Expected tuple or list of length 2, got length %d", PySequence_Size($input));
             SWIG_fail;
         }
         int res1 = SWIG_AsVal_float(PySequence_GetItem($input, 0), &temp.x);
@@ -95,10 +91,9 @@
 // Allow b2Color* arguments be passed in as tuples or lists
 %typemap(in) b2Color* (b2Color temp) {
     //input - $input -> ($1_type) $1 $1_descriptor
-    if (PyTuple_Check($input) || PyList_Check($input)) {
-        int sz = (PyList_Check($input) ? PyList_Size($input) : PyTuple_Size($input));
-        if (sz != 3) {
-            PyErr_Format(PyExc_TypeError, "Expected tuple or list of length 3, got length %d", sz);
+    if (PySequence_Check($input)) {
+        if (PySequence_Size($input) != 3) {
+            PyErr_Format(PyExc_TypeError, "Expected tuple or list of length 3, got length %d", PySequence_Size($input));
             SWIG_fail;
         }
         int res1 = SWIG_AsVal_float(PySequence_GetItem($input, 0), &temp.r);
@@ -133,10 +128,9 @@
 // Allow b2Vec3* arguments be passed in as tuples or lists
 %typemap(in) b2Vec3* (b2Vec3 temp) {
     //input - $input -> ($1_type) $1 $1_descriptor
-    if (PyTuple_Check($input) || PyList_Check($input)) {
-        int sz = (PyList_Check($input) ? PyList_Size($input) : PyTuple_Size($input));
-        if (sz != 3) {
-            PyErr_Format(PyExc_TypeError, "Expected tuple or list of length 3, got length %d", sz);
+    if (PySequence_Check($input)) {
+        if (PySequence_Size($input) != 3) {
+            PyErr_Format(PyExc_TypeError, "Expected tuple or list of length 3, got length %d", PySequence_Size($input));
             SWIG_fail;
         }
         int res1 = SWIG_AsVal_float(PySequence_GetItem($input, 0), &temp.x);
@@ -171,10 +165,9 @@
 // Allow b2Vec2& arguments be passed in as tuples or lists
 %typemap(in) b2Vec2& (b2Vec2 temp) {
     //input - $input -> ($1_type) $1 $1_descriptor
-    if (PyTuple_Check($input) || PyList_Check($input)) {
-        int sz = (PyList_Check($input) ? PyList_Size($input) : PyTuple_Size($input));
-        if (sz != 2) {
-            PyErr_Format(PyExc_TypeError, "Expected tuple or list of length 2, got length %d", sz);
+    if (PySequence_Check($input)) {
+        if (PySequence_Size($input) != 2) {
+            PyErr_Format(PyExc_TypeError, "Expected tuple or list of length 2, got length %d", PySequence_Size($input));
             SWIG_fail;
         }
         int res1 = SWIG_AsVal_float(PySequence_GetItem($input, 0), &temp.x);
@@ -203,10 +196,9 @@
 // Allow b2Color& arguments be passed in as tuples or lists
 %typemap(in) b2Color& (b2Color temp) {
     //input - $input -> ($1_type) $1 $1_descriptor
-    if (PyTuple_Check($input) || PyList_Check($input)) {
-        int sz = (PyList_Check($input) ? PyList_Size($input) : PyTuple_Size($input));
-        if (sz != 3) {
-            PyErr_Format(PyExc_TypeError, "Expected tuple or list of length 3, got length %d", sz);
+    if (PySequence_Check($input)) {
+        if (PySequence_Size($input) != 3) {
+            PyErr_Format(PyExc_TypeError, "Expected tuple or list of length 3, got length %d", PySequence_Size($input));
             SWIG_fail;
         }
         int res1 = SWIG_AsVal_float(PySequence_GetItem($input, 0), &temp.r);
@@ -241,10 +233,9 @@
 // Allow b2Vec3& arguments be passed in as tuples or lists
 %typemap(in) b2Vec3& (b2Vec3 temp) {
     //input - $input -> ($1_type) $1 $1_descriptor
-    if (PyTuple_Check($input) || PyList_Check($input)) {
-        int sz = (PyList_Check($input) ? PyList_Size($input) : PyTuple_Size($input));
-        if (sz != 3) {
-            PyErr_Format(PyExc_TypeError, "Expected tuple or list of length 3, got length %d", sz);
+    if (PySequence_Check($input)) {
+        if (PySequence_Size($input) != 3) {
+            PyErr_Format(PyExc_TypeError, "Expected tuple or list of length 3, got length %d", PySequence_Size($input));
             SWIG_fail;
         }
         int res1 = SWIG_AsVal_float(PySequence_GetItem($input, 0), &temp.x);
@@ -352,8 +343,8 @@
             $result=SWIG_NewPointerObj($1, $descriptor(b2MouseJoint*), 0); break;
         case e_gearJoint:
             $result=SWIG_NewPointerObj($1, $descriptor(b2GearJoint*), 0); break;
-        case e_lineJoint:
-            $result=SWIG_NewPointerObj($1, $descriptor(b2LineJoint*), 0); break;
+        case e_wheelJoint:
+            $result=SWIG_NewPointerObj($1, $descriptor(b2WheelJoint*), 0); break;
         case e_weldJoint:
             $result=SWIG_NewPointerObj($1, $descriptor(b2WeldJoint*), 0); break;
         case e_frictionJoint:

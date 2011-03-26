@@ -100,8 +100,8 @@ public:
 %rename(__SetMaxMotorTorque) b2RevoluteJoint::SetMaxMotorTorque;
 %rename(__EnableMotor) b2RevoluteJoint::EnableMotor;
 
-/**** LineJoint ****/
-%extend b2LineJoint {
+/**** WheelJoint ****/
+%extend b2WheelJoint {
 public:
     %pythoncode %{
 
@@ -119,19 +119,19 @@ public:
     %}
 }
 
-%rename(__IsMotorEnabled) b2LineJoint::IsMotorEnabled;
-%rename(__GetMotorSpeed) b2LineJoint::GetMotorSpeed;
-%rename(__GetJointSpeed) b2LineJoint::GetJointSpeed;
-%rename(__GetJointTranslation) b2LineJoint::GetJointTranslation;
-%rename(__IsLimitEnabled) b2LineJoint::IsLimitEnabled;
-%rename(__SetMotorSpeed) b2LineJoint::SetMotorSpeed;
-%rename(__GetSpringFrequencyHz) b2LineJoint::GetSpringFrequencyHz;
-%rename(__SetSpringFrequencyHz) b2LineJoint::SetSpringFrequencyHz;
-%rename(__GetSpringDampingRatio) b2LineJoint::GetSpringDampingRatio;
-%rename(__SetSpringDampingRatio) b2LineJoint::SetSpringDampingRatio;
-%rename(__GetMaxMotorTorque) b2LineJoint::GetMaxMotorTorque;
-%rename(__SetMaxMotorTorque) b2LineJoint::SetMaxMotorTorque;
-%rename(__EnableMotor) b2LineJoint::EnableMotor;
+%rename(__IsMotorEnabled) b2WheelJoint::IsMotorEnabled;
+%rename(__GetMotorSpeed) b2WheelJoint::GetMotorSpeed;
+%rename(__GetJointSpeed) b2WheelJoint::GetJointSpeed;
+%rename(__GetJointTranslation) b2WheelJoint::GetJointTranslation;
+%rename(__IsLimitEnabled) b2WheelJoint::IsLimitEnabled;
+%rename(__SetMotorSpeed) b2WheelJoint::SetMotorSpeed;
+%rename(__GetSpringFrequencyHz) b2WheelJoint::GetSpringFrequencyHz;
+%rename(__SetSpringFrequencyHz) b2WheelJoint::SetSpringFrequencyHz;
+%rename(__GetSpringDampingRatio) b2WheelJoint::GetSpringDampingRatio;
+%rename(__SetSpringDampingRatio) b2WheelJoint::SetSpringDampingRatio;
+%rename(__GetMaxMotorTorque) b2WheelJoint::GetMaxMotorTorque;
+%rename(__SetMaxMotorTorque) b2WheelJoint::SetMaxMotorTorque;
+%rename(__EnableMotor) b2WheelJoint::EnableMotor;
 
 /**** PrismaticJoint ****/
 %extend b2PrismaticJoint {
@@ -358,8 +358,8 @@ public:
 }
 
 
-/**** LineJointDef ****/
-%extend b2LineJointDef {
+/**** WheelJointDef ****/
+%extend b2WheelJointDef {
     %pythoncode %{
         def __set_anchor(self, value):
             if not self.bodyA:
@@ -394,9 +394,9 @@ public:
                     Setting the property requires that bodyA be set.""")
     %}
 }
-%feature("shadow") b2LineJointDef::b2LineJointDef() {
+%feature("shadow") b2WheelJointDef::b2WheelJointDef() {
     def __init__(self, **kwargs):
-        _Box2D.b2LineJointDef_swiginit(self,_Box2D.new_b2LineJointDef())
+        _Box2D.b2WheelJointDef_swiginit(self,_Box2D.new_b2WheelJointDef())
         _init_jointdef_kwargs(self, **kwargs)
 }
 

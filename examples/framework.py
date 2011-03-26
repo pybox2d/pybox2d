@@ -1,6 +1,6 @@
 #!/usr/bin/python
 #
-# C++ version Copyright (c) 2006-2007 Erin Catto http://www.gphysics.com
+# C++ version Copyright (c) 2006-2007 Erin Catto http://www.box2d.org
 # Python version Copyright (c) 2010 Ken Lauer / sirkne at gmail dot com
 # 
 # This software is provided 'as-is', without any express or implied
@@ -20,17 +20,17 @@
 """
 The framework's base is FrameworkBase. See its help for more information.
 """
-
 from __future__ import print_function
 from Box2D import *
 from settings import fwSettings
+from time import time
 
-# Use psyco if available
-try:
-    import psyco
-    psyco.full()
-except ImportError:
-    pass
+## Use psyco if available
+#try:
+#    import psyco
+#    psyco.full()
+#except ImportError:
+#    pass
 
 class fwDestructionListener(b2DestructionListener):
     """
@@ -112,7 +112,7 @@ class FrameworkBase(b2ContactListener):
 
         # Box2D-callbacks
         self.destructionListener= None
-        self.renderer          = None
+        self.renderer           = None
 
     def __init__(self):
         super(FrameworkBase, self).__init__()
@@ -125,6 +125,7 @@ class FrameworkBase(b2ContactListener):
         self.destructionListener = fwDestructionListener(test=self)
         self.world.destructionListener=self.destructionListener
         self.world.contactListener=self
+        self.t_steps, self.t_draws=[], []
 
     def __del__(self):
         pass
@@ -154,21 +155,18 @@ class FrameworkBase(b2ContactListener):
             self.Print("****PAUSED****", (200,0,0))
 
         # Set the flags based on what the settings show
-        self.renderer.flags=dict(
-                drawShapes=settings.drawShapes,
-                drawJoints=settings.drawJoints,
-                drawAABBs =settings.drawAABBs,
-                drawPairs =settings.drawPairs,
-                drawCOMs  =settings.drawCOMs,
-                # The following is only applicable when using b2DrawExtended.
-                # It indicates that the C code should transform box2d coords to
-                # screen coordinates.
-                convertVertices=isinstance(self.renderer, b2DrawExtended) 
-                )
-
-        # Update the debug draw settings so that the vertices will be properly
-        # converted to screen coordinates
-        self.renderer.StartDraw()
+        if self.renderer:
+            self.renderer.flags=dict(
+                    drawShapes=settings.drawShapes,
+                    drawJoints=settings.drawJoints,
+                    drawAABBs =settings.drawAABBs,
+                    drawPairs =settings.drawPairs,
+                    drawCOMs  =settings.drawCOMs,
+                    # The following is only applicable when using b2DrawExtended.
+                    # It indicates that the C code should transform box2d coords to
+                    # screen coordinates.
+                    convertVertices=isinstance(self.renderer, b2DrawExtended) 
+                    )
 
         # Set the other settings that aren't contained in the flags
         self.world.warmStarting=settings.enableWarmStarting
@@ -179,56 +177,83 @@ class FrameworkBase(b2ContactListener):
         self.points = []
 
         # Tell Box2D to step
+        t_step=time()
         self.world.Step(timeStep, settings.velocityIterations, settings.positionIterations)
         self.world.ClearForces()
+        t_step=time()-t_step
+
+        # Update the debug draw settings so that the vertices will be properly
+        # converted to screen coordinates
+        t_draw=time()
+        if self.renderer:
+            self.renderer.StartDraw()
+
         self.world.DrawDebugData()
 
         # If the bomb is frozen, get rid of it.
         if self.bomb and not self.bomb.awake:
             self.world.DestroyBody(self.bomb)
             self.bomb = None
-
-        if settings.drawFPS:
-            self.Print("FPS %d" % self.fps)
         
-        # Take care of additional drawing (stats, fps, mouse joint, slingshot bomb, contact points)
-        if settings.drawStats:
-            self.Print("bodies=%d contacts=%d joints=%d proxies=%d" %
-                (self.world.bodyCount, self.world.contactCount, self.world.jointCount, self.world.proxyCount))
+        # Take care of additional drawing (fps, mouse joint, slingshot bomb, contact points)
 
-            self.Print("hz %d vel/pos iterations %d/%d" %
-                (settings.hz, settings.velocityIterations, settings.positionIterations))
+        if self.renderer:
+            # If there's a mouse joint, draw the connection between the object and the current pointer position.
+            if self.mouseJoint:
+                p1 = self.renderer.to_screen(self.mouseJoint.anchorB)
+                p2 = self.renderer.to_screen(self.mouseJoint.target)
 
-        # If there's a mouse joint, draw the connection between the object and the current pointer position.
-        if self.mouseJoint:
-            p1 = self.renderer.to_screen(self.mouseJoint.anchorB)
-            p2 = self.renderer.to_screen(self.mouseJoint.target)
+                self.renderer.DrawPoint(p1, settings.pointSize, self.colors['mouse_point'])
+                self.renderer.DrawPoint(p2, settings.pointSize, self.colors['mouse_point'])
+                self.renderer.DrawSegment(p1, p2, self.colors['joint_line'])
 
-            self.renderer.DrawPoint(p1, settings.pointSize, self.colors['mouse_point'])
-            self.renderer.DrawPoint(p2, settings.pointSize, self.colors['mouse_point'])
-            self.renderer.DrawSegment(p1, p2, self.colors['joint_line'])
+            # Draw the slingshot bomb
+            if self.bombSpawning:
+                self.renderer.DrawPoint(self.renderer.to_screen(self.bombSpawnPoint), settings.pointSize, self.colors['bomb_center'])
+                self.renderer.DrawSegment(self.renderer.to_screen(self.bombSpawnPoint), self.mouseWorld, self.colors['bomb_line'])
 
-        # Draw the slingshot bomb
-        if self.bombSpawning:
-            self.renderer.DrawPoint(self.renderer.to_screen(self.bombSpawnPoint), settings.pointSize, self.colors['bomb_center'])
-            self.renderer.DrawSegment(self.renderer.to_screen(self.bombSpawnPoint), self.mouseWorld, self.colors['bomb_line'])
+            # Draw each of the contact points in different colors.
+            if self.settings.drawContactPoints:
+                for point in self.points:
+                    if point['state'] == b2_addState:
+                        self.renderer.DrawPoint(point['position'], settings.pointSize, self.colors['contact_add'])
+                    elif point['state'] == b2_persistState:
+                        self.renderer.DrawPoint(point['position'], settings.pointSize, self.colors['contact_persist'])
 
-        # Draw each of the contact points in different colors.
-        if self.settings.drawContactPoints:
-            for point in self.points:
-                if point['state'] == b2_addState:
-                    self.renderer.DrawPoint(point['position'], settings.pointSize, self.colors['contact_add'])
-                elif point['state'] == b2_persistState:
-                    self.renderer.DrawPoint(point['position'], settings.pointSize, self.colors['contact_persist'])
+            if settings.drawContactNormals:
+                axisScale = 0.3
+                for point in self.points:
+                    p1 = self.renderer.to_screen(point['position'])
+                    p2 = p1 + axisScale * point['normal']
+                    self.renderer.DrawSegment(p1, p2, self.colors['contact_normal']) 
 
-        if settings.drawContactNormals:
-            axisScale = 0.3
-            for point in self.points:
-                p1 = self.renderer.to_screen(point['position'])
-                p2 = p1 + axisScale * point['normal']
-                self.renderer.DrawSegment(p1, p2, self.colors['contact_normal']) 
+            self.renderer.EndDraw()
+            t_draw=time()-t_draw
 
-        self.renderer.EndDraw()
+            t_draw=max(b2_epsilon, t_draw)
+            t_step=max(b2_epsilon, t_step)
+            try:
+                self.t_draws.append(1.0/t_draw)
+                self.t_steps.append(1.0/t_step)
+            except:
+                pass
+            else:
+                if len(self.t_draws) > 2:
+                    self.t_draws.pop(0)
+                    self.t_steps.pop(0)
+
+            if settings.drawFPS:
+                self.Print("Combined FPS %d" % self.fps)
+
+            if settings.drawStats:
+                self.Print("bodies=%d contacts=%d joints=%d proxies=%d" %
+                    (self.world.bodyCount, self.world.contactCount, self.world.jointCount, self.world.proxyCount))
+
+                self.Print("hz %d vel/pos iterations %d/%d" %
+                    (settings.hz, settings.velocityIterations, settings.positionIterations))
+
+                if self.t_draws and self.t_steps:
+                    self.Print("Potential draw rate: %.2f Hz Step rate: %.2f Hz" % (sum(self.t_draws)/len(self.t_draws), sum(self.t_steps)/len(self.t_steps)))
 
     def ShiftMouseDown(self, p):
         """
@@ -408,18 +433,6 @@ class FrameworkBase(b2ContactListener):
                         'state' : state2[i]
                     }  )
 
-            continue
-            # This is slow, creating a new type with the kwargs and all.
-            self.points.append(
-                    b2ContactPoint(
-                        fixtureA = contact.fixtureA,
-                        fixtureB = contact.fixtureB,
-                        position = worldManifold.points[i],
-                        normal = worldManifold.normal,
-                        state = state2[i]
-                        ) 
-                    )
-
     # These can/should be implemented in the test subclass: (Step() also if necessary)
     # See test_Empty.py for a simple example.
     def BeginContact(self, contact):
@@ -466,6 +479,7 @@ def main(test_class):
 if __name__=='__main__':
     print('Please run one of the examples directly. This is just the base for all of the frameworks.')
     exit(0)
+
 # Your framework classes should follow this format. If it is the 'foobar'
 # framework, then your file should be 'foobar_framework.py' and you should
 # have a class 'FoobarFramework' that derives FrameworkBase. Ensure proper

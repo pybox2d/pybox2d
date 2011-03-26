@@ -1,6 +1,6 @@
 #!/usr/bin/python
 #
-# C++ version Copyright (c) 2006-2007 Erin Catto http://www.gphysics.com
+# C++ version Copyright (c) 2006-2007 Erin Catto http://www.box2d.org
 # Python version Copyright (c) 2010 kne / sirkne at gmail dot com
 # 
 # This software is provided 'as-is', without any express or implied
@@ -72,7 +72,6 @@ class Pyqt4Draw(object):
         self.window=self.test.window
         self.scene=self.window.scene
         self.view=self.window.graphicsView
-        self.render_times=[]
         self.item_cache={}
         self.temp_items=[]
         self.status_font=QtGui.QFont("Times", 10, QtGui.QFont.Bold)
@@ -84,22 +83,7 @@ class Pyqt4Draw(object):
             self.scene.removeItem(item)
         self.temp_items=[]
 
-        self.render_start=time()
-
-    def EndDraw(self):
-        render_time=time() - self.render_start
-        self.render_times.append(render_time)
-
-        self.draw_idx=(self.draw_idx+1) % self.MAX_TIMES
-        if len(self.render_times) > self.MAX_TIMES:
-            self.render_times.pop(0)
-        average_time=sum(self.render_times) / len(self.render_times)
-        if average_time > 1e-10:
-            pen=QtGui.QPen(QColor(255,255,255))
-            if self.draw_idx==0:
-                self.test.fps=1./average_time
-            status_text=('Avg frame render time %.2gms, potential fps: %.0f' % (average_time*1000, 1./average_time))
-            self.DrawStringAt(0, 0, status_text, (255,255,255))
+    def EndDraw(self): pass
 
     def SetFlags(self, **kwargs): 
         """

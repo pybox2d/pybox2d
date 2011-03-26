@@ -1,5 +1,5 @@
 /*
-* Copyright (c) 2006-2007 Erin Catto http://www.gphysics.com
+* Copyright (c) 2006-2007 Erin Catto http://www.box2d.org
 *
 * This software is provided 'as-is', without any express or implied
 * warranty.  In no event will the authors be held liable for any damages
@@ -129,9 +129,10 @@ public:
 	/// Set the maximum motor force, usually in N.
 	void SetMaxMotorForce(float32 force);
 
-   float32 GetMaxMotorForce() const;
-   /// Get the current motor force given the inverse time step, usually in N.
-   float32 GetMotorForce(float32 inv_dt) const;
+	float32 GetMaxMotorForce() const;
+
+	/// Get the current motor force given the inverse time step, usually in N.
+	float32 GetMotorForce(float32 inv_dt) const;
 
 protected:
 	friend class b2Joint;
@@ -175,6 +176,7 @@ inline float32 b2PrismaticJoint::GetMotorSpeed() const
 
 inline float32 b2PrismaticJoint::GetMaxMotorForce() const
 {
-	return m_maxMotorForce;
+       return m_maxMotorForce;
 }
+
 #endif

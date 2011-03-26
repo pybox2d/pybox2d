@@ -644,20 +644,6 @@ class b2Vec2(object):
     def __set(self, x, y):
         self.x = x
         self.y = y
-    def __getitem__(self, i): 
-        if i==0:
-            return self.x
-        elif i==1:
-            return self.y
-        else:
-            raise IndexError
-    def __setitem__(self, i, value): 
-        if i==0:
-            self.x=value
-        elif i==1:
-            self.y=value
-        else:
-            raise IndexError
     def __nonzero__(self):
         return self.x!=0.0 or self.y!=0.0
 
@@ -667,6 +653,14 @@ class b2Vec2(object):
     valid = property(__IsValid, None)
     skew = property(__Skew, None) 
 
+
+    def __getitem__(self, *args, **kwargs):
+        """__getitem__(self, int i) -> float32"""
+        return _Box2D.b2Vec2___getitem__(self, *args, **kwargs)
+
+    def __setitem__(self, *args, **kwargs):
+        """__setitem__(self, int i, float32 value)"""
+        return _Box2D.b2Vec2___setitem__(self, *args, **kwargs)
 
     def __equ(self, *args, **kwargs):
         """__equ(self, b2Vec2 other) -> bool"""
@@ -721,6 +715,8 @@ b2Vec2.__LengthSquared = new_instancemethod(_Box2D.b2Vec2___LengthSquared,None,b
 b2Vec2.Normalize = new_instancemethod(_Box2D.b2Vec2_Normalize,None,b2Vec2)
 b2Vec2.__IsValid = new_instancemethod(_Box2D.b2Vec2___IsValid,None,b2Vec2)
 b2Vec2.__Skew = new_instancemethod(_Box2D.b2Vec2___Skew,None,b2Vec2)
+b2Vec2.__getitem__ = new_instancemethod(_Box2D.b2Vec2___getitem__,None,b2Vec2)
+b2Vec2.__setitem__ = new_instancemethod(_Box2D.b2Vec2___setitem__,None,b2Vec2)
 b2Vec2.__equ = new_instancemethod(_Box2D.b2Vec2___equ,None,b2Vec2)
 b2Vec2.dot = new_instancemethod(_Box2D.b2Vec2_dot,None,b2Vec2)
 b2Vec2.__truediv__ = new_instancemethod(_Box2D.b2Vec2___truediv__,None,b2Vec2)
@@ -835,24 +831,6 @@ class b2Vec3(object):
         self.x = x
         self.y = y
         self.z = z
-    def __getitem__(self, i): 
-        if i==0:
-            return self.x
-        elif i==1:
-            return self.y
-        elif i==2:
-            return self.z
-        else:
-            raise IndexError
-    def __setitem__(self, i, value): 
-        if i==0:
-            self.x=value
-        elif i==1:
-            self.y=value
-        elif i==2:
-            self.z=value
-        else:
-            raise IndexError
     def __nonzero__(self):
         return self.x!=0.0 or self.y!=0.0 or self.z!=0.0
 
@@ -861,6 +839,14 @@ class b2Vec3(object):
     lengthSquared = property(_Box2D.b2Vec3___LengthSquared, None)
     valid = property(_Box2D.b2Vec3___IsValid, None)
 
+
+    def __getitem__(self, *args, **kwargs):
+        """__getitem__(self, int i) -> float32"""
+        return _Box2D.b2Vec3___getitem__(self, *args, **kwargs)
+
+    def __setitem__(self, *args, **kwargs):
+        """__setitem__(self, int i, float32 value)"""
+        return _Box2D.b2Vec3___setitem__(self, *args, **kwargs)
 
     def __IsValid(self):
         """__IsValid(self) -> bool"""
@@ -913,6 +899,8 @@ b2Vec3.__neg__ = new_instancemethod(_Box2D.b2Vec3___neg__,None,b2Vec3)
 b2Vec3.__add_vector = new_instancemethod(_Box2D.b2Vec3___add_vector,None,b2Vec3)
 b2Vec3.__sub_vector = new_instancemethod(_Box2D.b2Vec3___sub_vector,None,b2Vec3)
 b2Vec3.__mul_float = new_instancemethod(_Box2D.b2Vec3___mul_float,None,b2Vec3)
+b2Vec3.__getitem__ = new_instancemethod(_Box2D.b2Vec3___getitem__,None,b2Vec3)
+b2Vec3.__setitem__ = new_instancemethod(_Box2D.b2Vec3___setitem__,None,b2Vec3)
 b2Vec3.__IsValid = new_instancemethod(_Box2D.b2Vec3___IsValid,None,b2Vec3)
 b2Vec3.__Length = new_instancemethod(_Box2D.b2Vec3___Length,None,b2Vec3)
 b2Vec3.__LengthSquared = new_instancemethod(_Box2D.b2Vec3___LengthSquared,None,b2Vec3)
@@ -1330,7 +1318,6 @@ def b2MulT(*args):
 
 def b2Abs(*args):
   """
-    b2Abs(float32 a) -> float32
     b2Abs(b2Vec2 a) -> b2Vec2
     b2Abs(b2Mat22 A) -> b2Mat22
     """
@@ -1365,7 +1352,6 @@ class b2ManifoldPoint(object):
     normalImpulse = _swig_property(_Box2D.b2ManifoldPoint_normalImpulse_get, _Box2D.b2ManifoldPoint_normalImpulse_set)
     tangentImpulse = _swig_property(_Box2D.b2ManifoldPoint_tangentImpulse_get, _Box2D.b2ManifoldPoint_tangentImpulse_set)
     id = _swig_property(_Box2D.b2ManifoldPoint_id_get, _Box2D.b2ManifoldPoint_id_set)
-    isNew = _swig_property(_Box2D.b2ManifoldPoint_isNew_get, _Box2D.b2ManifoldPoint_isNew_set)
     __dir__ = _dir_filter
 
     def __repr__(self):
@@ -1735,6 +1721,10 @@ class b2Color(object):
         Color for debug drawing. Each value has the range [0,1].
         """
         _Box2D.b2Color_swiginit(self,_Box2D.new_b2Color(*args))
+    def __get_bytes(self):
+        """__get_bytes(self) -> PyObject"""
+        return _Box2D.b2Color___get_bytes(self)
+
     __iter__ = lambda self: iter((self.r, self.g, self.b)) 
     __eq__ = lambda self, other: self.__equ(other)
     __ne__ = lambda self,other: not self.__equ(other)
@@ -1746,38 +1736,28 @@ class b2Color(object):
         return b2Color(self.r, self.g, self.b)
     def copy(self):
         return b2Color(self.r, self.g, self.b)
-    def __SetBytes(self, value):
+    def __set_bytes(self, value):
         if len(value) != 3:
             raise ValueError('Expected length 3 list')
         self.r, self.g, self.b = value[0]/255, value[1]/255, value[2]/255
-    def __SetTuple(self, value):
+    def __set_tuple(self, value):
         if len(value) != 3:
             raise ValueError('Expected length 3 list')
         self.r, self.g, self.b = value[0], value[1], value[2]
-    def __getitem__(self, i): 
-        if i==0:
-            return self.r
-        elif i==1:
-            return self.g
-        elif i==2:
-            return self.b
-        else:
-            raise IndexError
-    def __setitem__(self, i, value): 
-        if i==0:
-            self.r=value
-        elif i==1:
-            self.g=value
-        elif i==2:
-            self.b=value
-        else:
-            raise IndexError
     def __nonzero__(self):
         return self.r!=0.0 or self.g!=0.0 or self.b!=0.0
 
-    list  = property(lambda self: list(self), __SetTuple)
-    bytes = property(lambda self: [int(self.r*255), int(self.g*255), int(self.b*255)], __SetBytes)
-     
+    list  = property(lambda self: list(self), __set_tuple)
+    bytes = property(__get_bytes, __set_bytes)
+
+    def __getitem__(self, *args, **kwargs):
+        """__getitem__(self, int i) -> float32"""
+        return _Box2D.b2Color___getitem__(self, *args, **kwargs)
+
+    def __setitem__(self, *args, **kwargs):
+        """__setitem__(self, int i, float32 value)"""
+        return _Box2D.b2Color___setitem__(self, *args, **kwargs)
+
     def __truediv__(self, *args, **kwargs):
         """__truediv__(self, float32 a) -> b2Color"""
         return _Box2D.b2Color___truediv__(self, *args, **kwargs)
@@ -1828,6 +1808,9 @@ class b2Color(object):
 
     __swig_destroy__ = _Box2D.delete_b2Color
 b2Color.Set = new_instancemethod(_Box2D.b2Color_Set,None,b2Color)
+b2Color.__get_bytes = new_instancemethod(_Box2D.b2Color___get_bytes,None,b2Color)
+b2Color.__getitem__ = new_instancemethod(_Box2D.b2Color___getitem__,None,b2Color)
+b2Color.__setitem__ = new_instancemethod(_Box2D.b2Color___setitem__,None,b2Color)
 b2Color.__truediv__ = new_instancemethod(_Box2D.b2Color___truediv__,None,b2Color)
 b2Color.__add__ = new_instancemethod(_Box2D.b2Color___add__,None,b2Color)
 b2Color.__sub__ = new_instancemethod(_Box2D.b2Color___sub__,None,b2Color)
@@ -2435,6 +2418,10 @@ class b2LoopShape(b2Shape):
     def __repr__(self):
         return _format_repr(self, ['childCount','edges','radius','type','vertexCount','vertices']) 
 
+    def __get_vertices(self):
+        """__get_vertices(self) -> PyObject"""
+        return _Box2D.b2LoopShape___get_vertices(self)
+
     def __repr__(self):
         return "b2LoopShape(vertices: %s)" % (self.vertices)
 
@@ -2504,6 +2491,7 @@ b2LoopShape.__GetChildEdge = new_instancemethod(_Box2D.b2LoopShape___GetChildEdg
 b2LoopShape.__GetCount = new_instancemethod(_Box2D.b2LoopShape___GetCount,None,b2LoopShape)
 b2LoopShape.__GetVertex = new_instancemethod(_Box2D.b2LoopShape___GetVertex,None,b2LoopShape)
 b2LoopShape.__GetVertices = new_instancemethod(_Box2D.b2LoopShape___GetVertices,None,b2LoopShape)
+b2LoopShape.__get_vertices = new_instancemethod(_Box2D.b2LoopShape___get_vertices,None,b2LoopShape)
 b2LoopShape.__bypass_create = new_instancemethod(_Box2D.b2LoopShape___bypass_create,None,b2LoopShape)
 b2LoopShape.__get_vertex = new_instancemethod(_Box2D.b2LoopShape___get_vertex,None,b2LoopShape)
 b2LoopShape_swigregister = _Box2D.b2LoopShape_swigregister
@@ -2549,16 +2537,16 @@ class b2PolygonShape(b2Shape):
     def __repr__(self):
         return _format_repr(self, ['box','centroid','childCount','normals','radius','type','valid','vertexCount','vertices']) 
 
+    def __get_vertices(self):
+        """__get_vertices(self) -> PyObject"""
+        return _Box2D.b2PolygonShape___get_vertices(self)
+
+    def __get_normals(self):
+        """__get_normals(self) -> PyObject"""
+        return _Box2D.b2PolygonShape___get_normals(self)
+
     def __repr__(self):
         return "b2PolygonShape(vertices: %s)" % (self.vertices)
-    def __get_vertices(self):
-        """Returns all of the vertices as a list of tuples [ (x1,y1), (x2,y2) ... (xN,yN) ]"""
-        return [ (self.__get_vertex(i).x, self.__get_vertex(i).y )
-                         for i in range(0, self.vertexCount)]
-    def __get_normals(self):
-        """Returns all of the normals as a list of tuples [ (x1,y1), (x2,y2) ... (xN,yN) ]"""
-        return [ (self.__get_normal(i).x, self.__get_normal(i).y )
-                         for i in range(0, self.vertexCount)]
     def __clear_vertices(self):
         self.vertexCount=0
         for i in range(0, b2_maxPolygonVertices):
@@ -2571,12 +2559,10 @@ class b2PolygonShape(b2Shape):
                 raise ValueError('Expected tuple or list of length >= 2 and less than b2_maxPolygonVertices=%d, got length %d.' %
                                      (b2_maxPolygonVertices, len(values)))
             for i,value in enumerate(values):
-                if isinstance(value, (tuple, list)):
+                if isinstance(value, (tuple, list, b2Vec2)):
                     if len(value) != 2:
                         raise ValueError('Expected tuple or list of length 2, got length %d' % len(value))
                     self.set_vertex(i, *value)
-                elif isinstance(value, b2Vec2):
-                    self.set_vertex(i, value)
                 else:
                     raise ValueError('Expected tuple, list, or b2Vec2, got %s' % type(value))
                 self.vertexCount=i+1 # follow along in case of an exception to indicate valid number set
@@ -2594,8 +2580,8 @@ class b2PolygonShape(b2Shape):
         return b2CheckPolygon(self)
 
     valid = property(__IsValid, None, doc="Checks the polygon to see if it can be properly created. Raises ValueError for invalid shapes.")
-    vertices = property(__get_vertices, __set_vertices)
-    normals = property(__get_normals, None)
+    vertices = property(__get_vertices, __set_vertices, doc="All of the vertices as a list of tuples [ (x1,y1), (x2,y2) ... (xN,yN) ]")
+    normals = property(__get_normals, None, doc="All of the normals as a list of tuples [ (x1,y1), (x2,y2) ... (xN,yN) ]")
     box = property(None, lambda self, value: self.SetAsBox(*value), doc="Property replacement for running SetAsBox (Write-only)")
 
     def __get_vertex(self, *args, **kwargs):
@@ -2622,6 +2608,8 @@ class b2PolygonShape(b2Shape):
 
     __swig_destroy__ = _Box2D.delete_b2PolygonShape
 b2PolygonShape.SetAsBox = new_instancemethod(_Box2D.b2PolygonShape_SetAsBox,None,b2PolygonShape)
+b2PolygonShape.__get_vertices = new_instancemethod(_Box2D.b2PolygonShape___get_vertices,None,b2PolygonShape)
+b2PolygonShape.__get_normals = new_instancemethod(_Box2D.b2PolygonShape___get_normals,None,b2PolygonShape)
 b2PolygonShape.__get_vertex = new_instancemethod(_Box2D.b2PolygonShape___get_vertex,None,b2PolygonShape)
 b2PolygonShape.__get_normal = new_instancemethod(_Box2D.b2PolygonShape___get_normal,None,b2PolygonShape)
 b2PolygonShape.set_vertex = new_instancemethod(_Box2D.b2PolygonShape_set_vertex,None,b2PolygonShape)
@@ -2631,6 +2619,27 @@ b2PolygonShape_swigregister(b2PolygonShape)
 
 b2_nullNode = _Box2D.b2_nullNode
 B2_USE_DYNAMIC_TREE = _Box2D.B2_USE_DYNAMIC_TREE
+B2_USE_BRUTE_FORCE = _Box2D.B2_USE_BRUTE_FORCE
+class b2TreeNode(object):
+    """Proxy of C++ b2TreeNode class"""
+    thisown = _swig_property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc='The membership flag')
+    __repr__ = _swig_repr
+    def IsLeaf(self):
+        """IsLeaf(self) -> bool"""
+        return _Box2D.b2TreeNode_IsLeaf(self)
+
+    aabb = _swig_property(_Box2D.b2TreeNode_aabb_get, _Box2D.b2TreeNode_aabb_set)
+    child1 = _swig_property(_Box2D.b2TreeNode_child1_get, _Box2D.b2TreeNode_child1_set)
+    child2 = _swig_property(_Box2D.b2TreeNode_child2_get, _Box2D.b2TreeNode_child2_set)
+    height = _swig_property(_Box2D.b2TreeNode_height_get, _Box2D.b2TreeNode_height_set)
+    def __init__(self): 
+        """__init__(self) -> b2TreeNode"""
+        _Box2D.b2TreeNode_swiginit(self,_Box2D.new_b2TreeNode())
+    __swig_destroy__ = _Box2D.delete_b2TreeNode
+b2TreeNode.IsLeaf = new_instancemethod(_Box2D.b2TreeNode_IsLeaf,None,b2TreeNode)
+b2TreeNode_swigregister = _Box2D.b2TreeNode_swigregister
+b2TreeNode_swigregister(b2TreeNode)
+
 class b2Pair(object):
     """Proxy of C++ b2Pair class"""
     thisown = _swig_property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc='The membership flag')
@@ -2721,18 +2730,25 @@ class b2BroadPhase(object):
         """
         return _Box2D.b2BroadPhase___GetProxyCount(self)
 
-    def ComputeHeight(self):
-        """
-        ComputeHeight(self) -> int32
+    def __GetTreeHeight(self):
+        """__GetTreeHeight(self) -> int32"""
+        return _Box2D.b2BroadPhase___GetTreeHeight(self)
 
-        Compute the height of the embedded tree.
-        """
-        return _Box2D.b2BroadPhase_ComputeHeight(self)
+    def __GetTreeBalance(self):
+        """__GetTreeBalance(self) -> int32"""
+        return _Box2D.b2BroadPhase___GetTreeBalance(self)
+
+    def __GetTreeQuality(self):
+        """__GetTreeQuality(self) -> float32"""
+        return _Box2D.b2BroadPhase___GetTreeQuality(self)
 
     def __repr__(self):
         return _format_repr(self, ['proxyCount']) 
 
     proxyCount=property(__GetProxyCount, None)
+    treeHeight=property(__GetTreeHeight, None)
+    treeBalance=property(__GetTreeBalance, None)
+    treeQuality=property(__GetTreeQuality, None)
 
 b2BroadPhase.CreateProxy = new_instancemethod(_Box2D.b2BroadPhase_CreateProxy,None,b2BroadPhase)
 b2BroadPhase.DestroyProxy = new_instancemethod(_Box2D.b2BroadPhase_DestroyProxy,None,b2BroadPhase)
@@ -2741,7 +2757,9 @@ b2BroadPhase.TouchProxy = new_instancemethod(_Box2D.b2BroadPhase_TouchProxy,None
 b2BroadPhase.GetFatAABB = new_instancemethod(_Box2D.b2BroadPhase_GetFatAABB,None,b2BroadPhase)
 b2BroadPhase.TestOverlap = new_instancemethod(_Box2D.b2BroadPhase_TestOverlap,None,b2BroadPhase)
 b2BroadPhase.__GetProxyCount = new_instancemethod(_Box2D.b2BroadPhase___GetProxyCount,None,b2BroadPhase)
-b2BroadPhase.ComputeHeight = new_instancemethod(_Box2D.b2BroadPhase_ComputeHeight,None,b2BroadPhase)
+b2BroadPhase.__GetTreeHeight = new_instancemethod(_Box2D.b2BroadPhase___GetTreeHeight,None,b2BroadPhase)
+b2BroadPhase.__GetTreeBalance = new_instancemethod(_Box2D.b2BroadPhase___GetTreeBalance,None,b2BroadPhase)
+b2BroadPhase.__GetTreeQuality = new_instancemethod(_Box2D.b2BroadPhase___GetTreeQuality,None,b2BroadPhase)
 b2BroadPhase_swigregister = _Box2D.b2BroadPhase_swigregister
 b2BroadPhase_swigregister(b2BroadPhase)
 
@@ -2938,7 +2956,7 @@ class b2BodyDef(object):
     fixedRotation = _swig_property(_Box2D.b2BodyDef_fixedRotation_get, _Box2D.b2BodyDef_fixedRotation_set)
     bullet = _swig_property(_Box2D.b2BodyDef_bullet_get, _Box2D.b2BodyDef_bullet_set)
     active = _swig_property(_Box2D.b2BodyDef_active_get, _Box2D.b2BodyDef_active_set)
-    inertiaScale = _swig_property(_Box2D.b2BodyDef_inertiaScale_get, _Box2D.b2BodyDef_inertiaScale_set)
+    gravityScale = _swig_property(_Box2D.b2BodyDef_gravityScale_get, _Box2D.b2BodyDef_gravityScale_set)
     __dir__ = _dir_filter
 
     def __repr__(self):
@@ -3314,6 +3332,14 @@ class b2Body(object):
         Set the angular damping of the body.
         """
         return _Box2D.b2Body___SetAngularDamping(self, *args, **kwargs)
+
+    def __GetGravityScale(self):
+        """__GetGravityScale(self) -> float32"""
+        return _Box2D.b2Body___GetGravityScale(self)
+
+    def __SetGravityScale(self, *args, **kwargs):
+        """__SetGravityScale(self, float32 scale)"""
+        return _Box2D.b2Body___SetGravityScale(self, *args, **kwargs)
 
     def __SetType(self, *args, **kwargs):
         """
@@ -3722,6 +3748,7 @@ class b2Body(object):
     localCenter = property(__GetLocalCenter, __SetLocalCenter)
     inertia = property(__GetInertia, __SetInertia)
     position = property(__GetPosition, lambda self, pos: self.__SetTransform(pos, self.angle))
+    gravityScale = property(__GetGravityScale, __SetGravityScale)
 
     # Read-only
     joints = property(lambda self: _list_from_linked_list(self.__GetJointList_internal()), None)
@@ -3761,6 +3788,8 @@ b2Body.__GetLinearDamping = new_instancemethod(_Box2D.b2Body___GetLinearDamping,
 b2Body.__SetLinearDamping = new_instancemethod(_Box2D.b2Body___SetLinearDamping,None,b2Body)
 b2Body.__GetAngularDamping = new_instancemethod(_Box2D.b2Body___GetAngularDamping,None,b2Body)
 b2Body.__SetAngularDamping = new_instancemethod(_Box2D.b2Body___SetAngularDamping,None,b2Body)
+b2Body.__GetGravityScale = new_instancemethod(_Box2D.b2Body___GetGravityScale,None,b2Body)
+b2Body.__SetGravityScale = new_instancemethod(_Box2D.b2Body___SetGravityScale,None,b2Body)
 b2Body.__SetType = new_instancemethod(_Box2D.b2Body___SetType,None,b2Body)
 b2Body.__GetType = new_instancemethod(_Box2D.b2Body___GetType,None,b2Body)
 b2Body.__SetBullet = new_instancemethod(_Box2D.b2Body___SetBullet,None,b2Body)
@@ -4429,6 +4458,21 @@ b2ContactManager_swigregister(b2ContactManager)
 b2_stackSize = b2Globals.b2_stackSize
 b2_maxStackEntries = b2Globals.b2_maxStackEntries
 
+class b2Profile(object):
+    """Proxy of C++ b2Profile class"""
+    thisown = _swig_property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc='The membership flag')
+    __repr__ = _swig_repr
+    step = _swig_property(_Box2D.b2Profile_step_get, _Box2D.b2Profile_step_set)
+    collide = _swig_property(_Box2D.b2Profile_collide_get, _Box2D.b2Profile_collide_set)
+    solve = _swig_property(_Box2D.b2Profile_solve_get, _Box2D.b2Profile_solve_set)
+    solveTOI = _swig_property(_Box2D.b2Profile_solveTOI_get, _Box2D.b2Profile_solveTOI_set)
+    def __init__(self): 
+        """__init__(self) -> b2Profile"""
+        _Box2D.b2Profile_swiginit(self,_Box2D.new_b2Profile())
+    __swig_destroy__ = _Box2D.delete_b2Profile
+b2Profile_swigregister = _Box2D.b2Profile_swigregister
+b2Profile_swigregister(b2Profile)
+
 class b2World(object):
     """The world class manages all physics entities, dynamic simulation, and asynchronous queries. The world also contains efficient memory management facilities."""
     thisown = _swig_property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc='The membership flag')
@@ -4674,6 +4718,18 @@ class b2World(object):
         """
         return _Box2D.b2World___GetContactCount(self)
 
+    def GetTreeHeight(self):
+        """GetTreeHeight(self) -> int32"""
+        return _Box2D.b2World_GetTreeHeight(self)
+
+    def GetTreeBalance(self):
+        """GetTreeBalance(self) -> int32"""
+        return _Box2D.b2World_GetTreeBalance(self)
+
+    def GetTreeQuality(self):
+        """GetTreeQuality(self) -> float32"""
+        return _Box2D.b2World_GetTreeQuality(self)
+
     def __SetGravity(self, *args, **kwargs):
         """
         __SetGravity(self, b2Vec2 gravity)
@@ -4721,6 +4777,10 @@ class b2World(object):
         Get the contact manager for testing.
         """
         return _Box2D.b2World___GetContactManager(self)
+
+    def GetProfile(self):
+        """GetProfile(self) -> b2Profile"""
+        return _Box2D.b2World_GetProfile(self)
 
     __dir__ = _dir_filter
 
@@ -4890,15 +4950,15 @@ class b2World(object):
             raise ValueError('Gear joint requires that both joint1 and joint2 be set')
         return self.__CreateJoint(b2GearJointDef(**kwargs))
 
-    def CreateLineJoint(self, **kwargs):
+    def CreateWheelJoint(self, **kwargs):
         """
-        Create a single b2LineJoint. Only accepts kwargs to the joint definition.
+        Create a single b2WheelJoint. Only accepts kwargs to the joint definition.
 
         Raises ValueError if either bodyA or bodyB is left unset.
         """
         if 'bodyA' not in kwargs or 'bodyB' not in kwargs:
             raise ValueError('Requires at least bodyA and bodyB be set')
-        return self.__CreateJoint(b2LineJointDef(**kwargs))
+        return self.__CreateJoint(b2WheelJointDef(**kwargs))
 
     def CreateMouseJoint(self, **kwargs):
         """
@@ -5057,12 +5117,16 @@ b2World.__GetProxyCount = new_instancemethod(_Box2D.b2World___GetProxyCount,None
 b2World.__GetBodyCount = new_instancemethod(_Box2D.b2World___GetBodyCount,None,b2World)
 b2World.__GetJointCount = new_instancemethod(_Box2D.b2World___GetJointCount,None,b2World)
 b2World.__GetContactCount = new_instancemethod(_Box2D.b2World___GetContactCount,None,b2World)
+b2World.GetTreeHeight = new_instancemethod(_Box2D.b2World_GetTreeHeight,None,b2World)
+b2World.GetTreeBalance = new_instancemethod(_Box2D.b2World_GetTreeBalance,None,b2World)
+b2World.GetTreeQuality = new_instancemethod(_Box2D.b2World_GetTreeQuality,None,b2World)
 b2World.__SetGravity = new_instancemethod(_Box2D.b2World___SetGravity,None,b2World)
 b2World.__GetGravity = new_instancemethod(_Box2D.b2World___GetGravity,None,b2World)
 b2World.__IsLocked = new_instancemethod(_Box2D.b2World___IsLocked,None,b2World)
 b2World.__SetAutoClearForces = new_instancemethod(_Box2D.b2World___SetAutoClearForces,None,b2World)
 b2World.__GetAutoClearForces = new_instancemethod(_Box2D.b2World___GetAutoClearForces,None,b2World)
 b2World.__GetContactManager = new_instancemethod(_Box2D.b2World___GetContactManager,None,b2World)
+b2World.GetProfile = new_instancemethod(_Box2D.b2World_GetProfile,None,b2World)
 b2World.__CreateBody = new_instancemethod(_Box2D.b2World___CreateBody,None,b2World)
 b2World.__CreateJoint = new_instancemethod(_Box2D.b2World___CreateJoint,None,b2World)
 b2World.DestroyBody = new_instancemethod(_Box2D.b2World_DestroyBody,None,b2World)
@@ -5227,6 +5291,7 @@ b2Contact.Evaluate = new_instancemethod(_Box2D.b2Contact_Evaluate,None,b2Contact
 b2Contact_swigregister = _Box2D.b2Contact_swigregister
 b2Contact_swigregister(b2Contact)
 
+e_wheelJoint = _Box2D.e_wheelJoint
 e_ropeJoint = _Box2D.e_ropeJoint
 class b2Jacobian(object):
     """Proxy of C++ b2Jacobian class"""
@@ -5756,12 +5821,12 @@ b2GearJoint.__GetRatio = new_instancemethod(_Box2D.b2GearJoint___GetRatio,None,b
 b2GearJoint_swigregister = _Box2D.b2GearJoint_swigregister
 b2GearJoint_swigregister(b2GearJoint)
 
-class b2LineJointDef(b2JointDef):
+class b2WheelJointDef(b2JointDef):
     """Line joint definition. This requires defining a line of motion using an axis and an anchor point. The definition uses local anchor points and a local axis so that the initial configuration can violate the constraint slightly. The joint translation is zero when the local anchor points coincide in world space. Using local anchors and a local axis helps when saving and loading a game."""
     thisown = _swig_property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc='The membership flag')
     __repr__ = _swig_repr
     def __init__(self, **kwargs):
-        _Box2D.b2LineJointDef_swiginit(self,_Box2D.new_b2LineJointDef())
+        _Box2D.b2WheelJointDef_swiginit(self,_Box2D.new_b2WheelJointDef())
         _init_jointdef_kwargs(self, **kwargs)
 
 
@@ -5771,16 +5836,16 @@ class b2LineJointDef(b2JointDef):
 
         Initialize the bodies, anchors, axis, and reference angle using the world anchor and world axis.
         """
-        return _Box2D.b2LineJointDef_Initialize(self, *args, **kwargs)
+        return _Box2D.b2WheelJointDef_Initialize(self, *args, **kwargs)
 
-    localAnchorA = _swig_property(_Box2D.b2LineJointDef_localAnchorA_get, _Box2D.b2LineJointDef_localAnchorA_set)
-    localAnchorB = _swig_property(_Box2D.b2LineJointDef_localAnchorB_get, _Box2D.b2LineJointDef_localAnchorB_set)
-    localAxisA = _swig_property(_Box2D.b2LineJointDef_localAxisA_get, _Box2D.b2LineJointDef_localAxisA_set)
-    enableMotor = _swig_property(_Box2D.b2LineJointDef_enableMotor_get, _Box2D.b2LineJointDef_enableMotor_set)
-    maxMotorTorque = _swig_property(_Box2D.b2LineJointDef_maxMotorTorque_get, _Box2D.b2LineJointDef_maxMotorTorque_set)
-    motorSpeed = _swig_property(_Box2D.b2LineJointDef_motorSpeed_get, _Box2D.b2LineJointDef_motorSpeed_set)
-    frequencyHz = _swig_property(_Box2D.b2LineJointDef_frequencyHz_get, _Box2D.b2LineJointDef_frequencyHz_set)
-    dampingRatio = _swig_property(_Box2D.b2LineJointDef_dampingRatio_get, _Box2D.b2LineJointDef_dampingRatio_set)
+    localAnchorA = _swig_property(_Box2D.b2WheelJointDef_localAnchorA_get, _Box2D.b2WheelJointDef_localAnchorA_set)
+    localAnchorB = _swig_property(_Box2D.b2WheelJointDef_localAnchorB_get, _Box2D.b2WheelJointDef_localAnchorB_set)
+    localAxisA = _swig_property(_Box2D.b2WheelJointDef_localAxisA_get, _Box2D.b2WheelJointDef_localAxisA_set)
+    enableMotor = _swig_property(_Box2D.b2WheelJointDef_enableMotor_get, _Box2D.b2WheelJointDef_enableMotor_set)
+    maxMotorTorque = _swig_property(_Box2D.b2WheelJointDef_maxMotorTorque_get, _Box2D.b2WheelJointDef_maxMotorTorque_set)
+    motorSpeed = _swig_property(_Box2D.b2WheelJointDef_motorSpeed_get, _Box2D.b2WheelJointDef_motorSpeed_set)
+    frequencyHz = _swig_property(_Box2D.b2WheelJointDef_frequencyHz_get, _Box2D.b2WheelJointDef_frequencyHz_set)
+    dampingRatio = _swig_property(_Box2D.b2WheelJointDef_dampingRatio_get, _Box2D.b2WheelJointDef_dampingRatio_set)
     __dir__ = _dir_filter
 
     def __repr__(self):
@@ -5818,12 +5883,12 @@ class b2LineJointDef(b2JointDef):
                 Getting the property depends on bodyA and localAxisA.
                 Setting the property requires that bodyA be set.""")
 
-    __swig_destroy__ = _Box2D.delete_b2LineJointDef
-b2LineJointDef.Initialize = new_instancemethod(_Box2D.b2LineJointDef_Initialize,None,b2LineJointDef)
-b2LineJointDef_swigregister = _Box2D.b2LineJointDef_swigregister
-b2LineJointDef_swigregister(b2LineJointDef)
+    __swig_destroy__ = _Box2D.delete_b2WheelJointDef
+b2WheelJointDef.Initialize = new_instancemethod(_Box2D.b2WheelJointDef_Initialize,None,b2WheelJointDef)
+b2WheelJointDef_swigregister = _Box2D.b2WheelJointDef_swigregister
+b2WheelJointDef_swigregister(b2WheelJointDef)
 
-class b2LineJoint(b2Joint):
+class b2WheelJoint(b2Joint):
     """A line joint. This joint provides two degrees of freedom: translation along an axis fixed in body1 and rotation in the plane. You can use a joint limit to restrict the range of motion and a joint motor to drive the rotation or to model rotational friction. This joint is designed for vehicle suspensions."""
     thisown = _swig_property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc='The membership flag')
     def __init__(self, *args, **kwargs): raise AttributeError("No constructor defined")
@@ -5834,7 +5899,7 @@ class b2LineJoint(b2Joint):
 
         Get the current joint translation, usually in meters.
         """
-        return _Box2D.b2LineJoint___GetJointTranslation(self)
+        return _Box2D.b2WheelJoint___GetJointTranslation(self)
 
     def __GetJointSpeed(self):
         """
@@ -5842,7 +5907,7 @@ class b2LineJoint(b2Joint):
 
         Get the current joint translation speed, usually in meters per second.
         """
-        return _Box2D.b2LineJoint___GetJointSpeed(self)
+        return _Box2D.b2WheelJoint___GetJointSpeed(self)
 
     def __IsMotorEnabled(self):
         """
@@ -5850,7 +5915,7 @@ class b2LineJoint(b2Joint):
 
         Is the joint motor enabled?
         """
-        return _Box2D.b2LineJoint___IsMotorEnabled(self)
+        return _Box2D.b2WheelJoint___IsMotorEnabled(self)
 
     def __EnableMotor(self, *args, **kwargs):
         """
@@ -5858,7 +5923,7 @@ class b2LineJoint(b2Joint):
 
         Enable/disable the joint motor.
         """
-        return _Box2D.b2LineJoint___EnableMotor(self, *args, **kwargs)
+        return _Box2D.b2WheelJoint___EnableMotor(self, *args, **kwargs)
 
     def __SetMotorSpeed(self, *args, **kwargs):
         """
@@ -5866,7 +5931,7 @@ class b2LineJoint(b2Joint):
 
         Set the motor speed, usually in radians per second.
         """
-        return _Box2D.b2LineJoint___SetMotorSpeed(self, *args, **kwargs)
+        return _Box2D.b2WheelJoint___SetMotorSpeed(self, *args, **kwargs)
 
     def __GetMotorSpeed(self):
         """
@@ -5874,7 +5939,7 @@ class b2LineJoint(b2Joint):
 
         Get the motor speed, usually in radians per second.
         """
-        return _Box2D.b2LineJoint___GetMotorSpeed(self)
+        return _Box2D.b2WheelJoint___GetMotorSpeed(self)
 
     def __SetMaxMotorTorque(self, *args, **kwargs):
         """
@@ -5882,11 +5947,11 @@ class b2LineJoint(b2Joint):
 
         Set/Get the maximum motor force, usually in N-m.
         """
-        return _Box2D.b2LineJoint___SetMaxMotorTorque(self, *args, **kwargs)
+        return _Box2D.b2WheelJoint___SetMaxMotorTorque(self, *args, **kwargs)
 
     def __GetMaxMotorTorque(self):
         """__GetMaxMotorTorque(self) -> float32"""
-        return _Box2D.b2LineJoint___GetMaxMotorTorque(self)
+        return _Box2D.b2WheelJoint___GetMaxMotorTorque(self)
 
     def GetMotorTorque(self, *args, **kwargs):
         """
@@ -5894,7 +5959,7 @@ class b2LineJoint(b2Joint):
 
         Get the current motor torque given the inverse time step, usually in N-m.
         """
-        return _Box2D.b2LineJoint_GetMotorTorque(self, *args, **kwargs)
+        return _Box2D.b2WheelJoint_GetMotorTorque(self, *args, **kwargs)
 
     def __SetSpringFrequencyHz(self, *args, **kwargs):
         """
@@ -5902,11 +5967,11 @@ class b2LineJoint(b2Joint):
 
         Set/Get the spring frequency in hertz. Setting the frequency to zero disables the spring.
         """
-        return _Box2D.b2LineJoint___SetSpringFrequencyHz(self, *args, **kwargs)
+        return _Box2D.b2WheelJoint___SetSpringFrequencyHz(self, *args, **kwargs)
 
     def __GetSpringFrequencyHz(self):
         """__GetSpringFrequencyHz(self) -> float32"""
-        return _Box2D.b2LineJoint___GetSpringFrequencyHz(self)
+        return _Box2D.b2WheelJoint___GetSpringFrequencyHz(self)
 
     def __SetSpringDampingRatio(self, *args, **kwargs):
         """
@@ -5914,11 +5979,11 @@ class b2LineJoint(b2Joint):
 
         Set/Get the spring damping ratio.
         """
-        return _Box2D.b2LineJoint___SetSpringDampingRatio(self, *args, **kwargs)
+        return _Box2D.b2WheelJoint___SetSpringDampingRatio(self, *args, **kwargs)
 
     def __GetSpringDampingRatio(self):
         """__GetSpringDampingRatio(self) -> float32"""
-        return _Box2D.b2LineJoint___GetSpringDampingRatio(self)
+        return _Box2D.b2WheelJoint___GetSpringDampingRatio(self)
 
     __dir__ = _dir_filter
 
@@ -5937,22 +6002,22 @@ class b2LineJoint(b2Joint):
     translation = property(__GetJointTranslation, None)
 
 
-    __swig_destroy__ = _Box2D.delete_b2LineJoint
-b2LineJoint.__GetJointTranslation = new_instancemethod(_Box2D.b2LineJoint___GetJointTranslation,None,b2LineJoint)
-b2LineJoint.__GetJointSpeed = new_instancemethod(_Box2D.b2LineJoint___GetJointSpeed,None,b2LineJoint)
-b2LineJoint.__IsMotorEnabled = new_instancemethod(_Box2D.b2LineJoint___IsMotorEnabled,None,b2LineJoint)
-b2LineJoint.__EnableMotor = new_instancemethod(_Box2D.b2LineJoint___EnableMotor,None,b2LineJoint)
-b2LineJoint.__SetMotorSpeed = new_instancemethod(_Box2D.b2LineJoint___SetMotorSpeed,None,b2LineJoint)
-b2LineJoint.__GetMotorSpeed = new_instancemethod(_Box2D.b2LineJoint___GetMotorSpeed,None,b2LineJoint)
-b2LineJoint.__SetMaxMotorTorque = new_instancemethod(_Box2D.b2LineJoint___SetMaxMotorTorque,None,b2LineJoint)
-b2LineJoint.__GetMaxMotorTorque = new_instancemethod(_Box2D.b2LineJoint___GetMaxMotorTorque,None,b2LineJoint)
-b2LineJoint.GetMotorTorque = new_instancemethod(_Box2D.b2LineJoint_GetMotorTorque,None,b2LineJoint)
-b2LineJoint.__SetSpringFrequencyHz = new_instancemethod(_Box2D.b2LineJoint___SetSpringFrequencyHz,None,b2LineJoint)
-b2LineJoint.__GetSpringFrequencyHz = new_instancemethod(_Box2D.b2LineJoint___GetSpringFrequencyHz,None,b2LineJoint)
-b2LineJoint.__SetSpringDampingRatio = new_instancemethod(_Box2D.b2LineJoint___SetSpringDampingRatio,None,b2LineJoint)
-b2LineJoint.__GetSpringDampingRatio = new_instancemethod(_Box2D.b2LineJoint___GetSpringDampingRatio,None,b2LineJoint)
-b2LineJoint_swigregister = _Box2D.b2LineJoint_swigregister
-b2LineJoint_swigregister(b2LineJoint)
+    __swig_destroy__ = _Box2D.delete_b2WheelJoint
+b2WheelJoint.__GetJointTranslation = new_instancemethod(_Box2D.b2WheelJoint___GetJointTranslation,None,b2WheelJoint)
+b2WheelJoint.__GetJointSpeed = new_instancemethod(_Box2D.b2WheelJoint___GetJointSpeed,None,b2WheelJoint)
+b2WheelJoint.__IsMotorEnabled = new_instancemethod(_Box2D.b2WheelJoint___IsMotorEnabled,None,b2WheelJoint)
+b2WheelJoint.__EnableMotor = new_instancemethod(_Box2D.b2WheelJoint___EnableMotor,None,b2WheelJoint)
+b2WheelJoint.__SetMotorSpeed = new_instancemethod(_Box2D.b2WheelJoint___SetMotorSpeed,None,b2WheelJoint)
+b2WheelJoint.__GetMotorSpeed = new_instancemethod(_Box2D.b2WheelJoint___GetMotorSpeed,None,b2WheelJoint)
+b2WheelJoint.__SetMaxMotorTorque = new_instancemethod(_Box2D.b2WheelJoint___SetMaxMotorTorque,None,b2WheelJoint)
+b2WheelJoint.__GetMaxMotorTorque = new_instancemethod(_Box2D.b2WheelJoint___GetMaxMotorTorque,None,b2WheelJoint)
+b2WheelJoint.GetMotorTorque = new_instancemethod(_Box2D.b2WheelJoint_GetMotorTorque,None,b2WheelJoint)
+b2WheelJoint.__SetSpringFrequencyHz = new_instancemethod(_Box2D.b2WheelJoint___SetSpringFrequencyHz,None,b2WheelJoint)
+b2WheelJoint.__GetSpringFrequencyHz = new_instancemethod(_Box2D.b2WheelJoint___GetSpringFrequencyHz,None,b2WheelJoint)
+b2WheelJoint.__SetSpringDampingRatio = new_instancemethod(_Box2D.b2WheelJoint___SetSpringDampingRatio,None,b2WheelJoint)
+b2WheelJoint.__GetSpringDampingRatio = new_instancemethod(_Box2D.b2WheelJoint___GetSpringDampingRatio,None,b2WheelJoint)
+b2WheelJoint_swigregister = _Box2D.b2WheelJoint_swigregister
+b2WheelJoint_swigregister(b2WheelJoint)
 
 class b2MouseJointDef(b2JointDef):
     """Mouse joint definition. This requires a world target point, tuning parameters, and the time step."""
@@ -6331,9 +6396,7 @@ class b2PulleyJointDef(b2JointDef):
     localAnchorA = _swig_property(_Box2D.b2PulleyJointDef_localAnchorA_get, _Box2D.b2PulleyJointDef_localAnchorA_set)
     localAnchorB = _swig_property(_Box2D.b2PulleyJointDef_localAnchorB_get, _Box2D.b2PulleyJointDef_localAnchorB_set)
     lengthA = _swig_property(_Box2D.b2PulleyJointDef_lengthA_get, _Box2D.b2PulleyJointDef_lengthA_set)
-    maxLengthA = _swig_property(_Box2D.b2PulleyJointDef_maxLengthA_get, _Box2D.b2PulleyJointDef_maxLengthA_set)
     lengthB = _swig_property(_Box2D.b2PulleyJointDef_lengthB_get, _Box2D.b2PulleyJointDef_lengthB_set)
-    maxLengthB = _swig_property(_Box2D.b2PulleyJointDef_maxLengthB_get, _Box2D.b2PulleyJointDef_maxLengthB_set)
     ratio = _swig_property(_Box2D.b2PulleyJointDef_ratio_get, _Box2D.b2PulleyJointDef_ratio_set)
     __dir__ = _dir_filter
 

@@ -1,6 +1,6 @@
 #!/usr/bin/python
 #
-# C++ version Copyright (c) 2006-2007 Erin Catto http://www.gphysics.com
+# C++ version Copyright (c) 2006-2007 Erin Catto http://www.box2d.org
 # Python version Copyright (c) 2010 kne / sirkne at gmail dot com
 # 
 # This software is provided 'as-is', without any express or implied
@@ -197,11 +197,12 @@ class PygletDraw(b2Draw):
         Caches the calculated LL/TF vertices, but recalculates
         based on the center passed in.
 
-        TODO: As of this point, there's only one point amount,
+        TODO: Currently, there's only one point amount,
         so the circle cache ignores it when storing. Could cause
         some confusion if you're using multiple point counts as
         only the first stored point-count for that radius will
         show up.
+        TODO: What does the previous TODO mean?
 
         Returns: (tf_vertices, ll_vertices)
         """

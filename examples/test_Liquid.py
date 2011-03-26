@@ -1,6 +1,6 @@
 #!/usr/bin/python
 #
-# C++ version Copyright (c) 2006-2007 Erin Catto http://www.gphysics.com
+# C++ version Copyright (c) 2006-2007 Erin Catto http://www.box2d.org
 # Python version Copyright (c) 2010 Ken Lauer / sirkne at gmail dot com
 # 
 # This software is provided 'as-is', without any express or implied
@@ -68,7 +68,8 @@ class Liquid (Framework):
 
         self.createBoxSurfer()
 
-        self.settings.enableSubStepping=False
+        if hasattr(self, 'settings'):
+            self.settings.enableSubStepping=False
 
     def createBoxSurfer(self):
         self.surfer=self.world.CreateDynamicBody(

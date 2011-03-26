@@ -1,6 +1,6 @@
 #!/usr/bin/python
 #
-# C++ version Copyright (c) 2006-2007 Erin Catto http://www.gphysics.com
+# C++ version Copyright (c) 2006-2007 Erin Catto http://www.box2d.org
 # Python version Copyright (c) 2010 kne / sirkne at gmail dot com
 # 
 # This software is provided 'as-is', without any express or implied
@@ -225,7 +225,8 @@ class PygameFramework(FrameworkBase):
             except IOError:
                 print("Unable to load default font or 'freesansbold.ttf'")
                 print("Disabling text drawing.")
-                self.DrawString = lambda x,y,z: 0
+                self.Print = lambda *args: 0
+                self.DrawStringAt = lambda *args: 0
 
         # GUI Initialization
         if GUIEnabled:

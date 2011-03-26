@@ -1,6 +1,6 @@
 #!/usr/bin/python
 #
-# C++ version Copyright (c) 2006-2007 Erin Catto http://www.gphysics.com
+# C++ version Copyright (c) 2006-2007 Erin Catto http://www.box2d.org
 # Python version Copyright (c) 2010 kne / sirkne at gmail dot com
 # 
 # This software is provided 'as-is', without any express or implied
@@ -64,7 +64,7 @@ class Tiles (Framework):
     def Step(self, settings):
         super(Tiles, self).Step(settings)
         cm=self.world.contactManager
-        height=cm.broadPhase.ComputeHeight()
+        height=cm.broadPhase.treeHeight
         leafCount=cm.broadPhase.proxyCount
         minNodeCount=2*leafCount-1
         minHeight=ceil(log(float(minNodeCount)) / log(2))

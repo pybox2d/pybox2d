@@ -1,6 +1,6 @@
 #!/usr/bin/python
 #
-# C++ version Copyright (c) 2006-2007 Erin Catto http://www.gphysics.com
+# C++ version Copyright (c) 2006-2007 Erin Catto http://www.box2d.org
 # Python version Copyright (c) 2010 kne / sirkne at gmail dot com
 # 
 # This software is provided 'as-is', without any express or implied
@@ -54,13 +54,13 @@ class CharacterCollision (Framework):
         body.CreateLoopFixture(vertices=[(-1,3), (1,3), (1,5), (-1,5)])
         
         # Edge loop.
-        body=self.world.CreateStaticBody()
+        body=self.world.CreateStaticBody(position=(-10,4))
         body.CreateLoopFixture(vertices=[
                         (0.0, 0.0), (6.0, 0.0),
                         (6.0, 2.0), (4.0, 1.0),
                         (2.0, 2.0), (0.0, 2.0),
-                        (-2.0, 2.0), (-4.0, 3.0),
-                        (-6.0, 2.0), (-6.0, 0.0),]
+                        (-2.0,2.0), (-4.0,3.0),
+                        (-6.0,2.0), (-6.0,0.0),]
                         )
 
         # Square character 1

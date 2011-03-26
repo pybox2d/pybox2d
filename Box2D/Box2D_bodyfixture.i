@@ -313,6 +313,7 @@ public:
         localCenter = property(__GetLocalCenter, __SetLocalCenter)
         inertia = property(__GetInertia, __SetInertia)
         position = property(__GetPosition, lambda self, pos: self.__SetTransform(pos, self.angle))
+        gravityScale = property(__GetGravityScale, __SetGravityScale)
 
         # Read-only
         joints = property(lambda self: _list_from_linked_list(self.__GetJointList_internal()), None)
@@ -338,6 +339,8 @@ public:
 %rename(__IsAwake) b2Body::IsAwake;
 %rename(__GetTransform) b2Body::GetTransform;
 %rename(__SetTransform) b2Body::SetTransform;
+%rename(__GetGravityScale) b2Body::GetGravityScale;
+%rename(__SetGravityScale) b2Body::SetGravityScale;
 %rename(__GetWorldCenter) b2Body::GetWorldCenter;
 %rename(__GetAngularDamping) b2Body::GetAngularDamping;
 %rename(__IsFixedRotation) b2Body::IsFixedRotation;

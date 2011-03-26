@@ -20,7 +20,6 @@
 
 %pythoncode %{
 _format_recursed=0
-import pprint
 def _format_repr(item, props, indent_amount=4, max_level=4, max_str_len=250, max_sub_lines=10):
     global _format_recursed
     _format_recursed+=1
@@ -306,13 +305,13 @@ def _format_repr(item, props, indent_amount=4, max_level=4, max_str_len=250, max
             return _format_repr(self, ['joint','other']) 
     %}
 }
-%extend b2LineJoint {
+%extend b2WheelJoint {
     %pythoncode %{
         def __repr__(self):
             return _format_repr(self, ['active','anchorA','anchorB','bodyA','bodyB','maxMotorTorque','motorEnabled','motorSpeed','speed','springDampingRatio','springFrequencyHz','translation','type','userData']) 
     %}
 }
-%extend b2LineJointDef {
+%extend b2WheelJointDef {
     %pythoncode %{
         def __repr__(self):
             return _format_repr(self, ['anchor','axis','bodyA','bodyB','collideConnected','dampingRatio','enableMotor','frequencyHz','localAnchorA','localAnchorB','localAxisA','maxMotorTorque','motorSpeed','type','userData']) 

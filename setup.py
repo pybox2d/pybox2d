@@ -111,7 +111,7 @@ box2d_source_files = [os.path.join(source_dir, swig_source)] + \
 # -small makes the Box2D_wrap.cpp file almost unreadable, but faster to compile. If you want
 # to try to understand it for whatever reason, I'd recommend removing that option.
 swig_arguments = \
-        '-c++ -I%s -O -small -includeall -ignoremissing -w201 -globals b2Globals -outdir %s' \
+        '-c++ -I%s -small -O -includeall -ignoremissing -w201 -globals b2Globals -outdir %s' \
         % (source_dir, library_path)
 
 if use_kwargs:

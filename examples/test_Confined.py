@@ -1,6 +1,6 @@
 #!/usr/bin/python
 #
-# C++ version Copyright (c) 2006-2007 Erin Catto http://www.gphysics.com
+# C++ version Copyright (c) 2006-2007 Erin Catto http://www.box2d.org
 # Python version Copyright (c) 2010 Ken Lauer / sirkne at gmail dot com
 # 
 # This software is provided 'as-is', without any express or implied
@@ -56,7 +56,7 @@ class Confined (Framework):
 
     def Keyboard(self, key):
          if key == Keys.K_c:
-            self.CreateCircle( (2.0*random()-1.0, self.radius*(1+random())) )
+            self.CreateCircle( (2.0*random()-1.0, self.radius*(1.0+random())) )
 
 if __name__=="__main__":
      main(Confined)

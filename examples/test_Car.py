@@ -1,6 +1,6 @@
 #!/usr/bin/python
 #
-# C++ version Copyright (c) 2006-2007 Erin Catto http://www.gphysics.com
+# C++ version Copyright (c) 2006-2007 Erin Catto http://www.box2d.org
 # Python version Copyright (c) 2010 Ken Lauer / sirkne at gmail dot com
 # 
 # This software is provided 'as-is', without any express or implied
@@ -21,12 +21,14 @@ from framework import *
 from test_Bridge import create_bridge
 from math import sqrt
 
-def create_car(world, offset, wheel_radius, wheel_separation, density=1, wheel_friction=0.9, scale=(1.0,1.0), chassis_vertices=None, wheel_axis=(0,1), wheel_torques=[20, 10], wheel_drives=[True, False], hz=4.0, zeta=0.7, **kwargs):
+def create_car(world, offset, wheel_radius, wheel_separation, density=1.0, 
+               wheel_friction=0.9, scale=(1.0,1.0), chassis_vertices=None,
+               wheel_axis=(0.0,1.0), wheel_torques=[20.0, 10.0], 
+               wheel_drives=[True, False], hz=4.0, zeta=0.7, **kwargs):
     """
     """
     x_offset, y_offset=offset
     scale_x, scale_y=scale
-    radius_scale=sqrt(scale_x**2+scale_y**2)
     if chassis_vertices is None:
         chassis_vertices=[
 			(-1.5, -0.5),
@@ -38,6 +40,7 @@ def create_car(world, offset, wheel_radius, wheel_separation, density=1, wheel_f
             ]
 
     chassis_vertices=[(scale_x*x, scale_y*y) for x, y in chassis_vertices]
+    radius_scale=sqrt(scale_x**2+scale_y**2)
     wheel_radius*=radius_scale
     
     chassis=world.CreateDynamicBody(
@@ -48,10 +51,9 @@ def create_car(world, offset, wheel_radius, wheel_separation, density=1, wheel_f
                     )
         )
 
-    wheels=[]
-    springs=[]
-    wheel_pos=[-wheel_separation*scale_x/2.0, wheel_separation*scale_x/2.0]
-    for x, torque, drive in zip(wheel_pos, wheel_torques, wheel_drives):
+    wheels, springs=[], []
+    wheel_xs=[-wheel_separation*scale_x/2.0, wheel_separation*scale_x/2.0]
+    for x, torque, drive in zip(wheel_xs, wheel_torques, wheel_drives):
         wheel=world.CreateDynamicBody(
             position=(x_offset+x, y_offset-wheel_radius),
             fixtures=b2FixtureDef(
@@ -60,7 +62,7 @@ def create_car(world, offset, wheel_radius, wheel_separation, density=1, wheel_f
                         )
             )
         
-        spring=world.CreateLineJoint(
+        spring=world.CreateWheelJoint(
             bodyA=chassis,
             bodyB=wheel,
             anchor=wheel.position,
@@ -69,7 +71,7 @@ def create_car(world, offset, wheel_radius, wheel_separation, density=1, wheel_f
             maxMotorTorque=torque,
             enableMotor=drive,
             frequencyHz=hz,
-            dampingRatio=zeta,
+            dampingRatio=zeta
             )
 
         wheels.append(wheel)

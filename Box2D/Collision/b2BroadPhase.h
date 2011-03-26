@@ -1,5 +1,5 @@
 /*
-* Copyright (c) 2006-2009 Erin Catto http://www.gphysics.com
+* Copyright (c) 2006-2009 Erin Catto http://www.box2d.org
 *
 * This software is provided 'as-is', without any express or implied
 * warranty.  In no event will the authors be held liable for any damages
@@ -91,8 +91,14 @@ public:
 	template <typename T>
 	void RayCast(T* callback, const b2RayCastInput& input) const;
 
-	/// Compute the height of the embedded tree.
-	int32 ComputeHeight() const;
+	/// Get the height of the embedded tree.
+	int32 GetTreeHeight() const;
+
+	/// Get the balance of the embedded tree.
+	int32 GetTreeBalance() const;
+
+	/// Get the quality metric of the embedded tree.
+	float32 GetTreeQuality() const;
 
 private:
 
@@ -156,9 +162,19 @@ inline int32 b2BroadPhase::GetProxyCount() const
 	return m_proxyCount;
 }
 
-inline int32 b2BroadPhase::ComputeHeight() const
+inline int32 b2BroadPhase::GetTreeHeight() const
 {
-	return m_tree.ComputeHeight();
+	return m_tree.GetHeight();
+}
+
+inline int32 b2BroadPhase::GetTreeBalance() const
+{
+	return m_tree.GetMaxBalance();
+}
+
+inline float32 b2BroadPhase::GetTreeQuality() const
+{
+	return m_tree.GetAreaRatio();
 }
 
 template <typename T>

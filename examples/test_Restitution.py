@@ -1,7 +1,7 @@
 #!/usr/bin/python
 #
 # C++ version Copyright (c) 2006-2007 Erin Catto http://www.box2d.org
-# Python version Copyright (c) 2010 kne / sirkne at gmail dot com
+# Python version Copyright (c) 2010 Ken Lauer / sirkne at gmail dot com
 # 
 # This software is provided 'as-is', without any express or implied
 # warranty.  In no event will the authors be held liable for any damages
@@ -18,35 +18,29 @@
 # 3. This notice may not be removed or altered from any source distribution.
 
 from framework import *
+from random import random
 
-class EdgeTest (Framework):
-    name="EdgeTest"
-    description = "Utilizes b2EdgeShape"
+class Restitution (Framework):
+    name="Restitution example"
+    description="Note the difference in bounce height of the circles"
     def __init__(self):
-        super(EdgeTest, self).__init__()
+        super(Restitution, self).__init__()
 
-        v1=(-10.0, 0.0)
-        v2=(-7.0, -1.0)
-        v3=(-4.0, 0.0)
-        v4=(0.0, 0.0)
-        v5=(4.0, 0.0)
-        v6=(7.0, 1.0)
-        v7=(10.0, 0.0)
+        # The ground
+        ground = self.world.CreateStaticBody(
+                shapes=b2EdgeShape(vertices=[(-20,  0),( 20,  0)])
+                ) 
 
-        ground=self.world.CreateStaticBody(shapes=
-                [b2EdgeShape(vertices=[None, v1, v2, v3]),
-                 b2EdgeShape(vertices=[  v1, v2, v3, v4]),
-                 b2EdgeShape(vertices=[  v2, v3, v4, v5]),
-                 b2EdgeShape(vertices=[  v3, v4, v5, v6]),
-                 b2EdgeShape(vertices=[  v4, v5, v6, v7]),
-                 b2EdgeShape(vertices=[  v5, v6, v7    ]),
-                ])
-
-        box=self.world.CreateDynamicBody(
-                position=(0.5, 0.6),
-                allowSleep=False,
-                shapes=b2PolygonShape(box=(0.5,0.5))
-                )
+        radius=1.0
+        density=1.0
+        # The bodies
+        for i, restitution in enumerate([0.0, 0.1, 0.3, 0.5, 0.75, 0.9, 1.0]):
+            self.world.CreateDynamicBody(
+                    position=(-10+3.0*i, 20), 
+                    fixtures=b2FixtureDef(
+                                shape=b2CircleShape(radius=radius), 
+                                density=density, restitution=restitution)
+                    )
 
 if __name__=="__main__":
-     main(EdgeTest)
+     main(Restitution)

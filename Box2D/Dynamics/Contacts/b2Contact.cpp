@@ -1,5 +1,5 @@
 /*
-* Copyright (c) 2006-2009 Erin Catto http://www.gphysics.com
+* Copyright (c) 2006-2009 Erin Catto http://www.box2d.org
 *
 * This software is provided 'as-is', without any express or implied
 * warranty.  In no event will the authors be held liable for any damages
@@ -190,7 +190,6 @@ void b2Contact::Update(b2ContactListener* listener)
 			mp2->normalImpulse = 0.0f;
 			mp2->tangentImpulse = 0.0f;
 			b2ContactID id2 = mp2->id;
-			bool found = false;
 
 			for (int32 j = 0; j < oldManifold.pointCount; ++j)
 			{
@@ -200,15 +199,8 @@ void b2Contact::Update(b2ContactListener* listener)
 				{
 					mp2->normalImpulse = mp1->normalImpulse;
 					mp2->tangentImpulse = mp1->tangentImpulse;
-					found = true;
 					break;
 				}
-			}
-
-			if (found == false)
-			{
-				mp2->normalImpulse = 0.0f;
-				mp2->tangentImpulse = 0.0f;
 			}
 		}
 

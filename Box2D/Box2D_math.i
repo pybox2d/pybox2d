@@ -85,20 +85,6 @@ public:
     def __set(self, x, y):
         self.x = x
         self.y = y
-    def __getitem__(self, i): 
-        if i==0:
-            return self.x
-        elif i==1:
-            return self.y
-        else:
-            raise IndexError
-    def __setitem__(self, i, value): 
-        if i==0:
-            self.x=value
-        elif i==1:
-            self.y=value
-        else:
-            raise IndexError
     def __nonzero__(self):
         return self.x!=0.0 or self.y!=0.0
 
@@ -109,6 +95,22 @@ public:
     skew = property(__Skew, None) 
 
     %}
+    float32 __getitem__(int i) {
+        if (i==0) 
+            return $self->x;
+        else if (i==1) 
+            return $self->y;
+        PyErr_SetString(PyExc_IndexError, "Index must be in (0,1)");
+        return 0.0f;
+    }
+    void __setitem__(int i, float32 value) {
+        if (i==0) 
+            $self->x=value;
+        else if (i==1) 
+            $self->y=value;
+        else
+            PyErr_SetString(PyExc_IndexError, "Index must be in (0,1)");
+    }
     bool __equ(b2Vec2& other) {
         return ($self->x == other.x && $self->y == other.y);
     }
@@ -206,24 +208,6 @@ public:
         self.x = x
         self.y = y
         self.z = z
-    def __getitem__(self, i): 
-        if i==0:
-            return self.x
-        elif i==1:
-            return self.y
-        elif i==2:
-            return self.z
-        else:
-            raise IndexError
-    def __setitem__(self, i, value): 
-        if i==0:
-            self.x=value
-        elif i==1:
-            self.y=value
-        elif i==2:
-            self.z=value
-        else:
-            raise IndexError
     def __nonzero__(self):
         return self.x!=0.0 or self.y!=0.0 or self.z!=0.0
 
@@ -234,6 +218,26 @@ public:
 
     %}
 
+    float32 __getitem__(int i) {
+        if (i==0) 
+            return $self->x;
+        else if (i==1) 
+            return $self->y;
+        else if (i==2) 
+            return $self->z;
+        PyErr_SetString(PyExc_IndexError, "Index must be in (0,1,2)");
+        return 0.0f;
+    }
+    void __setitem__(int i, float32 value) {
+        if (i==0) 
+            $self->x=value;
+        else if (i==1) 
+            $self->y=value;
+        else if (i==2) 
+            $self->z=value;
+        else
+            PyErr_SetString(PyExc_IndexError, "Index must be in (0,1,2)");
+    }
     bool __IsValid() {
         return b2IsValid($self->x) && b2IsValid($self->y) && b2IsValid($self->z);
     }

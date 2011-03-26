@@ -1,5 +1,5 @@
 /*
-* Copyright (c) 2009 Erin Catto http://www.gphysics.com
+* Copyright (c) 2009 Erin Catto http://www.box2d.org
 *
 * This software is provided 'as-is', without any express or implied
 * warranty.  In no event will the authors be held liable for any damages
@@ -25,20 +25,19 @@
 #define b2_nullNode (-1)
 
 #define B2_USE_DYNAMIC_TREE 1
+#define B2_USE_BRUTE_FORCE 0
 
 #if B2_USE_DYNAMIC_TREE
-/// A dynamic AABB tree broad-phase, inspired by Nathanael Presson's btDbvt.
-
 
 /// A node in the dynamic tree. The client does not interact with this directly.
-struct b2DynamicTreeNode
+struct b2TreeNode
 {
 	bool IsLeaf() const
 	{
 		return child1 == b2_nullNode;
 	}
 
-	/// This is the fattened AABB.
+	/// Enlarged AABB
 	b2AABB aabb;
 
 	void* userData;
@@ -51,9 +50,12 @@ struct b2DynamicTreeNode
 
 	int32 child1;
 	int32 child2;
-	int32 leafCount;
+
+	// leaf = 0, free node = -1
+	int32 height;
 };
 
+/// A dynamic AABB tree broad-phase, inspired by Nathanael Presson's btDbvt.
 /// A dynamic tree arranges data in a binary tree to accelerate
 /// queries such as volume queries and ray casts. Leafs are proxies
 /// with an AABB. In the tree we expand the proxy AABB by b2_fatAABBFactor
@@ -64,7 +66,6 @@ struct b2DynamicTreeNode
 class b2DynamicTree
 {
 public:
-
 	/// Constructing the tree initializes the node pool.
 	b2DynamicTree();
 
@@ -93,10 +94,6 @@ public:
 	/// Get the fat AABB for a proxy.
 	const b2AABB& GetFatAABB(int32 proxyId) const;
 
-	/// Compute the height of the binary tree in O(N) time. Should not be
-	/// called often.
-	int32 ComputeHeight() const;
-
 	/// Query an AABB for overlapping proxies. The callback class
 	/// is called for each proxy that overlaps the supplied AABB.
 	template <typename T>
@@ -114,6 +111,17 @@ public:
 
 	void Validate() const;
 
+	/// Compute the height of the binary tree in O(N) time. Should not be
+	/// called often.
+	int32 GetHeight() const;
+
+	/// Get the maximum balance of an node in the tree. The balance is the difference
+	/// in height of the two children of a node.
+	int32 GetMaxBalance() const;
+
+	/// Get the ratio of the sum of the node areas to the root area.
+	float32 GetAreaRatio() const;
+
 private:
 
 	int32 AllocateNode();
@@ -122,19 +130,28 @@ private:
 	void InsertLeaf(int32 node);
 	void RemoveLeaf(int32 node);
 
+	int32 Balance(int32 index);
+	void Shuffle(int32 index);
+
+	int32 ComputeHeight() const;
 	int32 ComputeHeight(int32 nodeId) const;
-	
-	int32 CountLeaves(int32 nodeId) const;
+
+	void ValidateStructure(int32 index) const;
+	void ValidateMetrics(int32 index) const;
+
+	int32 GetMaxBalance(int32 index) const;
+
+	float32 GetTotalArea(int32 index) const;
 
 	int32 m_root;
 
-	b2DynamicTreeNode* m_nodes;
+	b2TreeNode* m_nodes;
 	int32 m_nodeCount;
 	int32 m_nodeCapacity;
 
 	int32 m_freeList;
 
-	/// This is used incrementally traverse the tree for re-balancing.
+	/// This is used to incrementally traverse the tree for re-balancing.
 	uint32 m_path;
 
 	int32 m_insertionCount;
@@ -166,7 +183,7 @@ inline void b2DynamicTree::Query(T* callback, const b2AABB& aabb) const
 			continue;
 		}
 
-		const b2DynamicTreeNode* node = m_nodes + nodeId;
+		const b2TreeNode* node = m_nodes + nodeId;
 
 		if (b2TestOverlap(node->aabb, aabb))
 		{
@@ -224,7 +241,7 @@ inline void b2DynamicTree::RayCast(T* callback, const b2RayCastInput& input) con
 			continue;
 		}
 
-		const b2DynamicTreeNode* node = m_nodes + nodeId;
+		const b2TreeNode* node = m_nodes + nodeId;
 
 		if (b2TestOverlap(node->aabb, segmentAABB) == false)
 		{
@@ -273,7 +290,7 @@ inline void b2DynamicTree::RayCast(T* callback, const b2RayCastInput& input) con
 	}
 }
 
-#else
+#elif B2_USE_BRUTE_FORCE 0
 
 struct b2Proxy
 {

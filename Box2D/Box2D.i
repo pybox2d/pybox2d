@@ -44,8 +44,12 @@
         %exception {
             try {
                 $action
-            } catch (b2AssertException) { 
+            } catch(b2AssertException) { 
                 // error already set, pass it on to python
+                SWIG_fail;
+            } 
+            if (PyErr_Occurred()) {
+                // This is if we set the error inside a function; report it to swig
                 SWIG_fail;
             }
         }
@@ -114,6 +118,7 @@
     %ignore b2StackEntry;
     %ignore b2ContactRegister;
     %ignore b2BlockAllocator;
+    %ignore b2Timer;
 
     /* ---- features ---- */
     /* Autodoc puts the basic docstrings for each function */

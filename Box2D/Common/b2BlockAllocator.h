@@ -1,5 +1,5 @@
 /*
-* Copyright (c) 2006-2009 Erin Catto http://www.gphysics.com
+* Copyright (c) 2006-2009 Erin Catto http://www.box2d.org
 *
 * This software is provided 'as-is', without any express or implied
 * warranty.  In no event will the authors be held liable for any damages
@@ -21,7 +21,7 @@
 
 #include <Box2D/Common/b2Settings.h>
 
-const int32 b2_chunkSize = 4096;
+const int32 b2_chunkSize = 16 * 1024;
 const int32 b2_maxBlockSize = 640;
 const int32 b2_blockSizes = 14;
 const int32 b2_chunkArrayIncrement = 128;

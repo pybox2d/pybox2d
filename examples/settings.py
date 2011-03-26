@@ -1,6 +1,6 @@
 #!/usr/bin/python
 #
-# C++ version Copyright (c) 2006-2007 Erin Catto http://www.gphysics.com
+# C++ version Copyright (c) 2006-2007 Erin Catto http://www.box2d.org
 # Python version Copyright (c) 2008 Ken Lauer / sirkne at gmail dot com
 # 
 # Implemented using the pybox2d SWIG interface for Box2D (pybox2d.googlecode.com)
@@ -27,11 +27,11 @@ class fwSettings(object):
     velocityIterations=8
     positionIterations=3
     enableWarmStarting=True   # Makes physics results more accurate (see Box2D wiki)
-    enableContinuous=True     # Calculate time of impact (was: enableTOI)
-    enableSubStepping=True
+    enableContinuous=True     # Calculate time of impact
+    enableSubStepping=False
     
     # Drawing
-    drawStats=False
+    drawStats=True
     drawShapes=True
     drawJoints=True
     drawCoreShapes=False

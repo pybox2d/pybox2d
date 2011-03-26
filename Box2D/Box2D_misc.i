@@ -25,6 +25,13 @@ public:
     b2Color(b2Color& other) {
         return new b2Color(other.r, other.g, other.b);
     }
+    PyObject* __get_bytes() {
+        PyObject* ret=PyList_New(3);
+        PyList_SetItem(ret, 0, SWIG_From_int((int)(255*$self->r)));
+        PyList_SetItem(ret, 1, SWIG_From_int((int)(255*$self->g)));
+        PyList_SetItem(ret, 2, SWIG_From_int((int)(255*$self->b)));
+        return ret;
+    }
 
     %pythoncode %{
     __iter__ = lambda self: iter((self.r, self.g, self.b)) 
@@ -38,39 +45,42 @@ public:
         return b2Color(self.r, self.g, self.b)
     def copy(self):
         return b2Color(self.r, self.g, self.b)
-    def __SetBytes(self, value):
+    def __set_bytes(self, value):
         if len(value) != 3:
             raise ValueError('Expected length 3 list')
         self.r, self.g, self.b = value[0]/255, value[1]/255, value[2]/255
-    def __SetTuple(self, value):
+    def __set_tuple(self, value):
         if len(value) != 3:
             raise ValueError('Expected length 3 list')
         self.r, self.g, self.b = value[0], value[1], value[2]
-    def __getitem__(self, i): 
-        if i==0:
-            return self.r
-        elif i==1:
-            return self.g
-        elif i==2:
-            return self.b
-        else:
-            raise IndexError
-    def __setitem__(self, i, value): 
-        if i==0:
-            self.r=value
-        elif i==1:
-            self.g=value
-        elif i==2:
-            self.b=value
-        else:
-            raise IndexError
     def __nonzero__(self):
         return self.r!=0.0 or self.g!=0.0 or self.b!=0.0
 
-    list  = property(lambda self: list(self), __SetTuple)
-    bytes = property(lambda self: [int(self.r*255), int(self.g*255), int(self.b*255)], __SetBytes)
-     %}
+    list  = property(lambda self: list(self), __set_tuple)
+    bytes = property(__get_bytes, __set_bytes)
+    %}
 
+    float32 __getitem__(int i) {
+        if (i==0) 
+            return $self->r;
+        else if (i==1) 
+            return $self->g;
+        else if (i==2) 
+            return $self->b;
+
+        PyErr_SetString(PyExc_IndexError, "Index must be in (0,1,2)");
+        return 0.0f;
+    }
+    void __setitem__(int i, float32 value) {
+        if (i==0) 
+            $self->r=value;
+        else if (i==1) 
+            $self->g=value;
+        else if (i==2) 
+            $self->b=value;
+        else
+            PyErr_SetString(PyExc_IndexError, "Index must be in (0,1,2)");
+    }
     b2Color __truediv__(float32 a) {
         return b2Color($self->r / a, $self->g / a, $self->b / a);
     }
@@ -271,7 +281,14 @@ public:
 public:
     %pythoncode %{
         proxyCount=property(__GetProxyCount, None)
+        treeHeight=property(__GetTreeHeight, None)
+        treeBalance=property(__GetTreeBalance, None)
+        treeQuality=property(__GetTreeQuality, None)
     %}
 }
 
 %rename (__GetProxyCount) b2BroadPhase::GetProxyCount;
+%rename (__GetTreeHeight) b2BroadPhase::GetTreeHeight;
+%rename (__GetTreeBalance) b2BroadPhase::GetTreeBalance;
+%rename (__GetTreeQuality) b2BroadPhase::GetTreeQuality;
+%ignore b2BroadPhase::GetUserData;

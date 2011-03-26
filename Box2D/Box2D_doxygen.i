@@ -1348,71 +1348,71 @@ The revolute and prismatic joints must be attached to fixed bodies (which must b
 
 
 // File: classb2_line_joint.xml
-%feature("docstring") b2LineJoint "A line joint. This joint provides two degrees of freedom: translation along an axis fixed in body1 and rotation in the plane. You can use a joint limit to restrict the range of motion and a joint motor to drive the rotation or to model rotational friction. This joint is designed for vehicle suspensions.";
+%feature("docstring") b2WheelJoint "A line joint. This joint provides two degrees of freedom: translation along an axis fixed in body1 and rotation in the plane. You can use a joint limit to restrict the range of motion and a joint motor to drive the rotation or to model rotational friction. This joint is designed for vehicle suspensions.";
 
-%feature("docstring") b2LineJoint::GetAnchorA "Get the anchor point on bodyA in world coordinates.";
+%feature("docstring") b2WheelJoint::GetAnchorA "Get the anchor point on bodyA in world coordinates.";
 
-%feature("docstring") b2LineJoint::GetAnchorB "Get the anchor point on bodyB in world coordinates.";
+%feature("docstring") b2WheelJoint::GetAnchorB "Get the anchor point on bodyB in world coordinates.";
 
-%feature("docstring") b2LineJoint::GetReactionForce "Get the reaction force on body2 at the joint anchor in Newtons.";
+%feature("docstring") b2WheelJoint::GetReactionForce "Get the reaction force on body2 at the joint anchor in Newtons.";
 
-%feature("docstring") b2LineJoint::GetReactionTorque "Get the reaction torque on body2 in N*m.";
+%feature("docstring") b2WheelJoint::GetReactionTorque "Get the reaction torque on body2 in N*m.";
 
-%feature("docstring") b2LineJoint::GetJointTranslation "Get the current joint translation, usually in meters.";
+%feature("docstring") b2WheelJoint::GetJointTranslation "Get the current joint translation, usually in meters.";
 
-%feature("docstring") b2LineJoint::GetJointSpeed "Get the current joint translation speed, usually in meters per second.";
+%feature("docstring") b2WheelJoint::GetJointSpeed "Get the current joint translation speed, usually in meters per second.";
 
-%feature("docstring") b2LineJoint::IsMotorEnabled "Is the joint motor enabled?";
+%feature("docstring") b2WheelJoint::IsMotorEnabled "Is the joint motor enabled?";
 
-%feature("docstring") b2LineJoint::EnableMotor "Enable/disable the joint motor.";
+%feature("docstring") b2WheelJoint::EnableMotor "Enable/disable the joint motor.";
 
-%feature("docstring") b2LineJoint::SetMotorSpeed "Set the motor speed, usually in radians per second.";
+%feature("docstring") b2WheelJoint::SetMotorSpeed "Set the motor speed, usually in radians per second.";
 
-%feature("docstring") b2LineJoint::GetMotorSpeed "Get the motor speed, usually in radians per second.";
+%feature("docstring") b2WheelJoint::GetMotorSpeed "Get the motor speed, usually in radians per second.";
 
-%feature("docstring") b2LineJoint::SetMaxMotorTorque "Set/Get the maximum motor force, usually in N-m.";
+%feature("docstring") b2WheelJoint::SetMaxMotorTorque "Set/Get the maximum motor force, usually in N-m.";
 
-%feature("docstring") b2LineJoint::GetMotorTorque "Get the current motor torque given the inverse time step, usually in N-m.";
+%feature("docstring") b2WheelJoint::GetMotorTorque "Get the current motor torque given the inverse time step, usually in N-m.";
 
-%feature("docstring") b2LineJoint::SetSpringFrequencyHz "Set/Get the spring frequency in hertz. Setting the frequency to zero disables the spring.";
+%feature("docstring") b2WheelJoint::SetSpringFrequencyHz "Set/Get the spring frequency in hertz. Setting the frequency to zero disables the spring.";
 
-%feature("docstring") b2LineJoint::SetSpringDampingRatio "Set/Get the spring damping ratio.";
+%feature("docstring") b2WheelJoint::SetSpringDampingRatio "Set/Get the spring damping ratio.";
 
-%feature("docstring") b2LineJoint::GetAnchorA "Get the anchor point on bodyA in world coordinates.";
+%feature("docstring") b2WheelJoint::GetAnchorA "Get the anchor point on bodyA in world coordinates.";
 
-%feature("docstring") b2LineJoint::GetAnchorB "Get the anchor point on bodyB in world coordinates.";
+%feature("docstring") b2WheelJoint::GetAnchorB "Get the anchor point on bodyB in world coordinates.";
 
-%feature("docstring") b2LineJoint::GetReactionForce "Get the reaction force on body2 at the joint anchor in Newtons.";
+%feature("docstring") b2WheelJoint::GetReactionForce "Get the reaction force on body2 at the joint anchor in Newtons.";
 
-%feature("docstring") b2LineJoint::GetReactionTorque "Get the reaction torque on body2 in N*m.";
+%feature("docstring") b2WheelJoint::GetReactionTorque "Get the reaction torque on body2 in N*m.";
 
-%feature("docstring") b2LineJoint::GetJointTranslation "Get the current joint translation, usually in meters.";
+%feature("docstring") b2WheelJoint::GetJointTranslation "Get the current joint translation, usually in meters.";
 
-%feature("docstring") b2LineJoint::GetJointSpeed "Get the current joint translation speed, usually in meters per second.";
+%feature("docstring") b2WheelJoint::GetJointSpeed "Get the current joint translation speed, usually in meters per second.";
 
-%feature("docstring") b2LineJoint::IsMotorEnabled "Is the joint motor enabled?";
+%feature("docstring") b2WheelJoint::IsMotorEnabled "Is the joint motor enabled?";
 
-%feature("docstring") b2LineJoint::EnableMotor "Enable/disable the joint motor.";
+%feature("docstring") b2WheelJoint::EnableMotor "Enable/disable the joint motor.";
 
-%feature("docstring") b2LineJoint::SetMotorSpeed "Set the motor speed, usually in radians per second.";
+%feature("docstring") b2WheelJoint::SetMotorSpeed "Set the motor speed, usually in radians per second.";
 
-%feature("docstring") b2LineJoint::GetMotorSpeed "Get the motor speed, usually in radians per second.";
+%feature("docstring") b2WheelJoint::GetMotorSpeed "Get the motor speed, usually in radians per second.";
 
-%feature("docstring") b2LineJoint::SetMaxMotorTorque "Set/Get the maximum motor force, usually in N-m.";
+%feature("docstring") b2WheelJoint::SetMaxMotorTorque "Set/Get the maximum motor force, usually in N-m.";
 
-%feature("docstring") b2LineJoint::GetMotorTorque "Get the current motor torque given the inverse time step, usually in N-m.";
+%feature("docstring") b2WheelJoint::GetMotorTorque "Get the current motor torque given the inverse time step, usually in N-m.";
 
-%feature("docstring") b2LineJoint::SetSpringFrequencyHz "Set/Get the spring frequency in hertz. Setting the frequency to zero disables the spring.";
+%feature("docstring") b2WheelJoint::SetSpringFrequencyHz "Set/Get the spring frequency in hertz. Setting the frequency to zero disables the spring.";
 
-%feature("docstring") b2LineJoint::SetSpringDampingRatio "Set/Get the spring damping ratio.";
+%feature("docstring") b2WheelJoint::SetSpringDampingRatio "Set/Get the spring damping ratio.";
 
 
 // File: structb2_line_joint_def.xml
-%feature("docstring") b2LineJointDef "Line joint definition. This requires defining a line of motion using an axis and an anchor point. The definition uses local anchor points and a local axis so that the initial configuration can violate the constraint slightly. The joint translation is zero when the local anchor points coincide in world space. Using local anchors and a local axis helps when saving and loading a game.";
+%feature("docstring") b2WheelJointDef "Line joint definition. This requires defining a line of motion using an axis and an anchor point. The definition uses local anchor points and a local axis so that the initial configuration can violate the constraint slightly. The joint translation is zero when the local anchor points coincide in world space. Using local anchors and a local axis helps when saving and loading a game.";
 
-%feature("docstring") b2LineJointDef::Initialize "Initialize the bodies, anchors, axis, and reference angle using the world anchor and world axis.";
+%feature("docstring") b2WheelJointDef::Initialize "Initialize the bodies, anchors, axis, and reference angle using the world anchor and world axis.";
 
-%feature("docstring") b2LineJointDef::Initialize "Initialize the bodies, anchors, axis, and reference angle using the world anchor and world axis.";
+%feature("docstring") b2WheelJointDef::Initialize "Initialize the bodies, anchors, axis, and reference angle using the world anchor and world axis.";
 
 
 // File: classb2_loop_shape.xml

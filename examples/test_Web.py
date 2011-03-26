@@ -1,6 +1,6 @@
 #!/usr/bin/python
 #
-# C++ version Copyright (c) 2006-2007 Erin Catto http://www.gphysics.com
+# C++ version Copyright (c) 2006-2007 Erin Catto http://www.box2d.org
 # Python version Copyright (c) 2010 kne / sirkne at gmail dot com
 # 
 # This software is provided 'as-is', without any express or implied
@@ -20,9 +20,9 @@
 from framework import *
 from math import sqrt
 
-class Web (Framework):
+class Web(Framework):
     name="Web"
-    description = "This demonstrates a soft distance joint. Press: (b) to delete a body, (j) to delete a joint"
+    description="This demonstrates a soft distance joint. Press: (b) to delete a body, (j) to delete a joint"
     bodies=[]
     joints=[]
     def __init__(self):
@@ -46,13 +46,13 @@ class Web (Framework):
         # Create the joints between each of the bodies and also the ground
         #         bodyA      bodyB   localAnchorA localAnchorB
         sets = [ (ground,    bodies[0], (-10,0), (-0.5,-0.5)),
-                 (ground,    bodies[1], (10,0), (0.5,-0.5)),
+                 (ground,    bodies[1], (10,0),  (0.5,-0.5)),
                  (ground,    bodies[2], (10,20), (0.5,0.5)),
-                 (ground,    bodies[3], (-10,20), (-0.5,0.5)),
+                 (ground,    bodies[3], (-10,20),(-0.5,0.5)),
                  (bodies[0], bodies[1], (0.5,0), (-0.5,0)),
                  (bodies[1], bodies[2], (0,0.5), (0,-0.5)),
-                 (bodies[2], bodies[3], (-0.5,0), (0.5,0)),
-                 (bodies[3], bodies[0], (0,-0.5), (0,0.5)),
+                 (bodies[2], bodies[3], (-0.5,0),(0.5,0)),
+                 (bodies[3], bodies[0], (0,-0.5),(0,0.5)),
                 ]
     
         # We will define the positions in the local body coordinates, the length

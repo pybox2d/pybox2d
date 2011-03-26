@@ -1,6 +1,6 @@
 #!/usr/bin/python
 #
-# C++ version Copyright (c) 2006-2007 Erin Catto http://www.gphysics.com
+# C++ version Copyright (c) 2006-2007 Erin Catto http://www.box2d.org
 # Python version Copyright (c) 2010 Ken Lauer / sirkne at gmail dot com
 # 
 # This software is provided 'as-is', without any express or implied
@@ -72,8 +72,8 @@ class Breakable (Framework):
                 shapeFixture=b2FixtureDef(density=1),
                 )
         # Compute consistent velocities for new bodies based on cached velocity.
-        velocity1 = self.velocity + b2Cross(self.angularVelocity, body.worldCenter - center)
-        velocity2 = self.velocity + b2Cross(self.angularVelocity, body2.worldCenter - center)
+        velocity1=self.velocity+b2Cross(self.angularVelocity,body.worldCenter-center)
+        velocity2=self.velocity+b2Cross(self.angularVelocity,body2.worldCenter-center)
 
         body.angularVelocity=self.angularVelocity
         body.linearVelocity=velocity1
@@ -84,8 +84,8 @@ class Breakable (Framework):
         super(Breakable, self).Step(settings)
         if self._break:
             self.Break()
-            self.broke = True
-            self._break = False
+            self.broke=True
+            self._break=False
         if not self.broke:
             self.velocity = self.body.linearVelocity
             self.angularVelocity = self.body.angularVelocity
