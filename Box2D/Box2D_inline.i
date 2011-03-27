@@ -183,23 +183,56 @@
 %pythoncode %{
 b2_epsilon = 1.192092896e-07
 
-def _list_from_linked_list(first):
-    one = first
+class _indexable_generator(list):
+    def __init__(self, iter):
+        list.__init__(self)
+        self.iter=iter
+        self.__full=False
+    def __len__(self):
+        self.__fill_list__()
+        return list.len(self)
+    def __iter__(self):
+        for item in self.iter:
+            self.append(item)
+            yield item
+        self.__full=True
+    def __fill_list__(self):
+        for item in self.iter:
+            self.append(item)
+        self.__full=True
+    def __getitem__(self, i):
+        """Support indexing positive/negative elements of the generator,
+        but no slices. If you want those, use list(generator)"""
+        if not self.__full:
+            if i < 0:
+                self.__fill_list__()
+            elif i >= list.__len__(self):
+                diff=i-list.__len__(self)+1
+                for j in xrange(diff):
+                    value=self.iter.next()
+                    self.append(value)
 
-    if not one:
-        return []
+        return list.__getitem__(self,i)
 
-    lst = []
-    if hasattr(one, "GetNext"):
+def _generator_from_linked_list(first):
+    if first:
+        one = first
         while one:
-            lst.append(one)
-            one = one.GetNext()
-    else:
-        while one:
-            lst.append(one)
+            yield one
             one = one.next
 
-    lst.reverse() # list is in reverse order
+def _list_from_linked_list(first):
+    if not first:
+        return []
+
+    one = first
+    lst = []
+    while one:
+        lst.append(one)
+        one = one.next
+
+    # linked lists are stored in reverse order from creation order
+    lst.reverse() 
     return lst
 
 # Support using == on bodies, joints, and shapes

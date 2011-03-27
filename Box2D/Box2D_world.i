@@ -304,7 +304,6 @@ public:
         # also clearing the refcount of the function.
         # Now using it also to buffer previously write-only values in the shadowed
         # class to make them read-write.
-        # TODO: test this
         def __GetData(self, name):
             if name in list(self.__data.keys()):
                 return self.__data[name]
@@ -339,14 +338,23 @@ public:
         bodyCount     = property(__GetBodyCount, None)
         jointCount    = property(__GetJointCount, None)
         proxyCount    = property(__GetProxyCount, None)
-        joints  = property(lambda self: _list_from_linked_list(self.__GetJointList_internal()), None)
-        bodies  = property(lambda self: _list_from_linked_list(self.__GetBodyList_internal()), None)
-        contacts= property(lambda self: _list_from_linked_list(self.__GetContactList_internal()), None)
+        joints  = property(lambda self: _list_from_linked_list(self.__GetJointList_internal()), None,
+                            doc="""All joints in the world.  NOTE: This re-creates the list on every call. See also joints_gen.""")
+        bodies  = property(lambda self: _list_from_linked_list(self.__GetBodyList_internal()), None,
+                            doc="""All bodies in the world.  NOTE: This re-creates the list on every call. See also bodies_gen.""")
+        contacts= property(lambda self: _list_from_linked_list(self.__GetContactList_internal()), None,
+                            doc="""All contacts in the world.  NOTE: This re-creates the list on every call. See also contacts_gen.""")
+        joints_gen = property(lambda self: _indexable_generator(_generator_from_linked_list(self.__GetJointList_internal())), None,
+                            doc="""Indexable generator of the connected joints to this body.
+                            NOTE: When not using the whole list, this may be preferable to using 'joints'.""")
+        bodies_gen = property(lambda self: _indexable_generator(_generator_from_linked_list(self.__GetBodyList_internal())), None,
+                            doc="""Indexable generator of all bodies.
+                            NOTE: When not using the whole list, this may be preferable to using 'bodies'.""")
+        contacts_gen = property(lambda self: _indexable_generator(_generator_from_linked_list(self.__GetContactList_internal())), None,
+                            doc="""Indexable generator of all contacts.
+                            NOTE: When not using the whole list, this may be preferable to using 'contacts'.""")
         locked  = property(__IsLocked, None)
 
-        # other functions:
-        # DestroyBody, DestroyJoint
-        # Step, ClearForces, DrawDebugData, QueryAABB, RayCast
     %}
 }
 

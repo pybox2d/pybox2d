@@ -282,8 +282,7 @@ public:
     %pythoncode %{
         # Read-only
         inverse = property(__GetInverse, None)
-        angle = property(__GetAngle, None)
-
+        angle = property(__GetAngle, __SetAngle)
     %}
     b2Vec2 __mul__(b2Vec2* v) {
         return b2Vec2($self->col1.x * v->x + $self->col2.x * v->y, $self->col1.y * v->x + $self->col2.y * v->y);
@@ -307,9 +306,9 @@ public:
     }
 }
 
+%rename(__SetAngle) b2Mat22::Set;
 %rename(__GetInverse) b2Mat22::GetInverse;
 %rename(__GetAngle) b2Mat22::GetAngle;
-%rename(set) b2Mat22::Set;
 
 %feature("shadow") b2Mat22::__iadd__ {
     def __iadd__(self, other):
@@ -366,13 +365,15 @@ public:
 %extend b2Transform {
 public:
     %pythoncode %{
-        # Read-only
-        angle = property(__GetAngle, None)
+        def __SetAngle(self, angle):
+            self.R.angle=angle
 
+        # Read-only
+        angle = property(__GetAngle, __SetAngle) 
     %}
     b2Vec2 __mul__(b2Vec2& v) {
-        return b2Vec2($self->position.x + $self->R.col1.x * v.x + $self->R.col2.x * v.y, 
-                $self->position.y + $self->R.col1.y * v.x + $self->R.col2.y * v.y);
+        return b2Vec2($self->position.x + $self->R.col1.x*v.x + $self->R.col2.x*v.y, 
+                $self->position.y + $self->R.col1.y*v.x + $self->R.col2.y*v.y);
     }
 }
 

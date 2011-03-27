@@ -316,9 +316,24 @@ public:
         gravityScale = property(__GetGravityScale, __SetGravityScale)
 
         # Read-only
-        joints = property(lambda self: _list_from_linked_list(self.__GetJointList_internal()), None)
-        contacts = property(lambda self: _list_from_linked_list(self.__GetContactList_internal()), None)
-        fixtures = property(lambda self: _list_from_linked_list(self.__GetFixtureList_internal()), None)
+        joints = property(lambda self: _list_from_linked_list(self.__GetJointList_internal()), None, 
+                            doc="""All joints connected to the body as a list. 
+                            NOTE: This re-creates the list on every call. See also joints_gen.""")
+        contacts = property(lambda self: _list_from_linked_list(self.__GetContactList_internal()), None,
+                            doc="""All contacts related to the body as a list. 
+                            NOTE: This re-creates the list on every call. See also contacts_gen.""")
+        fixtures = property(lambda self: _list_from_linked_list(self.__GetFixtureList_internal()), None,
+                            doc="""All fixtures contained in this body as a list. 
+                            NOTE: This re-creates the list on every call. See also fixtures_gen.""")
+        joints_gen = property(lambda self: _indexable_generator(_generator_from_linked_list(self.__GetJointList_internal())), None,
+                            doc="""Indexable generator of the connected joints to this body.
+                            NOTE: When not using the whole list, this may be preferable to using 'joints'.""")
+        contacts_gen = property(lambda self: _indexable_generator(_generator_from_linked_list(self.__GetContactList_internal())), None,
+                            doc="""Indexable generator of the related contacts.
+                            NOTE: When not using the whole list, this may be preferable to using 'contacts'.""")
+        fixtures_gen = property(lambda self: _indexable_generator(_generator_from_linked_list(self.__GetFixtureList_internal())), None,
+                            doc="""Indexable generator of the contained fixtures.
+                            NOTE: When not using the whole list, this may be preferable to using 'fixtures'.""")
         next = property(__GetNext, None)
         worldCenter = property(__GetWorldCenter, None)
         world = property(__GetWorld, None)

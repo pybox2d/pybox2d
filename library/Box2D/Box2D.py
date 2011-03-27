@@ -134,7 +134,6 @@ def _init_jointdef_kwargs(self, **kwargs):
         _init_kwargs(self, **kwargs)
 
 _format_recursed=0
-import pprint
 def _format_repr(item, props, indent_amount=4, max_level=4, max_str_len=250, max_sub_lines=10):
     global _format_recursed
     _format_recursed+=1
@@ -222,23 +221,56 @@ def b2CheckPolygon(*args, **kwargs):
 RAND_LIMIT = _Box2D.RAND_LIMIT
 b2_epsilon = 1.192092896e-07
 
-def _list_from_linked_list(first):
-    lst = []
-    one = first
+class _indexable_generator(list):
+    def __init__(self, iter):
+        list.__init__(self)
+        self.iter=iter
+        self.__full=False
+    def __len__(self):
+        self.__fill_list__()
+        return list.len(self)
+    def __iter__(self):
+        for item in self.iter:
+            self.append(item)
+            yield item
+        self.__full=True
+    def __fill_list__(self):
+        for item in self.iter:
+            self.append(item)
+        self.__full=True
+    def __getitem__(self, i):
+        """Support indexing positive/negative elements of the generator,
+        but no slices. If you want those, use list(generator)"""
+        if not self.__full:
+            if i < 0:
+                self.__fill_list__()
+            elif i >= list.__len__(self):
+                diff=i-list.__len__(self)+1
+                for j in xrange(diff):
+                    value=self.iter.next()
+                    self.append(value)
 
-    if not one:
-        return []
+        return list.__getitem__(self,i)
 
-    if hasattr(one, "GetNext"):
+def _generator_from_linked_list(first):
+    if first:
+        one = first
         while one:
-            lst.append(one)
-            one = one.GetNext()
-    else:
-        while one:
-            lst.append(one)
+            yield one
             one = one.next
 
-    lst.reverse() # list is in reverse order
+def _list_from_linked_list(first):
+    if not first:
+        return []
+
+    one = first
+    lst = []
+    while one:
+        lst.append(one)
+        one = one.next
+
+    # linked lists are stored in reverse order from creation order
+    lst.reverse() 
     return lst
 
 # Support using == on bodies, joints, and shapes
@@ -475,22 +507,6 @@ class b2Version(object):
 b2Version_swigregister = _Box2D.b2Version_swigregister
 b2Version_swigregister(b2Version)
 
-
-def b2MixFriction(*args, **kwargs):
-  """
-    b2MixFriction(float32 friction1, float32 friction2) -> float32
-
-    Friction mixing law. Feel free to customize this.
-    """
-  return _Box2D.b2MixFriction(*args, **kwargs)
-
-def b2MixRestitution(*args, **kwargs):
-  """
-    b2MixRestitution(float32 restitution1, float32 restitution2) -> float32
-
-    Restitution mixing law. Feel free to customize this.
-    """
-  return _Box2D.b2MixRestitution(*args, **kwargs)
 
 def b2IsValid(*args, **kwargs):
   """
@@ -929,14 +945,14 @@ class b2Mat22(object):
         Construct this matrix using an angle. This matrix becomes an orthonormal rotation matrix.
         """
         _Box2D.b2Mat22_swiginit(self,_Box2D.new_b2Mat22(*args))
-    def set(self, *args):
+    def __SetAngle(self, *args):
         """
-        set(self, b2Vec2 c1, b2Vec2 c2)
-        set(self, float32 angle)
+        __SetAngle(self, b2Vec2 c1, b2Vec2 c2)
+        __SetAngle(self, float32 angle)
 
         Initialize this matrix using an angle. This matrix becomes an orthonormal rotation matrix.
         """
-        return _Box2D.b2Mat22_set(self, *args)
+        return _Box2D.b2Mat22___SetAngle(self, *args)
 
     def SetIdentity(self):
         """
@@ -983,8 +999,7 @@ class b2Mat22(object):
 
     # Read-only
     inverse = property(__GetInverse, None)
-    angle = property(__GetAngle, None)
-
+    angle = property(__GetAngle, __SetAngle)
 
     def __mul__(self, *args):
         """
@@ -1010,7 +1025,7 @@ class b2Mat22(object):
         return _Box2D.b2Mat22___isub(self, *args, **kwargs)
 
     __swig_destroy__ = _Box2D.delete_b2Mat22
-b2Mat22.set = new_instancemethod(_Box2D.b2Mat22_set,None,b2Mat22)
+b2Mat22.__SetAngle = new_instancemethod(_Box2D.b2Mat22___SetAngle,None,b2Mat22)
 b2Mat22.SetIdentity = new_instancemethod(_Box2D.b2Mat22_SetIdentity,None,b2Mat22)
 b2Mat22.SetZero = new_instancemethod(_Box2D.b2Mat22_SetZero,None,b2Mat22)
 b2Mat22.__GetAngle = new_instancemethod(_Box2D.b2Mat22___GetAngle,None,b2Mat22)
@@ -1143,9 +1158,11 @@ class b2Transform(object):
     def __repr__(self):
         return _format_repr(self, ['R','angle','position']) 
 
-    # Read-only
-    angle = property(__GetAngle, None)
+    def __SetAngle(self, angle):
+        self.R.angle=angle
 
+    # Read-only
+    angle = property(__GetAngle, __SetAngle) 
 
     def __mul__(self, *args, **kwargs):
         """__mul__(self, b2Vec2 v) -> b2Vec2"""
@@ -3751,9 +3768,24 @@ class b2Body(object):
     gravityScale = property(__GetGravityScale, __SetGravityScale)
 
     # Read-only
-    joints = property(lambda self: _list_from_linked_list(self.__GetJointList_internal()), None)
-    contacts = property(lambda self: _list_from_linked_list(self.__GetContactList_internal()), None)
-    fixtures = property(lambda self: _list_from_linked_list(self.__GetFixtureList_internal()), None)
+    joints = property(lambda self: _list_from_linked_list(self.__GetJointList_internal()), None, 
+                        doc="""All joints connected to the body as a list. 
+                        NOTE: This re-creates the list on every call. See also joints_gen.""")
+    contacts = property(lambda self: _list_from_linked_list(self.__GetContactList_internal()), None,
+                        doc="""All contacts related to the body as a list. 
+                        NOTE: This re-creates the list on every call. See also contacts_gen.""")
+    fixtures = property(lambda self: _list_from_linked_list(self.__GetFixtureList_internal()), None,
+                        doc="""All fixtures contained in this body as a list. 
+                        NOTE: This re-creates the list on every call. See also fixtures_gen.""")
+    joints_gen = property(lambda self: _indexable_generator(_generator_from_linked_list(self.__GetJointList_internal())), None,
+                        doc="""Indexable generator of the connected joints to this body.
+                        NOTE: When not using the whole list, this may be preferable to using 'joints'.""")
+    contacts_gen = property(lambda self: _indexable_generator(_generator_from_linked_list(self.__GetContactList_internal())), None,
+                        doc="""Indexable generator of the related contacts.
+                        NOTE: When not using the whole list, this may be preferable to using 'contacts'.""")
+    fixtures_gen = property(lambda self: _indexable_generator(_generator_from_linked_list(self.__GetFixtureList_internal())), None,
+                        doc="""Indexable generator of the contained fixtures.
+                        NOTE: When not using the whole list, this may be preferable to using 'fixtures'.""")
     next = property(__GetNext, None)
     worldCenter = property(__GetWorldCenter, None)
     world = property(__GetWorld, None)
@@ -5054,7 +5086,6 @@ class b2World(object):
     # also clearing the refcount of the function.
     # Now using it also to buffer previously write-only values in the shadowed
     # class to make them read-write.
-    # TODO: test this
     def __GetData(self, name):
         if name in list(self.__data.keys()):
             return self.__data[name]
@@ -5089,14 +5120,23 @@ class b2World(object):
     bodyCount     = property(__GetBodyCount, None)
     jointCount    = property(__GetJointCount, None)
     proxyCount    = property(__GetProxyCount, None)
-    joints  = property(lambda self: _list_from_linked_list(self.__GetJointList_internal()), None)
-    bodies  = property(lambda self: _list_from_linked_list(self.__GetBodyList_internal()), None)
-    contacts= property(lambda self: _list_from_linked_list(self.__GetContactList_internal()), None)
+    joints  = property(lambda self: _list_from_linked_list(self.__GetJointList_internal()), None,
+                        doc="""All joints in the world.  NOTE: This re-creates the list on every call. See also joints_gen.""")
+    bodies  = property(lambda self: _list_from_linked_list(self.__GetBodyList_internal()), None,
+                        doc="""All bodies in the world.  NOTE: This re-creates the list on every call. See also bodies_gen.""")
+    contacts= property(lambda self: _list_from_linked_list(self.__GetContactList_internal()), None,
+                        doc="""All contacts in the world.  NOTE: This re-creates the list on every call. See also contacts_gen.""")
+    joints_gen = property(lambda self: _indexable_generator(_generator_from_linked_list(self.__GetJointList_internal())), None,
+                        doc="""Indexable generator of the connected joints to this body.
+                        NOTE: When not using the whole list, this may be preferable to using 'joints'.""")
+    bodies_gen = property(lambda self: _indexable_generator(_generator_from_linked_list(self.__GetBodyList_internal())), None,
+                        doc="""Indexable generator of all bodies.
+                        NOTE: When not using the whole list, this may be preferable to using 'bodies'.""")
+    contacts_gen = property(lambda self: _indexable_generator(_generator_from_linked_list(self.__GetContactList_internal())), None,
+                        doc="""Indexable generator of all contacts.
+                        NOTE: When not using the whole list, this may be preferable to using 'contacts'.""")
     locked  = property(__IsLocked, None)
 
-    # other functions:
-    # DestroyBody, DestroyJoint
-    # Step, ClearForces, DrawDebugData, QueryAABB, RayCast
 
 b2World.__SetDestructionListener_internal = new_instancemethod(_Box2D.b2World___SetDestructionListener_internal,None,b2World)
 b2World.__SetContactFilter_internal = new_instancemethod(_Box2D.b2World___SetContactFilter_internal,None,b2World)
@@ -5134,6 +5174,22 @@ b2World.DestroyJoint = new_instancemethod(_Box2D.b2World_DestroyJoint,None,b2Wor
 b2World_swigregister = _Box2D.b2World_swigregister
 b2World_swigregister(b2World)
 
+
+def b2MixFriction(*args, **kwargs):
+  """
+    b2MixFriction(float32 friction1, float32 friction2) -> float32
+
+    Friction mixing law. Feel free to customize this.
+    """
+  return _Box2D.b2MixFriction(*args, **kwargs)
+
+def b2MixRestitution(*args, **kwargs):
+  """
+    b2MixRestitution(float32 restitution1, float32 restitution2) -> float32
+
+    Restitution mixing law. Feel free to customize this.
+    """
+  return _Box2D.b2MixRestitution(*args, **kwargs)
 class b2ContactEdge(object):
     """A contact edge is used to connect bodies and contacts together in a contact graph where each body is a node and each contact is an edge. A contact edge belongs to a doubly linked list maintained in each attached body. Each contact has two contact nodes, one for each attached body."""
     thisown = _swig_property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc='The membership flag')
@@ -5245,6 +5301,54 @@ class b2Contact(object):
         """
         return _Box2D.b2Contact___GetChildIndexB(self)
 
+    def __SetFriction(self, *args, **kwargs):
+        """
+        __SetFriction(self, float32 friction)
+
+        Override the default friction mixture. You can call this in  b2ContactListener::PreSolve. This value persists until set or reset.
+        """
+        return _Box2D.b2Contact___SetFriction(self, *args, **kwargs)
+
+    def __GetFriction(self):
+        """
+        __GetFriction(self) -> float32
+
+        Get the friction.
+        """
+        return _Box2D.b2Contact___GetFriction(self)
+
+    def ResetFriction(self):
+        """
+        ResetFriction(self)
+
+        Reset the friction mixture to the default value.
+        """
+        return _Box2D.b2Contact_ResetFriction(self)
+
+    def __SetRestitution(self, *args, **kwargs):
+        """
+        __SetRestitution(self, float32 restitution)
+
+        Override the default restitution mixture. You can call this in  b2ContactListener::PreSolve. The value persists until you set or reset.
+        """
+        return _Box2D.b2Contact___SetRestitution(self, *args, **kwargs)
+
+    def __GetRestitution(self):
+        """
+        __GetRestitution(self) -> float32
+
+        Get the restitution.
+        """
+        return _Box2D.b2Contact___GetRestitution(self)
+
+    def ResetRestitution(self):
+        """
+        ResetRestitution(self)
+
+        Reset the restitution to the default value.
+        """
+        return _Box2D.b2Contact_ResetRestitution(self)
+
     def Evaluate(self, *args, **kwargs):
         """
         Evaluate(self, b2Manifold manifold, b2Transform xfA, b2Transform xfB)
@@ -5275,7 +5379,8 @@ class b2Contact(object):
     childIndexB = property(__GetChildIndexB, None)
     worldManifold = property(__GetWorldManifold, None)
     touching = property(__IsTouching, None)
-
+    friction = property(__GetFriction, __SetFriction)
+    restitution = property(__GetRestitution, __SetRestitution)
 
 b2Contact.__GetManifold = new_instancemethod(_Box2D.b2Contact___GetManifold,None,b2Contact)
 b2Contact.__GetWorldManifold_internal = new_instancemethod(_Box2D.b2Contact___GetWorldManifold_internal,None,b2Contact)
@@ -5287,6 +5392,12 @@ b2Contact.__GetFixtureA = new_instancemethod(_Box2D.b2Contact___GetFixtureA,None
 b2Contact.__GetChildIndexA = new_instancemethod(_Box2D.b2Contact___GetChildIndexA,None,b2Contact)
 b2Contact.__GetFixtureB = new_instancemethod(_Box2D.b2Contact___GetFixtureB,None,b2Contact)
 b2Contact.__GetChildIndexB = new_instancemethod(_Box2D.b2Contact___GetChildIndexB,None,b2Contact)
+b2Contact.__SetFriction = new_instancemethod(_Box2D.b2Contact___SetFriction,None,b2Contact)
+b2Contact.__GetFriction = new_instancemethod(_Box2D.b2Contact___GetFriction,None,b2Contact)
+b2Contact.ResetFriction = new_instancemethod(_Box2D.b2Contact_ResetFriction,None,b2Contact)
+b2Contact.__SetRestitution = new_instancemethod(_Box2D.b2Contact___SetRestitution,None,b2Contact)
+b2Contact.__GetRestitution = new_instancemethod(_Box2D.b2Contact___GetRestitution,None,b2Contact)
+b2Contact.ResetRestitution = new_instancemethod(_Box2D.b2Contact_ResetRestitution,None,b2Contact)
 b2Contact.Evaluate = new_instancemethod(_Box2D.b2Contact_Evaluate,None,b2Contact)
 b2Contact_swigregister = _Box2D.b2Contact_swigregister
 b2Contact_swigregister(b2Contact)

@@ -185,7 +185,8 @@ public:
         childIndexB = property(__GetChildIndexB, None)
         worldManifold = property(__GetWorldManifold, None)
         touching = property(__IsTouching, None)
-
+        friction = property(__GetFriction, __SetFriction)
+        restitution = property(__GetRestitution, __SetRestitution)
     %}
 }
 
@@ -199,6 +200,10 @@ public:
 %rename(__IsEnabled) b2Contact::IsEnabled;
 %rename(__SetEnabled) b2Contact::SetEnabled;
 %rename(__IsTouching) b2Contact::IsTouching;
+%rename(__GetFriction) b2Contact::GetFriction;
+%rename(__SetFriction) b2Contact::SetFriction;
+%rename(__GetRestitution) b2Contact::GetRestitution;
+%rename(__SetRestitution) b2Contact::SetRestitution;
 
 /**** Create our own ContactPoint structure ****/
 /* And allow kwargs for it */

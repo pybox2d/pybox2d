@@ -18,7 +18,22 @@
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
+%inline %{
+#define pybox2d_float_from_sequence(_sequence, _num, _dest, _err_msg) \
+    {                                                                 \
+        PyObject* item=PySequence_GetItem(_sequence, _num);           \
+        int res=SWIG_AsVal_float(item, _dest);                        \
+        Py_XDECREF(item);                                             \
+        if (!SWIG_IsOK(res)) {                                        \
+            PyErr_SetString(PyExc_TypeError,_err_msg);                \
+            SWIG_fail;                                                \
+        }                                                             \
+    }
 
+%}
+
+
+//input - $input -> ($1_type) $1 $1_descriptor
 %typemap(in) b2Vec2* self {
     int res1 = SWIG_ConvertPtr($input, (void**)&$1, $descriptor(b2Vec2*), 0);
     if (!SWIG_IsOK(res1)) {
@@ -41,42 +56,32 @@
 //Resolve ambiguities in overloaded functions when you pass a tuple or list when 
 //SWIG expects a b2Vec2 (b2Vec3, b2Color)
 %typemap(typecheck,precedence=SWIG_TYPECHECK_POINTER) b2Vec2*,b2Vec2& {
-   $1 = (PySequence_Check($input)  || 
+   $1 = (PySequence_Check($input) || 
          SWIG_CheckState(SWIG_ConvertPtr($input, 0, $descriptor(b2Vec2*), 0))
         ) ? 1 : 0;
 }
 %typemap(typecheck,precedence=SWIG_TYPECHECK_POINTER) b2Vec3*,b2Vec3& {
-   $1 = (PySequence_Check($input)  || 
+   $1 = (PySequence_Check($input) || 
          SWIG_CheckState(SWIG_ConvertPtr($input, 0, $descriptor(b2Vec3*), 0))
         ) ? 1 : 0;
 }
 %typemap(typecheck,precedence=SWIG_TYPECHECK_POINTER) b2Color*,b2Color& {
-   $1 = (PySequence_Check($input)  || 
+   $1 = (PySequence_Check($input) || 
          SWIG_CheckState(SWIG_ConvertPtr($input, 0, $descriptor(b2Color*), 0))
         ) ? 1 : 0;
 }
 
 // Allow b2Vec2* arguments be passed in as tuples or lists
 %typemap(in) b2Vec2* (b2Vec2 temp) {
-    //input - $input -> ($1_type) $1 $1_descriptor
     if (PySequence_Check($input)) {
         if (PySequence_Size($input) != 2) {
             PyErr_Format(PyExc_TypeError, "Expected tuple or list of length 2, got length %d", PySequence_Size($input));
             SWIG_fail;
         }
-        int res1 = SWIG_AsVal_float(PySequence_GetItem($input, 0), &temp.x);
-        if (!SWIG_IsOK(res1)) {
-            PyErr_SetString(PyExc_TypeError,"Converting from sequence to b2Vec2, expected int/float arguments index 0");
-            SWIG_fail;
-        } 
-        res1 = SWIG_AsVal_float(PySequence_GetItem($input, 1), &temp.y);
-        if (!SWIG_IsOK(res1)) {
-            PyErr_SetString(PyExc_TypeError,"Converting from sequence to b2Vec2, expected int/float arguments index 1");
-            SWIG_fail;
-        } 
+        pybox2d_float_from_sequence($input, 0, &temp.x, "Converting from sequence to b2Vec2, expected int/float arguments index 0");
+        pybox2d_float_from_sequence($input, 1, &temp.y, "Converting from sequence to b2Vec2, expected int/float arguments index 1");
     } else if ($input==Py_None) {
         temp.Set(0.0f,0.0f);
-        Py_DECREF(Py_None); // TODO: check
     } else {
         int res1 = SWIG_ConvertPtr($input, (void**)&$1, $1_descriptor, 0);
         if (!SWIG_IsOK(res1)) {
@@ -96,24 +101,11 @@
             PyErr_Format(PyExc_TypeError, "Expected tuple or list of length 3, got length %d", PySequence_Size($input));
             SWIG_fail;
         }
-        int res1 = SWIG_AsVal_float(PySequence_GetItem($input, 0), &temp.r);
-        if (!SWIG_IsOK(res1)) {
-            PyErr_SetString(PyExc_TypeError,"Converting from sequence to b2Color, expected int/float arguments index 0");
-            SWIG_fail;
-        } 
-        res1 = SWIG_AsVal_float(PySequence_GetItem($input, 1), &temp.g);
-        if (!SWIG_IsOK(res1)) {
-            PyErr_SetString(PyExc_TypeError,"Converting from sequence to b2Color, expected int/float arguments index 1");
-            SWIG_fail;
-        } 
-        res1 = SWIG_AsVal_float(PySequence_GetItem($input, 2), &temp.b);
-        if (!SWIG_IsOK(res1)) {
-            PyErr_SetString(PyExc_TypeError,"Converting from sequence to b2Color, expected int/float arguments index 2");
-            SWIG_fail;
-        } 
+        pybox2d_float_from_sequence($input, 0, &temp.r, "Converting from sequence to b2Color, expected int/float arguments index 0");
+        pybox2d_float_from_sequence($input, 1, &temp.g, "Converting from sequence to b2Color, expected int/float arguments index 1");
+        pybox2d_float_from_sequence($input, 2, &temp.b, "Converting from sequence to b2Color, expected int/float arguments index 2");
     } else if ($input==Py_None) {
         temp.Set(0.0f,0.0f,0.0f);
-        Py_DECREF(Py_None); // TODO: check
     } else {
         int res1 = SWIG_ConvertPtr($input, (void**)&$1, $1_descriptor, 0);
         if (!SWIG_IsOK(res1)) {
@@ -133,24 +125,11 @@
             PyErr_Format(PyExc_TypeError, "Expected tuple or list of length 3, got length %d", PySequence_Size($input));
             SWIG_fail;
         }
-        int res1 = SWIG_AsVal_float(PySequence_GetItem($input, 0), &temp.x);
-        if (!SWIG_IsOK(res1)) {
-            PyErr_SetString(PyExc_TypeError,"Converting from sequence to b2Vec3, expected int/float arguments index 0");
-            SWIG_fail;
-        } 
-        res1 = SWIG_AsVal_float(PySequence_GetItem($input, 1), &temp.y);
-        if (!SWIG_IsOK(res1)) {
-            PyErr_SetString(PyExc_TypeError,"Converting from sequence to b2Vec3, expected int/float arguments index 1");
-            SWIG_fail;
-        } 
-        res1 = SWIG_AsVal_float(PySequence_GetItem($input, 2), &temp.z);
-        if (!SWIG_IsOK(res1)) {
-            PyErr_SetString(PyExc_TypeError,"Converting from sequence to b2Vec3, expected int/float arguments index 2");
-            SWIG_fail;
-        } 
+        pybox2d_float_from_sequence($input, 0, &temp.x, "Converting from sequence to b2Vec3, expected int/float arguments index 0");
+        pybox2d_float_from_sequence($input, 1, &temp.y, "Converting from sequence to b2Vec3, expected int/float arguments index 1");
+        pybox2d_float_from_sequence($input, 2, &temp.z, "Converting from sequence to b2Vec3, expected int/float arguments index 2");
     } else if ($input==Py_None) {
         temp.Set(0.0f,0.0f,0.0f);
-        Py_DECREF(Py_None); // TODO: check
     } else {
         int res1 = SWIG_ConvertPtr($input, (void**)&$1, $1_descriptor, 0);
         if (!SWIG_IsOK(res1)) {
@@ -170,19 +149,10 @@
             PyErr_Format(PyExc_TypeError, "Expected tuple or list of length 2, got length %d", PySequence_Size($input));
             SWIG_fail;
         }
-        int res1 = SWIG_AsVal_float(PySequence_GetItem($input, 0), &temp.x);
-        if (!SWIG_IsOK(res1)) {
-            PyErr_SetString(PyExc_TypeError,"Converting from sequence to b2Vec2, expected int/float arguments index 0");
-            SWIG_fail;
-        } 
-        res1 = SWIG_AsVal_float(PySequence_GetItem($input, 1), &temp.y);
-        if (!SWIG_IsOK(res1)) {
-            PyErr_SetString(PyExc_TypeError,"Converting from sequence to b2Vec2, expected int/float arguments index 1");
-            SWIG_fail;
-        } 
+        pybox2d_float_from_sequence($input, 0, &temp.x, "Converting from sequence to b2Vec2, expected int/float arguments index 0");
+        pybox2d_float_from_sequence($input, 1, &temp.y, "Converting from sequence to b2Vec2, expected int/float arguments index 1");
     } else if ($input == Py_None) {
         temp.Set(0.0f,0.0f);
-        Py_DECREF(Py_None); // TODO: check
     } else {
         int res1 = SWIG_ConvertPtr($input, (void**)&$1, $1_descriptor, 0);
         if (!SWIG_IsOK(res1)) {
@@ -201,24 +171,11 @@
             PyErr_Format(PyExc_TypeError, "Expected tuple or list of length 3, got length %d", PySequence_Size($input));
             SWIG_fail;
         }
-        int res1 = SWIG_AsVal_float(PySequence_GetItem($input, 0), &temp.r);
-        if (!SWIG_IsOK(res1)) {
-            PyErr_SetString(PyExc_TypeError,"Converting from sequence to b2Color, expected int/float arguments index 0");
-            SWIG_fail;
-        } 
-        res1 = SWIG_AsVal_float(PySequence_GetItem($input, 1), &temp.g);
-        if (!SWIG_IsOK(res1)) {
-            PyErr_SetString(PyExc_TypeError,"Converting from sequence to b2Color, expected int/float arguments index 1");
-            SWIG_fail;
-        } 
-        res1 = SWIG_AsVal_float(PySequence_GetItem($input, 2), &temp.b);
-        if (!SWIG_IsOK(res1)) {
-            PyErr_SetString(PyExc_TypeError,"Converting from sequence to b2Color, expected int/float arguments index 2");
-            SWIG_fail;
-        } 
+        pybox2d_float_from_sequence($input, 0, &temp.r, "Converting from sequence to b2Color, expected int/float arguments index 0");
+        pybox2d_float_from_sequence($input, 1, &temp.g, "Converting from sequence to b2Color, expected int/float arguments index 1");
+        pybox2d_float_from_sequence($input, 2, &temp.b, "Converting from sequence to b2Color, expected int/float arguments index 2");
     } else if ($input==Py_None) {
         temp.Set(0.0f,0.0f,0.0f);
-        Py_DECREF(Py_None); // TODO: check
     } else {
         int res1 = SWIG_ConvertPtr($input, (void**)&$1, $1_descriptor, 0);
         if (!SWIG_IsOK(res1)) {
@@ -238,24 +195,11 @@
             PyErr_Format(PyExc_TypeError, "Expected tuple or list of length 3, got length %d", PySequence_Size($input));
             SWIG_fail;
         }
-        int res1 = SWIG_AsVal_float(PySequence_GetItem($input, 0), &temp.x);
-        if (!SWIG_IsOK(res1)) {
-            PyErr_SetString(PyExc_TypeError,"Converting from sequence to b2Vec3, expected int/float arguments index 0");
-            SWIG_fail;
-        } 
-        res1 = SWIG_AsVal_float(PySequence_GetItem($input, 1), &temp.y);
-        if (!SWIG_IsOK(res1)) {
-            PyErr_SetString(PyExc_TypeError,"Converting from sequence to b2Vec3, expected int/float arguments index 1");
-            SWIG_fail;
-        } 
-        res1 = SWIG_AsVal_float(PySequence_GetItem($input, 2), &temp.z);
-        if (!SWIG_IsOK(res1)) {
-            PyErr_SetString(PyExc_TypeError,"Converting from sequence to b2Vec3, expected int/float arguments index 2");
-            SWIG_fail;
-        } 
+        pybox2d_float_from_sequence($input, 0, &temp.x, "Converting from sequence to b2Vec3, expected int/float arguments index 0");
+        pybox2d_float_from_sequence($input, 1, &temp.y, "Converting from sequence to b2Vec3, expected int/float arguments index 1");
+        pybox2d_float_from_sequence($input, 2, &temp.z, "Converting from sequence to b2Vec3, expected int/float arguments index 2");
     } else if ($input==Py_None) {
         temp.Set(0.0f,0.0f,0.0f);
-        Py_DECREF(Py_None); // TODO: check
     } else {
         int res1 = SWIG_ConvertPtr($input, (void**)&$1, $1_descriptor, 0);
         if (!SWIG_IsOK(res1)) {
