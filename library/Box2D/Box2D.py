@@ -670,6 +670,13 @@ class b2Vec2(object):
     skew = property(__Skew, None) 
 
 
+    def cross(self, *args):
+        """
+        cross(self, b2Vec2 other) -> float32
+        cross(self, float32 s) -> b2Vec2
+        """
+        return _Box2D.b2Vec2_cross(self, *args)
+
     def __getitem__(self, *args, **kwargs):
         """__getitem__(self, int i) -> float32"""
         return _Box2D.b2Vec2___getitem__(self, *args, **kwargs)
@@ -731,6 +738,7 @@ b2Vec2.__LengthSquared = new_instancemethod(_Box2D.b2Vec2___LengthSquared,None,b
 b2Vec2.Normalize = new_instancemethod(_Box2D.b2Vec2_Normalize,None,b2Vec2)
 b2Vec2.__IsValid = new_instancemethod(_Box2D.b2Vec2___IsValid,None,b2Vec2)
 b2Vec2.__Skew = new_instancemethod(_Box2D.b2Vec2___Skew,None,b2Vec2)
+b2Vec2.cross = new_instancemethod(_Box2D.b2Vec2_cross,None,b2Vec2)
 b2Vec2.__getitem__ = new_instancemethod(_Box2D.b2Vec2___getitem__,None,b2Vec2)
 b2Vec2.__setitem__ = new_instancemethod(_Box2D.b2Vec2___setitem__,None,b2Vec2)
 b2Vec2.__equ = new_instancemethod(_Box2D.b2Vec2___equ,None,b2Vec2)
@@ -856,6 +864,10 @@ class b2Vec3(object):
     valid = property(_Box2D.b2Vec3___IsValid, None)
 
 
+    def cross(self, *args, **kwargs):
+        """cross(self, b2Vec3 b) -> b2Vec3"""
+        return _Box2D.b2Vec3_cross(self, *args, **kwargs)
+
     def __getitem__(self, *args, **kwargs):
         """__getitem__(self, int i) -> float32"""
         return _Box2D.b2Vec3___getitem__(self, *args, **kwargs)
@@ -915,6 +927,7 @@ b2Vec3.__neg__ = new_instancemethod(_Box2D.b2Vec3___neg__,None,b2Vec3)
 b2Vec3.__add_vector = new_instancemethod(_Box2D.b2Vec3___add_vector,None,b2Vec3)
 b2Vec3.__sub_vector = new_instancemethod(_Box2D.b2Vec3___sub_vector,None,b2Vec3)
 b2Vec3.__mul_float = new_instancemethod(_Box2D.b2Vec3___mul_float,None,b2Vec3)
+b2Vec3.cross = new_instancemethod(_Box2D.b2Vec3_cross,None,b2Vec3)
 b2Vec3.__getitem__ = new_instancemethod(_Box2D.b2Vec3___getitem__,None,b2Vec3)
 b2Vec3.__setitem__ = new_instancemethod(_Box2D.b2Vec3___setitem__,None,b2Vec3)
 b2Vec3.__IsValid = new_instancemethod(_Box2D.b2Vec3___IsValid,None,b2Vec3)

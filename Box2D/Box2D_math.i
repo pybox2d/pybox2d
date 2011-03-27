@@ -95,6 +95,13 @@ public:
     skew = property(__Skew, None) 
 
     %}
+    float32 cross(b2Vec2& other) {
+        return $self->x * other.y - $self->y * other.x;
+    }
+    b2Vec2 cross(float32 s) {
+        return b2Vec2(s * $self->y, -s * $self->x);
+    }
+
     float32 __getitem__(int i) {
         if (i==0) 
             return $self->x;
@@ -218,6 +225,9 @@ public:
 
     %}
 
+    b2Vec3 cross(b2Vec3& b) {
+        return b2Vec3($self->y * b.z - $self->z * b.y, $self->z * b.x - $self->x * b.z, $self->x * b.y - $self->y * b.x);
+    }
     float32 __getitem__(int i) {
         if (i==0) 
             return $self->x;

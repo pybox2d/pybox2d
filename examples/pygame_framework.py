@@ -360,6 +360,10 @@ class PygameFramework(FrameworkBase):
                 self.LaunchRandomBomb()
             elif key==Keys.K_F1:    # Toggle drawing the menu
                 self.settings.drawMenu = not self.settings.drawMenu
+            elif key==Keys.K_F2:    # Do a single step
+                self.settings.singleStep=True
+                if GUIEnabled:
+                    self.gui_table.updateGUI(self.settings)
             else:              # Inform the test of the key press
                 self.Keyboard(key)
         else:
