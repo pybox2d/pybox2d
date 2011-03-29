@@ -5607,6 +5607,10 @@ class b2Joint(object):
         """
         return _Box2D.b2Joint___IsActive(self)
 
+    def __GetCollideConnected(self):
+        """__GetCollideConnected(self) -> bool"""
+        return _Box2D.b2Joint___GetCollideConnected(self)
+
     __dir__ = _dir_filter
 
     def __repr__(self):
@@ -5641,6 +5645,7 @@ class b2Joint(object):
     active = property(__IsActive, None)
     anchorB = property(__GetAnchorB, None)
     anchorA = property(__GetAnchorA, None)
+    collideConnected = property(__GetCollideConnected, None)
 
 
 b2Joint.__GetType = new_instancemethod(_Box2D.b2Joint___GetType,None,b2Joint)
@@ -5652,6 +5657,7 @@ b2Joint.GetReactionForce = new_instancemethod(_Box2D.b2Joint_GetReactionForce,No
 b2Joint.GetReactionTorque = new_instancemethod(_Box2D.b2Joint_GetReactionTorque,None,b2Joint)
 b2Joint.__GetNext = new_instancemethod(_Box2D.b2Joint___GetNext,None,b2Joint)
 b2Joint.__IsActive = new_instancemethod(_Box2D.b2Joint___IsActive,None,b2Joint)
+b2Joint.__GetCollideConnected = new_instancemethod(_Box2D.b2Joint___GetCollideConnected,None,b2Joint)
 b2Joint.__GetUserData = new_instancemethod(_Box2D.b2Joint___GetUserData,None,b2Joint)
 b2Joint.__SetUserData = new_instancemethod(_Box2D.b2Joint___SetUserData,None,b2Joint)
 b2Joint.ClearUserData = new_instancemethod(_Box2D.b2Joint_ClearUserData,None,b2Joint)

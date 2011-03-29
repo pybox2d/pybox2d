@@ -52,6 +52,7 @@ public:
     active = property(__IsActive, None)
     anchorB = property(__GetAnchorB, None)
     anchorA = property(__GetAnchorA, None)
+    collideConnected = property(__GetCollideConnected, None)
 
     %}
 
@@ -64,6 +65,7 @@ public:
 %rename(__IsActive) b2Joint::IsActive;
 %rename(__GetAnchorA) b2Joint::GetAnchorA;
 %rename(__GetAnchorB) b2Joint::GetAnchorB;
+%rename(__GetCollideConnected) b2Joint::GetCollideConnected;
 
 /**** RevoluteJoint ****/
 %extend b2RevoluteJoint {

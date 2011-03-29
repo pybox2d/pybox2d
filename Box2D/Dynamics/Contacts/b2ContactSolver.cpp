@@ -127,7 +127,6 @@ void b2ContactSolver::InitializeVelocityConstraints()
 
 		for (int32 j = 0; j < cc->pointCount; ++j)
 		{
-			b2ManifoldPoint* cp = manifold->points + j;
 			b2ContactConstraintPoint* ccp = cc->points + j;
 
 			ccp->rA = worldManifold.points[j] - bodyA->m_sweep.c;
@@ -185,7 +184,7 @@ void b2ContactSolver::InitializeVelocityConstraints()
 			float32 k12 = invMassA + invMassB + invIA * rn1A * rn2A + invIB * rn1B * rn2B;
 
 			// Ensure a reasonable condition number.
-			const float32 k_maxConditionNumber = 100.0f;
+			const float32 k_maxConditionNumber = 1000.0f;
 			if (k11 * k11 < k_maxConditionNumber * (k11 * k22 - k12 * k12))
 			{
 				// K is safe to invert.
