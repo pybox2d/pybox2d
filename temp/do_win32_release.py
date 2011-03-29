@@ -16,6 +16,7 @@ echo -------- %(version)s -------- >> build_results.txt
 echo -------- %(version)s -------- >> test_results.txt
 %(interpreter)s setup.py clean -a >> build_results.txt 2>&1
 %(interpreter)s setup.py build --force >> build_results.txt 2>&1
+
 type Box2D\pybox2d_license_header.txt > Box2D_.py
 type %(lib_path)s\Box2D\Box2D.py >> Box2D_.py
 move /y Box2D_.py %(lib_path)s\Box2D\Box2D.py

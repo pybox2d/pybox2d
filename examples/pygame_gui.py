@@ -1,4 +1,5 @@
-# pybox2d -- http://pybox2d.googlecode.com
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 #
 # Copyright (c) 2010 Ken Lauer / sirkne at gmail dot com
 # 

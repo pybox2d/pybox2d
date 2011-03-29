@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 import unittest
 from Box2D import b2Vec2, b2Vec3, b2Mat22, b2Mat33
 

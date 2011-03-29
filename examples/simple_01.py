@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 """
 An attempt at some simple, self-contained pygame-based examples.
 
