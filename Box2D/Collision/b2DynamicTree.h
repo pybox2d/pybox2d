@@ -286,7 +286,7 @@ inline void b2DynamicTree::RayCast(T* callback, const b2RayCastInput& input) con
 	}
 }
 
-#elif B2_USE_BRUTE_FORCE 0
+#elif B2_USE_BRUTE_FORCE==0
 
 struct b2Proxy
 {
