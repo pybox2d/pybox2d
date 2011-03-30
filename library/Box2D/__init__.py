@@ -18,9 +18,9 @@
 # 3. This notice may not be removed or altered from any source distribution.
 # 
 from .Box2D import *
-__author__ = '$Date: 2011-03-26 18:00:35 -0400 (Sat, 26 Mar 2011) $'
+__author__ = '$Date: 2011-03-29 17:08:01 -0400 (Tue, 29 Mar 2011) $'
 __version__ = '2.1b0'
 __version_info__ = (2,1,0)
-__revision__ = '$Revision: 319 $'
+__revision__ = '$Revision: 325 $'
 __license__ = 'zlib'
-__date__ = '$Date: 2011-03-26 18:00:35 -0400 (Sat, 26 Mar 2011) $'
+__date__ = '$Date: 2011-03-29 17:08:01 -0400 (Tue, 29 Mar 2011) $'
