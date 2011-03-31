@@ -169,7 +169,9 @@ public:
 
                 try:
                     setattr(to_set, key, value)
-                except Exception as ex:
+                except:
+                    from sys import exc_info
+                    ex=exc_info()[1]
                     raise ex.__class__('Failed on kwargs, class="%s" key="%s": %s' \
                                 % (to_set.__class__.__name__, key, ex))
 

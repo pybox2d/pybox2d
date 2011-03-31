@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 import unittest
 import Box2D
+import sys
 
 class testWorld (unittest.TestCase):
     def setUp(self):
@@ -15,8 +16,8 @@ class testWorld (unittest.TestCase):
             world = Box2D.b2World([0.0, -10.0])
             world = Box2D.b2World()
             world = Box2D.b2World(gravity=[0.0, -10.0])
-        except Exception as s:
-            self.fail("Failed to create world (%s)" % s)
+        except Exception:
+            self.fail("Failed to create world (%s)" % sys.exc_info()[1])
 
     def test_helloworld(self):
         gravity = Box2D.b2Vec2(0, -10)

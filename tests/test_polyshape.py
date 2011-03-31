@@ -3,6 +3,7 @@
 import unittest
 from Box2D import *
 from math import cos, sin
+import sys
 
 class cl (b2ContactListener):
     pass
@@ -42,7 +43,7 @@ class testPolyshape (unittest.TestCase):
         self.dotest(world, [b2Vec2(1,0),(1,1),b2Vec2(-1,1)] )
         try:
             self.dotest(world, [(0,1,5),(1,1)] )
-        except ValueError as s:
+        except ValueError:
             pass # good
         else:
             raise Exception("Should have failed with ValueError / length 3")
@@ -57,14 +58,14 @@ class testPolyshape (unittest.TestCase):
 
         try:
             self.dotest(world, [(0,1)]*(b2_maxPolygonVertices+1) )
-        except ValueError as s:
+        except ValueError:
             pass # good
         else:
             raise Exception("Should have failed with ValueError / max+1")
 
         try:
             shape=b2PolygonShape(vertices=[(1,0),(0,-1),(-1,0)] )
-        except ValueError as s:
+        except ValueError:
             pass # good, not convex
         else:
             raise Exception("Should have failed with ValueError / checkpolygon")

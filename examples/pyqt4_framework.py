@@ -35,7 +35,6 @@ Mouse:
 
 """
 
-from __future__ import print_function
 from PyQt4 import QtGui, QtCore
 from PyQt4.QtCore import QObject, SIGNAL, pyqtSlot
 from PyQt4.QtGui import QTableWidget, QTableWidgetItem, QColor, QPixmap
@@ -688,7 +687,7 @@ class Pyqt4Framework(FrameworkBase):
                 # Attempt to determine whether it's read-only or not
                 try:
                     setattr(obj, prop, value)
-                except Exception as ex:
+                except:
                     editable=False
                 else:
                     editable=True
@@ -784,8 +783,8 @@ class Pyqt4Framework(FrameworkBase):
 
                 try:
                     setattr(inst, prop, value)
-                except Exception as ex:
-                    print('Failed - %s' % ex)
+                except:
+                    print('Failed - %s' % sys.exc_info()[1])
 
     def ShowProperties(self, p):
         aabb = b2AABB(lowerBound=p-(0.001, 0.001), upperBound=p+(0.001, 0.001))

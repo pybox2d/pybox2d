@@ -35,7 +35,6 @@ Mouse:
 
 """
 
-from __future__ import print_function
 import pygame
 import framework
 from pygame.locals import *
@@ -44,9 +43,8 @@ from framework import *
 try:
     from pygame_gui import (fwGUI, gui)
     GUIEnabled = True
-except ImportError as ex:
+except:
     print('Unable to load PGU; menu disabled.')
-    print('ImportError: %s' % ex)
     GUIEnabled = False
 
 class PygameDraw(b2DrawExtended):

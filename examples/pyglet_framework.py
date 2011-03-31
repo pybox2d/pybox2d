@@ -36,7 +36,6 @@ Mouse:
 You can easily add your own tests based on test_empty.
 """
 
-from __future__ import print_function
 import pyglet
 import framework
 from framework import *

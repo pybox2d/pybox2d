@@ -19,8 +19,8 @@
 # 
 from .Box2D import *
 __author__ = '$Date: 2011-03-29 17:08:01 -0400 (Tue, 29 Mar 2011) $'
-__version__ = '2.1b0'
-__version_info__ = (2,1,0)
+__version__ = '2.1b1'
+__version_info__ = (2,1,1)
 __revision__ = '$Revision: 325 $'
 __license__ = 'zlib'
 __date__ = '$Date: 2011-03-29 17:08:01 -0400 (Tue, 29 Mar 2011) $'

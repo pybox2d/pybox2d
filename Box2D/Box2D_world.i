@@ -57,7 +57,9 @@
         for key, value in list(kwargs.items()):
             try:
                 setattr(self, key, value)
-            except Exception as ex:
+            except:
+                from sys import exc_info
+                ex=exc_info()[1]
                 raise ex.__class__('Failed on kwargs, class="%s" key="%s": %s' \
                             % (self.__class__.__name__, key, ex))
 

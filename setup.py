@@ -23,16 +23,21 @@ __version__="$Revision$"
 
 setuptools_version=None
 try:
+    from distribute_setup import use_setuptools
+    use_setuptools()
+
     import setuptools
     from setuptools import (setup, Extension)
     setuptools_version=setuptools.__version__
     print('Using setuptools (version %s).' % setuptools_version)
 except:
     from distutils.core import (setup, Extension)
-    print("""Setuptools not found; falling back on distutils. 
-            !!! This might fail. Please install setuptools by running ez_setup.py for Python
-            2.x or ez_setup3.0.py for Python 3.x""")
-
+    ex = sys.exc_info()[1] # py2.5~py3k compatibility
+    print("""Setuptools not found/distribute setup failed; falling back on distutils. 
+ !!! Setup will likely fail. Please install distribute by running distribute_setup.py
+ Error information: %s
+ ---""" % ex)
+ 
 if setuptools_version:
     if (setuptools_version in ["0.6c%d"%i for i in range(1,9)] # old versions
         or setuptools_version=="0.7a1"): # 0.7a1 py 3k alpha version based on old version
@@ -54,7 +59,7 @@ if setuptools_version:
 
 # release version number
 box2d_version  = '2.1'
-release_number = 0
+release_number = 1
 
 # create the version string
 version_str = "%sb%s" % (box2d_version, str(release_number))
@@ -72,7 +77,7 @@ def write_init():
     license_header = open(os.path.join(source_dir, 'pybox2d_license_header.txt')).read()
 
     # create the source code for the file
-    if sys.version_info >= (2, 5):
+    if sys.version_info >= (2, 6):
         import_string = "from .%s import *" % library_name
     else:
         import_string = "from %s import *" % library_name

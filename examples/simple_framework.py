@@ -36,7 +36,6 @@ to do away with the Settings class. This means the following will definitely
 not work: Breakable, Liquid, Raycast, TimeOfImpact, ... (incomplete)
 """
 
-from __future__ import print_function
 import pygame
 from pygame.locals import *
 import Box2D

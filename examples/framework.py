@@ -22,7 +22,6 @@
 """
 The framework's base is FrameworkBase. See its help for more information.
 """
-from __future__ import print_function
 from Box2D import *
 from settings import fwSettings
 from time import time
@@ -489,7 +488,9 @@ if __name__=='__main__':
 try:
     framework_module=__import__('%s_framework' % (fwSettings.backend.lower()), fromlist=['%sFramework' % fwSettings.backend.capitalize()])
     Framework=getattr(framework_module, '%sFramework' % fwSettings.backend.capitalize())
-except Exception as ex:
+except:
+    from sys import exc_info
+    ex=exc_info()[1]
     print('Unable to import the back-end %s: %s' % (fwSettings.backend, ex))
     print('Attempting to fall back on the pygame back-end.')
 

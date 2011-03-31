@@ -102,9 +102,9 @@ def _polygon_split(fixture, p1, p2, split_size):
 
     try:
         return [b2PolygonShape(vertices=verts) for verts in new_vertices]
-    except b2AssertException as ex:
+    except b2AssertException:
         return []
-    except ValueError as ex:
+    except ValueError:
         return []
 
 def _laser_cut(world, laser_body, length=30.0, laser_half_width=2, **kwargs):
@@ -163,8 +163,8 @@ def laser_cut(world, laser_body, length=30.0, laser_half_width=2, **kwargs):
                         density=fixture.density,
                         shape=new_shapes[1],
                     )
-        except AssertionError as ex:
-            print('New body fixture failed: %s' % ex)
+        except AssertionError:
+            print('New body fixture failed: %s' % sys.exc_info()[1])
             remove_bodies.append(new_body)
 
         try:
@@ -176,8 +176,8 @@ def laser_cut(world, laser_body, length=30.0, laser_half_width=2, **kwargs):
                     )
 
             body.DestroyFixture(fixture)
-        except AssertionError as ex:
-            print('New fixture/destroy failed: %s' % ex)
+        except AssertionError:
+            print('New fixture/destroy failed: %s' % sys.exc_info()[1])
             remove_bodies.append(body)
 
     for body in remove_bodies:
