@@ -73,6 +73,44 @@ class testPolyshape (unittest.TestCase):
         shape=b2PolygonShape(vertices=[(0,0), (0,1), (-1,0)] )
         temp=shape.valid
 
+    def checkAlmostEqual(self, v1, v2, msg, places=3):
+        if hasattr(v1, '__len__'):
+            for i, (a, b) in enumerate(zip(v1, v2)):
+                self.assertAlmostEqual(a, b, places=places, 
+                        msg="(index %d) %s, a=%f b=%f from %s, %s" % (i, msg, a, b, v1, v2))
+        else:
+            self.assertAlmostEqual(v1, v2, places=places, 
+                    msg="%s, a=%f b=%f" % (msg, v1, v2))
+
+    def test_distance(self):
+        # Transform A -- a simple translation/offset of (0,-0.2)
+        self.transformA = b2Transform()
+        self.transformA.SetIdentity()
+        self.transformA.position = (0, -0.2)
+
+        # Transform B -- a translation and a rotation
+        self.transformB = b2Transform()
+        self.positionB = b2Vec2(12.017401,0.13678508)
+        self.angleB = -0.0109265
+        self.transformB.Set(self.positionB, self.angleB)
+
+        # The two shapes, transformed by the respective transform[A,B]
+        self.polygonA = b2PolygonShape(box=(10,0.2))
+        self.polygonB = b2PolygonShape(box=(2,0.1))
+
+        # Calculate the distance between the two shapes with the specified transforms
+        dist_result=b2Distance(shapeA=self.polygonA, shapeB=self.polygonB, transformA=self.transformA, transformB=self.transformB)
+        self.checkAlmostEqual(dist_result[0], (10, 0.01), 'point A', places=2)
+        self.checkAlmostEqual(dist_result[1], (10, 0.05), 'point B', places=1)
+        self.checkAlmostEqual(dist_result[2], 0.04, 'distance', places=2)
+        assert(dist_result[3] == 2)
+
+        input_ = b2DistanceInput(proxyA=b2DistanceProxy(self.polygonA, 0), proxyB=b2DistanceProxy(self.polygonB, 0),
+                                 transformA=self.transformA, transformB=self.transformB,
+                                )
+
+        assert(dist_result == b2Distance(input_))
+
 if __name__ == '__main__':
     unittest.main()
 

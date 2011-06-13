@@ -165,14 +165,17 @@ public:
             """Returns all of the vertices as a list of tuples [ (x1,y1), (x2,y2) ... (xN,yN) ]"""
             return [ (self.__get_vertex(i).x, self.__get_vertex(i).y )
                              for i in range(0, self.__get_vertex_count())]
-
-        shape = property(None, __Set, doc='The shape to be used. (read-only)')
         vertices = property(__get_vertices, None)
     %}
 }
 
+%feature("shadow") b2DistanceProxy::b2DistanceProxy() {
+    def __init__(self, shape, index=0):
+        _Box2D.b2DistanceProxy_swiginit(self,_Box2D.new_b2DistanceProxy())
+        self.Set(shape, index)
+}
+
 /* Shouldn't need access to these, only by setting the shape. */
-%rename (__Set) b2DistanceProxy::Set;
 %rename (__get_vertex) b2DistanceProxy::GetVertex;
 %rename (__get_vertex_count) b2DistanceProxy::GetVertexCount;
 %ignore b2DistanceProxy::m_count;
@@ -221,7 +224,7 @@ public:
 %}
 
 %pythoncode %{
-    def b2Distance(*args, **kwargs):
+    def b2Distance(shapeA=None, idxA=0, shapeB=None, idxB=0, transformA=None, transformB=None, useRadii=True):
         """
         Compute the closest points between two shapes.
 
@@ -229,33 +232,15 @@ public:
         + b2Distance(b2DistanceInput) # utilizes the b2DistanceInput structure, where you define your own proxies
 
         Or utilizing kwargs:
-        + b2Distance(shapeA=a, shapeB=b, transformA=sa, transformB=sb [, useRadii=True])
-
+        + b2Distance(shapeA=.., idxA=0, shapeB=.., idxB=0, transformA=.., transformB=.., useRadii=True)
+        
         Returns a tuple in the form:
          ((pointAx, pointAy), (pointBx, pointBy), distance, iterations)
         """
-        if len(args) in (1, 7):
-            out=_b2Distance(*args)
-        elif kwargs: # use kwargs
-            shapeA = kwargs['shapeA']
-            shapeB = kwargs['shapeB']
-            transformA = kwargs['transformA']
-            transformB = kwargs['transformB']
-            if 'useRadii' in kwargs:
-                useRadii = kwargs['useRadii']
-            else:
-                useRadii=True
-            if 'idxA' in kwargs:
-                idxA = kwargs['idxA']
-            else:
-                idxA=0
-            if 'idxB' in kwargs:
-                idxB = kwargs['idxB']
-            else:
-                idxB=0
-            out=_b2Distance(shapeA, idxA, shapeB, idxB, transformA, transformB, useRadii)
+        if isinstance(shapeA, b2DistanceInput):
+            out = _b2Distance(shapeA)
         else:
-            raise ValueError('Expected arguments for b2Distance or kwargs')
+            out = _b2Distance(shapeA, idxA, shapeB, idxB, transformA, transformB, useRadii)
 
         return (tuple(out.pointA), tuple(out.pointB), out.distance, out.iterations)
 %}

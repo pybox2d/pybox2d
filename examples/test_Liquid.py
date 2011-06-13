@@ -73,9 +73,7 @@ class Liquid (Framework):
             self.settings.enableSubStepping=False
 
     def createBoxSurfer(self):
-        self.surfer=self.world.CreateDynamicBody(
-            position=(0,25)
-            )
+        self.surfer=self.world.CreateDynamicBody(position=(0,25))
         self.surfer.CreatePolygonFixture(
             density=1,
             box=(b2Random(0.3,0.7), b2Random(0.3,0.7)),

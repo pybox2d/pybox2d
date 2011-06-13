@@ -24,6 +24,7 @@
 
 from framework import *
 from math import sin, cos, pi
+import sys
 
 LASER_HALF_WIDTH=2
 LASER_SPLIT_SIZE=0.1

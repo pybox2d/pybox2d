@@ -43,6 +43,8 @@
 %}
 
 
+// Generic kwarg initialization:
+
 %feature("shadow") b2ContactFilter::b2ContactFilter() {
     def __init__(self, **kwargs):
         if self.__class__ == b2ContactFilter:
@@ -421,12 +423,6 @@
 %feature("shadow") b2WorldManifold::b2WorldManifold() {
     def __init__(self, **kwargs):
         _Box2D.b2WorldManifold_swiginit(self,_Box2D.new_b2WorldManifold())
-        _init_kwargs(self, **kwargs)
-}
-
-%feature("shadow") b2DistanceProxy::b2DistanceProxy() {
-    def __init__(self, **kwargs):
-        _Box2D.b2DistanceProxy_swiginit(self,_Box2D.new_b2DistanceProxy())
         _init_kwargs(self, **kwargs)
 }
 

@@ -4,10 +4,10 @@ import unittest
 from Box2D import b2Color
 
 class testColor (unittest.TestCase):
-    def checkAlmostEqual(self, v1, v2, msg):
-        for a, b in zip(v1, v2):
-            self.assertAlmostEqual(a, b, places=3, 
-                    msg="%s, a=%f b=%f from %s, %s" % (msg, a, b, v1, v2))
+    def checkAlmostEqual(self, v1, v2, msg, places=3):
+        for i, (a, b) in enumerate(zip(v1, v2)):
+            self.assertAlmostEqual(a, b, places=places, 
+                    msg="(index %d) %s, a=%f b=%f from %s, %s" % (i, msg, a, b, v1, v2))
 
     def test_color(self):
         x, y, z = 1.0, 2.0, 3.0
