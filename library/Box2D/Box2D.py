@@ -2301,6 +2301,9 @@ class b2Shape(object):
     # Read-only
     type = property(__GetType, None)
 
+    def getAsType(self):
+        return self
+
     @property
     def childCount(self):
         """
@@ -5156,6 +5159,8 @@ class b2World(object):
         if defn is not None:
             if not isinstance(defn, b2JointDef):
                 raise TypeError('Expected b2JointDef')
+            if defn.bodyA is None or defn.bodyB is None:
+                raise ValueError('bodyA and bodyB must be set')
         else:
             if type is not None:
                 if issubclass(type, b2JointDef):
@@ -5452,13 +5457,13 @@ class b2Contact(object):
         """
         return _Box2D.b2Contact_ResetRestitution(self)
 
-    def SetTangentSpeed(self, *args, **kwargs):
-        """SetTangentSpeed(self, float32 speed)"""
-        return _Box2D.b2Contact_SetTangentSpeed(self, *args, **kwargs)
+    def __SetTangentSpeed(self, *args, **kwargs):
+        """__SetTangentSpeed(self, float32 speed)"""
+        return _Box2D.b2Contact___SetTangentSpeed(self, *args, **kwargs)
 
-    def GetTangentSpeed(self):
-        """GetTangentSpeed(self) -> float32"""
-        return _Box2D.b2Contact_GetTangentSpeed(self)
+    def __GetTangentSpeed(self):
+        """__GetTangentSpeed(self) -> float32"""
+        return _Box2D.b2Contact___GetTangentSpeed(self)
 
     def Evaluate(self, *args, **kwargs):
         """
@@ -5492,6 +5497,8 @@ class b2Contact(object):
     touching = property(__IsTouching, None)
     friction = property(__GetFriction, __SetFriction)
     restitution = property(__GetRestitution, __SetRestitution)
+    tangentSpeed = property(__GetTangentSpeed, __SetTangentSpeed)
+
 
 b2Contact.__GetManifold = new_instancemethod(_Box2D.b2Contact___GetManifold,None,b2Contact)
 b2Contact.__GetWorldManifold_internal = new_instancemethod(_Box2D.b2Contact___GetWorldManifold_internal,None,b2Contact)
@@ -5509,8 +5516,8 @@ b2Contact.ResetFriction = new_instancemethod(_Box2D.b2Contact_ResetFriction,None
 b2Contact.__SetRestitution = new_instancemethod(_Box2D.b2Contact___SetRestitution,None,b2Contact)
 b2Contact.__GetRestitution = new_instancemethod(_Box2D.b2Contact___GetRestitution,None,b2Contact)
 b2Contact.ResetRestitution = new_instancemethod(_Box2D.b2Contact_ResetRestitution,None,b2Contact)
-b2Contact.SetTangentSpeed = new_instancemethod(_Box2D.b2Contact_SetTangentSpeed,None,b2Contact)
-b2Contact.GetTangentSpeed = new_instancemethod(_Box2D.b2Contact_GetTangentSpeed,None,b2Contact)
+b2Contact.__SetTangentSpeed = new_instancemethod(_Box2D.b2Contact___SetTangentSpeed,None,b2Contact)
+b2Contact.__GetTangentSpeed = new_instancemethod(_Box2D.b2Contact___GetTangentSpeed,None,b2Contact)
 b2Contact.Evaluate = new_instancemethod(_Box2D.b2Contact_Evaluate,None,b2Contact)
 b2Contact_swigregister = _Box2D.b2Contact_swigregister
 b2Contact_swigregister(b2Contact)

@@ -259,6 +259,8 @@ public:
             if defn is not None:
                 if not isinstance(defn, b2JointDef):
                     raise TypeError('Expected b2JointDef')
+                if defn.bodyA is None or defn.bodyB is None:
+                    raise ValueError('bodyA and bodyB must be set')
             else:
                 if type is not None:
                     if issubclass(type, b2JointDef):

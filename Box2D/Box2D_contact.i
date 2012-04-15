@@ -187,6 +187,8 @@ public:
         touching = property(__IsTouching, None)
         friction = property(__GetFriction, __SetFriction)
         restitution = property(__GetRestitution, __SetRestitution)
+        tangentSpeed = property(__GetTangentSpeed, __SetTangentSpeed)
+
     %}
 }
 
@@ -204,6 +206,8 @@ public:
 %rename(__SetFriction) b2Contact::SetFriction;
 %rename(__GetRestitution) b2Contact::GetRestitution;
 %rename(__SetRestitution) b2Contact::SetRestitution;
+%rename(__GetTangentSpeed) b2Contact::GetTangentSpeed;
+%rename(__SetTangentSpeed) b2Contact::SetTangentSpeed;
 
 /**** Create our own ContactPoint structure ****/
 /* And allow kwargs for it */
