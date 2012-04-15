@@ -22,8 +22,6 @@
 using namespace std;
 
 
-#if B2_USE_DYNAMIC_TREE
-
 b2DynamicTree::b2DynamicTree()
 {
 	m_root = b2_nullNode;
@@ -88,6 +86,7 @@ int32 b2DynamicTree::AllocateNode()
 	m_nodes[nodeId].child1 = b2_nullNode;
 	m_nodes[nodeId].child2 = b2_nullNode;
 	m_nodes[nodeId].height = 0;
+	m_nodes[nodeId].userData = NULL;
 	++m_nodeCount;
 	return nodeId;
 }
@@ -531,22 +530,6 @@ int32 b2DynamicTree::GetHeight() const
 	return m_nodes[m_root].height;
 }
 
-// Compute the total surface area of a sub-tree (perimeter)
-float32 b2DynamicTree::GetTotalArea(int32 index) const
-{
-	if (index == b2_nullNode)
-	{
-		return 0.0f;
-	}
-
-	b2Assert(0 <= index && index < m_nodeCapacity);
-	const b2TreeNode* node = m_nodes + index;
-	float32 area = node->aabb.GetPerimeter();
-	float32 area1 = GetTotalArea(node->child1);
-	float32 area2 = GetTotalArea(node->child2);
-	return area + area1 + area2;
-}
-
 //
 float32 b2DynamicTree::GetAreaRatio() const
 {
@@ -555,9 +538,21 @@ float32 b2DynamicTree::GetAreaRatio() const
 		return 0.0f;
 	}
 
-	float32 totalArea = GetTotalArea(m_root);
 	const b2TreeNode* root = m_nodes + m_root;
 	float32 rootArea = root->aabb.GetPerimeter();
+
+	float32 totalArea = 0.0f;
+	for (int32 i = 0; i < m_nodeCapacity; ++i)
+	{
+		const b2TreeNode* node = m_nodes + i;
+		if (node->height < 0)
+		{
+			// Free node in pool
+			continue;
+		}
+
+		totalArea += node->aabb.GetPerimeter();
+	}
 
 	return totalArea / rootArea;
 }
@@ -644,7 +639,8 @@ void b2DynamicTree::ValidateMetrics(int32 index) const
 
 	int32 height1 = m_nodes[child1].height;
 	int32 height2 = m_nodes[child2].height;
-	int32 height = 1 + b2Max(height1, height2);
+	int32 height;
+	height = 1 + b2Max(height1, height2);
 	b2Assert(node->height == height);
 
 	b2AABB aabb;
@@ -678,190 +674,108 @@ void b2DynamicTree::Validate() const
 
 int32 b2DynamicTree::GetMaxBalance() const
 {
-	return GetMaxBalance(m_root);
-}
-
-int32 b2DynamicTree::GetMaxBalance(int32 index) const
-{
-	if (index == b2_nullNode)
+	int32 maxBalance = 0;
+	for (int32 i = 0; i < m_nodeCapacity; ++i)
 	{
-		return 0;
-	}
-
-	if (m_nodes[index].IsLeaf())
-	{
-		return 0;
-	}
-
-	int32 child1 = m_nodes[index].child1;
-	int32 child2 = m_nodes[index].child2;
-
-	int32 balance = b2Abs(m_nodes[child2].height - m_nodes[child1].height);
-	int32 balance1 = GetMaxBalance(child1);
-	int32 balance2 = GetMaxBalance(child2);
-
-	return b2Max(balance, b2Max(balance1, balance2));
-}
-
-#elif B2_USE_BRUTE_FORCE
-
-b2DynamicTree::b2DynamicTree()
-{
-	m_proxyCapacity = 128;
-	m_proxyCount = 0;
-
-	m_proxyMap = (int32*)b2Alloc(m_proxyCapacity * sizeof(int32));
-	m_proxies = (b2Proxy*)b2Alloc(m_proxyCapacity * sizeof(b2Proxy));
-
-	// Build the free list
-	m_freeId = 0;
-	int32 last = m_proxyCapacity - 1;
-	for (int32 i = m_freeId; i < last; ++i)
-	{
-		m_proxyMap[i] = i + 1;
-	}
-
-	m_proxyMap[last] = b2_nullNode;
-}
-
-b2DynamicTree::~b2DynamicTree()
-{
-	b2Free(m_proxyMap);
-	b2Free(m_proxies);
-}
-
-int32 b2DynamicTree::CreateProxy(const b2AABB& aabb, void* userData)
-{
-	if (m_proxyCount == m_proxyCapacity)
-	{
-		m_proxyCapacity *= 2;
-		int32* proxyMap = (int32*)b2Alloc(m_proxyCapacity * sizeof(int32));
-		b2Proxy* proxies = (b2Proxy*)b2Alloc(m_proxyCapacity * sizeof(b2Proxy));
-
-		memcpy(proxyMap, m_proxyMap, m_proxyCount * sizeof(int32));
-		memcpy(proxies, m_proxies, m_proxyCount * sizeof(b2Proxy));
-
-		b2Free(m_proxyMap);
-		b2Free(m_proxies);
-		m_proxyMap = proxyMap;
-		m_proxies = proxies;
-		proxyMap = NULL;
-		proxies = NULL;
-
-		m_freeId = m_proxyCount;
-		int32 last = m_proxyCapacity - 1;
-		for (int32 i = m_freeId; i < last; ++i)
+		const b2TreeNode* node = m_nodes + i;
+		if (node->height <= 1)
 		{
-			m_proxyMap[i] = i + 1;
+			continue;
 		}
 
-		m_proxyMap[last] = b2_nullNode;
+		b2Assert(node->IsLeaf() == false);
+
+		int32 child1 = node->child1;
+		int32 child2 = node->child2;
+		int32 balance = b2Abs(m_nodes[child2].height - m_nodes[child1].height);
+		maxBalance = b2Max(maxBalance, balance);
 	}
 
-	b2Assert(0 <= m_freeId && m_freeId < m_proxyCapacity);
-	int32 id = m_freeId;
-	m_freeId = m_proxyMap[id];
-	int32 index = m_proxyCount;
-
-	m_proxies[index].aabb = aabb;
-	m_proxies[index].userData = userData;
-	m_proxies[index].id = id;
-	m_proxyMap[id] = index;
-	++m_proxyCount;
-
-	return id;
+	return maxBalance;
 }
 
-void b2DynamicTree::DestroyProxy(int32 proxyId)
+void b2DynamicTree::RebuildBottomUp()
 {
-	b2Assert(0 < m_proxyCount && 0 <= proxyId && proxyId < m_proxyCapacity);
-	int32 index = m_proxyMap[proxyId];
+	int32* nodes = (int32*)b2Alloc(m_nodeCount * sizeof(int32));
+	int32 count = 0;
 
-	// Add to free list
-	m_proxyMap[proxyId] = m_freeId;
-	m_freeId = proxyId;
-
-	// Keep proxy array contiguous
-	if (index < m_proxyCount - 1)
+	// Build array of leaves. Free the rest.
+	for (int32 i = 0; i < m_nodeCapacity; ++i)
 	{
-		m_proxies[index] = m_proxies[m_proxyCount-1];
-		int32 id = m_proxies[index].id;
-		m_proxyMap[id] = index;
+		if (m_nodes[i].height < 0)
+		{
+			// free node in pool
+			continue;
+		}
+
+		if (m_nodes[i].IsLeaf())
+		{
+			m_nodes[i].parent = b2_nullNode;
+			nodes[count] = i;
+			++count;
+		}
+		else
+		{
+			FreeNode(i);
+		}
 	}
 
-	--m_proxyCount;
+	while (count > 1)
+	{
+		float32 minCost = b2_maxFloat;
+		int32 iMin = -1, jMin = -1;
+		for (int32 i = 0; i < count; ++i)
+		{
+			b2AABB aabbi = m_nodes[nodes[i]].aabb;
+
+			for (int32 j = i + 1; j < count; ++j)
+			{
+				b2AABB aabbj = m_nodes[nodes[j]].aabb;
+				b2AABB b;
+				b.Combine(aabbi, aabbj);
+				float32 cost = b.GetPerimeter();
+				if (cost < minCost)
+				{
+					iMin = i;
+					jMin = j;
+					minCost = cost;
+				}
+			}
+		}
+
+		int32 index1 = nodes[iMin];
+		int32 index2 = nodes[jMin];
+		b2TreeNode* child1 = m_nodes + index1;
+		b2TreeNode* child2 = m_nodes + index2;
+
+		int32 parentIndex = AllocateNode();
+		b2TreeNode* parent = m_nodes + parentIndex;
+		parent->child1 = index1;
+		parent->child2 = index2;
+		parent->height = 1 + b2Max(child1->height, child2->height);
+		parent->aabb.Combine(child1->aabb, child2->aabb);
+		parent->parent = b2_nullNode;
+
+		child1->parent = parentIndex;
+		child2->parent = parentIndex;
+
+		nodes[jMin] = nodes[count-1];
+		nodes[iMin] = parentIndex;
+		--count;
+	}
+
+	m_root = nodes[0];
+	b2Free(nodes);
 
 	Validate();
 }
 
-bool b2DynamicTree::MoveProxy(int32 proxyId, const b2AABB& aabb, const b2Vec2& displacement)
+void b2DynamicTree::ShiftOrigin(const b2Vec2& newOrigin)
 {
-	b2Assert(0 < m_proxyCount && 0 <= proxyId && proxyId < m_proxyCapacity);
-	B2_NOT_USED(displacement);
-
-	int32 index = m_proxyMap[proxyId];
-
-	if (m_proxies[index].aabb.Contains(aabb))
+	// Build array of leaves. Free the rest.
+	for (int32 i = 0; i < m_nodeCapacity; ++i)
 	{
-		return false;
-	}
-
-	// Extend AABB.
-	b2AABB b = aabb;
-	b2Vec2 r(b2_aabbExtension, b2_aabbExtension);
-	b.lowerBound = b.lowerBound - r;
-	b.upperBound = b.upperBound + r;
-
-	// Predict AABB displacement.
-	b2Vec2 d = b2_aabbMultiplier * displacement;
-
-	if (d.x < 0.0f)
-	{
-		b.lowerBound.x += d.x;
-	}
-	else
-	{
-		b.upperBound.x += d.x;
-	}
-
-	if (d.y < 0.0f)
-	{
-		b.lowerBound.y += d.y;
-	}
-	else
-	{
-		b.upperBound.y += d.y;
-	}
-
-	m_proxies[index].aabb = b;
-
-	return true;
-}
-
-void b2DynamicTree::Validate() const
-{
-	b2Assert(m_proxyCount > 0 || m_freeId == b2_nullNode);
-	b2Assert(m_freeId == b2_nullNode || m_freeId < m_proxyCapacity);
-
-	int32 id = m_freeId;
-	int32 freeCount = 0;
-	while (id != b2_nullNode)
-	{
-		++freeCount;
-		b2Assert(freeCount <= m_proxyCapacity);
-		id = m_proxyMap[id];
-	}
-
-	b2Assert(freeCount + m_proxyCount == m_proxyCapacity);
-
-	b2Assert(m_proxyCount <= m_proxyCapacity);
-
-	for (int32 i = 0; i < m_proxyCount; ++i)
-	{
-		int32 id = m_proxies[i].id;
-
-		b2Assert(m_proxyMap[id] == i);
+		m_nodes[i].aabb.lowerBound -= newOrigin;
+		m_nodes[i].aabb.upperBound -= newOrigin;
 	}
 }
-
-#endif

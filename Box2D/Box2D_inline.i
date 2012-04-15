@@ -153,7 +153,7 @@
         if (!shape)
             return false;
 
-        return b2CheckVertices(shape->m_vertices, shape->m_vertexCount, additional_checks);
+        return b2CheckVertices(shape->m_vertices, shape->m_count, additional_checks);
     }
 
     /* As of Box2D SVN r191, these functions are no longer in b2Math.h,

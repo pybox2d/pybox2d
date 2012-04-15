@@ -295,6 +295,8 @@
             $result=SWIG_NewPointerObj($1, $descriptor(b2FrictionJoint*), 0); break;
         case e_ropeJoint:
             $result=SWIG_NewPointerObj($1, $descriptor(b2RopeJoint*), 0); break;
+        case e_motorJoint:
+            $result=SWIG_NewPointerObj($1, $descriptor(b2MotorJoint*), 0); break;
         case e_unknownJoint:
         default:
             $result=SWIG_NewPointerObj($1, $descriptor(b2Joint*), 0); break;
@@ -317,9 +319,8 @@
             $result=SWIG_NewPointerObj($1, $descriptor(b2PolygonShape*), 0); break;
         case b2Shape::e_edge:
             $result=SWIG_NewPointerObj($1, $descriptor(b2EdgeShape*), 0); break;
-        case b2Shape::e_loop:
-            $result=SWIG_NewPointerObj($1, $descriptor(b2LoopShape*), 0); break;
-        case b2Shape::e_unknown:
+        case b2Shape::e_chain:
+            $result=SWIG_NewPointerObj($1, $descriptor(b2ChainShape*), 0); break;
         default:
             $result=SWIG_NewPointerObj($1, $descriptor(b2Shape*), 0); break;
         }

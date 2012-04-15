@@ -1,5 +1,5 @@
 /*
-* Copyright (c) 2006-2009 Erin Catto http://www.box2d.org
+* Copyright (c) 2006-2011 Erin Catto http://www.box2d.org
 *
 * This software is provided 'as-is', without any express or implied
 * warranty.  In no event will the authors be held liable for any damages
@@ -27,14 +27,14 @@
 #include <Box2D/Collision/b2BroadPhase.h>
 #include <Box2D/Collision/Shapes/b2CircleShape.h>
 #include <Box2D/Collision/Shapes/b2EdgeShape.h>
-#include <Box2D/Collision/Shapes/b2LoopShape.h>
+#include <Box2D/Collision/Shapes/b2ChainShape.h>
 #include <Box2D/Collision/Shapes/b2PolygonShape.h>
 #include <Box2D/Collision/b2TimeOfImpact.h>
 #include <Box2D/Common/b2Draw.h>
 #include <Box2D/Common/b2Timer.h>
 #include <new>
 
-b2World::b2World(const b2Vec2& gravity, bool doSleep)
+b2World::b2World(const b2Vec2& gravity)
 {
 	m_destructionListener = NULL;
 	m_debugDraw = NULL;
@@ -51,7 +51,7 @@ b2World::b2World(const b2Vec2& gravity, bool doSleep)
 
 	m_stepComplete = true;
 
-	m_allowSleep = doSleep;
+	m_allowSleep = true;
 	m_gravity = gravity;
 
 	m_flags = e_clearForces;
@@ -364,9 +364,31 @@ void b2World::DestroyJoint(b2Joint* j)
 	}
 }
 
+//
+void b2World::SetAllowSleeping(bool flag)
+{
+	if (flag == m_allowSleep)
+	{
+		return;
+	}
+
+	m_allowSleep = flag;
+	if (m_allowSleep == false)
+	{
+		for (b2Body* b = m_bodyList; b; b = b->m_next)
+		{
+			b->SetAwake(true);
+		}
+	}
+}
+
 // Find islands, integrate and solve constraints, solve position constraints
 void b2World::Solve(const b2TimeStep& step)
 {
+	m_profile.solveInit = 0.0f;
+	m_profile.solveVelocity = 0.0f;
+	m_profile.solvePosition = 0.0f;
+
 	// Size the island for the worst case.
 	b2Island island(m_bodyCount,
 					m_contactManager.m_contactCount,
@@ -505,7 +527,11 @@ void b2World::Solve(const b2TimeStep& step)
 			}
 		}
 
-		island.Solve(step, m_gravity, m_allowSleep);
+		b2Profile profile;
+		island.Solve(&profile, step, m_gravity, m_allowSleep);
+		m_profile.solveInit += profile.solveInit;
+		m_profile.solveVelocity += profile.solveVelocity;
+		m_profile.solvePosition += profile.solvePosition;
 
 		// Post solve cleanup.
 		for (int32 i = 0; i < island.m_bodyCount; ++i)
@@ -521,26 +547,30 @@ void b2World::Solve(const b2TimeStep& step)
 
 	m_stackAllocator.Free(stack);
 
-	// Synchronize fixtures, check for out of range bodies.
-	for (b2Body* b = m_bodyList; b; b = b->GetNext())
 	{
-		// If a body was not in an island then it did not move.
-		if ((b->m_flags & b2Body::e_islandFlag) == 0)
+		b2Timer timer;
+		// Synchronize fixtures, check for out of range bodies.
+		for (b2Body* b = m_bodyList; b; b = b->GetNext())
 		{
-			continue;
+			// If a body was not in an island then it did not move.
+			if ((b->m_flags & b2Body::e_islandFlag) == 0)
+			{
+				continue;
+			}
+
+			if (b->GetType() == b2_staticBody)
+			{
+				continue;
+			}
+
+			// Update fixtures (for broad-phase).
+			b->SynchronizeFixtures();
 		}
 
-		if (b->GetType() == b2_staticBody)
-		{
-			continue;
-		}
-
-		// Update fixtures (for broad-phase).
-		b->SynchronizeFixtures();
+		// Look for new contacts.
+		m_contactManager.FindNewContacts();
+		m_profile.broadphase = timer.GetMilliseconds();
 	}
-
-	// Look for new contacts.
-	m_contactManager.FindNewContacts();
 }
 
 // Find TOI contacts and solve them.
@@ -606,15 +636,15 @@ void b2World::SolveTOI(const b2TimeStep& step)
 				b2Body* bA = fA->GetBody();
 				b2Body* bB = fB->GetBody();
 
-				b2BodyType typeA = bA->GetType();
-				b2BodyType typeB = bB->GetType();
+				b2BodyType typeA = bA->m_type;
+				b2BodyType typeB = bB->m_type;
 				b2Assert(typeA == b2_dynamicBody || typeB == b2_dynamicBody);
 
-				bool awakeA = bA->IsAwake() && typeA != b2_staticBody;
-				bool awakeB = bB->IsAwake() && typeB != b2_staticBody;
+				bool activeA = bA->IsAwake() && typeA != b2_staticBody;
+				bool activeB = bB->IsAwake() && typeB != b2_staticBody;
 
-				// Is at least one body awake?
-				if (awakeA == false && awakeB == false)
+				// Is at least one body active (awake and dynamic or kinematic)?
+				if (activeA == false && activeB == false)
 				{
 					continue;
 				}
@@ -830,7 +860,7 @@ void b2World::SolveTOI(const b2TimeStep& step)
 		subStep.positionIterations = 20;
 		subStep.velocityIterations = step.velocityIterations;
 		subStep.warmStarting = false;
-		island.SolveTOI(subStep, bA, bB);
+		island.SolveTOI(subStep, bA->m_islandIndex, bB->m_islandIndex);
 
 		// Reset island flags and synchronize broad-phase proxies.
 		for (int32 i = 0; i < island.m_bodyCount; ++i)
@@ -1008,7 +1038,7 @@ void b2World::DrawShape(b2Fixture* fixture, const b2Transform& xf, const b2Color
 
 			b2Vec2 center = b2Mul(xf, circle->m_p);
 			float32 radius = circle->m_radius;
-			b2Vec2 axis = xf.R.col1;
+			b2Vec2 axis = b2Mul(xf.q, b2Vec2(1.0f, 0.0f));
 
 			m_debugDraw->DrawSolidCircle(center, radius, axis, color);
 		}
@@ -1023,14 +1053,14 @@ void b2World::DrawShape(b2Fixture* fixture, const b2Transform& xf, const b2Color
 		}
 		break;
 
-	case b2Shape::e_loop:
+	case b2Shape::e_chain:
 		{
-			b2LoopShape* loop = (b2LoopShape*)fixture->GetShape();
-			int32 count = loop->GetCount();
-			const b2Vec2* vertices = loop->GetVertices();
+			b2ChainShape* chain = (b2ChainShape*)fixture->GetShape();
+			int32 count = chain->m_count;
+			const b2Vec2* vertices = chain->m_vertices;
 
-			b2Vec2 v1 = b2Mul(xf, vertices[count - 1]);
-			for (int32 i = 0; i < count; ++i)
+			b2Vec2 v1 = b2Mul(xf, vertices[0]);
+			for (int32 i = 1; i < count; ++i)
 			{
 				b2Vec2 v2 = b2Mul(xf, vertices[i]);
 				m_debugDraw->DrawSegment(v1, v2, color);
@@ -1043,7 +1073,7 @@ void b2World::DrawShape(b2Fixture* fixture, const b2Transform& xf, const b2Color
 	case b2Shape::e_polygon:
 		{
 			b2PolygonShape* poly = (b2PolygonShape*)fixture->GetShape();
-			int32 vertexCount = poly->m_vertexCount;
+			int32 vertexCount = poly->m_count;
 			b2Assert(vertexCount <= b2_maxPolygonVertices);
 			b2Vec2 vertices[b2_maxPolygonVertices];
 
@@ -1055,6 +1085,9 @@ void b2World::DrawShape(b2Fixture* fixture, const b2Transform& xf, const b2Color
 			m_debugDraw->DrawSolidPolygon(vertices, vertexCount, color);
 		}
 		break;
+            
+    default:
+        break;
 	}
 }
 
@@ -1064,8 +1097,8 @@ void b2World::DrawJoint(b2Joint* joint)
 	b2Body* bodyB = joint->GetBodyB();
 	const b2Transform& xf1 = bodyA->GetTransform();
 	const b2Transform& xf2 = bodyB->GetTransform();
-	b2Vec2 x1 = xf1.position;
-	b2Vec2 x2 = xf2.position;
+	b2Vec2 x1 = xf1.p;
+	b2Vec2 x2 = xf2.p;
 	b2Vec2 p1 = joint->GetAnchorA();
 	b2Vec2 p2 = joint->GetAnchorB();
 
@@ -1197,7 +1230,7 @@ void b2World::DrawDebugData()
 		for (b2Body* b = m_bodyList; b; b = b->GetNext())
 		{
 			b2Transform xf = b->GetTransform();
-			xf.position = b->GetWorldCenter();
+			xf.p = b->GetWorldCenter();
 			m_debugDraw->DrawTransform(xf);
 		}
 	}
@@ -1221,4 +1254,86 @@ int32 b2World::GetTreeBalance() const
 float32 b2World::GetTreeQuality() const
 {
 	return m_contactManager.m_broadPhase.GetTreeQuality();
+}
+
+void b2World::ShiftOrigin(const b2Vec2& newOrigin)
+{
+	b2Assert((m_flags & e_locked) == 0);
+	if ((m_flags & e_locked) == e_locked)
+	{
+		return;
+	}
+
+	for (b2Body* b = m_bodyList; b; b = b->m_next)
+	{
+		b->m_xf.p -= newOrigin;
+		b->m_sweep.c0 -= newOrigin;
+		b->m_sweep.c -= newOrigin;
+	}
+
+	for (b2Joint* j = m_jointList; j; j = j->m_next)
+	{
+		j->ShiftOrigin(newOrigin);
+	}
+
+	m_contactManager.m_broadPhase.ShiftOrigin(newOrigin);
+}
+
+void b2World::Dump()
+{
+	if ((m_flags & e_locked) == e_locked)
+	{
+		return;
+	}
+
+	b2Log("b2Vec2 g(%.15lef, %.15lef);\n", m_gravity.x, m_gravity.y);
+	b2Log("m_world->SetGravity(g);\n");
+
+	b2Log("b2Body** bodies = (b2Body**)b2Alloc(%d * sizeof(b2Body*));\n", m_bodyCount);
+	b2Log("b2Joint** joints = (b2Joint**)b2Alloc(%d * sizeof(b2Joint*));\n", m_jointCount);
+	int32 i = 0;
+	for (b2Body* b = m_bodyList; b; b = b->m_next)
+	{
+		b->m_islandIndex = i;
+		b->Dump();
+		++i;
+	}
+
+	i = 0;
+	for (b2Joint* j = m_jointList; j; j = j->m_next)
+	{
+		j->m_index = i;
+		++i;
+	}
+
+	// First pass on joints, skip gear joints.
+	for (b2Joint* j = m_jointList; j; j = j->m_next)
+	{
+		if (j->m_type == e_gearJoint)
+		{
+			continue;
+		}
+
+		b2Log("{\n");
+		j->Dump();
+		b2Log("}\n");
+	}
+
+	// Second pass on joints, only gear joints.
+	for (b2Joint* j = m_jointList; j; j = j->m_next)
+	{
+		if (j->m_type != e_gearJoint)
+		{
+			continue;
+		}
+
+		b2Log("{\n");
+		j->Dump();
+		b2Log("}\n");
+	}
+
+	b2Log("b2Free(joints);\n");
+	b2Log("b2Free(bodies);\n");
+	b2Log("joints = NULL;\n");
+	b2Log("bodies = NULL;\n");
 }

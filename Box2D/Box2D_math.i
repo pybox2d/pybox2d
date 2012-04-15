@@ -56,8 +56,6 @@ public:
         return 2
     def __neg__(self):
         return b2Vec2(-self.x, -self.y)
-    def __copy__(self):
-        return b2Vec2(self.x, self.y)
     def copy(self):
         """
         Return a copy of the vector.
@@ -67,6 +65,8 @@ public:
         Does not copy the vector itself, but b now refers to a.
         """
         return b2Vec2(self.x, self.y)
+    __copy__ = copy
+
     def __iadd__(self, other):
         self.__add_vector(other)
         return self
@@ -175,8 +175,6 @@ public:
         return "b2Vec3(%g,%g,%g)" % (self.x, self.y, self.z)
     def __len__(self):
         return 3
-    def __copy__(self):
-        return b2Vec3(self.x, self.y, self.z)
     def __neg__(self):
         return b2Vec3(-self.x, -self.y, -self.z)
     def copy(self):
@@ -188,6 +186,7 @@ public:
         Does not copy the vector itself, but b now refers to a.
         """
         return b2Vec3(self.x, self.y, self.z)
+    __copy__ = copy
     def __iadd__(self, other):
         self.__add_vector(other)
         return self
@@ -289,36 +288,53 @@ public:
 /**** Mat22 ****/
 %extend b2Mat22 {
 public:
+    // backward-compatibility
+    float32 __GetAngle() const
+    {
+        return b2Atan2($self->ex.y, $self->ex.x);
+    }
+
+    void __SetAngle(float32 angle)
+    {
+        float32 c = cosf(angle), s = sinf(angle);
+        $self->ex.x = c; $self->ey.x = -s;
+        $self->ex.y = s; $self->ey.y = c;
+    }
+
     %pythoncode %{
         # Read-only
         inverse = property(__GetInverse, None)
         angle = property(__GetAngle, __SetAngle)
+        ex = property(lambda self: self.col1, lambda self, v: setattr(self, 'col1', v))
+        ey = property(lambda self: self.col2, lambda self, v: setattr(self, 'col2', v))
+        set = __SetAngle
     %}
     b2Vec2 __mul__(b2Vec2* v) {
-        return b2Vec2($self->col1.x * v->x + $self->col2.x * v->y, $self->col1.y * v->x + $self->col2.y * v->y);
+        return b2Vec2($self->ex.x * v->x + $self->ey.x * v->y, $self->ex.y * v->x + $self->ey.y * v->y);
     }
     b2Mat22 __mul__(b2Mat22* m) {
-        return b2Mat22(b2Mul(*($self), m->col1), b2Mul(*($self), m->col2));
+        return b2Mat22(b2Mul(*($self), m->ex), b2Mul(*($self), m->ey));
     }
     b2Mat22 __add__(b2Mat22* m) {
-        return b2Mat22($self->col1 + m->col1, $self->col2 + m->col2);
+        return b2Mat22($self->ex + m->ex, $self->ey + m->ey);
     }
     b2Mat22 __sub__(b2Mat22* m) {
-        return b2Mat22($self->col1 - m->col1, $self->col2 - m->col2);
+        return b2Mat22($self->ex - m->ex, $self->ey - m->ey);
     }
     void __iadd(b2Mat22* m) {
-        $self->col1 += m->col1;
-        $self->col2 += m->col2;
+        $self->ex += m->ex;
+        $self->ey += m->ey;
     }
     void __isub(b2Mat22* m) {
-        $self->col1 -= m->col1;
-        $self->col2 -= m->col2;
+        $self->ex -= m->ex;
+        $self->ey -= m->ey;
     }
 }
 
 %rename(__SetAngle) b2Mat22::Set;
 %rename(__GetInverse) b2Mat22::GetInverse;
-%rename(__GetAngle) b2Mat22::GetAngle;
+%rename(col1) b2Mat22::ex;
+%rename(col2) b2Mat22::ey;
 
 %feature("shadow") b2Mat22::__iadd__ {
     def __iadd__(self, other):
@@ -335,25 +351,28 @@ public:
 %extend b2Mat33 {
 public:
     %pythoncode %{
+        ex = property(lambda self: self.col1, lambda self, v: setattr(self, 'col1', v))
+        ey = property(lambda self: self.col2, lambda self, v: setattr(self, 'col2', v))
+        ez = property(lambda self: self.col3, lambda self, v: setattr(self, 'col3', v))
     %}
     b2Vec3 __mul__(b2Vec3& v) {
-        return v.x * $self->col1 + v.y * $self->col2 + v.z * $self->col3;
+        return v.x * $self->ex + v.y * $self->ey + v.z * $self->ez;
     }
     b2Mat33 __add__(b2Mat33* other) {
-        return b2Mat33($self->col1 + other->col1, $self->col2 + other->col2, $self->col3 + other->col3);
+        return b2Mat33($self->ex + other->ex, $self->ey + other->ey, $self->ez + other->ez);
     }
     b2Mat33 __sub__(b2Mat33* other) {
-        return b2Mat33($self->col1 - other->col1, $self->col2 - other->col2, $self->col3 - other->col3);
+        return b2Mat33($self->ex - other->ex, $self->ey - other->ey, $self->ez - other->ez);
     }
     void __iadd(b2Mat33* other) {
-        $self->col1 += other->col1;
-        $self->col2 += other->col2;
-        $self->col3 += other->col3;
+        $self->ex += other->ex;
+        $self->ey += other->ey;
+        $self->ez += other->ez;
     }
     void __isub(b2Mat33* other) {
-        $self->col1 -= other->col1;
-        $self->col2 -= other->col2;
-        $self->col3 -= other->col3;
+        $self->ex -= other->ex;
+        $self->ey -= other->ey;
+        $self->ez -= other->ez;
     }
 }
 
@@ -368,26 +387,58 @@ public:
         return self
 }
 
-%rename(__GetAngle) b2Mat33::GetAngle;
 %rename(set) b2Mat33::Set;
+%rename(col1) b2Mat33::ex;
+%rename(col2) b2Mat33::ey;
+%rename(col3) b2Mat33::ez;
 
 /**** Transform ****/
 %extend b2Transform {
 public:
     %pythoncode %{
+        def __GetAngle(self):
+            return self.q.angle
         def __SetAngle(self, angle):
-            self.R.angle=angle
+            self.q.angle = angle
 
-        # Read-only
+        def __GetR(self):
+            R = b2Mat22()
+            R.angle = self.q.angle
+            return R
+
+        def __SetR(self, R):
+            self.q.angle = R.angle
+
         angle = property(__GetAngle, __SetAngle) 
+        R = property(__GetR, __SetR)
     %}
     b2Vec2 __mul__(b2Vec2& v) {
-        return b2Vec2($self->position.x + $self->R.col1.x*v.x + $self->R.col2.x*v.y, 
-                $self->position.y + $self->R.col1.y*v.x + $self->R.col2.y*v.y);
+        float32 x = ($self->q.c * v.x - $self->q.s * v.y) + $self->p.x;
+        float32 y = ($self->q.s * v.x + $self->q.c * v.y) + $self->p.y;
+
+        return b2Vec2(x, y);
     }
 }
 
-%rename(__GetAngle) b2Transform::GetAngle;
+%rename(position) b2Transform::p;
+
+/**** Rot ****/
+%extend b2Rot {
+public:
+    %pythoncode %{
+        angle = property(__GetAngle, __SetAngle) 
+
+        x_axis = property(GetXAxis, None)
+        y_axis = property(GetYAxis, None)
+
+    %}
+    b2Vec2 __mul__(b2Vec2& v) {
+        return b2Mul(*($self), v);
+    }
+}
+
+%rename(__SetAngle) b2Rot::Set;
+%rename(__GetAngle) b2Rot::GetAngle;
 
 /**** AABB ****/
 %rename(__contains__) b2AABB::Contains;

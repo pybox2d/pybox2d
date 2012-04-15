@@ -46,13 +46,13 @@ struct b2WheelJointDef : public b2JointDef
 	/// anchor and world axis.
 	void Initialize(b2Body* bodyA, b2Body* bodyB, const b2Vec2& anchor, const b2Vec2& axis);
 
-	/// The local anchor point relative to body1's origin.
+	/// The local anchor point relative to bodyA's origin.
 	b2Vec2 localAnchorA;
 
-	/// The local anchor point relative to body2's origin.
+	/// The local anchor point relative to bodyB's origin.
 	b2Vec2 localAnchorB;
 
-	/// The local translation axis in body1.
+	/// The local translation axis in bodyA.
 	b2Vec2 localAxisA;
 
 	/// Enable/disable the joint motor.
@@ -72,18 +72,29 @@ struct b2WheelJointDef : public b2JointDef
 };
 
 /// A wheel joint. This joint provides two degrees of freedom: translation
-/// along an axis fixed in body1 and rotation in the plane. You can use a
+/// along an axis fixed in bodyA and rotation in the plane. You can use a
 /// joint limit to restrict the range of motion and a joint motor to drive
 /// the rotation or to model rotational friction.
 /// This joint is designed for vehicle suspensions.
 class b2WheelJoint : public b2Joint
 {
 public:
+	//void GetDefinition(b2WheelJointDef* def) const;
+
 	b2Vec2 GetAnchorA() const;
 	b2Vec2 GetAnchorB() const;
 
 	b2Vec2 GetReactionForce(float32 inv_dt) const;
 	float32 GetReactionTorque(float32 inv_dt) const;
+
+	/// The local anchor point relative to bodyA's origin.
+	const b2Vec2& GetLocalAnchorA() const { return m_localAnchorA; }
+
+	/// The local anchor point relative to bodyB's origin.
+	const b2Vec2& GetLocalAnchorB() const  { return m_localAnchorB; }
+
+	/// The local joint axis relative to bodyA.
+	const b2Vec2& GetLocalAxisA() const { return m_localXAxisA; }
 
 	/// Get the current joint translation, usually in meters.
 	float32 GetJointTranslation() const;
@@ -118,39 +129,55 @@ public:
 	void SetSpringDampingRatio(float32 ratio);
 	float32 GetSpringDampingRatio() const;
 
+	/// Dump to b2Log
+	void Dump();
+
 protected:
 
 	friend class b2Joint;
 	b2WheelJoint(const b2WheelJointDef* def);
 
-	void InitVelocityConstraints(const b2TimeStep& step);
-	void SolveVelocityConstraints(const b2TimeStep& step);
-	bool SolvePositionConstraints(float32 baumgarte);
+	void InitVelocityConstraints(const b2SolverData& data);
+	void SolveVelocityConstraints(const b2SolverData& data);
+	bool SolvePositionConstraints(const b2SolverData& data);
 
+	float32 m_frequencyHz;
+	float32 m_dampingRatio;
+
+	// Solver shared
 	b2Vec2 m_localAnchorA;
 	b2Vec2 m_localAnchorB;
 	b2Vec2 m_localXAxisA;
 	b2Vec2 m_localYAxisA;
+
+	float32 m_impulse;
+	float32 m_motorImpulse;
+	float32 m_springImpulse;
+
+	float32 m_maxMotorTorque;
+	float32 m_motorSpeed;
+	bool m_enableMotor;
+
+	// Solver temp
+	int32 m_indexA;
+	int32 m_indexB;
+	b2Vec2 m_localCenterA;
+	b2Vec2 m_localCenterB;
+	float32 m_invMassA;
+	float32 m_invMassB;
+	float32 m_invIA;
+	float32 m_invIB;
 
 	b2Vec2 m_ax, m_ay;
 	float32 m_sAx, m_sBx;
 	float32 m_sAy, m_sBy;
 
 	float32 m_mass;
-	float32 m_impulse;
 	float32 m_motorMass;
-	float32 m_motorImpulse;
 	float32 m_springMass;
-	float32 m_springImpulse;
 
-	float32 m_maxMotorTorque;
-	float32 m_motorSpeed;
-	float32 m_frequencyHz;
-	float32 m_dampingRatio;
 	float32 m_bias;
 	float32 m_gamma;
-
-	bool m_enableMotor;
 };
 
 inline float32 b2WheelJoint::GetMotorSpeed() const

@@ -28,6 +28,9 @@ public:
         # Read-only
         type = property(__GetType, None)
 
+        def getAsType(self):
+            return self
+
         @property
         def childCount(self):
             """
@@ -82,9 +85,9 @@ public:
 %extend b2PolygonShape {
 public:
     PyObject* __get_vertices() {
-        PyObject* ret=PyList_New($self->m_vertexCount);
+        PyObject* ret=PyList_New($self->m_count);
         PyObject* vertex;
-        for (int i=0; i < $self->m_vertexCount; i++) {
+        for (int i=0; i < $self->m_count; i++) {
             vertex = PyTuple_New(2);
             PyTuple_SetItem(vertex, 0, SWIG_From_double((float32)$self->m_vertices[i].x));
             PyTuple_SetItem(vertex, 1, SWIG_From_double((float32)$self->m_vertices[i].y));
@@ -94,9 +97,9 @@ public:
     }
 
     PyObject* __get_normals() {
-        PyObject* ret=PyList_New($self->m_vertexCount);
+        PyObject* ret=PyList_New($self->m_count);
         PyObject* vertex;
-        for (int i=0; i < $self->m_vertexCount; i++) {
+        for (int i=0; i < $self->m_count; i++) {
             vertex = PyTuple_New(2);
             PyTuple_SetItem(vertex, 0, SWIG_From_double((float32)$self->m_normals[i].x));
             PyTuple_SetItem(vertex, 1, SWIG_From_double((float32)$self->m_normals[i].y));
@@ -127,8 +130,8 @@ public:
                 else:
                     raise ValueError('Expected tuple, list, or b2Vec2, got %s' % type(value))
                 self.vertexCount=i+1 # follow along in case of an exception to indicate valid number set
-            if self.valid:
-                self.__set_vertices_internal() # calculates normals, centroid, etc.
+
+            self.__set_vertices_internal() # calculates normals, centroid, etc.
 
     def __iter__(self):
         """
@@ -163,11 +166,11 @@ public:
             $self->m_vertices[vnum].Set(x, y);
     }
     void __set_vertices_internal() {
-        $self->Set($self->m_vertices, $self->m_vertexCount);
+        $self->Set($self->m_vertices, $self->m_count);
     }
 }
 %rename (centroid) b2PolygonShape::m_centroid;
-%rename (vertexCount) b2PolygonShape::m_vertexCount;
+%rename (vertexCount) b2PolygonShape::m_count;
 %rename (__set_vertices_internal) b2PolygonShape::Set;
 %ignore b2PolygonShape::m_normals;
 %ignore b2PolygonShape::m_vertices;
@@ -178,20 +181,25 @@ public:
 %ignore b2PolygonShape::GetNormals;
 
 
-/**** LoopShape ****/
+/**** ChainShape ****/
 %include "carrays.i"
 %array_class(b2Vec2, _b2Vec2Array);
 
-%extend b2LoopShape {
+%extend b2ChainShape {
 public:
     PyObject* __get_vertices() {
-        int32 count=$self->GetCount();
-        PyObject* ret=PyList_New(count);
+        if (!$self->m_vertices) {
+            Py_INCREF(Py_None);
+            return Py_None;
+        }
+
+        PyObject* ret=PyList_New($self->m_count);
         PyObject* vertex;
-        for (int i=0; i < count; i++) {
+
+        for (int i=0; i < $self->m_count; i++) {
             vertex = PyTuple_New(2);
-            PyTuple_SetItem(vertex, 0, SWIG_From_double((float32)$self->GetVertex(i).x));
-            PyTuple_SetItem(vertex, 1, SWIG_From_double((float32)$self->GetVertex(i).y));
+            PyTuple_SetItem(vertex, 0, SWIG_From_double((float32)$self->m_vertices[i].x));
+            PyTuple_SetItem(vertex, 1, SWIG_From_double((float32)$self->m_vertices[i].y));
             PyList_SetItem(ret, i, vertex);
         }
         return ret;
@@ -199,7 +207,7 @@ public:
 
     %pythoncode %{
     def __repr__(self):
-        return "b2LoopShape(vertices: %s)" % (self.vertices)
+        return "b2ChainShape(vertices: %s)" % (self.vertices)
 
     def getChildEdge(self, index):
         if childIndex >= self.childCount:
@@ -215,7 +223,7 @@ public:
 
     @property
     def vertexCount(self):
-        return self.__GetCount()
+        return self.__get_count()
 
     def __get_vertices(self):
         """Returns all of the vertices as a list of tuples [ (x1,y1), (x2,y2) ... (xN,yN) ]"""
@@ -224,12 +232,12 @@ public:
 
     def __iter__(self):
         """
-        Iterates over the vertices in the Loop
+        Iterates over the vertices in the Chain
         """
         for v in self.vertices:
             yield v
 
-    def __set_vertices(self, values):
+    def __set_vertices(self, values, loop=True):
         if not values or not isinstance(values, (list, tuple)) or (len(values) < 2):
             raise ValueError('Expected tuple or list of length >= 2.')
 
@@ -251,28 +259,37 @@ public:
                 vecs[i]=value
             else:
                 vecs[i]=b2Vec2(value)
-        self.__bypass_create(vecs, len(values))
+
+        self.__create(vecs, len(values), loop)
         
-    vertices=property(__get_vertices, __set_vertices)
+    vertices = property(__get_vertices, __set_vertices)
+    vertices_chain = property(__get_vertices, lambda self, v : self.__set_vertices(v, loop=False))
+    vertices_loop = vertices
     %}
 
-    void __bypass_create(_b2Vec2Array* v, int c) {
-        if (v)
-            $self->Create(v, c);
+    void __create(_b2Vec2Array* v, int c, bool loop) {
+        if (v) {
+            if (loop)
+                $self->CreateLoop(v, c);
+            else
+                $self->CreateChain(v, c);
+        }
     }
 
     const b2Vec2* __get_vertex(uint16 vnum) {
-        if (vnum >= $self->GetCount()) return NULL;
-        return &($self->GetVertex(vnum));
+        if (vnum >= $self->m_count) return NULL;
+        return &($self->m_vertices[vnum]);
+    }
+
+    int32 __get_count() {
+        return $self->m_count;
     }
 }
-%rename (__GetVertices) b2LoopShape::GetVertices;
-%rename (__GetVertex) b2LoopShape::GetVertex;
-%rename (__GetCount) b2LoopShape::GetCount;
-%rename (__GetChildEdge) b2LoopShape::GetChildEdge;
-%ignore b2LoopShape::m_vertices;
-%ignore b2LoopShape::m_count;
-%ignore b2LoopShape::Create;
+%rename (__GetVertices) b2ChainShape::GetVertices;
+%rename (__GetChildEdge) b2ChainShape::GetChildEdge;
+%ignore b2ChainShape::m_vertices;
+%ignore b2ChainShape::m_count;
+%ignore b2ChainShape::Create;
 
 /**** EdgeShape ****/
 %extend b2EdgeShape {
@@ -344,4 +361,5 @@ public:
 %rename(hasVertex0) b2EdgeShape::m_hasVertex0;
 %rename(hasVertex3) b2EdgeShape::m_hasVertex3;
 %rename(__Set) b2EdgeShape::Set;
+
 

@@ -52,7 +52,8 @@ typedef double float64;
 
 // Collision
 
-/// The maximum number of contact points between two convex shapes.
+/// The maximum number of contact points between two convex shapes. Do
+/// not change this value.
 #define b2_maxManifoldPoints	2
 
 /// The maximum number of vertices on a convex polygon. You cannot increase
@@ -116,7 +117,8 @@ typedef double float64;
 /// This scale factor controls how fast overlap is resolved. Ideally this would be 1 so
 /// that overlap is removed in one time step. However using values close to 1 often lead
 /// to overshoot.
-#define b2_contactBaumgarte			0.2f
+#define b2_baumgarte				0.2f
+#define b2_toiBaugarte				0.75f
 
 
 // Sleep
@@ -137,6 +139,9 @@ void* b2Alloc(int32 size);
 
 /// If you implement b2Alloc, you should also implement this function.
 void b2Free(void* mem);
+
+/// Logging function.
+void b2Log(const char* string, ...);
 
 /// Version numbering scheme.
 /// See http://en.wikipedia.org/wiki/Software_versioning

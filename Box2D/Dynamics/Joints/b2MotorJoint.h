@@ -1,5 +1,5 @@
 /*
-* Copyright (c) 2006-2007 Erin Catto http://www.box2d.org
+* Copyright (c) 2006-2012 Erin Catto http://www.box2d.org
 *
 * This software is provided 'as-is', without any express or implied
 * warranty.  In no event will the authors be held liable for any damages
@@ -16,43 +16,47 @@
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
-#ifndef B2_FRICTION_JOINT_H
-#define B2_FRICTION_JOINT_H
+#ifndef B2_MOTOR_JOINT_H
+#define B2_MOTOR_JOINT_H
 
 #include <Box2D/Dynamics/Joints/b2Joint.h>
 
-/// Friction joint definition.
-struct b2FrictionJointDef : public b2JointDef
+/// Motor joint definition.
+struct b2MotorJointDef : public b2JointDef
 {
-	b2FrictionJointDef()
+	b2MotorJointDef()
 	{
-		type = e_frictionJoint;
-		localAnchorA.SetZero();
-		localAnchorB.SetZero();
-		maxForce = 0.0f;
-		maxTorque = 0.0f;
+		type = e_motorJoint;
+		linearOffset.SetZero();
+		angularOffset = 0.0f;
+		maxForce = 1.0f;
+		maxTorque = 1.0f;
+		correctionFactor = 0.3f;
 	}
 
-	/// Initialize the bodies, anchors, axis, and reference angle using the world
-	/// anchor and world axis.
-	void Initialize(b2Body* bodyA, b2Body* bodyB, const b2Vec2& anchor);
+	/// Initialize the bodies and offsets using the current transforms.
+	void Initialize(b2Body* bodyA, b2Body* bodyB);
 
-	/// The local anchor point relative to bodyA's origin.
-	b2Vec2 localAnchorA;
+	/// Position of bodyB minus the position of bodyA, in bodyA's frame, in meters.
+	b2Vec2 linearOffset;
 
-	/// The local anchor point relative to bodyB's origin.
-	b2Vec2 localAnchorB;
-
-	/// The maximum friction force in N.
+	/// The bodyB angle minus bodyA angle in radians.
+	float32 angularOffset;
+	
+	/// The maximum motor force in N.
 	float32 maxForce;
 
-	/// The maximum friction torque in N-m.
+	/// The maximum motor torque in N-m.
 	float32 maxTorque;
+
+	/// Position correction factor in the range [0,1].
+	float32 correctionFactor;
 };
 
-/// Friction joint. This is used for top-down friction.
-/// It provides 2D translational friction and angular friction.
-class b2FrictionJoint : public b2Joint
+/// A motor joint is used to control the relative motion
+/// between two bodies. A typical usage is to control the movement
+/// of a dynamic body with respect to the ground.
+class b2MotorJoint : public b2Joint
 {
 public:
 	b2Vec2 GetAnchorA() const;
@@ -61,11 +65,13 @@ public:
 	b2Vec2 GetReactionForce(float32 inv_dt) const;
 	float32 GetReactionTorque(float32 inv_dt) const;
 
-	/// The local anchor point relative to bodyA's origin.
-	const b2Vec2& GetLocalAnchorA() const { return m_localAnchorA; }
+	/// Set/get the target linear offset, in frame A, in meters.
+	void SetLinearOffset(const b2Vec2& linearOffset);
+	const b2Vec2& GetLinearOffset() const;
 
-	/// The local anchor point relative to bodyB's origin.
-	const b2Vec2& GetLocalAnchorB() const  { return m_localAnchorB; }
+	/// Set/get the target angular offset, in radians.
+	void SetAngularOffset(float32 angularOffset);
+	float32 GetAngularOffset() const;
 
 	/// Set the maximum friction force in N.
 	void SetMaxForce(float32 force);
@@ -79,27 +85,27 @@ public:
 	/// Get the maximum friction torque in N*m.
 	float32 GetMaxTorque() const;
 
-	/// Dump joint to dmLog
+	/// Dump to b2Log
 	void Dump();
 
 protected:
 
 	friend class b2Joint;
 
-	b2FrictionJoint(const b2FrictionJointDef* def);
+	b2MotorJoint(const b2MotorJointDef* def);
 
 	void InitVelocityConstraints(const b2SolverData& data);
 	void SolveVelocityConstraints(const b2SolverData& data);
 	bool SolvePositionConstraints(const b2SolverData& data);
 
-	b2Vec2 m_localAnchorA;
-	b2Vec2 m_localAnchorB;
-
 	// Solver shared
+	b2Vec2 m_linearOffset;
+	float32 m_angularOffset;
 	b2Vec2 m_linearImpulse;
 	float32 m_angularImpulse;
 	float32 m_maxForce;
 	float32 m_maxTorque;
+	float32 m_correctionFactor;
 
 	// Solver temp
 	int32 m_indexA;
@@ -108,6 +114,8 @@ protected:
 	b2Vec2 m_rB;
 	b2Vec2 m_localCenterA;
 	b2Vec2 m_localCenterB;
+	b2Vec2 m_linearError;
+	float32 m_angularError;
 	float32 m_invMassA;
 	float32 m_invMassB;
 	float32 m_invIA;

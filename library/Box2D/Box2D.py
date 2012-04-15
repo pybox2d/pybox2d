@@ -116,7 +116,7 @@ def _dir_filter(self):
 
 
 def _init_kwargs(self, **kwargs):
-    for key, value in list(kwargs.items()):
+    for key, value in kwargs.iteritems():
         try:
             setattr(self, key, value)
         except:
@@ -124,18 +124,13 @@ def _init_kwargs(self, **kwargs):
             ex=exc_info()[1]
             raise ex.__class__('Failed on kwargs for %s.%s: %s' \
                         % (self.__class__.__name__, key, ex))
-def _init_jointdef_kwargs(self, **kwargs):
-    keys = list(kwargs.items()) 
-    if 'bodyA' in kwargs or 'bodyB' in kwargs:
-        # A little trick, make sure that bodyA and bodyB are defined before the rest
-        bodies = dict((key, kwargs[key]) for key in kwargs.keys()
-                            if key in ('bodyA', 'bodyB'))
-        _init_kwargs(self, **bodies)
-        others = dict((key, kwargs[key]) for key in kwargs.keys()
-                            if key not in ('bodyA', 'bodyB'))
-        _init_kwargs(self, **others)
-    else:
-        _init_kwargs(self, **kwargs)
+
+def _init_jointdef_kwargs(self, bodyA=None, bodyB=None, **kwargs):
+    if bodyA is not None or bodyB is not None:
+        # Make sure that bodyA and bodyB are defined before the rest
+        _init_kwargs(self, bodyA=bodyA, bodyB=bodyB)
+
+    _init_kwargs(self, **kwargs)
 
 _format_recursed=0
 def _format_repr(item, props, indent_amount=4, max_level=4, max_str_len=250, max_sub_lines=10):
@@ -363,7 +358,7 @@ def _b2Distance(*args):
     """
   return _Box2D._b2Distance(*args)
 
-def b2TimeOfImpact(*args, **kwargs):
+def b2TimeOfImpact(shapeA=None, idxA=0, shapeB=None, idxB=0, sweepA=None, sweepB=None, tMax=0.0):
     """
     Compute the upper bound on time before two shapes penetrate. Time is represented as
     a fraction between [0,tMax]. This uses a swept separating axis and may miss some intermediate,
@@ -389,25 +384,12 @@ def b2TimeOfImpact(*args, **kwargs):
             e_touching,
             e_separated ]
     """
-    if len(args) == 5 or len(args) == 1:
-        out=_b2TimeOfImpact(*args)
-    elif kwargs: # use kwargs
-        shapeA = kwargs['shapeA']
-        shapeB = kwargs['shapeB']
-        sweepA = kwargs['sweepA']
-        sweepB = kwargs['sweepB']
-        tMax = kwargs['tMax']
-        if 'idxA' in kwargs:
-            idxA = kwargs['idxA']
-        else:
-            idxA=0
-        if 'idxB' in kwargs:
-            idxB = kwargs['idxB']
-        else:
-            idxB=0
-        out=_b2TimeOfImpact(shapeA, idxA, shapeB, idxB, sweepA, sweepB, tMax)
+
+    if isinstance(shapeA, b2TOIInput):
+        toi_input = shapeA
+        out = _b2TimeOfImpact(toi_input)
     else:
-        raise ValueError('Expected arguments for b2TimeOfImpact or kwargs')
+        out = _b2TimeOfImpact(shapeA, idxA, shapeB, idxB, sweepA, sweepB, tMax)
 
     return (out.state, out.t)
 
@@ -450,7 +432,8 @@ b2_maxTranslation = _Box2D.b2_maxTranslation
 b2_maxTranslationSquared = _Box2D.b2_maxTranslationSquared
 b2_maxRotation = _Box2D.b2_maxRotation
 b2_maxRotationSquared = _Box2D.b2_maxRotationSquared
-b2_contactBaumgarte = _Box2D.b2_contactBaumgarte
+b2_baumgarte = _Box2D.b2_baumgarte
+b2_toiBaugarte = _Box2D.b2_toiBaugarte
 b2_timeToSleep = _Box2D.b2_timeToSleep
 b2_linearSleepTolerance = _Box2D.b2_linearSleepTolerance
 b2_angularSleepTolerance = _Box2D.b2_angularSleepTolerance
@@ -470,6 +453,10 @@ def b2Free(*args, **kwargs):
     If you implement b2Alloc, you should also implement this function.
     """
   return _Box2D.b2Free(*args, **kwargs)
+
+def b2Log(*args, **kwargs):
+  """b2Log(char string, v(...) *args)"""
+  return _Box2D.b2Log(*args, **kwargs)
 class b2Version(object):
     """Version numbering scheme. See http://en.wikipedia.org/wiki/Software_versioning"""
     thisown = _swig_property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc='The membership flag')
@@ -618,8 +605,6 @@ class b2Vec2(object):
         return 2
     def __neg__(self):
         return b2Vec2(-self.x, -self.y)
-    def __copy__(self):
-        return b2Vec2(self.x, self.y)
     def copy(self):
         """
         Return a copy of the vector.
@@ -629,6 +614,8 @@ class b2Vec2(object):
         Does not copy the vector itself, but b now refers to a.
         """
         return b2Vec2(self.x, self.y)
+    __copy__ = copy
+
     def __iadd__(self, other):
         self.__add_vector(other)
         return self
@@ -802,8 +789,6 @@ class b2Vec3(object):
         return "b2Vec3(%g,%g,%g)" % (self.x, self.y, self.z)
     def __len__(self):
         return 3
-    def __copy__(self):
-        return b2Vec3(self.x, self.y, self.z)
     def __neg__(self):
         return b2Vec3(-self.x, -self.y, -self.z)
     def copy(self):
@@ -815,6 +800,7 @@ class b2Vec3(object):
         Does not copy the vector itself, but b now refers to a.
         """
         return b2Vec3(self.x, self.y, self.z)
+    __copy__ = copy
     def __iadd__(self, other):
         self.__add_vector(other)
         return self
@@ -940,20 +926,10 @@ class b2Mat22(object):
         __init__(self) -> b2Mat22
         __init__(self, b2Vec2 c1, b2Vec2 c2) -> b2Mat22
         __init__(self, float32 a11, float32 a12, float32 a21, float32 a22) -> b2Mat22
-        __init__(self, float32 angle) -> b2Mat22
 
         Construct this matrix using an angle. This matrix becomes an orthonormal rotation matrix.
         """
         _Box2D.b2Mat22_swiginit(self,_Box2D.new_b2Mat22(*args))
-    def __SetAngle(self, *args):
-        """
-        __SetAngle(self, b2Vec2 c1, b2Vec2 c2)
-        __SetAngle(self, float32 angle)
-
-        Initialize this matrix using an angle. This matrix becomes an orthonormal rotation matrix.
-        """
-        return _Box2D.b2Mat22___SetAngle(self, *args)
-
     def SetIdentity(self):
         """
         SetIdentity(self)
@@ -969,14 +945,6 @@ class b2Mat22(object):
         Set this matrix to all zeros.
         """
         return _Box2D.b2Mat22_SetZero(self)
-
-    def __GetAngle(self):
-        """
-        __GetAngle(self) -> float32
-
-        Extract the angle from this matrix (assumed to be a rotation matrix).
-        """
-        return _Box2D.b2Mat22___GetAngle(self)
 
     def __GetInverse(self):
         """__GetInverse(self) -> b2Mat22"""
@@ -997,9 +965,23 @@ class b2Mat22(object):
     def __repr__(self):
         return _format_repr(self, ['angle','col1','col2','inverse']) 
 
+    def __GetAngle(self):
+        """__GetAngle(self) -> float32"""
+        return _Box2D.b2Mat22___GetAngle(self)
+
+    def __SetAngle(self, *args):
+        """
+        __SetAngle(self, b2Vec2 c1, b2Vec2 c2)
+        __SetAngle(self, float32 angle)
+        """
+        return _Box2D.b2Mat22___SetAngle(self, *args)
+
     # Read-only
     inverse = property(__GetInverse, None)
     angle = property(__GetAngle, __SetAngle)
+    ex = property(lambda self: self.col1, lambda self, v: setattr(self, 'col1', v))
+    ey = property(lambda self: self.col2, lambda self, v: setattr(self, 'col2', v))
+    set = __SetAngle
 
     def __mul__(self, *args):
         """
@@ -1025,12 +1007,12 @@ class b2Mat22(object):
         return _Box2D.b2Mat22___isub(self, *args, **kwargs)
 
     __swig_destroy__ = _Box2D.delete_b2Mat22
-b2Mat22.__SetAngle = new_instancemethod(_Box2D.b2Mat22___SetAngle,None,b2Mat22)
 b2Mat22.SetIdentity = new_instancemethod(_Box2D.b2Mat22_SetIdentity,None,b2Mat22)
 b2Mat22.SetZero = new_instancemethod(_Box2D.b2Mat22_SetZero,None,b2Mat22)
-b2Mat22.__GetAngle = new_instancemethod(_Box2D.b2Mat22___GetAngle,None,b2Mat22)
 b2Mat22.__GetInverse = new_instancemethod(_Box2D.b2Mat22___GetInverse,None,b2Mat22)
 b2Mat22.Solve = new_instancemethod(_Box2D.b2Mat22_Solve,None,b2Mat22)
+b2Mat22.__GetAngle = new_instancemethod(_Box2D.b2Mat22___GetAngle,None,b2Mat22)
+b2Mat22.__SetAngle = new_instancemethod(_Box2D.b2Mat22___SetAngle,None,b2Mat22)
 b2Mat22.__mul__ = new_instancemethod(_Box2D.b2Mat22___mul__,None,b2Mat22)
 b2Mat22.__add__ = new_instancemethod(_Box2D.b2Mat22___add__,None,b2Mat22)
 b2Mat22.__sub__ = new_instancemethod(_Box2D.b2Mat22___sub__,None,b2Mat22)
@@ -1075,6 +1057,14 @@ class b2Mat33(object):
         """
         return _Box2D.b2Mat33_Solve22(self, *args, **kwargs)
 
+    def GetInverse22(self, *args, **kwargs):
+        """GetInverse22(self, b2Mat33 M)"""
+        return _Box2D.b2Mat33_GetInverse22(self, *args, **kwargs)
+
+    def GetSymInverse33(self, *args, **kwargs):
+        """GetSymInverse33(self, b2Mat33 M)"""
+        return _Box2D.b2Mat33_GetSymInverse33(self, *args, **kwargs)
+
     col1 = _swig_property(_Box2D.b2Mat33_col1_get, _Box2D.b2Mat33_col1_set)
     col2 = _swig_property(_Box2D.b2Mat33_col2_get, _Box2D.b2Mat33_col2_set)
     col3 = _swig_property(_Box2D.b2Mat33_col3_get, _Box2D.b2Mat33_col3_set)
@@ -1082,6 +1072,10 @@ class b2Mat33(object):
 
     def __repr__(self):
         return _format_repr(self, ['col1','col2','col3']) 
+
+    ex = property(lambda self: self.col1, lambda self, v: setattr(self, 'col1', v))
+    ey = property(lambda self: self.col2, lambda self, v: setattr(self, 'col2', v))
+    ez = property(lambda self: self.col3, lambda self, v: setattr(self, 'col3', v))
 
     def __mul__(self, *args, **kwargs):
         """__mul__(self, b2Vec3 v) -> b2Vec3"""
@@ -1107,6 +1101,8 @@ class b2Mat33(object):
 b2Mat33.SetZero = new_instancemethod(_Box2D.b2Mat33_SetZero,None,b2Mat33)
 b2Mat33.Solve33 = new_instancemethod(_Box2D.b2Mat33_Solve33,None,b2Mat33)
 b2Mat33.Solve22 = new_instancemethod(_Box2D.b2Mat33_Solve22,None,b2Mat33)
+b2Mat33.GetInverse22 = new_instancemethod(_Box2D.b2Mat33_GetInverse22,None,b2Mat33)
+b2Mat33.GetSymInverse33 = new_instancemethod(_Box2D.b2Mat33_GetSymInverse33,None,b2Mat33)
 b2Mat33.__mul__ = new_instancemethod(_Box2D.b2Mat33___mul__,None,b2Mat33)
 b2Mat33.__add__ = new_instancemethod(_Box2D.b2Mat33___add__,None,b2Mat33)
 b2Mat33.__sub__ = new_instancemethod(_Box2D.b2Mat33___sub__,None,b2Mat33)
@@ -1115,6 +1111,58 @@ b2Mat33.__isub = new_instancemethod(_Box2D.b2Mat33___isub,None,b2Mat33)
 b2Mat33_swigregister = _Box2D.b2Mat33_swigregister
 b2Mat33_swigregister(b2Mat33)
 
+class b2Rot(object):
+    """Proxy of C++ b2Rot class"""
+    thisown = _swig_property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc='The membership flag')
+    __repr__ = _swig_repr
+    def __init__(self, *args): 
+        """
+        __init__(self) -> b2Rot
+        __init__(self, float32 angle) -> b2Rot
+        """
+        _Box2D.b2Rot_swiginit(self,_Box2D.new_b2Rot(*args))
+    def __SetAngle(self, *args, **kwargs):
+        """__SetAngle(self, float32 angle)"""
+        return _Box2D.b2Rot___SetAngle(self, *args, **kwargs)
+
+    def SetIdentity(self):
+        """SetIdentity(self)"""
+        return _Box2D.b2Rot_SetIdentity(self)
+
+    def __GetAngle(self):
+        """__GetAngle(self) -> float32"""
+        return _Box2D.b2Rot___GetAngle(self)
+
+    def GetXAxis(self):
+        """GetXAxis(self) -> b2Vec2"""
+        return _Box2D.b2Rot_GetXAxis(self)
+
+    def GetYAxis(self):
+        """GetYAxis(self) -> b2Vec2"""
+        return _Box2D.b2Rot_GetYAxis(self)
+
+    s = _swig_property(_Box2D.b2Rot_s_get, _Box2D.b2Rot_s_set)
+    c = _swig_property(_Box2D.b2Rot_c_get, _Box2D.b2Rot_c_set)
+    angle = property(__GetAngle, __SetAngle) 
+
+    x_axis = property(GetXAxis, None)
+    y_axis = property(GetYAxis, None)
+
+
+    def __mul__(self, *args, **kwargs):
+        """__mul__(self, b2Vec2 v) -> b2Vec2"""
+        return _Box2D.b2Rot___mul__(self, *args, **kwargs)
+
+    __swig_destroy__ = _Box2D.delete_b2Rot
+b2Rot.__SetAngle = new_instancemethod(_Box2D.b2Rot___SetAngle,None,b2Rot)
+b2Rot.SetIdentity = new_instancemethod(_Box2D.b2Rot_SetIdentity,None,b2Rot)
+b2Rot.__GetAngle = new_instancemethod(_Box2D.b2Rot___GetAngle,None,b2Rot)
+b2Rot.GetXAxis = new_instancemethod(_Box2D.b2Rot_GetXAxis,None,b2Rot)
+b2Rot.GetYAxis = new_instancemethod(_Box2D.b2Rot_GetYAxis,None,b2Rot)
+b2Rot.__mul__ = new_instancemethod(_Box2D.b2Rot___mul__,None,b2Rot)
+b2Rot_swigregister = _Box2D.b2Rot_swigregister
+b2Rot_swigregister(b2Rot)
+
 class b2Transform(object):
     """A transform contains translation and rotation. It is used to represent the position and orientation of rigid frames."""
     thisown = _swig_property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc='The membership flag')
@@ -1122,7 +1170,7 @@ class b2Transform(object):
     def __init__(self, *args): 
         """
         __init__(self) -> b2Transform
-        __init__(self, b2Vec2 position, b2Mat22 R) -> b2Transform
+        __init__(self, b2Vec2 position, b2Rot rotation) -> b2Transform
 
         Initialize using a position vector and a rotation matrix.
         """
@@ -1137,32 +1185,34 @@ class b2Transform(object):
 
     def Set(self, *args, **kwargs):
         """
-        Set(self, b2Vec2 p, float32 angle)
+        Set(self, b2Vec2 position, float32 angle)
 
         Set this based on the position and angle.
         """
         return _Box2D.b2Transform_Set(self, *args, **kwargs)
 
-    def __GetAngle(self):
-        """
-        __GetAngle(self) -> float32
-
-        Calculate the angle that the rotation matrix represents.
-        """
-        return _Box2D.b2Transform___GetAngle(self)
-
     position = _swig_property(_Box2D.b2Transform_position_get, _Box2D.b2Transform_position_set)
-    R = _swig_property(_Box2D.b2Transform_R_get, _Box2D.b2Transform_R_set)
+    q = _swig_property(_Box2D.b2Transform_q_get, _Box2D.b2Transform_q_set)
     __dir__ = _dir_filter
 
     def __repr__(self):
         return _format_repr(self, ['R','angle','position']) 
 
+    def __GetAngle(self):
+        return self.q.angle
     def __SetAngle(self, angle):
-        self.R.angle=angle
+        self.q.angle = angle
 
-    # Read-only
+    def __GetR(self):
+        R = b2Mat22()
+        R.angle = self.q.angle
+        return R
+
+    def __SetR(self, R):
+        self.q.angle = R.angle
+
     angle = property(__GetAngle, __SetAngle) 
+    R = property(__GetR, __SetR)
 
     def __mul__(self, *args, **kwargs):
         """__mul__(self, b2Vec2 v) -> b2Vec2"""
@@ -1171,7 +1221,6 @@ class b2Transform(object):
     __swig_destroy__ = _Box2D.delete_b2Transform
 b2Transform.SetIdentity = new_instancemethod(_Box2D.b2Transform_SetIdentity,None,b2Transform)
 b2Transform.Set = new_instancemethod(_Box2D.b2Transform_Set,None,b2Transform)
-b2Transform.__GetAngle = new_instancemethod(_Box2D.b2Transform___GetAngle,None,b2Transform)
 b2Transform.__mul__ = new_instancemethod(_Box2D.b2Transform___mul__,None,b2Transform)
 b2Transform_swigregister = _Box2D.b2Transform_swigregister
 b2Transform_swigregister(b2Transform)
@@ -1215,7 +1264,7 @@ class b2Sweep(object):
 
     def GetTransform(self, *args):
         """
-        GetTransform(self, b2Transform xf, float32 beta)
+        GetTransform(self, b2Transform xfb, float32 beta)
         GetTransform(self, float32 alpha) -> b2Transform
 
         Get the interpolated transform at a specific time.
@@ -1244,6 +1293,10 @@ b2Sweep_swigregister(b2Sweep)
 def b2DistanceSquared(*args, **kwargs):
   """b2DistanceSquared(b2Vec2 a, b2Vec2 b) -> float32"""
   return _Box2D.b2DistanceSquared(*args, **kwargs)
+
+def b2Mul22(*args, **kwargs):
+  """b2Mul22(b2Mat33 A, b2Vec2 v) -> b2Vec2"""
+  return _Box2D.b2Mul22(*args, **kwargs)
 
 def b2Min(*args, **kwargs):
   """b2Min(b2Vec2 a, b2Vec2 b) -> b2Vec2"""
@@ -1288,8 +1341,6 @@ class b2ContactFeature(object):
 b2ContactFeature_swigregister = _Box2D.b2ContactFeature_swigregister
 b2ContactFeature_swigregister(b2ContactFeature)
 b2Vec2_zero = b2Globals.b2Vec2_zero
-b2Mat22_identity = b2Globals.b2Mat22_identity
-b2Transform_identity = b2Globals.b2Transform_identity
 
 def b2Dot(*args):
   """
@@ -1316,7 +1367,10 @@ def b2Mul(*args):
     b2Mul(b2Mat22 A, b2Vec2 v) -> b2Vec2
     b2Mul(b2Mat22 A, b2Mat22 B) -> b2Mat22
     b2Mul(b2Mat33 A, b2Vec3 v) -> b2Vec3
+    b2Mul(b2Rot q, b2Rot r) -> b2Rot
+    b2Mul(b2Rot q, b2Vec2 v) -> b2Vec2
     b2Mul(b2Transform T, b2Vec2 v) -> b2Vec2
+    b2Mul(b2Transform A, b2Transform B) -> b2Transform
 
     Multiply a matrix times a vector.
     """
@@ -1326,6 +1380,8 @@ def b2MulT(*args):
   """
     b2MulT(b2Mat22 A, b2Vec2 v) -> b2Vec2
     b2MulT(b2Mat22 A, b2Mat22 B) -> b2Mat22
+    b2MulT(b2Rot q, b2Rot r) -> b2Rot
+    b2MulT(b2Rot q, b2Vec2 v) -> b2Vec2
     b2MulT(b2Transform T, b2Vec2 v) -> b2Vec2
     b2MulT(b2Transform A, b2Transform B) -> b2Transform
 
@@ -2129,11 +2185,10 @@ class b2Shape(object):
     thisown = _swig_property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc='The membership flag')
     def __init__(self, *args, **kwargs): raise AttributeError("No constructor defined - class is abstract")
     __repr__ = _swig_repr
-    e_unknown = _Box2D.b2Shape_e_unknown
     e_circle = _Box2D.b2Shape_e_circle
     e_edge = _Box2D.b2Shape_e_edge
     e_polygon = _Box2D.b2Shape_e_polygon
-    e_loop = _Box2D.b2Shape_e_loop
+    e_chain = _Box2D.b2Shape_e_chain
     e_typeCount = _Box2D.b2Shape_e_typeCount
     __swig_destroy__ = _Box2D.delete_b2Shape
     def __GetType(self):
@@ -2390,57 +2445,46 @@ b2EdgeShape.__Set = new_instancemethod(_Box2D.b2EdgeShape___Set,None,b2EdgeShape
 b2EdgeShape_swigregister = _Box2D.b2EdgeShape_swigregister
 b2EdgeShape_swigregister(b2EdgeShape)
 
-class b2LoopShape(b2Shape):
-    """A loop shape is a free form sequence of line segments that form a circular list. The loop may cross upon itself, but this is not recommended for smooth collision. The loop has double sided collision, so you can use inside and outside collision. Therefore, you may use any winding order. Since there may be many vertices, they are allocated using b2Alloc."""
+class b2ChainShape(b2Shape):
+    """Proxy of C++ b2ChainShape class"""
     thisown = _swig_property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc='The membership flag')
     __repr__ = _swig_repr
     def __init__(self, **kwargs):
-        _Box2D.b2LoopShape_swiginit(self,_Box2D.new_b2LoopShape())
+        _Box2D.b2ChainShape_swiginit(self,_Box2D.new_b2ChainShape())
         _init_kwargs(self, **kwargs)
 
 
-    __swig_destroy__ = _Box2D.delete_b2LoopShape
+    __swig_destroy__ = _Box2D.delete_b2ChainShape
+    def CreateLoop(self, *args, **kwargs):
+        """CreateLoop(self, b2Vec2 vertices, int32 count)"""
+        return _Box2D.b2ChainShape_CreateLoop(self, *args, **kwargs)
+
+    def CreateChain(self, *args, **kwargs):
+        """CreateChain(self, b2Vec2 vertices, int32 count)"""
+        return _Box2D.b2ChainShape_CreateChain(self, *args, **kwargs)
+
+    def SetPrevVertex(self, *args, **kwargs):
+        """SetPrevVertex(self, b2Vec2 prevVertex)"""
+        return _Box2D.b2ChainShape_SetPrevVertex(self, *args, **kwargs)
+
+    def SetNextVertex(self, *args, **kwargs):
+        """SetNextVertex(self, b2Vec2 nextVertex)"""
+        return _Box2D.b2ChainShape_SetNextVertex(self, *args, **kwargs)
+
     def __GetChildEdge(self, *args, **kwargs):
-        """
-        __GetChildEdge(self, b2EdgeShape edge, int32 index)
+        """__GetChildEdge(self, b2EdgeShape edge, int32 index)"""
+        return _Box2D.b2ChainShape___GetChildEdge(self, *args, **kwargs)
 
-        Get a child edge.
-        """
-        return _Box2D.b2LoopShape___GetChildEdge(self, *args, **kwargs)
-
-    def __GetCount(self):
-        """
-        __GetCount(self) -> int32
-
-        Get the number of vertices.
-        """
-        return _Box2D.b2LoopShape___GetCount(self)
-
-    def __GetVertex(self, *args, **kwargs):
-        """
-        __GetVertex(self, int32 index) -> b2Vec2
-
-        Get the vertices (read-only).
-        """
-        return _Box2D.b2LoopShape___GetVertex(self, *args, **kwargs)
-
-    def __GetVertices(self):
-        """
-        __GetVertices(self) -> b2Vec2
-
-        Get the vertices (read-only).
-        """
-        return _Box2D.b2LoopShape___GetVertices(self)
-
-    def __repr__(self):
-        return _format_repr(self, ['childCount','edges','radius','type','vertexCount','vertices']) 
-
+    m_prevVertex = _swig_property(_Box2D.b2ChainShape_m_prevVertex_get, _Box2D.b2ChainShape_m_prevVertex_set)
+    m_nextVertex = _swig_property(_Box2D.b2ChainShape_m_nextVertex_get, _Box2D.b2ChainShape_m_nextVertex_set)
+    m_hasPrevVertex = _swig_property(_Box2D.b2ChainShape_m_hasPrevVertex_get, _Box2D.b2ChainShape_m_hasPrevVertex_set)
+    m_hasNextVertex = _swig_property(_Box2D.b2ChainShape_m_hasNextVertex_get, _Box2D.b2ChainShape_m_hasNextVertex_set)
     def __get_vertices(self):
         """__get_vertices(self) -> PyObject"""
-        return _Box2D.b2LoopShape___get_vertices(self)
+        return _Box2D.b2ChainShape___get_vertices(self)
 
     def __repr__(self):
-        return "b2LoopShape(vertices: %s)" % (self.vertices)
+        return "b2ChainShape(vertices: %s)" % (self.vertices)
 
     def getChildEdge(self, index):
         if childIndex >= self.childCount:
@@ -2456,7 +2500,7 @@ class b2LoopShape(b2Shape):
 
     @property
     def vertexCount(self):
-        return self.__GetCount()
+        return self.__get_count()
 
     def __get_vertices(self):
         """Returns all of the vertices as a list of tuples [ (x1,y1), (x2,y2) ... (xN,yN) ]"""
@@ -2465,12 +2509,12 @@ class b2LoopShape(b2Shape):
 
     def __iter__(self):
         """
-        Iterates over the vertices in the Loop
+        Iterates over the vertices in the Chain
         """
         for v in self.vertices:
             yield v
 
-    def __set_vertices(self, values):
+    def __set_vertices(self, values, loop=True):
         if not values or not isinstance(values, (list, tuple)) or (len(values) < 2):
             raise ValueError('Expected tuple or list of length >= 2.')
 
@@ -2492,27 +2536,36 @@ class b2LoopShape(b2Shape):
                 vecs[i]=value
             else:
                 vecs[i]=b2Vec2(value)
-        self.__bypass_create(vecs, len(values))
-        
-    vertices=property(__get_vertices, __set_vertices)
 
-    def __bypass_create(self, *args, **kwargs):
-        """__bypass_create(self, _b2Vec2Array v, int c)"""
-        return _Box2D.b2LoopShape___bypass_create(self, *args, **kwargs)
+        self.__create(vecs, len(values), loop)
+        
+    vertices = property(__get_vertices, __set_vertices)
+    vertices_chain = property(__get_vertices, lambda self, v : self.__set_vertices(v, loop=False))
+    vertices_loop = vertices
+
+    def __create(self, *args, **kwargs):
+        """__create(self, _b2Vec2Array v, int c, bool loop)"""
+        return _Box2D.b2ChainShape___create(self, *args, **kwargs)
 
     def __get_vertex(self, *args, **kwargs):
         """__get_vertex(self, uint16 vnum) -> b2Vec2"""
-        return _Box2D.b2LoopShape___get_vertex(self, *args, **kwargs)
+        return _Box2D.b2ChainShape___get_vertex(self, *args, **kwargs)
 
-b2LoopShape.__GetChildEdge = new_instancemethod(_Box2D.b2LoopShape___GetChildEdge,None,b2LoopShape)
-b2LoopShape.__GetCount = new_instancemethod(_Box2D.b2LoopShape___GetCount,None,b2LoopShape)
-b2LoopShape.__GetVertex = new_instancemethod(_Box2D.b2LoopShape___GetVertex,None,b2LoopShape)
-b2LoopShape.__GetVertices = new_instancemethod(_Box2D.b2LoopShape___GetVertices,None,b2LoopShape)
-b2LoopShape.__get_vertices = new_instancemethod(_Box2D.b2LoopShape___get_vertices,None,b2LoopShape)
-b2LoopShape.__bypass_create = new_instancemethod(_Box2D.b2LoopShape___bypass_create,None,b2LoopShape)
-b2LoopShape.__get_vertex = new_instancemethod(_Box2D.b2LoopShape___get_vertex,None,b2LoopShape)
-b2LoopShape_swigregister = _Box2D.b2LoopShape_swigregister
-b2LoopShape_swigregister(b2LoopShape)
+    def __get_count(self):
+        """__get_count(self) -> int32"""
+        return _Box2D.b2ChainShape___get_count(self)
+
+b2ChainShape.CreateLoop = new_instancemethod(_Box2D.b2ChainShape_CreateLoop,None,b2ChainShape)
+b2ChainShape.CreateChain = new_instancemethod(_Box2D.b2ChainShape_CreateChain,None,b2ChainShape)
+b2ChainShape.SetPrevVertex = new_instancemethod(_Box2D.b2ChainShape_SetPrevVertex,None,b2ChainShape)
+b2ChainShape.SetNextVertex = new_instancemethod(_Box2D.b2ChainShape_SetNextVertex,None,b2ChainShape)
+b2ChainShape.__GetChildEdge = new_instancemethod(_Box2D.b2ChainShape___GetChildEdge,None,b2ChainShape)
+b2ChainShape.__get_vertices = new_instancemethod(_Box2D.b2ChainShape___get_vertices,None,b2ChainShape)
+b2ChainShape.__create = new_instancemethod(_Box2D.b2ChainShape___create,None,b2ChainShape)
+b2ChainShape.__get_vertex = new_instancemethod(_Box2D.b2ChainShape___get_vertex,None,b2ChainShape)
+b2ChainShape.__get_count = new_instancemethod(_Box2D.b2ChainShape___get_count,None,b2ChainShape)
+b2ChainShape_swigregister = _Box2D.b2ChainShape_swigregister
+b2ChainShape_swigregister(b2ChainShape)
 
 class b2PolygonShape(b2Shape):
     """A convex polygon. It is assumed that the interior of the polygon is to the left of each edge. Polygons have a maximum number of vertices equal to b2_maxPolygonVertices. In most cases you should not need many vertices for a convex polygon."""
@@ -2546,6 +2599,10 @@ class b2PolygonShape(b2Shape):
         the rotation of the box in local coordinates.
         """
         return _Box2D.b2PolygonShape_SetAsBox(self, *args)
+
+    def Validate(self):
+        """Validate(self) -> bool"""
+        return _Box2D.b2PolygonShape_Validate(self)
 
     centroid = _swig_property(_Box2D.b2PolygonShape_centroid_get, _Box2D.b2PolygonShape_centroid_set)
     vertexCount = _swig_property(_Box2D.b2PolygonShape_vertexCount_get, _Box2D.b2PolygonShape_vertexCount_set)
@@ -2583,8 +2640,8 @@ class b2PolygonShape(b2Shape):
                 else:
                     raise ValueError('Expected tuple, list, or b2Vec2, got %s' % type(value))
                 self.vertexCount=i+1 # follow along in case of an exception to indicate valid number set
-            if self.valid:
-                self.__set_vertices_internal() # calculates normals, centroid, etc.
+
+            self.__set_vertices_internal() # calculates normals, centroid, etc.
 
     def __iter__(self):
         """
@@ -2618,13 +2675,14 @@ class b2PolygonShape(b2Shape):
 
     def __set_vertices_internal(self, *args):
         """
-        __set_vertices_internal(self, b2Vec2 vertices, int32 vertexCount)
+        __set_vertices_internal(self, b2Vec2 points, int32 count)
         __set_vertices_internal(self)
         """
         return _Box2D.b2PolygonShape___set_vertices_internal(self, *args)
 
     __swig_destroy__ = _Box2D.delete_b2PolygonShape
 b2PolygonShape.SetAsBox = new_instancemethod(_Box2D.b2PolygonShape_SetAsBox,None,b2PolygonShape)
+b2PolygonShape.Validate = new_instancemethod(_Box2D.b2PolygonShape_Validate,None,b2PolygonShape)
 b2PolygonShape.__get_vertices = new_instancemethod(_Box2D.b2PolygonShape___get_vertices,None,b2PolygonShape)
 b2PolygonShape.__get_normals = new_instancemethod(_Box2D.b2PolygonShape___get_normals,None,b2PolygonShape)
 b2PolygonShape.__get_vertex = new_instancemethod(_Box2D.b2PolygonShape___get_vertex,None,b2PolygonShape)
@@ -2635,8 +2693,6 @@ b2PolygonShape_swigregister = _Box2D.b2PolygonShape_swigregister
 b2PolygonShape_swigregister(b2PolygonShape)
 
 b2_nullNode = _Box2D.b2_nullNode
-B2_USE_DYNAMIC_TREE = _Box2D.B2_USE_DYNAMIC_TREE
-B2_USE_BRUTE_FORCE = _Box2D.B2_USE_BRUTE_FORCE
 class b2TreeNode(object):
     """Proxy of C++ b2TreeNode class"""
     thisown = _swig_property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc='The membership flag')
@@ -2663,7 +2719,6 @@ class b2Pair(object):
     __repr__ = _swig_repr
     proxyIdA = _swig_property(_Box2D.b2Pair_proxyIdA_get, _Box2D.b2Pair_proxyIdA_set)
     proxyIdB = _swig_property(_Box2D.b2Pair_proxyIdB_get, _Box2D.b2Pair_proxyIdB_set)
-    next = _swig_property(_Box2D.b2Pair_next_get, _Box2D.b2Pair_next_set)
     __dir__ = _dir_filter
 
     def __repr__(self):
@@ -2759,6 +2814,10 @@ class b2BroadPhase(object):
         """__GetTreeQuality(self) -> float32"""
         return _Box2D.b2BroadPhase___GetTreeQuality(self)
 
+    def ShiftOrigin(self, *args, **kwargs):
+        """ShiftOrigin(self, b2Vec2 newOrigin)"""
+        return _Box2D.b2BroadPhase_ShiftOrigin(self, *args, **kwargs)
+
     def __repr__(self):
         return _format_repr(self, ['proxyCount']) 
 
@@ -2777,6 +2836,7 @@ b2BroadPhase.__GetProxyCount = new_instancemethod(_Box2D.b2BroadPhase___GetProxy
 b2BroadPhase.__GetTreeHeight = new_instancemethod(_Box2D.b2BroadPhase___GetTreeHeight,None,b2BroadPhase)
 b2BroadPhase.__GetTreeBalance = new_instancemethod(_Box2D.b2BroadPhase___GetTreeBalance,None,b2BroadPhase)
 b2BroadPhase.__GetTreeQuality = new_instancemethod(_Box2D.b2BroadPhase___GetTreeQuality,None,b2BroadPhase)
+b2BroadPhase.ShiftOrigin = new_instancemethod(_Box2D.b2BroadPhase_ShiftOrigin,None,b2BroadPhase)
 b2BroadPhase_swigregister = _Box2D.b2BroadPhase_swigregister
 b2BroadPhase_swigregister(b2BroadPhase)
 
@@ -3131,6 +3191,10 @@ class b2Body(object):
         the world position of the point of application.
         """
         return _Box2D.b2Body_ApplyForce(self, *args, **kwargs)
+
+    def ApplyForceToCenter(self, *args, **kwargs):
+        """ApplyForceToCenter(self, b2Vec2 force)"""
+        return _Box2D.b2Body_ApplyForceToCenter(self, *args, **kwargs)
 
     def ApplyTorque(self, *args, **kwargs):
         """
@@ -3506,6 +3570,10 @@ class b2Body(object):
         """
         return _Box2D.b2Body___GetWorld(self, *args)
 
+    def Dump(self):
+        """Dump(self)"""
+        return _Box2D.b2Body_Dump(self)
+
     __dir__ = _dir_filter
 
     def __repr__(self):
@@ -3606,7 +3674,7 @@ class b2Body(object):
         shape=type_()
         fixture=b2FixtureDef(shape=shape)
         
-        for key, value in list(kwargs.items()):
+        for key, value in kwargs.iteritems():
             # Note that these hasattrs use the types to get around
             # the fact that some properties are write-only (like 'box' in
             # polygon shapes), and as such do not show up with 'hasattr'.
@@ -3707,7 +3775,7 @@ class b2Body(object):
         shapeFixture.shape=oldShape
         return ret
 
-    def CreateFixture(self, *args, **kwargs):
+    def CreateFixture(self, defn=None, **kwargs):
         """
         Create a fixtures on the body.
 
@@ -3716,15 +3784,9 @@ class b2Body(object):
         CreateFixture(shape=s, restitution=0.2, ...)
         
         """
-        if len(args) > 1:
-            raise TypeError('Takes only one argument or kwargs. See help(b2Body.CreateFixture)')
-        elif len(args)==1:
-            if isinstance(args[0], b2FixtureDef):
-                defn = args[0]
-                return self.__CreateFixture(defn)
-            else:
-                raise TypeError('Expected b2FixtureDef argument or kwargs')
-        else: # no arguments, just kwargs
+        if defn is not None and isinstance(defn, b2FixtureDef):
+            return self.__CreateFixture(defn)
+        else:
             return self.__CreateFixture(b2FixtureDef(**kwargs))
 
     def CreateEdgeChain(self, edge_list):
@@ -3802,6 +3864,7 @@ b2Body.__GetLinearVelocity = new_instancemethod(_Box2D.b2Body___GetLinearVelocit
 b2Body.__SetAngularVelocity = new_instancemethod(_Box2D.b2Body___SetAngularVelocity,None,b2Body)
 b2Body.__GetAngularVelocity = new_instancemethod(_Box2D.b2Body___GetAngularVelocity,None,b2Body)
 b2Body.ApplyForce = new_instancemethod(_Box2D.b2Body_ApplyForce,None,b2Body)
+b2Body.ApplyForceToCenter = new_instancemethod(_Box2D.b2Body_ApplyForceToCenter,None,b2Body)
 b2Body.ApplyTorque = new_instancemethod(_Box2D.b2Body_ApplyTorque,None,b2Body)
 b2Body.ApplyLinearImpulse = new_instancemethod(_Box2D.b2Body_ApplyLinearImpulse,None,b2Body)
 b2Body.ApplyAngularImpulse = new_instancemethod(_Box2D.b2Body_ApplyAngularImpulse,None,b2Body)
@@ -3839,6 +3902,7 @@ b2Body.__GetJointList_internal = new_instancemethod(_Box2D.b2Body___GetJointList
 b2Body.__GetContactList_internal = new_instancemethod(_Box2D.b2Body___GetContactList_internal,None,b2Body)
 b2Body.__GetNext = new_instancemethod(_Box2D.b2Body___GetNext,None,b2Body)
 b2Body.__GetWorld = new_instancemethod(_Box2D.b2Body___GetWorld,None,b2Body)
+b2Body.Dump = new_instancemethod(_Box2D.b2Body_Dump,None,b2Body)
 b2Body.DestroyFixture = new_instancemethod(_Box2D.b2Body_DestroyFixture,None,b2Body)
 b2Body.__CreateFixture = new_instancemethod(_Box2D.b2Body___CreateFixture,None,b2Body)
 b2Body.__GetUserData = new_instancemethod(_Box2D.b2Body___GetUserData,None,b2Body)
@@ -3852,6 +3916,11 @@ class b2Filter(object):
     """This holds contact filtering data."""
     thisown = _swig_property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc='The membership flag')
     __repr__ = _swig_repr
+    def __init__(self, **kwargs):
+        _Box2D.b2Filter_swiginit(self,_Box2D.new_b2Filter())
+        _init_kwargs(self, **kwargs)
+
+
     categoryBits = _swig_property(_Box2D.b2Filter_categoryBits_get, _Box2D.b2Filter_categoryBits_set)
     maskBits = _swig_property(_Box2D.b2Filter_maskBits_get, _Box2D.b2Filter_maskBits_set)
     groupIndex = _swig_property(_Box2D.b2Filter_groupIndex_get, _Box2D.b2Filter_groupIndex_set)
@@ -3859,11 +3928,6 @@ class b2Filter(object):
 
     def __repr__(self):
         return _format_repr(self, ['categoryBits','groupIndex','maskBits']) 
-
-    def __init__(self, **kwargs):
-        _Box2D.b2Filter_swiginit(self,_Box2D.new_b2Filter())
-        _init_kwargs(self, **kwargs)
-
 
     __swig_destroy__ = _Box2D.delete_b2Filter
 b2Filter_swigregister = _Box2D.b2Filter_swigregister
@@ -4124,6 +4188,10 @@ class b2Fixture(object):
         """
         return _Box2D.b2Fixture_GetAABB(self, *args, **kwargs)
 
+    def Dump(self, *args, **kwargs):
+        """Dump(self, int32 bodyIndex)"""
+        return _Box2D.b2Fixture_Dump(self, *args, **kwargs)
+
     __dir__ = _dir_filter
 
     def __repr__(self):
@@ -4189,6 +4257,7 @@ b2Fixture.__SetFriction = new_instancemethod(_Box2D.b2Fixture___SetFriction,None
 b2Fixture.__GetRestitution = new_instancemethod(_Box2D.b2Fixture___GetRestitution,None,b2Fixture)
 b2Fixture.__SetRestitution = new_instancemethod(_Box2D.b2Fixture___SetRestitution,None,b2Fixture)
 b2Fixture.GetAABB = new_instancemethod(_Box2D.b2Fixture_GetAABB,None,b2Fixture)
+b2Fixture.Dump = new_instancemethod(_Box2D.b2Fixture_Dump,None,b2Fixture)
 b2Fixture.__GetUserData = new_instancemethod(_Box2D.b2Fixture___GetUserData,None,b2Fixture)
 b2Fixture.__SetUserData = new_instancemethod(_Box2D.b2Fixture___SetUserData,None,b2Fixture)
 b2Fixture.ClearUserData = new_instancemethod(_Box2D.b2Fixture_ClearUserData,None,b2Fixture)
@@ -4273,6 +4342,7 @@ class b2ContactImpulse(object):
     """Contact impulses for reporting. Impulses are used instead of forces because sub-step forces may approach infinity for rigid body collisions. These match up one-to-one with the contact points in  b2Manifold."""
     thisown = _swig_property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc='The membership flag')
     __repr__ = _swig_repr
+    count = _swig_property(_Box2D.b2ContactImpulse_count_get, _Box2D.b2ContactImpulse_count_set)
     __dir__ = _dir_filter
 
     def __repr__(self):
@@ -4448,6 +4518,39 @@ b2RayCastCallback.ReportFixture = new_instancemethod(_Box2D.b2RayCastCallback_Re
 b2RayCastCallback_swigregister = _Box2D.b2RayCastCallback_swigregister
 b2RayCastCallback_swigregister(b2RayCastCallback)
 
+class b2Profile(object):
+    """Proxy of C++ b2Profile class"""
+    thisown = _swig_property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc='The membership flag')
+    __repr__ = _swig_repr
+    step = _swig_property(_Box2D.b2Profile_step_get, _Box2D.b2Profile_step_set)
+    collide = _swig_property(_Box2D.b2Profile_collide_get, _Box2D.b2Profile_collide_set)
+    solve = _swig_property(_Box2D.b2Profile_solve_get, _Box2D.b2Profile_solve_set)
+    solveInit = _swig_property(_Box2D.b2Profile_solveInit_get, _Box2D.b2Profile_solveInit_set)
+    solveVelocity = _swig_property(_Box2D.b2Profile_solveVelocity_get, _Box2D.b2Profile_solveVelocity_set)
+    solvePosition = _swig_property(_Box2D.b2Profile_solvePosition_get, _Box2D.b2Profile_solvePosition_set)
+    broadphase = _swig_property(_Box2D.b2Profile_broadphase_get, _Box2D.b2Profile_broadphase_set)
+    solveTOI = _swig_property(_Box2D.b2Profile_solveTOI_get, _Box2D.b2Profile_solveTOI_set)
+    def __init__(self): 
+        """__init__(self) -> b2Profile"""
+        _Box2D.b2Profile_swiginit(self,_Box2D.new_b2Profile())
+    __swig_destroy__ = _Box2D.delete_b2Profile
+b2Profile_swigregister = _Box2D.b2Profile_swigregister
+b2Profile_swigregister(b2Profile)
+
+class b2SolverData(object):
+    """Proxy of C++ b2SolverData class"""
+    thisown = _swig_property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc='The membership flag')
+    __repr__ = _swig_repr
+    step = _swig_property(_Box2D.b2SolverData_step_get, _Box2D.b2SolverData_step_set)
+    positions = _swig_property(_Box2D.b2SolverData_positions_get, _Box2D.b2SolverData_positions_set)
+    velocities = _swig_property(_Box2D.b2SolverData_velocities_get, _Box2D.b2SolverData_velocities_set)
+    def __init__(self): 
+        """__init__(self) -> b2SolverData"""
+        _Box2D.b2SolverData_swiginit(self,_Box2D.new_b2SolverData())
+    __swig_destroy__ = _Box2D.delete_b2SolverData
+b2SolverData_swigregister = _Box2D.b2SolverData_swigregister
+b2SolverData_swigregister(b2SolverData)
+
 class b2ContactManager(object):
     """Proxy of C++ b2ContactManager class"""
     thisown = _swig_property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc='The membership flag')
@@ -4490,61 +4593,24 @@ b2ContactManager_swigregister(b2ContactManager)
 b2_stackSize = b2Globals.b2_stackSize
 b2_maxStackEntries = b2Globals.b2_maxStackEntries
 
-class b2Profile(object):
-    """Proxy of C++ b2Profile class"""
-    thisown = _swig_property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc='The membership flag')
-    __repr__ = _swig_repr
-    step = _swig_property(_Box2D.b2Profile_step_get, _Box2D.b2Profile_step_set)
-    collide = _swig_property(_Box2D.b2Profile_collide_get, _Box2D.b2Profile_collide_set)
-    solve = _swig_property(_Box2D.b2Profile_solve_get, _Box2D.b2Profile_solve_set)
-    solveTOI = _swig_property(_Box2D.b2Profile_solveTOI_get, _Box2D.b2Profile_solveTOI_set)
-    def __init__(self): 
-        """__init__(self) -> b2Profile"""
-        _Box2D.b2Profile_swiginit(self,_Box2D.new_b2Profile())
-    __swig_destroy__ = _Box2D.delete_b2Profile
-b2Profile_swigregister = _Box2D.b2Profile_swigregister
-b2Profile_swigregister(b2Profile)
-
 class b2World(object):
     """The world class manages all physics entities, dynamic simulation, and asynchronous queries. The world also contains efficient memory management facilities."""
     thisown = _swig_property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc='The membership flag')
     __repr__ = _swig_repr
-    def __init__(self, *args, **kwargs): 
-        """__init__(self, *args, **kwargs) -> b2World
-        Arguments:
-        * gravity (default (0, -10))
-        * doSleep (default True)
+    def __init__(self, gravity=(0, -10), doSleep=True, **kwargs): 
+        """__init__(self, gravity=(0, -10), doSleep=True, **kwargs) -> b2World
+
         Additional kwargs like contactListener will be passed after the world is created.
 
         Examples:
-         b2World()
-         b2World( (0,-10), True)
-         b2World( gravity=(0,-10), doSleep=True)
+         b2World(gravity=(0,-10), doSleep=True)
          b2World(contactListener=myListener)
-
         """
-        if len(args) not in (0, 1, 2):
-            raise ValueError("Only 'gravity, doSleep' can be passed as normal parameters.")
+        _Box2D.b2World_swiginit(self,_Box2D.new_b2World(gravity))
 
-        if len(args) >= 1:
-            gravity=args[0]
-        elif 'gravity' in kwargs:
-            gravity=kwargs['gravity']
-            del kwargs['gravity']
-        else:
-            gravity=(0,-10)
+        self.allowSleeping = doSleep
 
-        if len(args) == 2:
-            doSleep=args[1]
-        elif 'doSleep' in kwargs:
-            doSleep=kwargs['doSleep']
-            del kwargs['doSleep']
-        else:
-            doSleep=True
-        
-        _Box2D.b2World_swiginit(self,_Box2D.new_b2World(gravity, doSleep))
-
-        for key, value in list(kwargs.items()):
+        for key, value in kwargs.iteritems():
             try:
                 setattr(self, key, value)
             except:
@@ -4552,7 +4618,6 @@ class b2World(object):
                 ex=exc_info()[1]
                 raise ex.__class__('Failed on kwargs, class="%s" key="%s": %s' \
                             % (self.__class__.__name__, key, ex))
-
 
 
     __swig_destroy__ = _Box2D.delete_b2World
@@ -4696,29 +4761,49 @@ class b2World(object):
         """
         return _Box2D.b2World___GetContactList_internal(self, *args)
 
-    def __SetWarmStarting_internal(self, *args, **kwargs):
+    def SetAllowSleeping(self, *args, **kwargs):
+        """SetAllowSleeping(self, bool flag)"""
+        return _Box2D.b2World_SetAllowSleeping(self, *args, **kwargs)
+
+    def GetAllowSleeping(self):
+        """GetAllowSleeping(self) -> bool"""
+        return _Box2D.b2World_GetAllowSleeping(self)
+
+    def __SetWarmStarting(self, *args, **kwargs):
         """
-        __SetWarmStarting_internal(self, bool flag)
+        __SetWarmStarting(self, bool flag)
 
         Enable/disable warm starting. For testing.
         """
-        return _Box2D.b2World___SetWarmStarting_internal(self, *args, **kwargs)
+        return _Box2D.b2World___SetWarmStarting(self, *args, **kwargs)
 
-    def __SetContinuousPhysics_internal(self, *args, **kwargs):
+    def __GetWarmStarting(self):
+        """__GetWarmStarting(self) -> bool"""
+        return _Box2D.b2World___GetWarmStarting(self)
+
+    def __SetContinuousPhysics(self, *args, **kwargs):
         """
-        __SetContinuousPhysics_internal(self, bool flag)
+        __SetContinuousPhysics(self, bool flag)
 
         Enable/disable continuous physics. For testing.
         """
-        return _Box2D.b2World___SetContinuousPhysics_internal(self, *args, **kwargs)
+        return _Box2D.b2World___SetContinuousPhysics(self, *args, **kwargs)
 
-    def __SetSubStepping_internal(self, *args, **kwargs):
+    def __GetContinuousPhysics(self):
+        """__GetContinuousPhysics(self) -> bool"""
+        return _Box2D.b2World___GetContinuousPhysics(self)
+
+    def __SetSubStepping(self, *args, **kwargs):
         """
-        __SetSubStepping_internal(self, bool flag)
+        __SetSubStepping(self, bool flag)
 
         Enable/disable single stepped continuous physics. For testing.
         """
-        return _Box2D.b2World___SetSubStepping_internal(self, *args, **kwargs)
+        return _Box2D.b2World___SetSubStepping(self, *args, **kwargs)
+
+    def __GetSubStepping(self):
+        """__GetSubStepping(self) -> bool"""
+        return _Box2D.b2World___GetSubStepping(self)
 
     def __GetProxyCount(self):
         """
@@ -4804,6 +4889,10 @@ class b2World(object):
         """
         return _Box2D.b2World___GetAutoClearForces(self)
 
+    def ShiftOrigin(self, *args, **kwargs):
+        """ShiftOrigin(self, b2Vec2 newOrigin)"""
+        return _Box2D.b2World_ShiftOrigin(self, *args, **kwargs)
+
     def __GetContactManager(self):
         """
         __GetContactManager(self) -> b2ContactManager
@@ -4815,6 +4904,10 @@ class b2World(object):
     def GetProfile(self):
         """GetProfile(self) -> b2Profile"""
         return _Box2D.b2World_GetProfile(self)
+
+    def Dump(self):
+        """Dump(self)"""
+        return _Box2D.b2World_Dump(self)
 
     __dir__ = _dir_filter
 
@@ -4887,7 +4980,7 @@ class b2World(object):
         kwargs['type'] = b2_staticBody
         return self.CreateBody(**kwargs)
 
-    def CreateBody(self, *args, **kwargs):
+    def CreateBody(self, defn=None, **kwargs):
         """
         Create a body in the world.
         Takes a single b2BodyDef argument, or kwargs to pass to a temporary b2BodyDef.
@@ -4912,15 +5005,11 @@ class b2World(object):
             body = CreateBody(...)
             body.CreateFixturesFromShapes(shapes=[], shapeFixture=b2FixtureDef())
         """
-        if len(args) > 1:
-            raise TypeError('Takes only one argument, or kwargs to b2BodyDef')
-        elif len(args)==1:
-            if isinstance(args[0], b2BodyDef):
-                defn = args[0]
-            else:
-                raise TypeError('Takes only one argument, or kwargs to b2BodyDef')
+        if defn is not None:
+            if not isinstance(defn, b2BodyDef):
+                raise TypeError('Expected b2BodyDef')
         else:
-            defn =b2BodyDef(**kwargs) 
+            defn = b2BodyDef(**kwargs) 
 
         body=self.__CreateBody(defn)
             
@@ -5044,7 +5133,17 @@ class b2World(object):
             raise ValueError('Requires at least bodyA and bodyB be set')
         return self.__CreateJoint(b2WeldJointDef(**kwargs))
 
-    def CreateJoint(self, *args, **kwargs):
+    def CreateMotorJoint(self, **kwargs):
+        """
+        Create a single b2MotorJoint. Only accepts kwargs to the joint definition.
+
+        Raises ValueError if either bodyA or bodyB is left unset.
+        """
+        if 'bodyA' not in kwargs or 'bodyB' not in kwargs:
+            raise ValueError('Requires at least bodyA and bodyB be set')
+        return self.__CreateJoint(b2MotorJointDef(**kwargs))
+
+    def CreateJoint(self, defn=None, type=None, **kwargs):
         """
         Create a joint in the world.
         Takes a single b2JointDef argument, or kwargs to pass to a temporary b2JointDef.
@@ -5054,24 +5153,21 @@ class b2World(object):
         world.CreateJoint(type=b2RevoluteJointDef, bodyA=body, bodyB=body2)
         world.CreateJoint(b2RevoluteJointDef(bodyA=body, bodyB=body2))
         """
-        if len(args) > 1:
-            raise TypeError('Takes only one argument, or kwargs to b2JointDef')
-        elif len(args)==1 and isinstance(args[0], b2JointDef):
-            defn = args[0]
+        if defn is not None:
+            if not isinstance(defn, b2JointDef):
+                raise TypeError('Expected b2JointDef')
         else:
-            if not kwargs or 'type' not in kwargs:
-                raise TypeError('Expected type kwarg of b2Joint or b2JointDef')
-
-            type_ = kwargs['type']
-            if issubclass(type_, b2JointDef):
-                class_type = type_
-            elif issubclass(type_, b2Joint):  # a b2Joint passed in, so get the b2JointDef
-                class_type = globals()[type_.__name__ + 'Def']
+            if type is not None:
+                if issubclass(type, b2JointDef):
+                    class_type = type
+                elif issubclass(type, b2Joint):  # a b2Joint passed in, so get the b2JointDef
+                    class_type = globals()[type.__name__ + 'Def']
+                else:
+                    raise TypeError('Expected "type" to be a b2Joint or b2JointDef')
             else:
-                raise TypeError('Expected type kwarg of b2Joint or b2JointDef')
+                raise TypeError('Expected "type" to be a b2Joint or b2JointDef')
 
-            del kwargs['type']
-            defn =class_type(**kwargs) 
+            defn = class_type(**kwargs) 
 
         if isinstance(defn, b2GearJointDef):
             if not defn.joint1 or not defn.joint2:
@@ -5109,12 +5205,10 @@ class b2World(object):
                             lambda self, fcn: self.__SetData('contactfilter', fcn, self.__SetContactFilter_internal))
     renderer= property(lambda self: self.__GetData('renderer'),
                         lambda self, fcn: self.__SetData('renderer', fcn, self.__SetDebugDraw_internal))
-    continuousPhysics = property(lambda self: self.__GetData('continuousphysics'), 
-                                 lambda self, fcn: self.__SetData('continuousphysics', fcn, self.__SetContinuousPhysics_internal))
-    warmStarting = property(lambda self: self.__GetData('warmstarting'), 
-                            lambda self, fcn: self.__SetData('warmstarting', fcn, self.__SetWarmStarting_internal))
-    subStepping = property(lambda self: self.__GetData('subStepping'), 
-                           lambda self, fcn: self.__SetData('subStepping', fcn, self.__SetSubStepping_internal))
+
+    continuousPhysics = property(__GetContinuousPhysics, __SetContinuousPhysics)
+    warmStarting = property(__GetWarmStarting, __SetWarmStarting)
+    subStepping = property(__GetSubStepping, __SetSubStepping)
 
     # Read-only 
     contactManager= property(__GetContactManager, None)
@@ -5152,9 +5246,14 @@ b2World.RayCast = new_instancemethod(_Box2D.b2World_RayCast,None,b2World)
 b2World.__GetBodyList_internal = new_instancemethod(_Box2D.b2World___GetBodyList_internal,None,b2World)
 b2World.__GetJointList_internal = new_instancemethod(_Box2D.b2World___GetJointList_internal,None,b2World)
 b2World.__GetContactList_internal = new_instancemethod(_Box2D.b2World___GetContactList_internal,None,b2World)
-b2World.__SetWarmStarting_internal = new_instancemethod(_Box2D.b2World___SetWarmStarting_internal,None,b2World)
-b2World.__SetContinuousPhysics_internal = new_instancemethod(_Box2D.b2World___SetContinuousPhysics_internal,None,b2World)
-b2World.__SetSubStepping_internal = new_instancemethod(_Box2D.b2World___SetSubStepping_internal,None,b2World)
+b2World.SetAllowSleeping = new_instancemethod(_Box2D.b2World_SetAllowSleeping,None,b2World)
+b2World.GetAllowSleeping = new_instancemethod(_Box2D.b2World_GetAllowSleeping,None,b2World)
+b2World.__SetWarmStarting = new_instancemethod(_Box2D.b2World___SetWarmStarting,None,b2World)
+b2World.__GetWarmStarting = new_instancemethod(_Box2D.b2World___GetWarmStarting,None,b2World)
+b2World.__SetContinuousPhysics = new_instancemethod(_Box2D.b2World___SetContinuousPhysics,None,b2World)
+b2World.__GetContinuousPhysics = new_instancemethod(_Box2D.b2World___GetContinuousPhysics,None,b2World)
+b2World.__SetSubStepping = new_instancemethod(_Box2D.b2World___SetSubStepping,None,b2World)
+b2World.__GetSubStepping = new_instancemethod(_Box2D.b2World___GetSubStepping,None,b2World)
 b2World.__GetProxyCount = new_instancemethod(_Box2D.b2World___GetProxyCount,None,b2World)
 b2World.__GetBodyCount = new_instancemethod(_Box2D.b2World___GetBodyCount,None,b2World)
 b2World.__GetJointCount = new_instancemethod(_Box2D.b2World___GetJointCount,None,b2World)
@@ -5167,8 +5266,10 @@ b2World.__GetGravity = new_instancemethod(_Box2D.b2World___GetGravity,None,b2Wor
 b2World.__IsLocked = new_instancemethod(_Box2D.b2World___IsLocked,None,b2World)
 b2World.__SetAutoClearForces = new_instancemethod(_Box2D.b2World___SetAutoClearForces,None,b2World)
 b2World.__GetAutoClearForces = new_instancemethod(_Box2D.b2World___GetAutoClearForces,None,b2World)
+b2World.ShiftOrigin = new_instancemethod(_Box2D.b2World_ShiftOrigin,None,b2World)
 b2World.__GetContactManager = new_instancemethod(_Box2D.b2World___GetContactManager,None,b2World)
 b2World.GetProfile = new_instancemethod(_Box2D.b2World_GetProfile,None,b2World)
+b2World.Dump = new_instancemethod(_Box2D.b2World_Dump,None,b2World)
 b2World.__CreateBody = new_instancemethod(_Box2D.b2World___CreateBody,None,b2World)
 b2World.__CreateJoint = new_instancemethod(_Box2D.b2World___CreateJoint,None,b2World)
 b2World.DestroyBody = new_instancemethod(_Box2D.b2World_DestroyBody,None,b2World)
@@ -5351,6 +5452,14 @@ class b2Contact(object):
         """
         return _Box2D.b2Contact_ResetRestitution(self)
 
+    def SetTangentSpeed(self, *args, **kwargs):
+        """SetTangentSpeed(self, float32 speed)"""
+        return _Box2D.b2Contact_SetTangentSpeed(self, *args, **kwargs)
+
+    def GetTangentSpeed(self):
+        """GetTangentSpeed(self) -> float32"""
+        return _Box2D.b2Contact_GetTangentSpeed(self)
+
     def Evaluate(self, *args, **kwargs):
         """
         Evaluate(self, b2Manifold manifold, b2Transform xfA, b2Transform xfB)
@@ -5400,6 +5509,8 @@ b2Contact.ResetFriction = new_instancemethod(_Box2D.b2Contact_ResetFriction,None
 b2Contact.__SetRestitution = new_instancemethod(_Box2D.b2Contact___SetRestitution,None,b2Contact)
 b2Contact.__GetRestitution = new_instancemethod(_Box2D.b2Contact___GetRestitution,None,b2Contact)
 b2Contact.ResetRestitution = new_instancemethod(_Box2D.b2Contact_ResetRestitution,None,b2Contact)
+b2Contact.SetTangentSpeed = new_instancemethod(_Box2D.b2Contact_SetTangentSpeed,None,b2Contact)
+b2Contact.GetTangentSpeed = new_instancemethod(_Box2D.b2Contact_GetTangentSpeed,None,b2Contact)
 b2Contact.Evaluate = new_instancemethod(_Box2D.b2Contact_Evaluate,None,b2Contact)
 b2Contact_swigregister = _Box2D.b2Contact_swigregister
 b2Contact_swigregister(b2Contact)
@@ -5410,22 +5521,9 @@ class b2Jacobian(object):
     """Proxy of C++ b2Jacobian class"""
     thisown = _swig_property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc='The membership flag')
     __repr__ = _swig_repr
-    linearA = _swig_property(_Box2D.b2Jacobian_linearA_get, _Box2D.b2Jacobian_linearA_set)
+    linear = _swig_property(_Box2D.b2Jacobian_linear_get, _Box2D.b2Jacobian_linear_set)
     angularA = _swig_property(_Box2D.b2Jacobian_angularA_get, _Box2D.b2Jacobian_angularA_set)
-    linearB = _swig_property(_Box2D.b2Jacobian_linearB_get, _Box2D.b2Jacobian_linearB_set)
     angularB = _swig_property(_Box2D.b2Jacobian_angularB_get, _Box2D.b2Jacobian_angularB_set)
-    def SetZero(self):
-        """SetZero(self)"""
-        return _Box2D.b2Jacobian_SetZero(self)
-
-    def Set(self, *args, **kwargs):
-        """Set(self, b2Vec2 x1, float32 a1, b2Vec2 x2, float32 a2)"""
-        return _Box2D.b2Jacobian_Set(self, *args, **kwargs)
-
-    def Compute(self, *args, **kwargs):
-        """Compute(self, b2Vec2 x1, float32 a1, b2Vec2 x2, float32 a2) -> float32"""
-        return _Box2D.b2Jacobian_Compute(self, *args, **kwargs)
-
     __dir__ = _dir_filter
 
     def __repr__(self):
@@ -5437,9 +5535,6 @@ class b2Jacobian(object):
 
 
     __swig_destroy__ = _Box2D.delete_b2Jacobian
-b2Jacobian.SetZero = new_instancemethod(_Box2D.b2Jacobian_SetZero,None,b2Jacobian)
-b2Jacobian.Set = new_instancemethod(_Box2D.b2Jacobian_Set,None,b2Jacobian)
-b2Jacobian.Compute = new_instancemethod(_Box2D.b2Jacobian_Compute,None,b2Jacobian)
 b2Jacobian_swigregister = _Box2D.b2Jacobian_swigregister
 b2Jacobian_swigregister(b2Jacobian)
 
@@ -5600,6 +5695,14 @@ class b2Joint(object):
         """__GetCollideConnected(self) -> bool"""
         return _Box2D.b2Joint___GetCollideConnected(self)
 
+    def Dump(self):
+        """Dump(self)"""
+        return _Box2D.b2Joint_Dump(self)
+
+    def ShiftOrigin(self, *args, **kwargs):
+        """ShiftOrigin(self, b2Vec2 newOrigin)"""
+        return _Box2D.b2Joint_ShiftOrigin(self, *args, **kwargs)
+
     __dir__ = _dir_filter
 
     def __repr__(self):
@@ -5636,6 +5739,11 @@ class b2Joint(object):
     anchorA = property(__GetAnchorA, None)
     collideConnected = property(__GetCollideConnected, None)
 
+    def getAsType(self):
+        """
+        Backward compatibility
+        """
+        return self
 
 b2Joint.__GetType = new_instancemethod(_Box2D.b2Joint___GetType,None,b2Joint)
 b2Joint.__GetBodyA = new_instancemethod(_Box2D.b2Joint___GetBodyA,None,b2Joint)
@@ -5647,6 +5755,8 @@ b2Joint.GetReactionTorque = new_instancemethod(_Box2D.b2Joint_GetReactionTorque,
 b2Joint.__GetNext = new_instancemethod(_Box2D.b2Joint___GetNext,None,b2Joint)
 b2Joint.__IsActive = new_instancemethod(_Box2D.b2Joint___IsActive,None,b2Joint)
 b2Joint.__GetCollideConnected = new_instancemethod(_Box2D.b2Joint___GetCollideConnected,None,b2Joint)
+b2Joint.Dump = new_instancemethod(_Box2D.b2Joint_Dump,None,b2Joint)
+b2Joint.ShiftOrigin = new_instancemethod(_Box2D.b2Joint_ShiftOrigin,None,b2Joint)
 b2Joint.__GetUserData = new_instancemethod(_Box2D.b2Joint___GetUserData,None,b2Joint)
 b2Joint.__SetUserData = new_instancemethod(_Box2D.b2Joint___SetUserData,None,b2Joint)
 b2Joint.ClearUserData = new_instancemethod(_Box2D.b2Joint_ClearUserData,None,b2Joint)
@@ -5729,6 +5839,14 @@ class b2DistanceJoint(b2Joint):
     thisown = _swig_property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc='The membership flag')
     def __init__(self, *args, **kwargs): raise AttributeError("No constructor defined")
     __repr__ = _swig_repr
+    def GetLocalAnchorA(self):
+        """GetLocalAnchorA(self) -> b2Vec2"""
+        return _Box2D.b2DistanceJoint_GetLocalAnchorA(self)
+
+    def GetLocalAnchorB(self):
+        """GetLocalAnchorB(self) -> b2Vec2"""
+        return _Box2D.b2DistanceJoint_GetLocalAnchorB(self)
+
     def __SetLength(self, *args, **kwargs):
         """
         __SetLength(self, float32 length)
@@ -5769,6 +5887,8 @@ class b2DistanceJoint(b2Joint):
 
 
     __swig_destroy__ = _Box2D.delete_b2DistanceJoint
+b2DistanceJoint.GetLocalAnchorA = new_instancemethod(_Box2D.b2DistanceJoint_GetLocalAnchorA,None,b2DistanceJoint)
+b2DistanceJoint.GetLocalAnchorB = new_instancemethod(_Box2D.b2DistanceJoint_GetLocalAnchorB,None,b2DistanceJoint)
 b2DistanceJoint.__SetLength = new_instancemethod(_Box2D.b2DistanceJoint___SetLength,None,b2DistanceJoint)
 b2DistanceJoint.__GetLength = new_instancemethod(_Box2D.b2DistanceJoint___GetLength,None,b2DistanceJoint)
 b2DistanceJoint.__SetFrequency = new_instancemethod(_Box2D.b2DistanceJoint___SetFrequency,None,b2DistanceJoint)
@@ -5834,6 +5954,14 @@ class b2FrictionJoint(b2Joint):
     thisown = _swig_property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc='The membership flag')
     def __init__(self, *args, **kwargs): raise AttributeError("No constructor defined")
     __repr__ = _swig_repr
+    def GetLocalAnchorA(self):
+        """GetLocalAnchorA(self) -> b2Vec2"""
+        return _Box2D.b2FrictionJoint_GetLocalAnchorA(self)
+
+    def GetLocalAnchorB(self):
+        """GetLocalAnchorB(self) -> b2Vec2"""
+        return _Box2D.b2FrictionJoint_GetLocalAnchorB(self)
+
     def __SetMaxForce(self, *args, **kwargs):
         """
         __SetMaxForce(self, float32 force)
@@ -5876,6 +6004,8 @@ class b2FrictionJoint(b2Joint):
     maxTorque = property(__GetMaxTorque, __SetMaxTorque)
 
     __swig_destroy__ = _Box2D.delete_b2FrictionJoint
+b2FrictionJoint.GetLocalAnchorA = new_instancemethod(_Box2D.b2FrictionJoint_GetLocalAnchorA,None,b2FrictionJoint)
+b2FrictionJoint.GetLocalAnchorB = new_instancemethod(_Box2D.b2FrictionJoint_GetLocalAnchorB,None,b2FrictionJoint)
 b2FrictionJoint.__SetMaxForce = new_instancemethod(_Box2D.b2FrictionJoint___SetMaxForce,None,b2FrictionJoint)
 b2FrictionJoint.__GetMaxForce = new_instancemethod(_Box2D.b2FrictionJoint___GetMaxForce,None,b2FrictionJoint)
 b2FrictionJoint.__SetMaxTorque = new_instancemethod(_Box2D.b2FrictionJoint___SetMaxTorque,None,b2FrictionJoint)
@@ -5913,6 +6043,14 @@ class b2GearJoint(b2Joint):
     thisown = _swig_property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc='The membership flag')
     def __init__(self, *args, **kwargs): raise AttributeError("No constructor defined")
     __repr__ = _swig_repr
+    def GetJoint1(self):
+        """GetJoint1(self) -> b2Joint"""
+        return _Box2D.b2GearJoint_GetJoint1(self)
+
+    def GetJoint2(self):
+        """GetJoint2(self) -> b2Joint"""
+        return _Box2D.b2GearJoint_GetJoint2(self)
+
     def __SetRatio(self, *args, **kwargs):
         """
         __SetRatio(self, float32 ratio)
@@ -5935,208 +6073,93 @@ class b2GearJoint(b2Joint):
 
 
     __swig_destroy__ = _Box2D.delete_b2GearJoint
+b2GearJoint.GetJoint1 = new_instancemethod(_Box2D.b2GearJoint_GetJoint1,None,b2GearJoint)
+b2GearJoint.GetJoint2 = new_instancemethod(_Box2D.b2GearJoint_GetJoint2,None,b2GearJoint)
 b2GearJoint.__SetRatio = new_instancemethod(_Box2D.b2GearJoint___SetRatio,None,b2GearJoint)
 b2GearJoint.__GetRatio = new_instancemethod(_Box2D.b2GearJoint___GetRatio,None,b2GearJoint)
 b2GearJoint_swigregister = _Box2D.b2GearJoint_swigregister
 b2GearJoint_swigregister(b2GearJoint)
 
-class b2WheelJointDef(b2JointDef):
-    """Line joint definition. This requires defining a line of motion using an axis and an anchor point. The definition uses local anchor points and a local axis so that the initial configuration can violate the constraint slightly. The joint translation is zero when the local anchor points coincide in world space. Using local anchors and a local axis helps when saving and loading a game."""
+class b2MotorJointDef(b2JointDef):
+    """Proxy of C++ b2MotorJointDef class"""
     thisown = _swig_property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc='The membership flag')
     __repr__ = _swig_repr
-    def __init__(self, **kwargs):
-        _Box2D.b2WheelJointDef_swiginit(self,_Box2D.new_b2WheelJointDef())
-        _init_jointdef_kwargs(self, **kwargs)
+    def __init__(self, bodyA=None, bodyB=None, **kwargs):
+        _Box2D.b2MotorJointDef_swiginit(self,_Box2D.new_b2MotorJointDef())
+        _init_jointdef_kwargs(self, bodyA=bodyA, bodyB=bodyB, **kwargs)
+        if bodyA is not None and bodyB is not None:
+            if not kwargs:
+                self.Initialize(bodyA, bodyB)
 
 
     def Initialize(self, *args, **kwargs):
-        """
-        Initialize(self, b2Body bodyA, b2Body bodyB, b2Vec2 anchor, b2Vec2 axis)
+        """Initialize(self, b2Body bodyA, b2Body bodyB)"""
+        return _Box2D.b2MotorJointDef_Initialize(self, *args, **kwargs)
 
-        Initialize the bodies, anchors, axis, and reference angle using the world anchor and world axis.
-        """
-        return _Box2D.b2WheelJointDef_Initialize(self, *args, **kwargs)
+    linearOffset = _swig_property(_Box2D.b2MotorJointDef_linearOffset_get, _Box2D.b2MotorJointDef_linearOffset_set)
+    angularOffset = _swig_property(_Box2D.b2MotorJointDef_angularOffset_get, _Box2D.b2MotorJointDef_angularOffset_set)
+    maxForce = _swig_property(_Box2D.b2MotorJointDef_maxForce_get, _Box2D.b2MotorJointDef_maxForce_set)
+    maxTorque = _swig_property(_Box2D.b2MotorJointDef_maxTorque_get, _Box2D.b2MotorJointDef_maxTorque_set)
+    correctionFactor = _swig_property(_Box2D.b2MotorJointDef_correctionFactor_get, _Box2D.b2MotorJointDef_correctionFactor_set)
+    __swig_destroy__ = _Box2D.delete_b2MotorJointDef
+b2MotorJointDef.Initialize = new_instancemethod(_Box2D.b2MotorJointDef_Initialize,None,b2MotorJointDef)
+b2MotorJointDef_swigregister = _Box2D.b2MotorJointDef_swigregister
+b2MotorJointDef_swigregister(b2MotorJointDef)
 
-    localAnchorA = _swig_property(_Box2D.b2WheelJointDef_localAnchorA_get, _Box2D.b2WheelJointDef_localAnchorA_set)
-    localAnchorB = _swig_property(_Box2D.b2WheelJointDef_localAnchorB_get, _Box2D.b2WheelJointDef_localAnchorB_set)
-    localAxisA = _swig_property(_Box2D.b2WheelJointDef_localAxisA_get, _Box2D.b2WheelJointDef_localAxisA_set)
-    enableMotor = _swig_property(_Box2D.b2WheelJointDef_enableMotor_get, _Box2D.b2WheelJointDef_enableMotor_set)
-    maxMotorTorque = _swig_property(_Box2D.b2WheelJointDef_maxMotorTorque_get, _Box2D.b2WheelJointDef_maxMotorTorque_set)
-    motorSpeed = _swig_property(_Box2D.b2WheelJointDef_motorSpeed_get, _Box2D.b2WheelJointDef_motorSpeed_set)
-    frequencyHz = _swig_property(_Box2D.b2WheelJointDef_frequencyHz_get, _Box2D.b2WheelJointDef_frequencyHz_set)
-    dampingRatio = _swig_property(_Box2D.b2WheelJointDef_dampingRatio_get, _Box2D.b2WheelJointDef_dampingRatio_set)
-    __dir__ = _dir_filter
-
-    def __repr__(self):
-        return _format_repr(self, ['anchor','axis','bodyA','bodyB','collideConnected','dampingRatio','enableMotor','frequencyHz','localAnchorA','localAnchorB','localAxisA','maxMotorTorque','motorSpeed','type','userData']) 
-
-    def __set_anchor(self, value):
-        if not self.bodyA:
-            raise Exception('bodyA not set.')
-        if not self.bodyB:
-            raise Exception('bodyB not set.')
-        self.localAnchorA=self.bodyA.GetLocalPoint(value)
-        self.localAnchorB=self.bodyB.GetLocalPoint(value)
-    def __get_anchor(self):
-        if self.bodyA:
-            return self.bodyA.GetWorldPoint(self.localAnchorA)
-        if self.bodyB:
-            return self.bodyB.GetWorldPoint(self.localAnchorB)
-        raise Exception('Neither body was set; unable to get world point.')
-    def __set_axis(self, value):
-        if not self.bodyA:
-            raise Exception('bodyA not set.')
-        self.localAxisA=self.bodyA.GetLocalVector(value)
-    def __get_axis(self):
-        if self.bodyA:
-            return self.bodyA.GetWorldVector(self.localAxisA)
-        raise Exception('Body A unset; unable to get world vector.')
-
-    anchor = property(__get_anchor, __set_anchor, 
-            doc="""The anchor in world coordinates.
-                Getting the property depends on either bodyA and localAnchorA or 
-                bodyB and localAnchorB.
-                Setting the property requires that both bodies be set.""")
-    axis = property(__get_axis, __set_axis, 
-            doc="""The world translation axis on bodyA.
-                Getting the property depends on bodyA and localAxisA.
-                Setting the property requires that bodyA be set.""")
-
-    __swig_destroy__ = _Box2D.delete_b2WheelJointDef
-b2WheelJointDef.Initialize = new_instancemethod(_Box2D.b2WheelJointDef_Initialize,None,b2WheelJointDef)
-b2WheelJointDef_swigregister = _Box2D.b2WheelJointDef_swigregister
-b2WheelJointDef_swigregister(b2WheelJointDef)
-
-class b2WheelJoint(b2Joint):
-    """A line joint. This joint provides two degrees of freedom: translation along an axis fixed in body1 and rotation in the plane. You can use a joint limit to restrict the range of motion and a joint motor to drive the rotation or to model rotational friction. This joint is designed for vehicle suspensions."""
+class b2MotorJoint(b2Joint):
+    """Proxy of C++ b2MotorJoint class"""
     thisown = _swig_property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc='The membership flag')
     def __init__(self, *args, **kwargs): raise AttributeError("No constructor defined")
     __repr__ = _swig_repr
-    def __GetJointTranslation(self):
-        """
-        __GetJointTranslation(self) -> float32
+    def __SetLinearOffset(self, *args, **kwargs):
+        """__SetLinearOffset(self, b2Vec2 linearOffset)"""
+        return _Box2D.b2MotorJoint___SetLinearOffset(self, *args, **kwargs)
 
-        Get the current joint translation, usually in meters.
-        """
-        return _Box2D.b2WheelJoint___GetJointTranslation(self)
+    def __GetLinearOffset(self):
+        """__GetLinearOffset(self) -> b2Vec2"""
+        return _Box2D.b2MotorJoint___GetLinearOffset(self)
 
-    def __GetJointSpeed(self):
-        """
-        __GetJointSpeed(self) -> float32
+    def __SetAngularOffset(self, *args, **kwargs):
+        """__SetAngularOffset(self, float32 angularOffset)"""
+        return _Box2D.b2MotorJoint___SetAngularOffset(self, *args, **kwargs)
 
-        Get the current joint translation speed, usually in meters per second.
-        """
-        return _Box2D.b2WheelJoint___GetJointSpeed(self)
+    def __GetAngularOffset(self):
+        """__GetAngularOffset(self) -> float32"""
+        return _Box2D.b2MotorJoint___GetAngularOffset(self)
 
-    def __IsMotorEnabled(self):
-        """
-        __IsMotorEnabled(self) -> bool
+    def __SetMaxForce(self, *args, **kwargs):
+        """__SetMaxForce(self, float32 force)"""
+        return _Box2D.b2MotorJoint___SetMaxForce(self, *args, **kwargs)
 
-        Is the joint motor enabled?
-        """
-        return _Box2D.b2WheelJoint___IsMotorEnabled(self)
+    def __GetMaxForce(self):
+        """__GetMaxForce(self) -> float32"""
+        return _Box2D.b2MotorJoint___GetMaxForce(self)
 
-    def __EnableMotor(self, *args, **kwargs):
-        """
-        __EnableMotor(self, bool flag)
+    def __SetMaxTorque(self, *args, **kwargs):
+        """__SetMaxTorque(self, float32 torque)"""
+        return _Box2D.b2MotorJoint___SetMaxTorque(self, *args, **kwargs)
 
-        Enable/disable the joint motor.
-        """
-        return _Box2D.b2WheelJoint___EnableMotor(self, *args, **kwargs)
-
-    def __SetMotorSpeed(self, *args, **kwargs):
-        """
-        __SetMotorSpeed(self, float32 speed)
-
-        Set the motor speed, usually in radians per second.
-        """
-        return _Box2D.b2WheelJoint___SetMotorSpeed(self, *args, **kwargs)
-
-    def __GetMotorSpeed(self):
-        """
-        __GetMotorSpeed(self) -> float32
-
-        Get the motor speed, usually in radians per second.
-        """
-        return _Box2D.b2WheelJoint___GetMotorSpeed(self)
-
-    def __SetMaxMotorTorque(self, *args, **kwargs):
-        """
-        __SetMaxMotorTorque(self, float32 torque)
-
-        Set/Get the maximum motor force, usually in N-m.
-        """
-        return _Box2D.b2WheelJoint___SetMaxMotorTorque(self, *args, **kwargs)
-
-    def __GetMaxMotorTorque(self):
-        """__GetMaxMotorTorque(self) -> float32"""
-        return _Box2D.b2WheelJoint___GetMaxMotorTorque(self)
-
-    def GetMotorTorque(self, *args, **kwargs):
-        """
-        GetMotorTorque(self, float32 inv_dt) -> float32
-
-        Get the current motor torque given the inverse time step, usually in N-m.
-        """
-        return _Box2D.b2WheelJoint_GetMotorTorque(self, *args, **kwargs)
-
-    def __SetSpringFrequencyHz(self, *args, **kwargs):
-        """
-        __SetSpringFrequencyHz(self, float32 hz)
-
-        Set/Get the spring frequency in hertz. Setting the frequency to zero disables the spring.
-        """
-        return _Box2D.b2WheelJoint___SetSpringFrequencyHz(self, *args, **kwargs)
-
-    def __GetSpringFrequencyHz(self):
-        """__GetSpringFrequencyHz(self) -> float32"""
-        return _Box2D.b2WheelJoint___GetSpringFrequencyHz(self)
-
-    def __SetSpringDampingRatio(self, *args, **kwargs):
-        """
-        __SetSpringDampingRatio(self, float32 ratio)
-
-        Set/Get the spring damping ratio.
-        """
-        return _Box2D.b2WheelJoint___SetSpringDampingRatio(self, *args, **kwargs)
-
-    def __GetSpringDampingRatio(self):
-        """__GetSpringDampingRatio(self) -> float32"""
-        return _Box2D.b2WheelJoint___GetSpringDampingRatio(self)
-
-    __dir__ = _dir_filter
-
-    def __repr__(self):
-        return _format_repr(self, ['active','anchorA','anchorB','bodyA','bodyB','maxMotorTorque','motorEnabled','motorSpeed','speed','springDampingRatio','springFrequencyHz','translation','type','userData']) 
+    def __GetMaxTorque(self):
+        """__GetMaxTorque(self) -> float32"""
+        return _Box2D.b2MotorJoint___GetMaxTorque(self)
 
     # Read-write properties
-    motorSpeed = property(__GetMotorSpeed, __SetMotorSpeed)
-    motorEnabled = property(__IsMotorEnabled, __EnableMotor)
-    maxMotorTorque = property(__GetMaxMotorTorque, __SetMaxMotorTorque)
-    springFrequencyHz = property(__GetSpringFrequencyHz , __SetSpringFrequencyHz)
-    springDampingRatio = property(__GetSpringDampingRatio , __SetSpringDampingRatio)
+    maxForce = property(__GetMaxForce, __SetMaxForce)
+    maxTorque = property(__GetMaxTorque, __SetMaxTorque)
+    linearOffset = property(__GetLinearOffset, __SetLinearOffset)
+    angularOffset = property(__GetAngularOffset, __SetAngularOffset) 
 
-    # Read-only
-    speed = property(__GetJointSpeed, None)
-    translation = property(__GetJointTranslation, None)
-
-
-    __swig_destroy__ = _Box2D.delete_b2WheelJoint
-b2WheelJoint.__GetJointTranslation = new_instancemethod(_Box2D.b2WheelJoint___GetJointTranslation,None,b2WheelJoint)
-b2WheelJoint.__GetJointSpeed = new_instancemethod(_Box2D.b2WheelJoint___GetJointSpeed,None,b2WheelJoint)
-b2WheelJoint.__IsMotorEnabled = new_instancemethod(_Box2D.b2WheelJoint___IsMotorEnabled,None,b2WheelJoint)
-b2WheelJoint.__EnableMotor = new_instancemethod(_Box2D.b2WheelJoint___EnableMotor,None,b2WheelJoint)
-b2WheelJoint.__SetMotorSpeed = new_instancemethod(_Box2D.b2WheelJoint___SetMotorSpeed,None,b2WheelJoint)
-b2WheelJoint.__GetMotorSpeed = new_instancemethod(_Box2D.b2WheelJoint___GetMotorSpeed,None,b2WheelJoint)
-b2WheelJoint.__SetMaxMotorTorque = new_instancemethod(_Box2D.b2WheelJoint___SetMaxMotorTorque,None,b2WheelJoint)
-b2WheelJoint.__GetMaxMotorTorque = new_instancemethod(_Box2D.b2WheelJoint___GetMaxMotorTorque,None,b2WheelJoint)
-b2WheelJoint.GetMotorTorque = new_instancemethod(_Box2D.b2WheelJoint_GetMotorTorque,None,b2WheelJoint)
-b2WheelJoint.__SetSpringFrequencyHz = new_instancemethod(_Box2D.b2WheelJoint___SetSpringFrequencyHz,None,b2WheelJoint)
-b2WheelJoint.__GetSpringFrequencyHz = new_instancemethod(_Box2D.b2WheelJoint___GetSpringFrequencyHz,None,b2WheelJoint)
-b2WheelJoint.__SetSpringDampingRatio = new_instancemethod(_Box2D.b2WheelJoint___SetSpringDampingRatio,None,b2WheelJoint)
-b2WheelJoint.__GetSpringDampingRatio = new_instancemethod(_Box2D.b2WheelJoint___GetSpringDampingRatio,None,b2WheelJoint)
-b2WheelJoint_swigregister = _Box2D.b2WheelJoint_swigregister
-b2WheelJoint_swigregister(b2WheelJoint)
+    __swig_destroy__ = _Box2D.delete_b2MotorJoint
+b2MotorJoint.__SetLinearOffset = new_instancemethod(_Box2D.b2MotorJoint___SetLinearOffset,None,b2MotorJoint)
+b2MotorJoint.__GetLinearOffset = new_instancemethod(_Box2D.b2MotorJoint___GetLinearOffset,None,b2MotorJoint)
+b2MotorJoint.__SetAngularOffset = new_instancemethod(_Box2D.b2MotorJoint___SetAngularOffset,None,b2MotorJoint)
+b2MotorJoint.__GetAngularOffset = new_instancemethod(_Box2D.b2MotorJoint___GetAngularOffset,None,b2MotorJoint)
+b2MotorJoint.__SetMaxForce = new_instancemethod(_Box2D.b2MotorJoint___SetMaxForce,None,b2MotorJoint)
+b2MotorJoint.__GetMaxForce = new_instancemethod(_Box2D.b2MotorJoint___GetMaxForce,None,b2MotorJoint)
+b2MotorJoint.__SetMaxTorque = new_instancemethod(_Box2D.b2MotorJoint___SetMaxTorque,None,b2MotorJoint)
+b2MotorJoint.__GetMaxTorque = new_instancemethod(_Box2D.b2MotorJoint___GetMaxTorque,None,b2MotorJoint)
+b2MotorJoint_swigregister = _Box2D.b2MotorJoint_swigregister
+b2MotorJoint_swigregister(b2MotorJoint)
 
 class b2MouseJointDef(b2JointDef):
     """Mouse joint definition. This requires a world target point, tuning parameters, and the time step."""
@@ -6262,7 +6285,7 @@ class b2PrismaticJointDef(b2JointDef):
 
     localAnchorA = _swig_property(_Box2D.b2PrismaticJointDef_localAnchorA_get, _Box2D.b2PrismaticJointDef_localAnchorA_set)
     localAnchorB = _swig_property(_Box2D.b2PrismaticJointDef_localAnchorB_get, _Box2D.b2PrismaticJointDef_localAnchorB_set)
-    localAxis1 = _swig_property(_Box2D.b2PrismaticJointDef_localAxis1_get, _Box2D.b2PrismaticJointDef_localAxis1_set)
+    localAxisA = _swig_property(_Box2D.b2PrismaticJointDef_localAxisA_get, _Box2D.b2PrismaticJointDef_localAxisA_set)
     referenceAngle = _swig_property(_Box2D.b2PrismaticJointDef_referenceAngle_get, _Box2D.b2PrismaticJointDef_referenceAngle_set)
     enableLimit = _swig_property(_Box2D.b2PrismaticJointDef_enableLimit_get, _Box2D.b2PrismaticJointDef_enableLimit_set)
     lowerTranslation = _swig_property(_Box2D.b2PrismaticJointDef_lowerTranslation_get, _Box2D.b2PrismaticJointDef_lowerTranslation_set)
@@ -6317,6 +6340,22 @@ class b2PrismaticJoint(b2Joint):
     thisown = _swig_property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc='The membership flag')
     def __init__(self, *args, **kwargs): raise AttributeError("No constructor defined")
     __repr__ = _swig_repr
+    def GetLocalAnchorA(self):
+        """GetLocalAnchorA(self) -> b2Vec2"""
+        return _Box2D.b2PrismaticJoint_GetLocalAnchorA(self)
+
+    def GetLocalAnchorB(self):
+        """GetLocalAnchorB(self) -> b2Vec2"""
+        return _Box2D.b2PrismaticJoint_GetLocalAnchorB(self)
+
+    def GetLocalAxisA(self):
+        """GetLocalAxisA(self) -> b2Vec2"""
+        return _Box2D.b2PrismaticJoint_GetLocalAxisA(self)
+
+    def GetReferenceAngle(self):
+        """GetReferenceAngle(self) -> float32"""
+        return _Box2D.b2PrismaticJoint_GetReferenceAngle(self)
+
     def __GetJointTranslation(self):
         """
         __GetJointTranslation(self) -> float32
@@ -6445,6 +6484,10 @@ class b2PrismaticJoint(b2Joint):
 
 
     __swig_destroy__ = _Box2D.delete_b2PrismaticJoint
+b2PrismaticJoint.GetLocalAnchorA = new_instancemethod(_Box2D.b2PrismaticJoint_GetLocalAnchorA,None,b2PrismaticJoint)
+b2PrismaticJoint.GetLocalAnchorB = new_instancemethod(_Box2D.b2PrismaticJoint_GetLocalAnchorB,None,b2PrismaticJoint)
+b2PrismaticJoint.GetLocalAxisA = new_instancemethod(_Box2D.b2PrismaticJoint_GetLocalAxisA,None,b2PrismaticJoint)
+b2PrismaticJoint.GetReferenceAngle = new_instancemethod(_Box2D.b2PrismaticJoint_GetReferenceAngle,None,b2PrismaticJoint)
 b2PrismaticJoint.__GetJointTranslation = new_instancemethod(_Box2D.b2PrismaticJoint___GetJointTranslation,None,b2PrismaticJoint)
 b2PrismaticJoint.__GetJointSpeed = new_instancemethod(_Box2D.b2PrismaticJoint___GetJointSpeed,None,b2PrismaticJoint)
 b2PrismaticJoint.__IsLimitEnabled = new_instancemethod(_Box2D.b2PrismaticJoint___IsLimitEnabled,None,b2PrismaticJoint)
@@ -6469,32 +6512,34 @@ class b2PulleyJointDef(b2JointDef):
     def __init__(self, **kwargs):
         _Box2D.b2PulleyJointDef_swiginit(self,_Box2D.new_b2PulleyJointDef())
         _init_jointdef_kwargs(self, **kwargs)
-        
-        lengthA_set=False
-        lengthB_set=False
-        if 'anchorA' in kwargs or 'anchorB' in kwargs:
-            
-            
-            if 'lengthA' in kwargs:
-                self.lengthA = kwargs['lengthA']
-                lengthA_set=True
-            if 'lengthB' in kwargs:
-                self.lengthB = kwargs['lengthB']
-                lengthB_set=True
+        self.__init_pulley__(**kwargs)
 
-        if 'anchorA' in kwargs and 'groundAnchorA' in kwargs and 'lengthA' not in kwargs:
+    def __init_pulley__(self, anchorA=None, anchorB=None, lengthA=None, lengthB=None, groundAnchorA=None, groundAnchorB=None, maxLengthA=None, maxLengthB=None, ratio=None, **kwargs):
+        lengthA_set, lengthB_set = False, False
+        if anchorA is not None or anchorB is not None:
+            
+            
+            if lengthA is not None:
+                self.lengthA = lengthA
+                lengthA_set = True
+            if lengthB is not None:
+                self.lengthB = lengthB
+                lengthB_set = True
+
+        if anchorA is not None and groundAnchorA is not None and lengthA is None:
             d1 = self.anchorA - self.groundAnchorA
             self.lengthA = d1.length
-            lengthA_set=True
+            lengthA_set = True
 
-        if 'anchorB' in kwargs and 'groundAnchorB' in kwargs and 'lengthB' not in kwargs:
+        if anchorB is not None and groundAnchorB is not None and lengthB is None:
             d2 = self.anchorB - self.groundAnchorB
             self.lengthB = d2.length
             lengthB_set=True
 
-        if 'ratio' in kwargs:
-            assert(self.ratio > globals()['b2_epsilon']) # Ratio too small
-            if lengthA_set and lengthB_set and 'maxLengthA' not in kwargs and 'maxLengthB' not in kwargs:
+        if ratio is not None:
+            
+            assert(self.ratio > globals()['b2_epsilon'])
+            if lengthA_set and lengthB_set and maxLengthA is None and maxLengthB is None:
                 C = self.lengthA + self.ratio * self.lengthB
                 self.maxLengthA = C - self.ratio * b2_minPulleyLength
                 self.maxLengthB = (C - b2_minPulleyLength) / self.ratio
@@ -6584,21 +6629,13 @@ class b2PulleyJoint(b2Joint):
         """
         return _Box2D.b2PulleyJoint___GetGroundAnchorB(self)
 
-    def __GetLength1(self):
-        """
-        __GetLength1(self) -> float32
+    def __GetLengthA(self):
+        """__GetLengthA(self) -> float32"""
+        return _Box2D.b2PulleyJoint___GetLengthA(self)
 
-        Get the current length of the segment attached to body1.
-        """
-        return _Box2D.b2PulleyJoint___GetLength1(self)
-
-    def __GetLength2(self):
-        """
-        __GetLength2(self) -> float32
-
-        Get the current length of the segment attached to body2.
-        """
-        return _Box2D.b2PulleyJoint___GetLength2(self)
+    def __GetLengthB(self):
+        """__GetLengthB(self) -> float32"""
+        return _Box2D.b2PulleyJoint___GetLengthB(self)
 
     def __GetRatio(self):
         """
@@ -6608,6 +6645,14 @@ class b2PulleyJoint(b2Joint):
         """
         return _Box2D.b2PulleyJoint___GetRatio(self)
 
+    def GetCurrentLengthA(self):
+        """GetCurrentLengthA(self) -> float32"""
+        return _Box2D.b2PulleyJoint_GetCurrentLengthA(self)
+
+    def GetCurrentLengthB(self):
+        """GetCurrentLengthB(self) -> float32"""
+        return _Box2D.b2PulleyJoint_GetCurrentLengthB(self)
+
     __dir__ = _dir_filter
 
     def __repr__(self):
@@ -6616,17 +6661,19 @@ class b2PulleyJoint(b2Joint):
     # Read-only
     groundAnchorB = property(__GetGroundAnchorB, None)
     groundAnchorA = property(__GetGroundAnchorA, None)
-    length2 = property(__GetLength2, None)
-    length1 = property(__GetLength1, None)
     ratio = property(__GetRatio, None)
+    lengthB = length2 = property(__GetLengthB, None)
+    lengthA = length1 = property(__GetLengthA, None)
 
 
     __swig_destroy__ = _Box2D.delete_b2PulleyJoint
 b2PulleyJoint.__GetGroundAnchorA = new_instancemethod(_Box2D.b2PulleyJoint___GetGroundAnchorA,None,b2PulleyJoint)
 b2PulleyJoint.__GetGroundAnchorB = new_instancemethod(_Box2D.b2PulleyJoint___GetGroundAnchorB,None,b2PulleyJoint)
-b2PulleyJoint.__GetLength1 = new_instancemethod(_Box2D.b2PulleyJoint___GetLength1,None,b2PulleyJoint)
-b2PulleyJoint.__GetLength2 = new_instancemethod(_Box2D.b2PulleyJoint___GetLength2,None,b2PulleyJoint)
+b2PulleyJoint.__GetLengthA = new_instancemethod(_Box2D.b2PulleyJoint___GetLengthA,None,b2PulleyJoint)
+b2PulleyJoint.__GetLengthB = new_instancemethod(_Box2D.b2PulleyJoint___GetLengthB,None,b2PulleyJoint)
 b2PulleyJoint.__GetRatio = new_instancemethod(_Box2D.b2PulleyJoint___GetRatio,None,b2PulleyJoint)
+b2PulleyJoint.GetCurrentLengthA = new_instancemethod(_Box2D.b2PulleyJoint_GetCurrentLengthA,None,b2PulleyJoint)
+b2PulleyJoint.GetCurrentLengthB = new_instancemethod(_Box2D.b2PulleyJoint_GetCurrentLengthB,None,b2PulleyJoint)
 b2PulleyJoint_swigregister = _Box2D.b2PulleyJoint_swigregister
 b2PulleyJoint_swigregister(b2PulleyJoint)
 
@@ -6692,6 +6739,18 @@ class b2RevoluteJoint(b2Joint):
     thisown = _swig_property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc='The membership flag')
     def __init__(self, *args, **kwargs): raise AttributeError("No constructor defined")
     __repr__ = _swig_repr
+    def GetLocalAnchorA(self):
+        """GetLocalAnchorA(self) -> b2Vec2"""
+        return _Box2D.b2RevoluteJoint_GetLocalAnchorA(self)
+
+    def GetLocalAnchorB(self):
+        """GetLocalAnchorB(self) -> b2Vec2"""
+        return _Box2D.b2RevoluteJoint_GetLocalAnchorB(self)
+
+    def GetReferenceAngle(self):
+        """GetReferenceAngle(self) -> float32"""
+        return _Box2D.b2RevoluteJoint_GetReferenceAngle(self)
+
     def __GetJointAngle(self):
         """
         __GetJointAngle(self) -> float32
@@ -6788,6 +6847,10 @@ class b2RevoluteJoint(b2Joint):
         """
         return _Box2D.b2RevoluteJoint___SetMaxMotorTorque(self, *args, **kwargs)
 
+    def GetMaxMotorTorque(self):
+        """GetMaxMotorTorque(self) -> float32"""
+        return _Box2D.b2RevoluteJoint_GetMaxMotorTorque(self)
+
     def GetMotorTorque(self, *args, **kwargs):
         """
         GetMotorTorque(self, float32 inv_dt) -> float32
@@ -6818,6 +6881,9 @@ class b2RevoluteJoint(b2Joint):
 
 
     __swig_destroy__ = _Box2D.delete_b2RevoluteJoint
+b2RevoluteJoint.GetLocalAnchorA = new_instancemethod(_Box2D.b2RevoluteJoint_GetLocalAnchorA,None,b2RevoluteJoint)
+b2RevoluteJoint.GetLocalAnchorB = new_instancemethod(_Box2D.b2RevoluteJoint_GetLocalAnchorB,None,b2RevoluteJoint)
+b2RevoluteJoint.GetReferenceAngle = new_instancemethod(_Box2D.b2RevoluteJoint_GetReferenceAngle,None,b2RevoluteJoint)
 b2RevoluteJoint.__GetJointAngle = new_instancemethod(_Box2D.b2RevoluteJoint___GetJointAngle,None,b2RevoluteJoint)
 b2RevoluteJoint.__GetJointSpeed = new_instancemethod(_Box2D.b2RevoluteJoint___GetJointSpeed,None,b2RevoluteJoint)
 b2RevoluteJoint.__IsLimitEnabled = new_instancemethod(_Box2D.b2RevoluteJoint___IsLimitEnabled,None,b2RevoluteJoint)
@@ -6830,6 +6896,7 @@ b2RevoluteJoint.__EnableMotor = new_instancemethod(_Box2D.b2RevoluteJoint___Enab
 b2RevoluteJoint.__SetMotorSpeed = new_instancemethod(_Box2D.b2RevoluteJoint___SetMotorSpeed,None,b2RevoluteJoint)
 b2RevoluteJoint.__GetMotorSpeed = new_instancemethod(_Box2D.b2RevoluteJoint___GetMotorSpeed,None,b2RevoluteJoint)
 b2RevoluteJoint.__SetMaxMotorTorque = new_instancemethod(_Box2D.b2RevoluteJoint___SetMaxMotorTorque,None,b2RevoluteJoint)
+b2RevoluteJoint.GetMaxMotorTorque = new_instancemethod(_Box2D.b2RevoluteJoint_GetMaxMotorTorque,None,b2RevoluteJoint)
 b2RevoluteJoint.GetMotorTorque = new_instancemethod(_Box2D.b2RevoluteJoint_GetMotorTorque,None,b2RevoluteJoint)
 b2RevoluteJoint_swigregister = _Box2D.b2RevoluteJoint_swigregister
 b2RevoluteJoint_swigregister(b2RevoluteJoint)
@@ -6886,6 +6953,18 @@ class b2RopeJoint(b2Joint):
     thisown = _swig_property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc='The membership flag')
     def __init__(self, *args, **kwargs): raise AttributeError("No constructor defined")
     __repr__ = _swig_repr
+    def GetLocalAnchorA(self):
+        """GetLocalAnchorA(self) -> b2Vec2"""
+        return _Box2D.b2RopeJoint_GetLocalAnchorA(self)
+
+    def GetLocalAnchorB(self):
+        """GetLocalAnchorB(self) -> b2Vec2"""
+        return _Box2D.b2RopeJoint_GetLocalAnchorB(self)
+
+    def SetMaxLength(self, *args, **kwargs):
+        """SetMaxLength(self, float32 length)"""
+        return _Box2D.b2RopeJoint_SetMaxLength(self, *args, **kwargs)
+
     def __GetMaxLength(self):
         """
         __GetMaxLength(self) -> float32
@@ -6911,6 +6990,9 @@ class b2RopeJoint(b2Joint):
 
 
     __swig_destroy__ = _Box2D.delete_b2RopeJoint
+b2RopeJoint.GetLocalAnchorA = new_instancemethod(_Box2D.b2RopeJoint_GetLocalAnchorA,None,b2RopeJoint)
+b2RopeJoint.GetLocalAnchorB = new_instancemethod(_Box2D.b2RopeJoint_GetLocalAnchorB,None,b2RopeJoint)
+b2RopeJoint.SetMaxLength = new_instancemethod(_Box2D.b2RopeJoint_SetMaxLength,None,b2RopeJoint)
 b2RopeJoint.__GetMaxLength = new_instancemethod(_Box2D.b2RopeJoint___GetMaxLength,None,b2RopeJoint)
 b2RopeJoint.__GetLimitState = new_instancemethod(_Box2D.b2RopeJoint___GetLimitState,None,b2RopeJoint)
 b2RopeJoint_swigregister = _Box2D.b2RopeJoint_swigregister
@@ -6929,7 +7011,7 @@ class b2WeldJointDef(b2JointDef):
 
     def Initialize(self, *args, **kwargs):
         """
-        Initialize(self, b2Body body1, b2Body body2, b2Vec2 anchor)
+        Initialize(self, b2Body bodyA, b2Body bodyB, b2Vec2 anchor)
 
         Initialize the bodies, anchors, and reference angle using a world anchor point.
         """
@@ -6938,6 +7020,8 @@ class b2WeldJointDef(b2JointDef):
     localAnchorA = _swig_property(_Box2D.b2WeldJointDef_localAnchorA_get, _Box2D.b2WeldJointDef_localAnchorA_set)
     localAnchorB = _swig_property(_Box2D.b2WeldJointDef_localAnchorB_get, _Box2D.b2WeldJointDef_localAnchorB_set)
     referenceAngle = _swig_property(_Box2D.b2WeldJointDef_referenceAngle_get, _Box2D.b2WeldJointDef_referenceAngle_set)
+    frequencyHz = _swig_property(_Box2D.b2WeldJointDef_frequencyHz_get, _Box2D.b2WeldJointDef_frequencyHz_set)
+    dampingRatio = _swig_property(_Box2D.b2WeldJointDef_dampingRatio_get, _Box2D.b2WeldJointDef_dampingRatio_set)
     __dir__ = _dir_filter
 
     def __repr__(self):
@@ -6972,14 +7056,265 @@ class b2WeldJoint(b2Joint):
     thisown = _swig_property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc='The membership flag')
     def __init__(self, *args, **kwargs): raise AttributeError("No constructor defined")
     __repr__ = _swig_repr
+    def GetLocalAnchorA(self):
+        """GetLocalAnchorA(self) -> b2Vec2"""
+        return _Box2D.b2WeldJoint_GetLocalAnchorA(self)
+
+    def GetLocalAnchorB(self):
+        """GetLocalAnchorB(self) -> b2Vec2"""
+        return _Box2D.b2WeldJoint_GetLocalAnchorB(self)
+
+    def GetReferenceAngle(self):
+        """GetReferenceAngle(self) -> float32"""
+        return _Box2D.b2WeldJoint_GetReferenceAngle(self)
+
+    def SetFrequency(self, *args, **kwargs):
+        """SetFrequency(self, float32 hz)"""
+        return _Box2D.b2WeldJoint_SetFrequency(self, *args, **kwargs)
+
+    def GetFrequency(self):
+        """GetFrequency(self) -> float32"""
+        return _Box2D.b2WeldJoint_GetFrequency(self)
+
+    def SetDampingRatio(self, *args, **kwargs):
+        """SetDampingRatio(self, float32 ratio)"""
+        return _Box2D.b2WeldJoint_SetDampingRatio(self, *args, **kwargs)
+
+    def GetDampingRatio(self):
+        """GetDampingRatio(self) -> float32"""
+        return _Box2D.b2WeldJoint_GetDampingRatio(self)
+
     __dir__ = _dir_filter
 
     def __repr__(self):
         return _format_repr(self, ['active','anchorA','anchorB','bodyA','bodyB','type','userData']) 
 
     __swig_destroy__ = _Box2D.delete_b2WeldJoint
+b2WeldJoint.GetLocalAnchorA = new_instancemethod(_Box2D.b2WeldJoint_GetLocalAnchorA,None,b2WeldJoint)
+b2WeldJoint.GetLocalAnchorB = new_instancemethod(_Box2D.b2WeldJoint_GetLocalAnchorB,None,b2WeldJoint)
+b2WeldJoint.GetReferenceAngle = new_instancemethod(_Box2D.b2WeldJoint_GetReferenceAngle,None,b2WeldJoint)
+b2WeldJoint.SetFrequency = new_instancemethod(_Box2D.b2WeldJoint_SetFrequency,None,b2WeldJoint)
+b2WeldJoint.GetFrequency = new_instancemethod(_Box2D.b2WeldJoint_GetFrequency,None,b2WeldJoint)
+b2WeldJoint.SetDampingRatio = new_instancemethod(_Box2D.b2WeldJoint_SetDampingRatio,None,b2WeldJoint)
+b2WeldJoint.GetDampingRatio = new_instancemethod(_Box2D.b2WeldJoint_GetDampingRatio,None,b2WeldJoint)
 b2WeldJoint_swigregister = _Box2D.b2WeldJoint_swigregister
 b2WeldJoint_swigregister(b2WeldJoint)
+
+class b2WheelJointDef(b2JointDef):
+    """Line joint definition. This requires defining a line of motion using an axis and an anchor point. The definition uses local anchor points and a local axis so that the initial configuration can violate the constraint slightly. The joint translation is zero when the local anchor points coincide in world space. Using local anchors and a local axis helps when saving and loading a game."""
+    thisown = _swig_property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc='The membership flag')
+    __repr__ = _swig_repr
+    def __init__(self, **kwargs):
+        _Box2D.b2WheelJointDef_swiginit(self,_Box2D.new_b2WheelJointDef())
+        _init_jointdef_kwargs(self, **kwargs)
+
+
+    def Initialize(self, *args, **kwargs):
+        """
+        Initialize(self, b2Body bodyA, b2Body bodyB, b2Vec2 anchor, b2Vec2 axis)
+
+        Initialize the bodies, anchors, axis, and reference angle using the world anchor and world axis.
+        """
+        return _Box2D.b2WheelJointDef_Initialize(self, *args, **kwargs)
+
+    localAnchorA = _swig_property(_Box2D.b2WheelJointDef_localAnchorA_get, _Box2D.b2WheelJointDef_localAnchorA_set)
+    localAnchorB = _swig_property(_Box2D.b2WheelJointDef_localAnchorB_get, _Box2D.b2WheelJointDef_localAnchorB_set)
+    localAxisA = _swig_property(_Box2D.b2WheelJointDef_localAxisA_get, _Box2D.b2WheelJointDef_localAxisA_set)
+    enableMotor = _swig_property(_Box2D.b2WheelJointDef_enableMotor_get, _Box2D.b2WheelJointDef_enableMotor_set)
+    maxMotorTorque = _swig_property(_Box2D.b2WheelJointDef_maxMotorTorque_get, _Box2D.b2WheelJointDef_maxMotorTorque_set)
+    motorSpeed = _swig_property(_Box2D.b2WheelJointDef_motorSpeed_get, _Box2D.b2WheelJointDef_motorSpeed_set)
+    frequencyHz = _swig_property(_Box2D.b2WheelJointDef_frequencyHz_get, _Box2D.b2WheelJointDef_frequencyHz_set)
+    dampingRatio = _swig_property(_Box2D.b2WheelJointDef_dampingRatio_get, _Box2D.b2WheelJointDef_dampingRatio_set)
+    __dir__ = _dir_filter
+
+    def __repr__(self):
+        return _format_repr(self, ['anchor','axis','bodyA','bodyB','collideConnected','dampingRatio','enableMotor','frequencyHz','localAnchorA','localAnchorB','localAxisA','maxMotorTorque','motorSpeed','type','userData']) 
+
+    def __set_anchor(self, value):
+        if not self.bodyA:
+            raise Exception('bodyA not set.')
+        if not self.bodyB:
+            raise Exception('bodyB not set.')
+        self.localAnchorA=self.bodyA.GetLocalPoint(value)
+        self.localAnchorB=self.bodyB.GetLocalPoint(value)
+    def __get_anchor(self):
+        if self.bodyA:
+            return self.bodyA.GetWorldPoint(self.localAnchorA)
+        if self.bodyB:
+            return self.bodyB.GetWorldPoint(self.localAnchorB)
+        raise Exception('Neither body was set; unable to get world point.')
+    def __set_axis(self, value):
+        if not self.bodyA:
+            raise Exception('bodyA not set.')
+        self.localAxisA=self.bodyA.GetLocalVector(value)
+    def __get_axis(self):
+        if self.bodyA:
+            return self.bodyA.GetWorldVector(self.localAxisA)
+        raise Exception('Body A unset; unable to get world vector.')
+
+    anchor = property(__get_anchor, __set_anchor, 
+            doc="""The anchor in world coordinates.
+                Getting the property depends on either bodyA and localAnchorA or 
+                bodyB and localAnchorB.
+                Setting the property requires that both bodies be set.""")
+    axis = property(__get_axis, __set_axis, 
+            doc="""The world translation axis on bodyA.
+                Getting the property depends on bodyA and localAxisA.
+                Setting the property requires that bodyA be set.""")
+
+    __swig_destroy__ = _Box2D.delete_b2WheelJointDef
+b2WheelJointDef.Initialize = new_instancemethod(_Box2D.b2WheelJointDef_Initialize,None,b2WheelJointDef)
+b2WheelJointDef_swigregister = _Box2D.b2WheelJointDef_swigregister
+b2WheelJointDef_swigregister(b2WheelJointDef)
+
+class b2WheelJoint(b2Joint):
+    """A line joint. This joint provides two degrees of freedom: translation along an axis fixed in body1 and rotation in the plane. You can use a joint limit to restrict the range of motion and a joint motor to drive the rotation or to model rotational friction. This joint is designed for vehicle suspensions."""
+    thisown = _swig_property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc='The membership flag')
+    def __init__(self, *args, **kwargs): raise AttributeError("No constructor defined")
+    __repr__ = _swig_repr
+    def GetLocalAnchorA(self):
+        """GetLocalAnchorA(self) -> b2Vec2"""
+        return _Box2D.b2WheelJoint_GetLocalAnchorA(self)
+
+    def GetLocalAnchorB(self):
+        """GetLocalAnchorB(self) -> b2Vec2"""
+        return _Box2D.b2WheelJoint_GetLocalAnchorB(self)
+
+    def GetLocalAxisA(self):
+        """GetLocalAxisA(self) -> b2Vec2"""
+        return _Box2D.b2WheelJoint_GetLocalAxisA(self)
+
+    def __GetJointTranslation(self):
+        """
+        __GetJointTranslation(self) -> float32
+
+        Get the current joint translation, usually in meters.
+        """
+        return _Box2D.b2WheelJoint___GetJointTranslation(self)
+
+    def __GetJointSpeed(self):
+        """
+        __GetJointSpeed(self) -> float32
+
+        Get the current joint translation speed, usually in meters per second.
+        """
+        return _Box2D.b2WheelJoint___GetJointSpeed(self)
+
+    def __IsMotorEnabled(self):
+        """
+        __IsMotorEnabled(self) -> bool
+
+        Is the joint motor enabled?
+        """
+        return _Box2D.b2WheelJoint___IsMotorEnabled(self)
+
+    def __EnableMotor(self, *args, **kwargs):
+        """
+        __EnableMotor(self, bool flag)
+
+        Enable/disable the joint motor.
+        """
+        return _Box2D.b2WheelJoint___EnableMotor(self, *args, **kwargs)
+
+    def __SetMotorSpeed(self, *args, **kwargs):
+        """
+        __SetMotorSpeed(self, float32 speed)
+
+        Set the motor speed, usually in radians per second.
+        """
+        return _Box2D.b2WheelJoint___SetMotorSpeed(self, *args, **kwargs)
+
+    def __GetMotorSpeed(self):
+        """
+        __GetMotorSpeed(self) -> float32
+
+        Get the motor speed, usually in radians per second.
+        """
+        return _Box2D.b2WheelJoint___GetMotorSpeed(self)
+
+    def __SetMaxMotorTorque(self, *args, **kwargs):
+        """
+        __SetMaxMotorTorque(self, float32 torque)
+
+        Set/Get the maximum motor force, usually in N-m.
+        """
+        return _Box2D.b2WheelJoint___SetMaxMotorTorque(self, *args, **kwargs)
+
+    def __GetMaxMotorTorque(self):
+        """__GetMaxMotorTorque(self) -> float32"""
+        return _Box2D.b2WheelJoint___GetMaxMotorTorque(self)
+
+    def GetMotorTorque(self, *args, **kwargs):
+        """
+        GetMotorTorque(self, float32 inv_dt) -> float32
+
+        Get the current motor torque given the inverse time step, usually in N-m.
+        """
+        return _Box2D.b2WheelJoint_GetMotorTorque(self, *args, **kwargs)
+
+    def __SetSpringFrequencyHz(self, *args, **kwargs):
+        """
+        __SetSpringFrequencyHz(self, float32 hz)
+
+        Set/Get the spring frequency in hertz. Setting the frequency to zero disables the spring.
+        """
+        return _Box2D.b2WheelJoint___SetSpringFrequencyHz(self, *args, **kwargs)
+
+    def __GetSpringFrequencyHz(self):
+        """__GetSpringFrequencyHz(self) -> float32"""
+        return _Box2D.b2WheelJoint___GetSpringFrequencyHz(self)
+
+    def __SetSpringDampingRatio(self, *args, **kwargs):
+        """
+        __SetSpringDampingRatio(self, float32 ratio)
+
+        Set/Get the spring damping ratio.
+        """
+        return _Box2D.b2WheelJoint___SetSpringDampingRatio(self, *args, **kwargs)
+
+    def __GetSpringDampingRatio(self):
+        """__GetSpringDampingRatio(self) -> float32"""
+        return _Box2D.b2WheelJoint___GetSpringDampingRatio(self)
+
+    __dir__ = _dir_filter
+
+    def __repr__(self):
+        return _format_repr(self, ['active','anchorA','anchorB','bodyA','bodyB','maxMotorTorque','motorEnabled','motorSpeed','speed','springDampingRatio','springFrequencyHz','translation','type','userData']) 
+
+    # Read-write properties
+    motorSpeed = property(__GetMotorSpeed, __SetMotorSpeed)
+    motorEnabled = property(__IsMotorEnabled, __EnableMotor)
+    maxMotorTorque = property(__GetMaxMotorTorque, __SetMaxMotorTorque)
+    springFrequencyHz = property(__GetSpringFrequencyHz , __SetSpringFrequencyHz)
+    springDampingRatio = property(__GetSpringDampingRatio , __SetSpringDampingRatio)
+
+    # Read-only
+    speed = property(__GetJointSpeed, None)
+    translation = property(__GetJointTranslation, None)
+
+
+    __swig_destroy__ = _Box2D.delete_b2WheelJoint
+b2WheelJoint.GetLocalAnchorA = new_instancemethod(_Box2D.b2WheelJoint_GetLocalAnchorA,None,b2WheelJoint)
+b2WheelJoint.GetLocalAnchorB = new_instancemethod(_Box2D.b2WheelJoint_GetLocalAnchorB,None,b2WheelJoint)
+b2WheelJoint.GetLocalAxisA = new_instancemethod(_Box2D.b2WheelJoint_GetLocalAxisA,None,b2WheelJoint)
+b2WheelJoint.__GetJointTranslation = new_instancemethod(_Box2D.b2WheelJoint___GetJointTranslation,None,b2WheelJoint)
+b2WheelJoint.__GetJointSpeed = new_instancemethod(_Box2D.b2WheelJoint___GetJointSpeed,None,b2WheelJoint)
+b2WheelJoint.__IsMotorEnabled = new_instancemethod(_Box2D.b2WheelJoint___IsMotorEnabled,None,b2WheelJoint)
+b2WheelJoint.__EnableMotor = new_instancemethod(_Box2D.b2WheelJoint___EnableMotor,None,b2WheelJoint)
+b2WheelJoint.__SetMotorSpeed = new_instancemethod(_Box2D.b2WheelJoint___SetMotorSpeed,None,b2WheelJoint)
+b2WheelJoint.__GetMotorSpeed = new_instancemethod(_Box2D.b2WheelJoint___GetMotorSpeed,None,b2WheelJoint)
+b2WheelJoint.__SetMaxMotorTorque = new_instancemethod(_Box2D.b2WheelJoint___SetMaxMotorTorque,None,b2WheelJoint)
+b2WheelJoint.__GetMaxMotorTorque = new_instancemethod(_Box2D.b2WheelJoint___GetMaxMotorTorque,None,b2WheelJoint)
+b2WheelJoint.GetMotorTorque = new_instancemethod(_Box2D.b2WheelJoint_GetMotorTorque,None,b2WheelJoint)
+b2WheelJoint.__SetSpringFrequencyHz = new_instancemethod(_Box2D.b2WheelJoint___SetSpringFrequencyHz,None,b2WheelJoint)
+b2WheelJoint.__GetSpringFrequencyHz = new_instancemethod(_Box2D.b2WheelJoint___GetSpringFrequencyHz,None,b2WheelJoint)
+b2WheelJoint.__SetSpringDampingRatio = new_instancemethod(_Box2D.b2WheelJoint___SetSpringDampingRatio,None,b2WheelJoint)
+b2WheelJoint.__GetSpringDampingRatio = new_instancemethod(_Box2D.b2WheelJoint___GetSpringDampingRatio,None,b2WheelJoint)
+b2WheelJoint_swigregister = _Box2D.b2WheelJoint_swigregister
+b2WheelJoint_swigregister(b2WheelJoint)
+
+# Backward-compatibility 
+b2LoopShape = b2ChainShape
 
 # Initialize the alternative namespace b2.*, and clean-up the
 # dir listing of Box2D by removing *_swigregister.

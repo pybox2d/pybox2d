@@ -63,12 +63,13 @@ class testPolyshape (unittest.TestCase):
         else:
             raise Exception("Should have failed with ValueError / max+1")
 
-        try:
-            shape=b2PolygonShape(vertices=[(1,0),(0,-1),(-1,0)] )
-        except ValueError:
-            pass # good, not convex
-        else:
-            raise Exception("Should have failed with ValueError / checkpolygon")
+        # convex hull is used now, this is no longer valid
+        #try:
+        #    shape=b2PolygonShape(vertices=[(1,0),(0,-1),(-1,0)] )
+        #except ValueError:
+        #    pass # good, not convex
+        #else:
+        #    raise Exception("Should have failed with ValueError / checkpolygon")
 
         shape=b2PolygonShape(vertices=[(0,0), (0,1), (-1,0)] )
         temp=shape.valid

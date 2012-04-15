@@ -18,43 +18,22 @@
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
-%feature("shadow") b2World::b2World(const b2Vec2& gravity, bool doSleep) {
-    def __init__(self, *args, **kwargs): 
-        """__init__(self, *args, **kwargs) -> b2World
-        Arguments:
-        * gravity (default (0, -10))
-        * doSleep (default True)
+// i /really/ did not understand kwargs, apparently...
+%feature("shadow") b2World::b2World(const b2Vec2& gravity) {
+    def __init__(self, gravity=(0, -10), doSleep=True, **kwargs): 
+        """__init__(self, gravity=(0, -10), doSleep=True, **kwargs) -> b2World
+
         Additional kwargs like contactListener will be passed after the world is created.
 
         Examples:
-         b2World()
-         b2World( (0,-10), True)
-         b2World( gravity=(0,-10), doSleep=True)
+         b2World(gravity=(0,-10), doSleep=True)
          b2World(contactListener=myListener)
-
         """
-        if len(args) not in (0, 1, 2):
-            raise ValueError("Only 'gravity, doSleep' can be passed as normal parameters.")
+        _Box2D.b2World_swiginit(self,_Box2D.new_b2World(gravity))
 
-        if len(args) >= 1:
-            gravity=args[0]
-        elif 'gravity' in kwargs:
-            gravity=kwargs['gravity']
-            del kwargs['gravity']
-        else:
-            gravity=(0,-10)
+        self.allowSleeping = doSleep
 
-        if len(args) == 2:
-            doSleep=args[1]
-        elif 'doSleep' in kwargs:
-            doSleep=kwargs['doSleep']
-            del kwargs['doSleep']
-        else:
-            doSleep=True
-        
-        _Box2D.b2World_swiginit(self,_Box2D.new_b2World(gravity, doSleep))
-
-        for key, value in list(kwargs.items()):
+        for key, value in kwargs.iteritems():
             try:
                 setattr(self, key, value)
             except:
@@ -62,7 +41,6 @@
                 ex=exc_info()[1]
                 raise ex.__class__('Failed on kwargs, class="%s" key="%s": %s' \
                             % (self.__class__.__name__, key, ex))
-
 }
 
 %extend b2World {
@@ -105,7 +83,7 @@ public:
             kwargs['type'] = b2_staticBody
             return self.CreateBody(**kwargs)
 
-        def CreateBody(self, *args, **kwargs):
+        def CreateBody(self, defn=None, **kwargs):
             """
             Create a body in the world.
             Takes a single b2BodyDef argument, or kwargs to pass to a temporary b2BodyDef.
@@ -130,15 +108,11 @@ public:
                 body = CreateBody(...)
                 body.CreateFixturesFromShapes(shapes=[], shapeFixture=b2FixtureDef())
             """
-            if len(args) > 1:
-                raise TypeError('Takes only one argument, or kwargs to b2BodyDef')
-            elif len(args)==1:
-                if isinstance(args[0], b2BodyDef):
-                    defn = args[0]
-                else:
-                    raise TypeError('Takes only one argument, or kwargs to b2BodyDef')
+            if defn is not None:
+                if not isinstance(defn, b2BodyDef):
+                    raise TypeError('Expected b2BodyDef')
             else:
-                defn =b2BodyDef(**kwargs) 
+                defn = b2BodyDef(**kwargs) 
 
             body=self.__CreateBody(defn)
                 
@@ -262,7 +236,17 @@ public:
                 raise ValueError('Requires at least bodyA and bodyB be set')
             return self.__CreateJoint(b2WeldJointDef(**kwargs))
 
-        def CreateJoint(self, *args, **kwargs):
+        def CreateMotorJoint(self, **kwargs):
+            """
+            Create a single b2MotorJoint. Only accepts kwargs to the joint definition.
+
+            Raises ValueError if either bodyA or bodyB is left unset.
+            """
+            if 'bodyA' not in kwargs or 'bodyB' not in kwargs:
+                raise ValueError('Requires at least bodyA and bodyB be set')
+            return self.__CreateJoint(b2MotorJointDef(**kwargs))
+
+        def CreateJoint(self, defn=None, type=None, **kwargs):
             """
             Create a joint in the world.
             Takes a single b2JointDef argument, or kwargs to pass to a temporary b2JointDef.
@@ -272,24 +256,21 @@ public:
             world.CreateJoint(type=b2RevoluteJointDef, bodyA=body, bodyB=body2)
             world.CreateJoint(b2RevoluteJointDef(bodyA=body, bodyB=body2))
             """
-            if len(args) > 1:
-                raise TypeError('Takes only one argument, or kwargs to b2JointDef')
-            elif len(args)==1 and isinstance(args[0], b2JointDef):
-                defn = args[0]
+            if defn is not None:
+                if not isinstance(defn, b2JointDef):
+                    raise TypeError('Expected b2JointDef')
             else:
-                if not kwargs or 'type' not in kwargs:
-                    raise TypeError('Expected type kwarg of b2Joint or b2JointDef')
-
-                type_ = kwargs['type']
-                if issubclass(type_, b2JointDef):
-                    class_type = type_
-                elif issubclass(type_, b2Joint):  # a b2Joint passed in, so get the b2JointDef
-                    class_type = globals()[type_.__name__ + 'Def']
+                if type is not None:
+                    if issubclass(type, b2JointDef):
+                        class_type = type
+                    elif issubclass(type, b2Joint):  # a b2Joint passed in, so get the b2JointDef
+                        class_type = globals()[type.__name__ + 'Def']
+                    else:
+                        raise TypeError('Expected "type" to be a b2Joint or b2JointDef')
                 else:
-                    raise TypeError('Expected type kwarg of b2Joint or b2JointDef')
+                    raise TypeError('Expected "type" to be a b2Joint or b2JointDef')
 
-                del kwargs['type']
-                defn =class_type(**kwargs) 
+                defn = class_type(**kwargs) 
 
             if isinstance(defn, b2GearJointDef):
                 if not defn.joint1 or not defn.joint2:
@@ -327,12 +308,10 @@ public:
                                 lambda self, fcn: self.__SetData('contactfilter', fcn, self.__SetContactFilter_internal))
         renderer= property(lambda self: self.__GetData('renderer'),
                             lambda self, fcn: self.__SetData('renderer', fcn, self.__SetDebugDraw_internal))
-        continuousPhysics = property(lambda self: self.__GetData('continuousphysics'), 
-                                     lambda self, fcn: self.__SetData('continuousphysics', fcn, self.__SetContinuousPhysics_internal))
-        warmStarting = property(lambda self: self.__GetData('warmstarting'), 
-                                lambda self, fcn: self.__SetData('warmstarting', fcn, self.__SetWarmStarting_internal))
-        subStepping = property(lambda self: self.__GetData('subStepping'), 
-                               lambda self, fcn: self.__SetData('subStepping', fcn, self.__SetSubStepping_internal))
+
+        continuousPhysics = property(__GetContinuousPhysics, __SetContinuousPhysics)
+        warmStarting = property(__GetWarmStarting, __SetWarmStarting)
+        subStepping = property(__GetSubStepping, __SetSubStepping)
 
         # Read-only 
         contactManager= property(__GetContactManager, None)
@@ -381,3 +360,9 @@ public:
 %rename (__GetAutoClearForces) b2World::GetAutoClearForces;
 %rename (__GetContactManager) b2World::GetContactManager;
 
+%rename (__GetContinuousPhysics) b2World::GetContinuousPhysics;
+%rename (__SetContinuousPhysics) b2World::SetContinuousPhysics;
+%rename (__GetWarmStarting) b2World::GetWarmStarting;
+%rename (__SetWarmStarting) b2World::SetWarmStarting;
+%rename (__GetSubStepping) b2World::GetSubStepping;
+%rename (__SetSubStepping) b2World::SetSubStepping;

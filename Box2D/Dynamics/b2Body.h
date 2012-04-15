@@ -1,5 +1,5 @@
 /*
-* Copyright (c) 2006-2009 Erin Catto http://www.box2d.org
+* Copyright (c) 2006-2011 Erin Catto http://www.box2d.org
 *
 * This software is provided 'as-is', without any express or implied
 * warranty.  In no event will the authors be held liable for any damages
@@ -184,7 +184,7 @@ public:
 
 	/// Get the linear velocity of the center of mass.
 	/// @return the linear velocity of the center of mass.
-	b2Vec2 GetLinearVelocity() const;
+	const b2Vec2& GetLinearVelocity() const;
 
 	/// Set the angular velocity.
 	/// @param omega the new angular velocity in radians/second.
@@ -200,6 +200,10 @@ public:
 	/// @param force the world force vector, usually in Newtons (N).
 	/// @param point the world position of the point of application.
 	void ApplyForce(const b2Vec2& force, const b2Vec2& point);
+
+	/// Apply a force to the center of mass. This wakes up the body.
+	/// @param force the world force vector, usually in Newtons (N).
+	void ApplyForceToCenter(const b2Vec2& force);
 
 	/// Apply a torque. This affects the angular velocity
 	/// without affecting the linear velocity of the center of mass.
@@ -287,7 +291,7 @@ public:
 	/// Get the gravity scale of the body.
 	float32 GetGravityScale() const;
 
-	/// Set the angular damping of the body.
+	/// Set the gravity scale of the body.
 	void SetGravityScale(float32 scale);
 
 	/// Set the type of this body. This may alter the mass and velocity.
@@ -311,7 +315,7 @@ public:
 
 	/// Set the sleep state of the body. A sleeping body has very
 	/// low CPU cost.
-	/// @param flag set to true to put body to sleep, false to wake it.
+	/// @param flag set to true to wake the body, false to put it to sleep.
 	void SetAwake(bool flag);
 
 	/// Get the sleeping state of this body.
@@ -371,23 +375,28 @@ public:
 	b2World* GetWorld();
 	const b2World* GetWorld() const;
 
+	/// Dump this body to a log file
+	void Dump();
+
 private:
 
 	friend class b2World;
 	friend class b2Island;
 	friend class b2ContactManager;
 	friend class b2ContactSolver;
+	friend class b2Contact;
 	
 	friend class b2DistanceJoint;
+	friend class b2FrictionJoint;
 	friend class b2GearJoint;
-	friend class b2WheelJoint;
+	friend class b2MotorJoint;
 	friend class b2MouseJoint;
 	friend class b2PrismaticJoint;
 	friend class b2PulleyJoint;
 	friend class b2RevoluteJoint;
-	friend class b2WeldJoint;
-	friend class b2FrictionJoint;
 	friend class b2RopeJoint;
+	friend class b2WeldJoint;
+	friend class b2WheelJoint;
 
 	// m_flags
 	enum
@@ -464,7 +473,7 @@ inline const b2Transform& b2Body::GetTransform() const
 
 inline const b2Vec2& b2Body::GetPosition() const
 {
-	return m_xf.position;
+	return m_xf.p;
 }
 
 inline float32 b2Body::GetAngle() const
@@ -497,7 +506,7 @@ inline void b2Body::SetLinearVelocity(const b2Vec2& v)
 	m_linearVelocity = v;
 }
 
-inline b2Vec2 b2Body::GetLinearVelocity() const
+inline const b2Vec2& b2Body::GetLinearVelocity() const
 {
 	return m_linearVelocity;
 }
@@ -546,7 +555,7 @@ inline b2Vec2 b2Body::GetWorldPoint(const b2Vec2& localPoint) const
 
 inline b2Vec2 b2Body::GetWorldVector(const b2Vec2& localVector) const
 {
-	return b2Mul(m_xf.R, localVector);
+	return b2Mul(m_xf.q, localVector);
 }
 
 inline b2Vec2 b2Body::GetLocalPoint(const b2Vec2& worldPoint) const
@@ -556,7 +565,7 @@ inline b2Vec2 b2Body::GetLocalPoint(const b2Vec2& worldPoint) const
 
 inline b2Vec2 b2Body::GetLocalVector(const b2Vec2& worldVector) const
 {
-	return b2MulT(m_xf.R, worldVector);
+	return b2MulT(m_xf.q, worldVector);
 }
 
 inline b2Vec2 b2Body::GetLinearVelocityFromWorldPoint(const b2Vec2& worldPoint) const
@@ -645,20 +654,6 @@ inline bool b2Body::IsAwake() const
 inline bool b2Body::IsActive() const
 {
 	return (m_flags & e_activeFlag) == e_activeFlag;
-}
-
-inline void b2Body::SetFixedRotation(bool flag)
-{
-	if (flag)
-	{
-		m_flags |= e_fixedRotationFlag;
-	}
-	else
-	{
-		m_flags &= ~e_fixedRotationFlag;
-	}
-
-	ResetMassData();
 }
 
 inline bool b2Body::IsFixedRotation() const
@@ -750,6 +745,21 @@ inline void b2Body::ApplyForce(const b2Vec2& force, const b2Vec2& point)
 	m_torque += b2Cross(point - m_sweep.c, force);
 }
 
+inline void b2Body::ApplyForceToCenter(const b2Vec2& force)
+{
+	if (m_type != b2_dynamicBody)
+	{
+		return;
+	}
+
+	if (IsAwake() == false)
+	{
+		SetAwake(true);
+	}
+
+	m_force += force;
+}
+
 inline void b2Body::ApplyTorque(float32 torque)
 {
 	if (m_type != b2_dynamicBody)
@@ -796,17 +806,18 @@ inline void b2Body::ApplyAngularImpulse(float32 impulse)
 
 inline void b2Body::SynchronizeTransform()
 {
-	m_xf.R.Set(m_sweep.a);
-	m_xf.position = m_sweep.c - b2Mul(m_xf.R, m_sweep.localCenter);
+	m_xf.q.Set(m_sweep.a);
+	m_xf.p = m_sweep.c - b2Mul(m_xf.q, m_sweep.localCenter);
 }
 
 inline void b2Body::Advance(float32 alpha)
 {
-	// Advance to the new safe time.
+	// Advance to the new safe time. This doesn't sync the broad-phase.
 	m_sweep.Advance(alpha);
 	m_sweep.c = m_sweep.c0;
 	m_sweep.a = m_sweep.a0;
-	SynchronizeTransform();
+	m_xf.q.Set(m_sweep.a);
+	m_xf.p = m_sweep.c - b2Mul(m_xf.q, m_sweep.localCenter);
 }
 
 inline b2World* b2Body::GetWorld()

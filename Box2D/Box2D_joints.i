@@ -53,7 +53,12 @@ public:
     anchorB = property(__GetAnchorB, None)
     anchorA = property(__GetAnchorA, None)
     collideConnected = property(__GetCollideConnected, None)
-
+    
+    def getAsType(self):
+        """
+        Backward compatibility
+        """
+        return self
     %}
 
 }
@@ -213,17 +218,17 @@ public:
         # Read-only
         groundAnchorB = property(__GetGroundAnchorB, None)
         groundAnchorA = property(__GetGroundAnchorA, None)
-        length2 = property(__GetLength2, None)
-        length1 = property(__GetLength1, None)
         ratio = property(__GetRatio, None)
+        lengthB = length2 = property(__GetLengthB, None)
+        lengthA = length1 = property(__GetLengthA, None)
 
     %}
 }
 
 %rename(__GetGroundAnchorB) b2PulleyJoint::GetGroundAnchorB;
 %rename(__GetGroundAnchorA) b2PulleyJoint::GetGroundAnchorA;
-%rename(__GetLength2) b2PulleyJoint::GetLength2;
-%rename(__GetLength1) b2PulleyJoint::GetLength1;
+%rename(__GetLengthB) b2PulleyJoint::GetLengthB;
+%rename(__GetLengthA) b2PulleyJoint::GetLengthA;
 %rename(__GetRatio) b2PulleyJoint::GetRatio;
 
 /**** MouseJoint ****/
@@ -493,32 +498,34 @@ public:
     def __init__(self, **kwargs):
         _Box2D.b2PulleyJointDef_swiginit(self,_Box2D.new_b2PulleyJointDef())
         _init_jointdef_kwargs(self, **kwargs)
-        
-        lengthA_set=False
-        lengthB_set=False
-        if 'anchorA' in kwargs or 'anchorB' in kwargs:
+        self.__init_pulley__(**kwargs)
+    
+    def __init_pulley__(self, anchorA=None, anchorB=None, lengthA=None, lengthB=None, groundAnchorA=None, groundAnchorB=None, maxLengthA=None, maxLengthB=None, ratio=None, **kwargs):
+        lengthA_set, lengthB_set = False, False
+        if anchorA is not None or anchorB is not None:
             # Some undoing -- if the user specified the length, we might
             # have overwritten it, so reset it.
-            if 'lengthA' in kwargs:
-                self.lengthA = kwargs['lengthA']
-                lengthA_set=True
-            if 'lengthB' in kwargs:
-                self.lengthB = kwargs['lengthB']
-                lengthB_set=True
+            if lengthA is not None:
+                self.lengthA = lengthA
+                lengthA_set = True
+            if lengthB is not None:
+                self.lengthB = lengthB
+                lengthB_set = True
 
-        if 'anchorA' in kwargs and 'groundAnchorA' in kwargs and 'lengthA' not in kwargs:
+        if anchorA is not None and groundAnchorA is not None and lengthA is None:
             d1 = self.anchorA - self.groundAnchorA
             self.lengthA = d1.length
-            lengthA_set=True
+            lengthA_set = True
 
-        if 'anchorB' in kwargs and 'groundAnchorB' in kwargs and 'lengthB' not in kwargs:
+        if anchorB is not None and groundAnchorB is not None and lengthB is None:
             d2 = self.anchorB - self.groundAnchorB
             self.lengthB = d2.length
             lengthB_set=True
 
-        if 'ratio' in kwargs:
-            assert(self.ratio > globals()['b2_epsilon']) # Ratio too small
-            if lengthA_set and lengthB_set and 'maxLengthA' not in kwargs and 'maxLengthB' not in kwargs:
+        if ratio is not None:
+            # Ratio too small?
+            assert(self.ratio > globals()['b2_epsilon'])
+            if lengthA_set and lengthB_set and maxLengthA is None and maxLengthB is None:
                 C = self.lengthA + self.ratio * self.lengthB
                 self.maxLengthA = C - self.ratio * b2_minPulleyLength
                 self.maxLengthB = (C - b2_minPulleyLength) / self.ratio
@@ -637,6 +644,43 @@ this point. So, figure out a way around this, somehow.
         _init_jointdef_kwargs(self, **kwargs)
 }
 
+/**** Add some of the functionality that Initialize() offers for joint definitions ****/
+/**** MotorJointDef ****/
+%extend b2MotorJointDef {
+    %pythoncode %{
+
+    %}
+}
+
+%feature("shadow") b2MotorJointDef::b2MotorJointDef() {
+    def __init__(self, bodyA=None, bodyB=None, **kwargs):
+        _Box2D.b2MotorJointDef_swiginit(self,_Box2D.new_b2MotorJointDef())
+        _init_jointdef_kwargs(self, bodyA=bodyA, bodyB=bodyB, **kwargs)
+        if bodyA is not None and bodyB is not None:
+            if not kwargs:
+                self.Initialize(bodyA, bodyB)
+}
+
+%extend b2MotorJoint {
+public:
+    %pythoncode %{
+        # Read-write properties
+        maxForce = property(__GetMaxForce, __SetMaxForce)
+        maxTorque = property(__GetMaxTorque, __SetMaxTorque)
+        linearOffset = property(__GetLinearOffset, __SetLinearOffset)
+        angularOffset = property(__GetAngularOffset, __SetAngularOffset) 
+    %}
+}
+
+%rename(__GetMaxForce) b2MotorJoint::GetMaxForce;
+%rename(__SetMaxForce) b2MotorJoint::SetMaxForce;
+%rename(__GetMaxTorque) b2MotorJoint::GetMaxTorque;
+%rename(__SetMaxTorque) b2MotorJoint::SetMaxTorque;
+%rename(__GetLinearOffset) b2MotorJoint::GetLinearOffset;
+%rename(__SetLinearOffset) b2MotorJoint::SetLinearOffset;
+%rename(__GetAngularOffset) b2MotorJoint::GetAngularOffset;
+%rename(__SetAngularOffset) b2MotorJoint::SetAngularOffset;
+
 /**** Hide the now useless enums ****/
 %ignore e_atLowerLimit;
 %ignore e_atUpperLimit;
@@ -652,3 +696,4 @@ this point. So, figure out a way around this, somehow.
 %ignore e_revoluteJoint;
 %ignore e_unknownJoint;
 %ignore e_weldJoint;
+%ignore e_motorJoint;;

@@ -187,6 +187,9 @@
 
     /* And finally tag on the secondary namespace code to the end of Box2D.py */
     %pythoncode %{
+        # Backward-compatibility 
+        b2LoopShape = b2ChainShape
+
         # Initialize the alternative namespace b2.*, and clean-up the
         # dir listing of Box2D by removing *_swigregister.
         #

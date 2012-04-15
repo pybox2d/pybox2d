@@ -1,5 +1,5 @@
 /*
-* Copyright (c) 2006-2009 Erin Catto http://www.box2d.org
+* Copyright (c) 2006-2011 Erin Catto http://www.box2d.org
 *
 * This software is provided 'as-is', without any express or implied
 * warranty.  In no event will the authors be held liable for any damages
@@ -24,25 +24,16 @@
 #include <Box2D/Common/b2StackAllocator.h>
 #include <Box2D/Dynamics/b2ContactManager.h>
 #include <Box2D/Dynamics/b2WorldCallbacks.h>
+#include <Box2D/Dynamics/b2TimeStep.h>
 
 struct b2AABB;
 struct b2BodyDef;
 struct b2Color;
 struct b2JointDef;
-struct b2TimeStep;
 class b2Body;
 class b2Draw;
 class b2Fixture;
 class b2Joint;
-
-/// Profiling data. Times are in milliseconds.
-struct b2Profile
-{
-	float32 step;
-	float32 collide;
-	float32 solve;
-	float32 solveTOI;
-};
 
 /// The world class manages all physics entities, dynamic simulation,
 /// and asynchronous queries. The world also contains efficient memory
@@ -52,8 +43,7 @@ class b2World
 public:
 	/// Construct a world object.
 	/// @param gravity the world gravity vector.
-	/// @param doSleep improve performance by not simulating inactive bodies.
-	b2World(const b2Vec2& gravity, bool doSleep);
+	b2World(const b2Vec2& gravity);
 
 	/// Destruct the world. All physics entities are destroyed and all heap memory is released.
 	~b2World();
@@ -146,18 +136,26 @@ public:
 	/// Get the world contact list. With the returned contact, use b2Contact::GetNext to get
 	/// the next contact in the world list. A NULL contact indicates the end of the list.
 	/// @return the head of the world contact list.
-	/// @warning contacts are 
+	/// @warning contacts are created and destroyed in the middle of a time step.
+	/// Use b2ContactListener to avoid missing contacts.
 	b2Contact* GetContactList();
 	const b2Contact* GetContactList() const;
 
+	/// Enable/disable sleep.
+	void SetAllowSleeping(bool flag);
+	bool GetAllowSleeping() const { return m_allowSleep; }
+
 	/// Enable/disable warm starting. For testing.
 	void SetWarmStarting(bool flag) { m_warmStarting = flag; }
+	bool GetWarmStarting() const { return m_warmStarting; }
 
 	/// Enable/disable continuous physics. For testing.
 	void SetContinuousPhysics(bool flag) { m_continuousPhysics = flag; }
+	bool GetContinuousPhysics() const { return m_continuousPhysics; }
 
 	/// Enable/disable single stepped continuous physics. For testing.
 	void SetSubStepping(bool flag) { m_subStepping = flag; }
+	bool GetSubStepping() const { return m_subStepping; }
 
 	/// Get the number of broad-phase proxies.
 	int32 GetProxyCount() const;
@@ -196,11 +194,20 @@ public:
 	/// Get the flag that controls automatic clearing of forces after each time step.
 	bool GetAutoClearForces() const;
 
+	/// Shift the world origin. Useful for large worlds.
+	/// The body shift formula is: position -= newOrigin
+	/// @param newOrigin the new origin with respect to the old origin
+	void ShiftOrigin(const b2Vec2& newOrigin);
+
 	/// Get the contact manager for testing.
 	const b2ContactManager& GetContactManager() const;
 
 	/// Get the current profile.
 	const b2Profile& GetProfile() const;
+
+	/// Dump the world into the log file.
+	/// @warning this should be called outside of a time step.
+	void Dump();
 
 private:
 

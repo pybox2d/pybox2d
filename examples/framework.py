@@ -3,7 +3,7 @@
 #!/usr/bin/python
 #
 # C++ version Copyright (c) 2006-2007 Erin Catto http://www.box2d.org
-# Python version Copyright (c) 2010 Ken Lauer / sirkne at gmail dot com
+# Python version by Ken Lauer / sirkne at gmail dot com
 # 
 # This software is provided 'as-is', without any express or implied
 # warranty.  In no event will the authors be held liable for any damages
@@ -233,14 +233,21 @@ class FrameworkBase(b2ContactListener):
 
             t_draw=max(b2_epsilon, t_draw)
             t_step=max(b2_epsilon, t_step)
+
             try:
                 self.t_draws.append(1.0/t_draw)
-                self.t_steps.append(1.0/t_step)
             except:
                 pass
             else:
                 if len(self.t_draws) > 2:
                     self.t_draws.pop(0)
+
+            try:
+                self.t_steps.append(1.0/t_step)
+            except:
+                pass
+            else:
+                if len(self.t_steps) > 2:
                     self.t_steps.pop(0)
 
             if settings.drawFPS:
@@ -254,7 +261,7 @@ class FrameworkBase(b2ContactListener):
                     (settings.hz, settings.velocityIterations, settings.positionIterations))
 
                 if self.t_draws and self.t_steps:
-                    self.Print("Potential draw rate: %.2f Hz Step rate: %.2f Hz" % (sum(self.t_draws)/len(self.t_draws), sum(self.t_steps)/len(self.t_steps)))
+                    self.Print("Potential draw rate: %.2f fps Step rate: %.2f Hz" % (sum(self.t_draws)/len(self.t_draws), sum(self.t_steps)/len(self.t_steps)))
 
     def ShiftMouseDown(self, p):
         """

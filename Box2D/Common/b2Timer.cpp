@@ -18,11 +18,11 @@
 
 #include <Box2D/Common/b2Timer.h>
 
+#if defined(_WIN32)
+
 float64 b2Timer::s_invFrequency = 0.0f;
 
-#if defined(WIN32)
-
-#include <Windows.h>
+#include <windows.h>
 
 b2Timer::b2Timer()
 {
@@ -56,6 +56,30 @@ float32 b2Timer::GetMilliseconds() const
 	float64 count = float64(largeInteger.QuadPart);
 	float32 ms = float32(s_invFrequency * (count - m_start));
 	return ms;
+}
+
+#elif defined(__linux__) || defined (__APPLE__)
+
+#include <sys/time.h>
+
+b2Timer::b2Timer()
+{
+    Reset();
+}
+
+void b2Timer::Reset()
+{
+    timeval t;
+    gettimeofday(&t, 0);
+    m_start_sec = t.tv_sec;
+    m_start_msec = t.tv_usec * 0.001f;
+}
+
+float32 b2Timer::GetMilliseconds() const
+{
+    timeval t;
+    gettimeofday(&t, 0);
+    return (t.tv_sec - m_start_sec) * 1000 + t.tv_usec * 0.001f - m_start_msec;
 }
 
 #else

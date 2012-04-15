@@ -250,7 +250,7 @@ public:
 %}
 
 %pythoncode %{
-    def b2TimeOfImpact(*args, **kwargs):
+    def b2TimeOfImpact(shapeA=None, idxA=0, shapeB=None, idxB=0, sweepA=None, sweepB=None, tMax=0.0):
         """
         Compute the upper bound on time before two shapes penetrate. Time is represented as
         a fraction between [0,tMax]. This uses a swept separating axis and may miss some intermediate,
@@ -276,25 +276,12 @@ public:
                 e_touching,
                 e_separated ]
         """
-        if len(args) == 5 or len(args) == 1:
-            out=_b2TimeOfImpact(*args)
-        elif kwargs: # use kwargs
-            shapeA = kwargs['shapeA']
-            shapeB = kwargs['shapeB']
-            sweepA = kwargs['sweepA']
-            sweepB = kwargs['sweepB']
-            tMax = kwargs['tMax']
-            if 'idxA' in kwargs:
-                idxA = kwargs['idxA']
-            else:
-                idxA=0
-            if 'idxB' in kwargs:
-                idxB = kwargs['idxB']
-            else:
-                idxB=0
-            out=_b2TimeOfImpact(shapeA, idxA, shapeB, idxB, sweepA, sweepB, tMax)
+
+        if isinstance(shapeA, b2TOIInput):
+            toi_input = shapeA
+            out = _b2TimeOfImpact(toi_input)
         else:
-            raise ValueError('Expected arguments for b2TimeOfImpact or kwargs')
+            out = _b2TimeOfImpact(shapeA, idxA, shapeB, idxB, sweepA, sweepB, tMax)
 
         return (out.state, out.t)
 %}
