@@ -1,0 +1,12 @@
+include INSTALL
+include LICENSE
+include MANIFEST.in
+include MANIFEST
+include README
+include setup.py
+include distribute_setup.py
+recursive-include examples *.py
+recursive-include examples/data *.png *.tga *.txt *.ttf
+recursive-include examples/pgu *
+recursive-include library *.py
+recursive-include Box2D *.py *.i *.cpp *.h *.c *.txt

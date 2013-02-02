@@ -6,10 +6,11 @@ Setup script for pybox2d.
 For installation instructions, see INSTALL.
 
 Basic install steps:
- setup.py build
+ python distribute_setup.py
+ python setup.py build
 
 If that worked, then:
- setup.py install
+ python setup.py install
 """
 
 import os
@@ -58,8 +59,8 @@ if setuptools_version:
             build_ext.build_ext.get_ext_filename = get_ext_filename
 
 # release version number
-box2d_version  = '2.1'
-release_number = 1
+box2d_version  = '2.3'
+release_number = 0
 
 # create the version string
 version_str = "%sb%s" % (box2d_version, str(release_number))
@@ -155,7 +156,8 @@ CLASSIFIERS = [
     "Operating System :: MacOS :: MacOS X",
     "Operating System :: POSIX",
     "Programming Language :: Python",
-    "Games :: Physics Libraries"
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Software Development :: Libraries :: pygame",
     ]
 
 write_init()
@@ -179,6 +181,7 @@ setup_dict = dict(
                          'egg_info' : { 'egg_base' : library_base },
                         },
     ext_modules      = [ pybox2d_extension ],
+#   use_2to3         = (sys.version_info >= (3,)),
     )
 
 # run the actual setup from distutils
