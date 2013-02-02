@@ -90,6 +90,7 @@ class FrameworkBase(b2ContactListener):
     colors={
         'mouse_point'     : b2Color(0,1,0),
         'bomb_center'     : b2Color(0,0,1.0),
+        'bomb_line'       : b2Color(0,1.0,1.0),
         'joint_line'      : b2Color(0.8,0.8,0.8),
         'contact_add'     : b2Color(0.3, 0.95, 0.3),
         'contact_persist' : b2Color(0.3, 0.3, 0.95),
@@ -211,21 +212,20 @@ class FrameworkBase(b2ContactListener):
             # Draw the slingshot bomb
             if self.bombSpawning:
                 self.renderer.DrawPoint(self.renderer.to_screen(self.bombSpawnPoint), settings.pointSize, self.colors['bomb_center'])
-                self.renderer.DrawSegment(self.renderer.to_screen(self.bombSpawnPoint), self.mouseWorld, self.colors['bomb_line'])
+                self.renderer.DrawSegment(self.renderer.to_screen(self.bombSpawnPoint), self.renderer.to_screen(self.mouseWorld), self.colors['bomb_line'])
 
             # Draw each of the contact points in different colors.
             if self.settings.drawContactPoints:
                 for point in self.points:
                     if point['state'] == b2_addState:
-                        self.renderer.DrawPoint(point['position'], settings.pointSize, self.colors['contact_add'])
+                        self.renderer.DrawPoint(self.renderer.to_screen(point['position']), settings.pointSize, self.colors['contact_add'])
                     elif point['state'] == b2_persistState:
-                        self.renderer.DrawPoint(point['position'], settings.pointSize, self.colors['contact_persist'])
+                        self.renderer.DrawPoint(self.renderer.to_screen(point['position']), settings.pointSize, self.colors['contact_persist'])
 
             if settings.drawContactNormals:
-                axisScale = 0.3
                 for point in self.points:
                     p1 = self.renderer.to_screen(point['position'])
-                    p2 = p1 + axisScale * point['normal']
+                    p2 = self.renderer.axisScale * point['normal'] + p1
                     self.renderer.DrawSegment(p1, p2, self.colors['contact_normal']) 
 
             self.renderer.EndDraw()

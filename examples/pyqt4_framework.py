@@ -67,6 +67,7 @@ class Pyqt4Draw(object):
     temp_items array to be deleted on the next draw. 
     """
     MAX_TIMES=20
+    axisScale = 0.4
     def __init__(self, test): 
         self.test=test
         self.window=self.test.window
@@ -132,9 +133,8 @@ class Pyqt4Draw(object):
         Draw the transform xf on the screen
         """
         p1 = xf.position
-        axisScale = 0.4
-        p2 = p1 + axisScale * xf.R.col1
-        p3 = p1 + axisScale * xf.R.col2
+        p2 = p1 + self.axisScale * xf.R.col1
+        p3 = p1 + self.axisScale * xf.R.col2
 
         line1=self.scene.addLine(p1[0], p1[1], p2[0], p2[1], pen=QtGui.QPen(QColor(255,0,0)))
         line2=self.scene.addLine(p1[0], p1[1], p3[0], p3[1], pen=QtGui.QPen(QColor(0,255,0)))

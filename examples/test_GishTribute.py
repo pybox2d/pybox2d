@@ -66,8 +66,8 @@ def add_spring_force(bodyA, localA, bodyB, localB, force_k, friction, desiredDis
     vrel = vdiff.x*diff.x + vdiff.y*diff.y
     forceMag = -force_k*(dx-desiredDist) - friction*vrel
 
-    bodyB.ApplyForce(diff* forceMag, bodyA.GetWorldPoint(localA))
-    bodyA.ApplyForce(diff*-forceMag, bodyB.GetWorldPoint(localB))
+    bodyB.ApplyForce(diff* forceMag, bodyA.GetWorldPoint(localA), True)
+    bodyA.ApplyForce(diff*-forceMag, bodyB.GetWorldPoint(localB), True)
 
 def blob_step(world, blob_bodies, radius, upward_force, move=0, spring_friction=5.0):
     body_count=len(blob_bodies)
@@ -78,7 +78,7 @@ def blob_step(world, blob_bodies, radius, upward_force, move=0, spring_friction=
         top_body=[(body.position.y, body) for body in blob_bodies]
         top_body.sort()
         top_body=top_body[-1][1]
-        top_body.ApplyForce((move, 0), top_body.position)
+        top_body.ApplyForce((move, 0), top_body.position, True)
 
 class GishTribute (Framework):
     name="Tribute to Gish"

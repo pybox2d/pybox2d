@@ -83,11 +83,11 @@ class ApplyForce (Framework):
         if key==Keys.K_w:
             f = self.body.GetWorldVector(localVector=(0.0, -200.0))
             p = self.body.GetWorldPoint(localPoint=(0.0, 2.0))
-            self.body.ApplyForce(f, p)
+            self.body.ApplyForce(f, p, True)
         elif key==Keys.K_a:
-            self.body.ApplyTorque(50.0)
+            self.body.ApplyTorque(50.0, True)
         elif key==Keys.K_d:
-            self.body.ApplyTorque(-50.0)
+            self.body.ApplyTorque(-50.0, True)
 
 if __name__=="__main__":
      main(ApplyForce)
