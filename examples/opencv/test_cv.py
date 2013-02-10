@@ -118,6 +118,8 @@ def get_image():
         #raise # <-- uncomment to force using the journal image
         camera = cv.CaptureFromCAM(-1) # need to hold onto this instance
         image = cv.QueryFrame(camera)
+        if image is None:
+            raise Exception('Invalid image captured?')
     except Exception as ex:
         print('Unable to grab an image from the camera. (%s)' % ex)
         print('Using the journal image instead.') 
