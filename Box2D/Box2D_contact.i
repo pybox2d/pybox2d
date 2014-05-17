@@ -113,17 +113,15 @@ public:
 /* ContactImpulse */
 %extend b2ContactImpulse {
 public:
-    //float32 normalImpulses[b2_maxManifoldPoints];
-    //float32 tangentImpulses[b2_maxManifoldPoints];
     PyObject* __get_normal_impulses() {
         PyObject* ret = PyTuple_New(b2_maxManifoldPoints);
-        for (int i=0; i < b2_maxManifoldPoints; i++)
+        for (int i=0; i < $self->count; i++)
             PyTuple_SetItem(ret, i, SWIG_From_double((float32)($self->normalImpulses[i])));
         return ret;
     }
     PyObject* __get_tangent_impulses() {
         PyObject* ret = PyTuple_New(b2_maxManifoldPoints);
-        for (int i=0; i < b2_maxManifoldPoints; i++)
+        for (int i=0; i < $self->count; i++)
             PyTuple_SetItem(ret, i, SWIG_From_double((float32)($self->tangentImpulses[i])));
         return ret;
     }
@@ -146,7 +144,7 @@ public:
     %pythoncode %{
     %}
 
-    PyObject* __GetPoints() {
+    PyObject* __get_points() {
         PyObject* ret=PyTuple_New(b2_maxManifoldPoints);
         PyObject* point;
         for (int i=0; i < b2_maxManifoldPoints; i++) {
@@ -159,7 +157,7 @@ public:
         return ret;
     }
     %pythoncode %{
-        points = property(__GetPoints, None)
+        points = property(__get_points, None)
     %}
 }
 
