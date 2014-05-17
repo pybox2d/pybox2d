@@ -21,7 +21,6 @@
 /**** Shape ****/
 %extend b2Shape {
 public:
-    long __hash__() { return (long)self; }
     %pythoncode %{
         __eq__ = b2ShapeCompare
         __ne__ = lambda self,other: not b2ShapeCompare(self,other)

@@ -39,7 +39,6 @@ public:
 /**** Joint ****/
 %extend b2Joint {
 public:
-    long __hash__() { return (long)self; }
     %pythoncode %{
     __eq__ = b2JointCompare
     __ne__ = lambda self,other: not b2JointCompare(self,other)

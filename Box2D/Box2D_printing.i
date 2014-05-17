@@ -260,6 +260,9 @@ def _format_repr(obj):
 
 %define REPREXTEND(classname)
 %extend classname {
+public:
+    long __hash__() { return (long)self; }
+
     %pythoncode %{
         def __repr__(self):
             return _format_repr(self) 
