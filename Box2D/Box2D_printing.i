@@ -171,49 +171,65 @@ _repr_attrs = {'b2AABB': ['center', 'extents', 'lowerBound', 'perimeter', 'upper
                'b2WorldManifold': ['normal', 'points', ],
                }
 
-_max_repr_level = 4
-_format_recursed = 0
-def _format_repr(obj, indent_amount=4, max_level=_max_repr_level,
-                 max_str_len=250, max_sub_lines=10):
+MAX_REPR_DEPTH = 4
+MAX_REPR_STR_LEN = 250
+MAX_REPR_SUB_LINES = 10
+REPR_INDENT = 4
+
+_repr_state = {}
+def _format_repr(obj):
     """
     Dynamically creates the object representation string for `obj`.
     
     Attributes found in _repr_attrs[class_name] will be included.
     """
 
-    global _format_recursed
-    _format_recursed += 1
+    global _repr_state
+    if 'spaces' not in _repr_state:
+        _repr_state['spaces'] = 0
 
-    indent_str = ' ' * (_format_recursed*indent_amount) 
-    ret = ['%s(' % obj.__class__.__name__]
+    if 'depth' not in _repr_state:
+        _repr_state['depth'] = 1
+    else:
+        _repr_state['depth'] += 1
 
-    if _format_recursed > max_level:
-        _format_recursed -= 1
-        return indent_str + '(max recursion limit hit)'
+    if _repr_state['depth'] > MAX_REPR_DEPTH:
+        _repr_state['depth'] -= 1
+        return '%s(max recursion depth hit)' % (' ' * _repr_state['spaces'])
     
-    try:
-        props = _repr_attrs.get(obj.__class__.__name__, [])
+    class_line = '%s(' % (obj.__class__.__name__, )
+    
+    orig_spaces = _repr_state['spaces']
 
+    ret = []
+
+    props = _repr_attrs.get(obj.__class__.__name__, [])
+
+    try:
+        prop_spacing = _repr_state['spaces'] + len(class_line.lstrip())
+        separator = '\n' + ' ' * prop_spacing
+    
         for prop in props:
+            _repr_state['spaces'] = len(prop) + 1
             try:
                 s = repr(getattr(obj, prop))
             except Exception as ex:
                 s = '(repr: %s)' % ex
 
             lines = s.split('\n')
-            if len(lines) > max_sub_lines:
+            if len(lines) > MAX_REPR_SUB_LINES:
                 length_ = 0
-                for i, line_ in enumerate(lines[:max_sub_lines]):
+                for i, line_ in enumerate(lines[:MAX_REPR_SUB_LINES]):
                     length_ += len(line_)
-                    if length_ > max_str_len:
-                        ending_delim = ''
+                    if length_ > MAX_REPR_STR_LEN:
+                        ending_delim = []
                         for j in s[::-1]:
                             if j in ')]}':
-                                ending_delim += j
+                                ending_delim.insert(0, j)
                             else:
                                 break
 
-                        ret[-1] += '(...) %s' % ending_delim[::-1]
+                        ret[-1] = '%s...  %s' % (ret[-1], ''.join(ending_delim))
                         break
 
                     if i == 0:
@@ -221,24 +237,25 @@ def _format_repr(obj, indent_amount=4, max_level=_max_repr_level,
                     else:
                         ret.append(line_) 
             else:
-                ret.append('%s=%s' % (prop, lines[0]))
+                ret.append('%s=%s' % (prop, lines[0].lstrip()))
                 if len(lines) > 1:
                     ret.extend(lines[1:])
+
+            ret[-1] += ','
         
-        separator = '\n%s' % indent_str
     finally:
-        _format_recursed -= 1
+        _repr_state['depth'] -= 1
+        _repr_state['spaces'] = orig_spaces
     
     if len(ret) <= 3:
+        # Closing parenthesis on same line
         ret[-1] += ')'
-        if _format_recursed == 0:
-            return ''.join(ret)
-        else:
-            return [''.join(ret)]
+        return ''.join(ret)
 
     else:
+        # Closing parenthesis on next line
         ret.append(')')
-        return separator.join(ret)
+        return '%s%s' % (class_line, separator.join(ret))
 %}
 
 %define REPREXTEND(classname)
