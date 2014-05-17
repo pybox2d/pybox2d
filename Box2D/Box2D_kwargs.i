@@ -20,7 +20,7 @@
 
 %pythoncode %{
     def _init_kwargs(self, **kwargs):
-        for key, value in kwargs.iteritems():
+        for key, value in kwargs.items():
             try:
                 setattr(self, key, value)
             except:

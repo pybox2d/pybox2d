@@ -156,7 +156,7 @@ public:
             shape=type_()
             fixture=b2FixtureDef(shape=shape)
             
-            for key, value in kwargs.iteritems():
+            for key, value in kwargs.items():
                 # Note that these hasattrs use the types to get around
                 # the fact that some properties are write-only (like 'box' in
                 # polygon shapes), and as such do not show up with 'hasattr'.

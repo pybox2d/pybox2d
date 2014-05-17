@@ -33,7 +33,7 @@
 
         self.allowSleeping = doSleep
 
-        for key, value in kwargs.iteritems():
+        for key, value in kwargs.items():
             try:
                 setattr(self, key, value)
             except:
