@@ -34,9 +34,8 @@ def _format_repr(item, props, indent_amount=4, max_level=4, max_str_len=250, max
     for prop in props:
         try:
             s=repr(getattr(item, prop))
-        except:
-            from sys import exc_info
-            s='(*repr failed: %s*)' % exc_info()[1]
+        except Exception as ex:
+            s='(*repr failed: %s*)' % ex
 
         if s.count('\n') > max_sub_lines:
             length=0

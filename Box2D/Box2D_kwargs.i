@@ -23,9 +23,7 @@
         for key, value in kwargs.items():
             try:
                 setattr(self, key, value)
-            except:
-                from sys import exc_info
-                ex=exc_info()[1]
+            except Exception as ex:
                 raise ex.__class__('Failed on kwargs for %s.%s: %s' \
                             % (self.__class__.__name__, key, ex))
 
