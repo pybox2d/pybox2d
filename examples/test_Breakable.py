@@ -53,10 +53,8 @@ class Breakable (Framework):
             return 
         
         # If the impulse is enough to split the objects, then flag it to break
-        maxImpulse=max(impulse.normalImpulses[i] for i in range(contact.manifold.pointCount))
-
-        if maxImpulse > 40:
-            self._break=True
+        if max(impulse.normalImpulses) > 40:
+            self._break = True
 
     def Break(self):
         # Create two bodies from one
