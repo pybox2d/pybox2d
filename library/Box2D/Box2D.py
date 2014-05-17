@@ -89,13 +89,16 @@ except:
 
 
 def _dir_filter(self):
-    # Using introspection, mimic dir() by adding up all of the __dicts__
-    # for the current class and all base classes (type(self).__mro__ returns
-    # all of the classes that make it up)
-    # Basically filters by:
-    # __x__ OK
-    # __x bad
-    # _classname bad
+    """
+    Using introspection, mimic dir() by adding up all of the __dicts__
+    for the current class and all base classes (type(self).__mro__ returns
+    all of the classes that make it up)
+    Basically filters by:
+        __x__ OK
+        __x bad
+        _classname bad
+    """
+
     def check(s):
         if s.startswith('__'):
             if s.endswith('__'):
@@ -108,20 +111,18 @@ def _dir_filter(self):
                     return False
             return True
     
-    keys=sum([list(c.__dict__.keys()) for c in type(self).__mro__], [])
-    typenames=["_%s" % c.__name__ for c in type(self).__mro__]
-    ret=[s for s in list(set(keys)) if check(s)]
+    keys = sum([list(c.__dict__.keys()) for c in type(self).__mro__], [])
+    typenames = ["_%s" % c.__name__ for c in type(self).__mro__]
+    ret = [s for s in list(set(keys)) if check(s)]
     ret.sort()
     return ret
 
 
 def _init_kwargs(self, **kwargs):
-    for key, value in kwargs.iteritems():
+    for key, value in kwargs.items():
         try:
             setattr(self, key, value)
-        except:
-            from sys import exc_info
-            ex=exc_info()[1]
+        except Exception as ex:
             raise ex.__class__('Failed on kwargs for %s.%s: %s' \
                         % (self.__class__.__name__, key, ex))
 
@@ -132,63 +133,243 @@ def _init_jointdef_kwargs(self, bodyA=None, bodyB=None, **kwargs):
 
     _init_kwargs(self, **kwargs)
 
-_format_recursed=0
-def _format_repr(item, props, indent_amount=4, max_level=4, max_str_len=250, max_sub_lines=10):
-    global _format_recursed
-    _format_recursed+=1
-    indent_str=' ' * (_format_recursed*indent_amount) 
-    ret=['%s(' % item.__class__.__name__]
+_repr_attrs = {'b2AABB': ['center', 'extents', 'lowerBound', 'perimeter', 'upperBound', 
+                          'valid', ],
+               'b2Body': ['active', 'angle', 'angularDamping', 'angularVelocity', 'awake', 
+                          'bullet', 'contacts', 'fixedRotation', 'fixtures', 
+                          'inertia', 'joints', 'linearDamping', 'linearVelocity', 
+                          'localCenter', 'mass', 'massData', 'position', 
+                          'sleepingAllowed', 'transform', 'type', 'userData', 
+                          'worldCenter', ],
+               'b2BodyDef': ['active', 'allowSleep', 'angle', 'angularDamping', 'angularVelocity', 
+                             'awake', 'bullet', 'fixedRotation', 'fixtures', 
+                             'inertiaScale', 'linearDamping', 'linearVelocity', 'position', 
+                             'shapeFixture', 'shapes', 'type', 'userData', 
+                             ],
+               'b2BroadPhase': ['proxyCount', ],
+               'b2CircleShape': ['childCount', 'pos', 'radius', 'type', ],
+               'b2ClipVertex': ['id', 'v', ],
+               'b2Color': ['b', 'bytes', 'g', 'list', 'r', 
+                           ],
+               'b2Contact': ['childIndexA', 'childIndexB', 'enabled', 'fixtureA', 'fixtureB', 
+                             'manifold', 'touching', 'worldManifold', ],
+               'b2ContactEdge': ['contact', 'other', ],
+               'b2ContactFeature': ['indexA', 'indexB', 'typeA', 'typeB', ],
+               'b2ContactID': ['cf', 'key', ],
+               'b2ContactImpulse': ['normalImpulses', 'tangentImpulses', ],
+               'b2ContactManager': ['allocator', 'broadPhase', 'contactCount', 'contactFilter', 'contactList', 
+                                    'contactListener', ],
+               'b2ContactPoint': ['fixtureA', 'fixtureB', 'normal', 'position', 'state', 
+                                  ],
+               'b2DistanceInput': ['proxyA', 'proxyB', 'transformA', 'transformB', 'useRadii', 
+                                   ],
+               'b2DistanceJoint': ['active', 'anchorA', 'anchorB', 'bodyA', 'bodyB', 
+                                   'dampingRatio', 'frequency', 'length', 'type', 
+                                   'userData', ],
+               'b2DistanceJointDef': ['anchorA', 'anchorB', 'bodyA', 'bodyB', 'collideConnected', 
+                                      'dampingRatio', 'frequencyHz', 'length', 'localAnchorA', 
+                                      'localAnchorB', 'type', 'userData', ],
+               'b2DistanceOutput': ['distance', 'iterations', 'pointA', 'pointB', ],
+               'b2DistanceProxy': ['m_buffer', 'shape', 'vertices', ],
+               'b2Draw': ['flags', ],
+               'b2DrawExtended': ['center', 'convertVertices', 'flags', 'flipX', 'flipY', 
+                                  'offset', 'screenSize', 'zoom', ],
+               'b2EdgeShape': ['all_vertices', 'childCount', 'hasVertex0', 'hasVertex3', 'radius', 
+                               'type', 'vertex0', 'vertex1', 'vertex2', 
+                               'vertex3', 'vertexCount', 'vertices', ],
+               'b2Filter': ['categoryBits', 'groupIndex', 'maskBits', ],
+               'b2Fixture': ['body', 'density', 'filterData', 'friction', 'massData', 
+                             'restitution', 'sensor', 'shape', 'type', 
+                             'userData', ],
+               'b2FixtureDef': ['categoryBits', 'density', 'filter', 'friction', 'groupIndex', 
+                                'isSensor', 'maskBits', 'restitution', 'shape', 
+                                'userData', ],
+               'b2FixtureProxy': ['aabb', 'childIndex', 'fixture', 'proxyId', ],
+               'b2FrictionJoint': ['active', 'anchorA', 'anchorB', 'bodyA', 'bodyB', 
+                                   'maxForce', 'maxTorque', 'type', 'userData', 
+                                   ],
+               'b2FrictionJointDef': ['anchor', 'bodyA', 'bodyB', 'collideConnected', 'localAnchorA', 
+                                      'localAnchorB', 'maxForce', 'maxTorque', 'type', 
+                                      'userData', ],
+               'b2GearJoint': ['active', 'anchorA', 'anchorB', 'bodyA', 'bodyB', 
+                               'ratio', 'type', 'userData', ],
+               'b2GearJointDef': ['bodyA', 'bodyB', 'collideConnected', 'joint1', 'joint2', 
+                                  'ratio', 'type', 'userData', ],
+               'b2Jacobian': ['angularA', 'angularB', 'linearA', 'linearB', ],
+               'b2Joint': ['active', 'anchorA', 'anchorB', 'bodyA', 'bodyB', 
+                           'type', 'userData', ],
+               'b2JointDef': ['bodyA', 'bodyB', 'collideConnected', 'type', 'userData', 
+                              ],
+               'b2JointEdge': ['joint', 'other', ],
+               'b2WheelJoint': ['active', 'anchorA', 'anchorB', 'bodyA', 'bodyB', 
+                                'maxMotorTorque', 'motorEnabled', 'motorSpeed', 'speed', 
+                                'springDampingRatio', 'springFrequencyHz', 'translation', 'type', 
+                                'userData', ],
+               'b2WheelJointDef': ['anchor', 'axis', 'bodyA', 'bodyB', 'collideConnected', 
+                                   'dampingRatio', 'enableMotor', 'frequencyHz', 'localAnchorA', 
+                                   'localAnchorB', 'localAxisA', 'maxMotorTorque', 'motorSpeed', 
+                                   'type', 'userData', ],
+               'b2LoopShape': ['childCount', 'edges', 'radius', 'type', 'vertexCount', 
+                               'vertices', ],
+               'b2Manifold': ['localNormal', 'localPoint', 'pointCount', 'points', 'type_', 
+                              ],
+               'b2ManifoldPoint': ['id', 'isNew', 'localPoint', 'normalImpulse', 'tangentImpulse', 
+                                   ],
+               'b2MassData': ['I', 'center', 'mass', ],
+               'b2Mat22': ['angle', 'col1', 'col2', 'inverse', ],
+               'b2Mat33': ['col1', 'col2', 'col3', ],
+               'b2MouseJoint': ['active', 'anchorA', 'anchorB', 'bodyA', 'bodyB', 
+                                'dampingRatio', 'frequency', 'maxForce', 'target', 
+                                'type', 'userData', ],
+               'b2MouseJointDef': ['bodyA', 'bodyB', 'collideConnected', 'dampingRatio', 'frequencyHz', 
+                                   'maxForce', 'target', 'type', 'userData', 
+                                   ],
+               'b2Pair': ['proxyIdA', 'proxyIdB', ],
+               'b2PolygonShape': ['box', 'centroid', 'childCount', 'normals', 'radius', 
+                                  'type', 'valid', 'vertexCount', 'vertices', 
+                                  ],
+               'b2PrismaticJoint': ['active', 'anchorA', 'anchorB', 'bodyA', 'bodyB', 
+                                    'limitEnabled', 'limits', 'lowerLimit', 'maxMotorForce', 
+                                    'motorEnabled', 'motorSpeed', 'speed', 'translation', 
+                                    'type', 'upperLimit', 'userData', ],
+               'b2PrismaticJointDef': ['anchor', 'axis', 'bodyA', 'bodyB', 'collideConnected', 
+                                       'enableLimit', 'enableMotor', 'localAnchorA', 'localAnchorB', 
+                                       'localAxis1', 'lowerTranslation', 'maxMotorForce', 'motorSpeed', 
+                                       'referenceAngle', 'type', 'upperTranslation', 'userData', 
+                                       ],
+               'b2PulleyJoint': ['active', 'anchorA', 'anchorB', 'bodyA', 'bodyB', 
+                                 'groundAnchorA', 'groundAnchorB', 'length1', 'length2', 
+                                 'ratio', 'type', 'userData', ],
+               'b2PulleyJointDef': ['anchorA', 'anchorB', 'bodyA', 'bodyB', 'collideConnected', 
+                                    'groundAnchorA', 'groundAnchorB', 'lengthA', 'lengthB', 
+                                    'localAnchorA', 'localAnchorB', 'maxLengthA', 'maxLengthB', 
+                                    'ratio', 'type', 'userData', ],
+               'b2RayCastInput': ['maxFraction', 'p1', 'p2', ],
+               'b2RayCastOutput': ['fraction', 'normal', ],
+               'b2RevoluteJoint': ['active', 'anchorA', 'anchorB', 'angle', 'bodyA', 
+                                   'bodyB', 'limitEnabled', 'limits', 'lowerLimit', 
+                                   'maxMotorTorque', 'motorEnabled', 'motorSpeed', 'speed', 
+                                   'type', 'upperLimit', 'userData', ],
+               'b2RevoluteJointDef': ['anchor', 'bodyA', 'bodyB', 'collideConnected', 'enableLimit', 
+                                      'enableMotor', 'localAnchorA', 'localAnchorB', 'lowerAngle', 
+                                      'maxMotorTorque', 'motorSpeed', 'referenceAngle', 'type', 
+                                      'upperAngle', 'userData', ],
+               'b2RopeJoint': ['active', 'anchorA', 'anchorB', 'bodyA', 'bodyB', 
+                               'limitState', 'maxLength', 'type', 'userData', 
+                               ],
+               'b2RopeJointDef': ['anchorA', 'anchorB', 'bodyA', 'bodyB', 'collideConnected', 
+                                  'localAnchorA', 'localAnchorB', 'maxLength', 'type', 
+                                  'userData', ],
+               'b2Shape': ['childCount', 'radius', 'type', ],
+               'b2Sweep': ['a', 'a0', 'alpha0', 'c', 'c0', 
+                           'localCenter', ],
+               'b2TOIInput': ['proxyA', 'proxyB', 'sweepA', 'sweepB', 'tMax', 
+                              ],
+               'b2TOIOutput': ['state', 't', ],
+               'b2Transform': ['R', 'angle', 'position', ],
+               'b2Vec2': ['length', 'lengthSquared', 'skew', 'tuple', 'valid', 
+                          'x', 'y', ],
+               'b2Vec3': ['length', 'lengthSquared', 'tuple', 'valid', 'x', 
+                          'y', 'z', ],
+               'b2Version': ['major', 'minor', 'revision', ],
+               'b2WeldJoint': ['active', 'anchorA', 'anchorB', 'bodyA', 'bodyB', 
+                               'type', 'userData', ],
+               'b2WeldJointDef': ['anchor', 'bodyA', 'bodyB', 'collideConnected', 'localAnchorA', 
+                                  'localAnchorB', 'referenceAngle', 'type', 'userData', 
+                                  ],
+               'b2World': ['autoClearForces', 'bodies', 'bodyCount', 'contactCount', 'contactFilter', 
+                           'contactListener', 'contactManager', 'contacts', 'continuousPhysics', 
+                           'destructionListener', 'gravity', 'jointCount', 'joints', 
+                           'locked', 'proxyCount', 'renderer', 'subStepping', 
+                           'warmStarting', ],
+               'b2WorldManifold': ['normal', 'points', ],
+               }
 
-    #ret.append(str(_format_recursed))
-    if _format_recursed > max_level:
-        _format_recursed-=1
-        return indent_str + '(*recursion*)'
+MAX_REPR_DEPTH = 4
+MAX_REPR_STR_LEN = 250
+MAX_REPR_SUB_LINES = 10
+REPR_INDENT = 4
+
+_repr_state = {}
+def _format_repr(obj):
+    """
+    Dynamically creates the object representation string for `obj`.
     
-    for prop in props:
-        try:
-            s=repr(getattr(item, prop))
-        except:
-            from sys import exc_info
-            s='(*repr failed: %s*)' % exc_info()[1]
+    Attributes found in _repr_attrs[class_name] will be included.
+    """
 
-        if s.count('\n') > max_sub_lines:
-            length=0
-            for i, line in enumerate(s.split('\n')[:max_sub_lines]):
-                length+=len(line)
-                if length > max_str_len:
-                    ending_delim=''
-                    for j in s[::-1]:
-                        if j in ')]}':
-                            ending_delim+=j
-                        else:
-                            break
-                    ret[-1]+='(...) %s' % ending_delim[::-1]
-                    break
+    global _repr_state
+    if 'spaces' not in _repr_state:
+        _repr_state['spaces'] = 0
 
-                if i==0:
-                    ret.append('%s=%s' % (prop, line))
-                else:
-                    ret.append(line) 
-        else:
-            if '\n' in s:
-                toadd=s.split('\n')
-                ret.append('%s=%s' % (prop, toadd[0]))
-                ret.extend(toadd[1:])
+    if 'depth' not in _repr_state:
+        _repr_state['depth'] = 1
+    else:
+        _repr_state['depth'] += 1
+
+    if _repr_state['depth'] > MAX_REPR_DEPTH:
+        _repr_state['depth'] -= 1
+        return '%s(max recursion depth hit)' % (' ' * _repr_state['spaces'])
+    
+    class_line = '%s(' % (obj.__class__.__name__, )
+    
+    orig_spaces = _repr_state['spaces']
+
+    ret = []
+
+    props = _repr_attrs.get(obj.__class__.__name__, [])
+
+    try:
+        prop_spacing = _repr_state['spaces'] + len(class_line.lstrip())
+        separator = '\n' + ' ' * prop_spacing
+    
+        for prop in props:
+            _repr_state['spaces'] = len(prop) + 1
+            try:
+                s = repr(getattr(obj, prop))
+            except Exception as ex:
+                s = '(repr: %s)' % ex
+
+            lines = s.split('\n')
+            if len(lines) > MAX_REPR_SUB_LINES:
+                length_ = 0
+                for i, line_ in enumerate(lines[:MAX_REPR_SUB_LINES]):
+                    length_ += len(line_)
+                    if length_ > MAX_REPR_STR_LEN:
+                        ending_delim = []
+                        for j in s[::-1]:
+                            if j in ')]}':
+                                ending_delim.insert(0, j)
+                            else:
+                                break
+
+                        ret[-1] = '%s...  %s' % (ret[-1], ''.join(ending_delim))
+                        break
+
+                    if i == 0:
+                        ret.append('%s=%s' % (prop, line_))
+                    else:
+                        ret.append(line_) 
             else:
-                ret.append('%s=%s,' % (prop, s))
-    
-    separator='\n%s' % indent_str
-    _format_recursed-=1
+                ret.append('%s=%s' % (prop, lines[0].lstrip()))
+                if len(lines) > 1:
+                    ret.extend(lines[1:])
+
+            ret[-1] += ','
+        
+    finally:
+        _repr_state['depth'] -= 1
+        _repr_state['spaces'] = orig_spaces
     
     if len(ret) <= 3:
-        ret[-1]+=')'
-        if _format_recursed==0:
-            return ''.join(ret)
-        else:
-            return [''.join(ret)]
+        # Closing parenthesis on same line
+        ret[-1] += ')'
+        return ''.join(ret)
+
     else:
+        # Closing parenthesis on next line
         ret.append(')')
-        return separator.join(ret)
+        return '%s%s' % (class_line, separator.join(ret))
 
 
 def __jointeq(*args, **kwargs):
@@ -350,9 +531,16 @@ class b2ContactPoint(object):
     normal = _swig_property(_Box2D.b2ContactPoint_normal_get, _Box2D.b2ContactPoint_normal_set)
     position = _swig_property(_Box2D.b2ContactPoint_position_get, _Box2D.b2ContactPoint_position_set)
     state = _swig_property(_Box2D.b2ContactPoint_state_get, _Box2D.b2ContactPoint_state_set)
-    def __repr__(self):
-        return _format_repr(self, ['fixtureA','fixtureB','normal','position','state']) 
+    __dir__ = _dir_filter
 
+    def __hash__(self):
+        """__hash__(b2ContactPoint self) -> long"""
+        return _Box2D.b2ContactPoint___hash__(self)
+
+    def __repr__(self):
+        return _format_repr(self) 
+
+b2ContactPoint.__hash__ = new_instancemethod(_Box2D.b2ContactPoint___hash__,None,b2ContactPoint)
 b2ContactPoint_swigregister = _Box2D.b2ContactPoint_swigregister
 b2ContactPoint_swigregister(b2ContactPoint)
 b2Globals = _Box2D.b2Globals
@@ -404,13 +592,20 @@ class b2AssertException(object):
     """Proxy of C++ b2AssertException class"""
     thisown = _swig_property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc='The membership flag')
     __repr__ = _swig_repr
+    __dir__ = _dir_filter
+
+    def __hash__(self):
+        """__hash__(b2AssertException self) -> long"""
+        return _Box2D.b2AssertException___hash__(self)
+
     def __repr__(self):
-        return "b2AssertException()"
+        return _format_repr(self) 
 
     def __init__(self): 
         """__init__(b2AssertException self) -> b2AssertException"""
         _Box2D.b2AssertException_swiginit(self,_Box2D.new_b2AssertException())
     __swig_destroy__ = _Box2D.delete_b2AssertException
+b2AssertException.__hash__ = new_instancemethod(_Box2D.b2AssertException___hash__,None,b2AssertException)
 b2AssertException_swigregister = _Box2D.b2AssertException_swigregister
 b2AssertException_swigregister(b2AssertException)
 
@@ -465,8 +660,12 @@ class b2Version(object):
     revision = _swig_property(_Box2D.b2Version_revision_get, _Box2D.b2Version_revision_set)
     __dir__ = _dir_filter
 
+    def __hash__(self):
+        """__hash__(b2Version self) -> long"""
+        return _Box2D.b2Version___hash__(self)
+
     def __repr__(self):
-        return _format_repr(self, ['major','minor','revision']) 
+        return _format_repr(self) 
 
     def __repr__(self):
         return "b2Version(%s.%s.%s)" % (self.major, self.minor, self.revision)
@@ -477,6 +676,7 @@ class b2Version(object):
 
 
     __swig_destroy__ = _Box2D.delete_b2Version
+b2Version.__hash__ = new_instancemethod(_Box2D.b2Version___hash__,None,b2Version)
 b2Version_swigregister = _Box2D.b2Version_swigregister
 b2Version_swigregister(b2Version)
 
@@ -583,8 +783,12 @@ class b2Vec2(object):
     y = _swig_property(_Box2D.b2Vec2_y_get, _Box2D.b2Vec2_y_set)
     __dir__ = _dir_filter
 
+    def __hash__(self):
+        """__hash__(b2Vec2 self) -> long"""
+        return _Box2D.b2Vec2___hash__(self)
+
     def __repr__(self):
-        return _format_repr(self, ['length','lengthSquared','skew','tuple','valid','x','y']) 
+        return _format_repr(self) 
 
     def __init__(self, *args): 
         """
@@ -711,6 +915,7 @@ b2Vec2.__LengthSquared = new_instancemethod(_Box2D.b2Vec2___LengthSquared,None,b
 b2Vec2.Normalize = new_instancemethod(_Box2D.b2Vec2_Normalize,None,b2Vec2)
 b2Vec2.__IsValid = new_instancemethod(_Box2D.b2Vec2___IsValid,None,b2Vec2)
 b2Vec2.__Skew = new_instancemethod(_Box2D.b2Vec2___Skew,None,b2Vec2)
+b2Vec2.__hash__ = new_instancemethod(_Box2D.b2Vec2___hash__,None,b2Vec2)
 b2Vec2.cross = new_instancemethod(_Box2D.b2Vec2_cross,None,b2Vec2)
 b2Vec2.__getitem__ = new_instancemethod(_Box2D.b2Vec2___getitem__,None,b2Vec2)
 b2Vec2.__setitem__ = new_instancemethod(_Box2D.b2Vec2___setitem__,None,b2Vec2)
@@ -768,8 +973,12 @@ class b2Vec3(object):
     z = _swig_property(_Box2D.b2Vec3_z_get, _Box2D.b2Vec3_z_set)
     __dir__ = _dir_filter
 
+    def __hash__(self):
+        """__hash__(b2Vec3 self) -> long"""
+        return _Box2D.b2Vec3___hash__(self)
+
     def __repr__(self):
-        return _format_repr(self, ['length','lengthSquared','tuple','valid','x','y','z']) 
+        return _format_repr(self) 
 
     def __init__(self, *args): 
         """
@@ -899,6 +1108,7 @@ b2Vec3.__neg__ = new_instancemethod(_Box2D.b2Vec3___neg__,None,b2Vec3)
 b2Vec3.__add_vector = new_instancemethod(_Box2D.b2Vec3___add_vector,None,b2Vec3)
 b2Vec3.__sub_vector = new_instancemethod(_Box2D.b2Vec3___sub_vector,None,b2Vec3)
 b2Vec3.__mul_float = new_instancemethod(_Box2D.b2Vec3___mul_float,None,b2Vec3)
+b2Vec3.__hash__ = new_instancemethod(_Box2D.b2Vec3___hash__,None,b2Vec3)
 b2Vec3.cross = new_instancemethod(_Box2D.b2Vec3_cross,None,b2Vec3)
 b2Vec3.__getitem__ = new_instancemethod(_Box2D.b2Vec3___getitem__,None,b2Vec3)
 b2Vec3.__setitem__ = new_instancemethod(_Box2D.b2Vec3___setitem__,None,b2Vec3)
@@ -961,8 +1171,12 @@ class b2Mat22(object):
     col2 = _swig_property(_Box2D.b2Mat22_col2_get, _Box2D.b2Mat22_col2_set)
     __dir__ = _dir_filter
 
+    def __hash__(self):
+        """__hash__(b2Mat22 self) -> long"""
+        return _Box2D.b2Mat22___hash__(self)
+
     def __repr__(self):
-        return _format_repr(self, ['angle','col1','col2','inverse']) 
+        return _format_repr(self) 
 
     def __GetAngle(self):
         """__GetAngle(b2Mat22 self) -> float32"""
@@ -1010,6 +1224,7 @@ b2Mat22.SetIdentity = new_instancemethod(_Box2D.b2Mat22_SetIdentity,None,b2Mat22
 b2Mat22.SetZero = new_instancemethod(_Box2D.b2Mat22_SetZero,None,b2Mat22)
 b2Mat22.__GetInverse = new_instancemethod(_Box2D.b2Mat22___GetInverse,None,b2Mat22)
 b2Mat22.Solve = new_instancemethod(_Box2D.b2Mat22_Solve,None,b2Mat22)
+b2Mat22.__hash__ = new_instancemethod(_Box2D.b2Mat22___hash__,None,b2Mat22)
 b2Mat22.__GetAngle = new_instancemethod(_Box2D.b2Mat22___GetAngle,None,b2Mat22)
 b2Mat22.__SetAngle = new_instancemethod(_Box2D.b2Mat22___SetAngle,None,b2Mat22)
 b2Mat22.__mul__ = new_instancemethod(_Box2D.b2Mat22___mul__,None,b2Mat22)
@@ -1069,8 +1284,12 @@ class b2Mat33(object):
     col3 = _swig_property(_Box2D.b2Mat33_col3_get, _Box2D.b2Mat33_col3_set)
     __dir__ = _dir_filter
 
+    def __hash__(self):
+        """__hash__(b2Mat33 self) -> long"""
+        return _Box2D.b2Mat33___hash__(self)
+
     def __repr__(self):
-        return _format_repr(self, ['col1','col2','col3']) 
+        return _format_repr(self) 
 
     ex = property(lambda self: self.col1, lambda self, v: setattr(self, 'col1', v))
     ey = property(lambda self: self.col2, lambda self, v: setattr(self, 'col2', v))
@@ -1102,6 +1321,7 @@ b2Mat33.Solve33 = new_instancemethod(_Box2D.b2Mat33_Solve33,None,b2Mat33)
 b2Mat33.Solve22 = new_instancemethod(_Box2D.b2Mat33_Solve22,None,b2Mat33)
 b2Mat33.GetInverse22 = new_instancemethod(_Box2D.b2Mat33_GetInverse22,None,b2Mat33)
 b2Mat33.GetSymInverse33 = new_instancemethod(_Box2D.b2Mat33_GetSymInverse33,None,b2Mat33)
+b2Mat33.__hash__ = new_instancemethod(_Box2D.b2Mat33___hash__,None,b2Mat33)
 b2Mat33.__mul__ = new_instancemethod(_Box2D.b2Mat33___mul__,None,b2Mat33)
 b2Mat33.__add__ = new_instancemethod(_Box2D.b2Mat33___add__,None,b2Mat33)
 b2Mat33.__sub__ = new_instancemethod(_Box2D.b2Mat33___sub__,None,b2Mat33)
@@ -1194,8 +1414,12 @@ class b2Transform(object):
     q = _swig_property(_Box2D.b2Transform_q_get, _Box2D.b2Transform_q_set)
     __dir__ = _dir_filter
 
+    def __hash__(self):
+        """__hash__(b2Transform self) -> long"""
+        return _Box2D.b2Transform___hash__(self)
+
     def __repr__(self):
-        return _format_repr(self, ['R','angle','position']) 
+        return _format_repr(self) 
 
     def __GetAngle(self):
         return self.q.angle
@@ -1220,6 +1444,7 @@ class b2Transform(object):
     __swig_destroy__ = _Box2D.delete_b2Transform
 b2Transform.SetIdentity = new_instancemethod(_Box2D.b2Transform_SetIdentity,None,b2Transform)
 b2Transform.Set = new_instancemethod(_Box2D.b2Transform_Set,None,b2Transform)
+b2Transform.__hash__ = new_instancemethod(_Box2D.b2Transform___hash__,None,b2Transform)
 b2Transform.__mul__ = new_instancemethod(_Box2D.b2Transform___mul__,None,b2Transform)
 b2Transform_swigregister = _Box2D.b2Transform_swigregister
 b2Transform_swigregister(b2Transform)
@@ -1258,8 +1483,12 @@ class b2Sweep(object):
     alpha0 = _swig_property(_Box2D.b2Sweep_alpha0_get, _Box2D.b2Sweep_alpha0_set)
     __dir__ = _dir_filter
 
+    def __hash__(self):
+        """__hash__(b2Sweep self) -> long"""
+        return _Box2D.b2Sweep___hash__(self)
+
     def __repr__(self):
-        return _format_repr(self, ['a','a0','alpha0','c','c0','localCenter']) 
+        return _format_repr(self) 
 
     def GetTransform(self, *args):
         """
@@ -1284,6 +1513,7 @@ class b2Sweep(object):
     __swig_destroy__ = _Box2D.delete_b2Sweep
 b2Sweep.Advance = new_instancemethod(_Box2D.b2Sweep_Advance,None,b2Sweep)
 b2Sweep.Normalize = new_instancemethod(_Box2D.b2Sweep_Normalize,None,b2Sweep)
+b2Sweep.__hash__ = new_instancemethod(_Box2D.b2Sweep___hash__,None,b2Sweep)
 b2Sweep.GetTransform = new_instancemethod(_Box2D.b2Sweep_GetTransform,None,b2Sweep)
 b2Sweep_swigregister = _Box2D.b2Sweep_swigregister
 b2Sweep_swigregister(b2Sweep)
@@ -1384,13 +1614,20 @@ class b2ContactFeature(object):
     indexB = _swig_property(_Box2D.b2ContactFeature_indexB_get, _Box2D.b2ContactFeature_indexB_set)
     typeA = _swig_property(_Box2D.b2ContactFeature_typeA_get, _Box2D.b2ContactFeature_typeA_set)
     typeB = _swig_property(_Box2D.b2ContactFeature_typeB_get, _Box2D.b2ContactFeature_typeB_set)
+    __dir__ = _dir_filter
+
+    def __hash__(self):
+        """__hash__(b2ContactFeature self) -> long"""
+        return _Box2D.b2ContactFeature___hash__(self)
+
     def __repr__(self):
-        return _format_repr(self, ['indexA','indexB','typeA','typeB']) 
+        return _format_repr(self) 
 
     def __init__(self): 
         """__init__(b2ContactFeature self) -> b2ContactFeature"""
         _Box2D.b2ContactFeature_swiginit(self,_Box2D.new_b2ContactFeature())
     __swig_destroy__ = _Box2D.delete_b2ContactFeature
+b2ContactFeature.__hash__ = new_instancemethod(_Box2D.b2ContactFeature___hash__,None,b2ContactFeature)
 b2ContactFeature_swigregister = _Box2D.b2ContactFeature_swigregister
 b2ContactFeature_swigregister(b2ContactFeature)
 b2Vec2_zero = b2Globals.b2Vec2_zero
@@ -1404,8 +1641,12 @@ class b2ContactID(object):
     key = _swig_property(_Box2D.b2ContactID_key_get, _Box2D.b2ContactID_key_set)
     __dir__ = _dir_filter
 
+    def __hash__(self):
+        """__hash__(b2ContactID self) -> long"""
+        return _Box2D.b2ContactID___hash__(self)
+
     def __repr__(self):
-        return _format_repr(self, ['cf','key']) 
+        return _format_repr(self) 
 
     def __init__(self, **kwargs):
         _Box2D.b2ContactID_swiginit(self,_Box2D.new_b2ContactID())
@@ -1413,6 +1654,7 @@ class b2ContactID(object):
 
 
     __swig_destroy__ = _Box2D.delete_b2ContactID
+b2ContactID.__hash__ = new_instancemethod(_Box2D.b2ContactID___hash__,None,b2ContactID)
 b2ContactID_swigregister = _Box2D.b2ContactID_swigregister
 b2ContactID_swigregister(b2ContactID)
 
@@ -1426,8 +1668,12 @@ class b2ManifoldPoint(object):
     id = _swig_property(_Box2D.b2ManifoldPoint_id_get, _Box2D.b2ManifoldPoint_id_set)
     __dir__ = _dir_filter
 
+    def __hash__(self):
+        """__hash__(b2ManifoldPoint self) -> long"""
+        return _Box2D.b2ManifoldPoint___hash__(self)
+
     def __repr__(self):
-        return _format_repr(self, ['id','isNew','localPoint','normalImpulse','tangentImpulse']) 
+        return _format_repr(self) 
 
     def __init__(self, **kwargs):
         _Box2D.b2ManifoldPoint_swiginit(self,_Box2D.new_b2ManifoldPoint())
@@ -1435,6 +1681,7 @@ class b2ManifoldPoint(object):
 
 
     __swig_destroy__ = _Box2D.delete_b2ManifoldPoint
+b2ManifoldPoint.__hash__ = new_instancemethod(_Box2D.b2ManifoldPoint___hash__,None,b2ManifoldPoint)
 b2ManifoldPoint_swigregister = _Box2D.b2ManifoldPoint_swigregister
 b2ManifoldPoint_swigregister(b2ManifoldPoint)
 
@@ -1455,8 +1702,12 @@ class b2Manifold(object):
     pointCount = _swig_property(_Box2D.b2Manifold_pointCount_get, _Box2D.b2Manifold_pointCount_set)
     __dir__ = _dir_filter
 
+    def __hash__(self):
+        """__hash__(b2Manifold self) -> long"""
+        return _Box2D.b2Manifold___hash__(self)
+
     def __repr__(self):
-        return _format_repr(self, ['localNormal','localPoint','pointCount','points','type_']) 
+        return _format_repr(self) 
 
     def __GetPoints(self):
         return [self.__GetPoint(i) for i in range(self.pointCount)]
@@ -1472,6 +1723,7 @@ class b2Manifold(object):
 
 
     __swig_destroy__ = _Box2D.delete_b2Manifold
+b2Manifold.__hash__ = new_instancemethod(_Box2D.b2Manifold___hash__,None,b2Manifold)
 b2Manifold.__GetPoint = new_instancemethod(_Box2D.b2Manifold___GetPoint,None,b2Manifold)
 b2Manifold_swigregister = _Box2D.b2Manifold_swigregister
 b2Manifold_swigregister(b2Manifold)
@@ -1491,14 +1743,18 @@ class b2WorldManifold(object):
     normal = _swig_property(_Box2D.b2WorldManifold_normal_get, _Box2D.b2WorldManifold_normal_set)
     __dir__ = _dir_filter
 
+    def __hash__(self):
+        """__hash__(b2WorldManifold self) -> long"""
+        return _Box2D.b2WorldManifold___hash__(self)
+
     def __repr__(self):
-        return _format_repr(self, ['normal','points']) 
+        return _format_repr(self) 
 
-    def __GetPoints(self):
-        """__GetPoints(b2WorldManifold self) -> PyObject *"""
-        return _Box2D.b2WorldManifold___GetPoints(self)
+    def __get_points(self):
+        """__get_points(b2WorldManifold self) -> PyObject *"""
+        return _Box2D.b2WorldManifold___get_points(self)
 
-    points = property(__GetPoints, None)
+    points = property(__get_points, None)
 
     def __init__(self, **kwargs):
         _Box2D.b2WorldManifold_swiginit(self,_Box2D.new_b2WorldManifold())
@@ -1507,7 +1763,8 @@ class b2WorldManifold(object):
 
     __swig_destroy__ = _Box2D.delete_b2WorldManifold
 b2WorldManifold.Initialize = new_instancemethod(_Box2D.b2WorldManifold_Initialize,None,b2WorldManifold)
-b2WorldManifold.__GetPoints = new_instancemethod(_Box2D.b2WorldManifold___GetPoints,None,b2WorldManifold)
+b2WorldManifold.__hash__ = new_instancemethod(_Box2D.b2WorldManifold___hash__,None,b2WorldManifold)
+b2WorldManifold.__get_points = new_instancemethod(_Box2D.b2WorldManifold___get_points,None,b2WorldManifold)
 b2WorldManifold_swigregister = _Box2D.b2WorldManifold_swigregister
 b2WorldManifold_swigregister(b2WorldManifold)
 
@@ -1523,8 +1780,12 @@ class b2ClipVertex(object):
     id = _swig_property(_Box2D.b2ClipVertex_id_get, _Box2D.b2ClipVertex_id_set)
     __dir__ = _dir_filter
 
+    def __hash__(self):
+        """__hash__(b2ClipVertex self) -> long"""
+        return _Box2D.b2ClipVertex___hash__(self)
+
     def __repr__(self):
-        return _format_repr(self, ['id','v']) 
+        return _format_repr(self) 
 
     def __init__(self, **kwargs):
         _Box2D.b2ClipVertex_swiginit(self,_Box2D.new_b2ClipVertex())
@@ -1532,6 +1793,7 @@ class b2ClipVertex(object):
 
 
     __swig_destroy__ = _Box2D.delete_b2ClipVertex
+b2ClipVertex.__hash__ = new_instancemethod(_Box2D.b2ClipVertex___hash__,None,b2ClipVertex)
 b2ClipVertex_swigregister = _Box2D.b2ClipVertex_swigregister
 b2ClipVertex_swigregister(b2ClipVertex)
 
@@ -1544,8 +1806,12 @@ class b2RayCastInput(object):
     maxFraction = _swig_property(_Box2D.b2RayCastInput_maxFraction_get, _Box2D.b2RayCastInput_maxFraction_set)
     __dir__ = _dir_filter
 
+    def __hash__(self):
+        """__hash__(b2RayCastInput self) -> long"""
+        return _Box2D.b2RayCastInput___hash__(self)
+
     def __repr__(self):
-        return _format_repr(self, ['maxFraction','p1','p2']) 
+        return _format_repr(self) 
 
     def __init__(self, **kwargs):
         _Box2D.b2RayCastInput_swiginit(self,_Box2D.new_b2RayCastInput())
@@ -1553,6 +1819,7 @@ class b2RayCastInput(object):
 
 
     __swig_destroy__ = _Box2D.delete_b2RayCastInput
+b2RayCastInput.__hash__ = new_instancemethod(_Box2D.b2RayCastInput___hash__,None,b2RayCastInput)
 b2RayCastInput_swigregister = _Box2D.b2RayCastInput_swigregister
 b2RayCastInput_swigregister(b2RayCastInput)
 
@@ -1564,8 +1831,12 @@ class b2RayCastOutput(object):
     fraction = _swig_property(_Box2D.b2RayCastOutput_fraction_get, _Box2D.b2RayCastOutput_fraction_set)
     __dir__ = _dir_filter
 
+    def __hash__(self):
+        """__hash__(b2RayCastOutput self) -> long"""
+        return _Box2D.b2RayCastOutput___hash__(self)
+
     def __repr__(self):
-        return _format_repr(self, ['fraction','normal']) 
+        return _format_repr(self) 
 
     def __init__(self, **kwargs):
         _Box2D.b2RayCastOutput_swiginit(self,_Box2D.new_b2RayCastOutput())
@@ -1573,6 +1844,7 @@ class b2RayCastOutput(object):
 
 
     __swig_destroy__ = _Box2D.delete_b2RayCastOutput
+b2RayCastOutput.__hash__ = new_instancemethod(_Box2D.b2RayCastOutput___hash__,None,b2RayCastOutput)
 b2RayCastOutput_swigregister = _Box2D.b2RayCastOutput_swigregister
 b2RayCastOutput_swigregister(b2RayCastOutput)
 
@@ -1629,8 +1901,12 @@ class b2AABB(object):
     upperBound = _swig_property(_Box2D.b2AABB_upperBound_get, _Box2D.b2AABB_upperBound_set)
     __dir__ = _dir_filter
 
+    def __hash__(self):
+        """__hash__(b2AABB self) -> long"""
+        return _Box2D.b2AABB___hash__(self)
+
     def __repr__(self):
-        return _format_repr(self, ['center','extents','lowerBound','perimeter','upperBound','valid']) 
+        return _format_repr(self) 
 
     # Read-only
     valid = property(__IsValid, None)
@@ -1662,6 +1938,7 @@ b2AABB.__GetExtents = new_instancemethod(_Box2D.b2AABB___GetExtents,None,b2AABB)
 b2AABB.__GetPerimeter = new_instancemethod(_Box2D.b2AABB___GetPerimeter,None,b2AABB)
 b2AABB.Combine = new_instancemethod(_Box2D.b2AABB_Combine,None,b2AABB)
 b2AABB.RayCast = new_instancemethod(_Box2D.b2AABB_RayCast,None,b2AABB)
+b2AABB.__hash__ = new_instancemethod(_Box2D.b2AABB___hash__,None,b2AABB)
 b2AABB.__contains__ = new_instancemethod(_Box2D.b2AABB___contains__,None,b2AABB)
 b2AABB.overlaps = new_instancemethod(_Box2D.b2AABB_overlaps,None,b2AABB)
 b2AABB_swigregister = _Box2D.b2AABB_swigregister
@@ -1778,8 +2055,12 @@ class b2Color(object):
     b = _swig_property(_Box2D.b2Color_b_get, _Box2D.b2Color_b_set)
     __dir__ = _dir_filter
 
+    def __hash__(self):
+        """__hash__(b2Color self) -> long"""
+        return _Box2D.b2Color___hash__(self)
+
     def __repr__(self):
-        return _format_repr(self, ['b','bytes','g','list','r']) 
+        return _format_repr(self) 
 
     def __init__(self, *args): 
         """
@@ -1877,6 +2158,7 @@ class b2Color(object):
 
     __swig_destroy__ = _Box2D.delete_b2Color
 b2Color.Set = new_instancemethod(_Box2D.b2Color_Set,None,b2Color)
+b2Color.__hash__ = new_instancemethod(_Box2D.b2Color___hash__,None,b2Color)
 b2Color.__get_bytes = new_instancemethod(_Box2D.b2Color___get_bytes,None,b2Color)
 b2Color.__getitem__ = new_instancemethod(_Box2D.b2Color___getitem__,None,b2Color)
 b2Color.__setitem__ = new_instancemethod(_Box2D.b2Color___setitem__,None,b2Color)
@@ -2002,8 +2284,12 @@ class b2Draw(object):
 
     __dir__ = _dir_filter
 
+    def __hash__(self):
+        """__hash__(b2Draw self) -> long"""
+        return _Box2D.b2Draw___hash__(self)
+
     def __repr__(self):
-        return _format_repr(self, ['flags']) 
+        return _format_repr(self) 
 
     _flag_entries = [
         ['drawShapes', e_shapeBit],
@@ -2042,6 +2328,7 @@ b2Draw.DrawCircle = new_instancemethod(_Box2D.b2Draw_DrawCircle,None,b2Draw)
 b2Draw.DrawSolidCircle = new_instancemethod(_Box2D.b2Draw_DrawSolidCircle,None,b2Draw)
 b2Draw.DrawSegment = new_instancemethod(_Box2D.b2Draw_DrawSegment,None,b2Draw)
 b2Draw.DrawTransform = new_instancemethod(_Box2D.b2Draw_DrawTransform,None,b2Draw)
+b2Draw.__hash__ = new_instancemethod(_Box2D.b2Draw___hash__,None,b2Draw)
 b2Draw_swigregister = _Box2D.b2Draw_swigregister
 b2Draw_swigregister(b2Draw)
 
@@ -2132,8 +2419,14 @@ class b2DrawExtended(b2Draw):
         _init_kwargs(self, **kwargs)
 
 
+    __dir__ = _dir_filter
+
+    def __hash__(self):
+        """__hash__(b2DrawExtended self) -> long"""
+        return _Box2D.b2DrawExtended___hash__(self)
+
     def __repr__(self):
-        return _format_repr(self, ['center','convertVertices','flags','flipX','flipY','offset','screenSize','zoom']) 
+        return _format_repr(self) 
 
     def __disown__(self):
         self.this.disown()
@@ -2148,6 +2441,7 @@ b2DrawExtended.DrawSolidCircle = new_instancemethod(_Box2D.b2DrawExtended_DrawSo
 b2DrawExtended.DrawSegment = new_instancemethod(_Box2D.b2DrawExtended_DrawSegment,None,b2DrawExtended)
 b2DrawExtended.DrawTransform = new_instancemethod(_Box2D.b2DrawExtended_DrawTransform,None,b2DrawExtended)
 b2DrawExtended.__SetFlags = new_instancemethod(_Box2D.b2DrawExtended___SetFlags,None,b2DrawExtended)
+b2DrawExtended.__hash__ = new_instancemethod(_Box2D.b2DrawExtended___hash__,None,b2DrawExtended)
 b2DrawExtended_swigregister = _Box2D.b2DrawExtended_swigregister
 b2DrawExtended_swigregister(b2DrawExtended)
 
@@ -2160,8 +2454,12 @@ class b2MassData(object):
     I = _swig_property(_Box2D.b2MassData_I_get, _Box2D.b2MassData_I_set)
     __dir__ = _dir_filter
 
+    def __hash__(self):
+        """__hash__(b2MassData self) -> long"""
+        return _Box2D.b2MassData___hash__(self)
+
     def __repr__(self):
-        return _format_repr(self, ['I','center','mass']) 
+        return _format_repr(self) 
 
     def __init__(self, **kwargs):
         _Box2D.b2MassData_swiginit(self,_Box2D.new_b2MassData())
@@ -2169,6 +2467,7 @@ class b2MassData(object):
 
 
     __swig_destroy__ = _Box2D.delete_b2MassData
+b2MassData.__hash__ = new_instancemethod(_Box2D.b2MassData___hash__,None,b2MassData)
 b2MassData_swigregister = _Box2D.b2MassData_swigregister
 b2MassData_swigregister(b2MassData)
 b2_chunkSize = b2Globals.b2_chunkSize
@@ -2284,12 +2583,12 @@ class b2Shape(object):
     radius = _swig_property(_Box2D.b2Shape_radius_get, _Box2D.b2Shape_radius_set)
     __dir__ = _dir_filter
 
-    def __repr__(self):
-        return _format_repr(self, ['childCount','radius','type']) 
-
     def __hash__(self):
         """__hash__(b2Shape self) -> long"""
         return _Box2D.b2Shape___hash__(self)
+
+    def __repr__(self):
+        return _format_repr(self) 
 
     __eq__ = b2ShapeCompare
     __ne__ = lambda self,other: not b2ShapeCompare(self,other)
@@ -2348,10 +2647,15 @@ class b2CircleShape(b2Shape):
     pos = _swig_property(_Box2D.b2CircleShape_pos_get, _Box2D.b2CircleShape_pos_set)
     __dir__ = _dir_filter
 
+    def __hash__(self):
+        """__hash__(b2CircleShape self) -> long"""
+        return _Box2D.b2CircleShape___hash__(self)
+
     def __repr__(self):
-        return _format_repr(self, ['childCount','pos','radius','type']) 
+        return _format_repr(self) 
 
     __swig_destroy__ = _Box2D.delete_b2CircleShape
+b2CircleShape.__hash__ = new_instancemethod(_Box2D.b2CircleShape___hash__,None,b2CircleShape)
 b2CircleShape_swigregister = _Box2D.b2CircleShape_swigregister
 b2CircleShape_swigregister(b2CircleShape)
 
@@ -2378,8 +2682,14 @@ class b2EdgeShape(b2Shape):
     vertex3 = _swig_property(_Box2D.b2EdgeShape_vertex3_get, _Box2D.b2EdgeShape_vertex3_set)
     hasVertex0 = _swig_property(_Box2D.b2EdgeShape_hasVertex0_get, _Box2D.b2EdgeShape_hasVertex0_set)
     hasVertex3 = _swig_property(_Box2D.b2EdgeShape_hasVertex3_get, _Box2D.b2EdgeShape_hasVertex3_set)
+    __dir__ = _dir_filter
+
+    def __hash__(self):
+        """__hash__(b2EdgeShape self) -> long"""
+        return _Box2D.b2EdgeShape___hash__(self)
+
     def __repr__(self):
-        return _format_repr(self, ['all_vertices','childCount','hasVertex0','hasVertex3','radius','type','vertex0','vertex1','vertex2','vertex3','vertexCount','vertices']) 
+        return _format_repr(self) 
 
     def __repr__(self):
         return "b2EdgeShape(vertices: %s)" % (self.vertices)
@@ -2440,6 +2750,7 @@ class b2EdgeShape(b2Shape):
 
     __swig_destroy__ = _Box2D.delete_b2EdgeShape
 b2EdgeShape.__Set = new_instancemethod(_Box2D.b2EdgeShape___Set,None,b2EdgeShape)
+b2EdgeShape.__hash__ = new_instancemethod(_Box2D.b2EdgeShape___hash__,None,b2EdgeShape)
 b2EdgeShape_swigregister = _Box2D.b2EdgeShape_swigregister
 b2EdgeShape_swigregister(b2EdgeShape)
 
@@ -2606,8 +2917,12 @@ class b2PolygonShape(b2Shape):
     vertexCount = _swig_property(_Box2D.b2PolygonShape_vertexCount_get, _Box2D.b2PolygonShape_vertexCount_set)
     __dir__ = _dir_filter
 
+    def __hash__(self):
+        """__hash__(b2PolygonShape self) -> long"""
+        return _Box2D.b2PolygonShape___hash__(self)
+
     def __repr__(self):
-        return _format_repr(self, ['box','centroid','childCount','normals','radius','type','valid','vertexCount','vertices']) 
+        return _format_repr(self) 
 
     def __get_vertices(self):
         """__get_vertices(b2PolygonShape self) -> PyObject *"""
@@ -2681,6 +2996,7 @@ class b2PolygonShape(b2Shape):
     __swig_destroy__ = _Box2D.delete_b2PolygonShape
 b2PolygonShape.SetAsBox = new_instancemethod(_Box2D.b2PolygonShape_SetAsBox,None,b2PolygonShape)
 b2PolygonShape.Validate = new_instancemethod(_Box2D.b2PolygonShape_Validate,None,b2PolygonShape)
+b2PolygonShape.__hash__ = new_instancemethod(_Box2D.b2PolygonShape___hash__,None,b2PolygonShape)
 b2PolygonShape.__get_vertices = new_instancemethod(_Box2D.b2PolygonShape___get_vertices,None,b2PolygonShape)
 b2PolygonShape.__get_normals = new_instancemethod(_Box2D.b2PolygonShape___get_normals,None,b2PolygonShape)
 b2PolygonShape.__get_vertex = new_instancemethod(_Box2D.b2PolygonShape___get_vertex,None,b2PolygonShape)
@@ -2719,8 +3035,12 @@ class b2Pair(object):
     proxyIdB = _swig_property(_Box2D.b2Pair_proxyIdB_get, _Box2D.b2Pair_proxyIdB_set)
     __dir__ = _dir_filter
 
+    def __hash__(self):
+        """__hash__(b2Pair self) -> long"""
+        return _Box2D.b2Pair___hash__(self)
+
     def __repr__(self):
-        return _format_repr(self, ['proxyIdA','proxyIdB']) 
+        return _format_repr(self) 
 
     def __init__(self, **kwargs):
         _Box2D.b2Pair_swiginit(self,_Box2D.new_b2Pair())
@@ -2728,6 +3048,7 @@ class b2Pair(object):
 
 
     __swig_destroy__ = _Box2D.delete_b2Pair
+b2Pair.__hash__ = new_instancemethod(_Box2D.b2Pair___hash__,None,b2Pair)
 b2Pair_swigregister = _Box2D.b2Pair_swigregister
 b2Pair_swigregister(b2Pair)
 
@@ -2816,8 +3137,14 @@ class b2BroadPhase(object):
         """ShiftOrigin(b2BroadPhase self, b2Vec2 newOrigin)"""
         return _Box2D.b2BroadPhase_ShiftOrigin(self, *args, **kwargs)
 
+    __dir__ = _dir_filter
+
+    def __hash__(self):
+        """__hash__(b2BroadPhase self) -> long"""
+        return _Box2D.b2BroadPhase___hash__(self)
+
     def __repr__(self):
-        return _format_repr(self, ['proxyCount']) 
+        return _format_repr(self) 
 
     proxyCount=property(__GetProxyCount, None)
     treeHeight=property(__GetTreeHeight, None)
@@ -2835,6 +3162,7 @@ b2BroadPhase.__GetTreeHeight = new_instancemethod(_Box2D.b2BroadPhase___GetTreeH
 b2BroadPhase.__GetTreeBalance = new_instancemethod(_Box2D.b2BroadPhase___GetTreeBalance,None,b2BroadPhase)
 b2BroadPhase.__GetTreeQuality = new_instancemethod(_Box2D.b2BroadPhase___GetTreeQuality,None,b2BroadPhase)
 b2BroadPhase.ShiftOrigin = new_instancemethod(_Box2D.b2BroadPhase_ShiftOrigin,None,b2BroadPhase)
+b2BroadPhase.__hash__ = new_instancemethod(_Box2D.b2BroadPhase___hash__,None,b2BroadPhase)
 b2BroadPhase_swigregister = _Box2D.b2BroadPhase_swigregister
 b2BroadPhase_swigregister(b2BroadPhase)
 
@@ -2898,8 +3226,12 @@ class b2DistanceProxy(object):
     m_buffer = _swig_property(_Box2D.b2DistanceProxy_m_buffer_get, _Box2D.b2DistanceProxy_m_buffer_set)
     __dir__ = _dir_filter
 
+    def __hash__(self):
+        """__hash__(b2DistanceProxy self) -> long"""
+        return _Box2D.b2DistanceProxy___hash__(self)
+
     def __repr__(self):
-        return _format_repr(self, ['m_buffer','shape','vertices']) 
+        return _format_repr(self) 
 
     def __get_vertices(self):
         """Returns all of the vertices as a list of tuples [ (x1,y1), (x2,y2) ... (xN,yN) ]"""
@@ -2913,6 +3245,7 @@ b2DistanceProxy.GetSupport = new_instancemethod(_Box2D.b2DistanceProxy_GetSuppor
 b2DistanceProxy.GetSupportVertex = new_instancemethod(_Box2D.b2DistanceProxy_GetSupportVertex,None,b2DistanceProxy)
 b2DistanceProxy.__get_vertex_count = new_instancemethod(_Box2D.b2DistanceProxy___get_vertex_count,None,b2DistanceProxy)
 b2DistanceProxy.__get_vertex = new_instancemethod(_Box2D.b2DistanceProxy___get_vertex,None,b2DistanceProxy)
+b2DistanceProxy.__hash__ = new_instancemethod(_Box2D.b2DistanceProxy___hash__,None,b2DistanceProxy)
 b2DistanceProxy_swigregister = _Box2D.b2DistanceProxy_swigregister
 b2DistanceProxy_swigregister(b2DistanceProxy)
 
@@ -2927,8 +3260,12 @@ class b2DistanceInput(object):
     useRadii = _swig_property(_Box2D.b2DistanceInput_useRadii_get, _Box2D.b2DistanceInput_useRadii_set)
     __dir__ = _dir_filter
 
+    def __hash__(self):
+        """__hash__(b2DistanceInput self) -> long"""
+        return _Box2D.b2DistanceInput___hash__(self)
+
     def __repr__(self):
-        return _format_repr(self, ['proxyA','proxyB','transformA','transformB','useRadii']) 
+        return _format_repr(self) 
 
     def __init__(self, **kwargs):
         _Box2D.b2DistanceInput_swiginit(self,_Box2D.new_b2DistanceInput())
@@ -2936,6 +3273,7 @@ class b2DistanceInput(object):
 
 
     __swig_destroy__ = _Box2D.delete_b2DistanceInput
+b2DistanceInput.__hash__ = new_instancemethod(_Box2D.b2DistanceInput___hash__,None,b2DistanceInput)
 b2DistanceInput_swigregister = _Box2D.b2DistanceInput_swigregister
 b2DistanceInput_swigregister(b2DistanceInput)
 
@@ -2949,8 +3287,12 @@ class b2DistanceOutput(object):
     iterations = _swig_property(_Box2D.b2DistanceOutput_iterations_get, _Box2D.b2DistanceOutput_iterations_set)
     __dir__ = _dir_filter
 
+    def __hash__(self):
+        """__hash__(b2DistanceOutput self) -> long"""
+        return _Box2D.b2DistanceOutput___hash__(self)
+
     def __repr__(self):
-        return _format_repr(self, ['distance','iterations','pointA','pointB']) 
+        return _format_repr(self) 
 
     def __init__(self, **kwargs):
         _Box2D.b2DistanceOutput_swiginit(self,_Box2D.new_b2DistanceOutput())
@@ -2958,6 +3300,7 @@ class b2DistanceOutput(object):
 
 
     __swig_destroy__ = _Box2D.delete_b2DistanceOutput
+b2DistanceOutput.__hash__ = new_instancemethod(_Box2D.b2DistanceOutput___hash__,None,b2DistanceOutput)
 b2DistanceOutput_swigregister = _Box2D.b2DistanceOutput_swigregister
 b2DistanceOutput_swigregister(b2DistanceOutput)
 
@@ -2972,8 +3315,12 @@ class b2TOIInput(object):
     tMax = _swig_property(_Box2D.b2TOIInput_tMax_get, _Box2D.b2TOIInput_tMax_set)
     __dir__ = _dir_filter
 
+    def __hash__(self):
+        """__hash__(b2TOIInput self) -> long"""
+        return _Box2D.b2TOIInput___hash__(self)
+
     def __repr__(self):
-        return _format_repr(self, ['proxyA','proxyB','sweepA','sweepB','tMax']) 
+        return _format_repr(self) 
 
     def __init__(self, **kwargs):
         _Box2D.b2TOIInput_swiginit(self,_Box2D.new_b2TOIInput())
@@ -2981,6 +3328,7 @@ class b2TOIInput(object):
 
 
     __swig_destroy__ = _Box2D.delete_b2TOIInput
+b2TOIInput.__hash__ = new_instancemethod(_Box2D.b2TOIInput___hash__,None,b2TOIInput)
 b2TOIInput_swigregister = _Box2D.b2TOIInput_swigregister
 b2TOIInput_swigregister(b2TOIInput)
 
@@ -2995,13 +3343,20 @@ class b2TOIOutput(object):
     e_separated = _Box2D.b2TOIOutput_e_separated
     state = _swig_property(_Box2D.b2TOIOutput_state_get, _Box2D.b2TOIOutput_state_set)
     t = _swig_property(_Box2D.b2TOIOutput_t_get, _Box2D.b2TOIOutput_t_set)
+    __dir__ = _dir_filter
+
+    def __hash__(self):
+        """__hash__(b2TOIOutput self) -> long"""
+        return _Box2D.b2TOIOutput___hash__(self)
+
     def __repr__(self):
-        return _format_repr(self, ['state','t']) 
+        return _format_repr(self) 
 
     def __init__(self): 
         """__init__(b2TOIOutput self) -> b2TOIOutput"""
         _Box2D.b2TOIOutput_swiginit(self,_Box2D.new_b2TOIOutput())
     __swig_destroy__ = _Box2D.delete_b2TOIOutput
+b2TOIOutput.__hash__ = new_instancemethod(_Box2D.b2TOIOutput___hash__,None,b2TOIOutput)
 b2TOIOutput_swigregister = _Box2D.b2TOIOutput_swigregister
 b2TOIOutput_swigregister(b2TOIOutput)
 
@@ -3032,8 +3387,12 @@ class b2BodyDef(object):
     gravityScale = _swig_property(_Box2D.b2BodyDef_gravityScale_get, _Box2D.b2BodyDef_gravityScale_set)
     __dir__ = _dir_filter
 
+    def __hash__(self):
+        """__hash__(b2BodyDef self) -> long"""
+        return _Box2D.b2BodyDef___hash__(self)
+
     def __repr__(self):
-        return _format_repr(self, ['active','allowSleep','angle','angularDamping','angularVelocity','awake','bullet','fixedRotation','fixtures','inertiaScale','linearDamping','linearVelocity','position','shapeFixture','shapes','type','userData']) 
+        return _format_repr(self) 
 
     def __GetUserData(self):
         """__GetUserData(b2BodyDef self) -> PyObject *"""
@@ -3056,6 +3415,7 @@ class b2BodyDef(object):
     shapeFixture = None
 
     __swig_destroy__ = _Box2D.delete_b2BodyDef
+b2BodyDef.__hash__ = new_instancemethod(_Box2D.b2BodyDef___hash__,None,b2BodyDef)
 b2BodyDef.__GetUserData = new_instancemethod(_Box2D.b2BodyDef___GetUserData,None,b2BodyDef)
 b2BodyDef.__SetUserData = new_instancemethod(_Box2D.b2BodyDef___SetUserData,None,b2BodyDef)
 b2BodyDef.ClearUserData = new_instancemethod(_Box2D.b2BodyDef_ClearUserData,None,b2BodyDef)
@@ -3574,8 +3934,12 @@ class b2Body(object):
 
     __dir__ = _dir_filter
 
+    def __hash__(self):
+        """__hash__(b2Body self) -> long"""
+        return _Box2D.b2Body___hash__(self)
+
     def __repr__(self):
-        return _format_repr(self, ['active','angle','angularDamping','angularVelocity','awake','bullet','contacts','fixedRotation','fixtures','inertia','joints','linearDamping','linearVelocity','localCenter','mass','massData','position','sleepingAllowed','transform','type','userData','worldCenter']) 
+        return _format_repr(self) 
 
     def DestroyFixture(self, *args, **kwargs):
         """
@@ -3614,10 +3978,6 @@ class b2Body(object):
         return _Box2D.b2Body_ClearUserData(self)
 
     userData = property(__GetUserData, __SetUserData)
-
-    def __hash__(self):
-        """__hash__(b2Body self) -> long"""
-        return _Box2D.b2Body___hash__(self)
 
     __eq__ = b2BodyCompare
     __ne__ = lambda self,other: not b2BodyCompare(self,other)
@@ -3672,7 +4032,7 @@ class b2Body(object):
         shape=type_()
         fixture=b2FixtureDef(shape=shape)
         
-        for key, value in kwargs.iteritems():
+        for key, value in kwargs.items():
             # Note that these hasattrs use the types to get around
             # the fact that some properties are write-only (like 'box' in
             # polygon shapes), and as such do not show up with 'hasattr'.
@@ -3685,9 +4045,7 @@ class b2Body(object):
 
             try:
                 setattr(to_set, key, value)
-            except:
-                from sys import exc_info
-                ex=exc_info()[1]
+            except Exception as ex:
                 raise ex.__class__('Failed on kwargs, class="%s" key="%s": %s' \
                             % (to_set.__class__.__name__, key, ex))
 
@@ -3901,12 +4259,12 @@ b2Body.__GetContactList_internal = new_instancemethod(_Box2D.b2Body___GetContact
 b2Body.__GetNext = new_instancemethod(_Box2D.b2Body___GetNext,None,b2Body)
 b2Body.__GetWorld = new_instancemethod(_Box2D.b2Body___GetWorld,None,b2Body)
 b2Body.Dump = new_instancemethod(_Box2D.b2Body_Dump,None,b2Body)
+b2Body.__hash__ = new_instancemethod(_Box2D.b2Body___hash__,None,b2Body)
 b2Body.DestroyFixture = new_instancemethod(_Box2D.b2Body_DestroyFixture,None,b2Body)
 b2Body.__CreateFixture = new_instancemethod(_Box2D.b2Body___CreateFixture,None,b2Body)
 b2Body.__GetUserData = new_instancemethod(_Box2D.b2Body___GetUserData,None,b2Body)
 b2Body.__SetUserData = new_instancemethod(_Box2D.b2Body___SetUserData,None,b2Body)
 b2Body.ClearUserData = new_instancemethod(_Box2D.b2Body_ClearUserData,None,b2Body)
-b2Body.__hash__ = new_instancemethod(_Box2D.b2Body___hash__,None,b2Body)
 b2Body_swigregister = _Box2D.b2Body_swigregister
 b2Body_swigregister(b2Body)
 
@@ -3924,10 +4282,15 @@ class b2Filter(object):
     groupIndex = _swig_property(_Box2D.b2Filter_groupIndex_get, _Box2D.b2Filter_groupIndex_set)
     __dir__ = _dir_filter
 
+    def __hash__(self):
+        """__hash__(b2Filter self) -> long"""
+        return _Box2D.b2Filter___hash__(self)
+
     def __repr__(self):
-        return _format_repr(self, ['categoryBits','groupIndex','maskBits']) 
+        return _format_repr(self) 
 
     __swig_destroy__ = _Box2D.delete_b2Filter
+b2Filter.__hash__ = new_instancemethod(_Box2D.b2Filter___hash__,None,b2Filter)
 b2Filter_swigregister = _Box2D.b2Filter_swigregister
 b2Filter_swigregister(b2Filter)
 
@@ -3948,8 +4311,12 @@ class b2FixtureDef(object):
     filter = _swig_property(_Box2D.b2FixtureDef_filter_get, _Box2D.b2FixtureDef_filter_set)
     __dir__ = _dir_filter
 
+    def __hash__(self):
+        """__hash__(b2FixtureDef self) -> long"""
+        return _Box2D.b2FixtureDef___hash__(self)
+
     def __repr__(self):
-        return _format_repr(self, ['categoryBits','density','filter','friction','groupIndex','isSensor','maskBits','restitution','shape','userData']) 
+        return _format_repr(self) 
 
     def __GetUserData(self):
         """__GetUserData(b2FixtureDef self) -> PyObject *"""
@@ -3979,6 +4346,7 @@ class b2FixtureDef(object):
     maskBits=property(lambda self: self.filter.maskBits, __SetMaskBits)
 
     __swig_destroy__ = _Box2D.delete_b2FixtureDef
+b2FixtureDef.__hash__ = new_instancemethod(_Box2D.b2FixtureDef___hash__,None,b2FixtureDef)
 b2FixtureDef.__GetUserData = new_instancemethod(_Box2D.b2FixtureDef___GetUserData,None,b2FixtureDef)
 b2FixtureDef.__SetUserData = new_instancemethod(_Box2D.b2FixtureDef___SetUserData,None,b2FixtureDef)
 b2FixtureDef.ClearUserData = new_instancemethod(_Box2D.b2FixtureDef_ClearUserData,None,b2FixtureDef)
@@ -3993,13 +4361,20 @@ class b2FixtureProxy(object):
     fixture = _swig_property(_Box2D.b2FixtureProxy_fixture_get, _Box2D.b2FixtureProxy_fixture_set)
     childIndex = _swig_property(_Box2D.b2FixtureProxy_childIndex_get, _Box2D.b2FixtureProxy_childIndex_set)
     proxyId = _swig_property(_Box2D.b2FixtureProxy_proxyId_get, _Box2D.b2FixtureProxy_proxyId_set)
+    __dir__ = _dir_filter
+
+    def __hash__(self):
+        """__hash__(b2FixtureProxy self) -> long"""
+        return _Box2D.b2FixtureProxy___hash__(self)
+
     def __repr__(self):
-        return _format_repr(self, ['aabb','childIndex','fixture','proxyId']) 
+        return _format_repr(self) 
 
     def __init__(self): 
         """__init__(b2FixtureProxy self) -> b2FixtureProxy"""
         _Box2D.b2FixtureProxy_swiginit(self,_Box2D.new_b2FixtureProxy())
     __swig_destroy__ = _Box2D.delete_b2FixtureProxy
+b2FixtureProxy.__hash__ = new_instancemethod(_Box2D.b2FixtureProxy___hash__,None,b2FixtureProxy)
 b2FixtureProxy_swigregister = _Box2D.b2FixtureProxy_swigregister
 b2FixtureProxy_swigregister(b2FixtureProxy)
 
@@ -4192,8 +4567,12 @@ class b2Fixture(object):
 
     __dir__ = _dir_filter
 
+    def __hash__(self):
+        """__hash__(b2Fixture self) -> long"""
+        return _Box2D.b2Fixture___hash__(self)
+
     def __repr__(self):
-        return _format_repr(self, ['body','density','filterData','friction','massData','restitution','sensor','shape','type','userData']) 
+        return _format_repr(self) 
 
     def __GetUserData(self):
         """__GetUserData(b2Fixture self) -> PyObject *"""
@@ -4208,10 +4587,6 @@ class b2Fixture(object):
         return _Box2D.b2Fixture_ClearUserData(self)
 
     userData = property(__GetUserData, __SetUserData)
-
-    def __hash__(self):
-        """__hash__(b2Fixture self) -> long"""
-        return _Box2D.b2Fixture___hash__(self)
 
     __swig_destroy__ = _Box2D.delete_b2Fixture
     __eq__ = b2FixtureCompare
@@ -4256,10 +4631,10 @@ b2Fixture.__GetRestitution = new_instancemethod(_Box2D.b2Fixture___GetRestitutio
 b2Fixture.__SetRestitution = new_instancemethod(_Box2D.b2Fixture___SetRestitution,None,b2Fixture)
 b2Fixture.GetAABB = new_instancemethod(_Box2D.b2Fixture_GetAABB,None,b2Fixture)
 b2Fixture.Dump = new_instancemethod(_Box2D.b2Fixture_Dump,None,b2Fixture)
+b2Fixture.__hash__ = new_instancemethod(_Box2D.b2Fixture___hash__,None,b2Fixture)
 b2Fixture.__GetUserData = new_instancemethod(_Box2D.b2Fixture___GetUserData,None,b2Fixture)
 b2Fixture.__SetUserData = new_instancemethod(_Box2D.b2Fixture___SetUserData,None,b2Fixture)
 b2Fixture.ClearUserData = new_instancemethod(_Box2D.b2Fixture_ClearUserData,None,b2Fixture)
-b2Fixture.__hash__ = new_instancemethod(_Box2D.b2Fixture___hash__,None,b2Fixture)
 b2Fixture_swigregister = _Box2D.b2Fixture_swigregister
 b2Fixture_swigregister(b2Fixture)
 
@@ -4279,8 +4654,12 @@ class b2DestructionListener(object):
 
     __dir__ = _dir_filter
 
+    def __hash__(self):
+        """__hash__(b2DestructionListener self) -> long"""
+        return _Box2D.b2DestructionListener___hash__(self)
+
     def __repr__(self):
-        return "b2DestructionListener()"
+        return _format_repr(self) 
 
     def __init__(self, **kwargs):
         if self.__class__ == b2DestructionListener:
@@ -4296,6 +4675,7 @@ class b2DestructionListener(object):
         _Box2D.disown_b2DestructionListener(self)
         return weakref_proxy(self)
 b2DestructionListener.SayGoodbye = new_instancemethod(_Box2D.b2DestructionListener_SayGoodbye,None,b2DestructionListener)
+b2DestructionListener.__hash__ = new_instancemethod(_Box2D.b2DestructionListener___hash__,None,b2DestructionListener)
 b2DestructionListener_swigregister = _Box2D.b2DestructionListener_swigregister
 b2DestructionListener_swigregister(b2DestructionListener)
 
@@ -4316,8 +4696,12 @@ class b2ContactFilter(object):
 
     __dir__ = _dir_filter
 
+    def __hash__(self):
+        """__hash__(b2ContactFilter self) -> long"""
+        return _Box2D.b2ContactFilter___hash__(self)
+
     def __repr__(self):
-        return "b2ContactFilter()"
+        return _format_repr(self) 
 
     def __init__(self, **kwargs):
         if self.__class__ == b2ContactFilter:
@@ -4333,6 +4717,7 @@ class b2ContactFilter(object):
         _Box2D.disown_b2ContactFilter(self)
         return weakref_proxy(self)
 b2ContactFilter.ShouldCollide = new_instancemethod(_Box2D.b2ContactFilter_ShouldCollide,None,b2ContactFilter)
+b2ContactFilter.__hash__ = new_instancemethod(_Box2D.b2ContactFilter___hash__,None,b2ContactFilter)
 b2ContactFilter_swigregister = _Box2D.b2ContactFilter_swigregister
 b2ContactFilter_swigregister(b2ContactFilter)
 
@@ -4343,8 +4728,12 @@ class b2ContactImpulse(object):
     count = _swig_property(_Box2D.b2ContactImpulse_count_get, _Box2D.b2ContactImpulse_count_set)
     __dir__ = _dir_filter
 
+    def __hash__(self):
+        """__hash__(b2ContactImpulse self) -> long"""
+        return _Box2D.b2ContactImpulse___hash__(self)
+
     def __repr__(self):
-        return _format_repr(self, ['normalImpulses','tangentImpulses']) 
+        return _format_repr(self) 
 
     def __get_normal_impulses(self):
         """__get_normal_impulses(b2ContactImpulse self) -> PyObject *"""
@@ -4363,6 +4752,7 @@ class b2ContactImpulse(object):
 
 
     __swig_destroy__ = _Box2D.delete_b2ContactImpulse
+b2ContactImpulse.__hash__ = new_instancemethod(_Box2D.b2ContactImpulse___hash__,None,b2ContactImpulse)
 b2ContactImpulse.__get_normal_impulses = new_instancemethod(_Box2D.b2ContactImpulse___get_normal_impulses,None,b2ContactImpulse)
 b2ContactImpulse.__get_tangent_impulses = new_instancemethod(_Box2D.b2ContactImpulse___get_tangent_impulses,None,b2ContactImpulse)
 b2ContactImpulse_swigregister = _Box2D.b2ContactImpulse_swigregister
@@ -4411,8 +4801,12 @@ class b2ContactListener(object):
 
     __dir__ = _dir_filter
 
+    def __hash__(self):
+        """__hash__(b2ContactListener self) -> long"""
+        return _Box2D.b2ContactListener___hash__(self)
+
     def __repr__(self):
-        return "b2ContactListener()"
+        return _format_repr(self) 
 
     def __init__(self, **kwargs):
         if self.__class__ == b2ContactListener:
@@ -4431,6 +4825,7 @@ b2ContactListener.BeginContact = new_instancemethod(_Box2D.b2ContactListener_Beg
 b2ContactListener.EndContact = new_instancemethod(_Box2D.b2ContactListener_EndContact,None,b2ContactListener)
 b2ContactListener.PreSolve = new_instancemethod(_Box2D.b2ContactListener_PreSolve,None,b2ContactListener)
 b2ContactListener.PostSolve = new_instancemethod(_Box2D.b2ContactListener_PostSolve,None,b2ContactListener)
+b2ContactListener.__hash__ = new_instancemethod(_Box2D.b2ContactListener___hash__,None,b2ContactListener)
 b2ContactListener_swigregister = _Box2D.b2ContactListener_swigregister
 b2ContactListener_swigregister(b2ContactListener)
 
@@ -4450,8 +4845,12 @@ class b2QueryCallback(object):
 
     __dir__ = _dir_filter
 
+    def __hash__(self):
+        """__hash__(b2QueryCallback self) -> long"""
+        return _Box2D.b2QueryCallback___hash__(self)
+
     def __repr__(self):
-        return "b2QueryCallback()"
+        return _format_repr(self) 
 
     def __init__(self, **kwargs):
         if self.__class__ == b2QueryCallback:
@@ -4467,6 +4866,7 @@ class b2QueryCallback(object):
         _Box2D.disown_b2QueryCallback(self)
         return weakref_proxy(self)
 b2QueryCallback.ReportFixture = new_instancemethod(_Box2D.b2QueryCallback_ReportFixture,None,b2QueryCallback)
+b2QueryCallback.__hash__ = new_instancemethod(_Box2D.b2QueryCallback___hash__,None,b2QueryCallback)
 b2QueryCallback_swigregister = _Box2D.b2QueryCallback_swigregister
 b2QueryCallback_swigregister(b2QueryCallback)
 
@@ -4498,8 +4898,12 @@ class b2RayCastCallback(object):
 
     __dir__ = _dir_filter
 
+    def __hash__(self):
+        """__hash__(b2RayCastCallback self) -> long"""
+        return _Box2D.b2RayCastCallback___hash__(self)
+
     def __repr__(self):
-        return "b2RayCastCallback()"
+        return _format_repr(self) 
 
     def __init__(self): 
         """__init__(b2RayCastCallback self) -> b2RayCastCallback"""
@@ -4513,6 +4917,7 @@ class b2RayCastCallback(object):
         _Box2D.disown_b2RayCastCallback(self)
         return weakref_proxy(self)
 b2RayCastCallback.ReportFixture = new_instancemethod(_Box2D.b2RayCastCallback_ReportFixture,None,b2RayCastCallback)
+b2RayCastCallback.__hash__ = new_instancemethod(_Box2D.b2RayCastCallback___hash__,None,b2RayCastCallback)
 b2RayCastCallback_swigregister = _Box2D.b2RayCastCallback_swigregister
 b2RayCastCallback_swigregister(b2RayCastCallback)
 
@@ -4578,14 +4983,21 @@ class b2ContactManager(object):
     contactFilter = _swig_property(_Box2D.b2ContactManager_contactFilter_get, _Box2D.b2ContactManager_contactFilter_set)
     contactListener = _swig_property(_Box2D.b2ContactManager_contactListener_get, _Box2D.b2ContactManager_contactListener_set)
     allocator = _swig_property(_Box2D.b2ContactManager_allocator_get, _Box2D.b2ContactManager_allocator_set)
+    __dir__ = _dir_filter
+
+    def __hash__(self):
+        """__hash__(b2ContactManager self) -> long"""
+        return _Box2D.b2ContactManager___hash__(self)
+
     def __repr__(self):
-        return _format_repr(self, ['allocator','broadPhase','contactCount','contactFilter','contactList','contactListener']) 
+        return _format_repr(self) 
 
     __swig_destroy__ = _Box2D.delete_b2ContactManager
 b2ContactManager.AddPair = new_instancemethod(_Box2D.b2ContactManager_AddPair,None,b2ContactManager)
 b2ContactManager.FindNewContacts = new_instancemethod(_Box2D.b2ContactManager_FindNewContacts,None,b2ContactManager)
 b2ContactManager.Destroy = new_instancemethod(_Box2D.b2ContactManager_Destroy,None,b2ContactManager)
 b2ContactManager.Collide = new_instancemethod(_Box2D.b2ContactManager_Collide,None,b2ContactManager)
+b2ContactManager.__hash__ = new_instancemethod(_Box2D.b2ContactManager___hash__,None,b2ContactManager)
 b2ContactManager_swigregister = _Box2D.b2ContactManager_swigregister
 b2ContactManager_swigregister(b2ContactManager)
 b2_stackSize = b2Globals.b2_stackSize
@@ -4608,12 +5020,10 @@ class b2World(object):
 
         self.allowSleeping = doSleep
 
-        for key, value in kwargs.iteritems():
+        for key, value in kwargs.items():
             try:
                 setattr(self, key, value)
-            except:
-                from sys import exc_info
-                ex=exc_info()[1]
+            except Exception as ex:
                 raise ex.__class__('Failed on kwargs, class="%s" key="%s": %s' \
                             % (self.__class__.__name__, key, ex))
 
@@ -4909,8 +5319,12 @@ class b2World(object):
 
     __dir__ = _dir_filter
 
+    def __hash__(self):
+        """__hash__(b2World self) -> long"""
+        return _Box2D.b2World___hash__(self)
+
     def __repr__(self):
-        return _format_repr(self, ['autoClearForces','bodies','bodyCount','contactCount','contactFilter','contactListener','contactManager','contacts','continuousPhysics','destructionListener','gravity','jointCount','joints','locked','proxyCount','renderer','subStepping','warmStarting']) 
+        return _format_repr(self) 
 
     def __CreateBody(self, *args, **kwargs):
         """__CreateBody(b2World self, b2BodyDef defn) -> b2Body"""
@@ -5270,6 +5684,7 @@ b2World.ShiftOrigin = new_instancemethod(_Box2D.b2World_ShiftOrigin,None,b2World
 b2World.__GetContactManager = new_instancemethod(_Box2D.b2World___GetContactManager,None,b2World)
 b2World.GetProfile = new_instancemethod(_Box2D.b2World_GetProfile,None,b2World)
 b2World.Dump = new_instancemethod(_Box2D.b2World_Dump,None,b2World)
+b2World.__hash__ = new_instancemethod(_Box2D.b2World___hash__,None,b2World)
 b2World.__CreateBody = new_instancemethod(_Box2D.b2World___CreateBody,None,b2World)
 b2World.__CreateJoint = new_instancemethod(_Box2D.b2World___CreateJoint,None,b2World)
 b2World.DestroyBody = new_instancemethod(_Box2D.b2World_DestroyBody,None,b2World)
@@ -5303,8 +5718,12 @@ class b2ContactEdge(object):
     next = _swig_property(_Box2D.b2ContactEdge_next_get, _Box2D.b2ContactEdge_next_set)
     __dir__ = _dir_filter
 
+    def __hash__(self):
+        """__hash__(b2ContactEdge self) -> long"""
+        return _Box2D.b2ContactEdge___hash__(self)
+
     def __repr__(self):
-        return _format_repr(self, ['contact','other']) 
+        return _format_repr(self) 
 
     def __init__(self, **kwargs):
         _Box2D.b2ContactEdge_swiginit(self,_Box2D.new_b2ContactEdge())
@@ -5312,6 +5731,7 @@ class b2ContactEdge(object):
 
 
     __swig_destroy__ = _Box2D.delete_b2ContactEdge
+b2ContactEdge.__hash__ = new_instancemethod(_Box2D.b2ContactEdge___hash__,None,b2ContactEdge)
 b2ContactEdge_swigregister = _Box2D.b2ContactEdge_swigregister
 b2ContactEdge_swigregister(b2ContactEdge)
 
@@ -5470,8 +5890,12 @@ class b2Contact(object):
 
     __dir__ = _dir_filter
 
+    def __hash__(self):
+        """__hash__(b2Contact self) -> long"""
+        return _Box2D.b2Contact___hash__(self)
+
     def __repr__(self):
-        return _format_repr(self, ['childIndexA','childIndexB','enabled','fixtureA','fixtureB','manifold','touching','worldManifold']) 
+        return _format_repr(self) 
 
     def __GetWorldManifold(self):
         ret=b2WorldManifold()
@@ -5514,6 +5938,7 @@ b2Contact.ResetRestitution = new_instancemethod(_Box2D.b2Contact_ResetRestitutio
 b2Contact.__SetTangentSpeed = new_instancemethod(_Box2D.b2Contact___SetTangentSpeed,None,b2Contact)
 b2Contact.__GetTangentSpeed = new_instancemethod(_Box2D.b2Contact___GetTangentSpeed,None,b2Contact)
 b2Contact.Evaluate = new_instancemethod(_Box2D.b2Contact_Evaluate,None,b2Contact)
+b2Contact.__hash__ = new_instancemethod(_Box2D.b2Contact___hash__,None,b2Contact)
 b2Contact_swigregister = _Box2D.b2Contact_swigregister
 b2Contact_swigregister(b2Contact)
 
@@ -5528,8 +5953,12 @@ class b2Jacobian(object):
     angularB = _swig_property(_Box2D.b2Jacobian_angularB_get, _Box2D.b2Jacobian_angularB_set)
     __dir__ = _dir_filter
 
+    def __hash__(self):
+        """__hash__(b2Jacobian self) -> long"""
+        return _Box2D.b2Jacobian___hash__(self)
+
     def __repr__(self):
-        return _format_repr(self, ['angularA','angularB','linearA','linearB']) 
+        return _format_repr(self) 
 
     def __init__(self, **kwargs):
         _Box2D.b2Jacobian_swiginit(self,_Box2D.new_b2Jacobian())
@@ -5537,6 +5966,7 @@ class b2Jacobian(object):
 
 
     __swig_destroy__ = _Box2D.delete_b2Jacobian
+b2Jacobian.__hash__ = new_instancemethod(_Box2D.b2Jacobian___hash__,None,b2Jacobian)
 b2Jacobian_swigregister = _Box2D.b2Jacobian_swigregister
 b2Jacobian_swigregister(b2Jacobian)
 
@@ -5550,8 +5980,12 @@ class b2JointEdge(object):
     next = _swig_property(_Box2D.b2JointEdge_next_get, _Box2D.b2JointEdge_next_set)
     __dir__ = _dir_filter
 
+    def __hash__(self):
+        """__hash__(b2JointEdge self) -> long"""
+        return _Box2D.b2JointEdge___hash__(self)
+
     def __repr__(self):
-        return _format_repr(self, ['joint','other']) 
+        return _format_repr(self) 
 
     def __init__(self, **kwargs):
         _Box2D.b2JointEdge_swiginit(self,_Box2D.new_b2JointEdge())
@@ -5559,6 +5993,7 @@ class b2JointEdge(object):
 
 
     __swig_destroy__ = _Box2D.delete_b2JointEdge
+b2JointEdge.__hash__ = new_instancemethod(_Box2D.b2JointEdge___hash__,None,b2JointEdge)
 b2JointEdge_swigregister = _Box2D.b2JointEdge_swigregister
 b2JointEdge_swigregister(b2JointEdge)
 
@@ -5577,8 +6012,12 @@ class b2JointDef(object):
     collideConnected = _swig_property(_Box2D.b2JointDef_collideConnected_get, _Box2D.b2JointDef_collideConnected_set)
     __dir__ = _dir_filter
 
+    def __hash__(self):
+        """__hash__(b2JointDef self) -> long"""
+        return _Box2D.b2JointDef___hash__(self)
+
     def __repr__(self):
-        return _format_repr(self, ['bodyA','bodyB','collideConnected','type','userData']) 
+        return _format_repr(self) 
 
     def __GetUserData(self):
         """__GetUserData(b2JointDef self) -> PyObject *"""
@@ -5609,6 +6048,7 @@ class b2JointDef(object):
         return dict([(variable, getattr(self, variable)) for variable in variables])
 
     __swig_destroy__ = _Box2D.delete_b2JointDef
+b2JointDef.__hash__ = new_instancemethod(_Box2D.b2JointDef___hash__,None,b2JointDef)
 b2JointDef.__GetUserData = new_instancemethod(_Box2D.b2JointDef___GetUserData,None,b2JointDef)
 b2JointDef.__SetUserData = new_instancemethod(_Box2D.b2JointDef___SetUserData,None,b2JointDef)
 b2JointDef.ClearUserData = new_instancemethod(_Box2D.b2JointDef_ClearUserData,None,b2JointDef)
@@ -5707,8 +6147,12 @@ class b2Joint(object):
 
     __dir__ = _dir_filter
 
+    def __hash__(self):
+        """__hash__(b2Joint self) -> long"""
+        return _Box2D.b2Joint___hash__(self)
+
     def __repr__(self):
-        return _format_repr(self, ['active','anchorA','anchorB','bodyA','bodyB','type','userData']) 
+        return _format_repr(self) 
 
     def __GetUserData(self):
         """__GetUserData(b2Joint self) -> PyObject *"""
@@ -5723,10 +6167,6 @@ class b2Joint(object):
         return _Box2D.b2Joint_ClearUserData(self)
 
     userData = property(__GetUserData, __SetUserData)
-
-    def __hash__(self):
-        """__hash__(b2Joint self) -> long"""
-        return _Box2D.b2Joint___hash__(self)
 
     __eq__ = b2JointCompare
     __ne__ = lambda self,other: not b2JointCompare(self,other)
@@ -5759,10 +6199,10 @@ b2Joint.__IsActive = new_instancemethod(_Box2D.b2Joint___IsActive,None,b2Joint)
 b2Joint.__GetCollideConnected = new_instancemethod(_Box2D.b2Joint___GetCollideConnected,None,b2Joint)
 b2Joint.Dump = new_instancemethod(_Box2D.b2Joint_Dump,None,b2Joint)
 b2Joint.ShiftOrigin = new_instancemethod(_Box2D.b2Joint_ShiftOrigin,None,b2Joint)
+b2Joint.__hash__ = new_instancemethod(_Box2D.b2Joint___hash__,None,b2Joint)
 b2Joint.__GetUserData = new_instancemethod(_Box2D.b2Joint___GetUserData,None,b2Joint)
 b2Joint.__SetUserData = new_instancemethod(_Box2D.b2Joint___SetUserData,None,b2Joint)
 b2Joint.ClearUserData = new_instancemethod(_Box2D.b2Joint_ClearUserData,None,b2Joint)
-b2Joint.__hash__ = new_instancemethod(_Box2D.b2Joint___hash__,None,b2Joint)
 b2Joint_swigregister = _Box2D.b2Joint_swigregister
 b2Joint_swigregister(b2Joint)
 
@@ -5796,8 +6236,12 @@ class b2DistanceJointDef(b2JointDef):
     dampingRatio = _swig_property(_Box2D.b2DistanceJointDef_dampingRatio_get, _Box2D.b2DistanceJointDef_dampingRatio_set)
     __dir__ = _dir_filter
 
+    def __hash__(self):
+        """__hash__(b2DistanceJointDef self) -> long"""
+        return _Box2D.b2DistanceJointDef___hash__(self)
+
     def __repr__(self):
-        return _format_repr(self, ['anchorA','anchorB','bodyA','bodyB','collideConnected','dampingRatio','frequencyHz','length','localAnchorA','localAnchorB','type','userData']) 
+        return _format_repr(self) 
 
     def __update_length(self):
         if self.bodyA and self.bodyB:
@@ -5833,6 +6277,7 @@ class b2DistanceJointDef(b2JointDef):
 
     __swig_destroy__ = _Box2D.delete_b2DistanceJointDef
 b2DistanceJointDef.Initialize = new_instancemethod(_Box2D.b2DistanceJointDef_Initialize,None,b2DistanceJointDef)
+b2DistanceJointDef.__hash__ = new_instancemethod(_Box2D.b2DistanceJointDef___hash__,None,b2DistanceJointDef)
 b2DistanceJointDef_swigregister = _Box2D.b2DistanceJointDef_swigregister
 b2DistanceJointDef_swigregister(b2DistanceJointDef)
 
@@ -5879,8 +6324,12 @@ class b2DistanceJoint(b2Joint):
 
     __dir__ = _dir_filter
 
+    def __hash__(self):
+        """__hash__(b2DistanceJoint self) -> long"""
+        return _Box2D.b2DistanceJoint___hash__(self)
+
     def __repr__(self):
-        return _format_repr(self, ['active','anchorA','anchorB','bodyA','bodyB','dampingRatio','frequency','length','type','userData']) 
+        return _format_repr(self) 
 
     # Read-write properties
     length = property(__GetLength, __SetLength)
@@ -5897,6 +6346,7 @@ b2DistanceJoint.__SetFrequency = new_instancemethod(_Box2D.b2DistanceJoint___Set
 b2DistanceJoint.__GetFrequency = new_instancemethod(_Box2D.b2DistanceJoint___GetFrequency,None,b2DistanceJoint)
 b2DistanceJoint.__SetDampingRatio = new_instancemethod(_Box2D.b2DistanceJoint___SetDampingRatio,None,b2DistanceJoint)
 b2DistanceJoint.__GetDampingRatio = new_instancemethod(_Box2D.b2DistanceJoint___GetDampingRatio,None,b2DistanceJoint)
+b2DistanceJoint.__hash__ = new_instancemethod(_Box2D.b2DistanceJoint___hash__,None,b2DistanceJoint)
 b2DistanceJoint_swigregister = _Box2D.b2DistanceJoint_swigregister
 b2DistanceJoint_swigregister(b2DistanceJoint)
 
@@ -5923,8 +6373,12 @@ class b2FrictionJointDef(b2JointDef):
     maxTorque = _swig_property(_Box2D.b2FrictionJointDef_maxTorque_get, _Box2D.b2FrictionJointDef_maxTorque_set)
     __dir__ = _dir_filter
 
+    def __hash__(self):
+        """__hash__(b2FrictionJointDef self) -> long"""
+        return _Box2D.b2FrictionJointDef___hash__(self)
+
     def __repr__(self):
-        return _format_repr(self, ['anchor','bodyA','bodyB','collideConnected','localAnchorA','localAnchorB','maxForce','maxTorque','type','userData']) 
+        return _format_repr(self) 
 
     def __set_anchor(self, value):
         if not self.bodyA:
@@ -5948,6 +6402,7 @@ class b2FrictionJointDef(b2JointDef):
 
     __swig_destroy__ = _Box2D.delete_b2FrictionJointDef
 b2FrictionJointDef.Initialize = new_instancemethod(_Box2D.b2FrictionJointDef_Initialize,None,b2FrictionJointDef)
+b2FrictionJointDef.__hash__ = new_instancemethod(_Box2D.b2FrictionJointDef___hash__,None,b2FrictionJointDef)
 b2FrictionJointDef_swigregister = _Box2D.b2FrictionJointDef_swigregister
 b2FrictionJointDef_swigregister(b2FrictionJointDef)
 
@@ -5998,8 +6453,12 @@ class b2FrictionJoint(b2Joint):
 
     __dir__ = _dir_filter
 
+    def __hash__(self):
+        """__hash__(b2FrictionJoint self) -> long"""
+        return _Box2D.b2FrictionJoint___hash__(self)
+
     def __repr__(self):
-        return _format_repr(self, ['active','anchorA','anchorB','bodyA','bodyB','maxForce','maxTorque','type','userData']) 
+        return _format_repr(self) 
 
     # Read-write properties
     maxForce = property(__GetMaxForce, __SetMaxForce)
@@ -6012,6 +6471,7 @@ b2FrictionJoint.__SetMaxForce = new_instancemethod(_Box2D.b2FrictionJoint___SetM
 b2FrictionJoint.__GetMaxForce = new_instancemethod(_Box2D.b2FrictionJoint___GetMaxForce,None,b2FrictionJoint)
 b2FrictionJoint.__SetMaxTorque = new_instancemethod(_Box2D.b2FrictionJoint___SetMaxTorque,None,b2FrictionJoint)
 b2FrictionJoint.__GetMaxTorque = new_instancemethod(_Box2D.b2FrictionJoint___GetMaxTorque,None,b2FrictionJoint)
+b2FrictionJoint.__hash__ = new_instancemethod(_Box2D.b2FrictionJoint___hash__,None,b2FrictionJoint)
 b2FrictionJoint_swigregister = _Box2D.b2FrictionJoint_swigregister
 b2FrictionJoint_swigregister(b2FrictionJoint)
 
@@ -6029,10 +6489,15 @@ class b2GearJointDef(b2JointDef):
     ratio = _swig_property(_Box2D.b2GearJointDef_ratio_get, _Box2D.b2GearJointDef_ratio_set)
     __dir__ = _dir_filter
 
+    def __hash__(self):
+        """__hash__(b2GearJointDef self) -> long"""
+        return _Box2D.b2GearJointDef___hash__(self)
+
     def __repr__(self):
-        return _format_repr(self, ['bodyA','bodyB','collideConnected','joint1','joint2','ratio','type','userData']) 
+        return _format_repr(self) 
 
     __swig_destroy__ = _Box2D.delete_b2GearJointDef
+b2GearJointDef.__hash__ = new_instancemethod(_Box2D.b2GearJointDef___hash__,None,b2GearJointDef)
 b2GearJointDef_swigregister = _Box2D.b2GearJointDef_swigregister
 b2GearJointDef_swigregister(b2GearJointDef)
 
@@ -6067,8 +6532,12 @@ class b2GearJoint(b2Joint):
 
     __dir__ = _dir_filter
 
+    def __hash__(self):
+        """__hash__(b2GearJoint self) -> long"""
+        return _Box2D.b2GearJoint___hash__(self)
+
     def __repr__(self):
-        return _format_repr(self, ['active','anchorA','anchorB','bodyA','bodyB','ratio','type','userData']) 
+        return _format_repr(self) 
 
     # Read-write properties
     ratio = property(__GetRatio, __SetRatio)
@@ -6079,6 +6548,7 @@ b2GearJoint.GetJoint1 = new_instancemethod(_Box2D.b2GearJoint_GetJoint1,None,b2G
 b2GearJoint.GetJoint2 = new_instancemethod(_Box2D.b2GearJoint_GetJoint2,None,b2GearJoint)
 b2GearJoint.__SetRatio = new_instancemethod(_Box2D.b2GearJoint___SetRatio,None,b2GearJoint)
 b2GearJoint.__GetRatio = new_instancemethod(_Box2D.b2GearJoint___GetRatio,None,b2GearJoint)
+b2GearJoint.__hash__ = new_instancemethod(_Box2D.b2GearJoint___hash__,None,b2GearJoint)
 b2GearJoint_swigregister = _Box2D.b2GearJoint_swigregister
 b2GearJoint_swigregister(b2GearJoint)
 
@@ -6178,10 +6648,15 @@ class b2MouseJointDef(b2JointDef):
     dampingRatio = _swig_property(_Box2D.b2MouseJointDef_dampingRatio_get, _Box2D.b2MouseJointDef_dampingRatio_set)
     __dir__ = _dir_filter
 
+    def __hash__(self):
+        """__hash__(b2MouseJointDef self) -> long"""
+        return _Box2D.b2MouseJointDef___hash__(self)
+
     def __repr__(self):
-        return _format_repr(self, ['bodyA','bodyB','collideConnected','dampingRatio','frequencyHz','maxForce','target','type','userData']) 
+        return _format_repr(self) 
 
     __swig_destroy__ = _Box2D.delete_b2MouseJointDef
+b2MouseJointDef.__hash__ = new_instancemethod(_Box2D.b2MouseJointDef___hash__,None,b2MouseJointDef)
 b2MouseJointDef_swigregister = _Box2D.b2MouseJointDef_swigregister
 b2MouseJointDef_swigregister(b2MouseJointDef)
 
@@ -6240,8 +6715,12 @@ class b2MouseJoint(b2Joint):
 
     __dir__ = _dir_filter
 
+    def __hash__(self):
+        """__hash__(b2MouseJoint self) -> long"""
+        return _Box2D.b2MouseJoint___hash__(self)
+
     def __repr__(self):
-        return _format_repr(self, ['active','anchorA','anchorB','bodyA','bodyB','dampingRatio','frequency','maxForce','target','type','userData']) 
+        return _format_repr(self) 
 
     # Read-write properties
     maxForce = property(__GetMaxForce, __SetMaxForce)
@@ -6259,6 +6738,7 @@ b2MouseJoint.__SetFrequency = new_instancemethod(_Box2D.b2MouseJoint___SetFreque
 b2MouseJoint.__GetFrequency = new_instancemethod(_Box2D.b2MouseJoint___GetFrequency,None,b2MouseJoint)
 b2MouseJoint.__SetDampingRatio = new_instancemethod(_Box2D.b2MouseJoint___SetDampingRatio,None,b2MouseJoint)
 b2MouseJoint.__GetDampingRatio = new_instancemethod(_Box2D.b2MouseJoint___GetDampingRatio,None,b2MouseJoint)
+b2MouseJoint.__hash__ = new_instancemethod(_Box2D.b2MouseJoint___hash__,None,b2MouseJoint)
 b2MouseJoint_swigregister = _Box2D.b2MouseJoint_swigregister
 b2MouseJoint_swigregister(b2MouseJoint)
 
@@ -6297,8 +6777,12 @@ class b2PrismaticJointDef(b2JointDef):
     motorSpeed = _swig_property(_Box2D.b2PrismaticJointDef_motorSpeed_get, _Box2D.b2PrismaticJointDef_motorSpeed_set)
     __dir__ = _dir_filter
 
+    def __hash__(self):
+        """__hash__(b2PrismaticJointDef self) -> long"""
+        return _Box2D.b2PrismaticJointDef___hash__(self)
+
     def __repr__(self):
-        return _format_repr(self, ['anchor','axis','bodyA','bodyB','collideConnected','enableLimit','enableMotor','localAnchorA','localAnchorB','localAxis1','lowerTranslation','maxMotorForce','motorSpeed','referenceAngle','type','upperTranslation','userData']) 
+        return _format_repr(self) 
 
     def __set_anchor(self, value):
         if not self.bodyA:
@@ -6334,6 +6818,7 @@ class b2PrismaticJointDef(b2JointDef):
 
     __swig_destroy__ = _Box2D.delete_b2PrismaticJointDef
 b2PrismaticJointDef.Initialize = new_instancemethod(_Box2D.b2PrismaticJointDef_Initialize,None,b2PrismaticJointDef)
+b2PrismaticJointDef.__hash__ = new_instancemethod(_Box2D.b2PrismaticJointDef___hash__,None,b2PrismaticJointDef)
 b2PrismaticJointDef_swigregister = _Box2D.b2PrismaticJointDef_swigregister
 b2PrismaticJointDef_swigregister(b2PrismaticJointDef)
 
@@ -6468,8 +6953,12 @@ class b2PrismaticJoint(b2Joint):
 
     __dir__ = _dir_filter
 
+    def __hash__(self):
+        """__hash__(b2PrismaticJoint self) -> long"""
+        return _Box2D.b2PrismaticJoint___hash__(self)
+
     def __repr__(self):
-        return _format_repr(self, ['active','anchorA','anchorB','bodyA','bodyB','limitEnabled','limits','lowerLimit','maxMotorForce','motorEnabled','motorSpeed','speed','translation','type','upperLimit','userData']) 
+        return _format_repr(self) 
 
     # Read-write properties
     motorSpeed = property(__GetMotorSpeed, __SetMotorSpeed)
@@ -6504,6 +6993,7 @@ b2PrismaticJoint.__GetMotorSpeed = new_instancemethod(_Box2D.b2PrismaticJoint___
 b2PrismaticJoint.__SetMaxMotorForce = new_instancemethod(_Box2D.b2PrismaticJoint___SetMaxMotorForce,None,b2PrismaticJoint)
 b2PrismaticJoint.__GetMaxMotorForce = new_instancemethod(_Box2D.b2PrismaticJoint___GetMaxMotorForce,None,b2PrismaticJoint)
 b2PrismaticJoint.GetMotorForce = new_instancemethod(_Box2D.b2PrismaticJoint_GetMotorForce,None,b2PrismaticJoint)
+b2PrismaticJoint.__hash__ = new_instancemethod(_Box2D.b2PrismaticJoint___hash__,None,b2PrismaticJoint)
 b2PrismaticJoint_swigregister = _Box2D.b2PrismaticJoint_swigregister
 b2PrismaticJoint_swigregister(b2PrismaticJoint)
 
@@ -6565,8 +7055,12 @@ class b2PulleyJointDef(b2JointDef):
     ratio = _swig_property(_Box2D.b2PulleyJointDef_ratio_get, _Box2D.b2PulleyJointDef_ratio_set)
     __dir__ = _dir_filter
 
+    def __hash__(self):
+        """__hash__(b2PulleyJointDef self) -> long"""
+        return _Box2D.b2PulleyJointDef___hash__(self)
+
     def __repr__(self):
-        return _format_repr(self, ['anchorA','anchorB','bodyA','bodyB','collideConnected','groundAnchorA','groundAnchorB','lengthA','lengthB','localAnchorA','localAnchorB','maxLengthA','maxLengthB','ratio','type','userData']) 
+        return _format_repr(self) 
 
     def __update_length(self):
         if self.bodyA:
@@ -6605,6 +7099,7 @@ class b2PulleyJointDef(b2JointDef):
 
     __swig_destroy__ = _Box2D.delete_b2PulleyJointDef
 b2PulleyJointDef.Initialize = new_instancemethod(_Box2D.b2PulleyJointDef_Initialize,None,b2PulleyJointDef)
+b2PulleyJointDef.__hash__ = new_instancemethod(_Box2D.b2PulleyJointDef___hash__,None,b2PulleyJointDef)
 b2PulleyJointDef_swigregister = _Box2D.b2PulleyJointDef_swigregister
 b2PulleyJointDef_swigregister(b2PulleyJointDef)
 b2_minPulleyLength = b2Globals.b2_minPulleyLength
@@ -6656,8 +7151,12 @@ class b2PulleyJoint(b2Joint):
 
     __dir__ = _dir_filter
 
+    def __hash__(self):
+        """__hash__(b2PulleyJoint self) -> long"""
+        return _Box2D.b2PulleyJoint___hash__(self)
+
     def __repr__(self):
-        return _format_repr(self, ['active','anchorA','anchorB','bodyA','bodyB','groundAnchorA','groundAnchorB','length1','length2','ratio','type','userData']) 
+        return _format_repr(self) 
 
     # Read-only
     groundAnchorB = property(__GetGroundAnchorB, None)
@@ -6675,6 +7174,7 @@ b2PulleyJoint.__GetLengthB = new_instancemethod(_Box2D.b2PulleyJoint___GetLength
 b2PulleyJoint.__GetRatio = new_instancemethod(_Box2D.b2PulleyJoint___GetRatio,None,b2PulleyJoint)
 b2PulleyJoint.GetCurrentLengthA = new_instancemethod(_Box2D.b2PulleyJoint_GetCurrentLengthA,None,b2PulleyJoint)
 b2PulleyJoint.GetCurrentLengthB = new_instancemethod(_Box2D.b2PulleyJoint_GetCurrentLengthB,None,b2PulleyJoint)
+b2PulleyJoint.__hash__ = new_instancemethod(_Box2D.b2PulleyJoint___hash__,None,b2PulleyJoint)
 b2PulleyJoint_swigregister = _Box2D.b2PulleyJoint_swigregister
 b2PulleyJoint_swigregister(b2PulleyJoint)
 
@@ -6708,8 +7208,12 @@ class b2RevoluteJointDef(b2JointDef):
     maxMotorTorque = _swig_property(_Box2D.b2RevoluteJointDef_maxMotorTorque_get, _Box2D.b2RevoluteJointDef_maxMotorTorque_set)
     __dir__ = _dir_filter
 
+    def __hash__(self):
+        """__hash__(b2RevoluteJointDef self) -> long"""
+        return _Box2D.b2RevoluteJointDef___hash__(self)
+
     def __repr__(self):
-        return _format_repr(self, ['anchor','bodyA','bodyB','collideConnected','enableLimit','enableMotor','localAnchorA','localAnchorB','lowerAngle','maxMotorTorque','motorSpeed','referenceAngle','type','upperAngle','userData']) 
+        return _format_repr(self) 
 
     def __set_anchor(self, value):
         if not self.bodyA:
@@ -6732,6 +7236,7 @@ class b2RevoluteJointDef(b2JointDef):
 
     __swig_destroy__ = _Box2D.delete_b2RevoluteJointDef
 b2RevoluteJointDef.Initialize = new_instancemethod(_Box2D.b2RevoluteJointDef_Initialize,None,b2RevoluteJointDef)
+b2RevoluteJointDef.__hash__ = new_instancemethod(_Box2D.b2RevoluteJointDef___hash__,None,b2RevoluteJointDef)
 b2RevoluteJointDef_swigregister = _Box2D.b2RevoluteJointDef_swigregister
 b2RevoluteJointDef_swigregister(b2RevoluteJointDef)
 
@@ -6862,8 +7367,12 @@ class b2RevoluteJoint(b2Joint):
 
     __dir__ = _dir_filter
 
+    def __hash__(self):
+        """__hash__(b2RevoluteJoint self) -> long"""
+        return _Box2D.b2RevoluteJoint___hash__(self)
+
     def __repr__(self):
-        return _format_repr(self, ['active','anchorA','anchorB','angle','bodyA','bodyB','limitEnabled','limits','lowerLimit','maxMotorTorque','motorEnabled','motorSpeed','speed','type','upperLimit','userData']) 
+        return _format_repr(self) 
 
     # Read-write properties
     motorSpeed = property(__GetMotorSpeed, __SetMotorSpeed)
@@ -6899,6 +7408,7 @@ b2RevoluteJoint.__GetMotorSpeed = new_instancemethod(_Box2D.b2RevoluteJoint___Ge
 b2RevoluteJoint.__SetMaxMotorTorque = new_instancemethod(_Box2D.b2RevoluteJoint___SetMaxMotorTorque,None,b2RevoluteJoint)
 b2RevoluteJoint.GetMaxMotorTorque = new_instancemethod(_Box2D.b2RevoluteJoint_GetMaxMotorTorque,None,b2RevoluteJoint)
 b2RevoluteJoint.GetMotorTorque = new_instancemethod(_Box2D.b2RevoluteJoint_GetMotorTorque,None,b2RevoluteJoint)
+b2RevoluteJoint.__hash__ = new_instancemethod(_Box2D.b2RevoluteJoint___hash__,None,b2RevoluteJoint)
 b2RevoluteJoint_swigregister = _Box2D.b2RevoluteJoint_swigregister
 b2RevoluteJoint_swigregister(b2RevoluteJoint)
 
@@ -6916,8 +7426,12 @@ class b2RopeJointDef(b2JointDef):
     maxLength = _swig_property(_Box2D.b2RopeJointDef_maxLength_get, _Box2D.b2RopeJointDef_maxLength_set)
     __dir__ = _dir_filter
 
+    def __hash__(self):
+        """__hash__(b2RopeJointDef self) -> long"""
+        return _Box2D.b2RopeJointDef___hash__(self)
+
     def __repr__(self):
-        return _format_repr(self, ['anchorA','anchorB','bodyA','bodyB','collideConnected','localAnchorA','localAnchorB','maxLength','type','userData']) 
+        return _format_repr(self) 
 
     def __set_anchorA(self, value):
         if not self.bodyA:
@@ -6946,6 +7460,7 @@ class b2RopeJointDef(b2JointDef):
                 Setting the property requires that bodyB be set.""")
 
     __swig_destroy__ = _Box2D.delete_b2RopeJointDef
+b2RopeJointDef.__hash__ = new_instancemethod(_Box2D.b2RopeJointDef___hash__,None,b2RopeJointDef)
 b2RopeJointDef_swigregister = _Box2D.b2RopeJointDef_swigregister
 b2RopeJointDef_swigregister(b2RopeJointDef)
 
@@ -6980,8 +7495,12 @@ class b2RopeJoint(b2Joint):
 
     __dir__ = _dir_filter
 
+    def __hash__(self):
+        """__hash__(b2RopeJoint self) -> long"""
+        return _Box2D.b2RopeJoint___hash__(self)
+
     def __repr__(self):
-        return _format_repr(self, ['active','anchorA','anchorB','bodyA','bodyB','limitState','maxLength','type','userData']) 
+        return _format_repr(self) 
 
     # Read-only properties
     maxLength = property(__GetMaxLength, None)
@@ -6996,6 +7515,7 @@ b2RopeJoint.GetLocalAnchorB = new_instancemethod(_Box2D.b2RopeJoint_GetLocalAnch
 b2RopeJoint.SetMaxLength = new_instancemethod(_Box2D.b2RopeJoint_SetMaxLength,None,b2RopeJoint)
 b2RopeJoint.__GetMaxLength = new_instancemethod(_Box2D.b2RopeJoint___GetMaxLength,None,b2RopeJoint)
 b2RopeJoint.__GetLimitState = new_instancemethod(_Box2D.b2RopeJoint___GetLimitState,None,b2RopeJoint)
+b2RopeJoint.__hash__ = new_instancemethod(_Box2D.b2RopeJoint___hash__,None,b2RopeJoint)
 b2RopeJoint_swigregister = _Box2D.b2RopeJoint_swigregister
 b2RopeJoint_swigregister(b2RopeJoint)
 
@@ -7025,8 +7545,12 @@ class b2WeldJointDef(b2JointDef):
     dampingRatio = _swig_property(_Box2D.b2WeldJointDef_dampingRatio_get, _Box2D.b2WeldJointDef_dampingRatio_set)
     __dir__ = _dir_filter
 
+    def __hash__(self):
+        """__hash__(b2WeldJointDef self) -> long"""
+        return _Box2D.b2WeldJointDef___hash__(self)
+
     def __repr__(self):
-        return _format_repr(self, ['anchor','bodyA','bodyB','collideConnected','localAnchorA','localAnchorB','referenceAngle','type','userData']) 
+        return _format_repr(self) 
 
     def __set_anchor(self, value):
         if not self.bodyA:
@@ -7049,6 +7573,7 @@ class b2WeldJointDef(b2JointDef):
 
     __swig_destroy__ = _Box2D.delete_b2WeldJointDef
 b2WeldJointDef.Initialize = new_instancemethod(_Box2D.b2WeldJointDef_Initialize,None,b2WeldJointDef)
+b2WeldJointDef.__hash__ = new_instancemethod(_Box2D.b2WeldJointDef___hash__,None,b2WeldJointDef)
 b2WeldJointDef_swigregister = _Box2D.b2WeldJointDef_swigregister
 b2WeldJointDef_swigregister(b2WeldJointDef)
 
@@ -7087,8 +7612,12 @@ class b2WeldJoint(b2Joint):
 
     __dir__ = _dir_filter
 
+    def __hash__(self):
+        """__hash__(b2WeldJoint self) -> long"""
+        return _Box2D.b2WeldJoint___hash__(self)
+
     def __repr__(self):
-        return _format_repr(self, ['active','anchorA','anchorB','bodyA','bodyB','type','userData']) 
+        return _format_repr(self) 
 
     __swig_destroy__ = _Box2D.delete_b2WeldJoint
 b2WeldJoint.GetLocalAnchorA = new_instancemethod(_Box2D.b2WeldJoint_GetLocalAnchorA,None,b2WeldJoint)
@@ -7098,6 +7627,7 @@ b2WeldJoint.SetFrequency = new_instancemethod(_Box2D.b2WeldJoint_SetFrequency,No
 b2WeldJoint.GetFrequency = new_instancemethod(_Box2D.b2WeldJoint_GetFrequency,None,b2WeldJoint)
 b2WeldJoint.SetDampingRatio = new_instancemethod(_Box2D.b2WeldJoint_SetDampingRatio,None,b2WeldJoint)
 b2WeldJoint.GetDampingRatio = new_instancemethod(_Box2D.b2WeldJoint_GetDampingRatio,None,b2WeldJoint)
+b2WeldJoint.__hash__ = new_instancemethod(_Box2D.b2WeldJoint___hash__,None,b2WeldJoint)
 b2WeldJoint_swigregister = _Box2D.b2WeldJoint_swigregister
 b2WeldJoint_swigregister(b2WeldJoint)
 
@@ -7128,8 +7658,12 @@ class b2WheelJointDef(b2JointDef):
     dampingRatio = _swig_property(_Box2D.b2WheelJointDef_dampingRatio_get, _Box2D.b2WheelJointDef_dampingRatio_set)
     __dir__ = _dir_filter
 
+    def __hash__(self):
+        """__hash__(b2WheelJointDef self) -> long"""
+        return _Box2D.b2WheelJointDef___hash__(self)
+
     def __repr__(self):
-        return _format_repr(self, ['anchor','axis','bodyA','bodyB','collideConnected','dampingRatio','enableMotor','frequencyHz','localAnchorA','localAnchorB','localAxisA','maxMotorTorque','motorSpeed','type','userData']) 
+        return _format_repr(self) 
 
     def __set_anchor(self, value):
         if not self.bodyA:
@@ -7165,6 +7699,7 @@ class b2WheelJointDef(b2JointDef):
 
     __swig_destroy__ = _Box2D.delete_b2WheelJointDef
 b2WheelJointDef.Initialize = new_instancemethod(_Box2D.b2WheelJointDef_Initialize,None,b2WheelJointDef)
+b2WheelJointDef.__hash__ = new_instancemethod(_Box2D.b2WheelJointDef___hash__,None,b2WheelJointDef)
 b2WheelJointDef_swigregister = _Box2D.b2WheelJointDef_swigregister
 b2WheelJointDef_swigregister(b2WheelJointDef)
 
@@ -7279,8 +7814,12 @@ class b2WheelJoint(b2Joint):
 
     __dir__ = _dir_filter
 
+    def __hash__(self):
+        """__hash__(b2WheelJoint self) -> long"""
+        return _Box2D.b2WheelJoint___hash__(self)
+
     def __repr__(self):
-        return _format_repr(self, ['active','anchorA','anchorB','bodyA','bodyB','maxMotorTorque','motorEnabled','motorSpeed','speed','springDampingRatio','springFrequencyHz','translation','type','userData']) 
+        return _format_repr(self) 
 
     # Read-write properties
     motorSpeed = property(__GetMotorSpeed, __SetMotorSpeed)
@@ -7311,6 +7850,7 @@ b2WheelJoint.__SetSpringFrequencyHz = new_instancemethod(_Box2D.b2WheelJoint___S
 b2WheelJoint.__GetSpringFrequencyHz = new_instancemethod(_Box2D.b2WheelJoint___GetSpringFrequencyHz,None,b2WheelJoint)
 b2WheelJoint.__SetSpringDampingRatio = new_instancemethod(_Box2D.b2WheelJoint___SetSpringDampingRatio,None,b2WheelJoint)
 b2WheelJoint.__GetSpringDampingRatio = new_instancemethod(_Box2D.b2WheelJoint___GetSpringDampingRatio,None,b2WheelJoint)
+b2WheelJoint.__hash__ = new_instancemethod(_Box2D.b2WheelJoint___hash__,None,b2WheelJoint)
 b2WheelJoint_swigregister = _Box2D.b2WheelJoint_swigregister
 b2WheelJoint_swigregister(b2WheelJoint)
 
