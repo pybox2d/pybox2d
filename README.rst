@@ -1,3 +1,8 @@
+This project still officially lives at http://pybox2d.googlecode.com/. I have made a fork because of my comfort with github
+
+
+
+
 pybox2d
 2D Game Physics for Python
 http://pybox2d.googlecode.com/
