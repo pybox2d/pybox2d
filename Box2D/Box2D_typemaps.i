@@ -75,7 +75,7 @@
 %typemap(in) b2Vec2* (b2Vec2 temp) {
     if (PySequence_Check($input)) {
         if (PySequence_Size($input) != 2) {
-            PyErr_Format(PyExc_TypeError, "Expected tuple or list of length 2, got length %d", PySequence_Size($input));
+            PyErr_Format(PyExc_TypeError, "Expected tuple or list of length 2, got length %ld", (long) PySequence_Size($input));
             SWIG_fail;
         }
         pybox2d_float_from_sequence($input, 0, &temp.x, "Converting from sequence to b2Vec2, expected int/float arguments index 0");
@@ -98,7 +98,7 @@
     //input - $input -> ($1_type) $1 $1_descriptor
     if (PySequence_Check($input)) {
         if (PySequence_Size($input) != 3) {
-            PyErr_Format(PyExc_TypeError, "Expected tuple or list of length 3, got length %d", PySequence_Size($input));
+            PyErr_Format(PyExc_TypeError, "Expected tuple or list of length 3, got length %ld", (long) PySequence_Size($input));
             SWIG_fail;
         }
         pybox2d_float_from_sequence($input, 0, &temp.r, "Converting from sequence to b2Color, expected int/float arguments index 0");
@@ -122,7 +122,7 @@
     //input - $input -> ($1_type) $1 $1_descriptor
     if (PySequence_Check($input)) {
         if (PySequence_Size($input) != 3) {
-            PyErr_Format(PyExc_TypeError, "Expected tuple or list of length 3, got length %d", PySequence_Size($input));
+            PyErr_Format(PyExc_TypeError, "Expected tuple or list of length 3, got length %ld", (long) PySequence_Size($input));
             SWIG_fail;
         }
         pybox2d_float_from_sequence($input, 0, &temp.x, "Converting from sequence to b2Vec3, expected int/float arguments index 0");
@@ -146,7 +146,7 @@
     //input - $input -> ($1_type) $1 $1_descriptor
     if (PySequence_Check($input)) {
         if (PySequence_Size($input) != 2) {
-            PyErr_Format(PyExc_TypeError, "Expected tuple or list of length 2, got length %d", PySequence_Size($input));
+            PyErr_Format(PyExc_TypeError, "Expected tuple or list of length 2, got length %ld", (long) PySequence_Size($input));
             SWIG_fail;
         }
         pybox2d_float_from_sequence($input, 0, &temp.x, "Converting from sequence to b2Vec2, expected int/float arguments index 0");
@@ -168,7 +168,7 @@
     //input - $input -> ($1_type) $1 $1_descriptor
     if (PySequence_Check($input)) {
         if (PySequence_Size($input) != 3) {
-            PyErr_Format(PyExc_TypeError, "Expected tuple or list of length 3, got length %d", PySequence_Size($input));
+            PyErr_Format(PyExc_TypeError, "Expected tuple or list of length 3, got length %ld", (long) PySequence_Size($input));
             SWIG_fail;
         }
         pybox2d_float_from_sequence($input, 0, &temp.r, "Converting from sequence to b2Color, expected int/float arguments index 0");
@@ -192,7 +192,7 @@
     //input - $input -> ($1_type) $1 $1_descriptor
     if (PySequence_Check($input)) {
         if (PySequence_Size($input) != 3) {
-            PyErr_Format(PyExc_TypeError, "Expected tuple or list of length 3, got length %d", PySequence_Size($input));
+            PyErr_Format(PyExc_TypeError, "Expected tuple or list of length 3, got length %ld", (long) PySequence_Size($input));
             SWIG_fail;
         }
         pybox2d_float_from_sequence($input, 0, &temp.x, "Converting from sequence to b2Vec3, expected int/float arguments index 0");
