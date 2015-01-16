@@ -591,6 +591,7 @@ class Pyqt4Framework(FrameworkBase):
 
         self.window.setWindowTitle( "Python Box2D Testbed - " + self.name)
         self.renderer = Pyqt4Draw(self)
+        self.world.renderer = self.renderer
 
         # Note that in this framework, we override the draw debug data routine
         # that occurs in Step(), and we implement the normal C++ code in Python.
