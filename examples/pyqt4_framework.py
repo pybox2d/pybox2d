@@ -542,7 +542,7 @@ class Pyqt4Framework(FrameworkBase):
     def setup_keys(self):
         # Only basic keys are mapped for now: K_[a-z0-9], K_F[1-12] and K_COMMA.
 
-        for letter in string.uppercase:
+        for letter in string.ascii_uppercase:
             setattr(Keys, 'K_'+letter.lower(), getattr(Qt, 'Key_%s' % letter))
         for i in range(0,10):
             setattr(Keys, 'K_%d'%i, getattr(Qt, 'Key_%d' % i))
