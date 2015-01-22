@@ -42,7 +42,8 @@
                         return False
                 return True
         
-        keys = sum([list(c.__dict__.keys()) for c in type(self).__mro__], [])
+        keys = sum([list(c.__dict__.keys()) for c in type(self).__mro__],[])
+        keys += list(self.__dict__.keys())
         typenames = ["_%s" % c.__name__ for c in type(self).__mro__]
         ret = [s for s in list(set(keys)) if check(s)]
         ret.sort()
