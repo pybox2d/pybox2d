@@ -247,7 +247,7 @@ def _format_repr(obj):
         _repr_state['depth'] -= 1
         _repr_state['spaces'] = orig_spaces
     
-    if len(ret) <= 3:
+    if 1<= len(ret) <= 3:
         # Closing parenthesis on same line
         ret[-1] += ')'
         return ''.join(ret)
