@@ -1,11 +1,6 @@
-This project still officially lives at http://pybox2d.googlecode.com/. I have made a fork because of my comfort with github
-
-
-
-
 pybox2d
 2D Game Physics for Python
-http://pybox2d.googlecode.com/
+https://github.com/pybox2d/pybox2d
 
 What is it?
 -----------
@@ -37,16 +32,4 @@ Bugs
 
 Please submit any bugs that you find to:
 
-   http://code.google.com/p/pybox2d/issues/list
-
-
-Contact
--------
-
-You can contact me on the Box2D forums:
-
-   http://www.box2d.org/forum/
-
-or by e-mail:
-
-   sirkne at gmail com
+   https://github.com/pybox2d/pybox2d/issues
