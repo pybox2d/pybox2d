@@ -1416,75 +1416,75 @@ The revolute and prismatic joints must be attached to fixed bodies (which must b
 
 
 // File: classb2_loop_shape.xml
-%feature("docstring") b2LoopShape "A loop shape is a free form sequence of line segments that form a circular list. The loop may cross upon itself, but this is not recommended for smooth collision. The loop has double sided collision, so you can use inside and outside collision. Therefore, you may use any winding order. Since there may be many vertices, they are allocated using b2Alloc.";
+%feature("docstring") b2ChainShape "A loop shape is a free form sequence of line segments that form a circular list. The loop may cross upon itself, but this is not recommended for smooth collision. The loop has double sided collision, so you can use inside and outside collision. Therefore, you may use any winding order. Since there may be many vertices, they are allocated using b2Alloc.";
 
-%feature("docstring") b2LoopShape::~b2LoopShape "The destructor frees the vertices using b2Free.";
+%feature("docstring") b2ChainShape::~b2ChainShape "The destructor frees the vertices using b2Free.";
 
-%feature("docstring") b2LoopShape::Create "Create the loop shape, copy all vertices.";
+%feature("docstring") b2ChainShape::Create "Create the loop shape, copy all vertices.";
 
-%feature("docstring") b2LoopShape::Clone "Implement  b2Shape. Vertices are cloned using b2Alloc.";
+%feature("docstring") b2ChainShape::Clone "Implement  b2Shape. Vertices are cloned using b2Alloc.";
 
-%feature("docstring") b2LoopShape::GetChildCount "
-
-See: 
- b2Shape::GetChildCount";
-
-%feature("docstring") b2LoopShape::GetChildEdge "Get a child edge.";
-
-%feature("docstring") b2LoopShape::TestPoint "This always return false. 
-See: 
- b2Shape::TestPoint";
-
-%feature("docstring") b2LoopShape::RayCast "Implement  b2Shape.";
-
-%feature("docstring") b2LoopShape::ComputeAABB "
-
-See: 
- b2Shape::ComputeAABB";
-
-%feature("docstring") b2LoopShape::ComputeMass "Chains have zero mass. 
-See: 
- b2Shape::ComputeMass";
-
-%feature("docstring") b2LoopShape::GetCount "Get the number of vertices.";
-
-%feature("docstring") b2LoopShape::GetVertex "Get the vertices (read-only).";
-
-%feature("docstring") b2LoopShape::GetVertices "Get the vertices (read-only).";
-
-%feature("docstring") b2LoopShape::~b2LoopShape "The destructor frees the vertices using b2Free.";
-
-%feature("docstring") b2LoopShape::Create "Create the loop shape, copy all vertices.";
-
-%feature("docstring") b2LoopShape::Clone "Implement  b2Shape. Vertices are cloned using b2Alloc.";
-
-%feature("docstring") b2LoopShape::GetChildCount "
+%feature("docstring") b2ChainShape::GetChildCount "
 
 See: 
  b2Shape::GetChildCount";
 
-%feature("docstring") b2LoopShape::GetChildEdge "Get a child edge.";
+%feature("docstring") b2ChainShape::GetChildEdge "Get a child edge.";
 
-%feature("docstring") b2LoopShape::TestPoint "This always return false. 
+%feature("docstring") b2ChainShape::TestPoint "This always return false. 
 See: 
  b2Shape::TestPoint";
 
-%feature("docstring") b2LoopShape::RayCast "Implement  b2Shape.";
+%feature("docstring") b2ChainShape::RayCast "Implement  b2Shape.";
 
-%feature("docstring") b2LoopShape::ComputeAABB "
+%feature("docstring") b2ChainShape::ComputeAABB "
 
 See: 
  b2Shape::ComputeAABB";
 
-%feature("docstring") b2LoopShape::ComputeMass "Chains have zero mass. 
+%feature("docstring") b2ChainShape::ComputeMass "Chains have zero mass. 
 See: 
  b2Shape::ComputeMass";
 
-%feature("docstring") b2LoopShape::GetCount "Get the number of vertices.";
+%feature("docstring") b2ChainShape::GetCount "Get the number of vertices.";
 
-%feature("docstring") b2LoopShape::GetVertex "Get the vertices (read-only).";
+%feature("docstring") b2ChainShape::GetVertex "Get the vertices (read-only).";
 
-%feature("docstring") b2LoopShape::GetVertices "Get the vertices (read-only).";
+%feature("docstring") b2ChainShape::GetVertices "Get the vertices (read-only).";
+
+%feature("docstring") b2ChainShape::~b2ChainShape "The destructor frees the vertices using b2Free.";
+
+%feature("docstring") b2ChainShape::Create "Create the loop shape, copy all vertices.";
+
+%feature("docstring") b2ChainShape::Clone "Implement  b2Shape. Vertices are cloned using b2Alloc.";
+
+%feature("docstring") b2ChainShape::GetChildCount "
+
+See: 
+ b2Shape::GetChildCount";
+
+%feature("docstring") b2ChainShape::GetChildEdge "Get a child edge.";
+
+%feature("docstring") b2ChainShape::TestPoint "This always return false. 
+See: 
+ b2Shape::TestPoint";
+
+%feature("docstring") b2ChainShape::RayCast "Implement  b2Shape.";
+
+%feature("docstring") b2ChainShape::ComputeAABB "
+
+See: 
+ b2Shape::ComputeAABB";
+
+%feature("docstring") b2ChainShape::ComputeMass "Chains have zero mass. 
+See: 
+ b2Shape::ComputeMass";
+
+%feature("docstring") b2ChainShape::GetCount "Get the number of vertices.";
+
+%feature("docstring") b2ChainShape::GetVertex "Get the vertices (read-only).";
+
+%feature("docstring") b2ChainShape::GetVertices "Get the vertices (read-only).";
 
 
 // File: structb2_manifold.xml

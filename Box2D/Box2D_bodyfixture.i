@@ -219,7 +219,9 @@ public:
             where 'vertices' is a property from the loop shape, and 
             'friction' and 'density' are from the fixture definition.
             """
-            return self.__CreateShapeFixture(b2LoopShape, **kwargs)
+            return self.__CreateShapeFixture(b2ChainShape, **kwargs)
+    
+        CreateChainFixture = CreateLoopFixture
 
         def CreateFixturesFromShapes(self, shapes=None, shapeFixture=None):
             """
