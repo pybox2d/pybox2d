@@ -3,7 +3,7 @@
 #
 # C++ version Copyright (c) 2006-2007 Erin Catto http://www.box2d.org
 # Python version Copyright (c) 2010 kne / sirkne at gmail dot com
-# 
+#
 # This software is provided 'as-is', without any express or implied
 # warranty.  In no event will the authors be held liable for any damages
 # arising from the use of this software.
@@ -20,7 +20,7 @@
 
 """
 A simple, minimal Pygame-based backend.
-It will only draw and support very basic keyboard input (ESC to quit). 
+It will only draw and support very basic keyboard input (ESC to quit).
 
 There are no main dependencies other than the actual test you are running.
 Note that this only relies on framework.py for the loading of this backend,
@@ -29,7 +29,7 @@ backend, you can remove references to that file here and import this module
 directly in your test.
 
 To use this backend, try:
- % python test_Web.py --backend simple
+ % python -m examples.web --backend simple
 
 NOTE: Examples with Step() re-implemented are not yet supported, as I wanted
 to do away with the Settings class. This means the following will definitely
@@ -157,7 +157,7 @@ class SimpleFramework(object):
             pygame.display.flip()
             clock.tick(TARGET_FPS)
             self.fps = clock.get_fps()
-    
+
         self.world.contactListener = None
         self.world.destructionListener=None
         self.world.renderer=None
@@ -175,7 +175,7 @@ class SimpleFramework(object):
         Callback indicating 'key' has been pressed down.
         The keys are mapped after pygame's style.
 
-         from framework import Keys
+         from .framework import Keys
          if key == Keys.K_z:
              ...
         """

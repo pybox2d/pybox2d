@@ -4,7 +4,7 @@
 #
 # C++ version Copyright (c) 2006-2007 Erin Catto http://www.box2d.org
 # Python version by Ken Lauer / sirkne at gmail dot com
-# 
+#
 # This software is provided 'as-is', without any express or implied
 # warranty.  In no event will the authors be held liable for any damages
 # arising from the use of this software.
@@ -23,15 +23,10 @@
 The framework's base is FrameworkBase. See its help for more information.
 """
 from Box2D import *
-from settings import fwSettings
 from time import time
 
-## Use psyco if available
-#try:
-#    import psyco
-#    psyco.full()
-#except ImportError:
-#    pass
+from .settings import fwSettings
+
 
 class fwDestructionListener(b2DestructionListener):
     """
@@ -52,7 +47,7 @@ class fwDestructionListener(b2DestructionListener):
             self.test.FixtureDestroyed(object)
 
 class fwQueryCallback(b2QueryCallback):
-    def __init__(self, p): 
+    def __init__(self, p):
         super(fwQueryCallback, self).__init__()
         self.point = p
         self.fixture = None
@@ -74,14 +69,14 @@ class Keys(object):
 class FrameworkBase(b2ContactListener):
     """
     The base of the main testbed framework.
-    
+
     If you are planning on using the testbed framework and:
     * Want to implement your own renderer (other than Pygame, etc.):
       You should derive your class from this one to implement your own tests.
-      See test_Empty.py or any of the other tests for more information.
+      See empty.py or any of the other tests for more information.
     * Do NOT want to implement your own renderer:
       You should derive your class from Framework. The renderer chosen in
-      fwSettings (see settings.py) or on the command line will automatically 
+      fwSettings (see settings.py) or on the command line will automatically
       be used for your test.
     """
     name = "None"
@@ -146,7 +141,7 @@ class FrameworkBase(b2ContactListener):
             timeStep = 1.0 / settings.hz
         else:
             timeStep = 0.0
-        
+
         # If paused, display so
         if settings.pause:
             if settings.singleStep:
@@ -167,7 +162,7 @@ class FrameworkBase(b2ContactListener):
                     # The following is only applicable when using b2DrawExtended.
                     # It indicates that the C code should transform box2d coords to
                     # screen coordinates.
-                    convertVertices=isinstance(self.renderer, b2DrawExtended) 
+                    convertVertices=isinstance(self.renderer, b2DrawExtended)
                     )
 
         # Set the other settings that aren't contained in the flags
@@ -196,7 +191,7 @@ class FrameworkBase(b2ContactListener):
         if self.bomb and not self.bomb.awake:
             self.world.DestroyBody(self.bomb)
             self.bomb = None
-        
+
         # Take care of additional drawing (fps, mouse joint, slingshot bomb, contact points)
 
         if self.renderer:
@@ -226,7 +221,7 @@ class FrameworkBase(b2ContactListener):
                 for point in self.points:
                     p1 = self.renderer.to_screen(point['position'])
                     p2 = self.renderer.axisScale * point['normal'] + p1
-                    self.renderer.DrawSegment(p1, p2, self.colors['contact_normal']) 
+                    self.renderer.DrawSegment(p1, p2, self.colors['contact_normal'])
 
             self.renderer.EndDraw()
             t_draw=time()-t_draw
@@ -288,13 +283,13 @@ class FrameworkBase(b2ContactListener):
         # Query the world for overlapping shapes.
         query = fwQueryCallback(p)
         self.world.QueryAABB(query, aabb)
-        
+
         if query.fixture:
             body = query.fixture.body
             # A body was selected, create the mouse joint
             self.mouseJoint = self.world.CreateMouseJoint(
                     bodyA=self.groundbody,
-                    bodyB=body, 
+                    bodyB=body,
                     target=p,
                     maxForce=1000.0*body.mass)
             body.awake = True
@@ -302,7 +297,7 @@ class FrameworkBase(b2ContactListener):
     def MouseUp(self, p):
         """
         Left mouse button up.
-        """     
+        """
         if self.mouseJoint:
             self.world.DestroyJoint(self.mouseJoint)
             self.mouseJoint = None
@@ -321,7 +316,7 @@ class FrameworkBase(b2ContactListener):
     def SpawnBomb(self, worldPt):
         """
         Begins the slingshot bomb by recording the initial position.
-        Once the user drags the mouse and releases it, then 
+        Once the user drags the mouse and releases it, then
         CompleteBombSpawn will be called and the actual bomb will be
         released.
         """
@@ -333,7 +328,7 @@ class FrameworkBase(b2ContactListener):
         Create the slingshot bomb based on the two points
         (from the worldPt passed to SpawnBomb to p passed in here)
         """
-        if not self.bombSpawning: 
+        if not self.bombSpawning:
             return
         multiplier = 30.0
         vel  = self.bombSpawnPoint - p
@@ -351,14 +346,14 @@ class FrameworkBase(b2ContactListener):
             self.bomb = None
 
         self.bomb = self.world.CreateDynamicBody(
-                        allowSleep=True, 
-                        position=position, 
+                        allowSleep=True,
+                        position=position,
                         linearVelocity=velocity,
-                        fixtures=b2FixtureDef( 
-                            shape=b2CircleShape(radius=0.3), 
-                            density=20, 
+                        fixtures=b2FixtureDef(
+                            shape=b2CircleShape(radius=0.3),
+                            density=20,
                             restitution=0.1 )
-                            
+
                     )
 
     def LaunchRandomBomb(self):
@@ -368,7 +363,7 @@ class FrameworkBase(b2ContactListener):
         p = b2Vec2( b2Random(-15.0, 15.0), 30.0 )
         v = -5.0 * p
         self.LaunchBomb(p, v)
-     
+
     def SimulationLoop(self):
         """
         The main simulation loop. Don't override this, override Step instead.
@@ -429,7 +424,7 @@ class FrameworkBase(b2ContactListener):
             return
 
         worldManifold = contact.worldManifold
-        
+
         for i, point in enumerate(state2):
             # TODO: find some way to speed all of this up.
             self.points.append(
@@ -442,7 +437,7 @@ class FrameworkBase(b2ContactListener):
                     }  )
 
     # These can/should be implemented in the test subclass: (Step() also if necessary)
-    # See test_Empty.py for a simple example.
+    # See empty.py for a simple example.
     def BeginContact(self, contact):
         pass
     def EndContact(self, contact):
@@ -489,17 +484,19 @@ if __name__=='__main__':
     exit(0)
 
 # Your framework classes should follow this format. If it is the 'foobar'
-# framework, then your file should be 'foobar_framework.py' and you should
-# have a class 'FoobarFramework' that derives FrameworkBase. Ensure proper
-# capitalization for portability.
+# framework, then your file should be 'backends/foobar_framework.py' and you
+# should have a class 'FoobarFramework' that subclasses FrameworkBase. Ensure
+# proper capitalization for portability.
+from . import backends
+
 try:
-    framework_module=__import__('%s_framework' % (fwSettings.backend.lower()), fromlist=['%sFramework' % fwSettings.backend.capitalize()])
-    Framework=getattr(framework_module, '%sFramework' % fwSettings.backend.capitalize())
-except:
-    from sys import exc_info
-    ex=exc_info()[1]
+    framework_name = '%s_framework' % (fwSettings.backend.lower())
+    __import__('backends', globals(), fromlist=[framework_name], level=1)
+    framework_module = getattr(backends, framework_name)
+    Framework = getattr(framework_module,
+                        '%sFramework' % fwSettings.backend.capitalize())
+except Exception as ex:
     print('Unable to import the back-end %s: %s' % (fwSettings.backend, ex))
     print('Attempting to fall back on the pygame back-end.')
 
-    from pygame_framework import PygameFramework as Framework
-#s/\.Get\(.\)\(.\{-\}\)()/.\L\1\l\2/g
+    from .backends.pygame_framework import PygameFramework as Framework
