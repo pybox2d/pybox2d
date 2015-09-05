@@ -277,3 +277,5 @@ public:
 %rename (__GetTreeBalance) b2BroadPhase::GetTreeBalance;
 %rename (__GetTreeQuality) b2BroadPhase::GetTreeQuality;
 %ignore b2BroadPhase::GetUserData;
+%ignore b2BroadPhase::CreateProxy;
+%ignore b2BroadPhase::DestroyProxy;

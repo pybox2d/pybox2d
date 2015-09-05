@@ -323,13 +323,13 @@ public:
     %}
 }
 
-%feature("shadow") b2DistanceJointDef::b2DistanceJointDef() {
+%feature("shadow") b2DistanceJointDef::b2DistanceJointDef() %{
     def __init__(self, **kwargs):
         _Box2D.b2DistanceJointDef_swiginit(self,_Box2D.new_b2DistanceJointDef())
         _init_jointdef_kwargs(self, **kwargs)
         if 'localAnchorA' in kwargs and 'localAnchorB' in kwargs and 'length' not in kwargs:
             self.__update_length()
-}
+%}
 
 
 /**** FrictionJointDef ****/
@@ -357,11 +357,11 @@ public:
     %}
 }
 
-%feature("shadow") b2FrictionJointDef::b2FrictionJointDef() {
+%feature("shadow") b2FrictionJointDef::b2FrictionJointDef() %{
     def __init__(self, **kwargs):
         _Box2D.b2FrictionJointDef_swiginit(self,_Box2D.new_b2FrictionJointDef())
         _init_jointdef_kwargs(self, **kwargs)
-}
+%}
 
 
 /**** WheelJointDef ****/
@@ -400,11 +400,11 @@ public:
                     Setting the property requires that bodyA be set.""")
     %}
 }
-%feature("shadow") b2WheelJointDef::b2WheelJointDef() {
+%feature("shadow") b2WheelJointDef::b2WheelJointDef() %{
     def __init__(self, **kwargs):
         _Box2D.b2WheelJointDef_swiginit(self,_Box2D.new_b2WheelJointDef())
         _init_jointdef_kwargs(self, **kwargs)
-}
+%}
 
 
 
@@ -445,13 +445,13 @@ public:
     %}
 }
 
-%feature("shadow") b2PrismaticJointDef::b2PrismaticJointDef() {
+%feature("shadow") b2PrismaticJointDef::b2PrismaticJointDef() %{
     def __init__(self, **kwargs):
         _Box2D.b2PrismaticJointDef_swiginit(self,_Box2D.new_b2PrismaticJointDef())
         _init_jointdef_kwargs(self, **kwargs)
         if self.bodyA and self.bodyB and 'referenceAngle' not in kwargs:
             self.referenceAngle = self.bodyB.angle - self.bodyA.angle
-}
+%}
 
 /**** PulleyJointDef ****/
 %extend b2PulleyJointDef {
@@ -493,7 +493,7 @@ public:
     %}
 }
 
-%feature("shadow") b2PulleyJointDef::b2PulleyJointDef() {
+%feature("shadow") b2PulleyJointDef::b2PulleyJointDef() %{
     def __init__(self, **kwargs):
         _Box2D.b2PulleyJointDef_swiginit(self,_Box2D.new_b2PulleyJointDef())
         _init_jointdef_kwargs(self, **kwargs)
@@ -528,7 +528,7 @@ public:
                 C = self.lengthA + self.ratio * self.lengthB
                 self.maxLengthA = C - self.ratio * b2_minPulleyLength
                 self.maxLengthB = (C - b2_minPulleyLength) / self.ratio
-}
+%}
 /*
 TODO:
 Note on the above:
@@ -565,13 +565,13 @@ this point. So, figure out a way around this, somehow.
     %}
 }
 
-%feature("shadow") b2RevoluteJointDef::b2RevoluteJointDef() {
+%feature("shadow") b2RevoluteJointDef::b2RevoluteJointDef() %{
     def __init__(self, **kwargs):
         _Box2D.b2RevoluteJointDef_swiginit(self,_Box2D.new_b2RevoluteJointDef())
         _init_jointdef_kwargs(self, **kwargs)
         if self.bodyA and self.bodyB and 'referenceAngle' not in kwargs:
             self.referenceAngle = self.bodyB.angle - self.bodyA.angle
-}
+%}
 
 /**** WeldJointDef ****/
 %extend b2WeldJointDef {
@@ -597,13 +597,13 @@ this point. So, figure out a way around this, somehow.
     %}
 }
 
-%feature("shadow") b2WeldJointDef::b2WeldJointDef() {
+%feature("shadow") b2WeldJointDef::b2WeldJointDef() %{
     def __init__(self, **kwargs):
         _Box2D.b2WeldJointDef_swiginit(self,_Box2D.new_b2WeldJointDef())
         _init_jointdef_kwargs(self, **kwargs)
         if self.bodyA and self.bodyB and 'referenceAngle' not in kwargs:
             self.referenceAngle = self.bodyB.angle - self.bodyA.angle
-}
+%}
 
 /**** Add some of the functionality that Initialize() offers for joint definitions ****/
 /**** RopeJointDef ****/
@@ -637,11 +637,11 @@ this point. So, figure out a way around this, somehow.
     %}
 }
 
-%feature("shadow") b2RopeJointDef::b2RopeJointDef() {
+%feature("shadow") b2RopeJointDef::b2RopeJointDef() %{
     def __init__(self, **kwargs):
         _Box2D.b2RopeJointDef_swiginit(self,_Box2D.new_b2RopeJointDef())
         _init_jointdef_kwargs(self, **kwargs)
-}
+%}
 
 /**** Add some of the functionality that Initialize() offers for joint definitions ****/
 /**** MotorJointDef ****/
@@ -651,14 +651,14 @@ this point. So, figure out a way around this, somehow.
     %}
 }
 
-%feature("shadow") b2MotorJointDef::b2MotorJointDef() {
+%feature("shadow") b2MotorJointDef::b2MotorJointDef() %{
     def __init__(self, bodyA=None, bodyB=None, **kwargs):
         _Box2D.b2MotorJointDef_swiginit(self,_Box2D.new_b2MotorJointDef())
         _init_jointdef_kwargs(self, bodyA=bodyA, bodyB=bodyB, **kwargs)
         if bodyA is not None and bodyB is not None:
             if not kwargs:
                 self.Initialize(bodyA, bodyB)
-}
+%}
 
 %extend b2MotorJoint {
 public:
