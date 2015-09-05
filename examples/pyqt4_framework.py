@@ -3,7 +3,7 @@
 #
 # C++ version Copyright (c) 2006-2007 Erin Catto http://www.box2d.org
 # Python version Copyright (c) 2010 kne / sirkne at gmail dot com
-# 
+#
 # This software is provided 'as-is', without any express or implied
 # warranty.  In no event will the authors be held liable for any damages
 # arising from the use of this software.
@@ -20,7 +20,6 @@
 
 """
 Global Keys:
-    F1     - toggle menu (can greatly improve fps)
     Space  - shoot projectile
     Z/X    - zoom
     Escape - quit
@@ -29,7 +28,7 @@ Other keys can be set by the individual test.
 
 Mouse:
     Left click  - select/drag body (creates mouse joint)
-    Right click - pan
+    Right click - get body/fixture information
     Shift+Left  - drag to create a directed projectile
     Scroll      - zoom
 
@@ -52,7 +51,7 @@ class Pyqt4Draw(object):
     This debug drawing class differs from the other frameworks.
     It provides an example of how to iterate through all the objects
     in the world and associate (in PyQt4's case) QGraphicsItems with
-    them. 
+    them.
 
     While DrawPolygon and DrawSolidPolygon are not used for the core
     shapes in the world (DrawPolygonShape is), they are left in for
@@ -62,13 +61,13 @@ class Pyqt4Draw(object):
     Screen coordinates cannot be used, as PyQt4 does the scaling and
     rotating for us.
 
-    If you utilize this framework and need to add more items to the 
-    QGraphicsScene for a single step, be sure to add them to the 
-    temp_items array to be deleted on the next draw. 
+    If you utilize this framework and need to add more items to the
+    QGraphicsScene for a single step, be sure to add them to the
+    temp_items array to be deleted on the next draw.
     """
     MAX_TIMES=20
     axisScale = 0.4
-    def __init__(self, test): 
+    def __init__(self, test):
         self.test=test
         self.window=self.test.window
         self.scene=self.window.scene
@@ -86,7 +85,7 @@ class Pyqt4Draw(object):
 
     def EndDraw(self): pass
 
-    def SetFlags(self, **kwargs): 
+    def SetFlags(self, **kwargs):
         """
         For compatibility with other debug drawing classes.
         """
@@ -109,12 +108,12 @@ class Pyqt4Draw(object):
         Draw a single point at point p given a pixel size and color.
         """
         self.DrawCircle(p, size/self.test.viewZoom, color, drawwidth=0)
-        
+
     def DrawAABB(self, aabb, color):
         """
         Draw a wireframe around the AABB with the given color.
         """
-        line1=self.scene.addLine(aabb.lowerBound.x, aabb.lowerBound.y, aabb.upperBound.x, aabb.lowerBound.y, 
+        line1=self.scene.addLine(aabb.lowerBound.x, aabb.lowerBound.y, aabb.upperBound.x, aabb.lowerBound.y,
                          pen=QtGui.QPen(QColor(*color.bytes)))
         line2=self.scene.addLine(aabb.upperBound.x, aabb.upperBound.y, aabb.lowerBound.x, aabb.upperBound.y,
                          pen=QtGui.QPen(QColor(*color.bytes)))
@@ -144,7 +143,7 @@ class Pyqt4Draw(object):
     def DrawCircle(self, center, radius, color, drawwidth=1, shape=None):
         """
         Draw a wireframe circle given the center, radius, axis of orientation and color.
-        Note that these functions 
+        Note that these functions
         """
         border_color=[c*255 for c in color] + [255]
         pen  =QtGui.QPen(QtGui.QColor(*border_color))
@@ -213,7 +212,7 @@ class Pyqt4Draw(object):
             self.temp_items.append(line)
         else:
             self.item_cache[hash(shape)]=[ellipse, line]
-        
+
     def DrawPolygonShape(self, shape, transform, color, temporary=False):
         poly=QtGui.QPolygonF()
         border_color=color.bytes + [255]
@@ -239,7 +238,7 @@ class Pyqt4Draw(object):
         del self.item_cache[hash(shape)]
         for item in items:
             self.scene.removeItem(item)
-    
+
     def DrawShape(self, shape, transform, color, selected=False):
         """
         Draw any type of shape
@@ -297,7 +296,7 @@ class Pyqt4Draw(object):
         x1, x2=xf1.position, xf2.position
         p1, p2=joint.anchorA, joint.anchorB
         color=b2Color(0.5, 0.8, 0.8)
-            
+
         if isinstance(joint, b2DistanceJoint):
             self.DrawSegment(p1, p2, color)
         elif isinstance(joint, b2PulleyJoint):
@@ -318,16 +317,16 @@ class Pyqt4Draw(object):
         This implements code normally present in the C++ version,
         which calls the callbacks that you see in this class (DrawSegment,
         DrawSolidCircle, etc.).
-        
+
         This is implemented in Python as an example of how to do it, and also
         a test.
         """
         colors = {
             'active'    : b2Color(0.5, 0.5, 0.3),
-            'static'    : b2Color(0.5, 0.9, 0.5), 
-            'kinematic' : b2Color(0.5, 0.5, 0.9), 
-            'asleep'    : b2Color(0.6, 0.6, 0.6), 
-            'default'   : b2Color(0.9, 0.7, 0.7), 
+            'static'    : b2Color(0.5, 0.9, 0.5),
+            'kinematic' : b2Color(0.5, 0.5, 0.9),
+            'asleep'    : b2Color(0.6, 0.6, 0.6),
+            'default'   : b2Color(0.9, 0.7, 0.7),
         }
 
         settings=self.test.settings
@@ -348,7 +347,7 @@ class Pyqt4Draw(object):
                     elif body.type==b2_kinematicBody: color=colors['kinematic']
                     elif not body.awake: color=colors['asleep']
                     else: color=colors['default']
-                    
+
                     self.DrawShape(fixture.shape, transform, color, (sel_shape==shape))
 
 
@@ -409,7 +408,7 @@ class GraphicsScene (QtGui.QGraphicsScene):
         pos=event.scenePos().x(), event.scenePos().y()
         self.test.MouseMove(self.test.ConvertScreenToWorld(*pos))
         QtGui.QGraphicsScene.mouseMoveEvent(self, event)
-        
+
 class MainWindow(QtGui.QMainWindow,Ui_MainWindow):
     def __init__(self, test, parent=None):
         QtGui.QMainWindow.__init__(self)
@@ -460,7 +459,7 @@ class MainWindow(QtGui.QMainWindow,Ui_MainWindow):
             widget=QtGui.QScrollBar(Qt.Horizontal)
             widget.setRange(slider['min'], slider['max'])
             var=slider['name']
-            QObject.connect(widget, SIGNAL("valueChanged(int)"), 
+            QObject.connect(widget, SIGNAL("valueChanged(int)"),
                 lambda value, var=var, text=slider['text'], label=label: update_slider(var, value, text, label) )
             self.settings_widgets[var]=widget
             layout.addWidget(widget)
@@ -470,7 +469,7 @@ class MainWindow(QtGui.QMainWindow,Ui_MainWindow):
     def update_widgets_from_settings(self, step_settings=None):
         if step_settings is None:
             step_settings=self.test.settings
-        
+
         for var, widget in list(self.settings_widgets.items()):
             if isinstance(widget, QtGui.QCheckBox):
                 widget.setChecked(getattr(step_settings, var))
@@ -487,7 +486,7 @@ class MainWindow(QtGui.QMainWindow,Ui_MainWindow):
         self.twProperties.setColumnCount(3)
         self.twProperties.verticalHeader().hide() # don't show numbers on left
         self.twProperties.setHorizontalHeaderLabels(['class', 'name', 'value'])
-    
+
     def keyPressEvent(self, event):
         self.test._Keyboard_Event(event.key(), down=True)
 
@@ -496,7 +495,7 @@ class MainWindow(QtGui.QMainWindow,Ui_MainWindow):
 
     @property
     def settings(self):
-        return QtCore.QSettings("pybox2d", "Framework") 
+        return QtCore.QSettings("pybox2d", "Framework")
 
     def setFontSize(self, size):
         """
@@ -572,13 +571,13 @@ class Pyqt4Framework(FrameworkBase):
         # GUI-related
         self.window=None
         self.setup_keys()
-        
+
     def __init__(self):
         super(Pyqt4Framework, self).__init__()
-        
+
         if fwSettings.onlyInit: # testing mode doesn't initialize Pyqt4
             return
-            
+
         global app
         app = QtGui.QApplication(sys.argv)
 
@@ -591,7 +590,6 @@ class Pyqt4Framework(FrameworkBase):
 
         self.window.setWindowTitle( "Python Box2D Testbed - " + self.name)
         self.renderer = Pyqt4Draw(self)
-        self.world.renderer = self.renderer
 
         # Note that in this framework, we override the draw debug data routine
         # that occurs in Step(), and we implement the normal C++ code in Python.
@@ -603,13 +601,13 @@ class Pyqt4Framework(FrameworkBase):
     def setCenter(self, value):
         """
         Updates the view offset based on the center of the screen.
-        
+
         Tells the debug draw to update its values also.
         """
         self._viewCenter = b2Vec2( *value )
         self._viewOffset = self._viewCenter - self.screenSize/2
         self.window.graphicsView.centerOn(*self._viewCenter)
-    
+
     def setZoom(self, zoom):
         self._viewZoom = zoom
         self.window.graphicsView.resetTransform()
@@ -618,14 +616,14 @@ class Pyqt4Framework(FrameworkBase):
 
     viewZoom   = property(lambda self: self._viewZoom, setZoom,
                            doc='Zoom factor for the display')
-    viewCenter = property(lambda self: self._viewCenter, setCenter, 
+    viewCenter = property(lambda self: self._viewCenter, setCenter,
                            doc='Screen center in camera coordinates')
     viewOffset = property(lambda self: self._viewOffset,
                            doc='The offset of the top-left corner of the screen')
 
     def run(self):
         """
-        What would be the main loop is instead a call to 
+        What would be the main loop is instead a call to
         app.exec_() for the event-driven pyqt4.
         """
         global app
@@ -635,7 +633,7 @@ class Pyqt4Framework(FrameworkBase):
         self.step_timer.start(int((1000.0/self.settings.hz)))
 
         app.exec_()
-        
+
         self.step_timer.stop()
         print('Cleaning up...')
         self.world.contactListener=None
@@ -693,7 +691,7 @@ class Pyqt4Framework(FrameworkBase):
                 else:
                     editable=True
 
-                # Increase the row count and insert the new item                
+                # Increase the row count and insert the new item
                 twProperties.setRowCount(twProperties.rowCount()+1)
                 i=twProperties.rowCount()-1
                 self.item=QTableWidgetItem(class_.__name__)
@@ -707,14 +705,14 @@ class Pyqt4Framework(FrameworkBase):
                 # booleans are checkboxes
                 if isinstance(value, bool):
                     widget=QtGui.QCheckBox('')
-                    QObject.connect(widget, SIGNAL('stateChanged(int)'), 
+                    QObject.connect(widget, SIGNAL('stateChanged(int)'),
                                     lambda value, prop=prop: self.property_changed(prop, value==Qt.Checked))
                     if value:
                         widget.setCheckState(Qt.Checked)
                 # ints, floats are spinboxes
                 elif isinstance(value, (int, float)):
                     widget=QtGui.QDoubleSpinBox()
-                    QObject.connect(widget, SIGNAL('valueChanged(double)'), 
+                    QObject.connect(widget, SIGNAL('valueChanged(double)'),
                                     lambda value, prop=prop: self.property_changed(prop, value))
                     widget.setValue(value)
                 # lists turn into -- lists
@@ -752,7 +750,7 @@ class Pyqt4Framework(FrameworkBase):
 
                 i+=1
 
-    
+
     # callback indicating a cell in the table widget was changed
     def prop_cell_changed(self, twi):
         if twi.column() != 2: # the data column
@@ -793,7 +791,7 @@ class Pyqt4Framework(FrameworkBase):
         # Query the world for overlapping shapes.
         query = fwQueryCallback(p)
         self.world.QueryAABB(query, aabb)
-        
+
         if query.fixture:
             self.window.reset_properties_list()
 
@@ -814,7 +812,7 @@ class Pyqt4Framework(FrameworkBase):
         PyQt4 gives us transformed positions, so no need to convert
         """
         return b2Vec2(x, y)
-    
+
     DrawStringAt=lambda self, *args: self.renderer.DrawStringAt(*args)
     def Print(self, str, color=(229,153,153,255)):
         """
