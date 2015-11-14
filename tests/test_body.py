@@ -24,16 +24,16 @@ class test_body (unittest.TestCase):
         shape2=b2PolygonShape(box=(5,1))
         shapefixture=b2FixtureDef(density=2.0, friction=0.3)
 
-        world.CreateStaticBody(fixtures=[fixture1, fixture2], 
+        world.CreateStaticBody(fixtures=[fixture1, fixture2],
                 shapes=[shape1, shape2], shapeFixture=shapefixture)
 
         # make sure that 4 bodies were created
         self.assertEqual(len(world.bodies[-1].fixtures), 4)
 
-        world.CreateKinematicBody(fixtures=[fixture1, fixture2], 
+        world.CreateKinematicBody(fixtures=[fixture1, fixture2],
                 shapes=[shape1, shape2], shapeFixture=shapefixture)
         self.assertEqual(len(world.bodies[-1].fixtures), 4)
-        world.CreateDynamicBody(fixtures=[fixture1, fixture2], 
+        world.CreateDynamicBody(fixtures=[fixture1, fixture2],
                 shapes=[shape1, shape2], shapeFixture=shapefixture)
         self.assertEqual(len(world.bodies[-1].fixtures), 4)
 
@@ -45,9 +45,9 @@ class test_body (unittest.TestCase):
         groundBody.CreateFixturesFromShapes(shapes=b2PolygonShape(box=(50,10)))
 
         body = world.CreateBody(b2BodyDef(type=b2_dynamicBody, position=(0,4)))
-         
+
         body.CreateFixture(b2FixtureDef(shape=b2CircleShape(radius=1), density=1, friction=0.3))
-         
+
         timeStep = 1.0 / 60
         vel_iters, pos_iters = 6, 2
 
@@ -79,8 +79,15 @@ class test_body (unittest.TestCase):
         body.fixtures[2].friction
         body.fixtures[2].density
         body.fixtures[2].shape.vertices
-        
+
         #TODO Loop shapes
+
+    def test_fixture_without_shape(self):
+        world = b2World(gravity=(0,-10), doSleep=True)
+        body = world.CreateDynamicBody(position=(0,0))
+
+        self.assertRaises(ValueError, body.CreateFixture)
+
 
 if __name__ == '__main__':
     unittest.main()

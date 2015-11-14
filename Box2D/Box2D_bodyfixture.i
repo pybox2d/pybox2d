@@ -262,11 +262,12 @@ public:
             Takes kwargs; examples of valid combinations are as follows:
             CreateFixture(b2FixtureDef(shape=s, restitution=0.2, ...))
             CreateFixture(shape=s, restitution=0.2, ...)
-            
             """
             if defn is not None and isinstance(defn, b2FixtureDef):
                 return self.__CreateFixture(defn)
             else:
+                if 'shape' not in kwargs:
+                    raise ValueError('Must specify the shape for the fixture')
                 return self.__CreateFixture(b2FixtureDef(**kwargs))
 
         def CreateEdgeChain(self, edge_list):
