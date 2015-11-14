@@ -170,7 +170,7 @@ class TDCar(object):
             tire.body.position = self.body.worldCenter + anchor
             joints.append(j)
 
-    def update(self, keys):
+    def update(self, keys, hz):
         for tire in self.tires:
             tire.update_friction()
 
@@ -181,7 +181,7 @@ class TDCar(object):
         lock_angle = math.radians(40.)
         # from lock to lock in 0.5 sec
         turn_speed_per_sec = math.radians(160.)
-        turn_per_timestep = turn_speed_per_sec / 60.0
+        turn_per_timestep = turn_speed_per_sec / hz
         desired_angle = 0.0
 
         if 'left' in keys:
@@ -290,7 +290,7 @@ class TopDownCar (Framework):
         self.handle_contact(contact, False)
 
     def Step(self, settings):
-        self.car.update(self.pressed_keys)
+        self.car.update(self.pressed_keys,settings.hz)
 
         super(TopDownCar, self).Step(settings)
             
