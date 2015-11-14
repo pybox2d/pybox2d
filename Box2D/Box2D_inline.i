@@ -190,7 +190,7 @@ class _indexable_generator(list):
         self.__full=False
     def __len__(self):
         self.__fill_list__()
-        return list.len(self)
+        return super(_indexable_generator, self).__len__()
     def __iter__(self):
         for item in self.iter:
             self.append(item)
@@ -208,11 +208,11 @@ class _indexable_generator(list):
                 self.__fill_list__()
             elif i >= list.__len__(self):
                 diff=i-list.__len__(self)+1
-                for j in xrange(diff):
-                    value=self.iter.next()
+                for j in range(diff):
+                    value = next(self.iter)
                     self.append(value)
 
-        return list.__getitem__(self,i)
+        return super(_indexable_generator, self).__getitem__(i)
 
 def _generator_from_linked_list(first):
     if first:

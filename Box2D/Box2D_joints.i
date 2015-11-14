@@ -295,21 +295,21 @@ public:
                 self.length = d.length
         def __set_anchorA(self, value):
             if not self.bodyA:
-                raise Exception('bodyA not set.')
+                raise ValueError('bodyA not set.')
             self.localAnchorA=self.bodyA.GetLocalPoint(value)
             self.__update_length()
         def __set_anchorB(self, value):
             if not self.bodyB:
-                raise Exception('bodyB not set.')
+                raise ValueError('bodyB not set.')
             self.localAnchorB=self.bodyB.GetLocalPoint(value)
             self.__update_length()
         def __get_anchorA(self):
             if not self.bodyA:
-                raise Exception('bodyA not set.')
+                raise ValueError('bodyA not set.')
             return self.bodyA.GetWorldPoint(self.localAnchorA)
         def __get_anchorB(self):
             if not self.bodyB:
-                raise Exception('bodyB not set.')
+                raise ValueError('bodyB not set.')
             return self.bodyB.GetWorldPoint(self.localAnchorB)
 
         anchorA = property(__get_anchorA, __set_anchorA, 
@@ -337,9 +337,9 @@ public:
     %pythoncode %{
         def __set_anchor(self, value):
             if not self.bodyA:
-                raise Exception('bodyA not set.')
+                raise ValueError('bodyA not set.')
             if not self.bodyB:
-                raise Exception('bodyB not set.')
+                raise ValueError('bodyB not set.')
             self.localAnchorA=self.bodyA.GetLocalPoint(value)
             self.localAnchorB=self.bodyB.GetLocalPoint(value)
         def __get_anchor(self):
@@ -347,7 +347,7 @@ public:
                 return self.bodyA.GetWorldPoint(self.localAnchorA)
             if self.bodyB:
                 return self.bodyB.GetWorldPoint(self.localAnchorB)
-            raise Exception('Neither body was set; unable to get world point.')
+            raise ValueError('Neither body was set; unable to get world point.')
 
         anchor = property(__get_anchor, __set_anchor, 
                 doc="""The anchor in world coordinates.
@@ -369,9 +369,9 @@ public:
     %pythoncode %{
         def __set_anchor(self, value):
             if not self.bodyA:
-                raise Exception('bodyA not set.')
+                raise ValueError('bodyA not set.')
             if not self.bodyB:
-                raise Exception('bodyB not set.')
+                raise ValueError('bodyB not set.')
             self.localAnchorA=self.bodyA.GetLocalPoint(value)
             self.localAnchorB=self.bodyB.GetLocalPoint(value)
         def __get_anchor(self):
@@ -379,15 +379,15 @@ public:
                 return self.bodyA.GetWorldPoint(self.localAnchorA)
             if self.bodyB:
                 return self.bodyB.GetWorldPoint(self.localAnchorB)
-            raise Exception('Neither body was set; unable to get world point.')
+            raise ValueError('Neither body was set; unable to get world point.')
         def __set_axis(self, value):
             if not self.bodyA:
-                raise Exception('bodyA not set.')
+                raise ValueError('bodyA not set.')
             self.localAxisA=self.bodyA.GetLocalVector(value)
         def __get_axis(self):
             if self.bodyA:
                 return self.bodyA.GetWorldVector(self.localAxisA)
-            raise Exception('Body A unset; unable to get world vector.')
+            raise ValueError('Body A unset; unable to get world vector.')
 
         anchor = property(__get_anchor, __set_anchor, 
                 doc="""The anchor in world coordinates.
@@ -413,9 +413,9 @@ public:
     %pythoncode %{
         def __set_anchor(self, value):
             if not self.bodyA:
-                raise Exception('bodyA not set.')
+                raise ValueError('bodyA not set.')
             if not self.bodyB:
-                raise Exception('bodyB not set.')
+                raise ValueError('bodyB not set.')
             self.localAnchorA=self.bodyA.GetLocalPoint(value)
             self.localAnchorB=self.bodyB.GetLocalPoint(value)
         def __get_anchor(self):
@@ -423,14 +423,14 @@ public:
                 return self.bodyA.GetWorldPoint(self.localAnchorA)
             if self.bodyB:
                 return self.bodyB.GetWorldPoint(self.localAnchorB)
-            raise Exception('Neither body was set; unable to get world point.')
+            raise ValueError('Neither body was set; unable to get world point.')
         def __set_axis(self, value):
             if not self.bodyA:
-                raise Exception('bodyA not set.')
+                raise ValueError('bodyA not set.')
             self.localAxisA=self.bodyA.GetLocalVector(value)
         def __get_axis(self):
             if not self.bodyA:
-                raise Exception('Body A unset; unable to get world vector.')
+                raise ValueError('Body A unset; unable to get world vector.')
             return self.bodyA.GetWorldVector(self.localAxisA)
 
         anchor = property(__get_anchor, __set_anchor, 
@@ -465,21 +465,21 @@ public:
                 self.lengthB = d1.length
         def __set_anchorA(self, value):
             if not self.bodyA:
-                raise Exception('bodyA not set.')
+                raise ValueError('bodyA not set.')
             self.localAnchorA=self.bodyA.GetLocalPoint(value)
             self.__update_length()
         def __set_anchorB(self, value):
             if not self.bodyB:
-                raise Exception('bodyB not set.')
+                raise ValueError('bodyB not set.')
             self.localAnchorB=self.bodyB.GetLocalPoint(value)
             self.__update_length()
         def __get_anchorA(self):
             if not self.bodyA:
-                raise Exception('bodyA not set.')
+                raise ValueError('bodyA not set.')
             return self.bodyA.GetWorldPoint(self.localAnchorA)
         def __get_anchorB(self):
             if not self.bodyB:
-                raise Exception('bodyB not set.')
+                raise ValueError('bodyB not set.')
             return self.bodyB.GetWorldPoint(self.localAnchorB)
 
         anchorA = property(__get_anchorA, __set_anchorA, 
@@ -546,9 +546,9 @@ this point. So, figure out a way around this, somehow.
     %pythoncode %{
         def __set_anchor(self, value):
             if not self.bodyA:
-                raise Exception('bodyA not set.')
+                raise ValueError('bodyA not set.')
             if not self.bodyB:
-                raise Exception('bodyB not set.')
+                raise ValueError('bodyB not set.')
             self.localAnchorA=self.bodyA.GetLocalPoint(value)
             self.localAnchorB=self.bodyB.GetLocalPoint(value)
         def __get_anchor(self):
@@ -556,7 +556,7 @@ this point. So, figure out a way around this, somehow.
                 return self.bodyA.GetWorldPoint(self.localAnchorA)
             if self.bodyB:
                 return self.bodyB.GetWorldPoint(self.localAnchorB)
-            raise Exception('Neither body was set; unable to get world point.')
+            raise ValueError('Neither body was set; unable to get world point.')
         anchor = property(__get_anchor, __set_anchor, 
                 doc="""The anchor in world coordinates.
                     Getting the property depends on either bodyA and localAnchorA or 
@@ -578,9 +578,9 @@ this point. So, figure out a way around this, somehow.
     %pythoncode %{
         def __set_anchor(self, value):
             if not self.bodyA:
-                raise Exception('bodyA not set.')
+                raise ValueError('bodyA not set.')
             if not self.bodyB:
-                raise Exception('bodyB not set.')
+                raise ValueError('bodyB not set.')
             self.localAnchorA=self.bodyA.GetLocalPoint(value)
             self.localAnchorB=self.bodyB.GetLocalPoint(value)
         def __get_anchor(self):
@@ -588,7 +588,7 @@ this point. So, figure out a way around this, somehow.
                 return self.bodyA.GetWorldPoint(self.localAnchorA)
             if self.bodyB:
                 return self.bodyB.GetWorldPoint(self.localAnchorB)
-            raise Exception('Neither body was set; unable to get world point.')
+            raise ValueError('Neither body was set; unable to get world point.')
         anchor = property(__get_anchor, __set_anchor, 
                 doc="""The anchor in world coordinates.
                     Getting the property depends on either bodyA and localAnchorA or 
@@ -611,19 +611,19 @@ this point. So, figure out a way around this, somehow.
     %pythoncode %{
         def __set_anchorA(self, value):
             if not self.bodyA:
-                raise Exception('bodyA not set.')
+                raise ValueError('bodyA not set.')
             self.localAnchorA=self.bodyA.GetLocalPoint(value)
         def __set_anchorB(self, value):
             if not self.bodyB:
-                raise Exception('bodyB not set.')
+                raise ValueError('bodyB not set.')
             self.localAnchorB=self.bodyB.GetLocalPoint(value)
         def __get_anchorA(self):
             if not self.bodyA:
-                raise Exception('bodyA not set.')
+                raise ValueError('bodyA not set.')
             return self.bodyA.GetWorldPoint(self.localAnchorA)
         def __get_anchorB(self):
             if not self.bodyB:
-                raise Exception('bodyB not set.')
+                raise ValueError('bodyB not set.')
             return self.bodyB.GetWorldPoint(self.localAnchorB)
 
         anchorA = property(__get_anchorA, __set_anchorA, 

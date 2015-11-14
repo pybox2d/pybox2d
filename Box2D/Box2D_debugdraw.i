@@ -158,7 +158,7 @@ public:
         }
 
         virtual ~b2DrawExtended() { }
-        b2DrawExtended() : convertVertices(false), flipX(false), flipY(false) {
+        b2DrawExtended() : convertVertices(false), flipY(false), flipX(false) {
             center.SetZero();
             offset.SetZero();
             zoom=1.0;

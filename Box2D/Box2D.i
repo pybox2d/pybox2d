@@ -194,12 +194,7 @@
         # dir listing of Box2D by removing *_swigregister.
         #
         # To see what this is, try import Box2D; print(dir(Box2D.b2))
-        from sys import version_info
-        if version_info >= (2, 5):
-            from . import b2
-        else:
-            import b2
-        del locals()['version_info']
+        from . import b2
 
         s=None
         to_remove=[]
@@ -217,8 +212,8 @@
         for s in to_remove:
             del locals()[s]
 
-        del locals()['s']
-        del locals()['to_remove']
+        del s
+        del to_remove
     %}
 
 #endif

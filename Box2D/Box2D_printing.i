@@ -95,8 +95,8 @@ _repr_attrs = {'b2AABB': ['center', 'extents', 'lowerBound', 'perimeter', 'upper
                                    'dampingRatio', 'enableMotor', 'frequencyHz', 'localAnchorA', 
                                    'localAnchorB', 'localAxisA', 'maxMotorTorque', 'motorSpeed', 
                                    'type', 'userData', ],
-               'b2LoopShape': ['childCount', 'edges', 'radius', 'type', 'vertexCount', 
-                               'vertices', ],
+               'b2ChainShape': ['childCount', 'edges', 'radius', 'type', 'vertexCount', 
+                                'vertices', ],
                'b2Manifold': ['localNormal', 'localPoint', 'pointCount', 'points', 'type_', 
                               ],
                'b2ManifoldPoint': ['id', 'isNew', 'localPoint', 'normalImpulse', 'tangentImpulse', 
@@ -276,6 +276,7 @@ REPREXTEND(b2AssertException);
 REPREXTEND(b2Body);
 REPREXTEND(b2BodyDef);
 REPREXTEND(b2BroadPhase);
+REPREXTEND(b2ChainShape);
 REPREXTEND(b2CircleShape);
 REPREXTEND(b2ClipVertex);
 REPREXTEND(b2Color);
@@ -311,7 +312,6 @@ REPREXTEND(b2JointDef);
 REPREXTEND(b2JointEdge);
 REPREXTEND(b2WheelJoint);
 REPREXTEND(b2WheelJointDef);
-REPREXTEND(b2LoopShape);
 REPREXTEND(b2Manifold);
 REPREXTEND(b2ManifoldPoint);
 REPREXTEND(b2MassData);
