@@ -5,7 +5,7 @@ from Box2D import *
 from math import cos, sin
 import sys
 
-class cl (b2ContactListener):
+class ContactListener(b2ContactListener):
     pass
 
 class testPolyshape (unittest.TestCase):
@@ -23,7 +23,7 @@ class testPolyshape (unittest.TestCase):
     def test_vertices(self):
 
         body = None
-        self.cont_list=cl()
+        self.cont_list=ContactListener()
         world = b2World(gravity=(0,-10), doSleep=True, contactListener=self.cont_list)
 
         try:
@@ -31,7 +31,7 @@ class testPolyshape (unittest.TestCase):
             body = world.CreateDynamicBody(
                             position=(0,4),
                             shapes=[b2PolygonShape(vertices=(2,1)),
-                                    b2PolygonShape(box=(2,1)) 
+                                    b2PolygonShape(box=(2,1))
                                    ]
                              )
         except ValueError:
@@ -51,7 +51,7 @@ class testPolyshape (unittest.TestCase):
         pi=b2_pi
         n=b2_maxPolygonVertices
 
-        # int so floating point representation inconsistencies 
+        # int so floating point representation inconsistencies
         # don't make the vertex check fail
         v = [(int(20*cos(x*2*pi/n)), int(20*sin(x*2*pi/n))) for x in range(n)]
         self.dotest(world, v)
@@ -77,10 +77,10 @@ class testPolyshape (unittest.TestCase):
     def checkAlmostEqual(self, v1, v2, msg, places=3):
         if hasattr(v1, '__len__'):
             for i, (a, b) in enumerate(zip(v1, v2)):
-                self.assertAlmostEqual(a, b, places=places, 
+                self.assertAlmostEqual(a, b, places=places,
                         msg="(index %d) %s, a=%f b=%f from %s, %s" % (i, msg, a, b, v1, v2))
         else:
-            self.assertAlmostEqual(v1, v2, places=places, 
+            self.assertAlmostEqual(v1, v2, places=places,
                     msg="%s, a=%f b=%f" % (msg, v1, v2))
 
     def test_distance(self):
@@ -111,6 +111,7 @@ class testPolyshape (unittest.TestCase):
                                 )
 
         assert(dist_result == b2Distance(input_))
+
 
 if __name__ == '__main__':
     unittest.main()
