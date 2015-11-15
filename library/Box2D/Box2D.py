@@ -523,6 +523,11 @@ def _b2Distance(*args):
     """
     return _Box2D._b2Distance(*args)
 
+import collections
+
+b2DistanceResult = collections.namedtuple('b2DistanceResult', 
+                                          'pointA pointB distance iterations')
+
 def b2Distance(shapeA=None, idxA=0, shapeB=None, idxB=0, transformA=None, transformB=None, useRadii=True):
     """
     Compute the closest points between two shapes.
@@ -541,7 +546,10 @@ def b2Distance(shapeA=None, idxA=0, shapeB=None, idxB=0, transformA=None, transf
     else:
         out = _b2Distance(shapeA, idxA, shapeB, idxB, transformA, transformB, useRadii)
 
-    return (tuple(out.pointA), tuple(out.pointB), out.distance, out.iterations)
+    return b2DistanceResult(pointA=tuple(out.pointA),
+                            pointB=tuple(out.pointB),
+                            distance=out.distance,
+                            iterations=out.iterations)
 
 
 def b2GetPointStates(manifold1, manifold2):

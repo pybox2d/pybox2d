@@ -100,15 +100,23 @@ class testPolyshape (unittest.TestCase):
         self.polygonB = b2PolygonShape(box=(2,0.1))
 
         # Calculate the distance between the two shapes with the specified transforms
-        dist_result=b2Distance(shapeA=self.polygonA, shapeB=self.polygonB, transformA=self.transformA, transformB=self.transformB)
+        dist_result=b2Distance(shapeA=self.polygonA,
+                               transformA=self.transformA,
+                               idxA=0,
+                               shapeB=self.polygonB,
+                               transformB=self.transformB,
+                               idxB=0,
+                               useRadii=True)
         self.checkAlmostEqual(dist_result[0], (10, 0.01), 'point A', places=2)
         self.checkAlmostEqual(dist_result[1], (10, 0.05), 'point B', places=1)
         self.checkAlmostEqual(dist_result[2], 0.04, 'distance', places=2)
         assert(dist_result[3] == 2)
 
-        input_ = b2DistanceInput(proxyA=b2DistanceProxy(self.polygonA, 0), proxyB=b2DistanceProxy(self.polygonB, 0),
-                                 transformA=self.transformA, transformB=self.transformB,
-                                )
+        input_ = b2DistanceInput(proxyA=b2DistanceProxy(self.polygonA, 0),
+                                 transformA=self.transformA,
+                                 proxyB=b2DistanceProxy(self.polygonB, 0),
+                                 transformB=self.transformB,
+                                 useRadii=True)
 
         assert(dist_result == b2Distance(input_))
 

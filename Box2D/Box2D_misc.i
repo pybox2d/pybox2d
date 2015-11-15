@@ -224,25 +224,37 @@ public:
 %}
 
 %pythoncode %{
+    import collections
+
+    b2DistanceResult = collections.namedtuple('b2DistanceResult', 
+                                              'pointA pointB distance iterations')
+
     def b2Distance(shapeA=None, idxA=0, shapeB=None, idxB=0, transformA=None, transformB=None, useRadii=True):
         """
         Compute the closest points between two shapes.
 
         Can be called one of two ways:
-        + b2Distance(b2DistanceInput) # utilizes the b2DistanceInput structure, where you define your own proxies
+        + b2Distance(b2DistanceInput)
+        This uses the b2DistanceInput structure, where you define your own
+        distance proxies
 
-        Or utilizing kwargs:
-        + b2Distance(shapeA=.., idxA=0, shapeB=.., idxB=0, transformA=.., transformB=.., useRadii=True)
+        Or more conveniently using kwargs:
+        + b2Distance(shapeA=.., idxA=0, shapeB=.., idxB=0, transformA=..,
+                     transformB=.., useRadii=True)
         
-        Returns a tuple in the form:
-         ((pointAx, pointAy), (pointBx, pointBy), distance, iterations)
+        Returns a namedtuple in the form:
+            b2DistanceResult(pointA=(ax, ay), pointB=(bx, by), distance,
+                             iterations)
         """
         if isinstance(shapeA, b2DistanceInput):
             out = _b2Distance(shapeA)
         else:
             out = _b2Distance(shapeA, idxA, shapeB, idxB, transformA, transformB, useRadii)
 
-        return (tuple(out.pointA), tuple(out.pointB), out.distance, out.iterations)
+        return b2DistanceResult(pointA=tuple(out.pointA),
+                                pointB=tuple(out.pointB),
+                                distance=out.distance,
+                                iterations=out.iterations)
 %}
 
 %newobject _b2Distance;
