@@ -32,8 +32,9 @@ def create_blob(world, center, radius, circle_radius=0.5, shape_num=24,
         return (cos(angle*pi/180.0)*radius+center[0],
                 sin(angle*pi/180.0)*radius+center[1])
 
-    circle=b2CircleShape(radius=circle_radius, restitution=0.0)
-    fixture=b2FixtureDef(shape=circle, friction=friction, density=density)
+    circle=b2CircleShape(radius=circle_radius)
+    fixture=b2FixtureDef(shape=circle, friction=friction, density=density,
+                         restitution=0.0)
 
     bodies=[world.CreateDynamicBody(position=get_pos(i), fixtures=fixture) for i in range(0, 360, int(360/shape_num))]
     joints=[]

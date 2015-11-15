@@ -169,7 +169,7 @@ class CollisionFiltering (Framework):
             enableLimit=True,
             localAnchorA=(0, 4),
             localAnchorB=(0, 0),
-            localAxis1=(0, 1),
+            localAxisA=(0, 1),
             lowerTranslation=-1,
             upperTranslation=1,
             )

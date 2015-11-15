@@ -23,7 +23,7 @@ from .framework import *
 
 class Cantilever (Framework):
     name="Cantilever"
-    description="Note the difference in stiffness between the two sets of cantilevers. This is due to the inertiaScale."
+    description=""
     numPlanks = 8
     def __init__(self):
         super(Cantilever, self).__init__()
@@ -53,12 +53,11 @@ class Cantilever (Framework):
 
             prevBody = body
 
-        # Create another higher up with a different inertiaScale
+        # Create another higher up
         prevBody = ground
         for i in range(self.numPlanks):
             body = self.world.CreateDynamicBody(
                         position=(-14.5+i,15),
-                        inertiaScale=10.0,    # <--
                         fixtures=plank,
                     )
 
@@ -87,20 +86,21 @@ class Cantilever (Framework):
 
             prevBody = body
 
-        # And the right-most unconnected one, with a different inertiaScale
+        # And the right-most unconnected one, using joint damping
         prevBody = ground
         for i in range(self.numPlanks):
             body = self.world.CreateDynamicBody(
                         position=(5.5+i,10),
-                        inertiaScale=10.0,    # <--
                         fixtures=plank,
-                    )
+                        )
 
             if i > 0: # skip the joint on the first one
                 self.world.CreateWeldJoint(
                     bodyA=prevBody,
                     bodyB=body,
                     anchor=(5+i,10),
+                    frequencyHz=8.0,
+                    dampingRatio=0.7,
                     )
 
             prevBody = body
@@ -126,6 +126,7 @@ class Cantilever (Framework):
                         position=(-6+6*i,10),
                         fixtures=fixture,
                     )
+
 
 if __name__=="__main__":
      main(Cantilever)

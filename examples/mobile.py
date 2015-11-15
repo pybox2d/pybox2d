@@ -45,10 +45,9 @@ class Mobile (Framework):
 
         p = parent.position + local_anchor - h
 
-        body = self.world.CreateDynamicBody(position=p,
-                                            fixtures=b2FixtureDef(shape=b2PolygonShape(box=(0.25 * a, a),
-                                                                  density=density)),
-                                           )
+        fixture = b2FixtureDef(shape=b2PolygonShape(box=(0.25 * a, a)),
+                               density=density)
+        body = self.world.CreateDynamicBody(position=p, fixtures=fixture)
 
         if depth == self.max_depth:
             return body
