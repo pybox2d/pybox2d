@@ -26,13 +26,20 @@ public:
             """
             Returns a dictionary representing this joint definition
             """
-            skip_props = ['anchor', 'anchorA', 'anchorB', 'axis']
-            type_=type(self)
-            variables=[var for var in dir(self) 
-                if isinstance(getattr(type_, var), property)
-                   and var not in skip_props]
+            def is_prop(attr):
+                try:
+                    is_property = isinstance(getattr(cls, attr), property)
+                except AttributeError:
+                    return False
 
-            return dict([(variable, getattr(self, variable)) for variable in variables])
+                return is_property and attr not in skip_props
+
+            skip_props = ['anchor', 'anchorA', 'anchorB', 'axis']
+            cls = type(self)
+            return {attr: getattr(self, attr)
+                    for attr in dir(self)
+                    if is_prop(attr)
+                    }
     %}
 }
 
