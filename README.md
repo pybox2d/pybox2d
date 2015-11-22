@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/pybox2d/pybox2d.svg?branch=master)](https://travis-ci.org/pybox2d/pybox2d)
+[![Build Status](https://travis-ci.org/pybox2d/pybox2d.svg?branch=master)](https://travis-ci.org/pybox2d/pybox2d) [![Coverage Status](https://coveralls.io/repos/pybox2d/pybox2d/badge.svg?branch=master&service=github)](https://coveralls.io/github/pybox2d/pybox2d?branch=master)
 
 pybox2d
 -------
