@@ -316,9 +316,8 @@ class testJoints (unittest.TestCase):
         joint.GetReactionForce(1.0)
         joint.GetReactionTorque(1.0)
 
-    # ---- ----
-
-    def do_joint_test(self, name, init_args):
+    def do_joint(self, name, init_args):
+        '''test a joint by name'''
         get_dfn = getattr(self, "%s_definition"%name)
         asserts = getattr(self, "%s_asserts"%name)
         checks  = getattr(self, "%s_checks"%name)
@@ -374,31 +373,31 @@ class testJoints (unittest.TestCase):
 
     # --- the actual tests ---
     def test_revolute(self):
-        self.do_joint_test("revolute", { 'anchor' : (0, 12) })
+        self.do_joint("revolute", { 'anchor' : (0, 12) })
 
     def test_prismatic(self):
-        self.do_joint_test("prismatic", { 'anchor' : (0, 0), 'axis' : (1,0) })
+        self.do_joint("prismatic", { 'anchor' : (0, 0), 'axis' : (1,0) })
 
     def test_distance(self):
-        self.do_joint_test("distance", { 'anchorA' : (-10, 0), 'anchorB' : (-0.5,-0.5) })
+        self.do_joint("distance", { 'anchorA' : (-10, 0), 'anchorB' : (-0.5,-0.5) })
 
     def test_rope(self):
-        self.do_joint_test("rope", { 'anchorA' : (-10, 0), 'anchorB' : (-0.5,-0.5), 'maxLength' : 5.0 })
+        self.do_joint("rope", { 'anchorA' : (-10, 0), 'anchorB' : (-0.5,-0.5), 'maxLength' : 5.0 })
 
     def test_pulley(self):
-        self.do_joint_test("pulley", {} )
+        self.do_joint("pulley", {} )
 
     def test_mouse(self):
-        self.do_joint_test("mouse", {} )
+        self.do_joint("mouse", {} )
 
     def test_wheel(self):
-        self.do_joint_test("wheel", { 'anchor' : (0, 8.5), 'axis' : (2,1) })
+        self.do_joint("wheel", { 'anchor' : (0, 8.5), 'axis' : (2,1) })
 
     def test_weld(self):
-        self.do_joint_test("weld", {} )
+        self.do_joint("weld", {} )
 
     def test_friction(self):
-        self.do_joint_test("friction", {} )
+        self.do_joint("friction", {} )
 
     def test_emptyjoint(self):
         try:

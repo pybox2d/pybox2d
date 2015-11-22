@@ -1,0 +1,42 @@
+# vi: sw=2 ts=2 sts=2 expandtab
+
+language: python
+os:
+  - linux
+  - osx
+  # Travis/osx doesn't support Python yet:
+  #  see https://github.com/travis-ci/travis-ci/issues/2312
+python:
+  # - "2.6"  # no dictionary comprehensions in 2.6, sorry
+  - "2.7"
+  # - "3.2"   # waste of time, coverage module doesn't work
+  - "3.3"
+  - "3.4"
+  - "3.5"
+  # - "pypy"  # swig doesn't seem to work :(
+
+matrix:
+  fast_finish: true
+  allow_failures:
+    - os: osx
+
+before_install:
+  - echo $TRAVIS_OS_NAME
+  - pip install setuptools nose coverage
+  # linux
+  - if [ "$TRAVIS_OS_NAME" == "linux" ]; then wget http://mirrors.kernel.org/ubuntu/pool/main/s/swig/swig3.0_3.0.7-2ubuntu1_amd64.deb; fi
+  - if [ "$TRAVIS_OS_NAME" == "linux" ]; then sudo dpkg --install swig3.0_3.0.7-2ubuntu1_amd64.deb; fi
+  - if [ "$TRAVIS_OS_NAME" == "linux" ]; then which swig3.0; fi
+  - if [ "$TRAVIS_OS_NAME" == "linux" ]; then sudo ln -s /usr/bin/swig3.0 /usr/bin/swig; fi
+  # OSX
+  - if [ "$TRAVIS_OS_NAME" == "osx" ]; then brew update; fi
+  - if [ "$TRAVIS_OS_NAME" == "osx" ]; then brew install swig; fi
+install:
+  - python setup.py build
+  - python setup.py install
+
+script: 
+  # run tests from test directory itself to not get Box2D confused with
+  # top-level dir
+  - cd tests
+  - nosetests -v -w . --with-coverage --cover-package=Box2D

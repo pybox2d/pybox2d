@@ -6,7 +6,6 @@ Setup script for pybox2d.
 For installation instructions, see INSTALL.
 
 Basic install steps:
- python distribute_setup.py
  python setup.py build
 
 If that worked, then:
@@ -22,23 +21,11 @@ __license__='zlib'
 __date__="$Date$"
 __version__="$Revision$"
 
-setuptools_version=None
-try:
-    from distribute_setup import use_setuptools
-    use_setuptools()
+import setuptools
+from setuptools import (setup, Extension)
+setuptools_version = setuptools.__version__
+print('Using setuptools (version %s).' % setuptools_version)
 
-    import setuptools
-    from setuptools import (setup, Extension)
-    setuptools_version=setuptools.__version__
-    print('Using setuptools (version %s).' % setuptools_version)
-except:
-    from distutils.core import (setup, Extension)
-    ex = sys.exc_info()[1] # py2.5~py3k compatibility
-    print("""Setuptools not found/distribute setup failed; falling back on distutils. 
- !!! Setup will likely fail. Please install distribute by running distribute_setup.py
- Error information: %s
- ---""" % ex)
- 
 if setuptools_version:
     if (setuptools_version in ["0.6c%d"%i for i in range(1,9)] # old versions
         or setuptools_version=="0.7a1"): # 0.7a1 py 3k alpha version based on old version
@@ -60,10 +47,10 @@ if setuptools_version:
 
 # release version number
 box2d_version  = '2.3'
-release_number = 0
+release_number = 1
 
 # create the version string
-version_str = "%sb%s" % (box2d_version, str(release_number))
+version_str = "%sb%s" % (box2d_version, release_number)
 
 # setup some paths and names
 library_base='library' # the directory where the egg base will be for setuptools develop command
@@ -73,7 +60,8 @@ source_dir='Box2D' # where all of the C++ and SWIG source resides
 swig_source='Box2D.i' # the main SWIG source file
 use_kwargs=True # whether or not to default creating kwargs for all functions
 
-def write_init(): 
+
+def write_init():
     # read in the license header
     license_header = open(os.path.join(source_dir, 'pybox2d_license_header.txt')).read()
 
@@ -87,7 +75,7 @@ def write_init():
         import_string,
         "__author__ = '%s'" % __date__ ,
         "__version__ = '%s'" % version_str,
-        "__version_info__ = (%s,%d)" % (box2d_version.replace('.', ','), release_number), 
+        "__version_info__ = (%s,%d)" % (box2d_version.replace('.', ','), release_number),
         "__revision__ = '%s'" % __version__,
         "__license__ = '%s'" % __license__ ,
         "__date__ = '%s'" % __date__ , ]
@@ -97,7 +85,7 @@ def write_init():
     f.write(license_header)
     f.write( '\n'.join(init_source) )
     f.close()
-    
+
 source_paths = [
     os.path.join(source_dir, 'Dynamics'),
     os.path.join(source_dir, 'Dynamics', 'Contacts'),
@@ -173,7 +161,7 @@ setup_dict = dict(
     long_description = LONG_DESCRIPTION,
     classifiers      = CLASSIFIERS,
     packages         = ['Box2D', 'Box2D.b2'],
-    package_dir      = {'Box2D': library_path, 
+    package_dir      = {'Box2D': library_path,
                         'Box2D.b2': os.path.join(library_path, 'b2'),
                         'Box2D.tests' : 'tests'},
     test_suite       = 'tests',
@@ -185,4 +173,4 @@ setup_dict = dict(
     )
 
 # run the actual setup from distutils
-setup( **setup_dict )
+setup(**setup_dict)

@@ -1,3 +1,6 @@
 build/*
 dist/*
-*.pyc
+*.py[oc]
+*.swo
+*.swp
+*.so

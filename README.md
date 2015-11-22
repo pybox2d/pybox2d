@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/pybox2d/pybox2d.svg?branch=master)](https://travis-ci.org/pybox2d/pybox2d)
+
 pybox2d
 -------
 2D Game Physics for Python
