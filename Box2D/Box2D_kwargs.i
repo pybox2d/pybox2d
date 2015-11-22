@@ -20,7 +20,13 @@
 
 %pythoncode %{
     def _init_kwargs(self, **kwargs):
+        cls = self.__class__
         for key, value in kwargs.items():
+            try:
+                getattr(cls, key)
+            except AttributeError:
+                raise AttributeError('Invalid keyword argument "%s" for %s' % (key, cls))
+
             try:
                 setattr(self, key, value)
             except Exception as ex:
@@ -31,7 +37,7 @@
         if bodyA is not None or bodyB is not None:
             # Make sure that bodyA and bodyB are defined before the rest
             _init_kwargs(self, bodyA=bodyA, bodyB=bodyB)
-
+        
         _init_kwargs(self, **kwargs)
 %}
 

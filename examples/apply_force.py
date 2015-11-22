@@ -67,13 +67,13 @@ class ApplyForce (Framework):
             r = sqrt(2.0 * body.inertia / body.mass)
 
             self.world.CreateFrictionJoint(
-                    bodyA = ground,
-                    bodyB = body,
+                    bodyA=ground,
+                    bodyB=body,
                     localAnchorA=(0,0),
                     localAnchorB=(0,0),
                     collideConnected=True,
-                    maxForce = body.mass * gravity,
-                    maxTorque = body.mass * r * gravity
+                    maxForce=body.mass * gravity,
+                    maxTorque=body.mass * r * gravity
                     )
 
     def Keyboard(self, key):

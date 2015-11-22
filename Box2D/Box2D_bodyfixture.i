@@ -22,9 +22,40 @@
 %extend b2BodyDef {
 public:        
     %pythoncode %{
-        fixtures = None
-        shapes = None
-        shapeFixture = None
+        _fixtures = None
+        _shapes = None
+        _shapeFixture = None
+
+        @property
+        def fixtures(self):
+            return self._fixtures
+
+        @fixtures.setter
+        def fixtures(self, fixtures):
+            if isinstance(fixtures, b2FixtureDef):
+                self._fixtures = [fixtures]
+            else:
+                self._fixtures = list(fixtures)
+
+        @property
+        def shapes(self):
+            return self._shapes
+
+        @shapes.setter
+        def shapes(self, shapes):
+            if isinstance(shapes, b2Shape):
+                self._shapes = [shapes]
+            else:
+                self._shapes = list(shapes)
+
+        @property
+        def shapeFixture(self):
+            return self._shapeFixture
+
+        @shapeFixture.setter
+        def shapeFixture(self, fixture):
+            self._shapeFixture = fixture
+
     %}
 }
 
@@ -241,18 +272,20 @@ public:
                 oldShape=None
             else:
                 oldShape = shapeFixture.shape
-
+            
             ret=None
-            if isinstance(shapes, (list, tuple)):
-                ret=[]
-                for shape in shapes:
-                    shapeFixture.shape=shape
-                    ret.append(self.__CreateFixture(shapeFixture))
-            else:
-                shapeFixture.shape=shapes
-                ret=self.__CreateFixture(shapeFixture)
+            try:
+                if isinstance(shapes, (list, tuple)):
+                    ret = []
+                    for shape in shapes:
+                        shapeFixture.shape = shape
+                        ret.append(self.__CreateFixture(shapeFixture))
+                else:
+                    shapeFixture.shape=shapes
+                    ret = self.__CreateFixture(shapeFixture)
+            finally:
+                shapeFixture.shape=oldShape
 
-            shapeFixture.shape=oldShape
             return ret
 
         def CreateFixture(self, defn=None, **kwargs):

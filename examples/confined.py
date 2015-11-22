@@ -49,7 +49,9 @@ class Confined (Framework):
         self.world.gravity = (0,0)
 
     def CreateCircle(self, pos):
-        fixture=b2FixtureDef(shape=b2CircleShape(radius=self.radius, p=(0,0)), density=1, friction=0.1)
+        fixture=b2FixtureDef(shape=b2CircleShape(radius=self.radius,
+                                                 pos=(0,0)),
+                             density=1, friction=0.1)
         self.world.CreateDynamicBody(
                 position=pos,
                 fixtures=fixture

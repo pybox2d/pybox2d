@@ -19,33 +19,28 @@ class test_kwargs (unittest.TestCase):
 
         body = world.CreateBody(b2BodyDef(type=b2_dynamicBody, position=(0,4),
                         fixtures=[]))
-        try:
-            body = world.CreateBody(b2BodyDef(type=b2_dynamicBody, position=(0,4),
-                            shapes=b2PolygonShape(box=(5,1))))
-        except ValueError:
-            pass # good
-        
+
         body = world.CreateBody(
                 type=b2_dynamicBody,
                 position=(0,4),
-                fixtures=b2FixtureDef(shape=b2PolygonShape(box=(2,1)), density=1.0) 
+                fixtures=b2FixtureDef(shape=b2PolygonShape(box=(2,1)), density=1.0)
                 )
 
         body = world.CreateBody(
-                    type=b2_dynamicBody, 
+                    type=b2_dynamicBody,
                     position=(0,4),
                     shapes=(b2PolygonShape(box=(2,1)), b2PolygonShape(box=(2,1))),
                     shapeFixture=b2FixtureDef(density=1.0),
-                ) 
-       
+                )
+
         body = world.CreateBody(
-                    type=b2_dynamicBody, 
+                    type=b2_dynamicBody,
                     position=(0,4),
                     fixtures=b2FixtureDef(shape=b2CircleShape(radius=1), density=1, friction=0.3),
                     shapes=(b2PolygonShape(box=(2,1)), b2PolygonShape(box=(2,1))),
                     shapeFixture=b2FixtureDef(density=1.0),
-                ) 
-         
+                )
+
         body.CreateFixture(shape=b2CircleShape(radius=1), density=1, friction=0.3)
         timeStep = 1.0 / 60
         vel_iters, pos_iters = 6, 2

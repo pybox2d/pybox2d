@@ -54,7 +54,7 @@ class Liquid (Framework):
 
                         b2PolygonShape(box=[0.5, 3.0, (-8, 0),  0.0]),
                         b2PolygonShape(box=[2.0, 0.1, (-6, -2.8),0.1]),
-                        b2CircleShape (radius=0.5, localPosition=(-.5,-4)),
+                        b2CircleShape(radius=0.5, pos=(-.5,-4)),
                     ]
                 )
 
@@ -83,7 +83,7 @@ class Liquid (Framework):
         body=self.world.CreateDynamicBody(
                 position=position,
                 fixedRotation=True,
-                allowSleeping=False,
+                allowSleep=False,
                 )
         body.CreateCircleFixture(
             groupIndex=-10,

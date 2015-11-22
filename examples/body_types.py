@@ -65,11 +65,11 @@ class BodyTypes (Framework):
                 bodyB=self.platform,
                 anchor=(0,5),
                 axis=(1,0),
-                maxMotorForce = 1000,
-                enableMotor = True,
-                lowerTranslation = -10,
-                upperTranslation = 10,
-                enableLimit = True
+                maxMotorForce=1000,
+                enableMotor=True,
+                lowerTranslation=-10,
+                upperTranslation=10,
+                enableLimit=True
             )
 
         # And the payload that initially sits upon the platform

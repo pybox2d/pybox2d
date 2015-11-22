@@ -33,9 +33,9 @@ class fwDestructionListener(b2DestructionListener):
     The destruction listener callback:
     "SayGoodbye" is called when a joint or shape is deleted.
     """
-    test = None
-    def __init__(self, **kwargs):
+    def __init__(self, test, **kwargs):
         super(fwDestructionListener, self).__init__(**kwargs)
+        self.test = test
 
     def SayGoodbye(self, object):
         if isinstance(object, b2Joint):
