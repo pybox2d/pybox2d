@@ -110,8 +110,12 @@ class PygletDraw(b2Draw):
         super(PygletDraw, self).__init__()
         self.test=test
 
-    def StartDraw(self): pass
-    def EndDraw(self): pass
+    def StartDraw(self):
+        pass
+
+    def EndDraw(self):
+        pass
+
     def triangle_fan(self, vertices):
         """
         in: vertices arranged for gl_triangle_fan ((x,y),(x,y)...)
@@ -123,8 +127,7 @@ class PygletDraw(b2Draw):
             out.extend( vertices[0  ] )
             out.extend( vertices[i  ] )
             out.extend( vertices[i+1] )
-        return len(out) / 2, out
-
+        return len(out) // 2, out
 
     def line_loop(self, vertices):
         """
@@ -140,7 +143,7 @@ class PygletDraw(b2Draw):
         out.extend( vertices[len(vertices)-1] )
         out.extend( vertices[0] )
 
-        return len(out)/2, out
+        return len(out) // 2, out
 
     def _getLLCircleVertices(self, radius, points):
         """
@@ -225,22 +228,22 @@ class PygletDraw(b2Draw):
         Draw an unfilled circle given center, radius and color.
         """
         unused, ll_vertices = self.getCircleVertices( center, radius, self.circle_segments)
-        ll_count = len(ll_vertices)/2
+        ll_count = len(ll_vertices) // 2
 
         self.batch.add(ll_count, gl.GL_LINES, None,
             ('v2f', ll_vertices),
-            ('c4f', [color.r, color.g, color.b, 1.0] * (ll_count)))
+            ('c4f', [color.r, color.g, color.b, 1.0] * ll_count))
 
     def DrawSolidCircle(self, center, radius, axis, color):
         """
         Draw an filled circle given center, radius, axis (of orientation) and color.
         """
         tf_vertices, ll_vertices = self.getCircleVertices( center, radius, self.circle_segments)
-        tf_count, ll_count = len(tf_vertices) / 2, len(ll_vertices) / 2
+        tf_count, ll_count = len(tf_vertices) // 2, len(ll_vertices) // 2
 
         self.batch.add(tf_count, gl.GL_TRIANGLES, self.blended,
             ('v2f', tf_vertices),
-            ('c4f', [0.5 * color.r, 0.5 * color.g, 0.5 * color.b, 0.5] * (tf_count)))
+            ('c4f', [0.5 * color.r, 0.5 * color.g, 0.5 * color.b, 0.5] * tf_count))
 
         self.batch.add(ll_count, gl.GL_LINES, None,
             ('v2f', ll_vertices),
@@ -289,7 +292,7 @@ class PygletDraw(b2Draw):
 
             self.batch.add(ll_count, gl.GL_LINES, None,
                 ('v2f', ll_vertices),
-                ('c4f', [color.r, color.g, color.b, 1.0] * (ll_count)))
+                ('c4f', [color.r, color.g, color.b, 1.0] * ll_count))
 
     def DrawSegment(self, p1, p2, color):
         """
@@ -409,7 +412,12 @@ class PygletFramework(FrameworkBase):
         self.keys=key.KeyStateHandler()
         # Only basic keys are mapped for now: K_[a-z0-9], K_F[1-12] and K_COMMA.
 
-        for letter in string.uppercase:
+        if hasattr(string, 'ascii_uppercase'):
+            uppercase = string.ascii_uppercase
+        else:
+            uppercase = string.uppercase
+
+        for letter in uppercase:
             setattr(Keys, 'K_'+letter.lower(), getattr(key, letter))
         for i in range(0,10):
             setattr(Keys, 'K_%d'%i, getattr(key, '_%d' % i))
