@@ -42,14 +42,14 @@ class fwDestructionListener(b2DestructionListener):
         super(fwDestructionListener, self).__init__(**kwargs)
         self.test = test
 
-    def SayGoodbye(self, object):
-        if isinstance(object, b2Joint):
-            if self.test.mouseJoint == object:
+    def SayGoodbye(self, obj):
+        if isinstance(obj, b2Joint):
+            if self.test.mouseJoint == obj:
                 self.test.mouseJoint = None
             else:
-                self.test.JointDestroyed(object)
-        elif isinstance(object, b2Fixture):
-            self.test.FixtureDestroyed(object)
+                self.test.JointDestroyed(obj)
+        elif isinstance(obj, b2Fixture):
+            self.test.FixtureDestroyed(obj)
 
 
 class fwQueryCallback(b2QueryCallback):
