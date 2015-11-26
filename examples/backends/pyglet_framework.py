@@ -41,8 +41,9 @@ import math
 import pyglet
 from pyglet import gl
 
-from .. import framework
-from ..framework import *
+from Box2D import (b2Vec2, b2Draw)
+from ..framework import (FrameworkBase, Keys)
+from ..settings import fwSettings
 
 
 class grBlended (pyglet.graphics.Group):
@@ -52,8 +53,10 @@ class grBlended (pyglet.graphics.Group):
     def set_state(self):
         gl.glEnable(gl.GL_BLEND)
         gl.glBlendFunc(gl.GL_SRC_ALPHA, gl.GL_ONE_MINUS_SRC_ALPHA)
+
     def unset_state(self):
         gl.glDisable(gl.GL_BLEND)
+
 
 class grPointSize (pyglet.graphics.Group):
     """
@@ -328,10 +331,10 @@ class PygletDraw(b2Draw):
         Draw a wireframe around the AABB with the given color.
         """
         self.renderer.batch.add(8, gl.GL_LINES, None,
-            ('v2f', (aabb.lowerBound.x, aabb.lowerBound.y, abb.upperBound.x, aabb.lowerBound.y,
-                abb.upperBound.x, aabb.lowerBound.y, aabb.upperBound.x, aabb.upperBound.y,
-                aabb.upperBound.x, aabb.upperBound.y, aabb.lowerBound.x, aabb.upperBound.y,
-                aabb.lowerBound.x, aabb.upperBound.y, aabb.lowerBound.x, aabb.lowerBound.y)),
+            ('v2f', (aabb.lowerBound.x, aabb.lowerBound.y, aabb.upperBound.x, aabb.lowerBound.y,
+                     aabb.upperBound.x, aabb.lowerBound.y, aabb.upperBound.x, aabb.upperBound.y,
+                     aabb.upperBound.x, aabb.upperBound.y, aabb.lowerBound.x, aabb.upperBound.y,
+                     aabb.lowerBound.x, aabb.upperBound.y, aabb.lowerBound.x, aabb.lowerBound.y)),
             ('c3f', [color.r, color.g, color.b] * 8))
 
     def to_screen(self, point):
@@ -339,6 +342,7 @@ class PygletDraw(b2Draw):
         In here for compatibility with other frameworks.
         """
         return tuple(point)
+
 
 class PygletWindow(pyglet.window.Window):
     def __init__(self, test):
