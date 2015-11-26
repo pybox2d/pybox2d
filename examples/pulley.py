@@ -18,50 +18,48 @@
 # misrepresented as being the original software.
 # 3. This notice may not be removed or altered from any source distribution.
 
-from .framework import *
-from Box2D.b2 import *
+from .framework import (Framework, main)
+from Box2D.b2 import (edgeShape, circleShape, fixtureDef, polygonShape)
+
 
 class Pulley (Framework):
-    name="Pulley"
+    name = "Pulley"
+
     def __init__(self):
         super(Pulley, self).__init__()
-        y, L, a, b=16.0, 12.0, 1.0, 2.0
+        y, L, a, b = 16.0, 12.0, 1.0, 2.0
         # The ground
-        ground=self.world.CreateStaticBody(
-                    shapes=[
-                            edgeShape(vertices=[(-40,0),(40,0)]),
-                            circleShape(radius=2, pos=(-10.0,y+b+L)),
-                            circleShape(radius=2, pos=( 10.0,y+b+L)),
-                        ]
-                )
+        ground = self.world.CreateStaticBody(
+            shapes=[edgeShape(vertices=[(-40, 0), (40, 0)]),
+                    circleShape(radius=2, pos=(-10.0, y + b + L)),
+                    circleShape(radius=2, pos=(10.0, y + b + L))]
+        )
 
-        bodyA=self.world.CreateDynamicBody(
-                    position=(-10,y),
-                    fixtures=fixtureDef(shape=polygonShape(box=(a,b)), density=5.0),
-                    )
-        bodyB=self.world.CreateDynamicBody(
-                    position=( 10,y),
-                    fixtures=fixtureDef(shape=polygonShape(box=(a,b)), density=5.0),
-                    )
+        bodyA = self.world.CreateDynamicBody(
+            position=(-10, y),
+            fixtures=fixtureDef(shape=polygonShape(box=(a, b)), density=5.0),
+        )
+        bodyB = self.world.CreateDynamicBody(
+            position=(10, y),
+            fixtures=fixtureDef(shape=polygonShape(box=(a, b)), density=5.0),
+        )
 
-        self.pulley=self.world.CreatePulleyJoint(
-                bodyA=bodyA,
-                bodyB=bodyB,
-                anchorA=(-10.0, y+b),
-                anchorB=( 10.0, y+b),
-                groundAnchorA=(-10.0, y+b+L),
-                groundAnchorB=( 10.0, y+b+L),
-                ratio=1.5,
-            )
-
+        self.pulley = self.world.CreatePulleyJoint(
+            bodyA=bodyA,
+            bodyB=bodyB,
+            anchorA=(-10.0, y + b),
+            anchorB=(10.0, y + b),
+            groundAnchorA=(-10.0, y + b + L),
+            groundAnchorB=(10.0, y + b + L),
+            ratio=1.5,
+        )
 
     def Step(self, settings):
         super(Pulley, self).Step(settings)
 
-        ratio=self.pulley.ratio
-        L=self.pulley.length1 + self.pulley.length2*ratio
+        ratio = self.pulley.ratio
+        L = self.pulley.length1 + self.pulley.length2 * ratio
         self.Print('L1 + %4.2f * L2 = %4.2f' % (ratio, L))
 
-if __name__=="__main__":
-     main(Pulley)
-
+if __name__ == "__main__":
+    main(Pulley)
