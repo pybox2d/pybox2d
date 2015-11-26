@@ -18,30 +18,32 @@
 # misrepresented as being the original software.
 # 3. This notice may not be removed or altered from any source distribution.
 
-from .framework import *
-from random import random
+from .framework import (Framework, main)
+from Box2D import (b2CircleShape, b2EdgeShape, b2FixtureDef)
+
 
 class Restitution (Framework):
-    name="Restitution example"
-    description="Note the difference in bounce height of the circles"
+    name = "Restitution example"
+    description = "Note the difference in bounce height of the circles"
+
     def __init__(self):
         super(Restitution, self).__init__()
 
         # The ground
         ground = self.world.CreateStaticBody(
-                shapes=b2EdgeShape(vertices=[(-20,  0),( 20,  0)])
-                )
+            shapes=b2EdgeShape(vertices=[(-20, 0), (20, 0)])
+        )
 
-        radius=1.0
-        density=1.0
+        radius = 1.0
+        density = 1.0
         # The bodies
         for i, restitution in enumerate([0.0, 0.1, 0.3, 0.5, 0.75, 0.9, 1.0]):
             self.world.CreateDynamicBody(
-                    position=(-10+3.0*i, 20),
-                    fixtures=b2FixtureDef(
-                                shape=b2CircleShape(radius=radius),
-                                density=density, restitution=restitution)
-                    )
+                position=(-10 + 3.0 * i, 20),
+                fixtures=b2FixtureDef(
+                    shape=b2CircleShape(radius=radius),
+                    density=density, restitution=restitution)
+            )
 
-if __name__=="__main__":
-     main(Restitution)
+if __name__ == "__main__":
+    main(Restitution)
