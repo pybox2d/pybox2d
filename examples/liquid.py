@@ -18,80 +18,92 @@
 # misrepresented as being the original software.
 # 3. This notice may not be removed or altered from any source distribution.
 
-from .framework import *
 from math import sqrt
 
-# Ported from the JBox2D (Java) version
+from .framework import (Framework, Keys, main)
+from Box2D import (b2CircleShape, b2FixtureDef, b2PolygonShape, b2Random,
+                   b2Vec2, b2_epsilon)
+
+# ***** NOTE *****
+# ***** NOTE *****
+# This example does not appear to be working currently...
+# It was ported from the JBox2D (Java) version
+# ***** NOTE *****
+# ***** NOTE *****
+
+
 class Liquid (Framework):
-    name="Liquid Test"
-    description=''
-    bullet=None
+    name = "Liquid Test"
+    description = ''
+    bullet = None
 
-    num_particles=1000
-    total_mass=10.0
+    num_particles = 1000
+    total_mass = 10.0
 
-    fluid_minx=-11.0
-    fluid_maxx=5.0
-    fluid_miny=-10.0
-    fluid_maxy=10.0
+    fluid_minx = -11.0
+    fluid_maxx = 5.0
+    fluid_miny = -10.0
+    fluid_maxy = 10.0
 
-    hash_width=40
-    hash_height=40
+    hash_width = 40
+    hash_height = 40
 
-    rad=0.6
-    visc=0.004
+    rad = 0.6
+    visc = 0.004
+
     def __init__(self):
         super(Liquid, self).__init__()
 
         self.per_particle_mass = self.total_mass / self.num_particles
 
         ground = self.world.CreateStaticBody(
-                shapes=[
-                        b2PolygonShape(box=[5.0, 0.5]),
-                        b2PolygonShape(box=[1.0, 0.2, (0, 4), -0.2]),
-                        b2PolygonShape(box=[1.5, 0.2, (-1.2, 5.2), -1.5]),
-                        b2PolygonShape(box=[0.5, 50.0, (5, 0),  0.0]),
+            shapes=[
+                b2PolygonShape(box=[5.0, 0.5]),
+                b2PolygonShape(box=[1.0, 0.2, (0, 4), -0.2]),
+                b2PolygonShape(box=[1.5, 0.2, (-1.2, 5.2), -1.5]),
+                b2PolygonShape(box=[0.5, 50.0, (5, 0), 0.0]),
+                b2PolygonShape(box=[0.5, 3.0, (-8, 0), 0.0]),
+                b2PolygonShape(box=[2.0, 0.1, (-6, -2.8), 0.1]),
+                b2CircleShape(radius=0.5, pos=(-.5, -4)),
+            ]
+        )
 
-                        b2PolygonShape(box=[0.5, 3.0, (-8, 0),  0.0]),
-                        b2PolygonShape(box=[2.0, 0.1, (-6, -2.8),0.1]),
-                        b2CircleShape(radius=0.5, pos=(-.5,-4)),
-                    ]
-                )
-
-        cx=0
-        cy=25
-        box_width=2.0
-        box_height=20.0
-        self.liquid=liquid=[]
+        cx = 0
+        cy = 25
+        box_width = 2.0
+        box_height = 20.0
+        self.liquid = []
         for i in range(self.num_particles):
-            self.createDroplet((b2Random(cx-box_width*0.5, cx+box_width*0.5),
-                      b2Random(cy-box_height*0.5, cy+box_height*0.5)))
+            self.createDroplet((b2Random(cx - box_width * 0.5,
+                                         cx + box_width * 0.5),
+                                b2Random(cy - box_height * 0.5,
+                                         cy + box_height * 0.5)))
 
         self.createBoxSurfer()
 
         if hasattr(self, 'settings'):
-            self.settings.enableSubStepping=False
+            self.settings.enableSubStepping = False
 
     def createBoxSurfer(self):
-        self.surfer=self.world.CreateDynamicBody(position=(0,25))
+        self.surfer = self.world.CreateDynamicBody(position=(0, 25))
         self.surfer.CreatePolygonFixture(
             density=1,
-            box=(b2Random(0.3,0.7), b2Random(0.3,0.7)),
-           )
+            box=(b2Random(0.3, 0.7), b2Random(0.3, 0.7)),
+        )
 
     def createDroplet(self, position):
-        body=self.world.CreateDynamicBody(
-                position=position,
-                fixedRotation=True,
-                allowSleep=False,
-                )
+        body = self.world.CreateDynamicBody(
+            position=position,
+            fixedRotation=True,
+            allowSleep=False,
+        )
         body.CreateCircleFixture(
             groupIndex=-10,
             radius=0.05,
             restitution=0.4,
             friction=0,
-            )
-        body.mass=self.per_particle_mass
+        )
+        body.mass = self.per_particle_mass
         self.liquid.append(body)
 
     def applyLiquidConstraint(self, dt):
@@ -100,32 +112,34 @@ class Liquid (Framework):
         # invariant, and it breaks down for rad < ~3 or so.  So we need
         # to scale everything to an ideal rad and then scale it back after.
 
-        idealRad=50
-        idealRad2=idealRad**2
-        multiplier=idealRad/self.rad
-        info=dict([(drop, (drop.position, multiplier*drop.position, multiplier*drop.linearVelocity)) for drop in self.liquid])
-        change=dict([(drop, b2Vec2(0,0)) for drop in self.liquid])
-        dx=self.fluid_maxx-self.fluid_minx
-        dy=self.fluid_maxy-self.fluid_miny
-        range_=(-1,0,1)
-        hash_width=self.hash_width
-        hash_height=self.hash_height
-        max_len=9.9e9
-        visc=self.visc
-        hash=self.hash
-        neighbors=set()
+        idealRad = 50
+        idealRad2 = idealRad ** 2
+        multiplier = idealRad / self.rad
+        info = dict([(drop, (drop.position, multiplier * drop.position,
+                             multiplier * drop.linearVelocity))
+                     for drop in self.liquid])
+        change = dict([(drop, b2Vec2(0, 0)) for drop in self.liquid])
+        dx = self.fluid_maxx - self.fluid_minx
+        dy = self.fluid_maxy - self.fluid_miny
+        range_ = (-1, 0, 1)
+        hash_width = self.hash_width
+        hash_height = self.hash_height
+        max_len = 9.9e9
+        visc = self.visc
+        hash = self.hash
+        neighbors = set()
         # Populate the neighbor list from the 9 nearest cells
-        for drop, ((worldx, worldy), (mx,my), (mvx, mvy)) in list(info.items()):
-            hx=int((worldx/dx) * hash_width)
-            hy=int((worldy/dy) * hash_height)
+        for drop, ((worldx, worldy), (mx, my), (mvx, mvy)) in list(info.items()):
+            hx = int((worldx / dx) * hash_width)
+            hy = int((worldy / dy) * hash_height)
             neighbors.clear()
             for nx in range_:
-                xc=hx+nx
+                xc = hx + nx
                 if not (0 <= xc < hash_width):
                     continue
 
                 for ny in range_:
-                    yc=hy+ny
+                    yc = hy + ny
                     if yc in hash[xc]:
                         for neighbor in hash[xc][yc]:
                             neighbors.add(neighbor)
@@ -134,90 +148,95 @@ class Liquid (Framework):
                 neighbors.remove(drop)
 
             # Particle pressure calculated by particle proximity
-            # Pressures = 0 iff all particles within range are idealRad distance away
-            lengths=[]
-            p=0
-            pnear=0
+            # Pressures = 0 iff all particles within range are idealRad
+            # distance away
+            lengths = []
+            p = 0
+            pnear = 0
             for neighbor in neighbors:
-                nx, ny=info[neighbor][1]
-                vx, vy=nx-mx, ny-my
+                nx, ny = info[neighbor][1]
+                vx, vy = nx - mx, ny - my
                 if -idealRad < vx < idealRad and -idealRad < vy < idealRad:
-                    len_sqr=vx**2+vy**2
+                    len_sqr = vx ** 2 + vy ** 2
                     if len_sqr < idealRad2:
-                        len_=sqrt(len_sqr)
+                        len_ = sqrt(len_sqr)
                         if len_ < b2_epsilon:
-                            len_=idealRad-0.01
+                            len_ = idealRad - 0.01
                         lengths.append(len_)
-                        oneminusq=1.0-(len_ / idealRad)
-                        sq=oneminusq**2
-                        p+=sq
-                        pnear+=sq*oneminusq
+                        oneminusq = 1.0 - (len_ / idealRad)
+                        sq = oneminusq ** 2
+                        p += sq
+                        pnear += sq * oneminusq
                 else:
                     lengths.append(max_len)
 
             # Now actually apply the forces
-            pressure=(p-5)/2.0 # normal pressure term
-            presnear=pnear/2.0 # near particles term
-            changex, changey = 0,0
+            pressure = (p - 5) / 2.0  # normal pressure term
+            presnear = pnear / 2.0  # near particles term
+            changex, changey = 0, 0
             for len_, neighbor in zip(lengths, neighbors):
-                (nx, ny), (nvx,nvy)=info[neighbor][1:3]
-                vx, vy=nx-mx, ny-my
+                (nx, ny), (nvx, nvy) = info[neighbor][1:3]
+                vx, vy = nx - mx, ny - my
                 if -idealRad < vx < idealRad and -idealRad < vy < idealRad:
                     if len_ < idealRad:
-                        oneminusq=1.0-(len_/idealRad)
-                        factor=oneminusq*(pressure+presnear*oneminusq)/(2.0*len_)
-                        dx_, dy_=vx*factor, vy*factor
-                        relvx, relvy=nvx-mvx, nvy-mvy
+                        oneminusq = 1.0 - (len_ / idealRad)
+                        factor = oneminusq * \
+                            (pressure + presnear * oneminusq) / (2.0 * len_)
+                        dx_, dy_ = vx * factor, vy * factor
+                        relvx, relvy = nvx - mvx, nvy - mvy
 
-                        factor=visc*oneminusq*dt
-                        dx_-=relvx*factor
-                        dy_-=relvy*factor
-                        change[neighbor]+=(dx_,dy_)
-                        changex-=dx_
-                        changey-=dy_
+                        factor = visc * oneminusq * dt
+                        dx_ -= relvx * factor
+                        dy_ -= relvy * factor
+                        change[neighbor] += (dx_, dy_)
+                        changex -= dx_
+                        changey -= dy_
 
-            change[drop]+=(changex, changey)
+            change[drop] += (changex, changey)
 
         for drop, (dx_, dy_) in list(change.items()):
-            if dx_!=0 or dy_!=0:
-                drop.position+=(dx_/multiplier, dy_/multiplier)
-                drop.linearVelocity+=(dx_/(multiplier*dt), dy_/(multiplier*dt))
+            if dx_ != 0 or dy_ != 0:
+                drop.position += (dx_ / multiplier, dy_ / multiplier)
+                drop.linearVelocity += (dx_ / (multiplier * dt),
+                                        dy_ / (multiplier * dt))
 
     def hashLocations(self):
-        hash_width=self.hash_width
-        hash_height=self.hash_height
+        hash_width = self.hash_width
+        hash_height = self.hash_height
 
-        self.hash=hash=dict([(i, {}) for i in range(hash_width)])
-        info=[(drop, drop.position) for drop in self.liquid]
+        self.hash = hash = dict([(i, {}) for i in range(hash_width)])
+        info = [(drop, drop.position) for drop in self.liquid]
 
-        dx=self.fluid_maxx-self.fluid_minx
-        dy=self.fluid_maxy-self.fluid_miny
-        xs,ys=set(),set()
+        dx = self.fluid_maxx - self.fluid_minx
+        dy = self.fluid_maxy - self.fluid_miny
+        xs, ys = set(), set()
         for drop, (worldx, worldy) in info:
-            hx=int((worldx/dx) * hash_width)
-            hy=int((worldy/dy) * hash_height)
+            hx = int((worldx / dx) * hash_width)
+            hy = int((worldy / dy) * hash_height)
             xs.add(hx)
             ys.add(hy)
             if 0 <= hx < hash_width and 0 <= hy < hash_height:
-                x=hash[hx]
+                x = hash[hx]
                 if hy not in x:
-                    x[hy]=[drop]
+                    x[hy] = [drop]
                 else:
                     x[hy].append(drop)
 
     def dampenLiquid(self):
         for drop in self.liquid:
-            drop.linearVelocity*=0.995
+            drop.linearVelocity *= 0.995
 
     def checkBounds(self):
-        self.hash=None
+        self.hash = None
 
-        to_remove=[drop for drop in self.liquid if drop.position.y < self.fluid_miny]
+        to_remove = [
+            drop for drop in self.liquid if drop.position.y < self.fluid_miny]
         for drop in to_remove:
             self.liquid.remove(drop)
             self.world.DestroyBody(drop)
 
-            self.createDroplet( (0.0 +b2Random(-0.6,0.6), 15.0+b2Random(-2.3,2.0)) )
+            self.createDroplet(
+                (0.0 + b2Random(-0.6, 0.6), 15.0 + b2Random(-2.3, 2.0)))
 
         if self.surfer.position.y < -15:
             self.world.DestroyBody(self.surfer)
@@ -226,28 +245,27 @@ class Liquid (Framework):
     def Step(self, settings):
         super(Liquid, self).Step(settings)
 
-        dt=1.0/settings.hz
+        dt = 1.0 / settings.hz
         self.hashLocations()
         self.applyLiquidConstraint(dt)
         self.dampenLiquid()
         self.checkBounds()
 
     def Keyboard(self, key):
-        if key==Keys.K_b:
+        if key == Keys.K_b:
             if self.bullet:
                 self.world.DestroyBody(self.bullet)
-                self.bullet=None
+                self.bullet = None
             circle = b2FixtureDef(
-                    shape=b2CircleShape(radius=0.25),
-                    density=20,
-                    restitution=0.05)
-            self.bullet=self.world.CreateDynamicBody(
-                    position=(-31, 5),
-                    bullet=True,
-                    fixtures=circle,
-                    linearVelocity=(400,0),
-                    )
+                shape=b2CircleShape(radius=0.25),
+                density=20,
+                restitution=0.05)
+            self.bullet = self.world.CreateDynamicBody(
+                position=(-31, 5),
+                bullet=True,
+                fixtures=circle,
+                linearVelocity=(400, 0),
+            )
 
-if __name__=="__main__":
-     main(Liquid)
-
+if __name__ == "__main__":
+    main(Liquid)
