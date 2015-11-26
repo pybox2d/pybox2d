@@ -18,48 +18,53 @@
 # misrepresented as being the original software.
 # 3. This notice may not be removed or altered from any source distribution.
 
-from .framework import *
 from random import random
 
+from .framework import (Framework, Keys, main)
+from Box2D import (b2CircleShape, b2EdgeShape, b2FixtureDef)
+
+
 class Confined (Framework):
-    name="Confined space"
-    description="Press c to create a circle"
+    name = "Confined space"
+    description = "Press c to create a circle"
+
     def __init__(self):
         super(Confined, self).__init__()
 
         # The ground
         ground = self.world.CreateStaticBody(
-                shapes=[
-                        b2EdgeShape(vertices=[(-10,  0),( 10,  0)]),
-                        b2EdgeShape(vertices=[(-10,  0),(-10, 20)]),
-                        b2EdgeShape(vertices=[( 10,  0),( 10, 20)]),
-                        b2EdgeShape(vertices=[(-10, 20),( 10, 20)]),
-                    ]
-                )
+            shapes=[b2EdgeShape(vertices=[(-10, 0), (10, 0)]),
+                    b2EdgeShape(vertices=[(-10, 0), (-10, 20)]),
+                    b2EdgeShape(vertices=[(10, 0), (10, 20)]),
+                    b2EdgeShape(vertices=[(-10, 20), (10, 20)]),
+                    ])
 
         # The bodies
         self.radius = radius = 0.5
-        columnCount=5
-        rowCount=5
+        columnCount = 5
+        rowCount = 5
 
         for j in range(columnCount):
             for i in range(rowCount):
-                self.CreateCircle( (-10+(2.1*j+1+0.01*i)*radius, (2*i+1)*radius) )
+                self.CreateCircle((-10 + (2.1 * j + 1 + 0.01 * i) * radius,
+                                  (2 * i + 1) * radius))
 
-        self.world.gravity = (0,0)
+        self.world.gravity = (0, 0)
 
     def CreateCircle(self, pos):
-        fixture=b2FixtureDef(shape=b2CircleShape(radius=self.radius,
-                                                 pos=(0,0)),
-                             density=1, friction=0.1)
+        fixture = b2FixtureDef(shape=b2CircleShape(radius=self.radius,
+                                                   pos=(0, 0)),
+                               density=1, friction=0.1)
+
         self.world.CreateDynamicBody(
-                position=pos,
-                fixtures=fixture
-                )
+            position=pos,
+            fixtures=fixture
+        )
 
     def Keyboard(self, key):
-         if key == Keys.K_c:
-            self.CreateCircle( (2.0*random()-1.0, self.radius*(1.0+random())) )
+        if key == Keys.K_c:
+            self.CreateCircle((2.0 * random() - 1.0,
+                               self.radius * (1.0 + random())))
 
-if __name__=="__main__":
-     main(Confined)
+if __name__ == "__main__":
+    main(Confined)
