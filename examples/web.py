@@ -18,66 +18,69 @@
 # misrepresented as being the original software.
 # 3. This notice may not be removed or altered from any source distribution.
 
-from .framework import *
-from math import sqrt
+from .framework import (Framework, Keys, main)
+from Box2D import (b2DistanceJointDef, b2EdgeShape, b2FixtureDef,
+                   b2PolygonShape)
+
 
 class Web(Framework):
-    name="Web"
-    description="This demonstrates a soft distance joint. Press: (b) to delete a body, (j) to delete a joint"
-    bodies=[]
-    joints=[]
+    name = "Web"
+    description = "This demonstrates a soft distance joint. Press: (b) to delete a body, (j) to delete a joint"
+    bodies = []
+    joints = []
+
     def __init__(self):
         super(Web, self).__init__()
 
         # The ground
         ground = self.world.CreateBody(
-                    shapes=b2EdgeShape(vertices=[(-40,0),(40, 0)])
-                )
+            shapes=b2EdgeShape(vertices=[(-40, 0), (40, 0)])
+        )
 
-        fixture=b2FixtureDef(shape=b2PolygonShape(box=(0.5,0.5)),
-                            density=5, friction=0.2)
+        fixture = b2FixtureDef(shape=b2PolygonShape(box=(0.5, 0.5)),
+                               density=5, friction=0.2)
 
         self.bodies = [self.world.CreateDynamicBody(
-                            position=pos,
-                            fixtures=fixture
-                            ) for pos in ( (-5,5), (5,5), (5,15), (-5,15) )]
+            position=pos,
+            fixtures=fixture
+        ) for pos in ((-5, 5), (5, 5), (5, 15), (-5, 15))]
 
         bodies = self.bodies
 
         # Create the joints between each of the bodies and also the ground
         #         bodyA      bodyB   localAnchorA localAnchorB
-        sets = [ (ground,    bodies[0], (-10,0), (-0.5,-0.5)),
-                 (ground,    bodies[1], (10,0),  (0.5,-0.5)),
-                 (ground,    bodies[2], (10,20), (0.5,0.5)),
-                 (ground,    bodies[3], (-10,20),(-0.5,0.5)),
-                 (bodies[0], bodies[1], (0.5,0), (-0.5,0)),
-                 (bodies[1], bodies[2], (0,0.5), (0,-0.5)),
-                 (bodies[2], bodies[3], (-0.5,0),(0.5,0)),
-                 (bodies[3], bodies[0], (0,-0.5),(0,0.5)),
+        sets = [(ground,    bodies[0], (-10, 0), (-0.5, -0.5)),
+                (ground,    bodies[1], (10, 0),  (0.5, -0.5)),
+                (ground,    bodies[2], (10, 20), (0.5, 0.5)),
+                (ground,    bodies[3], (-10, 20), (-0.5, 0.5)),
+                (bodies[0], bodies[1], (0.5, 0), (-0.5, 0)),
+                (bodies[1], bodies[2], (0, 0.5), (0, -0.5)),
+                (bodies[2], bodies[3], (-0.5, 0), (0.5, 0)),
+                (bodies[3], bodies[0], (0, -0.5), (0, 0.5)),
                 ]
 
         # We will define the positions in the local body coordinates, the length
         # will automatically be set by the __init__ of the b2DistanceJointDef
-        self.joints=[]
+        self.joints = []
         for bodyA, bodyB, localAnchorA, localAnchorB in sets:
-            dfn=b2DistanceJointDef(
-                    frequencyHz=4.0,
-                    dampingRatio=0.5,
-                    bodyA=bodyA,
-                    bodyB=bodyB,
-                    localAnchorA=localAnchorA,
-                    localAnchorB=localAnchorB,
-                )
-            self.joints.append( self.world.CreateJoint(dfn) )
+            dfn = b2DistanceJointDef(
+                frequencyHz=4.0,
+                dampingRatio=0.5,
+                bodyA=bodyA,
+                bodyB=bodyB,
+                localAnchorA=localAnchorA,
+                localAnchorB=localAnchorB,
+            )
+            self.joints.append(self.world.CreateJoint(dfn))
 
     def Keyboard(self, key):
-        if key==Keys.K_b:
+        if key == Keys.K_b:
             for body in self.bodies:
                 # Gets both FixtureDestroyed and JointDestroyed callbacks.
                 self.world.DestroyBody(body)
                 break
 
-        elif key==Keys.K_j:
+        elif key == Keys.K_j:
             for joint in self.joints:
                 # Does not get a JointDestroyed callback!
                 self.world.DestroyJoint(joint)
@@ -90,14 +93,14 @@ class Web(Framework):
         if body in self.bodies:
             print(body)
             self.bodies.remove(body)
-            print("Fixture destroyed, removing its body from the list. Bodies left: %d" \
-                    % len(self.bodies))
+            print("Fixture destroyed, removing its body from the list. Bodies left: %d"
+                  % len(self.bodies))
 
     def JointDestroyed(self, joint):
         if joint in self.joints:
             self.joints.remove(joint)
-            print("Joint destroyed and removed from the list. Joints left: %d" \
-                    % len(self.joints))
+            print("Joint destroyed and removed from the list. Joints left: %d"
+                  % len(self.joints))
 
-if __name__=="__main__":
-     main(Web)
+if __name__ == "__main__":
+    main(Web)
