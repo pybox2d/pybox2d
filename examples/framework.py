@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-#!/usr/bin/python
 #
 # C++ version Copyright (c) 2006-2007 Erin Catto http://www.box2d.org
 # Python version by Ken Lauer / sirkne at gmail dot com
@@ -22,8 +21,13 @@
 """
 The framework's base is FrameworkBase. See its help for more information.
 """
-from Box2D import *
 from time import time
+
+from Box2D import (b2World, b2AABB, b2CircleShape, b2Color, b2Vec2)
+from Box2D import (b2ContactListener, b2DestructionListener, b2DrawExtended)
+from Box2D import (b2Fixture, b2FixtureDef, b2Joint)
+from Box2D import (b2GetPointStates, b2QueryCallback, b2Random)
+from Box2D import (b2_addState, b2_dynamicBody, b2_epsilon, b2_persistState)
 
 from .settings import fwSettings
 
@@ -33,20 +37,23 @@ class fwDestructionListener(b2DestructionListener):
     The destruction listener callback:
     "SayGoodbye" is called when a joint or shape is deleted.
     """
+
     def __init__(self, test, **kwargs):
         super(fwDestructionListener, self).__init__(**kwargs)
         self.test = test
 
     def SayGoodbye(self, object):
         if isinstance(object, b2Joint):
-            if self.test.mouseJoint==object:
-                self.test.mouseJoint=None
+            if self.test.mouseJoint == object:
+                self.test.mouseJoint = None
             else:
                 self.test.JointDestroyed(object)
         elif isinstance(object, b2Fixture):
             self.test.FixtureDestroyed(object)
 
+
 class fwQueryCallback(b2QueryCallback):
+
     def __init__(self, p):
         super(fwQueryCallback, self).__init__()
         self.point = p
@@ -55,16 +62,18 @@ class fwQueryCallback(b2QueryCallback):
     def ReportFixture(self, fixture):
         body = fixture.body
         if body.type == b2_dynamicBody:
-            inside=fixture.TestPoint(self.point)
+            inside = fixture.TestPoint(self.point)
             if inside:
-                self.fixture=fixture
+                self.fixture = fixture
                 # We found the object, so stop the query
                 return False
         # Continue the query
         return True
 
+
 class Keys(object):
     pass
+
 
 class FrameworkBase(b2ContactListener):
     """
@@ -81,35 +90,35 @@ class FrameworkBase(b2ContactListener):
     """
     name = "None"
     description = None
-    TEXTLINE_START=30
-    colors={
-        'mouse_point'     : b2Color(0,1,0),
-        'bomb_center'     : b2Color(0,0,1.0),
-        'bomb_line'       : b2Color(0,1.0,1.0),
-        'joint_line'      : b2Color(0.8,0.8,0.8),
-        'contact_add'     : b2Color(0.3, 0.95, 0.3),
-        'contact_persist' : b2Color(0.3, 0.3, 0.95),
-        'contact_normal'  : b2Color(0.4, 0.9, 0.4),
+    TEXTLINE_START = 30
+    colors = {
+        'mouse_point': b2Color(0, 1, 0),
+        'bomb_center': b2Color(0, 0, 1.0),
+        'bomb_line': b2Color(0, 1.0, 1.0),
+        'joint_line': b2Color(0.8, 0.8, 0.8),
+        'contact_add': b2Color(0.3, 0.95, 0.3),
+        'contact_persist': b2Color(0.3, 0.3, 0.95),
+        'contact_normal': b2Color(0.4, 0.9, 0.4),
     }
 
     def __reset(self):
         """ Reset all of the variables to their starting values.
         Not to be called except at initialization."""
         # Box2D-related
-        self.points             = []
-        self.world              = None
-        self.bomb               = None
-        self.mouseJoint         = None
-        self.settings           = fwSettings
-        self.bombSpawning       = False
-        self.bombSpawnPoint     = None
-        self.mouseWorld         = None
-        self.using_contacts     = False
-        self.stepCount          = 0
+        self.points = []
+        self.world = None
+        self.bomb = None
+        self.mouseJoint = None
+        self.settings = fwSettings
+        self.bombSpawning = False
+        self.bombSpawnPoint = None
+        self.mouseWorld = None
+        self.using_contacts = False
+        self.stepCount = 0
 
         # Box2D-callbacks
-        self.destructionListener= None
-        self.renderer           = None
+        self.destructionListener = None
+        self.renderer = None
 
     def __init__(self):
         super(FrameworkBase, self).__init__()
@@ -117,12 +126,12 @@ class FrameworkBase(b2ContactListener):
         self.__reset()
 
         # Box2D Initialization
-        self.world = b2World(gravity=(0,-10), doSleep=True)
+        self.world = b2World(gravity=(0, -10), doSleep=True)
 
         self.destructionListener = fwDestructionListener(test=self)
-        self.world.destructionListener=self.destructionListener
-        self.world.contactListener=self
-        self.t_steps, self.t_draws=[], []
+        self.world.destructionListener = self.destructionListener
+        self.world.contactListener = self
+        self.t_steps, self.t_draws = [], []
 
     def __del__(self):
         pass
@@ -135,55 +144,59 @@ class FrameworkBase(b2ContactListener):
         and drawing additional information.
         """
 
-        self.stepCount+=1
+        self.stepCount += 1
         # Don't do anything if the setting's Hz are <= 0
         if settings.hz > 0.0:
             timeStep = 1.0 / settings.hz
         else:
             timeStep = 0.0
 
+        renderer = self.renderer
+
         # If paused, display so
         if settings.pause:
             if settings.singleStep:
-                settings.singleStep=False
+                settings.singleStep = False
             else:
                 timeStep = 0.0
 
-            self.Print("****PAUSED****", (200,0,0))
+            self.Print("****PAUSED****", (200, 0, 0))
 
         # Set the flags based on what the settings show
-        if self.renderer:
-            self.renderer.flags=dict(
-                    drawShapes=settings.drawShapes,
-                    drawJoints=settings.drawJoints,
-                    drawAABBs =settings.drawAABBs,
-                    drawPairs =settings.drawPairs,
-                    drawCOMs  =settings.drawCOMs,
-                    # The following is only applicable when using b2DrawExtended.
-                    # It indicates that the C code should transform box2d coords to
-                    # screen coordinates.
-                    convertVertices=isinstance(self.renderer, b2DrawExtended)
-                    )
+        if renderer:
+            # convertVertices is only applicable when using b2DrawExtended.  It
+            # indicates that the C code should transform box2d coords to screen
+            # coordinates.
+            is_extended = isinstance(renderer, b2DrawExtended)
+            renderer.flags = dict(drawShapes=settings.drawShapes,
+                                  drawJoints=settings.drawJoints,
+                                  drawAABBs=settings.drawAABBs,
+                                  drawPairs=settings.drawPairs,
+                                  drawCOMs=settings.drawCOMs,
+                                  convertVertices=is_extended,
+                                  )
 
         # Set the other settings that aren't contained in the flags
-        self.world.warmStarting=settings.enableWarmStarting
-        self.world.continuousPhysics=settings.enableContinuous
-        self.world.subStepping=settings.enableSubStepping
+        self.world.warmStarting = settings.enableWarmStarting
+        self.world.continuousPhysics = settings.enableContinuous
+        self.world.subStepping = settings.enableSubStepping
 
         # Reset the collision points
         self.points = []
 
         # Tell Box2D to step
-        t_step=time()
-        self.world.Step(timeStep, settings.velocityIterations, settings.positionIterations)
+        t_step = time()
+        self.world.Step(timeStep, settings.velocityIterations,
+                        settings.positionIterations)
         self.world.ClearForces()
-        t_step=time()-t_step
+        t_step = time() - t_step
 
         # Update the debug draw settings so that the vertices will be properly
         # converted to screen coordinates
-        t_draw=time()
-        if self.renderer:
-            self.renderer.StartDraw()
+        t_draw = time()
+
+        if renderer is not None:
+            renderer.StartDraw()
 
         self.world.DrawDebugData()
 
@@ -192,45 +205,56 @@ class FrameworkBase(b2ContactListener):
             self.world.DestroyBody(self.bomb)
             self.bomb = None
 
-        # Take care of additional drawing (fps, mouse joint, slingshot bomb, contact points)
+        # Take care of additional drawing (fps, mouse joint, slingshot bomb,
+        # contact points)
 
-        if self.renderer:
-            # If there's a mouse joint, draw the connection between the object and the current pointer position.
+        if renderer:
+            # If there's a mouse joint, draw the connection between the object
+            # and the current pointer position.
             if self.mouseJoint:
-                p1 = self.renderer.to_screen(self.mouseJoint.anchorB)
-                p2 = self.renderer.to_screen(self.mouseJoint.target)
+                p1 = renderer.to_screen(self.mouseJoint.anchorB)
+                p2 = renderer.to_screen(self.mouseJoint.target)
 
-                self.renderer.DrawPoint(p1, settings.pointSize, self.colors['mouse_point'])
-                self.renderer.DrawPoint(p2, settings.pointSize, self.colors['mouse_point'])
-                self.renderer.DrawSegment(p1, p2, self.colors['joint_line'])
+                renderer.DrawPoint(p1, settings.pointSize,
+                                   self.colors['mouse_point'])
+                renderer.DrawPoint(p2, settings.pointSize,
+                                   self.colors['mouse_point'])
+                renderer.DrawSegment(p1, p2, self.colors['joint_line'])
 
             # Draw the slingshot bomb
             if self.bombSpawning:
-                self.renderer.DrawPoint(self.renderer.to_screen(self.bombSpawnPoint), settings.pointSize, self.colors['bomb_center'])
-                self.renderer.DrawSegment(self.renderer.to_screen(self.bombSpawnPoint), self.renderer.to_screen(self.mouseWorld), self.colors['bomb_line'])
+                renderer.DrawPoint(renderer.to_screen(self.bombSpawnPoint),
+                                   settings.pointSize, self.colors['bomb_center'])
+                renderer.DrawSegment(renderer.to_screen(self.bombSpawnPoint),
+                                     renderer.to_screen(self.mouseWorld),
+                                     self.colors['bomb_line'])
 
             # Draw each of the contact points in different colors.
             if self.settings.drawContactPoints:
                 for point in self.points:
                     if point['state'] == b2_addState:
-                        self.renderer.DrawPoint(self.renderer.to_screen(point['position']), settings.pointSize, self.colors['contact_add'])
+                        renderer.DrawPoint(renderer.to_screen(point['position']),
+                                           settings.pointSize,
+                                           self.colors['contact_add'])
                     elif point['state'] == b2_persistState:
-                        self.renderer.DrawPoint(self.renderer.to_screen(point['position']), settings.pointSize, self.colors['contact_persist'])
+                        renderer.DrawPoint(renderer.to_screen(point['position']),
+                                           settings.pointSize,
+                                           self.colors['contact_persist'])
 
             if settings.drawContactNormals:
                 for point in self.points:
-                    p1 = self.renderer.to_screen(point['position'])
-                    p2 = self.renderer.axisScale * point['normal'] + p1
-                    self.renderer.DrawSegment(p1, p2, self.colors['contact_normal'])
+                    p1 = renderer.to_screen(point['position'])
+                    p2 = renderer.axisScale * point['normal'] + p1
+                    renderer.DrawSegment(p1, p2, self.colors['contact_normal'])
 
-            self.renderer.EndDraw()
-            t_draw=time()-t_draw
+            renderer.EndDraw()
+            t_draw = time() - t_draw
 
-            t_draw=max(b2_epsilon, t_draw)
-            t_step=max(b2_epsilon, t_step)
+            t_draw = max(b2_epsilon, t_draw)
+            t_step = max(b2_epsilon, t_step)
 
             try:
-                self.t_draws.append(1.0/t_draw)
+                self.t_draws.append(1.0 / t_draw)
             except:
                 pass
             else:
@@ -238,7 +262,7 @@ class FrameworkBase(b2ContactListener):
                     self.t_draws.pop(0)
 
             try:
-                self.t_steps.append(1.0/t_step)
+                self.t_steps.append(1.0 / t_step)
             except:
                 pass
             else:
@@ -250,18 +274,23 @@ class FrameworkBase(b2ContactListener):
 
             if settings.drawStats:
                 self.Print("bodies=%d contacts=%d joints=%d proxies=%d" %
-                    (self.world.bodyCount, self.world.contactCount, self.world.jointCount, self.world.proxyCount))
+                           (self.world.bodyCount, self.world.contactCount,
+                            self.world.jointCount, self.world.proxyCount))
 
                 self.Print("hz %d vel/pos iterations %d/%d" %
-                    (settings.hz, settings.velocityIterations, settings.positionIterations))
+                           (settings.hz, settings.velocityIterations,
+                            settings.positionIterations))
 
                 if self.t_draws and self.t_steps:
-                    self.Print("Potential draw rate: %.2f fps Step rate: %.2f Hz" % (sum(self.t_draws)/len(self.t_draws), sum(self.t_steps)/len(self.t_steps)))
+                    self.Print("Potential draw rate: %.2f fps Step rate: %.2f Hz"
+                               "" % (sum(self.t_draws) / len(self.t_draws),
+                                     sum(self.t_steps) / len(self.t_steps))
+                               )
 
     def ShiftMouseDown(self, p):
         """
-        Indicates that there was a left click at point p (world coordinates) with the
-        left shift key being held down.
+        Indicates that there was a left click at point p (world coordinates)
+        with the left shift key being held down.
         """
         self.mouseWorld = p
 
@@ -272,13 +301,13 @@ class FrameworkBase(b2ContactListener):
         """
         Indicates that there was a left click at point p (world coordinates)
         """
-
-        if self.mouseJoint != None:
+        if self.mouseJoint is not None:
             return
 
         # Create a mouse joint on the selected body (assuming it's dynamic)
         # Make a small box.
-        aabb = b2AABB(lowerBound=p-(0.001, 0.001), upperBound=p+(0.001, 0.001))
+        aabb = b2AABB(lowerBound=p - (0.001, 0.001),
+                      upperBound=p + (0.001, 0.001))
 
         # Query the world for overlapping shapes.
         query = fwQueryCallback(p)
@@ -288,10 +317,10 @@ class FrameworkBase(b2ContactListener):
             body = query.fixture.body
             # A body was selected, create the mouse joint
             self.mouseJoint = self.world.CreateMouseJoint(
-                    bodyA=self.groundbody,
-                    bodyB=body,
-                    target=p,
-                    maxForce=1000.0*body.mass)
+                bodyA=self.groundbody,
+                bodyB=body,
+                target=p,
+                maxForce=1000.0 * body.mass)
             body.awake = True
 
     def MouseUp(self, p):
@@ -331,7 +360,7 @@ class FrameworkBase(b2ContactListener):
         if not self.bombSpawning:
             return
         multiplier = 30.0
-        vel  = self.bombSpawnPoint - p
+        vel = self.bombSpawnPoint - p
         vel *= multiplier
         self.LaunchBomb(self.bombSpawnPoint, vel)
         self.bombSpawning = False
@@ -346,21 +375,21 @@ class FrameworkBase(b2ContactListener):
             self.bomb = None
 
         self.bomb = self.world.CreateDynamicBody(
-                        allowSleep=True,
-                        position=position,
-                        linearVelocity=velocity,
-                        fixtures=b2FixtureDef(
-                            shape=b2CircleShape(radius=0.3),
-                            density=20,
-                            restitution=0.1 )
+            allowSleep=True,
+            position=position,
+            linearVelocity=velocity,
+            fixtures=b2FixtureDef(
+                shape=b2CircleShape(radius=0.3),
+                density=20,
+                restitution=0.1)
 
-                    )
+        )
 
     def LaunchRandomBomb(self):
         """
         Create a new bomb and launch it at the testbed.
         """
-        p = b2Vec2( b2Random(-15.0, 15.0), 30.0 )
+        p = b2Vec2(b2Random(-15.0, 15.0), 30.0)
         v = -5.0 * p
         self.LaunchBomb(p, v)
 
@@ -373,31 +402,33 @@ class FrameworkBase(b2ContactListener):
         self.textLine = self.TEXTLINE_START
 
         # Draw the name of the test running
-        self.Print(self.name, (127,127,255))
+        self.Print(self.name, (127, 127, 255))
 
         if self.description:
             # Draw the name of the test running
             for s in self.description.split('\n'):
-                self.Print(s, (127,255,127))
+                self.Print(s, (127, 255, 127))
 
         # Do the main physics step
         self.Step(self.settings)
 
     def ConvertScreenToWorld(self, x, y):
         """
-        Return a b2Vec2 in world coordinates of the passed in screen coordinates x, y
+        Return a b2Vec2 in world coordinates of the passed in screen
+        coordinates x, y
+
         NOTE: Renderer subclasses must implement this
         """
         raise NotImplementedError()
 
-    def DrawStringAt(self, x, y, str, color=(229,153,153,255)):
+    def DrawStringAt(self, x, y, str, color=(229, 153, 153, 255)):
         """
         Draw some text, str, at screen coordinates (x, y).
         NOTE: Renderer subclasses must implement this
         """
         raise NotImplementedError()
 
-    def Print(self, str, color=(229,153,153,255)):
+    def Print(self, str, color=(229, 153, 153, 255)):
         """
         Draw some text at the top status lines
         and advance to the next line.
@@ -410,7 +441,8 @@ class FrameworkBase(b2ContactListener):
         This is a critical function when there are many contacts in the world.
         It should be optimized as much as possible.
         """
-        if not (self.settings.drawContactPoints or self.settings.drawContactNormals or self.using_contacts):
+        if not (self.settings.drawContactPoints or
+                self.settings.drawContactNormals or self.using_contacts):
             return
         elif len(self.points) > self.settings.maxContactPoints:
             return
@@ -425,23 +457,23 @@ class FrameworkBase(b2ContactListener):
 
         worldManifold = contact.worldManifold
 
-        for i, point in enumerate(state2):
-            # TODO: find some way to speed all of this up.
-            self.points.append(
-                    {
-                        'fixtureA' : contact.fixtureA,
-                        'fixtureB' : contact.fixtureB,
-                        'position' : worldManifold.points[i],
-                        'normal' : worldManifold.normal,
-                        'state' : state2[i]
-                    }  )
+        # TODO: find some way to speed all of this up.
+        self.points.extend([dict(fixtureA=contact.fixtureA,
+                                 fixtureB=contact.fixtureB,
+                                 position=worldManifold.points[i],
+                                 normal=worldManifold.normal,
+                                 state=state2[i],
+                                 )
+                            for i, point in enumerate(state2)])
 
     # These can/should be implemented in the test subclass: (Step() also if necessary)
     # See empty.py for a simple example.
     def BeginContact(self, contact):
         pass
+
     def EndContact(self, contact):
         pass
+
     def PostSolve(self, contact, impulse):
         pass
 
@@ -469,6 +501,7 @@ class FrameworkBase(b2ContactListener):
         """
         pass
 
+
 def main(test_class):
     """
     Loads the test class and executes it.
@@ -479,9 +512,12 @@ def main(test_class):
         return
     test.run()
 
-if __name__=='__main__':
-    print('Please run one of the examples directly. This is just the base for all of the frameworks.')
-    exit(0)
+
+if __name__ == '__main__':
+    print('Please run one of the examples directly. This is just the base for '
+          'all of the frameworks.')
+    exit(1)
+
 
 # Your framework classes should follow this format. If it is the 'foobar'
 # framework, then your file should be 'backends/foobar_framework.py' and you
