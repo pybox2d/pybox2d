@@ -459,8 +459,8 @@ class Theme:
         dest.y = yy-hh*2
         s.set_clip(pygame.Rect(xx-ww,y+hh,xx,h-hh*2))
         s.blit(box,dest,src)
-        
-        s.set_clip()
+       	
+        s.set_clip(s.get_rect())
         src.x,src.y,dest.x,dest.y = 0,0,x,y
         s.blit(box,dest,src)
         
