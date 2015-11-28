@@ -533,13 +533,17 @@ def b2Distance(shapeA=None, idxA=0, shapeB=None, idxB=0, transformA=None, transf
     Compute the closest points between two shapes.
 
     Can be called one of two ways:
-    + b2Distance(b2DistanceInput) # utilizes the b2DistanceInput structure, where you define your own proxies
+    + b2Distance(b2DistanceInput)
+    This uses the b2DistanceInput structure, where you define your own
+    distance proxies
 
-    Or utilizing kwargs:
-    + b2Distance(shapeA=.., idxA=0, shapeB=.., idxB=0, transformA=.., transformB=.., useRadii=True)
+    Or more conveniently using kwargs:
+    + b2Distance(shapeA=.., idxA=0, shapeB=.., idxB=0, transformA=..,
+                 transformB=.., useRadii=True)
 
-    Returns a tuple in the form:
-     ((pointAx, pointAy), (pointBx, pointBy), distance, iterations)
+    Returns a namedtuple in the form:
+        b2DistanceResult(pointA=(ax, ay), pointB=(bx, by), distance,
+                         iterations)
     """
     if isinstance(shapeA, b2DistanceInput):
         out = _b2Distance(shapeA)
@@ -1358,8 +1362,10 @@ class b2Mat22(object):
             # Read-only
     inverse = property(__GetInverse, None)
     angle = property(__GetAngle, __SetAngle)
-    ex = property(lambda self: self.col1, lambda self, v: setattr(self, 'col1', v))
-    ey = property(lambda self: self.col2, lambda self, v: setattr(self, 'col2', v))
+    ex = property(lambda self: self.col1,
+                  lambda self, v: setattr(self, 'col1', v))
+    ey = property(lambda self: self.col2,
+                  lambda self, v: setattr(self, 'col2', v))
     set = __SetAngle
 
 
@@ -1622,21 +1628,21 @@ class b2Transform(object):
         return _format_repr(self) 
 
 
-    def __GetAngle(self):
+    def __get_rotation_matrix(self):
+        """__get_rotation_matrix(b2Transform self) -> b2Rot"""
+        return _Box2D.b2Transform___get_rotation_matrix(self)
+
+
+    def __get_angle(self):
         return self.q.angle
-    def __SetAngle(self, angle):
+    def __set_angle(self, angle):
         self.q.angle = angle
 
-    def __GetR(self):
-        R = b2Mat22()
-        R.angle = self.q.angle
-        return R
+    def __set_rotation_matrix(self, rot_matrix):
+        self.q.angle = rot_matrix.angle
 
-    def __SetR(self, R):
-        self.q.angle = R.angle
-
-    angle = property(__GetAngle, __SetAngle) 
-    R = property(__GetR, __SetR)
+    angle = property(__get_angle, __set_angle) 
+    R = property(__get_rotation_matrix, __set_rotation_matrix)
 
 
     def __mul__(self, v):
@@ -1647,6 +1653,7 @@ class b2Transform(object):
 b2Transform.SetIdentity = new_instancemethod(_Box2D.b2Transform_SetIdentity, None, b2Transform)
 b2Transform.Set = new_instancemethod(_Box2D.b2Transform_Set, None, b2Transform)
 b2Transform.__hash__ = new_instancemethod(_Box2D.b2Transform___hash__, None, b2Transform)
+b2Transform.__get_rotation_matrix = new_instancemethod(_Box2D.b2Transform___get_rotation_matrix, None, b2Transform)
 b2Transform.__mul__ = new_instancemethod(_Box2D.b2Transform___mul__, None, b2Transform)
 b2Transform_swigregister = _Box2D.b2Transform_swigregister
 b2Transform_swigregister(b2Transform)

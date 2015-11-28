@@ -50,7 +50,7 @@ box2d_version  = '2.3'
 release_number = 1
 
 # create the version string
-version_str = "%sb%s" % (box2d_version, release_number)
+version_str = "%s.%s" % (box2d_version, release_number)
 
 # setup some paths and names
 library_base='library' # the directory where the egg base will be for setuptools develop command
