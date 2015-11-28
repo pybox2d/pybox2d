@@ -18,34 +18,37 @@
 # misrepresented as being the original software.
 # 3. This notice may not be removed or altered from any source distribution.
 
-from .framework import *
+
+from .framework import (Framework, main)
+from Box2D import (b2FixtureDef, b2PolygonShape, b2_pi)
+
 
 class Tumbler (Framework):
-    name="Tumbler"
+    name = "Tumbler"
     description = ''
     count = 800
+
     def __init__(self):
         Framework.__init__(self)
 
         ground = self.world.CreateBody()
 
         body = self.world.CreateDynamicBody(
-                position=(0, 10),
-                allowSleep=False,
-                shapeFixture=b2FixtureDef(density=5.0),
-                shapes=[
-                        b2PolygonShape(box=(0.5, 10, (10, 0), 0)),
-                        b2PolygonShape(box=(0.5, 10, (-10, 0), 0)),
-                        b2PolygonShape(box=( 10, 0.5, (0, 10), 0)),
-                        b2PolygonShape(box=( 10, 0.5, (0, -10), 0)),
-                    ]
-                )
+            position=(0, 10),
+            allowSleep=False,
+            shapeFixture=b2FixtureDef(density=5.0),
+            shapes=[
+                b2PolygonShape(box=(0.5, 10, (10, 0), 0)),
+                b2PolygonShape(box=(0.5, 10, (-10, 0), 0)),
+                b2PolygonShape(box=(10, 0.5, (0, 10), 0)),
+                b2PolygonShape(box=(10, 0.5, (0, -10), 0)),
+            ]
+        )
 
         self.joint = self.world.CreateRevoluteJoint(bodyA=ground, bodyB=body,
-                                                   localAnchorA=(0, 10), localAnchorB=(0, 0),
-                                                   referenceAngle=0, motorSpeed=0.05 * b2_pi,
-                                                   enableMotor=True, maxMotorTorque=1.0e8)
-
+                                                    localAnchorA=(0, 10), localAnchorB=(0, 0),
+                                                    referenceAngle=0, motorSpeed=0.05 * b2_pi,
+                                                    enableMotor=True, maxMotorTorque=1.0e8)
 
     def Step(self, settings):
         Framework.Step(self, settings)
@@ -54,12 +57,12 @@ class Tumbler (Framework):
         if self.count == 0:
             return
 
-        body = self.world.CreateDynamicBody(
-                position=(0, 10),
-                allowSleep=False,
-                fixtures=b2FixtureDef(density=1.0, shape=b2PolygonShape(box=(0.125, 0.125))),
-                )
+        self.world.CreateDynamicBody(
+            position=(0, 10),
+            allowSleep=False,
+            fixtures=b2FixtureDef(
+                density=1.0, shape=b2PolygonShape(box=(0.125, 0.125))),
+        )
 
-if __name__=="__main__":
-     main(Tumbler)
-
+if __name__ == "__main__":
+    main(Tumbler)

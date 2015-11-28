@@ -18,36 +18,38 @@
 # misrepresented as being the original software.
 # 3. This notice may not be removed or altered from any source distribution.
 
-from .framework import *
-from math import sin
+from .framework import (Framework, main)
+from Box2D import (b2EdgeShape, b2FixtureDef, b2PolygonShape)
+
 
 class ConveyorBelt (Framework):
-    name="ConveyorBelt"
+    name = "ConveyorBelt"
+
     def __init__(self):
         Framework.__init__(self)
 
         self.using_contacts = True
         ground = self.world.CreateStaticBody(
-                shapes=[b2EdgeShape(vertices=[(-20,0),( 20, 0)])],
-                )
+            shapes=[b2EdgeShape(vertices=[(-20, 0), (20, 0)])],
+        )
 
         # Platform
         self.platform = self.world.CreateStaticBody(
-                position=(-5, 5),
-                allowSleep=False,
-                fixtures=b2FixtureDef(friction=0.8,
-                                      shape=b2PolygonShape(box=(10.0, 5.0)),),
-                )
+            position=(-5, 5),
+            allowSleep=False,
+            fixtures=b2FixtureDef(friction=0.8,
+                                  shape=b2PolygonShape(box=(10.0, 5.0)),),
+        )
 
         self.platform_fixture = self.platform.fixtures[0]
 
         # Boxes
         for i in range(5):
             self.platform = self.world.CreateDynamicBody(
-                    position=(-10.0 + 2.0 * i, 7.0),
-                    fixtures=b2FixtureDef(density=20.0,
-                                          shape=b2PolygonShape(box=(0.5, 0.5)),),
-                    )
+                position=(-10.0 + 2.0 * i, 7.0),
+                fixtures=b2FixtureDef(density=20.0,
+                                      shape=b2PolygonShape(box=(0.5, 0.5)),),
+            )
 
     def PreSolve(self, contact, old_manifold):
         Framework.PreSolve(self, contact, old_manifold)
@@ -59,6 +61,5 @@ class ConveyorBelt (Framework):
         elif fixture_b == self.platform_fixture:
             contact.tangentSpeed = -5.0
 
-if __name__=="__main__":
-     main(ConveyorBelt)
-
+if __name__ == "__main__":
+    main(ConveyorBelt)

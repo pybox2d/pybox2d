@@ -18,11 +18,16 @@
 # misrepresented as being the original software.
 # 3. This notice may not be removed or altered from any source distribution.
 
-from .framework import *
+from .framework import (Framework, Keys, main)
+from Box2D import (b2Clamp, b2Color, b2PolygonShape, b2Random,
+                   b2_maxPolygonVertices)
+
 
 class ConvexHull (Framework):
-    name="ConvexHull"
-    description = 'Press g to generate a new random convex hull, a to switch to automatic mode'
+    name = "ConvexHull"
+    description = ('Press g to generate a new random convex hull, a to switch '
+                   'to automatic mode')
+
     def __init__(self):
         Framework.__init__(self)
 
@@ -44,9 +49,9 @@ class ConvexHull (Framework):
             verts.append(b2Clamp((x, y), lower, upper))
 
     def Keyboard(self, key):
-        if key==Keys.K_a:
+        if key == Keys.K_a:
             self.auto = not self.auto
-        elif key==Keys.K_g:
+        elif key == Keys.K_g:
             self.generate()
 
     def Step(self, settings):
@@ -61,9 +66,11 @@ class ConvexHull (Framework):
         else:
             self.Print('Valid: %s' % poly.valid)
 
-        renderer.DrawPolygon([renderer.to_screen(v) for v in self.verts], b2Color(0.9, 0.9, 0.9))
+        renderer.DrawPolygon([renderer.to_screen(v)
+                              for v in self.verts], b2Color(0.9, 0.9, 0.9))
         for i, v in enumerate(self.verts):
-            renderer.DrawPoint(renderer.to_screen(v), 2.0, b2Color(0.9, 0.5, 0.5))
+            renderer.DrawPoint(renderer.to_screen(v), 2.0,
+                               b2Color(0.9, 0.5, 0.5))
 
             x, y = renderer.to_screen(v)
             self.DrawStringAt(x + 0.05, y + 0.05, '%d' % i)
@@ -71,6 +78,5 @@ class ConvexHull (Framework):
         if self.auto:
             self.generate()
 
-if __name__=="__main__":
-     main(ConvexHull)
-
+if __name__ == "__main__":
+    main(ConvexHull)

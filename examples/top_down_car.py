@@ -5,22 +5,26 @@ Based on Chris Campbell's tutorial from iforce2d.net:
 http://www.iforce2d.net/b2dtut/top-down-car
 """
 
-from .framework import *
+from .framework import (Framework, Keys, main)
 import math
+
 
 class TDGroundArea(object):
     """
     An area on the ground that the car can run over
     """
+
     def __init__(self, friction_modifier):
         self.friction_modifier = friction_modifier
 
+
 class TDTire(object):
+
     def __init__(self, car, max_forward_speed=100.0,
-                max_backward_speed=-20, max_drive_force=150,
-                turn_torque=15, max_lateral_impulse=3,
-                dimensions=(0.5, 1.25), density=1.0,
-                position=(0, 0)):
+                 max_backward_speed=-20, max_drive_force=150,
+                 turn_torque=15, max_lateral_impulse=3,
+                 dimensions=(0.5, 1.25), density=1.0,
+                 position=(0, 0)):
 
         world = car.body.world
 
@@ -34,7 +38,7 @@ class TDTire(object):
 
         self.body = world.CreateDynamicBody(position=position)
         self.body.CreatePolygonFixture(box=dimensions, density=density)
-        self.body.userData = { 'obj' : self }
+        self.body.userData = {'obj': self}
 
     @property
     def forward_velocity(self):
@@ -57,7 +61,8 @@ class TDTire(object):
         self.body.ApplyLinearImpulse(self.current_traction * impulse,
                                      self.body.worldCenter, True)
 
-        aimp = 0.1 * self.current_traction * self.body.inertia * -self.body.angularVelocity
+        aimp = 0.1 * self.current_traction * \
+            self.body.inertia * -self.body.angularVelocity
         self.body.ApplyAngularImpulse(aimp, True)
 
         current_forward_normal = self.forward_velocity
@@ -122,21 +127,22 @@ class TDTire(object):
             if max_mod > self.current_traction:
                 self.current_traction = max_mod
 
+
 class TDCar(object):
-    vertices = [( 1.5, 0.0),
-                ( 3.0, 2.5),
-                ( 2.8, 5.5),
-                ( 1.0,10.0),
-                (-1.0,10.0),
+    vertices = [(1.5, 0.0),
+                (3.0, 2.5),
+                (2.8, 5.5),
+                (1.0, 10.0),
+                (-1.0, 10.0),
                 (-2.8, 5.5),
                 (-3.0, 2.5),
                 (-1.5, 0.0),
                 ]
 
     tire_anchors = [(-3.0, 0.75),
-                    ( 3.0, 0.75),
+                    (3.0, 0.75),
                     (-3.0, 8.50),
-                    ( 3.0, 8.50),
+                    (3.0, 8.50),
                     ]
 
     def __init__(self, world, vertices=None,
@@ -147,7 +153,7 @@ class TDCar(object):
 
         self.body = world.CreateDynamicBody(position=position)
         self.body.CreatePolygonFixture(vertices=vertices, density=density)
-        self.body.userData = { 'obj' : self }
+        self.body.userData = {'obj': self}
 
         self.tires = [TDTire(self, **tire_kws) for i in range(4)]
 
@@ -159,7 +165,8 @@ class TDCar(object):
             j = world.CreateRevoluteJoint(bodyA=self.body,
                                           bodyB=tire.body,
                                           localAnchorA=anchor,
-                                          localAnchorB=(0, 0), # center of tire
+                                          # center of tire
+                                          localAnchorB=(0, 0),
                                           enableMotor=False,
                                           maxMotorTorque=1000,
                                           enableLimit=True,
@@ -204,9 +211,10 @@ class TDCar(object):
         front_left_joint.SetLimits(new_angle, new_angle)
         front_right_joint.SetLimits(new_angle, new_angle)
 
+
 class TopDownCar (Framework):
-    name="Top Down Car"
-    description="Keys: accel = w, reverse = s, left = a, right = d"
+    name = "Top Down Car"
+    description = "Keys: accel = w, reverse = s, left = a, right = d"
 
     def __init__(self):
         super(TopDownCar, self).__init__()
@@ -224,22 +232,24 @@ class TopDownCar (Framework):
 
         # The walls
         boundary = self.world.CreateStaticBody(position=(0, 20))
-        boundary.CreateEdgeChain([(-30,-30),
+        boundary.CreateEdgeChain([(-30, -30),
                                   (-30, 30),
-                                  ( 30, 30),
-                                  ( 30,-30),
-                                  (-30,-30)]
+                                  (30, 30),
+                                  (30, -30),
+                                  (-30, -30)]
                                  )
 
         # A couple regions of differing traction
         self.car = TDCar(self.world)
-        gnd1 = self.world.CreateStaticBody(userData={'obj' : TDGroundArea(0.5) })
-        fixture = gnd1.CreatePolygonFixture(box=(9, 7, (-10, 15), math.radians(20)))
+        gnd1 = self.world.CreateStaticBody(userData={'obj': TDGroundArea(0.5)})
+        fixture = gnd1.CreatePolygonFixture(
+            box=(9, 7, (-10, 15), math.radians(20)))
         # Set as sensors so that the car doesn't collide
         fixture.sensor = True
 
-        gnd2 = self.world.CreateStaticBody(userData={'obj' : TDGroundArea(0.2) })
-        fixture = gnd2.CreatePolygonFixture(box=(9, 5, (5, 20), math.radians(-40)))
+        gnd2 = self.world.CreateStaticBody(userData={'obj': TDGroundArea(0.2)})
+        fixture = gnd2.CreatePolygonFixture(
+            box=(9, 5, (5, 20), math.radians(-40)))
         fixture.sensor = True
 
     def Keyboard(self, key):
@@ -267,7 +277,6 @@ class TopDownCar (Framework):
         if not ud_a or not ud_b:
             return
 
-        car = None
         tire = None
         ground_area = None
         for ud in (ud_a, ud_b):
@@ -290,13 +299,12 @@ class TopDownCar (Framework):
         self.handle_contact(contact, False)
 
     def Step(self, settings):
-        self.car.update(self.pressed_keys,settings.hz)
+        self.car.update(self.pressed_keys, settings.hz)
 
         super(TopDownCar, self).Step(settings)
 
         tractions = [tire.current_traction for tire in self.car.tires]
         self.Print('Current tractions: %s' % tractions)
 
-if __name__=="__main__":
-     main(TopDownCar)
-
+if __name__ == "__main__":
+    main(TopDownCar)

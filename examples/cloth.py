@@ -23,114 +23,127 @@
 # Ported from the Cloth test by Paril, originally for Box2CS:
 #   http://www.box2d.org/forum/viewtopic.php?f=6&t=6124
 #
-from .framework import *
+from .framework import (Framework, Keys, main)
+from Box2D import (b2CircleShape, b2FixtureDef, b2Random, b2Vec2)
 
-def create_cloth(world, segment_count, body_size, position=(0,30),
-        groupIndex=-1, bar_height=0.5, base_hz=15,
-        base_damping=0.11, density=0.2, **kwargs):
-    segment_w, segment_h=segment_count
-    body_spacing_w=body_size*2
-    total_w=body_spacing_w*segment_w
-    position=b2Vec2(*position)
+
+def create_cloth(world, segment_count, body_size, position=(0, 30),
+                 group_index=-1, bar_height=0.5, base_hz=15,
+                 base_damping=0.11, density=0.2):
+    segment_w, segment_h = segment_count
+    body_spacing_w = body_size * 2
+    total_w = body_spacing_w * segment_w
+    position = b2Vec2(*position)
 
     # The static bar at the top which holds the cloth
-    bar=world.CreateStaticBody(position=position)
-    bar.CreatePolygonFixture(box=(total_w/2.0+body_spacing_w, bar_height/2.0),
-            groupIndex=groupIndex)
+    bar = world.CreateStaticBody(position=position)
+    bar.CreatePolygonFixture(box=(total_w / 2.0 + body_spacing_w,
+                                  bar_height / 2.0),
+                             groupIndex=group_index)
 
-    box_fixture=b2FixtureDef(shape=b2CircleShape(radius=body_size),
-                             groupIndex=groupIndex, density=density)
+    box_fixture = b2FixtureDef(shape=b2CircleShape(radius=body_size),
+                               groupIndex=group_index, density=density)
 
-    weld_joints=[]
-    distance_joints=[]
-    cloth=[[None]*segment_h for x in range(segment_w)]
+    weld_joints = []
+    distance_joints = []
+    cloth = [[None] * segment_h for x in range(segment_w)]
     for y in range(segment_h):
-        pos=position-(total_w/2.0, y*body_spacing_w)
+        pos = position - (total_w / 2.0, y * body_spacing_w)
         for x in range(segment_w):
-            pos+=(body_spacing_w, 0.0)
-            body=world.CreateDynamicBody(position=pos, fixtures=box_fixture)
-            cloth[x][y]=body
+            pos += (body_spacing_w, 0.0)
+            body = world.CreateDynamicBody(position=pos, fixtures=box_fixture)
+            cloth[x][y] = body
 
-            if y==0:
-                joint=world.CreateWeldJoint(bodyA=body, bodyB=bar, anchor=body.position)
+            if y == 0:
+                joint = world.CreateWeldJoint(bodyA=body, bodyB=bar,
+                                              anchor=body.position)
                 weld_joints.append(joint)
 
-    connect_bodies=[]
+    connect_bodies = []
     for y in range(segment_h):
         for x in range(segment_w):
-            if x <= segment_w-2:
-                left_body=cloth[x][y]
-                right_body=cloth[x+1][y]
+            if x <= segment_w - 2:
+                left_body = cloth[x][y]
+                right_body = cloth[x + 1][y]
                 connect_bodies.append((left_body, right_body))
             if y > 0:
-                left_body=cloth[x][y]
-                right_body=cloth[x][y-1]
+                left_body = cloth[x][y]
+                right_body = cloth[x][y - 1]
                 connect_bodies.append((left_body, right_body))
 
     for bodyA, bodyB in connect_bodies:
-        joint=world.CreateDistanceJoint(
-                bodyA=bodyA,
-                bodyB=bodyB,
-                anchorA=bodyA.position,
-                anchorB=bodyB.position,
-                frequencyHz=base_hz+b2Random(0, base_hz/2.0),
-                dampingRatio=base_damping+b2Random(0.01, base_damping),
-                )
+        joint = world.CreateDistanceJoint(
+            bodyA=bodyA,
+            bodyB=bodyB,
+            anchorA=bodyA.position,
+            anchorB=bodyB.position,
+            frequencyHz=base_hz + b2Random(0, base_hz / 2.0),
+            dampingRatio=base_damping + b2Random(0.01, base_damping),
+        )
         distance_joints.append(joint)
 
     return cloth, weld_joints, distance_joints
 
+
 def step_cloth(world, cloth, wind, body_size, segment_count, distance_joints,
-        wind_dir=(1,1), wind_rand=0.0, distance_factor=1.45, **kwargs):
-    segment_w, segment_h=segment_count
-    body_spacing_w=body_size*2
+               wind_dir=(1, 1), wind_rand=0.0, distance_factor=1.45):
+    segment_w, segment_h = segment_count
+    body_spacing_w = body_size * 2
     if wind:
         for x in range(segment_w):
-            w=(b2Random(wind_dir[0]-wind_rand/2.0,wind_dir[0]+wind_rand/2.0),
-               b2Random(wind_dir[1]-wind_rand/2.0,wind_dir[1]+wind_rand/2.0))
-            cloth[x][-1].linearVelocity+=w
+            w = (b2Random(wind_dir[0] - wind_rand / 2.0,
+                          wind_dir[0] + wind_rand / 2.0),
+                 b2Random(wind_dir[1] - wind_rand / 2.0,
+                          wind_dir[1] + wind_rand / 2.0))
+            cloth[x][-1].linearVelocity += w
 
-    # If any two points are too far from one another, find the joint connecting them
-    # and destroy it.
-    check_segments=[]
+    # If any two points are too far from one another, find the joint connecting
+    # them and destroy it.
+    check_segments = []
     for y in range(segment_h):
         for x in range(segment_w):
-            if y>0:
-                check_segments.append((cloth[x][y], cloth[x][y-1]))
-            if x<=segment_w-2:
-                check_segments.append((cloth[x][y], cloth[x+1][y]))
+            if y > 0:
+                check_segments.append((cloth[x][y], cloth[x][y - 1]))
+            if x <= segment_w - 2:
+                check_segments.append((cloth[x][y], cloth[x + 1][y]))
 
+    thresh = body_spacing_w * distance_factor
     for c1, c2 in check_segments:
-        if (c1.worldCenter-c2.worldCenter).length > body_spacing_w*distance_factor:
-            for joint in distance_joints:
-                if (joint.bodyA==c1 and joint.bodyB==c2) or (joint.bodyA==c2 and joint.bodyB==c1):
-                    world.DestroyJoint(joint)
-                    distance_joints.remove(joint)
-                    break
+        if (c1.worldCenter - c2.worldCenter).length <= thresh:
+            continue
+
+        for joint in distance_joints:
+            if ((joint.bodyA == c1 and joint.bodyB == c2) or
+                    (joint.bodyA == c2 and joint.bodyB == c1)):
+                world.DestroyJoint(joint)
+                distance_joints.remove(joint)
+                break
+
 
 class Cloth(Framework):
     name = "Cloth"
-    description="(w) Toggle wind"
+    description = "(w) Toggle wind"
+
     def __init__(self):
         super(Cloth, self).__init__()
-        self.wind=False
-        self.segment_count=(18,25)
-        self.body_size=0.22
+        self.wind = False
+        self.segment_count = (18, 25)
+        self.body_size = 0.22
 
-        cloth_info=create_cloth(self.world, self.segment_count, self.body_size)
-        self.cloth, self.weld_joints, self.dist_joints=cloth_info
+        cloth_info = create_cloth(
+            self.world, self.segment_count, self.body_size)
+        self.cloth, self.weld_joints, self.dist_joints = cloth_info
 
     def Keyboard(self, key):
         if key == Keys.K_w:
-            self.wind=not self.wind
+            self.wind = not self.wind
 
     def Step(self, settings):
-       super(Cloth, self).Step(settings)
-       if self.wind:
+        super(Cloth, self).Step(settings)
+        if self.wind:
             self.Print('Wind enabled')
-       step_cloth(self.world, self.cloth, self.wind, self.body_size,
-            self.segment_count, self.dist_joints)
+        step_cloth(self.world, self.cloth, self.wind, self.body_size,
+                   self.segment_count, self.dist_joints)
 
-if __name__=="__main__":
+if __name__ == "__main__":
     main(Cloth)
-

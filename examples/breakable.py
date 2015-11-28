@@ -18,32 +18,32 @@
 # misrepresented as being the original software.
 # 3. This notice may not be removed or altered from any source distribution.
 
-from .framework import *
-from random import random
+from .framework import (Framework, Keys, main)
+from Box2D import (b2Cross, b2EdgeShape, b2FixtureDef, b2PolygonShape, b2_pi)
+
 
 class Breakable (Framework):
-    name="Breakable bodies"
-    description="With enough of an impulse, the single body will split [press b to manually break it]"
-    _break = False # Flag to break
+    name = "Breakable bodies"
+    description = "With enough of an impulse, the single body will split [press b to manually break it]"
+    _break = False  # Flag to break
     broke = False  # Already broken?
+
     def __init__(self):
         super(Breakable, self).__init__()
 
         # The ground
-        ground = self.world.CreateBody(
-                    shapes=b2EdgeShape(vertices=[(-40,0),(40,0)])
-                )
+        self.world.CreateBody(shapes=b2EdgeShape(vertices=[(-40, 0), (40, 0)]))
 
         # The breakable body
-        self.shapes = (b2PolygonShape(box=(0.5,0.5,(-0.5,0),0)),
-                       b2PolygonShape(box=(0.5,0.5,( 0.5,0),0))
+        self.shapes = (b2PolygonShape(box=(0.5, 0.5, (-0.5, 0), 0)),
+                       b2PolygonShape(box=(0.5, 0.5, (0.5, 0), 0))
                        )
-        self.body=self.world.CreateDynamicBody(
-                    position=(0,40),
-                    angle=0.25*b2_pi,
-                    shapes=self.shapes,
-                    shapeFixture=b2FixtureDef(density=1),
-                )
+        self.body = self.world.CreateDynamicBody(
+            position=(0, 40),
+            angle=0.25 * b2_pi,
+            shapes=self.shapes,
+            shapeFixture=b2FixtureDef(density=1),
+        )
 
         self.fixtures = self.body.fixtures
 
@@ -64,35 +64,37 @@ class Breakable (Framework):
         body.DestroyFixture(self.fixtures[1])
         self.fixture2 = None
 
-        body2=self.world.CreateDynamicBody(
-                position=body.position,
-                angle=body.angle,
-                shapes=self.shapes[1],
-                shapeFixture=b2FixtureDef(density=1),
-                )
-        # Compute consistent velocities for new bodies based on cached velocity.
-        velocity1=self.velocity+b2Cross(self.angularVelocity,body.worldCenter-center)
-        velocity2=self.velocity+b2Cross(self.angularVelocity,body2.worldCenter-center)
+        body2 = self.world.CreateDynamicBody(
+            position=body.position,
+            angle=body.angle,
+            shapes=self.shapes[1],
+            shapeFixture=b2FixtureDef(density=1),
+        )
+        # Compute consistent velocities for new bodies based on cached
+        # velocity.
+        velocity1 = (self.velocity +
+                     b2Cross(self.angularVelocity, body.worldCenter - center))
+        velocity2 = (self.velocity +
+                     b2Cross(self.angularVelocity, body2.worldCenter - center))
 
-        body.angularVelocity=self.angularVelocity
-        body.linearVelocity=velocity1
-        body2.angularVelocity=self.angularVelocity
-        body2.linearVelocity=velocity2
+        body.angularVelocity = self.angularVelocity
+        body.linearVelocity = velocity1
+        body2.angularVelocity = self.angularVelocity
+        body2.linearVelocity = velocity2
 
     def Step(self, settings):
         super(Breakable, self).Step(settings)
         if self._break:
             self.Break()
-            self.broke=True
-            self._break=False
+            self.broke = True
+            self._break = False
         if not self.broke:
             self.velocity = self.body.linearVelocity
             self.angularVelocity = self.body.angularVelocity
 
     def Keyboard(self, key):
-         if key == Keys.K_b and not self.broke:
-             self._break=True
+        if key == Keys.K_b and not self.broke:
+            self._break = True
 
-if __name__=="__main__":
-     main(Breakable)
-
+if __name__ == "__main__":
+    main(Breakable)

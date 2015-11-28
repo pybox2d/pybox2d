@@ -18,36 +18,39 @@
 # misrepresented as being the original software.
 # 3. This notice may not be removed or altered from any source distribution.
 
-from .framework import *
+from .framework import (Framework, main)
+from Box2D import (b2EdgeShape, b2PolygonShape)
+
 
 class EdgeTest (Framework):
-    name="EdgeTest"
+    name = "EdgeTest"
     description = "Utilizes b2EdgeShape"
+
     def __init__(self):
         super(EdgeTest, self).__init__()
 
-        v1=(-10.0, 0.0)
-        v2=(-7.0, -1.0)
-        v3=(-4.0, 0.0)
-        v4=(0.0, 0.0)
-        v5=(4.0, 0.0)
-        v6=(7.0, 1.0)
-        v7=(10.0, 0.0)
+        v1 = (-10.0, 0.0)
+        v2 = (-7.0, -1.0)
+        v3 = (-4.0, 0.0)
+        v4 = (0.0, 0.0)
+        v5 = (4.0, 0.0)
+        v6 = (7.0, 1.0)
+        v7 = (10.0, 0.0)
 
-        ground=self.world.CreateStaticBody(shapes=
-                [b2EdgeShape(vertices=[None, v1, v2, v3]),
-                 b2EdgeShape(vertices=[  v1, v2, v3, v4]),
-                 b2EdgeShape(vertices=[  v2, v3, v4, v5]),
-                 b2EdgeShape(vertices=[  v3, v4, v5, v6]),
-                 b2EdgeShape(vertices=[  v4, v5, v6, v7]),
-                 b2EdgeShape(vertices=[  v5, v6, v7    ]),
-                ])
+        shapes = [b2EdgeShape(vertices=[None, v1, v2, v3]),
+                  b2EdgeShape(vertices=[v1, v2, v3, v4]),
+                  b2EdgeShape(vertices=[v2, v3, v4, v5]),
+                  b2EdgeShape(vertices=[v3, v4, v5, v6]),
+                  b2EdgeShape(vertices=[v4, v5, v6, v7]),
+                  b2EdgeShape(vertices=[v5, v6, v7])
+                  ]
+        ground = self.world.CreateStaticBody(shapes=shapes)
 
-        box=self.world.CreateDynamicBody(
-                position=(0.5, 0.6),
-                allowSleep=False,
-                shapes=b2PolygonShape(box=(0.5,0.5))
-                )
+        box = self.world.CreateDynamicBody(
+            position=(0.5, 0.6),
+            allowSleep=False,
+            shapes=b2PolygonShape(box=(0.5, 0.5))
+        )
 
-if __name__=="__main__":
-     main(EdgeTest)
+if __name__ == "__main__":
+    main(EdgeTest)

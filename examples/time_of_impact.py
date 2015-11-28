@@ -18,12 +18,15 @@
 # misrepresented as being the original software.
 # 3. This notice may not be removed or altered from any source distribution.
 
-from .framework import *
-from math import sqrt
+from .framework import (Framework, main)
+from Box2D import (b2Color, b2Globals, b2PolygonShape, b2Sweep, b2TimeOfImpact)
+
 
 class TimeOfImpact (Framework):
-    name="Time of Impact"
-    description="See the source code for more information. No additional controls."
+    name = "Time of Impact"
+    description = ("See the source code for more information."
+                   "No additional controls.")
+
     def __init__(self):
         super(TimeOfImpact, self).__init__()
 
@@ -35,12 +38,12 @@ class TimeOfImpact (Framework):
         super(TimeOfImpact, self).Step(settings)
 
         # b2Sweep describes the motion of a body/shape for TOI computation.
-        # Shapes are defined with respect to the body origin, which may
-        # no coincide with the center of mass. However, to support dynamics
-        # we must interpolate the center of mass position.
-        sweepA=b2Sweep(c0=(0,0), c=(0,0),
-                       a=0, a0=0,
-                       localCenter=(0,0))
+        # Shapes are defined with respect to the body origin, which may no
+        # coincide with the center of mass. However, to support dynamics we
+        # must interpolate the center of mass position.
+        sweepA = b2Sweep(c0=(0, 0), c=(0, 0),
+                         a=0, a0=0,
+                         localCenter=(0, 0))
 
         # The parameters of the sweep are defined as follows:
         # localCenter - local center of mass position
@@ -52,9 +55,12 @@ class TimeOfImpact (Framework):
                          a0=-3.1664171,
                          c=(-0.26699525, 2.3552670),
                          a=-3.3926492,
-                         localCenter=(0,0))
+                         localCenter=(0, 0))
 
-        type_, time_of_impact = b2TimeOfImpact(shapeA=self.shapeA, shapeB=self.shapeB, sweepA=sweepA, sweepB=sweepB, tMax=1.0)
+        type_, time_of_impact = b2TimeOfImpact(shapeA=self.shapeA,
+                                               shapeB=self.shapeB,
+                                               sweepA=sweepA, sweepB=sweepB,
+                                               tMax=1.0)
 
         # Alternative pybox2d syntax (no kwargs):
         #  type_, t = b2TimeOfImpact(self.shapeA, self.shapeB, sweepA, sweepB, 1.0)
@@ -64,18 +70,21 @@ class TimeOfImpact (Framework):
         #  type_, t = b2TimeOfImpact(input)
 
         self.Print("TOI = %g" % time_of_impact)
-        self.Print("max toi iters = %d, max root iters = %d" % (b2Globals.b2_toiMaxIters, b2Globals.b2_toiMaxRootIters))
+        self.Print("max toi iters = %d, max root iters = %d" %
+                   (b2Globals.b2_toiMaxIters, b2Globals.b2_toiMaxRootIters))
 
         # Draw the shapes at their current position (t=0)
         # shapeA (the vertical polygon)
         transform = sweepA.GetTransform(0)
-        self.renderer.DrawPolygon([self.renderer.to_screen(transform*v) for v in self.shapeA.vertices],
-                b2Color(0.9, 0.9, 0.9))
+        self.renderer.DrawPolygon([self.renderer.to_screen(transform * v)
+                                   for v in self.shapeA.vertices],
+                                  b2Color(0.9, 0.9, 0.9))
 
         # shapeB (the horizontal polygon)
         transform = sweepB.GetTransform(0)
-        self.renderer.DrawPolygon([self.renderer.to_screen(transform*v) for v in self.shapeB.vertices],
-                b2Color(0.5, 0.9, 0.5))
+        self.renderer.DrawPolygon([self.renderer.to_screen(transform * v)
+                                   for v in self.shapeB.vertices],
+                                  b2Color(0.5, 0.9, 0.5))
 
         # localPoint=(2, -0.1)
         # rB = transform * localPoint - sweepB.c0
@@ -83,17 +92,21 @@ class TimeOfImpact (Framework):
         # vB = sweepB.c - sweepB.c0
         # v = vB + b2Cross(wB, rB)
 
-        # Now, draw shapeB in a different color when they would collide (i.e., at t=time of impact)
-        # This shows that the polygon would rotate upon collision
+        # Now, draw shapeB in a different color when they would collide (i.e.,
+        # at t=time of impact) This shows that the polygon would rotate upon
+        # collision
         transform = sweepB.GetTransform(time_of_impact)
-        self.renderer.DrawPolygon([self.renderer.to_screen(transform*v) for v in self.shapeB.vertices],
-                b2Color(0.5, 0.7, 0.9))
+        self.renderer.DrawPolygon([self.renderer.to_screen(transform * v)
+                                   for v in self.shapeB.vertices],
+                                  b2Color(0.5, 0.7, 0.9))
 
-        # And finally, draw shapeB at t=1.0, where it would be if it did not collide with shapeA
-        # In this case, time_of_impact = 1.0, so these become the same polygon.
+        # And finally, draw shapeB at t=1.0, where it would be if it did not
+        # collide with shapeA In this case, time_of_impact = 1.0, so these
+        # become the same polygon.
         transform = sweepB.GetTransform(1.0)
-        self.renderer.DrawPolygon([self.renderer.to_screen(transform*v) for v in self.shapeB.vertices],
-                b2Color(0.9, 0.5, 0.5))
+        self.renderer.DrawPolygon([self.renderer.to_screen(transform * v)
+                                   for v in self.shapeB.vertices],
+                                  b2Color(0.9, 0.5, 0.5))
 
-if __name__=="__main__":
-     main(TimeOfImpact)
+if __name__ == "__main__":
+    main(TimeOfImpact)

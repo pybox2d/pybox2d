@@ -18,26 +18,28 @@
 # misrepresented as being the original software.
 # 3. This notice may not be removed or altered from any source distribution.
 
-from .framework import *
-from math import sin
+from .framework import (Framework, main)
+from Box2D import (b2EdgeShape, b2FixtureDef, b2PolygonShape)
+
 
 class Mobile (Framework):
-    name="Mobile"
+    name = "Mobile"
     max_depth = 4
+
     def __init__(self):
         Framework.__init__(self)
 
         ground = self.world.CreateStaticBody(
-                position=(0, 20),
-                shapes=[b2EdgeShape(vertices=[(-20,0),( 20, 0)])],
-                )
+            position=(0, 20),
+            shapes=[b2EdgeShape(vertices=[(-20, 0), (20, 0)])],
+        )
 
         a = 0.5
         depth = 0
         self.root = self.add_node(ground, (0, 0), depth, 3.0, a)
 
         self.world.CreateRevoluteJoint(bodyA=ground, bodyB=self.root,
-                                      localAnchorA=(0, 0), localAnchorB=(0, a))
+                                       localAnchorA=(0, 0), localAnchorB=(0, a))
 
     def add_node(self, parent, local_anchor, depth, offset, a):
         density = 20.0
@@ -64,6 +66,5 @@ class Mobile (Framework):
 
         return body
 
-if __name__=="__main__":
-     main(Mobile)
-
+if __name__ == "__main__":
+    main(Mobile)

@@ -18,7 +18,9 @@
 # misrepresented as being the original software.
 # 3. This notice may not be removed or altered from any source distribution.
 
-from .framework import *
+from .framework import (Framework, main)
+from Box2D import (b2CircleShape, b2EdgeShape, b2FixtureDef, b2PolygonShape)
+
 
 def create_bridge(world, ground, size, offset, plank_count, friction=0.6, density=1.0):
     """
@@ -28,73 +30,74 @@ def create_bridge(world, ground, size, offset, plank_count, friction=0.6, densit
     roughly x_offset+width*plank_count.
     The y will not change.
     """
-    width, height=size
-    x_offset, y_offset=offset
-    half_height=height/2
-    plank=b2FixtureDef(
-                shape=b2PolygonShape(box=(width/2,height/2)),
-                friction=friction,
-                density=density,
-                )
+    width, height = size
+    x_offset, y_offset = offset
+    half_height = height / 2
+    plank = b2FixtureDef(
+        shape=b2PolygonShape(box=(width / 2, height / 2)),
+        friction=friction,
+        density=density,
+    )
 
-    bodies=[]
+    bodies = []
     prevBody = ground
     for i in range(plank_count):
         body = world.CreateDynamicBody(
-                    position=(x_offset+width*i, y_offset),
-                    fixtures=plank,
-                )
+            position=(x_offset + width * i, y_offset),
+            fixtures=plank,
+        )
         bodies.append(body)
 
         world.CreateRevoluteJoint(
-                bodyA=prevBody,
-                bodyB=body,
-                anchor=(x_offset+width*(i-0.5),y_offset)
-            )
+            bodyA=prevBody,
+            bodyB=body,
+            anchor=(x_offset + width * (i - 0.5), y_offset)
+        )
 
         prevBody = body
 
     world.CreateRevoluteJoint(
-            bodyA=prevBody,
-            bodyB=ground,
-            anchor=(x_offset+width*(plank_count-0.5),y_offset),
-        )
+        bodyA=prevBody,
+        bodyB=ground,
+        anchor=(x_offset + width * (plank_count - 0.5), y_offset),
+    )
     return bodies
 
+
 class Bridge (Framework):
-    name="Bridge"
-    numPlanks = 30 # Number of planks in the bridge
+    name = "Bridge"
+    numPlanks = 30  # Number of planks in the bridge
+
     def __init__(self):
         super(Bridge, self).__init__()
 
         # The ground
         ground = self.world.CreateBody(
-                    shapes=b2EdgeShape(vertices=[(-40,0),(40,0)])
-                )
+            shapes=b2EdgeShape(vertices=[(-40, 0), (40, 0)])
+        )
 
-        create_bridge(self.world, ground, (1.0,0.25), (-14.5,5), self.numPlanks, 0.2, 20)
+        create_bridge(self.world, ground, (1.0, 0.25),
+                      (-14.5, 5), self.numPlanks, 0.2, 20)
 
-        fixture=b2FixtureDef(
-                shape=b2PolygonShape(vertices=
-                        [(-0.5,0.0),
-                         ( 0.5,0.0),
-                         ( 0.0,1.5),
-                        ]),
-                    density=1.0
-                    )
+        fixture = b2FixtureDef(
+            shape=b2PolygonShape(vertices=[(-0.5, 0.0),
+                                           (0.5, 0.0),
+                                           (0.0, 1.5),
+                                           ]),
+            density=1.0
+        )
         for i in range(2):
             self.world.CreateDynamicBody(
-                    position=(-8+8*i,12),
-                    fixtures=fixture,
-                    )
+                position=(-8 + 8 * i, 12),
+                fixtures=fixture,
+            )
 
-        fixture=b2FixtureDef(shape=b2CircleShape(radius=0.5), density=1)
+        fixture = b2FixtureDef(shape=b2CircleShape(radius=0.5), density=1)
         for i in range(3):
             self.world.CreateDynamicBody(
-                    position=(-6+6*i,10),
-                    fixtures=fixture,
-                    )
+                position=(-6 + 6 * i, 10),
+                fixtures=fixture,
+            )
 
-if __name__=="__main__":
-     main(Bridge)
-
+if __name__ == "__main__":
+    main(Bridge)

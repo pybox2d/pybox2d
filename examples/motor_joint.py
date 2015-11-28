@@ -18,27 +18,31 @@
 # misrepresented as being the original software.
 # 3. This notice may not be removed or altered from any source distribution.
 
-from .framework import *
 from math import sin
 
+from .framework import (Framework, Keys, main)
+from Box2D import (b2Color, b2EdgeShape, b2FixtureDef, b2PolygonShape)
+
+
 class MotorJoint (Framework):
-    name="MotorJoint"
+    name = "MotorJoint"
     description = 'g to stop/go'
     count = 800
+
     def __init__(self):
         Framework.__init__(self)
 
         ground = self.world.CreateStaticBody(
-                shapes=[b2EdgeShape(vertices=[(-20,0),( 20, 0)])],
-                )
+            shapes=[b2EdgeShape(vertices=[(-20, 0), (20, 0)])],
+        )
 
         # Define motorized body
         body = self.world.CreateDynamicBody(
-                position=(0, 8),
-                allowSleep=False,
-                fixtures=b2FixtureDef(density=2.0, friction=0.6,
-                                      shape=b2PolygonShape(box=(2.0, 0.5)),),
-                )
+            position=(0, 8),
+            allowSleep=False,
+            fixtures=b2FixtureDef(density=2.0, friction=0.6,
+                                  shape=b2PolygonShape(box=(2.0, 0.5)),),
+        )
 
         self.joint = self.world.CreateMotorJoint(bodyA=ground, bodyB=body,
                                                  maxForce=1000, maxTorque=1000)
@@ -47,8 +51,8 @@ class MotorJoint (Framework):
         self.time = 0.0
 
     def Keyboard(self, key):
-         if key == Keys.K_g:
-             self.go = not self.go
+        if key == Keys.K_g:
+            self.go = not self.go
 
     def Step(self, settings):
         Framework.Step(self, settings)
@@ -56,15 +60,16 @@ class MotorJoint (Framework):
         if self.go and settings.hz > 0.0:
             self.time += 1.0 / settings.hz
 
-        linear_offset = (6 * sin(2.0 * self.time), 8.0 + 4.0 * sin(1.0 * self.time))
+        linear_offset = (6 * sin(2.0 * self.time), 8.0 +
+                         4.0 * sin(1.0 * self.time))
         angular_offset = 4.0 * self.time
 
         self.joint.linearOffset = linear_offset
         self.joint.angularOffset = angular_offset
 
         renderer = self.renderer
-        renderer.DrawPoint(renderer.to_screen(linear_offset), 4, b2Color(0.9,0.9,0.9))
+        renderer.DrawPoint(renderer.to_screen(
+            linear_offset), 4, b2Color(0.9, 0.9, 0.9))
 
-if __name__=="__main__":
-     main(MotorJoint)
-
+if __name__ == "__main__":
+    main(MotorJoint)

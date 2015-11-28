@@ -18,89 +18,95 @@
 # misrepresented as being the original software.
 # 3. This notice may not be removed or altered from any source distribution.
 
-from .framework import *
+from .framework import (Framework, main)
+from Box2D import (b2CircleShape, b2EdgeShape, b2FixtureDef, b2PolygonShape,
+                   b2Random, b2Vec2, b2_dynamicBody)
+
 
 class CollisionProcessing (Framework):
-    name="CollisionProcessing"
+    name = "CollisionProcessing"
+
     def __init__(self):
         super(CollisionProcessing, self).__init__()
 
         # Tell the framework we're going to use contacts, so keep track of them
         # every Step.
-        self.using_contacts=True
+        self.using_contacts = True
 
         # Ground body
-        world=self.world
+        world = self.world
         ground = world.CreateBody(
-                    shapes=b2EdgeShape( vertices=[(-50,0),(50,0)],)
-                )
+            shapes=b2EdgeShape(vertices=[(-50, 0), (50, 0)],)
+        )
 
         xlow, xhi = -5, 5
         ylow, yhi = 2, 35
-        random_vector = lambda: b2Vec2(b2Random(xlow, xhi), b2Random(ylow, yhi))
+        random_vector = lambda: b2Vec2(
+            b2Random(xlow, xhi), b2Random(ylow, yhi))
 
         # Small triangle
-        triangle=b2FixtureDef(
-                shape=b2PolygonShape(vertices= [(-1,0),(1,0),(0,2)]),
-                density=1,
-                )
+        triangle = b2FixtureDef(
+            shape=b2PolygonShape(vertices=[(-1, 0), (1, 0), (0, 2)]),
+            density=1,
+        )
 
         world.CreateBody(
-                type=b2_dynamicBody,
-                position=random_vector(),
-                fixtures=triangle,
-                )
+            type=b2_dynamicBody,
+            position=random_vector(),
+            fixtures=triangle,
+        )
 
         # Large triangle (recycle definitions)
-        triangle.shape.vertices = [2.0*b2Vec2(v) for v in triangle.shape.vertices]
+        triangle.shape.vertices = [
+            2.0 * b2Vec2(v) for v in triangle.shape.vertices]
 
-        trianglebody=world.CreateBody(
-                type=b2_dynamicBody,
-                position=random_vector(),
-                fixtures=triangle,
-                fixedRotation=True, # <-- note that the large triangle will not rotate
-                )
+        tri_body = world.CreateBody(type=b2_dynamicBody,
+                                    position=random_vector(),
+                                    fixtures=triangle,
+                                    fixedRotation=True,  # <--
+                                    )
+        # note that the large triangle will not rotate
 
         # Small box
-        box=b2FixtureDef(
-                shape=b2PolygonShape(box=(1, 0.5)),
-                density=1,
-                restitution=0.1,
-                )
+        box = b2FixtureDef(
+            shape=b2PolygonShape(box=(1, 0.5)),
+            density=1,
+            restitution=0.1,
+        )
 
         world.CreateBody(
-                type=b2_dynamicBody,
-                position=random_vector(),
-                fixtures=box,
-                )
+            type=b2_dynamicBody,
+            position=random_vector(),
+            fixtures=box,
+        )
 
         # Large box
         box.shape.box = (2, 1)
         world.CreateBody(
-                type=b2_dynamicBody,
-                position=random_vector(),
-                fixtures=box,
-            )
+            type=b2_dynamicBody,
+            position=random_vector(),
+            fixtures=box,
+        )
 
         # Small circle
-        circle=b2FixtureDef(
-                shape=b2CircleShape(radius=1),
-                density=1,
-                )
+        circle = b2FixtureDef(
+            shape=b2CircleShape(radius=1),
+            density=1,
+        )
 
         world.CreateBody(
-                    type=b2_dynamicBody,
-                    position=random_vector(),
-                    fixtures=circle,
-                )
+            type=b2_dynamicBody,
+            position=random_vector(),
+            fixtures=circle,
+        )
 
         # Large circle
         circle.shape.radius *= 2
         world.CreateBody(
-                    type=b2_dynamicBody,
-                    position=random_vector(),
-                    fixtures=circle,
-                )
+            type=b2_dynamicBody,
+            position=random_vector(),
+            fixtures=circle,
+        )
 
     def Step(self, settings):
         # We are going to destroy some bodies according to contact
@@ -110,7 +116,8 @@ class CollisionProcessing (Framework):
 
         # Traverse the contact results. Destroy bodies that
         # are touching heavier bodies.
-        body_pairs = [(p['fixtureA'].body, p['fixtureB'].body) for p in self.points]
+        body_pairs = [(p['fixtureA'].body, p['fixtureB'].body)
+                      for p in self.points]
 
         for body1, body2 in body_pairs:
             mass1, mass2 = body1.mass, body2.mass
@@ -133,5 +140,5 @@ class CollisionProcessing (Framework):
 
         super(CollisionProcessing, self).Step(settings)
 
-if __name__=="__main__":
-     main(CollisionProcessing)
+if __name__ == "__main__":
+    main(CollisionProcessing)

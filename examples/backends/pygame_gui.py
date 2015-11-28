@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright (c) 2010 Ken Lauer / sirkne at gmail dot com
-# 
+#
 # This software is provided 'as-is', without any express or implied
 # warranty.  In no event will the authors be held liable for any damages
 # arising from the use of this software.
@@ -18,16 +18,17 @@
 # 3. This notice may not be removed or altered from any source distribution.
 
 try:
-    from pgu import gui
+    from ..pgu import gui
 except:
     raise ImportError('Unable to load PGU')
 
-from settings import checkboxes
-from settings import sliders
+from ..settings import checkboxes
+from ..settings import sliders
+
 
 class fwGUI(gui.Table):
     """
-    Deals with the initialization and changing the settings based on the GUI 
+    Deals with the initialization and changing the settings based on the GUI
     controls. Callbacks are not used, but the checkboxes and sliders are polled
     by the main loop.
     """

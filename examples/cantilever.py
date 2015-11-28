@@ -18,38 +18,41 @@
 # misrepresented as being the original software.
 # 3. This notice may not be removed or altered from any source distribution.
 
-from .framework import *
+from .framework import (Framework, main)
+from Box2D import (b2CircleShape, b2EdgeShape, b2FixtureDef, b2PolygonShape)
 
 
 class Cantilever (Framework):
-    name="Cantilever"
-    description=""
+    name = "Cantilever"
+    description = ""
     numPlanks = 8
+
     def __init__(self):
         super(Cantilever, self).__init__()
 
         # The ground
-        ground = self.world.CreateBody(shapes=b2EdgeShape(vertices=[(-40,0),(40,0)]) )
+        ground = self.world.CreateBody(
+            shapes=b2EdgeShape(vertices=[(-40, 0), (40, 0)]))
 
-        plank=b2FixtureDef(
-                    shape=b2PolygonShape(box=(0.5,0.125)),
-                    friction=0.2,
-                    density=20
-                    )
+        plank = b2FixtureDef(
+            shape=b2PolygonShape(box=(0.5, 0.125)),
+            friction=0.2,
+            density=20
+        )
 
         # Create one cantilever (Only the left end is fixed)
         prevBody = ground
         for i in range(self.numPlanks):
             body = self.world.CreateDynamicBody(
-                        position=(-14.5+i, 5),
-                        fixtures=plank,
-                    )
+                position=(-14.5 + i, 5),
+                fixtures=plank,
+            )
 
             self.world.CreateWeldJoint(
-                    bodyA=prevBody,
-                    bodyB=body,
-                    anchor=(-15+i, 5),
-                )
+                bodyA=prevBody,
+                bodyB=body,
+                anchor=(-15 + i, 5),
+            )
 
             prevBody = body
 
@@ -57,15 +60,15 @@ class Cantilever (Framework):
         prevBody = ground
         for i in range(self.numPlanks):
             body = self.world.CreateDynamicBody(
-                        position=(-14.5+i,15),
-                        fixtures=plank,
-                    )
+                position=(-14.5 + i, 15),
+                fixtures=plank,
+            )
 
             self.world.CreateWeldJoint(
-                    bodyA=prevBody,
-                    bodyB=body,
-                    anchor=(-15+i,15),
-                )
+                bodyA=prevBody,
+                bodyB=body,
+                anchor=(-15 + i, 15),
+            )
 
             prevBody = body
 
@@ -73,16 +76,16 @@ class Cantilever (Framework):
         prevBody = ground
         for i in range(self.numPlanks):
             body = self.world.CreateDynamicBody(
-                        position=(-4.5+i,5),
-                        fixtures=plank,
-                    )
+                position=(-4.5 + i, 5),
+                fixtures=plank,
+            )
 
-            if i > 0: # skip the joint on the first one
+            if i > 0:  # skip the joint on the first one
                 self.world.CreateWeldJoint(
                     bodyA=prevBody,
                     bodyB=body,
-                    anchor=(-5+i,5),
-                    )
+                    anchor=(-5 + i, 5),
+                )
 
             prevBody = body
 
@@ -90,44 +93,42 @@ class Cantilever (Framework):
         prevBody = ground
         for i in range(self.numPlanks):
             body = self.world.CreateDynamicBody(
-                        position=(5.5+i,10),
-                        fixtures=plank,
-                        )
+                position=(5.5 + i, 10),
+                fixtures=plank,
+            )
 
-            if i > 0: # skip the joint on the first one
+            if i > 0:  # skip the joint on the first one
                 self.world.CreateWeldJoint(
                     bodyA=prevBody,
                     bodyB=body,
-                    anchor=(5+i,10),
+                    anchor=(5 + i, 10),
                     frequencyHz=8.0,
                     dampingRatio=0.7,
-                    )
+                )
 
             prevBody = body
 
         # And a few random shapes to play with
         # First a set of triangles,
-        fixture=b2FixtureDef(shape=b2PolygonShape(vertices=
-                        [(-0.5,0.0),
-                         ( 0.5,0.0),
-                         ( 0.0,1.5),
-                        ]),
-                    density=1.0 )
+        fixture = b2FixtureDef(shape=b2PolygonShape(vertices=[(-0.5, 0.0),
+                                                              (0.5, 0.0),
+                                                              (0.0, 1.5),
+                                                              ]),
+                               density=1.0)
         for i in range(2):
             self.world.CreateDynamicBody(
-                        position=(-8+8*i,12),
-                        fixtures=fixture,
-                    )
+                position=(-8 + 8 * i, 12),
+                fixtures=fixture,
+            )
 
         # And then a few circles
-        fixture=b2FixtureDef(shape=b2CircleShape(radius=0.5), density=1)
+        fixture = b2FixtureDef(shape=b2CircleShape(radius=0.5), density=1)
         for i in range(3):
             self.world.CreateDynamicBody(
-                        position=(-6+6*i,10),
-                        fixtures=fixture,
-                    )
+                position=(-6 + 6 * i, 10),
+                fixtures=fixture,
+            )
 
 
-if __name__=="__main__":
-     main(Cantilever)
-
+if __name__ == "__main__":
+    main(Cantilever)

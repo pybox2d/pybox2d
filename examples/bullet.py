@@ -18,48 +18,53 @@
 # misrepresented as being the original software.
 # 3. This notice may not be removed or altered from any source distribution.
 
-from .framework import *
+from .framework import (Framework, main)
+from Box2D import (b2EdgeShape, b2FixtureDef, b2PolygonShape, b2Random)
+
 
 class Bullet (Framework):
-    name="Bullet"
-    description='A test for very fast moving objects (bullets)'
+    name = "Bullet"
+    description = 'A test for very fast moving objects (bullets)'
+
     def __init__(self):
         super(Bullet, self).__init__()
 
         ground = self.world.CreateStaticBody(
-                    position=(0,0),
-                    shapes=[b2EdgeShape(vertices=[(-10,0), (10,0)]),
-                            b2PolygonShape(box=(0.2, 1, (0.5, 1), 0))]
-                )
+            position=(0, 0),
+            shapes=[b2EdgeShape(vertices=[(-10, 0), (10, 0)]),
+                    b2PolygonShape(box=(0.2, 1, (0.5, 1), 0))]
+        )
 
-        self._x=0.20352793
-        self.body=self.world.CreateDynamicBody(
-                    position=(0,4),
-                    fixtures=b2FixtureDef(shape=b2PolygonShape(box=(2, 0.1)), density=1.0),
-                )
+        self._x = 0.20352793
+        self.body = self.world.CreateDynamicBody(
+            position=(0, 4),
+            fixtures=b2FixtureDef(
+                shape=b2PolygonShape(box=(2, 0.1)), density=1.0),
+        )
 
-        self.bullet=self.world.CreateDynamicBody(
-                    position=(self._x, 10),
-                    bullet=True,
-                    fixtures=b2FixtureDef(shape=b2PolygonShape(box=(0.25, 0.25)), density=100.0),
-                    linearVelocity=(0,-50)
-                )
+        self.bullet = self.world.CreateDynamicBody(
+            position=(self._x, 10),
+            bullet=True,
+            fixtures=b2FixtureDef(shape=b2PolygonShape(
+                box=(0.25, 0.25)), density=100.0),
+            linearVelocity=(0, -50)
+        )
 
     def Launch(self):
-        self.body.transform = [(0,4),0]
-        self.body.linearVelocity=(0,0)
-        self.body.angularVelocity=0
+        self.body.transform = [(0, 4), 0]
+        self.body.linearVelocity = (0, 0)
+        self.body.angularVelocity = 0
 
-        self.x=b2Random()
-        self.bullet.transform=[(self.x, 10), 0]
-        self.bullet.linearVelocity=(0,-50)
-        self.bullet.angularVelocity=0
+        self.x = b2Random()
+        self.bullet.transform = [(self.x, 10), 0]
+        self.bullet.linearVelocity = (0, -50)
+        self.bullet.angularVelocity = 0
 
     def Step(self, settings):
         super(Bullet, self).Step(settings)
 
-        if (self.stepCount % 60)==0:
+        if (self.stepCount % 60) == 0:
             self.Launch()
 
-if __name__=="__main__":
-     main(Bullet)
+if __name__ == "__main__":
+    main(Bullet)

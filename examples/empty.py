@@ -20,14 +20,14 @@
 # misrepresented as being the original software.
 # 3. This notice may not be removed or altered from any source distribution.
 
-from .framework import *
+from .framework import (Framework, main)
+
 
 class Empty(Framework):
-    """You can use this class as an outline for your tests.
+    """You can use this class as an outline for your tests."""
+    name = "Empty"  # Name of the class to display
+    description = "The description text goes here"
 
-    """
-    name = "Empty" # Name of the class to display
-    description="The description text goes here"
     def __init__(self):
         """
         Initialize all of your objects here.
@@ -36,7 +36,6 @@ class Empty(Framework):
         super(Empty, self).__init__()
 
         # Initialize all of the objects
-
 
     def Keyboard(self, key):
         """
@@ -77,6 +76,5 @@ class Empty(Framework):
     # More functions can be changed to allow for contact monitoring and such.
     # See the other testbed examples for more information.
 
-if __name__=="__main__":
+if __name__ == "__main__":
     main(Empty)
-

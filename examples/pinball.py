@@ -18,85 +18,91 @@
 # misrepresented as being the original software.
 # 3. This notice may not be removed or altered from any source distribution.
 
-from .framework import *
-from math import sqrt
+from .framework import (Framework, Keys, main)
+from Box2D import (b2CircleShape, b2FixtureDef, b2LoopShape, b2PolygonShape,
+                   b2RevoluteJointDef, b2_pi)
+
 
 class Pinball (Framework):
-    name="Pinball"
-    description = '\n'.join(["This tests bullet collision and provides an example of a gameplay scenario.",
-                  "Press A to control the flippers."])
-    bodies=[]
-    joints=[]
+    name = "Pinball"
+    description = ('This tests bullet collision and provides an example of a gameplay scenario.\n'
+                   'Press A to control the flippers.')
+    bodies = []
+    joints = []
+
     def __init__(self):
         super(Pinball, self).__init__()
 
         # The ground
         ground = self.world.CreateBody(
-                    shapes=b2LoopShape(vertices=[(0,-2),(8,6),(8,20),(-8,20),(-8,6)]),
-                     )
+            shapes=b2LoopShape(vertices=[(0, -2), (8, 6),
+                                         (8, 20), (-8, 20),
+                                         (-8, 6)]),
+        )
 
         # Flippers
-        p1, p2=(-2, 0), (2, 0)
-        flipper = { 'fixtures' : b2FixtureDef( shape=b2PolygonShape(box=(1.75, 0.1)), density=1) }
-        self.leftFlipper=self.world.CreateDynamicBody(
-                position=p1,
-                **flipper
-                )
-        self.rightFlipper=self.world.CreateDynamicBody(
-                position=p2,
-                **flipper
-                )
+        p1, p2 = (-2, 0), (2, 0)
 
+        fixture = b2FixtureDef(shape=b2PolygonShape(box=(1.75, 0.1)), density=1)
+        flipper = {'fixtures': fixture}
 
-        rjd=b2RevoluteJointDef(
+        self.leftFlipper = self.world.CreateDynamicBody(
+            position=p1,
+            **flipper
+        )
+        self.rightFlipper = self.world.CreateDynamicBody(
+            position=p2,
+            **flipper
+        )
+
+        rjd = b2RevoluteJointDef(
             bodyA=ground,
             bodyB=self.leftFlipper,
             localAnchorA=p1,
-            localAnchorB=(0,0),
+            localAnchorB=(0, 0),
             enableMotor=True,
             enableLimit=True,
             maxMotorTorque=1000,
             motorSpeed=0,
             lowerAngle=-30.0 * b2_pi / 180.0,
             upperAngle=5.0 * b2_pi / 180.0,
-            )
+        )
 
-        self.leftJoint=self.world.CreateJoint(rjd)
+        self.leftJoint = self.world.CreateJoint(rjd)
 
-        rjd.motorSpeed=0
-        rjd.localAnchorA=p2
-        rjd.bodyB=self.rightFlipper
-        rjd.lowerAngle=-5.0 * b2_pi / 180.0
-        rjd.upperAngle=30.0 * b2_pi / 180.0
-        self.rightJoint=self.world.CreateJoint(rjd)
+        rjd.motorSpeed = 0
+        rjd.localAnchorA = p2
+        rjd.bodyB = self.rightFlipper
+        rjd.lowerAngle = -5.0 * b2_pi / 180.0
+        rjd.upperAngle = 30.0 * b2_pi / 180.0
+        self.rightJoint = self.world.CreateJoint(rjd)
 
         # Ball
-        self.ball=self.world.CreateDynamicBody(
+        self.ball = self.world.CreateDynamicBody(
             fixtures=b2FixtureDef(
-                            shape=b2CircleShape(radius=0.2),
-                            density=1.0),
+                shape=b2CircleShape(radius=0.2),
+                density=1.0),
             bullet=True,
-            position=(1,15))
+            position=(1, 15))
 
-        self.pressed=False
+        self.pressed = False
 
     def Keyboard(self, key):
-        if key==Keys.K_a:
-            self.pressed=True
+        if key == Keys.K_a:
+            self.pressed = True
 
     def KeyboardUp(self, key):
-        if key==Keys.K_a:
-            self.pressed=False
+        if key == Keys.K_a:
+            self.pressed = False
 
     def Step(self, settings):
         if self.pressed:
-            self.leftJoint.motorSpeed=20
-            self.rightJoint.motorSpeed=-20
+            self.leftJoint.motorSpeed = 20
+            self.rightJoint.motorSpeed = -20
         else:
-            self.leftJoint.motorSpeed=-10
-            self.rightJoint.motorSpeed=10
+            self.leftJoint.motorSpeed = -10
+            self.rightJoint.motorSpeed = 10
         super(Pinball, self).Step(settings)
 
-if __name__=="__main__":
-     main(Pinball)
-
+if __name__ == "__main__":
+    main(Pinball)
