@@ -305,12 +305,15 @@ public:
         # Read-only
         inverse = property(__GetInverse, None)
         angle = property(__GetAngle, __SetAngle)
-        ex = property(lambda self: self.col1, lambda self, v: setattr(self, 'col1', v))
-        ey = property(lambda self: self.col2, lambda self, v: setattr(self, 'col2', v))
+        ex = property(lambda self: self.col1,
+                      lambda self, v: setattr(self, 'col1', v))
+        ey = property(lambda self: self.col2,
+                      lambda self, v: setattr(self, 'col2', v))
         set = __SetAngle
     %}
     b2Vec2 __mul__(b2Vec2* v) {
-        return b2Vec2($self->ex.x * v->x + $self->ey.x * v->y, $self->ex.y * v->x + $self->ey.y * v->y);
+        return b2Vec2($self->ex.x * v->x + $self->ey.x * v->y,
+                      $self->ex.y * v->x + $self->ey.y * v->y);
     }
     b2Mat22 __mul__(b2Mat22* m) {
         return b2Mat22(b2Mul(*($self), m->ex), b2Mul(*($self), m->ey));
@@ -395,23 +398,23 @@ public:
 /**** Transform ****/
 %extend b2Transform {
 public:
+    b2Rot __get_rotation_matrix() {
+        return $self->q;
+    }
+
     %pythoncode %{
-        def __GetAngle(self):
+        def __get_angle(self):
             return self.q.angle
-        def __SetAngle(self, angle):
+        def __set_angle(self, angle):
             self.q.angle = angle
 
-        def __GetR(self):
-            R = b2Mat22()
-            R.angle = self.q.angle
-            return R
+        def __set_rotation_matrix(self, rot_matrix):
+            self.q.angle = rot_matrix.angle
 
-        def __SetR(self, R):
-            self.q.angle = R.angle
-
-        angle = property(__GetAngle, __SetAngle) 
-        R = property(__GetR, __SetR)
+        angle = property(__get_angle, __set_angle) 
+        R = property(__get_rotation_matrix, __set_rotation_matrix)
     %}
+
     b2Vec2 __mul__(b2Vec2& v) {
         float32 x = ($self->q.c * v.x - $self->q.s * v.y) + $self->p.x;
         float32 y = ($self->q.s * v.x + $self->q.c * v.y) + $self->p.y;
