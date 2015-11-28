@@ -323,8 +323,8 @@ class PygletDraw(b2Draw):
         """
         p1 = xf.position
         k_axisScale = 0.4
-        p2 = p1 + k_axisScale * xf.R.col1
-        p3 = p1 + k_axisScale * xf.R.col2
+        p2 = p1 + k_axisScale * xf.R.x_axis
+        p3 = p1 + k_axisScale * xf.R.y_axis
 
         self.batch.add(3, gl.GL_LINES, None,
                        ('v2f', (p1[0], p1[1], p2[0], p2[

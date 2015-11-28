@@ -461,7 +461,7 @@ class FrameworkBase(b2ContactListener):
         self.points.extend([dict(fixtureA=contact.fixtureA,
                                  fixtureB=contact.fixtureB,
                                  position=worldManifold.points[i],
-                                 normal=worldManifold.normal,
+                                 normal=worldManifold.normal.copy(),
                                  state=state2[i],
                                  )
                             for i, point in enumerate(state2)])

@@ -67,7 +67,8 @@ class ProxySurface:
     def get_abs_offset(): return self.rect[:2]
     def get_abs_parent(): return self.mysubsurface.get_abs_parent()
     def set_clip(self, rect=None): 
-        if rect == None: self.mysubsurface.set_clip()
+        if rect == None: 
+            self.mysubsurface.set_clip(self.mysubsurface.get_rect())
         else: 
             rect = [rect[0] + self.offset[0] + self.x, rect[1] + self.offset[0] + self.y, rect[2], rect[3]]
             self.mysubsurface.set_clip(rect)
@@ -107,7 +108,8 @@ class xProxySurface:
     def get_abs_offset(): return self.rect[:2]
     def get_abs_parent(): return self.mysubsurface.get_abs_parent()
     def set_clip(self, rect=None): 
-        if rect == None: self.mysubsurface.set_clip()
+        if rect == None: 
+            self.mysubsurface.set_clip(self.mysubsurface.get_rect())
         else: 
             rect = [rect[0] + self.offset[0] + self.x, rect[1] + self.offset[0] + self.y, rect[2], rect[3]]
             self.mysubsurface.set_clip(rect)
