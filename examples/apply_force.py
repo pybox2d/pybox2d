@@ -47,11 +47,11 @@ class ApplyForce (Framework):
         #  TODO: make note of transform.R.set() -> transform.angle =
         xf1 = b2Transform()
         xf1.angle = 0.3524 * b2_pi
-        xf1.position = b2Mul(xf1.R, (1.0, 0.0))
+        xf1.position = xf1.R * (1.0, 0.0)
 
         xf2 = b2Transform()
         xf2.angle = -0.3524 * b2_pi
-        xf2.position = b2Mul(xf2.R, (-1.0, 0.0))
+        xf2.position = xf2.R * (-1.0, 0.0)
         self.body = self.world.CreateDynamicBody(
             position=(0, 2),
             angle=b2_pi,

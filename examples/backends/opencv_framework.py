@@ -99,8 +99,8 @@ class OpencvDraw(framework.b2DrawExtended):
         Draw the transform xf on the screen
         """
         p1 = xf.position
-        p2 = self.to_screen(p1 + self.axisScale * xf.R.col1)
-        p3 = self.to_screen(p1 + self.axisScale * xf.R.col2)
+        p2 = self.to_screen(p1 + self.axisScale * xf.R.x_axis)
+        p3 = self.to_screen(p1 + self.axisScale * xf.R.y_axis)
         p1 = self.to_screen(p1)
         cv2.line(self.surface, cvcoord(p1), cvcoord(p2), (0, 0, 255), 1)
         cv2.line(self.surface, cvcoord(p1), cvcoord(p3), (0, 255, 0), 1)

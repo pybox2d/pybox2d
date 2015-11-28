@@ -142,8 +142,8 @@ class Pyqt4Draw(object):
         Draw the transform xf on the screen
         """
         p1 = xf.position
-        p2 = p1 + self.axisScale * xf.R.col1
-        p3 = p1 + self.axisScale * xf.R.col2
+        p2 = p1 + self.axisScale * xf.R.x_axis
+        p3 = p1 + self.axisScale * xf.R.y_axis
 
         line1 = self.scene.addLine(p1[0], p1[1], p2[0], p2[1],
                                    pen=QtGui.QPen(QColor(255, 0, 0)))
@@ -217,7 +217,7 @@ class Pyqt4Draw(object):
     def DrawCircleShape(self, shape, transform, color, temporary=False):
         center = b2Mul(transform, shape.pos)
         radius = shape.radius
-        axis = transform.R.col1
+        axis = transform.R.x_axis
 
         border_color = color.bytes + [255]
         inside_color = (color / 2).bytes + [127]
@@ -280,7 +280,7 @@ class Pyqt4Draw(object):
                     center = b2Mul(transform, shape.pos)
                     items[0].setPos(*center)
                     line = items[1]
-                    axis = transform.R.col1
+                    axis = transform.R.x_axis
                     line.setLine(center[0], center[1],
                                  (center[0] - radius * axis[0]),
                                  (center[1] - radius * axis[1]))
