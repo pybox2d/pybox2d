@@ -487,11 +487,12 @@ class PygletFramework(FrameworkBase):
     def __init__(self):
         super(PygletFramework, self).__init__()
 
+        self.__reset()
+
         if fwSettings.onlyInit:  # testing mode doesn't initialize Pyglet
             return
 
         print('Initializing Pyglet framework...')
-        self.__reset()
         self.window = PygletWindow(self)
 
         # Initialize the text display group

@@ -235,10 +235,10 @@ class PygameFramework(FrameworkBase):
     def __init__(self):
         super(PygameFramework, self).__init__()
 
+        self.__reset()
         if fwSettings.onlyInit:  # testing mode doesn't initialize pygame
             return
 
-        self.__reset()
         print('Initializing pygame framework...')
         # Pygame Initialization
         pygame.init()

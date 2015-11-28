@@ -628,13 +628,14 @@ class Pyqt4Framework(FrameworkBase):
     def __init__(self):
         super(Pyqt4Framework, self).__init__()
 
+        self.__reset()
+
         if settings.fwSettings.onlyInit:  # testing mode doesn't initialize Pyqt4
             return
 
         global app
         app = QtGui.QApplication(sys.argv)
 
-        self.__reset()
         print('Initializing Pyqt4 framework...')
 
         # Pyqt4 Initialization
