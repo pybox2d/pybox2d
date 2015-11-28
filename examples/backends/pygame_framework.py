@@ -35,20 +35,21 @@ Mouse:
 
 """
 
+from __future__ import (print_function, absolute_import, division)
 import pygame
 from pygame.locals import (QUIT, KEYDOWN, KEYUP, MOUSEBUTTONDOWN,
                            MOUSEBUTTONUP, MOUSEMOTION, KMOD_LSHIFT)
 
-Keys = None
-from ..framework import FrameworkBase
+from ..framework import (FrameworkBase, Keys)
 from ..settings import fwSettings
 from Box2D import (b2DrawExtended, b2Vec2)
 
 try:
-    from pygame_gui import (fwGUI, gui)
+    from .pygame_gui import (fwGUI, gui)
     GUIEnabled = True
-except:
+except Exception as ex:
     print('Unable to load PGU; menu disabled.')
+    print('(%s) %s' % (ex.__class__.__name__, ex))
     GUIEnabled = False
 
 
@@ -63,11 +64,12 @@ class PygameDraw(b2DrawExtended):
     surface = None
     axisScale = 10.0
 
-    def __init__(self, **kwargs):
+    def __init__(self, test=None, **kwargs):
         b2DrawExtended.__init__(self, **kwargs)
         self.flipX = False
         self.flipY = True
         self.convertVertices = True
+        self.test = test
 
     def StartDraw(self):
         self.zoom = self.test.viewZoom
