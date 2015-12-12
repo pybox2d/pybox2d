@@ -296,6 +296,10 @@ public:
 /**** Mat22 ****/
 %extend b2Mat22 {
 public:
+    b2Mat22() {
+        return new b2Mat22(b2Vec2(1.0f, 0.0f), b2Vec2(0.0f, 1.0f));
+    }
+    
     // backward-compatibility
     float32 __GetAngle() const
     {
@@ -361,6 +365,12 @@ public:
 /**** Mat33 ****/
 %extend b2Mat33 {
 public:
+    b2Mat33() {
+        return new b2Mat33(b2Vec3(1.0f, 0.0f, 0.0f),
+                           b2Vec3(0.0f, 1.0f, 0.0f),
+                           b2Vec3(0.0f, 0.0f, 1.0f));
+    }
+
     %pythoncode %{
         ex = property(lambda self: self.col1, lambda self, v: setattr(self, 'col1', v))
         ey = property(lambda self: self.col2, lambda self, v: setattr(self, 'col2', v))
@@ -393,8 +403,8 @@ public:
         return self
 }
 %feature("shadow") b2Mat33::__isub__ {
-    def __iadd__(self, other):
-        self.__iadd(other)
+    def __isub__(self, other):
+        self.__isub(other)
         return self
 }
 

@@ -1137,7 +1137,7 @@ class b2Vec3(object):
 
     __iter__ = lambda self: iter( (self.x, self.y, self.z) )
     __eq__ = lambda self, other: (self.x == other.x and self.y == other.y and self.z == other.z)
-    __ne__ = lambda self,other: (self.x != other.x or self.y != other.y or self.z != other.z)
+    __ne__ = lambda self, other: (self.x != other.x or self.y != other.y or self.z != other.z)
     def __repr__(self):
         return "b2Vec3(%g,%g,%g)" % (self.x, self.y, self.z)
     def __len__(self):
@@ -1290,16 +1290,6 @@ class b2Mat22(object):
     thisown = _swig_property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc='The membership flag')
     __repr__ = _swig_repr
 
-    def __init__(self, *args):
-        """
-        __init__(b2Mat22 self) -> b2Mat22
-        __init__(b2Mat22 self, b2Vec2 c1, b2Vec2 c2) -> b2Mat22
-        __init__(b2Mat22 self, float32 a11, float32 a12, float32 a21, float32 a22) -> b2Mat22
-
-        Construct this matrix using an angle. This matrix becomes an orthonormal rotation matrix.
-        """
-        _Box2D.b2Mat22_swiginit(self, _Box2D.new_b2Mat22(*args))
-
     def SetIdentity(self):
         """
         SetIdentity(b2Mat22 self)
@@ -1345,6 +1335,16 @@ class b2Mat22(object):
     def __repr__(self):
         return _format_repr(self) 
 
+
+    def __init__(self, *args):
+        """
+        __init__(b2Mat22 self, b2Vec2 c1, b2Vec2 c2) -> b2Mat22
+        __init__(b2Mat22 self, float32 a11, float32 a12, float32 a21, float32 a22) -> b2Mat22
+        __init__(b2Mat22 self) -> b2Mat22
+
+        Construct this matrix using an angle. This matrix becomes an orthonormal rotation matrix.
+        """
+        _Box2D.b2Mat22_swiginit(self, _Box2D.new_b2Mat22(*args))
 
     def __GetAngle(self):
         """__GetAngle(b2Mat22 self) -> float32"""
@@ -1417,15 +1417,6 @@ class b2Mat33(object):
     thisown = _swig_property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc='The membership flag')
     __repr__ = _swig_repr
 
-    def __init__(self, *args):
-        """
-        __init__(b2Mat33 self) -> b2Mat33
-        __init__(b2Mat33 self, b2Vec3 c1, b2Vec3 c2, b2Vec3 c3) -> b2Mat33
-
-        Construct this matrix using columns.
-        """
-        _Box2D.b2Mat33_swiginit(self, _Box2D.new_b2Mat33(*args))
-
     def SetZero(self):
         """
         SetZero(b2Mat33 self)
@@ -1477,6 +1468,15 @@ class b2Mat33(object):
     def __repr__(self):
         return _format_repr(self) 
 
+
+    def __init__(self, *args):
+        """
+        __init__(b2Mat33 self, b2Vec3 c1, b2Vec3 c2, b2Vec3 c3) -> b2Mat33
+        __init__(b2Mat33 self) -> b2Mat33
+
+        Construct this matrix using columns.
+        """
+        _Box2D.b2Mat33_swiginit(self, _Box2D.new_b2Mat33(*args))
 
     ex = property(lambda self: self.col1, lambda self, v: setattr(self, 'col1', v))
     ey = property(lambda self: self.col2, lambda self, v: setattr(self, 'col2', v))
