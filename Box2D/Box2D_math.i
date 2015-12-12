@@ -42,6 +42,10 @@
 /**** Vector classes ****/
 %extend b2Vec2 {
 public:
+    b2Vec2() {
+        return new b2Vec2(0.0f, 0.0f);
+    }
+
     b2Vec2(b2Vec2& other) {
         return new b2Vec2(other.x, other.y);
     }
@@ -159,6 +163,10 @@ public:
 
 %extend b2Vec3 {
 public:
+    b2Vec3() {
+        return new b2Vec3(0.0f, 0.0f, 0.0f);
+    }
+
     b2Vec3(b2Vec3& other) {
         return new b2Vec3(other.x, other.y, other.z);
     }
@@ -170,7 +178,7 @@ public:
     %pythoncode %{
     __iter__ = lambda self: iter( (self.x, self.y, self.z) )
     __eq__ = lambda self, other: (self.x == other.x and self.y == other.y and self.z == other.z)
-    __ne__ = lambda self,other: (self.x != other.x or self.y != other.y or self.z != other.z)
+    __ne__ = lambda self, other: (self.x != other.x or self.y != other.y or self.z != other.z)
     def __repr__(self):
         return "b2Vec3(%g,%g,%g)" % (self.x, self.y, self.z)
     def __len__(self):

@@ -912,8 +912,8 @@ class b2Vec2(object):
 
     def __init__(self, *args):
         """
-        __init__(b2Vec2 self) -> b2Vec2
         __init__(b2Vec2 self, float32 x, float32 y) -> b2Vec2
+        __init__(b2Vec2 self) -> b2Vec2
         __init__(b2Vec2 self, b2Vec2 other) -> b2Vec2
 
         Construct using coordinates.
@@ -1126,8 +1126,8 @@ class b2Vec3(object):
 
     def __init__(self, *args):
         """
-        __init__(b2Vec3 self) -> b2Vec3
         __init__(b2Vec3 self, float32 x, float32 y, float32 z) -> b2Vec3
+        __init__(b2Vec3 self) -> b2Vec3
         __init__(b2Vec3 self, b2Vec3 other) -> b2Vec3
         __init__(b2Vec3 self, b2Vec2 other) -> b2Vec3
 
