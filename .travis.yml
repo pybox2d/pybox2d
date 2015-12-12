@@ -22,7 +22,7 @@ matrix:
 
 before_install:
   - echo $TRAVIS_OS_NAME
-  - pip install setuptools nose coverage
+  - pip install setuptools nose coverage coveralls
   # linux
   - if [ "$TRAVIS_OS_NAME" == "linux" ]; then wget http://mirrors.kernel.org/ubuntu/pool/main/s/swig/swig3.0_3.0.7-2ubuntu1_amd64.deb; fi
   - if [ "$TRAVIS_OS_NAME" == "linux" ]; then sudo dpkg --install swig3.0_3.0.7-2ubuntu1_amd64.deb; fi
@@ -40,3 +40,6 @@ script:
   # top-level dir
   - cd tests
   - nosetests -v -w . --with-coverage --cover-package=Box2D
+
+after_success:
+  - coveralls
