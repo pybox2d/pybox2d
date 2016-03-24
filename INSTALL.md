@@ -23,6 +23,14 @@
    corresponding to your operating system for more instructions on how to do
    this.
 
+### Build from source using pip
+
+1. If you already have [`pip`](https://pip.pypa.io/en/stable/installing/), you need only execute this:
+    ```bash
+    $ sudo pip install git+https://github.com/pybox2d/pybox2d.git
+    ```
+
+
 ### The testbed examples
 ------------------------
 1. If using the conda packages, install a backend such as pygame to use as a
