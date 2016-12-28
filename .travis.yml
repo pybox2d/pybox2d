@@ -15,6 +15,8 @@ python:
   - "3.5"
   # - "pypy"  # swig doesn't seem to work :(
 
+dist: trusty
+
 matrix:
   fast_finish: true
   allow_failures:
@@ -24,9 +26,8 @@ before_install:
   - echo $TRAVIS_OS_NAME
   - pip install setuptools nose coverage coveralls
   # linux
-  - if [ "$TRAVIS_OS_NAME" == "linux" ]; then wget http://mirrors.kernel.org/ubuntu/pool/main/s/swig/swig3.0_3.0.7-2ubuntu1_amd64.deb; fi
-  - if [ "$TRAVIS_OS_NAME" == "linux" ]; then sudo dpkg --install swig3.0_3.0.7-2ubuntu1_amd64.deb; fi
-  - if [ "$TRAVIS_OS_NAME" == "linux" ]; then which swig3.0; fi
+  - if [ "$TRAVIS_OS_NAME" == "linux" ]; then sudo apt-get update; fi
+  - if [ "$TRAVIS_OS_NAME" == "linux" ]; then sudo apt-get install swig3.0; fi
   - if [ "$TRAVIS_OS_NAME" == "linux" ]; then sudo ln -s /usr/bin/swig3.0 /usr/bin/swig; fi
   # OSX
   - if [ "$TRAVIS_OS_NAME" == "osx" ]; then brew update; fi
