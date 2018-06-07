@@ -97,7 +97,7 @@ class testJoints (unittest.TestCase):
         else:
             b = getattr(joint, prop)
 
-        self.assertEquals(a, b, "Property not equal from definition to joint: %s (dfn %s != joint %s)" % (prop, a, b) )
+        self.assertEqual(a, b, "Property not equal from definition to joint: %s (dfn %s != joint %s)" % (prop, a, b))
 
     # ---- revolute joint ----
     def revolute_definition(self, body1, body2, anchor):
