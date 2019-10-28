@@ -118,7 +118,7 @@ if use_kwargs:
 # isn't windows, g++ will be used; -Wno-unused then would suppress some annoying warnings
 # about the Box2D source.
 if sys.platform in ('win32', 'win64'):
-    extra_args=['-I.']
+    extra_args=['-I.', '-fpermissive']
 else:
     extra_args=['-I.', '-Wno-unused']
 
