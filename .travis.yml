@@ -4,9 +4,6 @@ language: generic
 
 jobs:
   include:
-  - name: Linux/Python 2.7
-    env: PYTHON_VER=2.7
-    os: linux
   - name: Linux/Python 3.5
     env: PYTHON_VER=3.5
     os: linux
@@ -20,9 +17,6 @@ jobs:
     env: PYTHON_VER=3.8
     os: linux
 
-  - name: OSX/Python 2.7
-    env: PYTHON_VER=2.7
-    os: osx
   - name: OSX/Python 3.5
     env: PYTHON_VER=3.5
     os: osx
