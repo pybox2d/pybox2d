@@ -23,27 +23,6 @@ __version__="$Revision$"
 
 import setuptools
 from setuptools import (setup, Extension)
-setuptools_version = setuptools.__version__
-print('Using setuptools (version %s).' % setuptools_version)
-
-if setuptools_version:
-    if (setuptools_version in ["0.6c%d"%i for i in range(1,9)] # old versions
-        or setuptools_version=="0.7a1"): # 0.7a1 py 3k alpha version based on old version
-            print('Patching setuptools.build_ext.get_ext_filename')
-            from setuptools.command import build_ext
-            def get_ext_filename(self, fullname):
-                from setuptools.command.build_ext import (_build_ext, Library, use_stubs)
-                filename = _build_ext.get_ext_filename(self,fullname)
-                if fullname in self.ext_map:
-                    ext = self.ext_map[fullname]
-                    if isinstance(ext,Library):
-                        fn, ext = os.path.splitext(filename)
-                        return self.shlib_compiler.library_filename(fn,libtype)
-                    elif use_stubs and ext._links_to_dynamic:
-                        d,fn = os.path.split(filename)
-                        return os.path.join(d,'dl-'+fn)
-                return filename
-            build_ext.build_ext.get_ext_filename = get_ext_filename
 
 # release version number
 box2d_version  = '2.3'
