@@ -101,17 +101,18 @@ if sys.platform in ('win32', 'win64'):
 else:
     extra_args=['-I.', '-Wno-unused']
 
-pybox2d_extension = \
-    Extension('Box2D._Box2D', box2d_source_files, extra_compile_args=extra_args, language='c++')
+pybox2d_extension = Extension(
+    'Box2D._Box2D', box2d_source_files, extra_compile_args=extra_args,
+    language='c++')
 
 LONG_DESCRIPTION = \
 """ 2D physics library Box2D %s for usage in Python.
 
     After installing please be sure to try out the testbed demos.
     They require either pygame or pyglet and are available on the
-    homepage.
+    homepage or directly in this package.
 
-    pybox2d homepage: http://pybox2d.googlecode.com
+    pybox2d homepage: https://github.com/pybox2d/pybox2d
     Box2D homepage: http://www.box2d.org
     """ % (box2d_version,)
 
