@@ -39,17 +39,6 @@ from __future__ import (print_function, absolute_import, division)
 import sys
 import warnings
 
-try:
-    import pygame_sdl2
-except ImportError:
-    if sys.platform in ('darwin', ):
-        warnings.warn('OSX has major issues with pygame/SDL 1.2 when used '
-                      'inside a virtualenv. If this affects you, try '
-                      'installing the updated pygame_sdl2 library.')
-else:
-    # pygame_sdl2 is backward-compatible with pygame:
-    pygame_sdl2.import_as_pygame()
-
 import pygame
 from pygame.locals import (QUIT, KEYDOWN, KEYUP, MOUSEBUTTONDOWN,
                            MOUSEBUTTONUP, MOUSEMOTION, KMOD_LSHIFT)

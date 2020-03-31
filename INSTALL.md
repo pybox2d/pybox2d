@@ -5,19 +5,14 @@
 2. Create a new environment (named py34 here) and activate it:
 
     ```bash
-    $ conda create -n py34 python=3.4
-    $ source activate py34
-    ```
-3. Install Box2D from my channel
-
-    ```bash
-    $ conda install -c https://conda.anaconda.org/kne pybox2d
+    $ conda create -n pybox2d -c conda-forge python=3.6 pybox2d pyglet
+    $ conda activate pybox2d
     ```
 
     Recent builds should be available for Windows, Linux, and OS X, with Python
-    2.7, 3.3, 3.4 and 3.5.
+    3.6, 3.7, and 3.8.
 
-4. Alternatively, you can build pybox2d from its source code. You should only
+3. Alternatively, you can build pybox2d from its source code. You should only
    really do this if you want the latest features not available in the
    release or if you want to help contribute to pybox2d. See the section below
    corresponding to your operating system for more instructions on how to do
@@ -25,21 +20,14 @@
 
 ### The testbed examples
 ------------------------
-1. If using the conda packages, install a backend such as pygame to use as a
-   renderer. I have packages for pygame and pygame_sdl2, the latter of which
-   works better on OS X currently.
+1. If using the conda packages, install a backend such as pygame or pyglet to
+   use as a renderer.
 
-    ```bash
-    $ source activate py34
-    $ conda install -c https://conda.anaconda.org/kne pygame_sdl2
-    ```
-    
     | Backend        | Install                                                       | Homepage                             |
     | -------------  | ------------------------------------------------------------- | ------------------------------------ |
-    | pygame         | `conda install -c https://conda.anaconda.org/kne pygame`      | http://pygame.org                    |  
-    | pygame_sdl2    | `conda install -c https://conda.anaconda.org/kne pygame_sdl2` | https://github.com/renpy/pygame_sdl2 |
+    | pygame         | `pip install pygame`                                          | http://pygame.org                    |  
     | pyqt4          | `conda install pyqt4`                                         | https://www.riverbankcomputing.com/  |
-    | pyglet         | `pip install pyglet`                                          | http://pyglet.org                    |
+    | pyglet         | `pip install pyglet` (or use conda-forge)                     | http://pyglet.org                    |
     | opencv         | `pip install opencv`                                          | http://opencv.org                    |
 
 2. Download the latest release to get the examples: 
