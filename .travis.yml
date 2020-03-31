@@ -1,25 +1,22 @@
 # vi: sw=2 ts=2 sts=2 expandtab
-language: python
+dist: trusty
 sudo: false
 
 os:
   - linux
   - osx
 
-python:
-  - "2.7"
-  - "3.3"
-  - "3.4"
-  - "3.5"
-  - "3.6"
-  - "pypy"  # swig doesn't seem to work :(
-
-dist: trusty
-
 matrix:
-  fast_finish: true
-  allow_failures:
-    - os: osx
+  - name: Python 2.7
+    env: PYTHON_VER=2.7
+  - name: Python 3.5
+    env: PYTHON_VER=3.5
+  - name: Python 3.6
+    env: PYTHON_VER=3.6
+  - name: Python 3.7
+    env: PYTHON_VER=3.7
+  - name: Python 3.8
+    env: PYTHON_VER=3.8
 
 before_install:
   - wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh
@@ -31,7 +28,7 @@ before_install:
   - conda config --add channels 'conda-forge'
 
 install:
-  - conda create -q -n test-environment python=$TRAVIS_PYTHON_VERSION swig pytest coverage coveralls
+  - conda create -q -n test-environment python=$PYTHON_VER swig pytest coverage coveralls
   - conda activate test-environment
 
   - python setup.py build
