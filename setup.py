@@ -18,8 +18,6 @@ from glob import glob
 
 __author__='Ken Lauer'
 __license__='zlib'
-__date__="$Date$"
-__version__="$Revision$"
 
 import setuptools
 from setuptools import (setup, Extension)
@@ -52,10 +50,8 @@ def write_init():
 
     init_source = [
         import_string,
-        "__author__ = '%s'" % __date__ ,
         "__version__ = '%s'" % version_str,
         "__version_info__ = (%s,%d)" % (box2d_version.replace('.', ','), release_number),
-        "__revision__ = '%s'" % __version__,
         "__license__ = '%s'" % __license__ ,
         "__date__ = '%s'" % __date__ , ]
 
