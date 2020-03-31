@@ -4,3 +4,5 @@ dist/*
 *.swo
 *.swp
 *.so
+Box2D.py
+_Box2D.pyd
