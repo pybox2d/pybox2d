@@ -35,10 +35,14 @@ install:
   - conda activate test-environment
 
   - python setup.py build
-  - python setup.py install
+  - pip install .
 
 script: 
-  - pytest -vv library/Box2D/tests/
+  - python -c "import Box2D"
+  - python -c "import Box2D.examples"
+
+  - cd library/Box2D
+  - pytest -vv tests
 
 after_success:
   - coveralls
