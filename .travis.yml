@@ -2,9 +2,13 @@
 sudo: false
 language: generic
 
+stages:
+  - test
+
 jobs:
   include:
-  - name: Linux/Python 3.5
+  - stage: test
+    name: Linux/Python 3.5
     env: PYTHON_VER=3.5
     os: linux
   - name: Linux/Python 3.6
