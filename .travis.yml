@@ -1,22 +1,40 @@
 # vi: sw=2 ts=2 sts=2 expandtab
-dist: trusty
 sudo: false
+language: generic
 
-os:
-  - linux
-  - osx
-
-matrix:
-  - name: Python 2.7
+jobs:
+  include:
+  - name: Linux/Python 2.7
     env: PYTHON_VER=2.7
-  - name: Python 3.5
+    os: linux
+  - name: Linux/Python 3.5
     env: PYTHON_VER=3.5
-  - name: Python 3.6
+    os: linux
+  - name: Linux/Python 3.6
     env: PYTHON_VER=3.6
-  - name: Python 3.7
+    os: linux
+  - name: Linux/Python 3.7
     env: PYTHON_VER=3.7
-  - name: Python 3.8
+    os: linux
+  - name: Linux/Python 3.8
     env: PYTHON_VER=3.8
+    os: linux
+
+  - name: OSX/Python 2.7
+    env: PYTHON_VER=2.7
+    os: osx
+  - name: OSX/Python 3.5
+    env: PYTHON_VER=3.5
+    os: osx
+  - name: OSX/Python 3.6
+    env: PYTHON_VER=3.6
+    os: osx
+  - name: OSX/Python 3.7
+    env: PYTHON_VER=3.7
+    os: osx
+  - name: OSX/Python 3.8
+    env: PYTHON_VER=3.8
+    os: osx
 
 before_install:
   - wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh
@@ -38,8 +56,7 @@ script:
   - python -c "import Box2D"
   - python -c "import Box2D.examples"
 
-  - cd library/Box2D
-  - pytest -vv tests
+  - pytest -vv library/Box2D/tests
 
 after_success:
   - coveralls
