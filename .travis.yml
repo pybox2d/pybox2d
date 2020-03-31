@@ -56,7 +56,7 @@ script:
   - python -c "import Box2D"
   - python -c "import Box2D.examples"
 
-  - pytest -vv library/Box2D/tests
+  - pytest -vv --pyargs Box2D.tests
 
 after_success:
   - coveralls
