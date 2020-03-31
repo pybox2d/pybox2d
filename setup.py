@@ -130,20 +130,7 @@ CLASSIFIERS = [
 
 write_init()
 
-package_dir = {
-    'Box2D': library_path,
-    'Box2D.b2': os.path.join(library_path, 'b2'),
-    'Box2D.tests': os.path.join(library_path, 'tests'),
-    'Box2D.examples': os.path.join(library_path, 'examples'),
-    'Box2D.examples.simple': os.path.join(library_path, 'examples', 'simple'),
-    'Box2D.examples.opencv': os.path.join(library_path, 'examples', 'opencv'),
-    'Box2D.examples.pgu': os.path.join(library_path, 'examples', 'pgu'),
-    'Box2D.examples.pgu.gui': os.path.join(library_path, 'examples', 'pgu',
-                                           'gui'),
-    'Box2D.examples.backends': os.path.join(library_path, 'examples',
-                                            'backends'),
-}
-
+print(setuptools.find_packages('library'))
 setup_dict = dict(
     name             = "Box2D",
     version          = version_str,
@@ -153,14 +140,14 @@ setup_dict = dict(
     license          = "zlib",
     url              = "http://github.com/pybox2d/pybox2d",
     long_description = LONG_DESCRIPTION,
-    package_dir      = package_dir,
-    packages         = list(package_dir),
+    package_dir      = {'': 'library'},
+    packages         = setuptools.find_packages(library_base),
     test_suite       = 'tests',
     options          = { 'build_ext': { 'swig_opts' : swig_arguments },
                          'egg_info' : { 'egg_base' : library_base },
                         },
     ext_modules      = [ pybox2d_extension ],
-#   use_2to3         = (sys.version_info >= (3,)),
+    include_package_data=True,
     )
 
 # run the actual setup from distutils
