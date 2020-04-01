@@ -5,7 +5,7 @@ Based on Chris Campbell's tutorial from iforce2d.net:
 http://www.iforce2d.net/b2dtut/top-down-car
 """
 
-from .framework import (Framework, Keys, main)
+from Box2D.examples.framework import (Framework, Keys, main)
 import math
 
 

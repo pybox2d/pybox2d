@@ -20,7 +20,7 @@
 
 from math import cos, sin
 
-from .framework import (Framework, main)
+from Box2D.examples.framework import (Framework, main)
 from Box2D import (b2CircleShape, b2EdgeShape, b2FixtureDef, b2PolygonShape,
                    b2_pi)
 

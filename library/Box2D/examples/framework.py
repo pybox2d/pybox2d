@@ -29,7 +29,7 @@ from Box2D import (b2Fixture, b2FixtureDef, b2Joint)
 from Box2D import (b2GetPointStates, b2QueryCallback, b2Random)
 from Box2D import (b2_addState, b2_dynamicBody, b2_epsilon, b2_persistState)
 
-from .settings import fwSettings
+from Box2D.examples.settings import fwSettings
 
 
 class fwDestructionListener(b2DestructionListener):
@@ -523,7 +523,7 @@ if __name__ == '__main__':
 # framework, then your file should be 'backends/foobar_framework.py' and you
 # should have a class 'FoobarFramework' that subclasses FrameworkBase. Ensure
 # proper capitalization for portability.
-from . import backends
+from Box2D.examples import backends
 
 try:
     framework_name = '%s_framework' % (fwSettings.backend.lower())
@@ -535,4 +535,4 @@ except Exception as ex:
     print('Unable to import the back-end %s: %s' % (fwSettings.backend, ex))
     print('Attempting to fall back on the pygame back-end.')
 
-    from .backends.pygame_framework import PygameFramework as Framework
+    from Box2D.examples.backends.pygame_framework import PygameFramework as Framework

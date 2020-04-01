@@ -18,7 +18,7 @@
 # misrepresented as being the original software.
 # 3. This notice may not be removed or altered from any source distribution.
 
-from .framework import (Framework, Keys, main)
+from Box2D.examples.framework import (Framework, Keys, main)
 from Box2D import (b2CircleShape, b2EdgeShape, b2FixtureDef, b2PolygonShape,
                    b2Vec2, b2_pi)
 

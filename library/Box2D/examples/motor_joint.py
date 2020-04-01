@@ -20,7 +20,7 @@
 
 from math import sin
 
-from .framework import (Framework, Keys, main)
+from Box2D.examples.framework import (Framework, Keys, main)
 from Box2D import (b2Color, b2EdgeShape, b2FixtureDef, b2PolygonShape)
 
 

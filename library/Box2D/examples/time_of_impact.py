@@ -18,7 +18,7 @@
 # misrepresented as being the original software.
 # 3. This notice may not be removed or altered from any source distribution.
 
-from .framework import (Framework, main)
+from Box2D.examples.framework import (Framework, main)
 from Box2D import (b2Color, b2Globals, b2PolygonShape, b2Sweep, b2TimeOfImpact)
 
 

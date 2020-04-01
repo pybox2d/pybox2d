@@ -18,7 +18,7 @@
 # misrepresented as being the original software.
 # 3. This notice may not be removed or altered from any source distribution.
 
-from .framework import (Framework, Keys, main)
+from Box2D.examples.framework import (Framework, Keys, main)
 from random import random
 from math import sqrt, sin, cos
 

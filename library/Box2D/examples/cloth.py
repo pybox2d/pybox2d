@@ -23,7 +23,7 @@
 # Ported from the Cloth test by Paril, originally for Box2CS:
 #   http://www.box2d.org/forum/viewtopic.php?f=6&t=6124
 #
-from .framework import (Framework, Keys, main)
+from Box2D.examples.framework import (Framework, Keys, main)
 from Box2D import (b2CircleShape, b2FixtureDef, b2Random, b2Vec2)
 
 

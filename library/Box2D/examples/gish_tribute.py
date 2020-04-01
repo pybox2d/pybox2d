@@ -23,7 +23,7 @@
 
 from math import sin, cos, pi
 
-from .framework import (Framework, Keys, main)
+from Box2D.examples.framework import (Framework, Keys, main)
 from Box2D import (b2CircleShape, b2FixtureDef)
 
 

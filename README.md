@@ -104,6 +104,20 @@ You can browse the testbed examples on GitHub
     $ python -m Box2D.examples.web
     ```
 
+These framework examples are included in the distribution, but they are also
+written in a way such that you can copy the `examples` directly and modify them
+yourself.
+
+For example, the following would be possible:
+
+```bash
+$ git clone https://github.com/pybox2d/pybox2d pybox2d
+$ mkdir my_new_examples
+$ cp -R pybox2d/library/Box2D/examples/* my_new_examples
+$ cd my_new_examples
+$ python web.py --backend=pygame
+```
+
 Simple examples
 ---------------
 

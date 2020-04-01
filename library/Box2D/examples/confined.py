@@ -20,7 +20,7 @@
 
 from random import random
 
-from .framework import (Framework, Keys, main)
+from Box2D.examples.framework import (Framework, Keys, main)
 from Box2D import (b2CircleShape, b2EdgeShape, b2FixtureDef)
 
 

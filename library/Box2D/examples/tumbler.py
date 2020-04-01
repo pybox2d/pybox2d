@@ -19,7 +19,7 @@
 # 3. This notice may not be removed or altered from any source distribution.
 
 
-from .framework import (Framework, main)
+from Box2D.examples.framework import (Framework, main)
 from Box2D import (b2FixtureDef, b2PolygonShape, b2_pi)
 
 

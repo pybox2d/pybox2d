@@ -18,7 +18,7 @@
 # misrepresented as being the original software.
 # 3. This notice may not be removed or altered from any source distribution.
 
-from .framework import (Framework, main)
+from Box2D.examples.framework import (Framework, main)
 from Box2D.b2 import (edgeShape, circleShape, fixtureDef, polygonShape)
 
 

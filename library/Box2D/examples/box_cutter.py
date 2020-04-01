@@ -23,7 +23,7 @@
 # - Written for pybox2d 2.1 by Ken
 import sys
 
-from .framework import (Framework, Keys, main)
+from Box2D.examples.framework import (Framework, Keys, main)
 from Box2D import (b2AssertException, b2Color, b2EdgeShape, b2FixtureDef,
                    b2PolygonShape, b2RayCastCallback, b2Vec2)
 

@@ -20,7 +20,7 @@
 
 from math import sqrt
 
-from .framework import (Framework, Keys, main)
+from Box2D.examples.framework import (Framework, Keys, main)
 from Box2D import (b2CircleShape, b2FixtureDef, b2PolygonShape, b2Random,
                    b2Vec2, b2_epsilon)
 
