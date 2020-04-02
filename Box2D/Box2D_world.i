@@ -29,6 +29,7 @@
          b2World(gravity=(0,-10), doSleep=True)
          b2World(contactListener=myListener)
         """
+        self.__data = {}
         _Box2D.b2World_swiginit(self,_Box2D.new_b2World(gravity))
 
         self.allowSleeping = doSleep
@@ -288,10 +289,8 @@ public:
         # Now using it also to buffer previously write-only values in the shadowed
         # class to make them read-write.
         def __GetData(self, name):
-            if name in list(self.__data.keys()):
-                return self.__data[name]
-            else:
-                return None
+            return self.__data.get(name)
+
         def __SetData(self, name, value, fcn):
             self.__data[name] = value
             fcn(value)
@@ -299,7 +298,6 @@ public:
         # Read-write properties
         gravity   = property(__GetGravity, __SetGravity)
         autoClearForces = property(__GetAutoClearForces, __SetAutoClearForces)
-        __data = {} # holds the listeners so they can be properly destroyed, and buffer other data
         destructionListener = property(lambda self: self.__GetData('destruction'), 
                                        lambda self, fcn: self.__SetData('destruction', fcn, self.__SetDestructionListener_internal))
         contactListener= property(lambda self: self.__GetData('contact'), 
