@@ -15,5 +15,6 @@ class Segfaulter:
 def test_issue_110():
     segfaulter1 = Segfaulter()
     segfaulter2 = Segfaulter()
-    segfaulter1.step()
-    segfaulter2.step()
+    for i in range(10):
+        segfaulter1.step()
+        segfaulter2.step()
