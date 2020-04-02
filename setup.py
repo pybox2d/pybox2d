@@ -18,32 +18,9 @@ from glob import glob
 
 __author__='Ken Lauer'
 __license__='zlib'
-__date__="$Date$"
-__version__="$Revision$"
 
 import setuptools
 from setuptools import (setup, Extension)
-setuptools_version = setuptools.__version__
-print('Using setuptools (version %s).' % setuptools_version)
-
-if setuptools_version:
-    if (setuptools_version in ["0.6c%d"%i for i in range(1,9)] # old versions
-        or setuptools_version=="0.7a1"): # 0.7a1 py 3k alpha version based on old version
-            print('Patching setuptools.build_ext.get_ext_filename')
-            from setuptools.command import build_ext
-            def get_ext_filename(self, fullname):
-                from setuptools.command.build_ext import (_build_ext, Library, use_stubs)
-                filename = _build_ext.get_ext_filename(self,fullname)
-                if fullname in self.ext_map:
-                    ext = self.ext_map[fullname]
-                    if isinstance(ext,Library):
-                        fn, ext = os.path.splitext(filename)
-                        return self.shlib_compiler.library_filename(fn,libtype)
-                    elif use_stubs and ext._links_to_dynamic:
-                        d,fn = os.path.split(filename)
-                        return os.path.join(d,'dl-'+fn)
-                return filename
-            build_ext.build_ext.get_ext_filename = get_ext_filename
 
 # release version number
 box2d_version  = '2.3'
@@ -65,20 +42,12 @@ def write_init():
     # read in the license header
     license_header = open(os.path.join(source_dir, 'pybox2d_license_header.txt')).read()
 
-    # create the source code for the file
-    if sys.version_info >= (2, 6):
-        import_string = "from .%s import *" % library_name
-    else:
-        import_string = "from %s import *" % library_name
-
     init_source = [
-        import_string,
-        "__author__ = '%s'" % __date__ ,
+        "from .%s import *" % library_name,
         "__version__ = '%s'" % version_str,
         "__version_info__ = (%s,%d)" % (box2d_version.replace('.', ','), release_number),
-        "__revision__ = '%s'" % __version__,
         "__license__ = '%s'" % __license__ ,
-        "__date__ = '%s'" % __date__ , ]
+        ]
 
     # and create the __init__ file with the appropriate version string
     f=open(os.path.join(library_path, '__init__.py'), 'w')
@@ -122,17 +91,18 @@ if sys.platform in ('win32', 'win64'):
 else:
     extra_args=['-I.', '-Wno-unused']
 
-pybox2d_extension = \
-    Extension('Box2D._Box2D', box2d_source_files, extra_compile_args=extra_args, language='c++')
+pybox2d_extension = Extension(
+    'Box2D._Box2D', box2d_source_files, extra_compile_args=extra_args,
+    language='c++')
 
 LONG_DESCRIPTION = \
 """ 2D physics library Box2D %s for usage in Python.
 
     After installing please be sure to try out the testbed demos.
     They require either pygame or pyglet and are available on the
-    homepage.
+    homepage or directly in this package.
 
-    pybox2d homepage: http://pybox2d.googlecode.com
+    pybox2d homepage: https://github.com/pybox2d/pybox2d
     Box2D homepage: http://www.box2d.org
     """ % (box2d_version,)
 
@@ -150,6 +120,7 @@ CLASSIFIERS = [
 
 write_init()
 
+print(setuptools.find_packages('library'))
 setup_dict = dict(
     name             = "Box2D",
     version          = version_str,
@@ -157,19 +128,16 @@ setup_dict = dict(
     author_email     = "sirkne at gmail dot com",
     description      = "Python Box2D",
     license          = "zlib",
-    url              ="http://pybox2d.googlecode.com/",
+    url              = "http://github.com/pybox2d/pybox2d",
     long_description = LONG_DESCRIPTION,
-    classifiers      = CLASSIFIERS,
-    packages         = ['Box2D', 'Box2D.b2'],
-    package_dir      = {'Box2D': library_path,
-                        'Box2D.b2': os.path.join(library_path, 'b2'),
-                        'Box2D.tests' : 'tests'},
+    package_dir      = {'': 'library'},
+    packages         = setuptools.find_packages(library_base),
     test_suite       = 'tests',
     options          = { 'build_ext': { 'swig_opts' : swig_arguments },
                          'egg_info' : { 'egg_base' : library_base },
                         },
     ext_modules      = [ pybox2d_extension ],
-#   use_2to3         = (sys.version_info >= (3,)),
+    include_package_data=True,
     )
 
 # run the actual setup from distutils

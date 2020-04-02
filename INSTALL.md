@@ -1,56 +1,10 @@
-### Install pre-built conda package (it's easy!)
-------------------------------------------------
-1. Install miniconda3. Download it from
-   [here](http://conda.pydata.org/miniconda.html)
-2. Create a new environment (named py34 here) and activate it:
+### Note
+--------
 
-    ```bash
-    $ conda create -n pybox2d -c conda-forge python=3.6 pybox2d pyglet
-    $ conda activate pybox2d
-    ```
+This building from source documentation is likely out-of-date.
 
-    Recent builds should be available for Windows, Linux, and OS X, with Python
-    3.6, 3.7, and 3.8.
+Please consider using conda and installing via conda-forge.
 
-3. Alternatively, you can build pybox2d from its source code. You should only
-   really do this if you want the latest features not available in the
-   release or if you want to help contribute to pybox2d. See the section below
-   corresponding to your operating system for more instructions on how to do
-   this.
-
-### The testbed examples
-------------------------
-1. If using the conda packages, install a backend such as pygame or pyglet to
-   use as a renderer.
-
-    | Backend        | Install                                                       | Homepage                             |
-    | -------------  | ------------------------------------------------------------- | ------------------------------------ |
-    | pygame         | `pip install pygame`                                          | http://pygame.org                    |  
-    | pyqt4          | `conda install pyqt4`                                         | https://www.riverbankcomputing.com/  |
-    | pyglet         | `pip install pyglet` (or use conda-forge)                     | http://pyglet.org                    |
-    | opencv         | `pip install opencv`                                          | http://opencv.org                    |
-
-2. Download the latest release to get the examples: 
-    [releases](https://github.com/pybox2d/pybox2d/releases)
-
-    Alternatively, if you have git installed, clone it instead:
-    ```bash
-    # The 2.3.1 release
-    $ git clone https://github.com/pybox2d/pybox2d -b 2.3.1
-    # Or the latest development master branch
-    $ git clone https://github.com/pybox2d/pybox2d
-    ```
-
-3. Run an example with the desired backend:
-    ```bash
-    $ cd pybox2d
-
-    # List all of the examples available:
-    $ ls examples/*.py
-
-    # Try the web example:
-    $ python -m examples.web --backend=pygame
-    ```
 
 ### Building from source: Linux
 --------------------------------
