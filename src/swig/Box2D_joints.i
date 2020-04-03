@@ -55,7 +55,8 @@ public:
     bodyA = property(__GetBodyA, None)
     bodyB = property(__GetBodyB, None)
     type = property(__GetType, None)
-    active = property(__IsActive, None)
+    enabled = property(__IsEnabled, None)
+    active = enabled  # backward compatibility
     anchorB = property(__GetAnchorB, None)
     anchorA = property(__GetAnchorA, None)
     collideConnected = property(__GetCollideConnected, None)
@@ -73,7 +74,7 @@ public:
 %rename(__GetBodyA) b2Joint::GetBodyA;
 %rename(__GetBodyB) b2Joint::GetBodyB;
 %rename(__GetType) b2Joint::GetType;
-%rename(__IsActive) b2Joint::IsActive;
+%rename(__IsEnabled) b2Joint::IsEnabled;
 %rename(__GetAnchorA) b2Joint::GetAnchorA;
 %rename(__GetAnchorB) b2Joint::GetAnchorB;
 %rename(__GetCollideConnected) b2Joint::GetCollideConnected;
@@ -126,7 +127,10 @@ public:
         springDampingRatio = property(__GetSpringDampingRatio , __SetSpringDampingRatio)
 
         # Read-only
-        speed = property(__GetJointSpeed, None)
+        linear_speed = property(__GetJointLinearSpeed, None)
+        speed = linear_speed  # backward-compatibility
+        angular_speed = property(__GetJointAngularSpeed, None)
+        angle = property(__GetJointAngle, None)
         translation = property(__GetJointTranslation, None)
 
     %}
@@ -134,7 +138,9 @@ public:
 
 %rename(__IsMotorEnabled) b2WheelJoint::IsMotorEnabled;
 %rename(__GetMotorSpeed) b2WheelJoint::GetMotorSpeed;
-%rename(__GetJointSpeed) b2WheelJoint::GetJointSpeed;
+%rename(__GetJointLinearSpeed) b2WheelJoint::GetJointLinearSpeed;
+%rename(__GetJointAngularSpeed) b2WheelJoint::GetJointAngularSpeed;
+%rename(__GetJointAngle) b2WheelJoint::GetJointAngle;
 %rename(__GetJointTranslation) b2WheelJoint::GetJointTranslation;
 %rename(__IsLimitEnabled) b2WheelJoint::IsLimitEnabled;
 %rename(__SetMotorSpeed) b2WheelJoint::SetMotorSpeed;

@@ -333,7 +333,8 @@ public:
         linearDamping = property(__GetLinearDamping, __SetLinearDamping)
         bullet = property(__IsBullet, __SetBullet)
         type = property(__GetType, __SetType)
-        active = property(__IsActive, __SetActive)
+        enabled = property(__IsEnabled, __SetEnabled)
+        active = enabled  # backward compatibility
         angle = property(__GetAngle, lambda self, angle: self.__SetTransform(self.position, angle))
         transform = property(__GetTransform, lambda self, value: self.__SetTransform(*value))
         massData = property(__GetMassData, __SetMassData)
@@ -393,11 +394,11 @@ public:
 %rename(__GetLocalCenter) b2Body::GetLocalCenter;
 %rename(__GetType) b2Body::GetType;
 %rename(__GetInertia) b2Body::GetInertia;
-%rename(__IsActive) b2Body::IsActive;
+%rename(__IsEnabled) b2Body::IsEnabled;
 %rename(__SetLinearVelocity) b2Body::SetLinearVelocity;
 %rename(__SetSleepingAllowed) b2Body::SetSleepingAllowed;
 %rename(__SetAngularDamping) b2Body::SetAngularDamping;
-%rename(__SetActive) b2Body::SetActive;
+%rename(__SetEnabled) b2Body::SetEnabled;
 %rename(__SetAngularVelocity) b2Body::SetAngularVelocity;
 %rename(__SetMassData) b2Body::SetMassData;
 %rename(__SetBullet) b2Body::SetBullet;
