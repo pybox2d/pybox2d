@@ -77,12 +77,16 @@ swig_arguments = ['-c++']
 swig_arguments.append('-I' + box2d_library_include)
 # -small makes the Box2D_wrap.cpp file almost unreadable, but faster to compile. If you want
 # to try to understand it for whatever reason, I'd recommend removing that option.
-swig_arguments.append('-small')
+# swig_arguments.append('-small')
 # -O include some optimizations
 swig_arguments.append('-O')
 # Follow all include statements
 swig_arguments.append('-includeall')
+# swig may fail with "unable to find Python.h", for example
 swig_arguments.append('-ignoremissing')
+
+# Enable b2_settings.h remapping of b2Assert -> throw python exception
+swig_arguments.append('-DUSE_EXCEPTIONS')
 # Change cvar->b2Globals
 swig_arguments.append('-globals b2Globals')
 # Sets the output directory
@@ -103,10 +107,11 @@ else:
     extra_args=['-Wno-unused']
 
 extra_args.append('-std=c++11')
+extra_args.append('-DUSE_EXCEPTIONS')
 
 pybox2d_extension = Extension(
     'Box2D._Box2D', box2d_source_files, extra_compile_args=extra_args,
-    include_dirs=[box2d_library_include],
+    include_dirs=[box2d_library_source, box2d_library_include],
     language='c++11')
 
 LONG_DESCRIPTION = \

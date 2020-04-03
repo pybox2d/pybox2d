@@ -183,7 +183,7 @@
     %include "src/swig/Box2D_debugdraw.i"
 
     /* Include everything from the C++ library now */
-    %include "src/Box2D/include/box2d/box2d.h"
+    %include "box2d/box2d.h"
 
     /* And finally tag on the secondary namespace code to the end of Box2D.py */
     %pythoncode %{

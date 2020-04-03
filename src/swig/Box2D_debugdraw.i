@@ -84,7 +84,7 @@ public:
     $input = this->to_screen((b2Vec2&)$1_name);
 }
 
-%include "Box2D/Common/b2Draw.h"
+%include "box2d/b2_draw.h"
 %inline {
     class b2DrawExtended : public b2Draw {
     public:
