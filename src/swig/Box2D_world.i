@@ -334,6 +334,7 @@ public:
                             NOTE: When not using the whole list, this may be preferable to using 'contacts'.""")
         locked  = property(__IsLocked, None)
 
+        DrawDebugData = DebugDraw  # backward-compatibility
     %}
 }
 
