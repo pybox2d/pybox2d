@@ -116,13 +116,13 @@ public:
     PyObject* __get_normal_impulses() {
         PyObject* ret = PyTuple_New($self->count);
         for (int i=0; i < $self->count; i++)
-            PyTuple_SetItem(ret, i, SWIG_From_double((float32)($self->normalImpulses[i])));
+            PyTuple_SetItem(ret, i, SWIG_From_double((float)($self->normalImpulses[i])));
         return ret;
     }
     PyObject* __get_tangent_impulses() {
         PyObject* ret = PyTuple_New($self->count);
         for (int i=0; i < $self->count; i++)
-            PyTuple_SetItem(ret, i, SWIG_From_double((float32)($self->tangentImpulses[i])));
+            PyTuple_SetItem(ret, i, SWIG_From_double((float)($self->tangentImpulses[i])));
         return ret;
     }
 
@@ -149,8 +149,8 @@ public:
         PyObject* point;
         for (int i=0; i < b2_maxManifoldPoints; i++) {
             point = PyTuple_New(2);
-            PyTuple_SetItem(point, 0, SWIG_From_double((float32)$self->points[i].x));
-            PyTuple_SetItem(point, 1, SWIG_From_double((float32)$self->points[i].y));
+            PyTuple_SetItem(point, 0, SWIG_From_double((float)$self->points[i].x));
+            PyTuple_SetItem(point, 1, SWIG_From_double((float)$self->points[i].y));
 
             PyTuple_SetItem(ret, i, point);
         }
@@ -231,7 +231,7 @@ public:
 
 /**** Replace b2TimeOfImpact ****/
 %inline %{
-    b2TOIOutput* _b2TimeOfImpact(b2Shape* shapeA, int idxA, b2Shape* shapeB, int idxB, b2Sweep& sweepA, b2Sweep& sweepB, float32 tMax) {
+    b2TOIOutput* _b2TimeOfImpact(b2Shape* shapeA, int idxA, b2Shape* shapeB, int idxB, b2Sweep& sweepA, b2Sweep& sweepB, float tMax) {
         b2TOIInput input;
         b2TOIOutput* out=new b2TOIOutput;
 

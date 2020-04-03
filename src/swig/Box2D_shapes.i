@@ -88,8 +88,8 @@ public:
         PyObject* vertex;
         for (int i=0; i < $self->m_count; i++) {
             vertex = PyTuple_New(2);
-            PyTuple_SetItem(vertex, 0, SWIG_From_double((float32)$self->m_vertices[i].x));
-            PyTuple_SetItem(vertex, 1, SWIG_From_double((float32)$self->m_vertices[i].y));
+            PyTuple_SetItem(vertex, 0, SWIG_From_double((float)$self->m_vertices[i].x));
+            PyTuple_SetItem(vertex, 1, SWIG_From_double((float)$self->m_vertices[i].y));
             PyList_SetItem(ret, i, vertex);
         }
         return ret;
@@ -100,8 +100,8 @@ public:
         PyObject* vertex;
         for (int i=0; i < $self->m_count; i++) {
             vertex = PyTuple_New(2);
-            PyTuple_SetItem(vertex, 0, SWIG_From_double((float32)$self->m_normals[i].x));
-            PyTuple_SetItem(vertex, 1, SWIG_From_double((float32)$self->m_normals[i].y));
+            PyTuple_SetItem(vertex, 0, SWIG_From_double((float)$self->m_normals[i].x));
+            PyTuple_SetItem(vertex, 1, SWIG_From_double((float)$self->m_normals[i].y));
             PyList_SetItem(ret, i, vertex);
         }
         return ret;
@@ -160,7 +160,7 @@ public:
         if (vnum < b2_maxPolygonVertices)
             $self->m_vertices[vnum].Set(value.x, value.y);
     }
-    void set_vertex(uint16 vnum, float32 x, float32 y) {
+    void set_vertex(uint16 vnum, float x, float y) {
         if (vnum < b2_maxPolygonVertices)
             $self->m_vertices[vnum].Set(x, y);
     }
@@ -197,8 +197,8 @@ public:
 
         for (int i=0; i < $self->m_count; i++) {
             vertex = PyTuple_New(2);
-            PyTuple_SetItem(vertex, 0, SWIG_From_double((float32)$self->m_vertices[i].x));
-            PyTuple_SetItem(vertex, 1, SWIG_From_double((float32)$self->m_vertices[i].y));
+            PyTuple_SetItem(vertex, 0, SWIG_From_double((float)$self->m_vertices[i].x));
+            PyTuple_SetItem(vertex, 1, SWIG_From_double((float)$self->m_vertices[i].y));
             PyList_SetItem(ret, i, vertex);
         }
         return ret;

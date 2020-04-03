@@ -91,7 +91,7 @@ public:
         bool convertVertices;
         b2Vec2 center;
         b2Vec2 offset;
-        float32 zoom;
+        float zoom;
         b2Vec2 screenSize;
         bool flipY, flipX;
 
@@ -120,8 +120,8 @@ public:
                 PyObject* vertex;
                 for (int i=0; i < vertexCount; i++) {
                     vertex = PyTuple_New(2);
-                    PyTuple_SetItem(vertex, 0, SWIG_From_double((float32)verts[i].x));
-                    PyTuple_SetItem(vertex, 1, SWIG_From_double((float32)verts[i].y));
+                    PyTuple_SetItem(vertex, 0, SWIG_From_double((float)verts[i].x));
+                    PyTuple_SetItem(vertex, 1, SWIG_From_double((float)verts[i].y));
 
                     PyTuple_SetItem(ret, i, vertex);
                 }
@@ -145,8 +145,8 @@ public:
 
         virtual void DrawPolygon(const b2Vec2* conv_vertices, int32 vertexCount, const b2Color& color) = 0;
         virtual void DrawSolidPolygon(const b2Vec2* conv_vertices, int32 vertexCount, const b2Color& color) = 0;
-        virtual void DrawCircle(const b2Vec2& conv_p1, float32 radius, const b2Color& color) = 0;
-        virtual void DrawSolidCircle(const b2Vec2& conv_p1, float32 radius, const b2Vec2& axis, const b2Color& color) = 0;
+        virtual void DrawCircle(const b2Vec2& conv_p1, float radius, const b2Color& color) = 0;
+        virtual void DrawSolidCircle(const b2Vec2& conv_p1, float radius, const b2Vec2& axis, const b2Color& color) = 0;
         virtual void DrawSegment(const b2Vec2& conv_p1, const b2Vec2& conv_p2, const b2Color& color) = 0;
         virtual void DrawTransform(const b2Transform& xf) = 0;
 

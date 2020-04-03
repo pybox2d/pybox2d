@@ -52,13 +52,13 @@
             return c;
         }
 
-        float32 area = 0.0f;
+        float area = 0.0f;
 
         // pRef is the reference point for forming triangles.
         // It's location doesn't change the result (except for rounding error).
         b2Vec2 pRef(0.0f, 0.0f);
 
-        const float32 inv3 = 1.0f / 3.0f;
+        const float inv3 = 1.0f / 3.0f;
 
         for (int32 i = 0; i < count; ++i)
         {
@@ -70,9 +70,9 @@
             b2Vec2 e1 = p2 - p1;
             b2Vec2 e2 = p3 - p1;
 
-            float32 D = b2Cross(e1, e2);
+            float D = b2Cross(e1, e2);
 
-            float32 triangleArea = 0.5f * D;
+            float triangleArea = 0.5f * D;
             area += triangleArea;
 
             // Area weighted centroid
@@ -138,7 +138,7 @@
 
                 // Your polygon is non-convex (it has an indentation) or
                 // has colinear edges.
-                float32 s = b2Cross(edge, r);
+                float s = b2Cross(edge, r);
                 if (s <= 0.0f) {
                     PyErr_SetString(PyExc_ValueError, "Your polygon is non-convex (it has an indentation) or has colinear edges.");
                     return false;
@@ -160,18 +160,18 @@
        so re-add them here for backwards compatibility */
     #define RAND_LIMIT      32767      
     // Random number in range [-1,1]
-    float32 b2Random()      
+    float b2Random()      
     {      
-            float32 r = (float32)(rand() & (RAND_LIMIT));      
+            float r = (float)(rand() & (RAND_LIMIT));      
             r /= RAND_LIMIT;      
             r = 2.0f * r - 1.0f;      
             return r;      
     }      
           
     /// Random floating point number in range [lo, hi]      
-    float32 b2Random(float32 lo, float32 hi)      
+    float b2Random(float lo, float hi)      
     {      
-            float32 r = (float32)(rand() & (RAND_LIMIT));      
+            float r = (float)(rand() & (RAND_LIMIT));      
             r /= RAND_LIMIT;      
             r = (hi - lo) * r + lo;      
             return r;      

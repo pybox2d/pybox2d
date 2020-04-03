@@ -221,7 +221,7 @@ public:
 %newobject b2World::__CreateBody;
 %newobject b2World::__CreateJoint;
 %newobject b2Body::__CreateFixture;
-%rename (__CreateFixture) b2Body::CreateFixture(const b2Shape* shape, float32 density);
+%rename (__CreateFixture) b2Body::CreateFixture(const b2Shape* shape, float density);
 
 %ignore b2World::CreateBody;
 %ignore b2World::CreateJoint;

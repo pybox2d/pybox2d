@@ -60,7 +60,7 @@ public:
     bytes = property(__get_bytes, __set_bytes)
     %}
 
-    float32 __getitem__(int i) {
+    float __getitem__(int i) {
         if (i==0) 
             return $self->r;
         else if (i==1) 
@@ -71,7 +71,7 @@ public:
         PyErr_SetString(PyExc_IndexError, "Index must be in (0,1,2)");
         return 0.0f;
     }
-    void __setitem__(int i, float32 value) {
+    void __setitem__(int i, float value) {
         if (i==0) 
             $self->r=value;
         else if (i==1) 
@@ -81,7 +81,7 @@ public:
         else
             PyErr_SetString(PyExc_IndexError, "Index must be in (0,1,2)");
     }
-    b2Color __truediv__(float32 a) {
+    b2Color __truediv__(float a) {
         return b2Color($self->r / a, $self->g / a, $self->b / a);
     }
     b2Color __add__(b2Color& o) {
@@ -90,13 +90,13 @@ public:
     b2Color __sub__(b2Color& o) {
         return b2Color($self->r - o.r, $self->g - o.g, $self->b - o.b);
     }
-    b2Color __div__(float32 a) {
+    b2Color __div__(float a) {
         return b2Color($self->r / a, $self->g / a, $self->b / a);
     }
-    b2Color __rmul__(float32 a) {
+    b2Color __rmul__(float a) {
         return b2Color($self->r * a, $self->g * a, $self->b * a);
     }
-    b2Color __mul__(float32 a) {
+    b2Color __mul__(float a) {
         return b2Color($self->r * a, $self->g * a, $self->b * a);
     }
     void __isub(b2Color& o) {
@@ -263,7 +263,7 @@ public:
 /**** Sweep ****/
 %extend b2Sweep {
 public:
-    b2Transform* GetTransform(float32 alpha) {
+    b2Transform* GetTransform(float alpha) {
         b2Transform* out=new b2Transform;
         $self->GetTransform(out, alpha);
         return out;

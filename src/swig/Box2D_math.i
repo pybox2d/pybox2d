@@ -22,10 +22,10 @@
 %ignore operator  + (const b2Vec2& a, const b2Vec2& b);
 %ignore operator  + (const b2Mat22& A, const b2Mat22& B);
 %ignore operator  - (const b2Vec2& a, const b2Vec2& b);
-%ignore operator  * (float32 s, const b2Vec2& a);
+%ignore operator  * (float s, const b2Vec2& a);
 %ignore operator == (const b2Vec2& a, const b2Vec2& b);
 
-%ignore operator * (float32 s, const b2Vec3& a);
+%ignore operator * (float s, const b2Vec3& a);
 %ignore operator + (const b2Vec3& a, const b2Vec3& b);
 %ignore operator - (const b2Vec3& a, const b2Vec3& b);
 
@@ -34,10 +34,10 @@
 //with Python code, and return self. (see further down in b2Vec2)
 %rename(__add_vector) b2Vec2::operator += (const b2Vec2& v);
 %rename(__sub_vector) b2Vec2::operator -= (const b2Vec2& v);
-%rename(__mul_float ) b2Vec2::operator *= (float32 a);
+%rename(__mul_float ) b2Vec2::operator *= (float a);
 %rename(__add_vector) b2Vec3::operator += (const b2Vec3& v);
 %rename(__sub_vector) b2Vec3::operator -= (const b2Vec3& v);
-%rename(__mul_float ) b2Vec3::operator *= (float32 a);
+%rename(__mul_float ) b2Vec3::operator *= (float a);
 
 /**** Vector classes ****/
 %extend b2Vec2 {
@@ -99,14 +99,14 @@ public:
     skew = property(__Skew, None) 
 
     %}
-    float32 cross(b2Vec2& other) {
+    float cross(b2Vec2& other) {
         return $self->x * other.y - $self->y * other.x;
     }
-    b2Vec2 cross(float32 s) {
+    b2Vec2 cross(float s) {
         return b2Vec2(s * $self->y, -s * $self->x);
     }
 
-    float32 __getitem__(int i) {
+    float __getitem__(int i) {
         if (i==0) 
             return $self->x;
         else if (i==1) 
@@ -114,7 +114,7 @@ public:
         PyErr_SetString(PyExc_IndexError, "Index must be in (0,1)");
         return 0.0f;
     }
-    void __setitem__(int i, float32 value) {
+    void __setitem__(int i, float value) {
         if (i==0) 
             $self->x=value;
         else if (i==1) 
@@ -125,16 +125,16 @@ public:
     bool __equ(b2Vec2& other) {
         return ($self->x == other.x && $self->y == other.y);
     }
-    float32 dot(b2Vec2& other) {
+    float dot(b2Vec2& other) {
         return $self->x * other.x + $self->y * other.y;
     }
-    b2Vec2 __truediv__(float32 a) { //python 3k
+    b2Vec2 __truediv__(float a) { //python 3k
         return b2Vec2($self->x / a, $self->y / a);
     }
-    b2Vec2 __div__(float32 a) {
+    b2Vec2 __div__(float a) {
         return b2Vec2($self->x / a, $self->y / a);
     }
-    b2Vec2 __mul__(float32 a) {
+    b2Vec2 __mul__(float a) {
         return b2Vec2($self->x * a, $self->y * a);
     }
     b2Vec2 __add__(b2Vec2* other) {
@@ -144,13 +144,13 @@ public:
         return b2Vec2($self->x - other->x, $self->y - other->y);
     }
 
-    b2Vec2 __rmul__(float32 a) {
+    b2Vec2 __rmul__(float a) {
         return b2Vec2($self->x * a, $self->y * a);
     }
-    b2Vec2 __rdiv__(float32 a) {
+    b2Vec2 __rdiv__(float a) {
         return b2Vec2($self->x / a, $self->y / a);
     }
-    void __div_float(float32 a) {
+    void __div_float(float a) {
         $self->x /= a;
         $self->y /= a;
     }
@@ -235,7 +235,7 @@ public:
     b2Vec3 cross(b2Vec3& b) {
         return b2Vec3($self->y * b.z - $self->z * b.y, $self->z * b.x - $self->x * b.z, $self->x * b.y - $self->y * b.x);
     }
-    float32 __getitem__(int i) {
+    float __getitem__(int i) {
         if (i==0) 
             return $self->x;
         else if (i==1) 
@@ -245,7 +245,7 @@ public:
         PyErr_SetString(PyExc_IndexError, "Index must be in (0,1,2)");
         return 0.0f;
     }
-    void __setitem__(int i, float32 value) {
+    void __setitem__(int i, float value) {
         if (i==0) 
             $self->x=value;
         else if (i==1) 
@@ -258,19 +258,19 @@ public:
     bool __IsValid() {
         return b2IsValid($self->x) && b2IsValid($self->y) && b2IsValid($self->z);
     }
-    float32 __Length() {
+    float __Length() {
         return b2Sqrt($self->x * $self->x + $self->y * $self->y + $self->z * $self->z);
     }
-    float32 __LengthSquared() {
+    float __LengthSquared() {
         return ($self->x * $self->x + $self->y * $self->y + $self->z * $self->z);
     }
-    b2Vec3 __truediv__(float32 a) {
+    b2Vec3 __truediv__(float a) {
         return b2Vec3($self->x / a, $self->y / a, $self->z / a);
     }
-    b2Vec3 __div__(float32 a) {
+    b2Vec3 __div__(float a) {
         return b2Vec3($self->x / a, $self->y / a, $self->z / a);
     }
-    b2Vec3 __mul__(float32 a) {
+    b2Vec3 __mul__(float a) {
         return b2Vec3($self->x * a, $self->y * a, $self->z * a);
     }
     b2Vec3 __add__(b2Vec3* other) {
@@ -280,13 +280,13 @@ public:
         return b2Vec3($self->x - other->x, $self->y - other->y, $self->z - other->z);
     }
 
-    b2Vec3 __rmul__(float32 a) {
+    b2Vec3 __rmul__(float a) {
         return b2Vec3($self->x * a, $self->y * a, $self->z * a);
     }
-    b2Vec3 __rdiv__(float32 a) {
+    b2Vec3 __rdiv__(float a) {
         return b2Vec3($self->x / a, $self->y / a, self->z / a);
     }
-    void __div_float(float32 a) {
+    void __div_float(float a) {
         $self->x /= a;
         $self->y /= a;
         $self->z /= a;
@@ -301,14 +301,14 @@ public:
     }
     
     // backward-compatibility
-    float32 __GetAngle() const
+    float __GetAngle() const
     {
         return b2Atan2($self->ex.y, $self->ex.x);
     }
 
-    void __SetAngle(float32 angle)
+    void __SetAngle(float angle)
     {
-        float32 c = cosf(angle), s = sinf(angle);
+        float c = cosf(angle), s = sinf(angle);
         $self->ex.x = c; $self->ey.x = -s;
         $self->ex.y = s; $self->ey.y = c;
     }
@@ -434,8 +434,8 @@ public:
     %}
 
     b2Vec2 __mul__(b2Vec2& v) {
-        float32 x = ($self->q.c * v.x - $self->q.s * v.y) + $self->p.x;
-        float32 y = ($self->q.s * v.x + $self->q.c * v.y) + $self->p.y;
+        float x = ($self->q.c * v.x - $self->q.s * v.y) + $self->p.x;
+        float y = ($self->q.s * v.x + $self->q.c * v.y) + $self->p.y;
 
         return b2Vec2(x, y);
     }
