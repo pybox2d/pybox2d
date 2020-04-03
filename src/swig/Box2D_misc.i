@@ -191,10 +191,6 @@ public:
     %}
 }
 
-%{
-#include "box2d/b2_time_of_impact.h"
-%}
-
 /*** Replace b2Distance ***/
 %inline %{
     b2DistanceOutput* _b2Distance(b2Shape* shapeA, int idxA, b2Shape* shapeB, int idxB, b2Transform& transformA, b2Transform& transformB, bool useRadii=true) {

@@ -25,6 +25,8 @@
 %module(directors="1") Box2D
 %{
     #include "box2d/box2d.h"
+    #include "box2d/b2_time_of_impact.h"
+    #include "box2d/b2_collision.h"
 %}
 
 /*note:
@@ -184,6 +186,8 @@
 
     /* Include everything from the C++ library now */
     %include "box2d/box2d.h"
+    %include "box2d/b2_time_of_impact.h"
+    %include "box2d/b2_collision.h"
 
     /* And finally tag on the secondary namespace code to the end of Box2D.py */
     %pythoncode %{

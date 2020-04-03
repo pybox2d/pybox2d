@@ -468,8 +468,6 @@ public:
 %rename(__GetCenter) b2AABB::GetCenter;
 %rename(__GetPerimeter) b2AABB::GetPerimeter;
 
-%include "box2d/b2_collision.h"
-
 %extend b2AABB {
 public:
     %pythoncode %{
