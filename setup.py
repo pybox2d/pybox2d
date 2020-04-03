@@ -22,6 +22,14 @@ __license__='zlib'
 import setuptools
 from setuptools import (setup, Extension)
 
+try:
+    # Attempt to build in parallel and save my time
+    from numpy.distutils.ccompiler import CCompiler_compile
+    import distutils.ccompiler
+    distutils.ccompiler.CCompiler.compile = CCompiler_compile
+except ImportError:
+    pass
+
 # release version number
 box2d_version  = '2.3'
 release_number = 10
