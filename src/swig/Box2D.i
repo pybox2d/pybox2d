@@ -24,7 +24,7 @@
 
 %module(directors="1") Box2D
 %{
-    #include "Box2D/Box2D.h"
+    #include "box2d/box2d.h"
 %}
 
 /*note:
@@ -137,53 +137,53 @@
     /* The order of these is important. */
 
     /* Doxygen-generated docstrings. Can safely be commented out. */
-    %include "Box2D/Box2D_doxygen.i"
+    %include "src/swig/Box2D_doxygen.i"
 
     /* __dir__ replacement. Can safely be commented out. */
-    %include "Box2D/Box2D_dir.i"
+    %include "src/swig/Box2D_dir.i"
 
     /* __init__ replacement allowing kwargs. Can safely be commented out, but tests will fail. */
-    %include "Box2D/Box2D_kwargs.i"
+    %include "src/swig/Box2D_kwargs.i"
 
     /* __repr__ replacement -- pretty printing. Can safely be commented out. */
-    %include "Box2D/Box2D_printing.i"
+    %include "src/swig/Box2D_printing.i"
 
     /* Miscellaneous inline code. */
-    %include "Box2D/Box2D_inline.i"
+    %include "src/swig/Box2D_inline.i"
 
     /* Miscellaneous extended classes: b2Color, b2Version, b2DistanceProxy, b2BroadPhase */
-    %include "Box2D/Box2D_misc.i"
+    %include "src/swig/Box2D_misc.i"
 
     /* Typemaps that allow for tuples to be used in place of vectors, 
         the removal of getAsType, etc. */
-    %include "Box2D/Box2D_typemaps.i"
+    %include "src/swig/Box2D_typemaps.i"
 
     /* Contact-related classes (b2Contact, b2Manifold, etc.) */
-    %include "Box2D/Box2D_contact.i"
+    %include "src/swig/Box2D_contact.i"
     
     /* b2Vec2, b2Vec3, b2Mat22, b2Transform, b2AABB and related extensions. */
-    %include "Box2D/Box2D_math.i"
+    %include "src/swig/Box2D_math.i"
 
     /* Allows for userData to be used. Also modifies CreateBody/Joint. */
-    %include "Box2D/Box2D_userdata.i"
+    %include "src/swig/Box2D_userdata.i"
 
     /* b2World only. */
-    %include "Box2D/Box2D_world.i"
+    %include "src/swig/Box2D_world.i"
 
     /* b2Body, b2Fixture, and related definitions. */
-    %include "Box2D/Box2D_bodyfixture.i"
+    %include "src/swig/Box2D_bodyfixture.i"
 
     /* b2Shape, b2CircleShape, b2PolygonShape. */
-    %include "Box2D/Box2D_shapes.i"
+    %include "src/swig/Box2D_shapes.i"
 
     /* All joints and definitions. Defines b2JointTypes dict. */
-    %include "Box2D/Box2D_joints.i"
+    %include "src/swig/Box2D_joints.i"
 
     /* Extending the debug draw class. */
-    %include "Box2D/Box2D_debugdraw.i"
+    %include "src/swig/Box2D_debugdraw.i"
 
     /* Include everything from the C++ library now */
-    %include "Box2D/Box2D.h"
+    %include "src/Box2D/include/box2d/box2d.h"
 
     /* And finally tag on the secondary namespace code to the end of Box2D.py */
     %pythoncode %{
