@@ -6,3 +6,5 @@ dist/*
 *.so
 Box2D.py
 _Box2D.pyd
+Box2D_wrap.*
+*.egg-info
