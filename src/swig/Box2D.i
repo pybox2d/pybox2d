@@ -193,11 +193,32 @@
     %pythoncode %{
         # Backward-compatibility 
         b2LoopShape = b2ChainShape
+        b2_velocityThreshold = b2Globals.b2_velocityThreshold
+        # NOTE: to change b2_velocityThreshold, you must use
+        # `b2Globals.b2_velocityThreshold' or set_velocity_threshold()
 
-        # Initialize the alternative namespace b2.*, and clean-up the
-        # dir listing of Box2D by removing *_swigregister.
+        def get_velocity_threshold():
+            """
+            A velocity threshold for elastic collisions. Any collision with a
+            relative linear velocity below this threshold will be treated as
+            inelastic.
+            """
+            return b2Globals.b2_velocityThreshold
+
+        def set_velocity_threshold(threshold):
+            """
+            Update the velocity threshold
+
+            A velocity threshold for elastic collisions. Any collision with a
+            relative linear velocity below this threshold will be treated as
+            inelastic.
+            """
+            b2Globals.b2_velocityThreshold = threshold
+
+        # initialize the alternative namespace b2.*, and clean-up the
+        # dir listing of box2d by removing *_swigregister.
         #
-        # To see what this is, try import Box2D; print(dir(Box2D.b2))
+        # to see what this is, try import Box2D; print(dir(Box2D.b2))
         from . import b2
 
         s=None
