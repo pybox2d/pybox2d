@@ -113,7 +113,7 @@ swig_arguments.append('-D_SWIG_KWARGS')
 if sys.platform in ('win32', 'win64'):
     extra_args=['-fpermissive']
 else:
-    extra_args=['-Wno-unused']
+    extra_args=['-Wno-unused', '-stdlib=libc++']
 
 extra_args.append('-std=c++11')
 extra_args.append('-DUSE_EXCEPTIONS')
