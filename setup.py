@@ -112,8 +112,10 @@ swig_arguments.append('-D_SWIG_KWARGS')
 # about the Box2D source.
 if sys.platform in ('win32', 'win64'):
     extra_args=['-fpermissive']
-else:
+elif sys.platform in ('darwin', ):
     extra_args=['-Wno-unused', '-stdlib=libc++']
+else:
+    extra_args=['-Wno-unused']
 
 extra_args.append('-std=c++11')
 extra_args.append('-DUSE_EXCEPTIONS')
