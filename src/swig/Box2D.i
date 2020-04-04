@@ -35,27 +35,22 @@
 */
 
 #ifdef SWIGPYTHON
-    /* To disable assertions->exceptions, comment out the two lines that define
-        USE_EXCEPTIONS. One is here, one is in Common/b2Settings.h  */
-    #define USE_EXCEPTIONS
-    #ifdef USE_EXCEPTIONS
-        /* See Common/b2Settings.h also. It defines b2Assert to instead throw
-        an exception if USE_EXCEPTIONS is defined. */
-        %include "exception.i"
+    /* See Common/b2Settings.h also. It defines b2Assert to instead throw
+    an exception if USE_EXCEPTIONS is defined. */
+    %include "exception.i"
 
-        %exception {
-            try {
-                $action
-            } catch(b2AssertException) { 
-                // error already set, pass it on to python
-                SWIG_fail;
-            } 
-            if (PyErr_Occurred()) {
-                // This is if we set the error inside a function; report it to swig
-                SWIG_fail;
-            }
+    %exception {
+        try {
+            $action
+        } catch(b2AssertException) { 
+            // error already set, pass it on to python
+            SWIG_fail;
+        } 
+        if (PyErr_Occurred()) {
+            // This is if we set the error inside a function; report it to swig
+            SWIG_fail;
         }
-    #endif
+    }
 
     /* Director-exceptions are a result of callbacks that happen as a result to
        the physics step or debug draw, usually. So, catch those errors and report

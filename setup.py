@@ -68,6 +68,7 @@ def write_init():
     f.close()
 
 source_paths = [
+    os.path.join(box2d_library_source),
     os.path.join(box2d_library_source, 'dynamics'),
     os.path.join(box2d_library_source, 'rope'),
     os.path.join(box2d_library_source, 'common'),
@@ -116,6 +117,8 @@ else:
 
 extra_args.append('-std=c++11')
 extra_args.append('-DUSE_EXCEPTIONS')
+# Include debug symbols
+# extra_args.append('-g')
 
 pybox2d_extension = Extension(
     'Box2D._Box2D', box2d_source_files, extra_compile_args=extra_args,
