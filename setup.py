@@ -111,19 +111,26 @@ swig_arguments.append('-D_SWIG_KWARGS')
 # isn't windows, g++ will be used; -Wno-unused then would suppress some annoying warnings
 # about the Box2D source.
 if sys.platform in ('win32', 'win64'):
-    extra_args=['-fpermissive']
+    extra_compile_args=['-fpermissive']
+    extra_link_args = []
 elif sys.platform in ('darwin', ):
-    extra_args=['-Wno-unused', '-stdlib=libc++']
+    extra_compile_args=['-Wno-unused', '-stdlib=libc++']
+    extra_link_args = []
 else:
-    extra_args=['-Wno-unused']
+    extra_compile_args=['-Wno-unused']
+    extra_link_args = ['-lstdc++']
 
-extra_args.append('-std=c++11')
-extra_args.append('-DUSE_EXCEPTIONS')
+# Use C++11 standard libary
+extra_compile_args.append('-std=c++11')
+# Enable b2_settings.h remapping of b2Assert -> throw python exception
+extra_compile_args.append('-DUSE_EXCEPTIONS')
 # Include debug symbols
 # extra_args.append('-g')
 
 pybox2d_extension = Extension(
-    'Box2D._Box2D', box2d_source_files, extra_compile_args=extra_args,
+    'Box2D._Box2D', box2d_source_files,
+    extra_compile_args=extra_compile_args,
+    extra_link_args=extra_link_args,
     include_dirs=[box2d_library_source, box2d_library_include],
     language='c++11')
 
