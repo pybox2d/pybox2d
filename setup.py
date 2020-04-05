@@ -118,6 +118,8 @@ elif sys.platform in ('darwin', ):
     extra_link_args = []
 else:
     extra_compile_args=['-Wno-unused']
+    # Alternative to the link args is compilation like the following:
+    #   CC=g++ python setup.py build
     extra_link_args = ['-lstdc++']
 
 # Use C++11 standard libary
