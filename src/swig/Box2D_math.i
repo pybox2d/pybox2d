@@ -40,14 +40,23 @@
 %rename(__mul_float ) b2Vec3::operator *= (float a);
 
 /**** Vector classes ****/
+
+// Ignore the default constructor and wrap our own below
+%ignore b2Vec2::b2Vec2();
+
 %extend b2Vec2 {
 public:
-    b2Vec2() {
-        return new b2Vec2(0.0f, 0.0f);
-    }
+    b2Vec2(b2Vec2* other=NULL) {
+        // Note that this isn't _actually_ a constructor, it's just swig's
+        // constructor-like implementation.  Other classes in this file
+        // follow the same pattern.
 
-    b2Vec2(b2Vec2& other) {
-        return new b2Vec2(other.x, other.y);
+        // Here we either copy the other vector:
+        if (other)
+            return new b2Vec2(other->x, other->y);
+
+        // Or instantiate a new zero vector:
+        return new b2Vec2(0.0f, 0.0f);
     }
 
     %pythoncode %{
@@ -161,14 +170,15 @@ public:
 %rename (__IsValid) b2Vec2::IsValid;
 %rename (__Skew) b2Vec2::Skew;
 
+// Ignore the default constructor and wrap our own below
+%ignore b2Vec3::b2Vec3();
+
 %extend b2Vec3 {
 public:
-    b2Vec3() {
+    b2Vec3(b2Vec3* other=NULL) {
+        if (other)
+            return new b2Vec3(other->x, other->y, other->z);
         return new b2Vec3(0.0f, 0.0f, 0.0f);
-    }
-
-    b2Vec3(b2Vec3& other) {
-        return new b2Vec3(other.x, other.y, other.z);
     }
 
     b2Vec3(b2Vec2& other) {
@@ -294,9 +304,15 @@ public:
 }
 
 /**** Mat22 ****/
+
+// Ignore the default constructor and wrap our own below
+%ignore b2Mat22::b2Mat22();
+
 %extend b2Mat22 {
 public:
-    b2Mat22() {
+    b2Mat22(b2Mat22 *other=NULL) {
+        if (other)
+            return new b2Mat22(other->ex, other->ey);
         return new b2Mat22(b2Vec2(1.0f, 0.0f), b2Vec2(0.0f, 1.0f));
     }
     
@@ -363,9 +379,17 @@ public:
 }
 
 /**** Mat33 ****/
+
+// Ignore the default constructor and wrap our own below
+%ignore b2Mat33::b2Mat33();
+
 %extend b2Mat33 {
 public:
-    b2Mat33() {
+    b2Mat33(b2Mat33 *other=NULL) {
+        if (other)
+            return new b2Mat33(other->ex,
+                               other->ey,
+                               other->ez);
         return new b2Mat33(b2Vec3(1.0f, 0.0f, 0.0f),
                            b2Vec3(0.0f, 1.0f, 0.0f),
                            b2Vec3(0.0f, 0.0f, 1.0f));
@@ -496,6 +520,3 @@ public:
     }
 
 }
-
-
-
