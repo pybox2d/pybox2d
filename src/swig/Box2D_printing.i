@@ -261,7 +261,12 @@ def _format_repr(obj):
 %define REPREXTEND(classname)
 %extend classname {
 public:
-    long __hash__() { return (long)self; }
+
+#if PY_MAJOR_VERSION == 2
+    long __hash__() { return reinterpret_cast<long>(self); }
+#else
+    Py_ssize_t __hash__() { return reinterpret_cast<Py_ssize_t>(self); }
+#endif
 
     %pythoncode %{
         def __repr__(self):
