@@ -85,6 +85,9 @@ public:
 }
 
 %include "box2d/b2_draw.h"
+
+%fragment("SWIG_From_long");
+
 %inline {
     class b2DrawExtended : public b2Draw {
     public:
