@@ -21,6 +21,9 @@ __license__='zlib'
 
 import setuptools
 from setuptools import (setup, Extension)
+from setuptools.command.build_ext import build_ext
+from setuptools.command.build_py import build_py as _build_py
+
 
 try:
     # Attempt to build in parallel and save my time
@@ -39,8 +42,7 @@ version_str = "%s.%s" % (box2d_version, release_number)
 
 # setup some paths and names
 library_base='library' # the directory where the egg base will be for setuptools develop command
-library_name='Box2D'   # the final name that the library should end up being
-library_path=os.path.join(library_base, library_name)
+library_path=os.path.join(library_base, 'Box2D')
 
 source_dir = 'src'
 swig_source_dir = os.path.join(source_dir, 'swig')
@@ -55,7 +57,7 @@ def write_init():
     license_header = open(os.path.join(source_dir, 'pybox2d_license_header.txt')).read()
 
     init_source = [
-        "from .%s import *" % library_name,
+        "from .Box2D import *",  # the swig-generated source
         "__version__ = '%s'" % version_str,
         "__version_info__ = (%s,%d)" % (box2d_version.replace('.', ','), release_number),
         "__license__ = '%s'" % __license__ ,
@@ -107,32 +109,8 @@ swig_arguments.append('-keyword')
 swig_arguments.append('-w511')
 swig_arguments.append('-D_SWIG_KWARGS')
 
-# depending on the platform, add extra compilation arguments. hopefully if the platform
-# isn't windows, g++ will be used; -Wno-unused then would suppress some annoying warnings
-# about the Box2D source.
-if sys.platform in ('win32', 'win64'):
-    extra_compile_args=['-fpermissive']
-    extra_link_args = []
-elif sys.platform in ('darwin', ):
-    extra_compile_args=['-Wno-unused', '-stdlib=libc++']
-    extra_link_args = []
-else:
-    extra_compile_args=['-Wno-unused']
-    # Alternative to the link args is compilation like the following:
-    #   CC=g++ python setup.py build
-    extra_link_args = ['-lstdc++']
-
-# Use C++11 standard libary
-extra_compile_args.append('-std=c++11')
-# Enable b2_settings.h remapping of b2Assert -> throw python exception
-extra_compile_args.append('-DUSE_EXCEPTIONS')
-# Include debug symbols
-# extra_args.append('-g')
-
 pybox2d_extension = Extension(
     'Box2D._Box2D', box2d_source_files,
-    extra_compile_args=extra_compile_args,
-    extra_link_args=extra_link_args,
     include_dirs=[box2d_library_source, box2d_library_include],
     language='c++11')
 
@@ -159,9 +137,44 @@ CLASSIFIERS = [
     "Topic :: Software Development :: Libraries :: pygame",
     ]
 
+
 write_init()
 
-print(setuptools.find_packages('library'))
+
+class BuildPy(_build_py):
+    def run(self):
+        self.run_command("build_ext")
+        return super(BuildPy, self).run()
+
+
+class BuildExt(build_ext):
+    """A custom build extension for adding compiler-specific options."""
+    compile_opts = {
+        'msvc': ['/DUSE_EXCEPTIONS'],
+        'unix': ['-DUSE_EXCEPTIONS', '-Wno-unused', '-std=c++11'],
+        'darwin': ['-stdlib=libc++', '-mmacosx-version-min=10.7'],
+    }
+    link_opts = {
+        'msvc': [],
+        'unix': [],
+        'darwin': ['-lstdc++'],
+    }
+
+    if sys.platform == 'darwin':
+        # compiler_type will be reported as 'unix' below
+        compile_opts['unix'].extend(compile_opts['darwin'])
+        link_opts['unix'].extend(link_opts['darwin'])
+
+    def build_extensions(self):
+        compiler_type = self.compiler.compiler_type
+        opts = self.compile_opts.get(compiler_type, [])
+        link_opts = self.link_opts.get(compiler_type, [])
+        for ext in self.extensions:
+            ext.extra_compile_args = opts
+            ext.extra_link_args = link_opts
+        build_ext.build_extensions(self)
+
+
 setup_dict = dict(
     name             = "Box2D",
     version          = version_str,
@@ -177,6 +190,8 @@ setup_dict = dict(
     options          = {'build_ext': {'swig_opts': ' '.join(swig_arguments)},
                         'egg_info': {'egg_base': library_base},
                         },
+    cmdclass         = {'build_ext': BuildExt,
+                        'build_py' : BuildPy},
     ext_modules      = [ pybox2d_extension ],
     include_package_data=True,
     )
