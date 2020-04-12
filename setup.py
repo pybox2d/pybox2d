@@ -153,8 +153,8 @@ class BuildExt(build_ext):
     }
     link_opts = {
         'msvc': [],
-        'unix': [],
-        'darwin': ['-lstdc++'],
+        'unix': ['-lstdc++'],
+        'darwin': [],
     }
 
     if sys.platform == 'darwin':
