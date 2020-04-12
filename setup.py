@@ -16,9 +16,6 @@ import os
 import sys
 from glob import glob
 
-__author__='Ken Lauer'
-__license__='zlib'
-
 import setuptools
 from setuptools import (setup, Extension)
 from setuptools.command.build_ext import build_ext
@@ -34,8 +31,8 @@ except ImportError:
     pass
 
 # release version number
-box2d_version  = '2.3'
-release_number = 10
+box2d_version  = '2.4'
+release_number = 0
 
 # create the version string
 version_str = "%s.%s" % (box2d_version, release_number)
@@ -60,7 +57,7 @@ def write_init():
         "from .Box2D import *",  # the swig-generated source
         "__version__ = '%s'" % version_str,
         "__version_info__ = (%s,%d)" % (box2d_version.replace('.', ','), release_number),
-        "__license__ = '%s'" % __license__ ,
+        "__license__ = 'zlib'",
         ]
 
     # and create the __init__ file with the appropriate version string
@@ -179,7 +176,7 @@ setup_dict = dict(
     name             = "Box2D",
     version          = version_str,
     author           = "Ken Lauer",
-    author_email     = "sirkne at gmail dot com",
+    author_email     = "sirkne@gmail.com",
     description      = "Python Box2D",
     license          = "zlib",
     url              = "http://github.com/pybox2d/pybox2d",
