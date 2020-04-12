@@ -43,6 +43,7 @@
 
 // Ignore the default constructor and wrap our own below
 %ignore b2Vec2::b2Vec2();
+%ignore b2Vec2::operator () (int32 i);
 
 %extend b2Vec2 {
 public:
@@ -169,6 +170,7 @@ public:
 %rename (__LengthSquared) b2Vec2::LengthSquared;
 %rename (__IsValid) b2Vec2::IsValid;
 %rename (__Skew) b2Vec2::Skew;
+%ignore operator != (const b2Vec2& a, const b2Vec2& b);
 
 // Ignore the default constructor and wrap our own below
 %ignore b2Vec3::b2Vec3();

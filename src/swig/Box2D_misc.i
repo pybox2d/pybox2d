@@ -291,3 +291,6 @@ public:
 %ignore b2BroadPhase::GetUserData;
 %ignore b2BroadPhase::CreateProxy;
 %ignore b2BroadPhase::DestroyProxy;
+
+// No need for Box2D logging:
+%ignore b2Log;
