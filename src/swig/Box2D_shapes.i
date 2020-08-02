@@ -324,8 +324,6 @@ public:
     @property
     def all_vertices(self):
         """Returns all of the vertices as a list of tuples [ (x0,y0), (x1,y1), (x2,y2) (x3,y3) ]
-        Note that the validity of vertices 0 and 4 depend on whether or not
-        hasVertex0 and hasVertex3 are set.
         """
         return [tuple(self.vertex0), tuple(self.vertex1), tuple(self.vertex2), tuple(self.vertex3)]
 
@@ -340,16 +338,13 @@ public:
     def __set_vertices(self, vertices):
         if len(vertices)==2:
             self.vertex1, self.vertex2=vertices
-            self.hasVertex0=False
-            self.hasVertex3=False
+            self.oneSided = False
         elif len(vertices)==3:
             self.vertex0, self.vertex1, self.vertex2=vertices
-            self.hasVertex0=(vertices[0] != None)
-            self.hasVertex3=False
+            self.oneSided = True
         elif len(vertices)==4:
             self.vertex0, self.vertex1, self.vertex2, self.vertex3=vertices
-            self.hasVertex0=(vertices[0] != None)
-            self.hasVertex3=True
+            self.oneSided = True
         else:
             raise ValueError('Expected from 2 to 4 vertices.')
 
@@ -359,12 +354,9 @@ public:
         Returns the number of valid vertices (as in, it counts whether or not 
         hasVertex0 or hasVertex3 are set)
         """
-        if self.hasVertex0 and self.hasVertex3:
+        if self.oneSided:
             return 4
-        elif self.hasVertex0 or self.hasVertex3:
-            return 3
-        else:
-            return 2
+        return 2
 
     def __iter__(self):
         """
@@ -373,7 +365,7 @@ public:
         for v in self.vertices:
             yield v
 
-    vertices=property(__get_vertices, __set_vertices)
+    vertices = property(__get_vertices, __set_vertices)
     %}
 }
 %rename(radius) b2EdgeShape::m_radius;
@@ -383,6 +375,8 @@ public:
 %rename(vertex3) b2EdgeShape::m_vertex3;
 %rename(hasVertex0) b2EdgeShape::m_hasVertex0;
 %rename(hasVertex3) b2EdgeShape::m_hasVertex3;
-%rename(__Set) b2EdgeShape::Set;
+%rename(oneSided) b2EdgeShape::m_oneSided;
+%rename(__SetOneSided) b2EdgeShape::SetOneSided;
+%rename(__SetTwoSided) b2EdgeShape::SetTwoSided;
 
 
