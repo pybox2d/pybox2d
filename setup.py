@@ -16,26 +16,37 @@ import os
 import sys
 from glob import glob
 
-__author__='Ken Lauer'
-__license__='zlib'
-
 import setuptools
 from setuptools import (setup, Extension)
+from setuptools.command.build_ext import build_ext
+from setuptools.command.build_py import build_py as _build_py
+
+
+try:
+    # Attempt to build in parallel and save my time
+    from numpy.distutils.ccompiler import CCompiler_compile
+    import distutils.ccompiler
+    distutils.ccompiler.CCompiler.compile = CCompiler_compile
+except ImportError:
+    pass
 
 # release version number
-box2d_version  = '2.3'
-release_number = 10
+box2d_version  = '2.4'
+release_number = 0
 
 # create the version string
 version_str = "%s.%s" % (box2d_version, release_number)
 
 # setup some paths and names
 library_base='library' # the directory where the egg base will be for setuptools develop command
-library_name='Box2D'   # the final name that the library should end up being
-library_path=os.path.join(library_base, library_name) # library/Box2D (e.g.)
-source_dir='Box2D' # where all of the C++ and SWIG source resides
-swig_source='Box2D.i' # the main SWIG source file
-use_kwargs=True # whether or not to default creating kwargs for all functions
+library_path=os.path.join(library_base, 'Box2D')
+
+source_dir = 'src'
+swig_source_dir = os.path.join(source_dir, 'swig')
+
+box2d_library_root = os.path.join(source_dir, 'box2d')
+box2d_library_source = os.path.join(box2d_library_root, 'src')
+box2d_library_include = os.path.join(box2d_library_root, 'include')
 
 
 def write_init():
@@ -43,10 +54,10 @@ def write_init():
     license_header = open(os.path.join(source_dir, 'pybox2d_license_header.txt')).read()
 
     init_source = [
-        "from .%s import *" % library_name,
+        "from .Box2D import *",  # the swig-generated source
         "__version__ = '%s'" % version_str,
         "__version_info__ = (%s,%d)" % (box2d_version.replace('.', ','), release_number),
-        "__license__ = '%s'" % __license__ ,
+        "__license__ = 'zlib'",
         ]
 
     # and create the __init__ file with the appropriate version string
@@ -56,44 +67,49 @@ def write_init():
     f.close()
 
 source_paths = [
-    os.path.join(source_dir, 'Dynamics'),
-    os.path.join(source_dir, 'Dynamics', 'Contacts'),
-    os.path.join(source_dir, 'Dynamics', 'Joints'),
-    os.path.join(source_dir, 'Common'),
-    os.path.join(source_dir, 'Collision'),
-    os.path.join(source_dir, 'Collision', 'Shapes'),
-    ]
+    os.path.join(box2d_library_source),
+    os.path.join(box2d_library_source, 'dynamics'),
+    os.path.join(box2d_library_source, 'rope'),
+    os.path.join(box2d_library_source, 'common'),
+    os.path.join(box2d_library_source, 'collision'),
+]
 
-# glob all of the paths and then flatten the list into one
-box2d_source_files = [os.path.join(source_dir, swig_source)] + \
+box2d_source_files = [os.path.join(swig_source_dir, 'Box2D.i')]
+box2d_source_files.extend(
     sum( [glob(os.path.join(path, "*.cpp")) for path in source_paths], [])
+)
 
-# arguments to pass to SWIG. for old versions of SWIG, -O (optimize) might not be present.
-# Defaults:
-# -O optimize, -includeall follow all include statements, -globals changes cvar->b2Globals
-# -Isource_dir adds source dir to include path, -outdir library_path sets the output directory
+# arguments to pass to SWIG
+swig_arguments = ['-c++']
+# add the include path
+swig_arguments.append('-I' + box2d_library_include)
 # -small makes the Box2D_wrap.cpp file almost unreadable, but faster to compile. If you want
 # to try to understand it for whatever reason, I'd recommend removing that option.
-swig_arguments = \
-        '-c++ -I%s -small -O -includeall -ignoremissing -w201 -globals b2Globals -outdir %s' \
-        % (source_dir, library_path)
+# swig_arguments.append('-small')
+# -O include some optimizations
+swig_arguments.append('-O')
+# Follow all include statements
+swig_arguments.append('-includeall')
+# swig may fail with "unable to find Python.h", for example
+swig_arguments.append('-ignoremissing')
 
-if use_kwargs:
-    # turn off the warnings about functions that can't use kwargs (-w511)
-    # and let the wrapper know we're using kwargs (-D_SWIG_KWARGS)
-    swig_arguments += " -keyword -w511 -D_SWIG_KWARGS"
+# Enable b2_settings.h remapping of b2Assert -> throw python exception
+swig_arguments.append('-DUSE_EXCEPTIONS')
+# Change cvar->b2Globals
+swig_arguments.append('-globals b2Globals')
+# Sets the output directory
+swig_arguments.append('-outdir {}'.format(library_path))
 
-# depending on the platform, add extra compilation arguments. hopefully if the platform
-# isn't windows, g++ will be used; -Wno-unused then would suppress some annoying warnings
-# about the Box2D source.
-if sys.platform in ('win32', 'win64'):
-    extra_args=['-I.', '-fpermissive']
-else:
-    extra_args=['-I.', '-Wno-unused']
+# let the wrapper know we're using kwargs
+swig_arguments.append('-keyword')
+# turn off the warnings about functions that can't use kwargs (-w511)
+swig_arguments.append('-w511')
+swig_arguments.append('-D_SWIG_KWARGS')
 
 pybox2d_extension = Extension(
-    'Box2D._Box2D', box2d_source_files, extra_compile_args=extra_args,
-    language='c++')
+    'Box2D._Box2D', box2d_source_files,
+    include_dirs=[box2d_library_source, box2d_library_include],
+    language='c++11')
 
 LONG_DESCRIPTION = \
 """ 2D physics library Box2D %s for usage in Python.
@@ -118,14 +134,49 @@ CLASSIFIERS = [
     "Topic :: Software Development :: Libraries :: pygame",
     ]
 
+
 write_init()
 
-print(setuptools.find_packages('library'))
+
+class BuildPy(_build_py):
+    def run(self):
+        self.run_command("build_ext")
+        return super(BuildPy, self).run()
+
+
+class BuildExt(build_ext):
+    """A custom build extension for adding compiler-specific options."""
+    compile_opts = {
+        'msvc': ['/DUSE_EXCEPTIONS'],
+        'unix': ['-DUSE_EXCEPTIONS', '-Wno-unused', '-std=c++11'],
+        'darwin': ['-stdlib=libc++', '-mmacosx-version-min=10.7'],
+    }
+    link_opts = {
+        'msvc': [],
+        'unix': ['-lstdc++'],
+        'darwin': [],
+    }
+
+    if sys.platform == 'darwin':
+        # compiler_type will be reported as 'unix' below
+        compile_opts['unix'].extend(compile_opts['darwin'])
+        link_opts['unix'].extend(link_opts['darwin'])
+
+    def build_extensions(self):
+        compiler_type = self.compiler.compiler_type
+        opts = self.compile_opts.get(compiler_type, [])
+        link_opts = self.link_opts.get(compiler_type, [])
+        for ext in self.extensions:
+            ext.extra_compile_args = opts
+            ext.extra_link_args = link_opts
+        build_ext.build_extensions(self)
+
+
 setup_dict = dict(
     name             = "Box2D",
     version          = version_str,
     author           = "Ken Lauer",
-    author_email     = "sirkne at gmail dot com",
+    author_email     = "sirkne@gmail.com",
     description      = "Python Box2D",
     license          = "zlib",
     url              = "http://github.com/pybox2d/pybox2d",
@@ -133,9 +184,11 @@ setup_dict = dict(
     package_dir      = {'': 'library'},
     packages         = setuptools.find_packages(library_base),
     test_suite       = 'tests',
-    options          = { 'build_ext': { 'swig_opts' : swig_arguments },
-                         'egg_info' : { 'egg_base' : library_base },
+    options          = {'build_ext': {'swig_opts': ' '.join(swig_arguments)},
+                        'egg_info': {'egg_base': library_base},
                         },
+    cmdclass         = {'build_ext': BuildExt,
+                        'build_py' : BuildPy},
     ext_modules      = [ pybox2d_extension ],
     include_package_data=True,
     )

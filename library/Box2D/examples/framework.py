@@ -198,7 +198,7 @@ class FrameworkBase(b2ContactListener):
         if renderer is not None:
             renderer.StartDraw()
 
-        self.world.DrawDebugData()
+        self.world.DebugDraw()
 
         # If the bomb is frozen, get rid of it.
         if self.bomb and not self.bomb.awake:

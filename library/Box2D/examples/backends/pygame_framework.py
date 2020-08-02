@@ -56,6 +56,11 @@ except Exception as ex:
     GUIEnabled = False
 
 
+def vector_to_int_tuple(v):
+    'Vector -> tuple of integers'
+    return tuple(int(item) for item in v)
+
+
 class PygameDraw(b2DrawExtended):
     """
     This debug draw class accepts callbacks from Box2D (which specifies what to
@@ -129,7 +134,8 @@ class PygameDraw(b2DrawExtended):
             radius = int(radius)
 
         pygame.draw.circle(self.surface, color.bytes,
-                           center, radius, drawwidth)
+                           vector_to_int_tuple(center), int(radius),
+                           int(drawwidth))
 
     def DrawSolidCircle(self, center, radius, axis, color):
         """
@@ -139,8 +145,7 @@ class PygameDraw(b2DrawExtended):
         radius *= self.zoom
         if radius < 1:
             radius = 1
-        else:
-            radius = int(radius)
+        radius = int(radius)
 
         pygame.draw.circle(self.surface, (color / 2).bytes + [127],
                            center, radius, 0)

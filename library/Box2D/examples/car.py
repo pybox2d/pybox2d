@@ -57,19 +57,26 @@ def create_car(world, offset, wheel_radius, wheel_separation, density=1.0,
         )
     )
 
-    wheels, springs = [], []
-    wheel_xs = [-wheel_separation * scale_x /
-                2.0, wheel_separation * scale_x / 2.0]
-    for x, torque, drive in zip(wheel_xs, wheel_torques, wheel_drives):
-        wheel = world.CreateDynamicBody(
+    wheel_xs = [
+        -wheel_separation * scale_x / 2.0,
+        wheel_separation * scale_x / 2.0
+    ]
+
+    wheels = [
+        world.CreateDynamicBody(
             position=(x_offset + x, y_offset - wheel_radius),
             fixtures=b2FixtureDef(
                 shape=b2CircleShape(radius=wheel_radius),
                 density=density,
             )
         )
+        for x in wheel_xs
+    ]
 
-        spring = world.CreateWheelJoint(
+    omega = 2.0 * b2_pi * hz
+
+    joints = [
+        world.CreateWheelJoint(
             bodyA=chassis,
             bodyB=wheel,
             anchor=wheel.position,
@@ -77,17 +84,19 @@ def create_car(world, offset, wheel_radius, wheel_separation, density=1.0,
             motorSpeed=0.0,
             maxMotorTorque=torque,
             enableMotor=drive,
-            frequencyHz=hz,
-            dampingRatio=zeta
+            lowerTranslation=-0.25 * scale_x,
+            upperTranslation=0.25 * scale_x,
+            enableLimit=True,
+            damping=2.0 * wheel.mass * zeta * omega,
+            stiffness=wheel.mass * (omega ** 2),
         )
+        for wheel, torque, drive in zip(wheels, wheel_torques, wheel_drives)
+    ]
 
-        wheels.append(wheel)
-        springs.append(spring)
-
-    return chassis, wheels, springs
+    return chassis, wheels, joints
 
 
-class Car (Framework):
+class Car(Framework):
     name = "Car"
     description = "Keys: left = a, brake = s, right = d, hz down = q, hz up = e"
     hz = 4

@@ -1,0 +1,3 @@
+[submodule "src/box2d"]
+	path = src/box2d
+	url = git://github.com/pybox2d/box2d.git
