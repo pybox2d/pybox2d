@@ -123,8 +123,8 @@ public:
         motorSpeed = property(__GetMotorSpeed, __SetMotorSpeed)
         motorEnabled = property(__IsMotorEnabled, __EnableMotor)
         maxMotorTorque = property(__GetMaxMotorTorque, __SetMaxMotorTorque)
-        springFrequencyHz = property(__GetSpringFrequencyHz , __SetSpringFrequencyHz)
-        springDampingRatio = property(__GetSpringDampingRatio , __SetSpringDampingRatio)
+        stiffness = property(__GetStiffness , __SetStiffness)
+        damping = property(__GetDamping , __SetDamping)
 
         # Read-only
         linear_speed = property(__GetJointLinearSpeed, None)
@@ -144,10 +144,10 @@ public:
 %rename(__GetJointTranslation) b2WheelJoint::GetJointTranslation;
 %rename(__IsLimitEnabled) b2WheelJoint::IsLimitEnabled;
 %rename(__SetMotorSpeed) b2WheelJoint::SetMotorSpeed;
-%rename(__GetSpringFrequencyHz) b2WheelJoint::GetSpringFrequencyHz;
-%rename(__SetSpringFrequencyHz) b2WheelJoint::SetSpringFrequencyHz;
-%rename(__GetSpringDampingRatio) b2WheelJoint::GetSpringDampingRatio;
-%rename(__SetSpringDampingRatio) b2WheelJoint::SetSpringDampingRatio;
+%rename(__GetStiffness) b2WheelJoint::GetStiffness;
+%rename(__SetStiffness) b2WheelJoint::SetStiffness;
+%rename(__GetDamping) b2WheelJoint::GetDamping;
+%rename(__SetDamping) b2WheelJoint::SetDamping;
 %rename(__GetMaxMotorTorque) b2WheelJoint::GetMaxMotorTorque;
 %rename(__SetMaxMotorTorque) b2WheelJoint::SetMaxMotorTorque;
 %rename(__EnableMotor) b2WheelJoint::EnableMotor;
@@ -190,21 +190,26 @@ public:
 %extend b2DistanceJoint {
 public:
     %pythoncode %{
+        def set_frequency_and_damping_ratio(self, frequency, ratio):
+            stiffness, damping = b2LinearStiffness(
+                self.frequency, ratio, self.bodyA, self.bodyB)
+            self.__SetStiffness(stiffness)
+            self.__SetDamping(damping)
 
         # Read-write properties
         length = property(__GetLength, __SetLength)
-        frequency = property(__GetFrequency, __SetFrequency)
-        dampingRatio = property(__GetDampingRatio, __SetDampingRatio)
+        stiffness = property(__GetStiffness, __SetStiffness)
+        damping = property(__GetDamping, __SetDamping)
 
     %}
 }
 
 %rename(__GetLength) b2DistanceJoint::GetLength;
-%rename(__GetFrequency) b2DistanceJoint::GetFrequency;
-%rename(__GetDampingRatio) b2DistanceJoint::GetDampingRatio;
-%rename(__SetDampingRatio) b2DistanceJoint::SetDampingRatio;
 %rename(__SetLength) b2DistanceJoint::SetLength;
-%rename(__SetFrequency) b2DistanceJoint::SetFrequency;
+%rename(__GetDamping) b2DistanceJoint::GetDamping;
+%rename(__SetDamping) b2DistanceJoint::SetDamping;
+%rename(__GetStiffness) b2DistanceJoint::GetStiffness;
+%rename(__SetStiffness) b2DistanceJoint::SetStiffness;
 
 /**** RopeJoint ****/
 %extend b2RopeJoint {
@@ -213,13 +218,27 @@ public:
 
         # Read-only properties
         maxLength = property(__GetMaxLength, None)
-        limitState = property(__GetLimitState, None)
+        length = property(__GetLength, None)
 
+        @property
+        def limitState(self):
+            # Backward-compatibility:
+            #enum b2LimitState
+            #{
+            #	e_inactiveLimit,
+            #	e_atLowerLimit,
+            #	e_atUpperLimit,
+            #	e_equalLimits
+            #};
+            if (self.length - self.maxLength) > 0.0:
+                return 2  # e_atUpperLimit;
+            return 0   # e_inactiveLimit
+            
         # Read-write properties
 
     %}
 }
-%rename(__GetLimitState) b2RopeJoint::GetLimitState;
+%rename(__GetLength) b2RopeJoint::GetLength;
 %rename(__GetMaxLength) b2RopeJoint::GetMaxLength;
 
 /**** PulleyJoint ****/
