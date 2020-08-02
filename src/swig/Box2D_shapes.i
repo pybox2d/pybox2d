@@ -55,7 +55,7 @@ public:
             m=b2MassData()
             self.__ComputeMass(m, density)
             return m
-    
+
     %}
 }
 
@@ -236,7 +236,7 @@ public:
         for v in self.vertices:
             yield v
 
-    def __set_vertices(self, values, loop=True):
+    def _validate_vertices(self, values):
         if not values or not isinstance(values, (list, tuple)) or (len(values) < 2):
             raise ValueError('Expected tuple or list of length >= 2.')
 
@@ -251,7 +251,7 @@ public:
                 pass
             else:
                 raise ValueError('Expected tuple, list, or b2Vec2, got %s' % type(value))
-            
+
         vecs=_b2Vec2Array(len(values))
         for i, value in enumerate(values):
             if isinstance(value, b2Vec2):
@@ -259,20 +259,44 @@ public:
             else:
                 vecs[i]=b2Vec2(value)
 
-        self.__create(vecs, len(values), loop)
-        
-    vertices = property(__get_vertices, __set_vertices)
-    vertices_chain = property(__get_vertices, lambda self, v : self.__set_vertices(v, loop=False))
+        return values
+   
+    def set_vertices_as_loop(self, values):
+        """Interpret the vertices as a loop."""
+        vertices = self._validate_vertices(values)
+        return self._create_loop(vecs, len(values))
+
+    def set_vertices_as_chain(self, values, prev_vertex=None, next_vertex=None):
+        """
+        Interpret the vertices as a chain.
+
+        Can specify ghost vertices ``prev_vertex`` and ``next_vertex``.  These
+        default to ``vertices[0]`` and ``vertices[-1]``, respectively.
+        """
+        vertices = self._validate_vertices(values)
+        if prev_vertex is None:
+            prev_vertex = vertices[0]
+        if next_vertex is None:
+            next_vertex = vertices[-1]
+        return self._create_chain(vecs, len(values), prev_vertex, next_vertex)
+
+    vertices = property(__get_vertices, set_vertices_as_loop)
+    vertices_chain = property(__get_vertices, set_vertices_as_chain)
     vertices_loop = vertices
     %}
 
-    void __create(_b2Vec2Array* v, int c, bool loop) {
-        if (v) {
-            if (loop)
-                $self->CreateLoop(v, c);
-            else
-                $self->CreateChain(v, c);
-        }
+    void _create_chain(_b2Vec2Array* v, int count) {
+        if (!v)
+            return;
+
+        $self->CreateLoop(v, count);
+    }
+
+    void _create_loop(_b2Vec2Array* v, int count, b2Vec2 &prev, b2Vec2 &next) {
+        if (!v)
+            return;
+
+        $self->CreateChain(v, count, prev, next);
     }
 
     const b2Vec2* __get_vertex(uint16 vnum) {
