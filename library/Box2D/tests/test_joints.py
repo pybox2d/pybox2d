@@ -171,16 +171,16 @@ class testJoints (unittest.TestCase):
         dfn=self.b2.b2DistanceJointDef()
         dfn.Initialize(body1, body2, anchorA, anchorB)
         dfn.length = (self.b2.b2Vec2(*anchorA) - self.b2.b2Vec2(*anchorB)).length
-        dfn.frequencyHz = 4.0
-        dfn.dampingRatio = 0.5
+        dfn.stiffness = 4.0
+        dfn.damping = 0.5
         return dfn
 
     def distance_asserts(self, dfn, joint):
         self.check(dfn, joint, "bodyA")
         self.check(dfn, joint, "bodyB")
         self.check(dfn, joint, "length")
-        self.check(dfn, joint, "frequencyHz", "frequency")
-        self.check(dfn, joint, "dampingRatio")
+        self.check(dfn, joint, "stiffness")
+        self.check(dfn, joint, "damping")
 
     def distance_checks(self, dfn, joint):
         joint.GetReactionForce(1.0)
@@ -271,8 +271,8 @@ class testJoints (unittest.TestCase):
         self.check(dfn, joint, "enableMotor", "motorEnabled")
         self.check(dfn, joint, "bodyA")
         self.check(dfn, joint, "bodyB")
-        self.check(dfn, joint, "frequencyHz", "springFrequencyHz")
-        self.check(dfn, joint, "dampingRatio", "springDampingRatio")
+        self.check(dfn, joint, "stiffness")
+        self.check(dfn, joint, "damping")
 
     def wheel_checks(self, dfn, joint):
         # check to make sure they are at least accessible

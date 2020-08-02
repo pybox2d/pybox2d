@@ -135,15 +135,16 @@ public:
 
             return body
 
-        def CreateDistanceJoint(self, **kwargs):
+        def CreateDistanceJoint(self, bodyA=None, bodyB=None, **kwargs):
             """
             Create a single b2DistanceJoint. Only accepts kwargs to the joint definition.
 
             Raises ValueError if either bodyA or bodyB is left unset.
             """
-            if 'bodyA' not in kwargs or 'bodyB' not in kwargs:
+            if bodyA is None or bodyB is None:
                 raise ValueError('Requires at least bodyA and bodyB be set')
-            return self.__CreateJoint(b2DistanceJointDef(**kwargs))
+
+            return self.__CreateJoint(b2DistanceJointDef(bodyA=bodyA, bodyB=bodyB, **kwargs))
 
         def CreateRopeJoint(self, **kwargs):
             """

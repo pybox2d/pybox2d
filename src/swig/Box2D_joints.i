@@ -190,11 +190,11 @@ public:
 %extend b2DistanceJoint {
 public:
     %pythoncode %{
-        def set_frequency_and_damping_ratio(self, frequency, ratio):
+        def set_linear_stiffness(self, frequency, ratio):
             stiffness, damping = b2LinearStiffness(
                 self.frequency, ratio, self.bodyA, self.bodyB)
-            self.__SetStiffness(stiffness)
-            self.__SetDamping(damping)
+            self.stiffness = stiffness
+            self.damping = damping
 
         # Read-write properties
         length = property(__GetLength, __SetLength)
@@ -356,9 +356,27 @@ public:
 }
 
 %feature("shadow") b2DistanceJointDef::b2DistanceJointDef() %{
-    def __init__(self, **kwargs):
+    def __init__(self, bodyA=None, bodyB=None, frequencyHz=None, dampingRatio=None, **kwargs):
         _Box2D.b2DistanceJointDef_swiginit(self,_Box2D.new_b2DistanceJointDef())
-        _init_jointdef_kwargs(self, **kwargs)
+
+        if bodyA is not None or bodyB is not None:
+            # Make sure that bodyA and bodyB are defined before the rest
+            _init_kwargs(self, bodyA=bodyA, bodyB=bodyB)
+
+        if frequencyHz is not None or dampingRatio is not None:
+            # Backward-compatibility: automatically calculate new parameters
+            # stiffness and damping
+            if frequencyHz is None or dampingRatio is None:
+                raise ValueError(
+                    'Must specify both frequencyHz and dampingRatio or neither'
+                )
+
+            stiffness, damping = b2LinearStiffness(frequencyHz, dampingRatio, bodyA, bodyB)
+            kwargs['stiffness'] = stiffness
+            kwargs['damping'] = damping
+
+        _init_kwargs(self, bodyA=bodyA, bodyB=bodyB, **kwargs)
+
         if 'localAnchorA' in kwargs and 'localAnchorB' in kwargs and 'length' not in kwargs:
             self.__update_length()
 %}
@@ -433,12 +451,27 @@ public:
     %}
 }
 %feature("shadow") b2WheelJointDef::b2WheelJointDef() %{
-    def __init__(self, **kwargs):
+    def __init__(self, bodyA=None, bodyB=None, frequencyHz=None, dampingRatio=None, **kwargs):
         _Box2D.b2WheelJointDef_swiginit(self,_Box2D.new_b2WheelJointDef())
-        _init_jointdef_kwargs(self, **kwargs)
+
+        if bodyA is not None or bodyB is not None:
+            # Make sure that bodyA and bodyB are defined before the rest
+            _init_kwargs(self, bodyA=bodyA, bodyB=bodyB)
+
+        if frequencyHz is not None or dampingRatio is not None:
+            # Backward-compatibility: automatically calculate new parameters
+            # stiffness and damping
+            if frequencyHz is None or dampingRatio is None:
+                raise ValueError(
+                    'Must specify both frequencyHz and dampingRatio or neither'
+                )
+
+            stiffness, damping = b2LinearStiffness(frequencyHz, dampingRatio, bodyA, bodyB)
+            kwargs['stiffness'] = stiffness
+            kwargs['damping'] = damping
+
+        _init_kwargs(self, bodyA=bodyA, bodyB=bodyB, **kwargs)
 %}
-
-
 
 /**** PrismaticJointDef ****/
 %extend b2PrismaticJointDef {

@@ -260,6 +260,24 @@ public:
 %newobject _b2Distance;
 %ignore b2Distance;
 
+%apply float *OUTPUT { float &stiffness, float &damping };
+void b2LinearStiffness(float& stiffness, float& damping,
+	float frequencyHertz, float dampingRatio,
+	const b2Body* bodyA, const b2Body* bodyB);
+
+%pythoncode %{
+    def b2LinearStiffness(frequencyHz, dampingRatio, bodyA, bodyB):
+        """
+        Compute the stiffness and damping from frequency, damping ratio, and two bodies.
+        """
+        if bodyA is None or bodyB is None:
+            raise ValueError('Must specify bodyA and bodyB')
+
+        return _b2LinearStiffness(frequencyHz, dampingRatio, bodyA, bodyB)
+%}
+
+%rename (_b2LinearStiffness) b2LinearStiffness;
+
 /**** Sweep ****/
 %extend b2Sweep {
 public:
