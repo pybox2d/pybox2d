@@ -21,6 +21,12 @@ __license__='zlib'
 
 import setuptools
 from setuptools import (setup, Extension)
+from setuptools.command.build_py import build_py
+
+class build_py_after_build_ext(build_py):
+    def run(self):
+        self.run_command('build_ext')
+        return super().run()
 
 # release version number
 box2d_version  = '2.3'
@@ -138,6 +144,7 @@ setup_dict = dict(
                         },
     ext_modules      = [ pybox2d_extension ],
     include_package_data=True,
+    cmdclass={"build_py": build_py_after_build_ext},
     )
 
 # run the actual setup from distutils
