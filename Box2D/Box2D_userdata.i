@@ -43,21 +43,24 @@ public:
     }
 
     void DestroyBody(b2Body* body) {
-        Py_XDECREF((PyObject*)body->GetUserData());
+        void *userData = body->GetUserData();
         self->DestroyBody(body);
+        Py_XDECREF((PyObject*)userData);
     }
 
     void DestroyJoint(b2Joint* joint) {
-        Py_XDECREF((PyObject*)joint->GetUserData());
+        void *userData = joint->GetUserData();
         self->DestroyJoint(joint);
+        Py_XDECREF((PyObject*)userData);
     }
 }
 
 %extend b2Body {
 public:        
     void DestroyFixture(b2Fixture* fixture) {
-        Py_XDECREF((PyObject*)fixture->GetUserData());
+        void *userData = fixture->GetUserData();
         self->DestroyFixture(fixture);
+        Py_XDECREF((PyObject*)userData);
     }
     b2Fixture* __CreateFixture(b2FixtureDef* defn) {
         b2Fixture* ret;
