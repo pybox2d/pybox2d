@@ -119,8 +119,7 @@ class PygameDraw(b2DrawExtended):
 
     def DrawCircle(self, center, radius, color, drawwidth=1):
         """
-        Draw a wireframe circle given the center, radius, axis of orientation
-        and color.
+        Draw a wireframe circle given the center, radius and color.
         """
         radius *= self.zoom
         if radius < 1:
