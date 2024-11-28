@@ -31,24 +31,24 @@ public:
     b2Body* __CreateBody(b2BodyDef* defn) {
         b2Body* ret;
         if (defn)
-            Py_XINCREF((PyObject*)defn->userData);
+            Py_XINCREF((PyObject*)defn->userData.obj);
         ret=self->CreateBody(defn);
         return ret;
     }
     b2Joint* __CreateJoint(b2JointDef* defn) {
         if (defn)
-            Py_XINCREF((PyObject*)defn->userData);
+            Py_XINCREF((PyObject*)defn->userData.obj);
 
         return self->CreateJoint(defn);
     }
 
     void DestroyBody(b2Body* body) {
-        Py_XDECREF((PyObject*)body->GetUserData());
+        Py_XDECREF((PyObject*)body->GetUserData().obj);
         self->DestroyBody(body);
     }
 
     void DestroyJoint(b2Joint* joint) {
-        Py_XDECREF((PyObject*)joint->GetUserData());
+        Py_XDECREF((PyObject*)joint->GetUserData().obj);
         self->DestroyJoint(joint);
     }
 }
@@ -56,30 +56,30 @@ public:
 %extend b2Body {
 public:        
     void DestroyFixture(b2Fixture* fixture) {
-        Py_XDECREF((PyObject*)fixture->GetUserData());
+        Py_XDECREF((PyObject*)fixture->GetUserData().obj);
         self->DestroyFixture(fixture);
     }
     b2Fixture* __CreateFixture(b2FixtureDef* defn) {
         b2Fixture* ret;
         if (defn)
-            Py_XINCREF((PyObject*)defn->userData);
+            Py_XINCREF((PyObject*)defn->userData.obj);
         ret=self->CreateFixture(defn);
         return ret;
     }
     PyObject* __GetUserData() {
-        PyObject* ret=(PyObject*)self->GetUserData();
+        PyObject* ret=(PyObject*)self->GetUserData().obj;
         if (!ret) ret=Py_None;
         Py_XINCREF(ret);
         return ret;
     }
     void __SetUserData(PyObject* data) {
-        Py_XDECREF((PyObject*)self->GetUserData());
+        Py_XDECREF((PyObject*)self->GetUserData().obj);
         Py_INCREF(data);
-        self->SetUserData(data);
+        self->m_userData.obj = data;
     }
     void ClearUserData() {
-        Py_XDECREF((PyObject*)self->GetUserData());
-        self->SetUserData(NULL);
+        Py_XDECREF((PyObject*)self->GetUserData().obj);
+        self->m_userData.obj = NULL;
     }
     %pythoncode %{
         userData = property(__GetUserData, __SetUserData)
@@ -89,19 +89,19 @@ public:
 %extend b2Joint {
 public:        
     PyObject* __GetUserData() {
-        PyObject* ret=(PyObject*)self->GetUserData();
+        PyObject* ret=(PyObject*)self->GetUserData().obj;
         if (!ret) ret=Py_None;
         Py_XINCREF(ret);
         return ret;
     }
     void __SetUserData(PyObject* data) {
-        Py_XDECREF((PyObject*)self->GetUserData());
+        Py_XDECREF((PyObject*)self->GetUserData().obj);
         Py_INCREF(data);
-        self->SetUserData(data);
+        self->m_userData.obj = data;
     }
     void ClearUserData() {
-        Py_XDECREF((PyObject*)self->GetUserData());
-        self->SetUserData(NULL);
+        Py_XDECREF((PyObject*)self->GetUserData().obj);
+        self->m_userData.obj = NULL;
     }
     %pythoncode %{
         userData = property(__GetUserData, __SetUserData)
@@ -111,19 +111,19 @@ public:
 %extend b2Fixture {
 public:        
     PyObject* __GetUserData() {
-        PyObject* ret=(PyObject*)self->GetUserData();
+        PyObject* ret=(PyObject*)self->GetUserData().obj;
         if (!ret) ret=Py_None;
         Py_XINCREF(ret);
         return ret;
     }
     void __SetUserData(PyObject* data) {
-        Py_XDECREF((PyObject*)self->GetUserData());
+        Py_XDECREF((PyObject*)self->GetUserData().obj);
         Py_INCREF(data);
-        self->SetUserData(data);
+        self->m_userData.obj = data;
     }
     void ClearUserData() {
-        Py_XDECREF((PyObject*)self->GetUserData());
-        self->SetUserData(NULL);
+        Py_XDECREF((PyObject*)self->GetUserData().obj);
+        self->m_userData.obj = NULL;
     }
     %pythoncode %{
         userData = property(__GetUserData, __SetUserData)
@@ -135,21 +135,21 @@ public:
 public:
     PyObject* __GetUserData() {
         PyObject* ret;
-        if (!self->userData)
+        if (!self->userData.obj)
             ret=Py_None;
         else
-            ret=(PyObject*)self->userData;
+            ret=(PyObject*)self->userData.obj;
         Py_INCREF((PyObject*)ret);
         return ret;
     }
     void __SetUserData(PyObject* data) {
-        Py_XDECREF((PyObject*)self->userData);
+        Py_XDECREF((PyObject*)self->userData.obj);
         Py_INCREF(data);
-        self->userData=(void*)data;
+        self->userData.obj=data;
     }
     void ClearUserData() {
-        Py_XDECREF((PyObject*)self->userData);
-        self->userData=NULL;
+        Py_XDECREF((PyObject*)self->userData.obj);
+        self->userData.obj=NULL;
     }
     %pythoncode %{
         userData = property(__GetUserData, __SetUserData)
@@ -162,21 +162,21 @@ public:
 public:
     PyObject* __GetUserData() {
         PyObject* ret;
-        if (!self->userData)
+        if (!self->userData.obj)
             ret=Py_None;
         else
-            ret=(PyObject*)self->userData;
+            ret=(PyObject*)self->userData.obj;
         Py_INCREF((PyObject*)ret);
         return ret;
     }
     void __SetUserData(PyObject* data) {
-        Py_XDECREF((PyObject*)self->userData);
+        Py_XDECREF((PyObject*)self->userData.obj);
         Py_INCREF(data);
-        self->userData=(void*)data;
+        self->userData.obj=data;
     }
     void ClearUserData() {
-        Py_XDECREF((PyObject*)self->userData);
-        self->userData=NULL;
+        Py_XDECREF((PyObject*)self->userData.obj);
+        self->userData.obj=NULL;
     }
     %pythoncode %{
         userData = property(__GetUserData, __SetUserData)
@@ -189,21 +189,21 @@ public:
 public:
     PyObject* __GetUserData() {
         PyObject* ret;
-        if (!self->userData)
+        if (!self->userData.obj)
             ret=Py_None;
         else
-            ret=(PyObject*)self->userData;
+            ret=(PyObject*)self->userData.obj;
         Py_INCREF((PyObject*)ret);
         return ret;
     }
     void __SetUserData(PyObject* data) {
-        Py_XDECREF((PyObject*)self->userData);
+        Py_XDECREF((PyObject*)self->userData.obj);
         Py_INCREF(data);
-        self->userData=(void*)data;
+        self->userData.obj=data;
     }
     void ClearUserData() {
-        Py_XDECREF((PyObject*)self->userData);
-        self->userData=NULL;
+        Py_XDECREF((PyObject*)self->userData.obj);
+        self->userData.obj=NULL;
     }
     %pythoncode %{
         userData = property(__GetUserData, __SetUserData)

@@ -211,8 +211,8 @@ public:
 %rename(__GetStiffness) b2DistanceJoint::GetStiffness;
 %rename(__SetStiffness) b2DistanceJoint::SetStiffness;
 
-/**** RopeJoint ****/
-%extend b2RopeJoint {
+/**** Rope ****/
+%extend b2Rope {
 public:
     %pythoncode %{
 
@@ -238,8 +238,8 @@ public:
 
     %}
 }
-%rename(__GetLength) b2RopeJoint::GetLength;
-%rename(__GetMaxLength) b2RopeJoint::GetMaxLength;
+%rename(__GetLength) b2Rope::GetLength;
+%rename(__GetMaxLength) b2Rope::GetMaxLength;
 
 /**** PulleyJoint ****/
 %extend b2PulleyJoint {
@@ -269,21 +269,21 @@ public:
 
         # Read-write properties
         maxForce = property(__GetMaxForce, __SetMaxForce)
-        frequency = property(__GetFrequency, __SetFrequency)
-        dampingRatio = property(__GetDampingRatio, __SetDampingRatio)
+        # frequency = property(__GetFrequency, __SetFrequency)
+        # dampingRatio = property(__GetDampingRatio, __SetDampingRatio)
         target = property(__GetTarget, __SetTarget)
 
     %}
 }
 
 %rename(__GetMaxForce) b2MouseJoint::GetMaxForce;
-%rename(__GetFrequency) b2MouseJoint::GetFrequency;
-%rename(__GetDampingRatio) b2MouseJoint::GetDampingRatio;
+# %rename(__GetFrequency) b2MouseJoint::GetFrequency;
+# %rename(__GetDampingRatio) b2MouseJoint::GetDampingRatio;
 %rename(__GetTarget) b2MouseJoint::GetTarget;
-%rename(__SetDampingRatio) b2MouseJoint::SetDampingRatio;
+# %rename(__SetDampingRatio) b2MouseJoint::SetDampingRatio;
 %rename(__SetTarget) b2MouseJoint::SetTarget;
 %rename(__SetMaxForce) b2MouseJoint::SetMaxForce;
-%rename(__SetFrequency) b2MouseJoint::SetFrequency;
+# %rename(__SetFrequency) b2MouseJoint::SetFrequency;
 
 /**** GearJoint ****/
 %extend b2GearJoint {
@@ -672,7 +672,7 @@ this point. So, figure out a way around this, somehow.
 
 /**** Add some of the functionality that Initialize() offers for joint definitions ****/
 /**** RopeJointDef ****/
-%extend b2RopeJointDef {
+%extend b2RopeDef {
     %pythoncode %{
         def __set_anchorA(self, value):
             if not self.bodyA:
@@ -702,9 +702,9 @@ this point. So, figure out a way around this, somehow.
     %}
 }
 
-%feature("shadow") b2RopeJointDef::b2RopeJointDef() %{
+%feature("shadow") b2RopeDef::b2RopeDef() %{
     def __init__(self, **kwargs):
-        _Box2D.b2RopeJointDef_swiginit(self,_Box2D.new_b2RopeJointDef())
+        _Box2D.b2RopeDef_swiginit(self,_Box2D.new_b2RopeDef())
         _init_jointdef_kwargs(self, **kwargs)
 %}
 

@@ -247,15 +247,15 @@
         _init_kwargs(self, **kwargs)
 }
 
-%feature("shadow") b2RopeJoint::b2RopeJoint() {
+%feature("shadow") b2Rope::b2Rope() {
     def __init__(self, **kwargs):
-        _Box2D.b2RopeJoint_swiginit(self,_Box2D.new_b2RopeJoint())
+        _Box2D.b2Rope_swiginit(self,_Box2D.new_b2Rope())
         _init_kwargs(self, **kwargs)
 }
 
-%feature("shadow") b2RopeJointDef::b2RopeJointDef() {
+%feature("shadow") b2RopeDef::b2RopeDef() {
     def __init__(self, **kwargs):
-        _Box2D.b2RopeJointDef_swiginit(self,_Box2D.new_b2RopeJointDef())
+        _Box2D.b2RopeDef_swiginit(self,_Box2D.new_b2RopeDef())
         _init_kwargs(self, **kwargs)
 }
 

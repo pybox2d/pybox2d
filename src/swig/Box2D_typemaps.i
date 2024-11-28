@@ -293,8 +293,8 @@
             $result=SWIG_NewPointerObj($1, $descriptor(b2WeldJoint*), 0); break;
         case e_frictionJoint:
             $result=SWIG_NewPointerObj($1, $descriptor(b2FrictionJoint*), 0); break;
-        case e_ropeJoint:
-            $result=SWIG_NewPointerObj($1, $descriptor(b2RopeJoint*), 0); break;
+        // case e_ropeJoint:
+        //     $result=SWIG_NewPointerObj($1, $descriptor(b2RopeJoint*), 0); break;
         case e_motorJoint:
             $result=SWIG_NewPointerObj($1, $descriptor(b2MotorJoint*), 0); break;
         case e_unknownJoint:

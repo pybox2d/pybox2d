@@ -18,7 +18,7 @@ class testPolyshape (unittest.TestCase):
         for v1, v2 in zip(v, body.fixtures[0].shape.vertices):
             if v1 != v2:
                 raise Exception('Vertices before and after creation unequal. Before and after zipped=%s'
-                        % zip(v, body.fixtures[0].shape.vertices))
+                        % list(zip(v, body.fixtures[0].shape.vertices)))
 
     def test_vertices(self):
 

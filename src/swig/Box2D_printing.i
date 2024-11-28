@@ -62,8 +62,8 @@ _repr_attrs = {
     'b2MassData': ['I', 'center', 'mass'],
     'b2Mat22': ['angle', 'col1', 'col2', 'inverse'],
     'b2Mat33': ['col1', 'col2', 'col3'],
-    'b2MouseJoint': ['active', 'anchorA', 'anchorB', 'bodyA', 'bodyB', 'frequency', 'maxForce', 'target', 'type', 'userData', 'collideConnected', 'enabled', 'dampingRatio'],
-    'b2MouseJointDef': ['bodyA', 'bodyB', 'collideConnected', 'maxForce', 'target', 'type', 'userData', 'dampingRatio', 'frequencyHz'],
+    'b2MouseJoint': ['active', 'anchorA', 'anchorB', 'bodyA', 'bodyB', 'maxForce', 'target', 'type', 'userData', 'collideConnected', 'enabled'],
+    'b2MouseJointDef': ['bodyA', 'bodyB', 'collideConnected', 'maxForce', 'target', 'type', 'userData', 'damping', 'stiffness'],
     'b2Pair': ['proxyIdA', 'proxyIdB'],
     'b2PolygonShape': ['box', 'centroid', 'childCount', 'normals', 'radius', 'type', 'valid', 'vertexCount', 'vertices'],
     'b2PrismaticJoint': ['active', 'anchorA', 'anchorB', 'bodyA', 'bodyB', 'limitEnabled', 'limits', 'lowerLimit', 'maxMotorForce', 'motorEnabled', 'motorSpeed', 'speed', 'translation', 'type', 'upperLimit', 'userData', 'collideConnected', 'enabled'],
@@ -74,8 +74,8 @@ _repr_attrs = {
     'b2RayCastOutput': ['fraction', 'normal'],
     'b2RevoluteJoint': ['active', 'anchorA', 'anchorB', 'angle', 'bodyA', 'bodyB', 'limitEnabled', 'limits', 'lowerLimit', 'maxMotorTorque', 'motorEnabled', 'motorSpeed', 'speed', 'type', 'upperLimit', 'userData', 'enabled', 'collideConnected'],
     'b2RevoluteJointDef': ['anchor', 'bodyA', 'bodyB', 'collideConnected', 'enableLimit', 'enableMotor', 'localAnchorA', 'localAnchorB', 'lowerAngle', 'maxMotorTorque', 'motorSpeed', 'referenceAngle', 'type', 'upperAngle', 'userData'],
-    'b2RopeJoint': ['active', 'anchorA', 'anchorB', 'bodyA', 'bodyB', 'limitState', 'maxLength', 'type', 'userData'],
-    'b2RopeJointDef': ['anchorA', 'anchorB', 'bodyA', 'bodyB', 'collideConnected', 'localAnchorA', 'localAnchorB', 'maxLength', 'type', 'userData'],
+    'b2Rope': ['active', 'anchorA', 'anchorB', 'bodyA', 'bodyB', 'limitState', 'maxLength', 'type', 'userData'],
+    'b2RopeDef': ['anchorA', 'anchorB', 'bodyA', 'bodyB', 'collideConnected', 'localAnchorA', 'localAnchorB', 'maxLength', 'type', 'userData'],
     'b2Shape': ['childCount', 'radius', 'type'],
     'b2Sweep': ['a', 'a0', 'alpha0', 'c', 'c0', 'localCenter'],
     'b2TOIInput': ['proxyA', 'proxyB', 'sweepA', 'sweepB', 'tMax'],
@@ -255,8 +255,8 @@ REPREXTEND(b2RayCastInput);
 REPREXTEND(b2RayCastOutput);
 REPREXTEND(b2RevoluteJoint);
 REPREXTEND(b2RevoluteJointDef);
-REPREXTEND(b2RopeJoint);
-REPREXTEND(b2RopeJointDef);
+REPREXTEND(b2Rope);
+REPREXTEND(b2RopeDef);
 REPREXTEND(b2Shape);
 REPREXTEND(b2Sweep);
 REPREXTEND(b2TOIInput);

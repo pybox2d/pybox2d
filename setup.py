@@ -1,23 +1,21 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
 """
 Setup script for pybox2d.
 
 For installation instructions, see INSTALL.
 
-Basic install steps:
- python setup.py build
+You may have some luck with just this:
 
-If that worked, then:
- python setup.py install
+$ python -m pip install .
 """
 
 import os
+import pathlib
 import sys
 from glob import glob
 
 import setuptools
-from setuptools import (setup, Extension)
+from setuptools import setup, Extension
 from setuptools.command.build_ext import build_ext
 from setuptools.command.build_py import build_py as _build_py
 
@@ -41,21 +39,38 @@ version_str = "%s.%s" % (box2d_version, release_number)
 library_base='library' # the directory where the egg base will be for setuptools develop command
 library_path=os.path.join(library_base, 'Box2D')
 
-source_dir = 'src'
-swig_source_dir = os.path.join(source_dir, 'swig')
+source_dir = pathlib.Path('src')
+swig_source_dir = source_dir / 'swig'
 
-box2d_library_root = os.path.join(source_dir, 'box2d')
-box2d_library_source = os.path.join(box2d_library_root, 'src')
-box2d_library_include = os.path.join(box2d_library_root, 'include')
+box2d_library_root = source_dir / 'box2d'
+pybox2d_include = source_dir / 'include'
+box2d_library_source = box2d_library_root / 'src'
+box2d_library_include = box2d_library_root / 'include'
 
+
+def check_submodule():
+    readme_path = box2d_library_root / "README.md"
+    if not readme_path.exists():
+        print(f"""
+The box2d source was not found in: {box2d_library_source}
+
+For future reference, it should have been cloned as a submodule:
+$ git clone --recurse-submodules https://github.com/pybox2d/pybox2d
+
+To initialize it now without recloning, run the following:
+$ git submodule update --init
+        """
+        )
+        sys.exit(1)
+        
 
 def write_init():
     # read in the license header
-    license_header = open(os.path.join(source_dir, 'pybox2d_license_header.txt')).read()
+    license_header = open(source_dir / 'pybox2d_license_header.txt').read()
 
     init_source = [
         "from .Box2D import *",  # the swig-generated source
-        "__version__ = '%s'" % version_str,
+        f"__version__ = '{version_str}'",
         "__version_info__ = (%s,%d)" % (box2d_version.replace('.', ','), release_number),
         "__license__ = 'zlib'",
         ]
@@ -66,23 +81,29 @@ def write_init():
     f.write( '\n'.join(init_source) )
     f.close()
 
+
+check_submodule()
+
 source_paths = [
-    os.path.join(box2d_library_source),
-    os.path.join(box2d_library_source, 'dynamics'),
-    os.path.join(box2d_library_source, 'rope'),
-    os.path.join(box2d_library_source, 'common'),
-    os.path.join(box2d_library_source, 'collision'),
+    box2d_library_source,
+    box2d_library_source / 'dynamics',
+    box2d_library_source / 'rope',
+    box2d_library_source / 'common',
+    box2d_library_source / 'collision',
 ]
 
-box2d_source_files = [os.path.join(swig_source_dir, 'Box2D.i')]
+box2d_source_files = [swig_source_dir / 'Box2D.i']
 box2d_source_files.extend(
-    sum( [glob(os.path.join(path, "*.cpp")) for path in source_paths], [])
+    sum( [list(path.glob("*.cpp")) for path in source_paths], [])
 )
 
 # arguments to pass to SWIG
 swig_arguments = ['-c++']
-# add the include path
-swig_arguments.append('-I' + box2d_library_include)
+# add the include paths
+swig_arguments.append(f'-I{box2d_library_include}')
+# enable our user settings and add our pybox2d include path
+swig_arguments.append('-DB2_USER_SETTINGS')
+swig_arguments.append(f'-I{pybox2d_include}')
 # -small makes the Box2D_wrap.cpp file almost unreadable, but faster to compile. If you want
 # to try to understand it for whatever reason, I'd recommend removing that option.
 # swig_arguments.append('-small')
@@ -106,10 +127,15 @@ swig_arguments.append('-keyword')
 swig_arguments.append('-w511')
 swig_arguments.append('-D_SWIG_KWARGS')
 
+if not box2d_source_files:
+    raise RuntimeError("No Box2D source files found; something went wrong.")
+
 pybox2d_extension = Extension(
-    'Box2D._Box2D', box2d_source_files,
-    include_dirs=[box2d_library_source, box2d_library_include],
-    language='c++11')
+    'Box2D._Box2D', 
+    box2d_source_files,
+    include_dirs=[box2d_library_source, box2d_library_include, pybox2d_include],
+    language='c++11',
+)
 
 LONG_DESCRIPTION = \
 """ 2D physics library Box2D %s for usage in Python.
@@ -147,8 +173,8 @@ class BuildPy(_build_py):
 class BuildExt(build_ext):
     """A custom build extension for adding compiler-specific options."""
     compile_opts = {
-        'msvc': ['/DUSE_EXCEPTIONS'],
-        'unix': ['-DUSE_EXCEPTIONS', '-Wno-unused', '-std=c++11'],
+        'msvc': ['/DUSE_EXCEPTIONS', '/DB2_USER_SETTINGS'],
+        'unix': ['-DB2_USER_SETTINGS', '-DUSE_EXCEPTIONS', '-Wno-unused', '-std=c++11'],
         'darwin': ['-stdlib=libc++', '-mmacosx-version-min=10.7'],
     }
     link_opts = {

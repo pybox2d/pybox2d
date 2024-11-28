@@ -1997,31 +1997,31 @@ the normal vector at the point of intersection
 
 
 // File: classb2_rope_joint.xml
-%feature("docstring") b2RopeJoint "A rope joint enforces a maximum distance between two points on two bodies. It has no other effect. Warning: if you attempt to change the maximum length during the simulation you will get some non-physical behavior. A model that would allow you to dynamically modify the length would have some sponginess, so I chose not to implement it that way. See  b2DistanceJointif you want to dynamically control length.";
+%feature("docstring") b2Rope "A rope joint enforces a maximum distance between two points on two bodies. It has no other effect. Warning: if you attempt to change the maximum length during the simulation you will get some non-physical behavior. A model that would allow you to dynamically modify the length would have some sponginess, so I chose not to implement it that way. See  b2DistanceJointif you want to dynamically control length.";
 
-%feature("docstring") b2RopeJoint::GetAnchorA "Get the anchor point on bodyA in world coordinates.";
+%feature("docstring") b2Rope::GetAnchorA "Get the anchor point on bodyA in world coordinates.";
 
-%feature("docstring") b2RopeJoint::GetAnchorB "Get the anchor point on bodyB in world coordinates.";
+%feature("docstring") b2Rope::GetAnchorB "Get the anchor point on bodyB in world coordinates.";
 
-%feature("docstring") b2RopeJoint::GetReactionForce "Get the reaction force on body2 at the joint anchor in Newtons.";
+%feature("docstring") b2Rope::GetReactionForce "Get the reaction force on body2 at the joint anchor in Newtons.";
 
-%feature("docstring") b2RopeJoint::GetReactionTorque "Get the reaction torque on body2 in N*m.";
+%feature("docstring") b2Rope::GetReactionTorque "Get the reaction torque on body2 in N*m.";
 
-%feature("docstring") b2RopeJoint::GetMaxLength "Get the maximum length of the rope.";
+%feature("docstring") b2Rope::GetMaxLength "Get the maximum length of the rope.";
 
-%feature("docstring") b2RopeJoint::GetAnchorA "Get the anchor point on bodyA in world coordinates.";
+%feature("docstring") b2Rope::GetAnchorA "Get the anchor point on bodyA in world coordinates.";
 
-%feature("docstring") b2RopeJoint::GetAnchorB "Get the anchor point on bodyB in world coordinates.";
+%feature("docstring") b2Rope::GetAnchorB "Get the anchor point on bodyB in world coordinates.";
 
-%feature("docstring") b2RopeJoint::GetReactionForce "Get the reaction force on body2 at the joint anchor in Newtons.";
+%feature("docstring") b2Rope::GetReactionForce "Get the reaction force on body2 at the joint anchor in Newtons.";
 
-%feature("docstring") b2RopeJoint::GetReactionTorque "Get the reaction torque on body2 in N*m.";
+%feature("docstring") b2Rope::GetReactionTorque "Get the reaction torque on body2 in N*m.";
 
-%feature("docstring") b2RopeJoint::GetMaxLength "Get the maximum length of the rope.";
+%feature("docstring") b2Rope::GetMaxLength "Get the maximum length of the rope.";
 
 
 // File: structb2_rope_joint_def.xml
-%feature("docstring") b2RopeJointDef "Rope joint definition. This requires two body anchor points and a maximum lengths. Note: by default the connected objects will not collide. see collideConnected in  b2JointDef.";
+%feature("docstring") b2RopeDef "Rope joint definition. This requires two body anchor points and a maximum lengths. Note: by default the connected objects will not collide. see collideConnected in  b2JointDef.";
 
 
 // File: classb2_shape.xml
