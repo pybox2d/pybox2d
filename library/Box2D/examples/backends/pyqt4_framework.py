@@ -37,9 +37,10 @@ import string
 import sys
 import re
 
-from PyQt4 import (QtGui, QtCore)
-from PyQt4.QtGui import (QTableWidgetItem, QColor)
-from PyQt4.QtCore import Qt
+from qtpy import QtGui, QtCore, QtWidgets
+from qtpy.QtWidgets import QTableWidgetItem
+from qtpy.QtGui import QColor
+from qtpy.QtCore import Qt
 
 from Box2D import (b2AABB, b2CircleShape, b2Color, b2DistanceJoint,
                    b2EdgeShape, b2LoopShape, b2MouseJoint, b2Mul,
@@ -97,7 +98,7 @@ class Pyqt4Draw(object):
         pass
 
     def DrawStringAt(self, x, y, str, color=None):
-        item = QtGui.QGraphicsSimpleTextItem(str)
+        item = QtWidgets.QGraphicsSimpleTextItem(str)
         if color is None:
             color = (255, 255, 255, 255)
 
@@ -105,7 +106,7 @@ class Pyqt4Draw(object):
         item.setFont(self.status_font)
         item.setBrush(brush)
         item.setPos(self.view.mapToScene(x, y))
-        item.scale(1. / self.test._viewZoom, -1. / self.test._viewZoom)
+        item.setScale(1. / self.test._viewZoom)
         self.temp_items.append(item)
 
         self.scene.addItem(item)
@@ -411,10 +412,10 @@ class Pyqt4Draw(object):
         return tuple(point)
 
 
-class GraphicsScene (QtGui.QGraphicsScene):
+class GraphicsScene (QtWidgets.QGraphicsScene):
 
     def __init__(self, test, parent=None):
-        super(GraphicsScene, self).__init__(parent)
+        super().__init__(parent)
         self.test = test
 
     def keyPressEvent(self, event):
@@ -444,12 +445,12 @@ class GraphicsScene (QtGui.QGraphicsScene):
     def mouseMoveEvent(self, event):
         pos = event.scenePos().x(), event.scenePos().y()
         self.test.MouseMove(self.test.ConvertScreenToWorld(*pos))
-        QtGui.QGraphicsScene.mouseMoveEvent(self, event)
+        return super().mouseMoveEvent(event)
 
 
-class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
+class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def __init__(self, test, parent=None):
-        QtGui.QMainWindow.__init__(self)
+        super().__init__()
         self.setupUi(self)
         self.scene = GraphicsScene(test)
         self.test = test
@@ -474,12 +475,12 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         self.settings_widgets = {}
 
         gb = self.gbOptions  # the options groupbox
-        layout = QtGui.QVBoxLayout()
+        layout = QtWidgets.QVBoxLayout()
         gb.setLayout(layout)
 
         for text, variable in settings.checkboxes:
             if variable:
-                widget = QtGui.QCheckBox('&' + text)
+                widget = QtWidgets.QCheckBox('&' + text)
 
                 def state_changed(value, variable=variable, widget=widget):
                     setattr(self.test.settings, variable, widget.isChecked())
@@ -488,17 +489,17 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
                 widget.setChecked(getattr(self.test.settings, variable))
                 self.settings_widgets[variable] = widget
             else:
-                widget = QtGui.QLabel(text)
+                widget = QtWidgets.QLabel(text)
                 widget.setAlignment(Qt.AlignHCenter)
 
             layout.addWidget(widget)
 
         for slider in settings.sliders:
-            label = QtGui.QLabel(slider['text'])
+            label = QtWidgets.QLabel(slider['text'])
             label.setAlignment(Qt.AlignHCenter)
             layout.addWidget(label)
 
-            widget = QtGui.QScrollBar(Qt.Horizontal)
+            widget = QtWidgets.QScrollBar(Qt.Horizontal)
             widget.setRange(slider['min'], slider['max'])
             var = slider['name']
 
@@ -519,8 +520,10 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
             step_settings = self.test.settings
 
         for var, widget in list(self.settings_widgets.items()):
-            if isinstance(widget, QtGui.QCheckBox):
+            if isinstance(widget, QtWidgets.QCheckBox):
                 widget.setChecked(getattr(step_settings, var))
+            elif isinstance(widget, QtWidgets.QScrollBar):
+                widget.setValue(int(getattr(step_settings, var)))
             else:
                 widget.setValue(getattr(step_settings, var))
 
@@ -580,8 +583,8 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         settings.setValue("fontSize", app.font().pointSize())
 
     def closeEvent(self, event):
-        QtGui.QMainWindow.closeEvent(self, event)
         self.saveLayout()
+        return super().closeEvent(event)
 
 app = None
 
@@ -626,7 +629,7 @@ class Pyqt4Framework(FrameworkBase):
         self.setup_keys()
 
     def __init__(self):
-        super(Pyqt4Framework, self).__init__()
+        super().__init__()
 
         self.__reset()
 
@@ -634,7 +637,7 @@ class Pyqt4Framework(FrameworkBase):
             return
 
         global app
-        app = QtGui.QApplication(sys.argv)
+        app = QtWidgets.QApplication(sys.argv)
 
         print('Initializing Pyqt4 framework...')
 
@@ -758,7 +761,7 @@ class Pyqt4Framework(FrameworkBase):
                 twProperties.item(i, 0).setFlags(Qt.ItemIsEnabled)
 
                 twProperties.setItem(
-                    i, 1, QtGui.QTableWidgetItem(prop))      # prop name
+                    i, 1, QtWidgets.QTableWidgetItem(prop))      # prop name
                 twProperties.item(i, 1).setFlags(Qt.ItemIsEnabled)
 
                 # and finally, the property values
@@ -767,7 +770,7 @@ class Pyqt4Framework(FrameworkBase):
                     def state_changed(value, prop=prop):
                         self.property_changed(prop, value == Qt.Checked)
 
-                    widget = QtGui.QCheckBox('')
+                    widget = QtWidgets.QCheckBox('')
                     widget.stateChanged.connect(state_changed)
                     if value:
                         widget.setCheckState(Qt.Checked)
@@ -777,12 +780,12 @@ class Pyqt4Framework(FrameworkBase):
                     def value_changed(value, prop=prop):
                         self.property_changed(prop, value)
 
-                    widget = QtGui.QDoubleSpinBox()
+                    widget = QtWidgets.QDoubleSpinBox()
                     widget.valueChanged.connect(value_changed)
                     widget.setValue(value)
                 # lists turn into -- lists
                 elif isinstance(value, list):
-                    widget = QtGui.QListWidget()
+                    widget = QtWidgets.QListWidget()
                     for entry in value:
                         widget.addItem(str(entry))
                     if value:
@@ -806,7 +809,7 @@ class Pyqt4Framework(FrameworkBase):
                         widget.setEnabled(editable)
                 else:
                     # Just using the table widget, set the cell text
-                    cell = QtGui.QTableWidgetItem(str(value))
+                    cell = QtWidgets.QTableWidgetItem(str(value))
                     if editable:
                         cell.setFlags(Qt.ItemIsEditable | Qt.ItemIsEnabled)
                     else:

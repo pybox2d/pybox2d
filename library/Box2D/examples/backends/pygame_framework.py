@@ -227,7 +227,7 @@ class PygameFramework(FrameworkBase):
         self.setup_keys()
 
     def __init__(self):
-        super(PygameFramework, self).__init__()
+        super().__init__()
 
         self.__reset()
         if fwSettings.onlyInit:  # testing mode doesn't initialize pygame
@@ -427,7 +427,7 @@ class PygameFramework(FrameworkBase):
             # Update the settings based on the GUI
             self.gui_table.updateSettings(self.settings)
 
-        super(PygameFramework, self).Step(settings)
+        super().Step(settings)
 
         if GUIEnabled:
             # In case during the step the settings changed, update the GUI reflecting

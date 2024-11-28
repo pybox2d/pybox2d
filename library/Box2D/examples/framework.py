@@ -29,7 +29,7 @@ from Box2D import (b2Fixture, b2FixtureDef, b2Joint)
 from Box2D import (b2GetPointStates, b2QueryCallback, b2Random)
 from Box2D import (b2_addState, b2_dynamicBody, b2_epsilon, b2_persistState)
 
-from Box2D.examples.settings import fwSettings
+from .settings import fwSettings
 
 
 class fwDestructionListener(b2DestructionListener):
