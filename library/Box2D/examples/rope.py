@@ -19,7 +19,7 @@
 # 3. This notice may not be removed or altered from any source distribution.
 
 from Box2D.examples.framework import (Framework, Keys, main)
-from Box2D import (b2EdgeShape, b2FixtureDef, b2PolygonShape, b2RopeJointDef)
+from Box2D import (b2EdgeShape, b2FixtureDef, b2PolygonShape, b2RopeDef)
 
 # From the original C++ testbed example:
 # "This test shows how a rope joint can be used to stabilize a chain of bodies
@@ -82,7 +82,7 @@ class Rope (Framework):
             prevBody = body
 
         extraLength = 0.01
-        self.rd = rd = b2RopeJointDef(
+        self.rd = rd = b2RopeDef(
             bodyA=ground,
             bodyB=body,
             maxLength=N - 1.0 + extraLength,

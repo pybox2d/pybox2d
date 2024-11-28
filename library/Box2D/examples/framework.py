@@ -26,7 +26,7 @@ from time import time
 from Box2D import (b2World, b2AABB, b2CircleShape, b2Color, b2Vec2)
 from Box2D import (b2ContactListener, b2DestructionListener, b2DrawExtended)
 from Box2D import (b2Fixture, b2FixtureDef, b2Joint)
-from Box2D import (b2GetPointStates, b2QueryCallback, b2Random)
+from Box2D import (b2GetPointStates, b2QueryCallback, b2Random, b2LinearStiffness)
 from Box2D import (b2_addState, b2_dynamicBody, b2_epsilon, b2_persistState)
 
 from .settings import fwSettings
@@ -316,11 +316,17 @@ class FrameworkBase(b2ContactListener):
         if query.fixture:
             body = query.fixture.body
             # A body was selected, create the mouse joint
+            stiffness, damping = b2LinearStiffness(
+                frequencyHz=5.0, dampingRatio=0.7, bodyA=self.groundbody, bodyB=body,
+            )
             self.mouseJoint = self.world.CreateMouseJoint(
                 bodyA=self.groundbody,
                 bodyB=body,
                 target=p,
-                maxForce=1000.0 * body.mass)
+                maxForce=1000.0 * body.mass,
+                stiffness=stiffness,
+                damping=damping,
+            )
             body.awake = True
 
     def MouseUp(self, p):
