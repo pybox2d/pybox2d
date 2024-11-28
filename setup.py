@@ -12,7 +12,6 @@ $ python -m pip install .
 import os
 import pathlib
 import sys
-from glob import glob
 
 import setuptools
 from setuptools import setup, Extension
@@ -27,6 +26,7 @@ try:
     distutils.ccompiler.CCompiler.compile = CCompiler_compile
 except ImportError:
     pass
+
 
 # release version number
 box2d_version  = '2.4'
@@ -47,7 +47,6 @@ pybox2d_include = source_dir / 'include'
 box2d_library_source = box2d_library_root / 'src'
 box2d_library_include = box2d_library_root / 'include'
 
-
 def check_submodule():
     readme_path = box2d_library_root / "README.md"
     if not readme_path.exists():
@@ -63,6 +62,14 @@ $ git submodule update --init
         )
         sys.exit(1)
         
+
+def clean_swig():
+    for filename in ("Box2D_wrap.cpp", "Box2D_wrap.h"):
+        path = swig_source_dir / filename
+        try:
+            path.unlink()
+        except FileNotFoundError:
+            pass
 
 def write_init():
     # read in the license header
@@ -83,6 +90,12 @@ def write_init():
 
 
 check_submodule()
+
+CLEAN = not os.environ.get("PYBOX2D_NO_CLEAN", "0").lower() in {"1", "y"}
+
+if CLEAN:
+    clean_swig()
+
 
 source_paths = [
     box2d_library_source,

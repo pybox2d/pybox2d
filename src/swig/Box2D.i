@@ -27,6 +27,7 @@
     #include "box2d/box2d.h"
     #include "box2d/b2_time_of_impact.h"
     #include "box2d/b2_collision.h"
+    #include "box2d/b2_rope.h"
 %}
 
 /*note:
@@ -183,6 +184,7 @@
     %include "box2d/box2d.h"
     %include "box2d/b2_time_of_impact.h"
     %include "box2d/b2_collision.h"
+    %include "box2d/b2_rope.h"
 
     /* And finally tag on the secondary namespace code to the end of Box2D.py */
     %pythoncode %{

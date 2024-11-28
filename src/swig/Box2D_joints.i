@@ -212,34 +212,44 @@ public:
 %rename(__SetStiffness) b2DistanceJoint::SetStiffness;
 
 /**** Rope ****/
+%extend b2RopeTuning {
+public:
+    %pythoncode %{
+    def __init__(self, **kwargs):
+        _Box2D.b2RopeTuning_swiginit(self,_Box2D.new_b2RopeTuning())
+        for attr, value in kwargs.items():
+            setattr(self, attr, value)
+    %}
+}
+
 %extend b2Rope {
 public:
     %pythoncode %{
 
         # Read-only properties
-        maxLength = property(__GetMaxLength, None)
-        length = property(__GetLength, None)
+        # maxLength = property(__GetMaxLength, None)
+        # length = property(__GetLength, None)
 
-        @property
-        def limitState(self):
-            # Backward-compatibility:
-            #enum b2LimitState
-            #{
-            #	e_inactiveLimit,
-            #	e_atLowerLimit,
-            #	e_atUpperLimit,
-            #	e_equalLimits
-            #};
-            if (self.length - self.maxLength) > 0.0:
-                return 2  # e_atUpperLimit;
-            return 0   # e_inactiveLimit
-            
+        # @property
+        # def limitState(self):
+        #     # Backward-compatibility:
+        #     #enum b2LimitState
+        #     #{
+        #     #	e_inactiveLimit,
+        #     #	e_atLowerLimit,
+        #     #	e_atUpperLimit,
+        #     #	e_equalLimits
+        #     #};
+        #     if (self.length - self.maxLength) > 0.0:
+        #         return 2  # e_atUpperLimit;
+        #     return 0   # e_inactiveLimit
+        #     
         # Read-write properties
 
     %}
 }
-%rename(__GetLength) b2Rope::GetLength;
-%rename(__GetMaxLength) b2Rope::GetMaxLength;
+# %rename(__GetLength) b2Rope::GetLength;
+# %rename(__GetMaxLength) b2Rope::GetMaxLength;
 
 /**** PulleyJoint ****/
 %extend b2PulleyJoint {
@@ -673,40 +683,118 @@ this point. So, figure out a way around this, somehow.
 /**** Add some of the functionality that Initialize() offers for joint definitions ****/
 /**** RopeJointDef ****/
 %extend b2RopeDef {
-    %pythoncode %{
-        def __set_anchorA(self, value):
-            if not self.bodyA:
-                raise ValueError('bodyA not set.')
-            self.localAnchorA=self.bodyA.GetLocalPoint(value)
-        def __set_anchorB(self, value):
-            if not self.bodyB:
-                raise ValueError('bodyB not set.')
-            self.localAnchorB=self.bodyB.GetLocalPoint(value)
-        def __get_anchorA(self):
-            if not self.bodyA:
-                raise ValueError('bodyA not set.')
-            return self.bodyA.GetWorldPoint(self.localAnchorA)
-        def __get_anchorB(self):
-            if not self.bodyB:
-                raise ValueError('bodyB not set.')
-            return self.bodyB.GetWorldPoint(self.localAnchorB)
+public:
+    PyObject* __get_masses() {
+        PyObject* ret=PyList_New($self->count);
+        PyObject* mass;
+        for (int i=0; i < $self->count; i++) {
+            PyList_SetItem(ret, i, SWIG_From_double($self->masses[i]));
+        }
+        return ret;
+    }
+    PyObject* __get_vertices() {
+        PyObject* ret=PyList_New($self->count);
+        PyObject* vertex;
+        for (int i=0; i < $self->count; i++) {
+            vertex = PyTuple_New(2);
+            PyTuple_SetItem(vertex, 0, SWIG_From_double((float)$self->vertices[i].x));
+            PyTuple_SetItem(vertex, 1, SWIG_From_double((float)$self->vertices[i].y));
+            PyList_SetItem(ret, i, vertex);
+        }
+        return ret;
+    }
 
-        anchorA = property(__get_anchorA, __set_anchorA, 
-                doc="""Body A's anchor in world coordinates.
-                    Getting the property depends on both bodyA and localAnchorA.
-                    Setting the property requires that bodyA be set.""")
-        anchorB = property(__get_anchorB, __set_anchorB, 
-                doc="""Body B's anchor in world coordinates.
-                    Getting the property depends on both bodyB and localAnchorB.
-                    Setting the property requires that bodyB be set.""")
+    void __clear_vertices() {
+        if ($self->masses) {
+            delete [] $self->masses;
+            $self->masses = NULL;
+        }
+        if ($self->vertices) {
+            delete [] $self->vertices;
+            $self->vertices = NULL;
+        }
+        $self->count = 0;
+    }
+    void __set_masses_internal(PyObject *masses) {
+        PyObject *mass;
+        if ($self->masses) {
+            delete [] $self->masses;
+            $self->masses = NULL;
+        }
+        $self->masses = new float [$self->count];
+        for (int i=0; i < $self->count; i++) {
+            pybox2d_float_from_sequence(masses, i, &$self->masses[i], "Converting from sequence to float");
+        }
+        return;
+
+        fail:
+            delete [] $self->masses;
+            if ($self->vertices)
+                delete [] $self->vertices;
+                
+            $self->vertices = NULL;
+            $self->masses = NULL;
+            $self->count = 0;
+    }
+
+    void __set_vertices_internal(PyObject *vertices) {
+        PyObject *vertex;
+        PyObject *value;
+        if ($self->vertices) {
+            delete [] $self->vertices;
+            $self->vertices = NULL;
+        }
+        $self->count = PyList_Size(vertices);
+        $self->vertices = new b2Vec2 [$self->count];
+        for (int i=0; i < $self->count; i++) {
+            vertex = PyList_GetItem(vertices, i);
+            pybox2d_float_from_sequence(vertex, 0, &$self->vertices[i].x, "Converting from sequence to vector");
+            pybox2d_float_from_sequence(vertex, 1, &$self->vertices[i].y, "Converting from sequence to vector");
+        }
+        return;
+
+        fail:
+            delete [] $self->vertices;
+            if ($self->masses)
+                delete [] $self->masses;
+                
+            $self->vertices = NULL;
+            $self->masses = NULL;
+            $self->count = 0;
+    }
+
+    %pythoncode %{
+
+        def __set_vertices(self, values):
+            if not values:
+                self.__clear_vertices()
+            else:
+                values = list(list(v) for v in values)
+
+                if len(values) < 2:
+                    raise ValueError('Expected tuple or list of length >= 2')
+
+                for i, value in enumerate(values):
+                    if len(value) != 2:
+                        raise ValueError('Expected tuple or list of length 2, got length %d' % len(value))
+
+                self.__set_vertices_internal(values)
+
+        def __set_masses(self, values):
+            if not values:
+                self.__clear_vertices()
+            else:
+                values = list(float(v) for v in values)
+
+                if len(values) != self.count:
+                    raise ValueError(f'Expected tuple or list of length = {self.count}')
+
+                self.__set_masses_internal(values)
+
+        vertices = property(__get_vertices, __set_vertices, doc="All of the vertices as a list of tuples [ (x1,y1), (x2,y2) ... (xN,yN) ]")
+        masses = property(__get_masses, __set_masses, doc="Per-vertex masses")
     %}
 }
-
-%feature("shadow") b2RopeDef::b2RopeDef() %{
-    def __init__(self, **kwargs):
-        _Box2D.b2RopeDef_swiginit(self,_Box2D.new_b2RopeDef())
-        _init_jointdef_kwargs(self, **kwargs)
-%}
 
 /**** Add some of the functionality that Initialize() offers for joint definitions ****/
 /**** MotorJointDef ****/

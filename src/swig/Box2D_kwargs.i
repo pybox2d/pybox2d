@@ -253,6 +253,13 @@
         _init_kwargs(self, **kwargs)
 }
 
+%feature("shadow") b2RopeTuning::b2RopeTuning() {
+    def __init__(self, **kwargs):
+        _Box2D.b2RopeTuning_swiginit(self,_Box2D.new_b2RopeTuning())
+        _init_kwargs(self, **kwargs)
+}
+
+
 %feature("shadow") b2RopeDef::b2RopeDef() {
     def __init__(self, **kwargs):
         _Box2D.b2RopeDef_swiginit(self,_Box2D.new_b2RopeDef())
