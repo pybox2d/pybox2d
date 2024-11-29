@@ -61,6 +61,14 @@ class testWorld (unittest.TestCase):
             world.Step(timeStep, vel_iters, pos_iters)
             world.ClearForces()
 
+
+def test_settings_smoke():
+    orig_value = Box2D.get_velocity_threshold()
+    Box2D.set_velocity_threshold(10.0)
+    assert Box2D.get_velocity_threshold() == 10.0
+    Box2D.set_velocity_threshold(orig_value)
+
+
 if __name__ == '__main__':
     unittest.main()
 

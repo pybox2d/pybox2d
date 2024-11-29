@@ -18,8 +18,16 @@
 # misrepresented as being the original software.
 # 3. This notice may not be removed or altered from any source distribution.
 
-from Box2D.examples.framework import (Framework, Keys, main)
-from Box2D import (b2EdgeShape, b2FixtureDef, b2PolygonShape, b2RopeJointDef)
+from Box2D.examples.framework import Framework, Keys, main
+from Box2D import (
+    b2EdgeShape,
+    b2FixtureDef,
+    b2PolygonShape,
+    b2RopeDef,
+    b2RopeTuning,
+    b2Rope,
+)
+import Box2D as b2
 
 # From the original C++ testbed example:
 # "This test shows how a rope joint can be used to stabilize a chain of bodies
@@ -32,7 +40,7 @@ from Box2D import (b2EdgeShape, b2FixtureDef, b2PolygonShape, b2RopeJointDef)
 #  chain."
 
 
-class Rope (Framework):
+class Rope(Framework):
     name = "Rope Joint Test"
     description = "Press j to toggle the rope joint."
 
@@ -40,8 +48,7 @@ class Rope (Framework):
         super(Rope, self).__init__()
 
         # The ground
-        ground = self.world.CreateBody(
-            shapes=b2EdgeShape(vertices=[(-40, 0), (40, 0)]))
+        ground = self.world.CreateBody(shapes=b2EdgeShape(vertices=[(-40, 0), (40, 0)]))
 
         shape = b2PolygonShape(box=(0.5, 0.125))
         fd = b2FixtureDef(
@@ -81,31 +88,67 @@ class Rope (Framework):
 
             prevBody = body
 
-        extraLength = 0.01
-        self.rd = rd = b2RopeJointDef(
-            bodyA=ground,
-            bodyB=body,
-            maxLength=N - 1.0 + extraLength,
-            localAnchorA=(0, y),
-            localAnchorB=(0, 0)
+        N = 20
+        L = 0.5
+        vertices = [(0.0, L * (N - i)) for i in range(N)]
+        masses = [0.0, 0.0] + [1.0] * (N - 2)
+        self.rd1 = b2RopeDef(
+            vertices=vertices,
+            masses=masses,
+            gravity=(0.0, -10.0),
+            position=(5.0, 15.0),
+            tuning=b2RopeTuning(
+                bendHertz=30.0,
+                bendDamping=4.0,
+                bendStiffness=1.0,
+                bendingModel=b2.b2_pbdTriangleBendingModel,
+                isometric=True,
+                stretchHertz=30.0,
+                stretchDamping=4.0,
+                stretchStiffness=1.0,
+                stretchingModel=b2.b2_pbdStretchingModel,
+            ),
         )
-        self.rope = self.world.CreateJoint(rd)
+        self.rope1 = b2Rope()
+        self.rope1.Create(self.rd1)
 
-    def Step(self, settings):
-        super(Rope, self).Step(settings)
+        self.rd2 = b2RopeDef(
+            vertices=vertices,
+            masses=masses,
+            gravity=(0.0, -10.0),
+            position=(-5.0, 15.0),
+            tuning=b2RopeTuning(
+                bendHertz=30.0,
+                bendDamping=0.7,
+                bendStiffness=1.0,
+                bendingModel=b2.b2_pbdHeightBendingModel,
+                isometric=True,
+                stretchHertz=30.0,
+                stretchDamping=1.0,
+                stretchStiffness=1.0,
+                stretchingModel=b2.b2_pbdStretchingModel,
+            ),
+        )
 
-        if self.rope:
-            self.Print('Rope ON')
-        else:
-            self.Print('Rope OFF')
+        self.rope2 = b2Rope()
+        self.rope2.Create(self.rd2)
 
-    def Keyboard(self, key):
-        if key == Keys.K_j:
-            if self.rope:
-                self.world.DestroyJoint(self.rope)
-                self.rope = None
-            else:
-                self.rope = self.world.CreateJoint(self.rd)
+    # def Step(self, settings):
+    #     super().Step(settings)
+    #
+    #     if self.rope:
+    #         self.Print("Rope ON")
+    #     else:
+    #         self.Print("Rope OFF")
+    #
+    # def Keyboard(self, key):
+    #     if key == Keys.K_j:
+    #         if self.rope:
+    #             self.world.DestroyJoint(self.rope)
+    #             self.rope = None
+    #         else:
+    #             self.rope = self.world.CreateJoint(self.rd)
+
 
 if __name__ == "__main__":
     main(Rope)

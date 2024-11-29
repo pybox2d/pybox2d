@@ -1,7 +1,6 @@
-include INSTALL
+include INSTALL.md
 include LICENSE
 include MANIFEST.in
-include README
-include *.md
+include README.md
 include setup.py
 recursive-include library/Box2D *.png *.tga *.ttf *.txt *.ui *.xcf

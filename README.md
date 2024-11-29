@@ -13,12 +13,12 @@ pybox2d is available on conda-forge with the package name `pybox2d`.
 To create a new conda environment with pybox2d, run the following:
 
 ```bash
-$ conda create -n pybox2d -c conda-forge python=3.6 pybox2d
+$ conda create -n pybox2d -c conda-forge python=3.12 pybox2d
 $ conda activate pybox2d
 ```
 
 Recent builds should be available for Windows, Linux, and OS X, with Python
-3.6, 3.7, and 3.8.
+3.9 to 3.12.
 
 What is it?
 -----------

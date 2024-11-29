@@ -48,6 +48,12 @@ class testMatrix (unittest.TestCase):
         self.checkAlmostEqual(m2.col1, (0,0), msg='b2Mat22 -=')
         self.checkAlmostEqual(m2.col2, (0,0), msg='b2Mat22 -=')
 
+    def test_mat22_copy(self):
+        m2 = b2Mat22((1, 2), (3, 4))
+        m2_copy = b2Mat22(m2)
+        self.checkAlmostEqual(m2.col1, m2_copy.col1, msg='col1')
+        self.checkAlmostEqual(m2.col2, m2_copy.col2, msg='col2')
+
     def test_mat33_identity(self):
         i3 = b2Mat33()
         self.checkAlmostEqual(i3.col1, (1.0, 0.0, 0.0), msg='mat33 col1')
@@ -75,8 +81,13 @@ class testMatrix (unittest.TestCase):
         self.checkAlmostEqual(m3.col2, (0,0,0), msg='b2Mat33 -=')
         self.checkAlmostEqual(m3.col3, (0,0,0), msg='b2Mat33 -=')
 
+    def test_mat33_copy(self):
+        m3 = b2Mat33((1, 2, 3), (3, 4, 5), (5, 6, 7))
+        m3_copy = b2Mat33(m3)
+        self.checkAlmostEqual(m3.col1, m3_copy.col1, msg='col1')
+        self.checkAlmostEqual(m3.col2, m3_copy.col2, msg='col2')
+        self.checkAlmostEqual(m3.col3, m3_copy.col3, msg='col3')
+
 
 if __name__ == '__main__':
     unittest.main()
-
-
